@@ -1,0 +1,14 @@
+create table financeiro.movimento_caixa (
+   cd_movimento_caixa int not null,
+   fl_processado bool,
+   dt_hr_movimento timestamp,
+   dt_hr_abertura timestamp,
+   fl_fechado boolean,
+   entradas float,
+   saidas float,
+   saldo_anterior float,
+   saldo float,
+   cd_funcionario int,
+   cd_caixa int,
+   primary key (cd_movimento_caixa)
+);

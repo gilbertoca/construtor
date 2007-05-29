@@ -1,0 +1,8 @@
+
+--create users and roles
+--cria o usuario do modulo financeiro.
+CREATE USER financeiro PASSWORD 'user' admin;
+CREATE USER financeiro_user PASSWORD 'financeiro_user';
+
+--cria o grupo do modulo financeiro.
+CREATE GROUP financeiro WITH USER financeiro_user;

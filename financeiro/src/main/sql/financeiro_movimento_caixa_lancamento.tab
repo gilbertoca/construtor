@@ -1,0 +1,14 @@
+create table financeiro.movimento_caixa_lancamento (
+   cd_movimento_caixa_lancamento int not null,
+   cd_movimento_caixa int not null,
+   version int not null,
+   cd_caixa_conta int not null,
+   dt_hr_lancamento timestamp not null,
+   documento varchar(25),
+   valor float,
+   historico varchar(255),
+   fl_cancelado boolean,
+   cd_centro_custo int,
+   operacao varchar(1),
+   primary key (cd_movimento_caixa_lancamento, cd_movimento_caixa)
+);

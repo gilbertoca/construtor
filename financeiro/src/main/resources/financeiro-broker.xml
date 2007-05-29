@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<broker name="Financeiro" version="2.0">
+
+	<result-object id="MovimentoCaixa" class="com.gilbertoca.model.financeiro.MovimentoCaixa"	key-columns="cd_movimento_caixa">
+		<property name="cdMovimentoCaixa">
+			<column name="cd_movimento_caixa"/>
+		</property>	
+		<property name="dtHrMovimento">
+			<column name="dt_hr_movimento"/>
+		</property>		
+		<property name="dtHrAbertura">
+			<column name="dt_hr_abertura"/>
+		</property>	
+		<property name="entradas">
+			<column name="entradas"/>
+		</property>	
+		<property name="saidas">
+			<column name="saidas"/>
+		</property>	
+		<property name="saldoAnterior">
+			<column name="saldo_anterior"/>
+		</property>	
+		<property name="saldo">
+			<column name="saldo"/>
+		</property>	
+		<property name="cdFuncionario">
+			<column name="cd_funcionario"/>
+		</property>	
+		<property name="cdCaixa">
+			<column name="cd_caixa"/>
+		</property>	
+		<property name="flFechado">
+			<column name="fl_fechado"/>
+		</property>	
+		<property name="flProcessado">
+			<column name="fl_processado"/>
+		</property>			
+	</result-object>		
+
+	<sql-statement id="getMovimentoCaixa" result-object="MovimentoCaixa">
+		SELECT 
+			cd_movimento_caixa,
+			fl_processado,
+			dt_hr_movimento,
+			dt_hr_abertura,
+			fl_fechado,
+			entradas,
+			saidas,
+			saldo_anterior,
+			saldo,
+			cd_funcionario,
+			cd_caixa	
+		FROM 
+			financeiro.movimento_caixa
+		<append-statement id-suffix="ByCdMovimentoCaixa">WHERE cd_movimento_caixa = :cdMovimentoCaixa</append-statement> 	
+	</sql-statement>
+	<sql-statement id="getMovimentoCaixas" result-object="MovimentoCaixa">
+		SELECT 
+			cd_movimento_caixa,
+			fl_processado,
+			dt_hr_movimento,
+			dt_hr_abertura,
+			fl_fechado,
+			entradas,
+			saidas,
+			saldo_anterior,
+			saldo,
+			cd_funcionario,
+			cd_caixa	
+		FROM 
+			financeiro.movimento_caixa
+		<append-statement id-suffix="ByDtMovimentoCaixaRange">WHERE dt_hr_movimento BETWEEN :dtMovimentoCaixaIni AND :dtMovimentoCaixaFim</append-statement> 	
+	</sql-statement>
+	 <sql-statement id="insertMovimentoCaixa"><![CDATA[
+	    INSERT INTO financeiro.movimento_caixa (cd_movimento_caixa,
+	    											fl_processado,
+	    											dt_hr_movimento,
+	    											dt_hr_abertura,
+	    											fl_fechado,
+													entradas,
+													saidas,
+													saldo_anterior,
+													saldo,
+													cd_funcionario,
+													cd_caixa)
+	    VALUES  (:movimentoCaixa.cdMovimentoCaixa,
+						:movimentoCaixa.flProcessado,
+						:movimentoCaixa.dtHrMovimento,
+						:movimentoCaixa.dtHrAbertura,
+						:movimentoCaixa.flFechado,
+						:movimentoCaixa.entradas,
+						:movimentoCaixa.saidas,
+						:movimentoCaixa.saldoAnterior,
+						:movimentoCaixa.saldo,
+						:movimentoCaixa.cdFuncionario,
+						:movimentoCaixa.cdCaixa)
+	  ]]></sql-statement>	
+	 <sql-statement id="updateMovimentoCaixa"><![CDATA[
+	    UPDATE financeiro.movimento_caixa SET 
+			fl_processado 			= :movimentoCaixa.flProcessado,
+			dt_hr_movimento 		= :movimentoCaixa.dtHrMovimento,
+			dt_hr_abertura			= :movimentoCaixa.dtHrAbertura,
+			fl_fechado 				= :movimentoCaixa.flFechado,
+			entradas					= :movimentoCaixa.entradas,
+			saidas						= :movimentoCaixa.saidas,
+			saldo_anterior			= :movimentoCaixa.saldoAnterior,
+			saldo						= :movimentoCaixa.saldo,
+			cd_funcionario			= :movimentoCaixa.cdFuncionario,
+			cd_caixa					= :movimentoCaixa.cdCaixa
+		WHERE
+			cd_movimento_caixa  = :movimentoCaixa.cdMovimentoCaixa
+	  ]]></sql-statement>	
+	<sql-statement id="deleteMovimentoCaixa">
+		DELETE
+		FROM 
+			financeiro.movimento_caixa
+		<append-statement id-suffix="ByCdMovimentoCaixa">WHERE cd_movimento_caixa = :cdMovimentoCaixa</append-statement> 	
+	</sql-statement>
+
+</broker>
