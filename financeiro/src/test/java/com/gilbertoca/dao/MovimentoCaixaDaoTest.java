@@ -5,10 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DataRetrievalFailureException;
-
 import com.gilbertoca.model.financeiro.MovimentoCaixa;
 
 public class MovimentoCaixaDaoTest extends BaseDaoTestCase{
@@ -73,7 +69,7 @@ public class MovimentoCaixaDaoTest extends BaseDaoTestCase{
 			        dao.insertMovimentoCaixa(mc);
 
 		            fail("insertMovimentoCaixa didn't throw DataIntegrityViolationException");
-		        } catch (DataIntegrityViolationException e) {
+		        } catch (Exception e) {
 		            assertNotNull(e);
 		            log.debug("expected exception: " + e.getMessage());
 		        }
@@ -98,7 +94,7 @@ public class MovimentoCaixaDaoTest extends BaseDaoTestCase{
 	        try {
 	        	dao.getMovimentoCaixa(removeId);
 	        	fail("movimentoCaixa found in database");
-	        } catch (DataRetrievalFailureException e) {
+	        } catch (Exception e) {
 	        	assertNotNull(e.getMessage());
 	        }
 	    }

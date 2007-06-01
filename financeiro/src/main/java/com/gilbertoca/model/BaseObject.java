@@ -3,9 +3,7 @@ package com.gilbertoca.model;
 
 import java.io.Serializable;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+import java.util.logging.*;
 
 /**
  * Base class for Model objects.  Child objects should implement toString(), 
@@ -18,7 +16,7 @@ import org.apache.commons.logging.LogFactory;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public abstract class BaseObject implements Serializable {
-    protected final transient Log log = LogFactory.getLog(getClass());	
+    protected final transient Logger log = Logger.getLogger(getClass().getName());
     public abstract String toString();
     public abstract boolean equals(Object o);
     public abstract int hashCode();

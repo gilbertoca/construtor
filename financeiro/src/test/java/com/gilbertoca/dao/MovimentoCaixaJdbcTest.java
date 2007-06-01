@@ -2,10 +2,10 @@ package com.gilbertoca.dao;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,8 +20,8 @@ public class MovimentoCaixaJdbcTest extends BaseDaoTestCase{
 	private static final Integer MOVIMENTOCAIXAID = new Integer("1");
 	static{
 		try {
-			DTMOVIMENTOCAIXAINI = formatter.parse("2007-03-01 00:00:0");
-			DTMOVIMENTOCAIXAFIM = formatter.parse("2007-03-02 00:00:0");
+			DTMOVIMENTOCAIXAINI = (Date) formatter.parse("2007-03-01 00:00:0");
+			DTMOVIMENTOCAIXAFIM = (Date) formatter.parse("2007-03-02 00:00:0");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,7 +32,7 @@ public class MovimentoCaixaJdbcTest extends BaseDaoTestCase{
 	 * @return the suite of tests being tested
 	 */
 	public static Test suite() {
-		return new TestSuite(MovimentoCaixaOrbrokerTest.class);
+		return new TestSuite(MovimentoCaixaJdbcTest.class);
 	}
 
 	/**
@@ -50,11 +50,12 @@ public class MovimentoCaixaJdbcTest extends BaseDaoTestCase{
                                               "dt_hr_abertura,	fl_fechado, entradas," +
                                               "	saidas,	saldo_anterior,	saldo," +
                                               "	cd_funcionario,	cd_caixa FROM " +
-                                              "	financeiro.movimento_caixa" +
-                                              "WHERE dt_hr_movimento BETWEEN ? AND ?";                
+                                              "	financeiro.movimento_caixa " +
+                                              "WHERE dt_hr_movimento between ? AND ?";                
                 pstmt = conn.prepareStatement(SQL);
-                pstmt.setDate(1, new java.sql.Date(DTMOVIMENTOCAIXAINI.getTime()));
-                pstmt.setDate(2, new java.sql.Date(DTMOVIMENTOCAIXAFIM.getTime()));
+                pstmt.setDate(1, DTMOVIMENTOCAIXAINI);
+                pstmt.setDate(2,DTMOVIMENTOCAIXAFIM);
+                logger.debug(pstmt.executeQuery().toString());
                 rs = pstmt.executeQuery();
                  // extract data from the ResultSet
                 while (rs.next()) {
@@ -76,10 +77,4 @@ public class MovimentoCaixaJdbcTest extends BaseDaoTestCase{
                   }
                 }
 	}
-	/**
-	 * 
-	 */
-	public void testGetMovimentoCaixa() {
-            
-	}	
 }

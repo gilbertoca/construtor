@@ -40,6 +40,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>sql-maven-plugin</artifactId>
+        <version>1.0</version>
         <dependencies>
           <dependency>
             <groupId>${jdbc.groupId}</groupId>
@@ -53,48 +54,22 @@
           <username>${jdbc.username}</username>
           <password>${jdbc.password}</password>
           <skip>${maven.sql.skip}</skip>
+            <srcFiles>
+                <srcFile>src/main/sql/drop.sql</srcFile>
+                <srcFile>src/main/sql/create.sql</srcFile>
+                <srcFile>src/main/sql/load.sql</srcFile>
+            </srcFiles>
         </configuration>
         <executions>
             <execution>
-                <id>drop-schema</id>
-                <phase>process-test-resources</phase>
+                <id>init</id>
                 <goals>
                     <goal>execute</goal>
                 </goals>
-                <configuration>
-                    <srcFiles>
-                        <srcFile>src/main/sql/drop.sql</srcFile>
-                    </srcFiles>
-                    <onError>continue</onError>
-                </configuration>
             </execution>             
-           <execution>
-                 <id>create-db</id>
-                 <phase>process-test-resources</phase>
-                 <goals>
-                   <goal>execute</goal>
-                 </goals>
-                 <configuration>
-                         <srcFiles>
-                                <srcFile>src/main/sql/create.sql</srcFile>
-                         </srcFiles>
-                 </configuration>
-           </execution>
-           <execution>
-                 <id>load-db</id>
-                 <phase>process-test-resources</phase>
-                 <goals>
-                   <goal>execute</goal>
-                 </goals>
-                 <configuration>
-                         <srcFiles>
-                                <srcFile>src/main/sql/load.sql</srcFile>
-                         </srcFiles>
-                 </configuration>
-           </execution>                       
         </executions>        
       </plugin>
-    </plugins>
+  </plugins>
   </build>
   <dependencies>
     <dependency>
@@ -103,49 +78,11 @@
       <version>${orbroker.version}</version>
     </dependency>  
     <dependency>
-      <groupId>org.springmodules</groupId>
-      <artifactId>spring-modules-orbroker</artifactId>
-      <version>${spring-modules-orbroker.version}</version>
-      <exclusions>
-                <exclusion>
-                    <artifactId>orbroker</artifactId>
-                    <groupId>orbroker</groupId>
-                </exclusion>
-     </exclusions>
-    </dependency>    
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>${log.version}</version>
-      <exclusions>
-                <exclusion>
-                    <artifactId>avalon-framework</artifactId>
-                    <groupId>avalon-framework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>logkit</artifactId>
-                    <groupId>logkit</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>servlet-api</artifactId>
-                    <groupId>javax.servlet</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>junit</artifactId>
-                    <groupId>junit</groupId>
-                </exclusion>
-            </exclusions>
-    </dependency>
+    </dependency>    
     <dependency>
       <groupId>${jdbc.groupId}</groupId>
       <artifactId>${jdbc.artifactId}</artifactId>
@@ -158,26 +95,16 @@
       <version>${commons-dbcp.version}</version>
     </dependency>
     <dependency>
-    <groupId>commons-lang</groupId>
-    <artifactId>commons-lang</artifactId>
-     <version>${commons-lang.version}</version>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>${commons-lang.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-mock</artifactId>
-      <version>${spring-mock.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-dao</artifactId>
-      <version>${spring-dao.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring-jdbc.version}</version>
-    </dependency>    
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-mock</artifactId>
+            <version>2.0.3</version>
+            <scope>test</scope>
+        </dependency>         
   </dependencies>
   <reporting>
     <plugins>
@@ -202,6 +129,20 @@
       </plugin>
     </plugins>
   </reporting>
+  <profiles>
+      <profile>
+      <id>postgresql</id>
+      <properties>
+        <jdbc.url>jdbc:postgresql://localhost:5433/financeiro</jdbc.url>
+        <jdbc.username>financeiro_user</jdbc.username>
+        <jdbc.password>financeiro_user</jdbc.password>        
+        <jdbc.version>8.1-407.jdbc3</jdbc.version>
+        <jdbc.groupId>postgresql</jdbc.groupId>
+        <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+        <jdbc.artifactId>postgresql</jdbc.artifactId>
+      </properties>
+    </profile>
+  </profiles>
   <properties>
         <spring-mock.version>2.0.3</spring-mock.version>
         <spring-dao.version>2.0.3</spring-dao.version>

@@ -53,7 +53,7 @@ public class MovimentoCaixaOrbrokerTest extends BaseDaoTestCase{
                 finally {
 			qry.close();
 		}
-
+        assertFalse("Can't be empty", movimentos.isEmpty());
 	}
 	/**
 	 * 

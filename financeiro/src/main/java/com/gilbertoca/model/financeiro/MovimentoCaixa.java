@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -89,8 +90,8 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
     }
 
     /**
-     * Usado para determinar se um caixa já foi processado. Um movimento de caxia,
-     * so poderão ser processado se estiver aberto, ou seja, o atributo flFechado
+     * Usado para determinar se um caixa jï¿½ foi processado. Um movimento de caxia,
+     * so poderï¿½o ser processado se estiver aberto, ou seja, o atributo flFechado
      * for igual a false.
 	 * @return boolean
      */
@@ -127,7 +128,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
     }
     
     /**
-     * Se o Movimento de Caixa está fechado(true) ou aberto(false).
+     * Se o Movimento de Caixa estï¿½ fechado(true) ou aberto(false).
      * @return boolean 
      */
     public boolean getFlFechado() {
@@ -189,7 +190,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
     /**
      * Totaliza o movimento de Caixa. Realiza um loop sobre todos os itens
      * do movimento e, para cada item chama movimentoCaixaLancamento.getValor() 
-     * para debito e para crédito.
+     * para debito e para crï¿½dito.
      * Formula: saldo = tempCreditoTotal - tempDebitoTotal
      * @return Double 
      */    
@@ -199,7 +200,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
         Iterator i = getMovimentoCaixaLancamentos().iterator();
         while (i.hasNext()) {
             MovimentoCaixaLancamento movimentoCaixaLancamento = (MovimentoCaixaLancamento) i.next();
-            //Verificamos se o item não foi cancelado
+            //Verificamos se o item nï¿½o foi cancelado
             if(movimentoCaixaLancamento.getFlCancelado().booleanValue()==false){
                 //Totalizando Credito
                 if(movimentoCaixaLancamento.getOperacao().equalsIgnoreCase("C")){
@@ -208,12 +209,10 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
                 else{//Totalizando Debito
                     tempDebitoTotal = tempDebitoTotal + movimentoCaixaLancamento.getValor().doubleValue();
                 }
-                if (log.isDebugEnabled()) {
-                    log.debug("into 'getSaldoInternal' method... operacao.: "
+                log.log(Level.INFO, "into 'getSaldoInternal' method... operacao.: "
                             +movimentoCaixaLancamento.getOperacao()+
                             "\nValor debito: "+tempDebitoTotal+
                             "\nValor credito: "+tempCreditoTotal);
-                }
             }
         }
         setSaidas(new Double(tempDebitoTotal));
@@ -222,7 +221,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
        return new Double(tempCreditoTotal - tempDebitoTotal); 
     }
    /**
-    * Totaliza as saídas do movimento de Caixa. Realiza um loop sobre todos os itens
+    * Totaliza as saï¿½das do movimento de Caixa. Realiza um loop sobre todos os itens
     * do movimento e, para cada item chama movimentoCaixaLancamento.getValor() 
     * para debito.
     * @return Double 
@@ -232,7 +231,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
         Iterator i = getMovimentoCaixaLancamentos().iterator();
         while (i.hasNext()) {
             MovimentoCaixaLancamento movimentoCaixaLancamento = (MovimentoCaixaLancamento) i.next();
-            //Verificamos se o item não foi cancelado
+            //Verificamos se o item nï¿½o foi cancelado
             if(movimentoCaixaLancamento.getFlCancelado().booleanValue()==false){
 	            if(movimentoCaixaLancamento.getOperacao().equalsIgnoreCase("D")){
 	                tempDebitoTotal = tempDebitoTotal + movimentoCaixaLancamento.getValor().doubleValue();
@@ -244,7 +243,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
     /**
      * Totaliza as entradas do movimento de Caixa. Realiza um loop sobre todos os itens
      * do movimento e, para cada item chama movimentoCaixaLancamento.getValor() 
-     * para crédito.
+     * para crï¿½dito.
      * @return Double 
      */
      public Double getEntradasInternal(){
@@ -252,7 +251,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
          Iterator i = getMovimentoCaixaLancamentos().iterator();
          while (i.hasNext()) {
              MovimentoCaixaLancamento movimentoCaixaLancamento = (MovimentoCaixaLancamento) i.next();
-             //Verificamos se o item não foi cancelado
+             //Verificamos se o item nï¿½o foi cancelado
              if(movimentoCaixaLancamento.getFlCancelado().booleanValue()==false){
                  if(movimentoCaixaLancamento.getOperacao().equalsIgnoreCase("C")){
                      tempCreditoTotal = tempCreditoTotal + movimentoCaixaLancamento.getValor().doubleValue();
@@ -302,7 +301,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
 	                					.append("flFechado", flFechado)
 	                					.append("flProcessado", flProcessado);
 	        if (!getMovimentoCaixaLancamentos().isEmpty()) {
-	             sb.append("Lançamentos: ");
+	             sb.append("Lanï¿½amentos: ");
 	             sb.append(", ");
 		         Iterator i = getMovimentoCaixaLancamentos().iterator();
 		         while (i.hasNext()) {
@@ -310,7 +309,7 @@ public class MovimentoCaixa extends BaseObject implements Serializable {
 		             sb.append(movimentoCaixaLancamento.toString());
 		         }    
 	        } else {
-	            sb.append("Nenhum Lançamento.");
+	            sb.append("Nenhum Lanï¿½amento.");
 	        }
 	        return sb.toString();
 	}
