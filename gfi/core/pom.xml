@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.gilbertoca.gfi</groupId>
+        <artifactId>gfi</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+    <artifactId>gfi-core</artifactId>
+    <packaging>jar</packaging>
+    <name>Finanças e Inventário - Core</name>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>                
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>${jpa.groupId}</groupId>
+            <artifactId>${jpa.artifactId}</artifactId>
+            <version>${jpa.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${jpa_spec.groupId}</groupId>
+            <artifactId>${jpa_spec.artifactId}</artifactId>
+            <version>${jpa_spec.version}</version>
+        </dependency>        
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>${commons-pool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>3.0</version>
+        </dependency>        
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm-commons</artifactId>
+            <version>3.0</version>
+        </dependency>        
+        
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>openjpa</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <tasks>
+                                        <java classname="org.apache.openjpa.enhance.PCEnhancer"
+                                              classpathref="maven.runtime.classpath"
+                                              dir="target/classes" fork="true" />
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>            
+            <properties>
+                <jpa.groupId>org.apache.openjpa</jpa.groupId>
+                <jpa.artifactId>openjpa</jpa.artifactId>
+                <jpa.version>1.0.1</jpa.version>
+                <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
+                <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
+                <jpa.url>openjpa.ConnectionURL</jpa.url>
+                <jpa.username>openjpa.ConnectionUserName</jpa.username>
+                <jpa.password>openjpa.ConnectionPassword</jpa.password>
+                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
+                <jpa.ddl_value>buildSchema</jpa.ddl_value>
+            </properties>
+        </profile>
+        <profile>
+            <id>cayenne</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <forkMode>once</forkMode>
+                            <argLine>
+                                -javaagent:${settings.localRepository}/org/apache/cayenne/cayenne-agent/${jpa_agent.version}/cayenne-agent-${jpa_agent.version}.jar
+                            </argLine>
+                        </configuration>
+                    </plugin>                     
+                </plugins>
+            </build>
+            <dependencies>
+                <dependency>
+                    <groupId>${jpa_agent.groupId}</groupId>
+                    <artifactId>${jpa_agent.artifactId}</artifactId>
+                    <version>${jpa_agent.version}</version>
+                </dependency>
+            </dependencies>
+            
+            <properties>
+                <!-- Framework dependency versions -->
+                <jpa_agent.groupId>org.apache.cayenne</jpa_agent.groupId>
+                <jpa_agent.artifactId>cayenne-agent</jpa_agent.artifactId>
+                <jpa_agent.version>3.0M2</jpa_agent.version>
+                
+                <jpa.groupId>org.apache.cayenne</jpa.groupId>
+                <jpa.artifactId>cayenne-server</jpa.artifactId>
+                <jpa.version>3.0M2</jpa.version>
+                <jpa.provider>org.apache.cayenne.jpa.Provider</jpa.provider>
+                <jpa.driver>org.apache.cayenne.datasource.jdbc.driver</jpa.driver>
+                <jpa.url>org.apache.cayenne.datasource.jdbc.url</jpa.url>
+                <jpa.username>org.apache.cayenne.datasource.jdbc.username</jpa.username>
+                <jpa.password>org.apache.cayenne.datasource.jdbc.password</jpa.password>
+                <jpa.ddl>toplink.ddl-generation</jpa.ddl>
+                <jpa.ddl_value>toplink.ddl-generation.output-mode</jpa.ddl_value>
+                
+                <jpa.minConnections></jpa.minConnections>
+                <jpa.maxConnections></jpa.maxConnections>    
+
+            </properties>            
+        </profile>
+        
+        
+    </profiles>    
+    <properties>
+        <!-- Framework dependency versions -->
+        <jpa_spec.groupId>javax.persistence</jpa_spec.groupId>
+        <jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
+        <jpa_spec.version>1.0</jpa_spec.version>
+        
+        <jpa.groupId>toplink.essentials</jpa.groupId>
+        <jpa.artifactId>toplink-essentials</jpa.artifactId>
+        <jpa.version>2.0.1-06</jpa.version>
+        <jpa.provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</jpa.provider>
+        <jpa.driver>toplink.jdbc.driver</jpa.driver>
+        <jpa.url>toplink.jdbc.url</jpa.url>
+        <jpa.username>toplink.jdbc.user</jpa.username>
+        <jpa.password>toplink.jdbc.password</jpa.password>
+        <jpa.ddl>toplink.ddl-generation</jpa.ddl>
+        <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
+        
+        <commons-pool.version>1.3</commons-pool.version>
+    </properties>
+</project>

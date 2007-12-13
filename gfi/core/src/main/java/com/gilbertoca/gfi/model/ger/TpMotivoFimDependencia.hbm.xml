@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia"
+        table="ger.ger_tpmotivofimdependencia"
+    >
+
+        <id
+            name="cdtpmotivofimdependencia"
+            column="cdtpmotivofimdependencia"
+            type="java.lang.Short"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-TpMotivoFimDependencia.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="dctpmotivofimdependencia"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="dctpmotivofimdependencia"
+            length="50"
+        />
+
+        <set
+            name="gerPessoadependencias"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="cdtpmotivofimdependencia"
+            >
+            </key>
+
+            <one-to-many
+                  class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+            />
+
+        </set>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-TpMotivoFimDependencia.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

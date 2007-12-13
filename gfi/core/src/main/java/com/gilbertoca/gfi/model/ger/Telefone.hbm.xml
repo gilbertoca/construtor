@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.model.ger.Telefone"
+        table="ger.ger_telefone"
+    >
+
+        <composite-id
+            name="comp_id"
+            class="com.gilbertoca.gfi.model.ger.TelefonePK"
+        >
+                     <key-property
+                        name="cdpessoa"
+                        type="java.lang.Integer"
+                        column="cdpessoa"
+                        length="4"
+                />
+
+                     <key-property
+                        name="telefone"
+                        type="java.lang.String"
+                        column="telefone"
+                        length="30"
+                />
+
+        </composite-id>
+
+        <property
+            name="tptelefone"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tptelefone"
+            length="30"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Telefone.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

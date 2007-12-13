@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.model.ger.EstadoCivil"
+        table="ger.ger_estadocivil"
+    >
+
+        <id
+            name="cdestadocivil"
+            column="cdestadocivil"
+            type="java.lang.Short"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-EstadoCivil.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="dcestadocivil"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="dcestadocivil"
+            length="30"
+            not-null="true"
+        />
+
+        <set
+            name="gerPessoacaracteristicas"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="cdestadocivil"
+            >
+            </key>
+
+            <one-to-many
+                  class="com.gilbertoca.gfi.model.ger.PessoaCaracteristica"
+            />
+
+        </set>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-EstadoCivil.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

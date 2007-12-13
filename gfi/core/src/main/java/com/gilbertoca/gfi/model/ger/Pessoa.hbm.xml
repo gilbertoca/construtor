@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.model.ger.Pessoa"
+        table="ger.ger_pessoa"
+    >
+
+        <id
+            name="cdPessoa"
+            column="cdPessoa"
+            type="java.lang.Integer"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Pessoa.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="rgNumero"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="rgNumero"
+            length="30"
+        />
+
+        <property
+            name="fotoPath"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="fotoPath"
+            length="255"
+        />
+
+        <property
+            name="apelido"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="apelido"
+            length="50"
+        />
+
+        <property
+            name="rgOrgaoExp"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="rgOrgaoExp"
+            length="6"
+        />
+
+        <property
+            name="rgEmissao"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="rgEmissao"
+            length="4"
+        />
+
+        <property
+            name="cpf"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cpf"
+            length="11"
+        />
+
+        <property
+            name="cnNumero"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnNumero"
+            length="20"
+        />
+
+        <property
+            name="cnLv"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnLv"
+            length="10"
+        />
+
+        <property
+            name="cnFls"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnFls"
+            length="10"
+        />
+
+        <property
+            name="cnCidade"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnCidade"
+            length="50"
+        />
+
+        <property
+            name="cnSubDistrito"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnSubDistrito"
+            length="50"
+        />
+
+        <property
+            name="cnUf"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cnUf"
+            length="2"
+        />
+
+        <property
+            name="sexo"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="sexo"
+            length="1"
+            not-null="true"
+        />
+
+        <property
+            name="nomePai"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="nomePai"
+            length="100"
+        />
+
+        <property
+            name="nomeMae"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="nomeMae"
+            length="100"
+        />
+
+        <property
+            name="dtNascimento"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="dtNascimento"
+            length="4"
+        />
+
+        <property
+            name="dtFalecimento"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="dtFalecimento"
+            length="4"
+        />
+
+        <property
+            name="nome"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="nome"
+            length="100"
+            not-null="true"
+        />
+
+        <property
+            name="flDependente"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="flDependente"
+            length="1"
+        />
+
+        <property
+            name="ufeSg"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ufe_sg"
+            length="2"
+        />
+
+        <property
+            name="locNuSequencial"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="loc_nu_sequencial"
+            length="4"
+        />
+
+        <property
+            name="tipoLogradouro"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="tipoLogradouro"
+            length="72"
+        />
+
+        <property
+            name="logNome"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="log_nome"
+            length="125"
+        />
+
+        <property
+            name="logComplemento"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="log_complemento"
+            length="100"
+        />
+
+        <property
+            name="baiNome"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="bai_nome"
+            length="72"
+        />
+
+        <property
+            name="cep"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cep"
+            length="8"
+        />
+
+        <property
+            name="flServidorPublico"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="flServidorPublico"
+            length="1"
+        />
+
+        <property
+            name="esferaServidorPublico"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="esferaServidorPublico"
+            length="9"
+        />
+
+        <one-to-one
+            name="gerPessoaDocumento"
+            class="com.gilbertoca.gfi.model.ger.PessoaDocumento"
+            cascade="none"
+            outer-join="auto"
+            constrained="false"
+        />
+
+        <one-to-one
+            name="gerPessoaCaracteristica"
+            class="com.gilbertoca.gfi.model.ger.PessoaCaracteristica"
+            cascade="none"
+            outer-join="auto"
+            constrained="false"
+        />
+
+        <set
+            name="gerPessoaDependencias"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="cdPessoa"
+            >
+            </key>
+
+            <one-to-many
+                  class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+            />
+
+        </set>
+
+        <set
+            name="servidores"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="cdpessoa"
+            >
+            </key>
+
+            <one-to-many
+                  class="to.gov.secad.sgp.model.Servidor"
+            />
+
+        </set>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Pessoa.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
