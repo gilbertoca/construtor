@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.gilbertoca.gfi</groupId>
+        <artifactId>gfi</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+    <artifactId>gfi-webapp</artifactId>
+    <packaging>war</packaging>
+    <name>Finanças e Inventário - Web (Click)</name>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>RELEASE</version>
+                <configuration>
+                    <encoding>ISO-8859-15</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>RELEASE</version>
+                <configuration>
+                    <encoding>ISO-8859-15</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.6</version>
+                <configuration>
+                    <scanIntervalSeconds>6  </scanIntervalSeconds>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.click</groupId>
+            <artifactId>click</artifactId>
+            <version>1.4-RC1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.click</groupId>
+            <artifactId>click-extras</artifactId>
+            <version>1.4-RC1</version>
+        </dependency>    
+    </dependencies>
+    <properties>
+        <netbeans.hint.deploy.server>Tomcat55</netbeans.hint.deploy.server>
+    </properties>        
+</project>

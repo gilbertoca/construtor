@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+    <!-- 
+    Provides a HTTP response GZIP compression filter to improve network 
+    performance. In production applications you may use a compression module
+    provided by a web server instead.
+    -->
+    <filter>
+        <filter-name>compression-filter</filter-name>
+        <filter-class>net.sf.click.extras.filter.CompressionFilter</filter-class>
+    </filter>
+        
+    <filter-mapping>
+        <filter-name>compression-filter</filter-name>
+        <servlet-name>click-servlet</servlet-name>
+    </filter-mapping>    
+    <servlet>
+        <servlet-name>click-servlet</servlet-name>
+        <servlet-class>net.sf.click.ClickServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>click-servlet</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>redirect.html</welcome-file>
+    </welcome-file-list>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/not-authorized.htm</location>
+    </error-page>	
+</web-app>
