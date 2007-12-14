@@ -125,10 +125,11 @@
                 <jpa.password>org.apache.cayenne.datasource.jdbc.password</jpa.password>
                 <jpa.ddl>toplink.ddl-generation</jpa.ddl>
                 <jpa.ddl_value>toplink.ddl-generation.output-mode</jpa.ddl_value>
-                
+                <jpa.logging>openjpa.Log</jpa.logging>
+                <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
                 <jpa.minConnections></jpa.minConnections>
                 <jpa.maxConnections></jpa.maxConnections>    
-
+                
             </properties>            
         </profile>
         
@@ -149,8 +150,13 @@
         <jpa.username>toplink.jdbc.user</jpa.username>
         <jpa.password>toplink.jdbc.password</jpa.password>
         <jpa.ddl>toplink.ddl-generation</jpa.ddl>
-        <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
-        
+        <jpa.ddl_value>create-tables</jpa.ddl_value>
+        <!-- Este destroi e recria
+        jpa.ddl_value>drop-and-create-tables</jpa.ddl_value 
+        -->
+        <jpa.logging>toplink.logging.level</jpa.logging>
+        <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
+        <jpa.logging_value>INFO</jpa.logging_value>
         <commons-pool.version>1.3</commons-pool.version>
     </properties>
 </project>

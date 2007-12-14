@@ -13,6 +13,7 @@
             <property name="${jpa.username}" value="${jdbc.username}"/>
             <property name="${jpa.password}" value="${jdbc.password}"/>
             <property name="${jpa.ddl}" value="${jpa.ddl_value}"/>
+            <property name="${jpa.logging}" value="${jpa.logging_value}"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="gfi-gerPU" transaction-type="RESOURCE_LOCAL">

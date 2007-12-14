@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -29,6 +28,9 @@ public class Produto implements Serializable {
     @Id
     @TableGenerator(
         name="produto_id_gerador",
+        table="id_gerador",        
+        pkColumnName="id_nome",        
+        valueColumnName="id_valor",
         allocationSize=1
     )
     @GeneratedValue(strategy=GenerationType.TABLE, generator="produto_id_gerador")
@@ -55,6 +57,12 @@ public class Produto implements Serializable {
     
     @OneToMany(targetEntity=com.gilbertoca.gfi.model.inventario.Item.class, cascade=CascadeType.ALL, mappedBy="produto")
     private Set<Item> items;
+
+    public Produto(String nomeProduto, String descricaoProduto, Integer cdCategoria) {
+        this.nomeProduto = nomeProduto;
+        this.descricaoProduto = descricaoProduto;
+        this.cdCategoria = cdCategoria;
+    }
 
     /** full constructor */
     public Produto(Integer cdProduto, String nomeProduto, String descricaoProduto, Categoria categoria, Set items) {
@@ -159,8 +167,12 @@ public class Produto implements Serializable {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("descricaoProduto", this.descricaoProduto).append(
-                "cdCategoria", this.cdCategoria).append("nomeProduto",
-                this.nomeProduto).append("cdProduto", this.cdProduto).append("dtCadastro", this.dtCadastro).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("descricaoProduto", this.descricaoProduto)
+                .append("cdCategoria", this.cdCategoria)
+                .append("categoria", this.categoria.toString())                
+                .append("nomeProduto",this.nomeProduto)
+                .append("cdProduto", this.cdProduto)
+                .append("dtCadastro", this.dtCadastro).toString();
     }
 }

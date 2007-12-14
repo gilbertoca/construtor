@@ -9,16 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 @Entity  
 @Table(name="categoria")  
@@ -26,6 +25,9 @@ public class Categoria implements Serializable {
     @Id
     @TableGenerator(
         name="categoria_id_gerador",
+        table="id_gerador",
+        pkColumnName="id_nome",        
+        valueColumnName="id_valor",
         allocationSize=1
     )
     @GeneratedValue(strategy=GenerationType.TABLE, generator="categoria_id_gerador")
@@ -44,6 +46,11 @@ public class Categoria implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro", nullable = false)
     private Date dtCadastro = new Date();
+
+    public Categoria(String nomeCategoria, String descricaoCategoria) {
+        this.nomeCategoria = nomeCategoria;
+        this.descricaoCategoria = descricaoCategoria;
+    }
 
     /** full constructor */
     public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria, Set<Produto> produtos) {
@@ -163,7 +170,7 @@ public class Categoria implements Serializable {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return new ToStringBuilder(this).append("nomeCategoria",
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("nomeCategoria",
 				this.nomeCategoria).append("descricaoCategoria",
 				this.descricaoCategoria).append("cdCategoria",
 				this.cdCategoria).toString();

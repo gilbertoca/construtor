@@ -1,6 +1,7 @@
 package com.gilbertoca.gfi.model.inventario;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -53,57 +54,80 @@ public class Item implements Serializable {
     @Id
     @TableGenerator(
         name="item_id_gerador",
+        table="id_gerador",        
+        pkColumnName="id_nome",        
+        valueColumnName="id_valor",
         allocationSize=1
     )
     @GeneratedValue(strategy=GenerationType.TABLE, generator="item_id_gerador")
     @Column(name = "cd_item")
     private Integer cdItem;
+    
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro", nullable = false)
     private Date dtCadastro = new Date();
-    @Column(name="preco_venda", precision=10, scale=2)
-    private Double precoVenda = new Double(0.0);
-    @Column(name="preco_custo", precision=10, scale=2)
-    private Double precoCusto = new Double(0.0);
-    @Column(name="percentual_desconto_maximo", precision=10, scale=2)
+    
+    @Column(name="preco_venda")
+    private BigDecimal precoVenda = new BigDecimal(0.0);
+    
+    @Column(name="preco_custo")
+    private BigDecimal precoCusto = new BigDecimal(0.0);
+    
+    @Column(name="percentual_desconto_maximo")
     private Float percentualDescontoMaximo = new Float(0.0); 
+    
     @Column(name="nome_item", length=80, nullable=false)
     private String nomeItem;
     /**
      *  Campo utilizado para calculo do preço de venda
      *  <code>Formula: $precoVenda = $precoCusto + %percentualMargemLucro + $adicinalPrecoFixo</code>
      */
-    @Column(name="percentual_margem_lucro", precision=10, scale=2)
+    @Column(name="percentual_margem_lucro")
     private Float percentualMargemLucro = new Float(0.0); 
-    @Column(name="adicinal_preco_fixo", precision=10, scale=2)
+    
+    @Column(name="adicinal_preco_fixo")
     private Double adicinalPrecoFixo = new Double(0.0);
+    
     @Column(name="cd_localizacao_secao")
     private String cdLocalizacaoSecao;
+    
     @Transient
     private LocalizacaoSecao localizacaoSecao = new LocalizacaoSecao();
+    
     @Column(name="cd_unidade_medida_venda", length=4)
     private String cdUnidadeMedidaVenda;
+    
     @Transient
     private UnidadeMedida unidadeMedidaVenda = new UnidadeMedida();
-    @Column(name="qtd_por_unidade", precision=10, scale=2)
+    
+    @Column(name="qtd_por_unidade")
     private Float qtdPorUnidade = new Float(0.0);
+    
     @Column(name="cd_unidade_medida_compra", length=4)
     private String cdUnidadeMedidaCompra;
+    
     @Transient
     private UnidadeMedida unidadeMedidaCompra = new UnidadeMedida();
-    @Column(name="estoque_atual", precision=10, scale=2)
+    
+    @Column(name="estoque_atual")
     private Float estoqueAtual = new Float(0.0);
-    @Column(name="estoque_minimo", precision=10, scale=2)
+    
+    @Column(name="estoque_minimo")
     private Float estoqueMinimo = new Float(0.0);
-    @Column(name="nivel_reposicao", precision=10, scale=2)
+    
+    @Column(name="nivel_reposicao")
     private Float nivelReposicao = new Float(0.0);
+    
     @Column(name="fl_descontinuado")
     private Boolean flDescontinuado = new Boolean(false);
+    
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_descontinuado")    
     private Date dtDescontinuado;
+    
     @Column(name = "cd_empresa")    
     private Integer cdEmpresa = new Integer(1);
+    
     @Transient
     private Empresa empresa = new Empresa();
     
@@ -120,7 +144,8 @@ public class Item implements Serializable {
      */
     @Column(name="tipo_icms",length=1)
     private String tipoICMS = "I";
-    @Column(name="aliquota_icm", precision=10, scale=2)
+    
+    @Column(name="aliquota_icm")
     private Float aliquotaICM = new Float(0.0);
     /**
      * Valores que o campo tipoNotaFiscal pode assumir:
@@ -143,10 +168,13 @@ public class Item implements Serializable {
     private Integer origemMercadoriaNotaFiscal = new Integer(0);
     @Column(name="fl_base_tributaria_ipi")
     private Boolean flBaseTributariaIPI = new Boolean(false);
-    @Column(name="aliquota_ipi", precision=10, scale=2)
+    
+    @Column(name="aliquota_ipi")
     private Float aliquotaIPI = new Float(0.0);
+    
     @Column(name="observacao",length=255)
     private String observacao;    
+    
     @Transient
     protected Set fornecedores = new HashSet();
     
@@ -166,7 +194,7 @@ public class Item implements Serializable {
      */
 
     /** full constructor */
-    public Item(Integer cdItem, Double precoVenda, Double precoCusto,
+    public Item(Integer cdItem, BigDecimal precoVenda, BigDecimal precoCusto,
         String unidade, Float estoqueAtual, Float estoqueMinimo,
         Float nivelDeReposicao, Boolean descontinuado, Produto produto) {
         this.cdItem = cdItem;
@@ -243,11 +271,11 @@ public class Item implements Serializable {
     /**
      * @hibernate.property column="preco_venda" length="10"
      */
-    public Double getPrecoVenda() {
+    public BigDecimal getPrecoVenda() {
         return this.precoVenda;
     }
 
-    public void setPrecoVenda(Double precoVenda) {
+    public void setPrecoVenda(BigDecimal precoVenda) {
         this.precoVenda = precoVenda;
     }
 
@@ -464,7 +492,7 @@ public class Item implements Serializable {
      * @hibernate.property column="preco_custo" length="10"
      * @return Returns the precoCusto.
      */
-    public Double getPrecoCusto() {
+    public BigDecimal getPrecoCusto() {
         return precoCusto;
     }
 
@@ -472,7 +500,7 @@ public class Item implements Serializable {
      * @param precoCusto The precoCusto to set.
      * @spring.validator type="required"
      */
-    public void setPrecoCusto(Double precoCusto) {
+    public void setPrecoCusto(BigDecimal precoCusto) {
         this.precoCusto = precoCusto;
     }
 
@@ -689,7 +717,7 @@ public class Item implements Serializable {
         valorLucro = (precoCusto/100) * percentualMargemLucro;
         preco = valorLucro + precoCusto + adicinalPrecoFixo; 
 
-        setPrecoVenda(new Double(preco));       
+        setPrecoVenda(new BigDecimal(preco));       
     }    
     /**
      * @see java.lang.Object#equals(java.lang.Object)
