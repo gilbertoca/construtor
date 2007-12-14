@@ -32,7 +32,7 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.6</version>
                 <configuration>
-                    <scanIntervalSeconds>6  </scanIntervalSeconds>
+                    <scanIntervalSeconds>6</scanIntervalSeconds>
                 </configuration>
             </plugin>
         </plugins>
