@@ -207,6 +207,17 @@ public class Item implements Serializable {
         this.flDescontinuado = descontinuado;
         this.produto = produto;
     }
+    public Item(BigDecimal precoVenda, BigDecimal precoCusto, String cdUnidadeMedida, Float estoqueAtual, Float estoqueMinimo,
+        Float nivelDeReposicao, Boolean flDescontinuado, Integer cdProduto) {
+        this.cdProduto = cdProduto;
+        this.precoVenda = precoVenda;
+        this.precoCusto = precoCusto;
+        this.cdUnidadeMedidaCompra = cdUnidadeMedida;
+        this.estoqueAtual = estoqueAtual;
+        this.estoqueMinimo = estoqueMinimo;
+        this.nivelReposicao = nivelDeReposicao;
+        this.flDescontinuado = flDescontinuado;
+    }
 
     /** default constructor */
     public Item() {

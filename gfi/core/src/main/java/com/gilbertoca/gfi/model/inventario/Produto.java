@@ -170,7 +170,8 @@ public class Produto implements Serializable {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("descricaoProduto", this.descricaoProduto)
                 .append("cdCategoria", this.cdCategoria)
-                .append("categoria", this.categoria.toString())                
+                //O atributo categoria pode receber um valor nullo.
+                //.append("categoria", this.categoria.toString())                
                 .append("nomeProduto",this.nomeProduto)
                 .append("cdProduto", this.cdProduto)
                 .append("dtCadastro", this.dtCadastro).toString();
