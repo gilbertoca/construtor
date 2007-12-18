@@ -85,6 +85,8 @@
                 <jpa.ddl_value>buildSchema(ForeignKeys=true)</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
+                <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
+                <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
             </properties>
         </profile>
         <profile>
@@ -130,9 +132,8 @@
                 <jpa.ddl_value>true</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
-                <jpa.minConnections>1</jpa.minConnections>
-                <jpa.maxConnections>2</jpa.maxConnections>    
-                
+                <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
+                <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
             </properties>            
         </profile>
         
@@ -160,6 +161,9 @@
         <jpa.logging>toplink.logging.level</jpa.logging>
         <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
         <jpa.logging_value>FINE</jpa.logging_value>
+        <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
+        <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
+        
         <commons-pool.version>1.3</commons-pool.version>
     </properties>
 </project>
