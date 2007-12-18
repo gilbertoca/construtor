@@ -100,9 +100,9 @@
             <id>Ibiblio</id>
             <url>http://www.ibiblio.org/maven2</url>
         </repository>
-        <repository>
+       <repository>
             <id>apache-snapshots</id>
-            <url>http://people.apache.org/repo/m2-incubating-repository</url>
+            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
         </repository>
     </repositories>
     
