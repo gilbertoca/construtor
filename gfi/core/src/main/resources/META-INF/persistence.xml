@@ -14,6 +14,8 @@
             <property name="${jpa.password}" value="${jdbc.password}"/>
             <property name="${jpa.ddl}" value="${jpa.ddl_value}"/>
             <property name="${jpa.logging}" value="${jpa.logging_value}"/>
+            <property name="${jpa.minConnections}" value="1"/>
+            <property name="${jpa.maxConnections}" value="2"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="gfi-gerPU" transaction-type="RESOURCE_LOCAL">
