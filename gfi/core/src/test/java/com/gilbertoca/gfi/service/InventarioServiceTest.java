@@ -5,7 +5,10 @@
 package com.gilbertoca.gfi.service;
 
 import com.gilbertoca.gfi.model.inventario.Categoria;
+import com.gilbertoca.gfi.model.inventario.Item;
 import com.gilbertoca.gfi.model.inventario.Produto;
+import com.gilbertoca.gfi.model.inventario.UnidadeMedida;
+import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -26,7 +29,7 @@ public class InventarioServiceTest {
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
     private static final String initId =
-            "UPDATE gfi.id_gerador SET id_valor = 0 WHERE id_nome = ?";
+            "UPDATE gfi.id_gerador SET id_valor = 1 WHERE id_nome = ?";
             //"UPDATE id_gerador SET id_valor = 0 WHERE id_nome = 'categoria_id_gerador';"+
             //"UPDATE id_gerador SET id_valor = 0 WHERE id_nome = 'produto_id_gerador';";
     public InventarioServiceTest() {
@@ -43,6 +46,15 @@ public class InventarioServiceTest {
         em.createNativeQuery("DELETE FROM gfi.item").executeUpdate();
         em.createNativeQuery("DELETE FROM gfi.produto").executeUpdate();
         em.createNativeQuery("DELETE FROM gfi.categoria").executeUpdate();
+        em.createNativeQuery("DELETE FROM gfi.unidade_medida").executeUpdate();        
+        //Necessário para o teste do produto
+        em.createNativeQuery("INSERT INTO gfi.categoria (cd_categoria, descricao_categoria, dt_cadastro, nome_categoria) "+
+                "VALUES (1, 'Vários tipos de roupas.', '2007-12-17 15:26:08.586', 'Vestuário')").executeUpdate();
+        //Necessário para o teste do item
+        em.createNativeQuery("INSERT INTO gfi.produto (cd_produto, cd_categoria, dt_cadastro, nome_produto, VERSION, descricao_produto) "+
+                "VALUES (1, 1, '2007-12-17 15:26:10.451', 'Calça Jeans', 1, 'Calça Jeans estilo sertanejo.') ").executeUpdate();
+        em.createNativeQuery("INSERT INTO gfi.unidade_medida (cd_unidade_medida, descricao_unidade, VERSION) "+
+                "VALUES ('MT', 'Metros', 1]) ").executeUpdate();
         em.getTransaction().commit();
     }
 
@@ -53,8 +65,22 @@ public class InventarioServiceTest {
     }
 
     @Test
-    public void createCategoriaTest() {
-        log.debug("createCategoriaTest - criação de uma instância da classe Categoria");
+    public void persistRemoveUnidadeMedidaTest() {
+        log.debug("\npersistRemoveUnidadeMedidaTest - Criação de uma instância da classe UnidadeMedida\n");
+        String uCodigo = "KG";
+        String uNome = "Kilogramas";
+        UnidadeMedida uM = new UnidadeMedida(uCodigo, uNome);
+        assertEquals("cdVersion antes do método persist:",-1, uM.getVersion());
+        em.getTransaction().begin();
+        em.persist(uM);
+        em.getTransaction().commit();
+        log.debug("\nObjeto pós gravação: \n"+uM);
+        assertNotSame("cdVersion pós persist:",-1, uM.getVersion());
+    }
+
+    @Test
+    public void persistRemoveCategoriaTest() {
+        log.debug("\npersistRemoveCategoriaTest - Criação de uma instância da classe Categoria\n");
         String cNome = "Vestuário";
         String cDescricao = "Vários tipos de roupas.";
         Categoria c = new Categoria(cNome, cDescricao);
@@ -62,12 +88,12 @@ public class InventarioServiceTest {
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
-        log.debug("Objeto pós gravação: \n"+c);
+        log.debug("\nObjeto pós gravação: \n"+c);
         assertNotNull("cdCategoria pós persist:",c.getCdCategoria());
     }
     @Test
-    public void createProdutoTest() {
-        log.debug("createProdutoTest - criação de uma instância da classe Produto");
+    public void persistRemoveProdutoTest() {
+        log.debug("\npersistRemoveProdutoTest - Criação de uma instância da classe Produto\n");
         String pNome = "Calça Jeans";
         String pDescricao = "Calça Jeans estilo sertanejo.";
         Categoria c = em.find(Categoria.class, 1);
@@ -81,6 +107,29 @@ public class InventarioServiceTest {
         Produto p2 = em.find(Produto.class, 1);
         log.debug("Objeto carregado: \n"+p2);
         assertNotNull(p2.getCategoria());
+    }
+    @Test
+    public void persistRemoveItemTest() {
+        log.debug("\npersistRemoveItemTest - Criação de uma instância da classe Item\n");
+        BigDecimal precoVenda = new BigDecimal(0.0F);
+        BigDecimal precoCusto = new BigDecimal(0.0F);
+        UnidadeMedida uM = em.find(UnidadeMedida.class, "MT");
+        Float estoqueAtual = 0.0F;
+        Float estoqueMinimo = 0.0F;
+        Float nivelDeReposicao = 0.0F;
+        Boolean flDescontinuado = false;
+        Produto p = em.find(Produto.class, 1);
+       
+        Item i = new Item(precoVenda, precoCusto, uM.getCdUnidadeMedida(), estoqueAtual, estoqueMinimo, nivelDeReposicao, flDescontinuado, p.getCdProduto());
+        assertNull("cdItem antes do método persist:",i.getCdItem());
+        em.getTransaction().begin();
+        em.persist(i);
+        em.getTransaction().commit();
+        log.debug("Objeto pós gravação: \n"+i);
+        assertNotNull("cdItem pós persist:",i.getCdItem());
+        Item i2 = em.find(Item.class, 2);
+        log.debug("Objeto carregado: \n"+i2);
+        assertNotNull(i2.getProduto());
     }
     
 }
