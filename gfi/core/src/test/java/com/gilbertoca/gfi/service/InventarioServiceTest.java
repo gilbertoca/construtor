@@ -30,8 +30,6 @@ public class InventarioServiceTest {
     private EntityManager em = null;
     private static final String initId =
             "UPDATE gfi.id_gerador SET id_valor = 1 WHERE id_nome = ?";
-            //"UPDATE id_gerador SET id_valor = 0 WHERE id_nome = 'categoria_id_gerador';"+
-            //"UPDATE id_gerador SET id_valor = 0 WHERE id_nome = 'produto_id_gerador';";
     public InventarioServiceTest() {
     }
 
@@ -54,7 +52,7 @@ public class InventarioServiceTest {
         em.createNativeQuery("INSERT INTO gfi.produto (cd_produto, cd_categoria, dt_cadastro, nome_produto, VERSION, descricao_produto) "+
                 "VALUES (1, 1, '2007-12-17 15:26:10.451', 'Calça Jeans', 1, 'Calça Jeans estilo sertanejo.') ").executeUpdate();
         em.createNativeQuery("INSERT INTO gfi.unidade_medida (cd_unidade_medida, descricao_unidade, VERSION) "+
-                "VALUES ('MT', 'Metros', 1]) ").executeUpdate();
+                "VALUES ('MT', 'Metros', 1) ").executeUpdate();
         em.getTransaction().commit();
     }
 
@@ -111,6 +109,7 @@ public class InventarioServiceTest {
     @Test
     public void persistRemoveItemTest() {
         log.debug("\npersistRemoveItemTest - Criação de uma instância da classe Item\n");
+        String nomeItem = "Calça";
         BigDecimal precoVenda = new BigDecimal(0.0F);
         BigDecimal precoCusto = new BigDecimal(0.0F);
         UnidadeMedida uM = em.find(UnidadeMedida.class, "MT");
@@ -120,7 +119,7 @@ public class InventarioServiceTest {
         Boolean flDescontinuado = false;
         Produto p = em.find(Produto.class, 1);
        
-        Item i = new Item(precoVenda, precoCusto, uM.getCdUnidadeMedida(), estoqueAtual, estoqueMinimo, nivelDeReposicao, flDescontinuado, p.getCdProduto());
+        Item i = new Item(nomeItem,precoVenda, precoCusto, uM.getCdUnidadeMedida(), estoqueAtual, estoqueMinimo, nivelDeReposicao, flDescontinuado, p.getCdProduto());
         assertNull("cdItem antes do método persist:",i.getCdItem());
         em.getTransaction().begin();
         em.persist(i);
@@ -129,7 +128,7 @@ public class InventarioServiceTest {
         assertNotNull("cdItem pós persist:",i.getCdItem());
         Item i2 = em.find(Item.class, 2);
         log.debug("Objeto carregado: \n"+i2);
-        assertNotNull(i2.getProduto());
+        assertNotNull("Não pode ser nulo:",i2.getProduto());
     }
     
 }
