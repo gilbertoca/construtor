@@ -136,7 +136,7 @@ public class Item implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "cd_produto", insertable = false, updatable = false)    
-    private Produto produto = new Produto();
+    private Produto produto;
     /**
      * Valores que o campo tipoICMS pode assumir:
      * I-Isento, T-Tributado, S-Substituição Tributária e N-Não Incidência
@@ -166,6 +166,7 @@ public class Item implements Serializable {
      */
     @Column(name="origem_mercadoria_nota_fiscal")
     private Integer origemMercadoriaNotaFiscal = new Integer(0);
+    
     @Column(name="fl_base_tributaria_ipi")
     private Boolean flBaseTributariaIPI = new Boolean(false);
     
@@ -194,10 +195,11 @@ public class Item implements Serializable {
      */
 
     /** full constructor */
-    public Item(Integer cdItem, BigDecimal precoVenda, BigDecimal precoCusto,
+    public Item(Integer cdItem, String nomeItem, BigDecimal precoVenda, BigDecimal precoCusto,
         String unidade, Float estoqueAtual, Float estoqueMinimo,
         Float nivelDeReposicao, Boolean descontinuado, Produto produto) {
         this.cdItem = cdItem;
+        this.nomeItem = nomeItem;
         this.precoVenda = precoVenda;
         this.precoCusto = precoCusto;
         this.cdUnidadeMedidaCompra = unidade;
@@ -207,8 +209,9 @@ public class Item implements Serializable {
         this.flDescontinuado = descontinuado;
         this.produto = produto;
     }
-    public Item(BigDecimal precoVenda, BigDecimal precoCusto, String cdUnidadeMedida, Float estoqueAtual, Float estoqueMinimo,
+    public Item(String nomeItem, BigDecimal precoVenda, BigDecimal precoCusto, String cdUnidadeMedida, Float estoqueAtual, Float estoqueMinimo,
         Float nivelDeReposicao, Boolean flDescontinuado, Integer cdProduto) {
+        this.nomeItem = nomeItem;
         this.cdProduto = cdProduto;
         this.precoVenda = precoVenda;
         this.precoCusto = precoCusto;
@@ -747,7 +750,7 @@ public class Item implements Serializable {
                         percentualMargemLucro, castOther.percentualMargemLucro)
                 .append(adicinalPrecoFixo, castOther.adicinalPrecoFixo).append(
                         cdLocalizacaoSecao, castOther.cdLocalizacaoSecao)
-                .append(localizacaoSecao, castOther.localizacaoSecao).append(
+                .append(
                         cdUnidadeMedidaVenda, castOther.cdUnidadeMedidaVenda)
                 .append(qtdPorUnidade, castOther.qtdPorUnidade).append(
                         cdUnidadeMedidaCompra, castOther.cdUnidadeMedidaCompra)
@@ -791,14 +794,15 @@ public class Item implements Serializable {
      */
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("cdItem", cdItem).append("dtCadastro", dtCadastro)
+                .append("cdItem", cdItem)
+                .append("nomeItem", nomeItem)
+                .append("dtCadastro", dtCadastro)
                 .append("precoVenda", precoVenda).append("precoCusto",
                         precoCusto).append("percentualDescontoMaximo",
                         percentualDescontoMaximo).append(
                         "percentualMargemLucro", percentualMargemLucro).append(
                         "adicinalPrecoFixo", adicinalPrecoFixo).append(
                         "cdLocalizacaoSecao", cdLocalizacaoSecao).append(
-                        "localizacaoSecao", localizacaoSecao).append(
                         "cdUnidadeMedidaVenda", cdUnidadeMedidaVenda).append(
                         "qtdPorUnidade", qtdPorUnidade).append(
                         "cdUnidadeMedidaCompra", cdUnidadeMedidaCompra).append(
