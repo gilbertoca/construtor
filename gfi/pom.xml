@@ -257,7 +257,7 @@
         <jdbc.version>10.3.1.4</jdbc.version>
         <jdbc.driverClassName>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driverClassName>
         <jdbc.url><![CDATA[jdbc:derby:gfi_db;create=true]]></jdbc.url>
-        <jdbc.username>any</jdbc.username>
+        <jdbc.username>gfi</jdbc.username>
         <jdbc.password>value</jdbc.password>
     </properties>
 </project>
