@@ -9,28 +9,5 @@
             <schema>gfi</schema>
         </persistence-unit-defaults>
     	</persistence-unit-metadata>     
-    <!--package>au.com.blah.entries</package
-    <table-generator 
-        name="empGen"
-        table="ID_GEN"
-        pkColumnName="GEN_KEY"
-        valueColumnName="GEN_VALUE"
-        pkColumnValue="EMP_ID"
-        allocationSize="1">
-    </table-generator>
-    
-    <persistence-unit-metadata>
-        <persistence-unit-defaults>
-            <schema>gfi</schema>
-        </persistence-unit-defaults>
-    </persistence-unit-metadata>
-      
 
-    <table-generator
-        name="tabelaGeradora" 
-        table="id_gerador" 
-        pk-column-name="key_coluna" 
-        value-column-name="valor_coluna"
-        allocation-size="1"/>
-    -->
 </entity-mappings>
