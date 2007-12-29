@@ -2,6 +2,7 @@ package com.gilbertoca.gfi.model.inventario;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,6 +46,7 @@ public class Produto implements Serializable {
     
     @Column(name = "cd_categoria")
     private Integer cdCategoria;
+    
     @ManyToOne
     @JoinColumn(name = "cd_categoria", insertable = false, updatable = false)
     private Categoria categoria;
@@ -52,11 +54,12 @@ public class Produto implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_cadastro", nullable = false)
     private Date dtCadastro = new Date();
+    
     @Version
     private Integer version;
     
-    @OneToMany(targetEntity=com.gilbertoca.gfi.model.inventario.Item.class, cascade=CascadeType.ALL, mappedBy="produto")
-    private Set<Item> items;
+    @OneToMany(targetEntity=Item.class, cascade=CascadeType.ALL, mappedBy="produto")
+    private Set<Item> items = new HashSet<Item>();
 
     public Produto(String nomeProduto, String descricaoProduto, Integer cdCategoria) {
         this.nomeProduto = nomeProduto;
