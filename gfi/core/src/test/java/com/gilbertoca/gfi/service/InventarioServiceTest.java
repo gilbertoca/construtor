@@ -35,7 +35,6 @@ public class InventarioServiceTest {
 
     @Before
     public void setUp() {
-        log.debug("\n ====INICIO=========== setUp Method ==================\n");
         emf = Persistence.createEntityManagerFactory("gfi-corePU");
         em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -55,8 +54,6 @@ public class InventarioServiceTest {
         em.createNativeQuery("INSERT INTO gfi.unidade_medida (cd_unidade_medida, descricao_unidade, VERSION) "+
                 "VALUES ('MT', 'Metros', 1) ").executeUpdate();
         em.getTransaction().commit();
-        log.debug("\n ====FIM=========== setUp Method ==================\n");        
-        fail();
     }
 
     @After

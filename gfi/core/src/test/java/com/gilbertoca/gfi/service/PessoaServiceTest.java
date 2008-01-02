@@ -29,7 +29,7 @@ public class PessoaServiceTest {
 
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("gfi-corePU");
+        emf = Persistence.createEntityManagerFactory("gfi");
         em = emf.createEntityManager();
     }
 
