@@ -43,7 +43,7 @@ public class Produto implements Serializable {
     private Integer cdCategoria;
     
     @ManyToOne
-    @JoinColumn(name = "cd_categoria", insertable = false, updatable = false)
+    @JoinColumn(name = "cd_categoria", referencedColumnName="cd_categoria", insertable = false, updatable = false)
     private Categoria categoria;
     
     @Temporal(TemporalType.TIMESTAMP)

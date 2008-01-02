@@ -30,7 +30,6 @@ public class UnidadeMedida implements Serializable {
     public UnidadeMedida(String cdUnidadeMedida, String descricaoUnidade) {
         this.cdUnidadeMedida = cdUnidadeMedida;
         this.descricaoUnidade = descricaoUnidade;
-        this.version = -1;
     }
 
     public java.lang.String getDescricaoUnidade() { return descricaoUnidade; }
@@ -45,7 +44,8 @@ public class UnidadeMedida implements Serializable {
      */
     public String toString() {
         return new ToStringBuilder(this).append("cdUnidadeMedida", this.cdUnidadeMedida)
-                .append("descricaoUnidade", this.descricaoUnidade).toString();
+                .append("descricaoUnidade", this.descricaoUnidade)
+                .append("version", this.version).toString();
     }
     /**
      * @see java.lang.Object#hashCode()

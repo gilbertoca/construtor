@@ -130,7 +130,7 @@ public class Item implements Serializable {
     private Integer cdProduto;
     
     @ManyToOne
-    @JoinColumn(name = "cd_produto", insertable = false, updatable = false)    
+    @JoinColumn(name = "cd_produto", referencedColumnName="cd_produto", insertable = false, updatable = false)    
     private Produto produto;
     /**
      * Valores que o campo tipoICMS pode assumir:
