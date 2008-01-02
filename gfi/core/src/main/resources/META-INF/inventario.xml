@@ -9,5 +9,22 @@
             <schema>gfi</schema>
         </persistence-unit-defaults>
     </persistence-unit-metadata>     
+    <entity class="com.gilbertoca.gfi.model.inventario2.Categoria">
+        <table name="CATEGORIA" schema="GFI"/>
+        <attributes>
+            <id name="cdCategoria">
+                <column name="CD_CATEGORIA" column-definition="INTEGER"/>
+            </id>
+            <basic name="nomeCategoria">
+                <column name="NOME_CATEGORIA" length="80"/>
+            </basic>
+            <basic name="descricaoCategoria">
+                <column name="DESCRICAO_CATEGORIA" length="255"/>
+            </basic>
+            <basic name="dtCadastro">
+                <column name="DT_CADASTRO"/>
+            </basic>
+        </attributes>
+    </entity>
     
 </entity-mappings>
