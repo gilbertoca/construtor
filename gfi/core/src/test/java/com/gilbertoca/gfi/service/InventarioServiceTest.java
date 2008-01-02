@@ -29,13 +29,13 @@ public class InventarioServiceTest {
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
     private static final String initId =
-            "UPDATE gfi.id_gerador SET id_valor = 1 WHERE id_nome = ?";
+            "UPDATE gfi.id_gerador SET AID = 2 WHERE PK = ?";
     public InventarioServiceTest() {
     }
 
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("gfi-corePU");
+        emf = Persistence.createEntityManagerFactory("annotatedPU");
         em = emf.createEntityManager();
         em.getTransaction().begin();
         em.createNativeQuery(initId).setParameter(1, "item_id_gerador").executeUpdate();
@@ -68,12 +68,13 @@ public class InventarioServiceTest {
         String uCodigo = "KG";
         String uNome = "Kilogramas";
         UnidadeMedida uM = new UnidadeMedida(uCodigo, uNome);
-        assertEquals("cdVersion antes do método persist:",-1, uM.getVersion());
+        //assertEquals("cdVersion antes do método persist:",-1, uM.getVersion());
+        log.debug("\nObjeto antes gravação: \n"+uM);
         em.getTransaction().begin();
         em.persist(uM);
         em.getTransaction().commit();
         log.debug("\nObjeto pós gravação: \n"+uM);
-        assertNotSame("cdVersion pós persist:",-1, uM.getVersion());
+        assertNotNull("cdVersion pós persist:",uM.getVersion());
     }
 
     @Test
