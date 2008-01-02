@@ -18,6 +18,26 @@
                 <filtering>true</filtering>                
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <tasks>
+                                <java classname="org.apache.openjpa.enhance.PCEnhancer"
+                                      classpathref="maven.runtime.classpath"
+                                      dir="target/classes" fork="true" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
     <dependencies>
         <dependency>
@@ -49,45 +69,27 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>openjpa</id>
-            <build>
-                <!--plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>process-classes</phase>
-                                <configuration>
-                                    <tasks>
-                                        <java classname="org.apache.openjpa.enhance.PCEnhancer"
-                                              classpathref="maven.runtime.classpath"
-                                              dir="target/classes" fork="true" />
-                                    </tasks>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins-->
-            </build>            
+            <id>toplink</id>
             <properties>
-                <jpa.groupId>org.apache.openjpa</jpa.groupId>
-                <jpa.artifactId>openjpa</jpa.artifactId>
-                <jpa.version>1.1.0-SNAPSHOT</jpa.version>
-                <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
-                <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
-                <jpa.url>openjpa.ConnectionURL</jpa.url>
-                <jpa.username>openjpa.ConnectionUserName</jpa.username>
-                <jpa.password>openjpa.ConnectionPassword</jpa.password>
-                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <jpa.ddl_value>buildSchema(SchemaAction='add')</jpa.ddl_value>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
-                <jpa.logging>openjpa.Log</jpa.logging>
-                <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
+                <jpa.groupId>toplink.essentials</jpa.groupId>
+                <jpa.artifactId>toplink-essentials</jpa.artifactId>
+                <jpa.version>2.1-14</jpa.version>
+                <jpa.provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</jpa.provider>
+                <jpa.driver>toplink.jdbc.driver</jpa.driver>
+                <jpa.url>toplink.jdbc.url</jpa.url>
+                <jpa.username>toplink.jdbc.user</jpa.username>
+                <jpa.password>toplink.jdbc.password</jpa.password>
+                <jpa.ddl>toplink.ddl-generation</jpa.ddl>
+                <jpa.ddl_value>none</jpa.ddl_value>
+                <!-- Este destroi e recria
+        jpa.ddl_value>drop-and-create-tables</jpa.ddl_value 
+        -->
+                <jpa.logging>toplink.logging.level</jpa.logging>
+                <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
+                <jpa.logging_value>INFO</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
+                
             </properties>
         </profile>
         <profile>
@@ -216,24 +218,21 @@
         <!-- Framework dependency versions -->
         <jpa_spec.groupId>javax.persistence</jpa_spec.groupId>
         <jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
-        <jpa_spec.version>1.0</jpa_spec.version>
+        <jpa_spec.version>1.0.2</jpa_spec.version>
         
-        <jpa.groupId>toplink.essentials</jpa.groupId>
-        <jpa.artifactId>toplink-essentials</jpa.artifactId>
-        <jpa.version>2.0.1-06</jpa.version>
-        <jpa.provider>oracle.toplink.essentials.ejb.cmp3.EntityManagerFactoryProvider</jpa.provider>
-        <jpa.driver>toplink.jdbc.driver</jpa.driver>
-        <jpa.url>toplink.jdbc.url</jpa.url>
-        <jpa.username>toplink.jdbc.user</jpa.username>
-        <jpa.password>toplink.jdbc.password</jpa.password>
-        <jpa.ddl>toplink.ddl-generation</jpa.ddl>
-        <jpa.ddl_value>none</jpa.ddl_value>
-        <!-- Este destroi e recria
-        jpa.ddl_value>drop-and-create-tables</jpa.ddl_value 
-        -->
-        <jpa.logging>toplink.logging.level</jpa.logging>
-        <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-        <jpa.logging_value>INFO</jpa.logging_value>
+        <jpa.groupId>org.apache.openjpa</jpa.groupId>
+        <jpa.artifactId>openjpa</jpa.artifactId>
+        <jpa.version>1.0.1</jpa.version>
+        <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
+        <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
+        <jpa.url>openjpa.ConnectionURL</jpa.url>
+        <jpa.username>openjpa.ConnectionUserName</jpa.username>
+        <jpa.password>openjpa.ConnectionPassword</jpa.password>
+        <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
+        <jpa.ddl_value>buildSchema(SchemaAction='deleteTableContents')</jpa.ddl_value>
+        <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
+        <jpa.logging>openjpa.Log</jpa.logging>
+        <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
         <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
         <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
         
