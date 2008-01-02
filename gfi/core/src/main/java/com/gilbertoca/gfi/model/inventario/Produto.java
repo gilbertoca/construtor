@@ -27,15 +27,10 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Table(name = "produto")
 public class Produto implements Serializable {
     @Id
-    @TableGenerator(
-        name="produto_id_gerador",
-        table="id_gerador",        
-        pkColumnName="id_nome",        
-        valueColumnName="id_valor",
-        allocationSize=1
-    )
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="produto_id_gerador")
-    @Column(name = "cd_produto")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="ProdutoGerador")
+    @TableGenerator(name="ProdutoGerador", table="ID_GERADOR", pkColumnName="PK",
+        valueColumnName="AID", pkColumnValue="produto_id_gerador", allocationSize=1, initialValue=1)
+    @Column(name="cd_produto", columnDefinition="INTEGER")
     private Integer cdProduto;
     
     @Column(name = "nome_produto", length = 80, nullable = false)

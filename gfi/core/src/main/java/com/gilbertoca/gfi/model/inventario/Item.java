@@ -52,15 +52,10 @@ public class Item implements Serializable {
     @Transient
     protected final Log log = LogFactory.getLog(getClass());
     @Id
-    @TableGenerator(
-        name="item_id_gerador",
-        table="id_gerador",        
-        pkColumnName="id_nome",        
-        valueColumnName="id_valor",
-        allocationSize=1
-    )
-    @GeneratedValue(strategy=GenerationType.TABLE, generator="item_id_gerador")
-    @Column(name = "cd_item")
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="ItemGerador")
+    @TableGenerator(name="ItemGerador", table="ID_GERADOR", pkColumnName="PK",
+        valueColumnName="AID", pkColumnValue="item_id_gerador", allocationSize=1, initialValue=1)
+    @Column(name="cd_item", columnDefinition="INTEGER")
     private Integer cdItem;
     
     @Temporal(TemporalType.TIMESTAMP)
