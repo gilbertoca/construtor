@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" 
-    	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd http://incubator.apache.org/openjpa/orm http://incubator.apache.org/openjpa/xml/ns/persistence/openjpa_orm_1_0.xsd"
-    	version="1.0">
-
-	<persistence-unit-metadata>
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd http://incubator.apache.org/openjpa/orm http://incubator.apache.org/openjpa/xml/ns/persistence/openjpa_orm_1_0.xsd"
+                 version="1.0">
+    
+    <persistence-unit-metadata>
         <persistence-unit-defaults>
             <schema>gfi</schema>
         </persistence-unit-defaults>
-    	</persistence-unit-metadata>     
-
+    </persistence-unit-metadata>     
+    <entity class="com.gilbertoca.gfi.model.inventario2.Categoria">
+        <table name="CATEGORIA" schema="GFI"/>
+        <attributes>
+            <id name="cdCategoria">
+                <column name="CD_CATEGORIA" column-definition="INTEGER"/>
+            </id>
+            <basic name="nomeCategoria">
+                <column name="NOME_CATEGORIA" length="80"/>
+            </basic>
+            <basic name="descricaoCategoria">
+                <column name="DESCRICAO_CATEGORIA" length="255"/>
+            </basic>
+            <basic name="dtCadastro">
+                <column name="DT_CADASTRO"/>
+            </basic>
+        </attributes>
+    </entity>
+    
 </entity-mappings>
