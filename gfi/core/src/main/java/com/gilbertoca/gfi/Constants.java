@@ -10,18 +10,38 @@ package com.gilbertoca.gfi;
  */
 public class Constants {
     //~ Static fields/initializers =============================================
-	   /**
-	    * O identificador da UF utilizado pelo logradouro
-	    * UF=Estado do Tocantins.
-	    */    
-	  public static final String FAIXAUF_UFESG = "TO";
-	   /**
-	    * O identificador da tipoLogradouro utilizado pelo logradouro
-	    * Rua=Rua.
-	    */    
-	  public static final String TIPOLOGR_TIPOLOGRADOURO = "Rua";	  
+   /**
+    * O nome do arquivo de propriedades para construção do DBCPDataSource
+    */    
+  public static final String DBCPCONFIGFILE = "dbcp.properties";
+   /**
+    * O nome do DataSource local
+    */    
+  public static final String DBCPDATASOURCE = "dbcp";
+   /**
+    * O nome do DataSource remoto
+    */    
+  public static final String DATASOURCE = "gfi";
+   /**
+    * O nome do Módulo gerenciado pelo ORM OrBroker. Podemos dividi-lo em mais modulos, como:
+    * orbroker-financeiro.xml,
+    * orbroker-inventario.xml
+    */    
+  public static final String ORBROKER_INVENTARIO = "orbroker-inventario.xml";
+  
+    
+   /**
+    * O identificador da UF utilizado pelo logradouro
+    * UF=Estado do Tocantins.
+    */    
+  public static final String FAIXAUF_UFESG = "TO";
+   /**
+    * O identificador da tipoLogradouro utilizado pelo logradouro
+    * Rua=Rua.
+    */    
+  public static final String TIPOLOGR_TIPOLOGRADOURO = "Rua";	  
 
-	/**
+    /**
      * O identificador da natureza da operação utilizado pela venda.
      * 5.101=Vendas de prod. própr. ou terc. p/ o Est.
      */
