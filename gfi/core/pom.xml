@@ -26,9 +26,7 @@
                         <phase>process-classes</phase>
                         <configuration>
                             <tasks>
-                                <java classname="org.apache.openjpa.enhance.PCEnhancer"
-                                      classpathref="maven.runtime.classpath"
-                                      dir="target/classes" fork="true" />
+                                <java classname="org.apache.openjpa.enhance.PCEnhancer" classpathref="maven.runtime.classpath" dir="target/classes" fork="true"></java>
                             </tasks>
                         </configuration>
                         <goals>
@@ -64,6 +62,12 @@
             <groupId>asm</groupId>
             <artifactId>asm-commons</artifactId>
             <version>3.0</version>
+        </dependency>        
+        <dependency>
+            <groupId>net.sourceforge.orbroker</groupId>
+            <artifactId>orbroker</artifactId>
+            <version>2.0.3</version>
+            <scope>compile</scope>
         </dependency>        
         
     </dependencies>
@@ -195,9 +199,7 @@
                         <configuration>
                             <useSystemClassLoader>true</useSystemClassLoader> 
                             <forkMode>once</forkMode>
-                            <argLine>
-                                -javaagent:${settings.localRepository}/org/apache/cayenne/cayenne-agent/${jpa_agent.version}/cayenne-agent-${jpa_agent.version}.jar
-                            </argLine>
+                            <argLine>-javaagent:${settings.localRepository}/org/apache/cayenne/cayenne-agent/${jpa_agent.version}/cayenne-agent-${jpa_agent.version}.jar</argLine>
                         </configuration>
                     </plugin>                     
                 </plugins>
