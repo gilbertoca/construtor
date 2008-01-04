@@ -123,6 +123,7 @@ public class InventarioServiceTest {
        
         Item i = new Item(nomeItem,precoVenda, precoCusto, uM.getCdUnidadeMedida(), estoqueAtual, estoqueMinimo, nivelDeReposicao, flDescontinuado, p.getCdProduto());
         assertNull("cdItem antes do método persist:",i.getCdItem());
+        i.setProduto(p);
         em.getTransaction().begin();
         em.persist(i);
         em.getTransaction().commit();
