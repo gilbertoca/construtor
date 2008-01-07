@@ -20,4 +20,15 @@
                 <activatedProfile>cayenne</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-orbroker</actionName>
+            <displayName>orbroker</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>orbroker</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

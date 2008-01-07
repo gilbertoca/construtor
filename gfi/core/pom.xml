@@ -18,24 +18,6 @@
                 <filtering>true</filtering>                
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <configuration>
-                            <tasks>
-                                <java classname="org.apache.openjpa.enhance.PCEnhancer" classpathref="maven.runtime.classpath" dir="target/classes" fork="true"></java>
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
     <dependencies>
         <dependency>
@@ -63,15 +45,48 @@
             <artifactId>asm-commons</artifactId>
             <version>3.0</version>
         </dependency>        
-        <dependency>
-            <groupId>net.sourceforge.orbroker</groupId>
-            <artifactId>orbroker</artifactId>
-            <version>2.0.3</version>
-            <scope>compile</scope>
-        </dependency>        
-        
     </dependencies>
     <profiles>
+        <profile>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <tasks>
+                                        <java classname="org.apache.openjpa.enhance.PCEnhancer" classpathref="maven.runtime.classpath" dir="target/classes" fork="true"></java>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>    
+            <id>openjpa</id>
+            <properties>
+                <jpa.groupId>org.apache.openjpa</jpa.groupId>
+                <jpa.artifactId>openjpa</jpa.artifactId>
+                <jpa.version>1.0.1</jpa.version>
+                <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
+                <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
+                <jpa.url>openjpa.ConnectionURL</jpa.url>
+                <jpa.username>openjpa.ConnectionUserName</jpa.username>
+                <jpa.password>openjpa.ConnectionPassword</jpa.password>
+                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
+                <jpa.ddl_value>buildSchema(ForeignKeys=true, SchemaAction='add')</jpa.ddl_value>
+                <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
+                <jpa.logging>openjpa.Log</jpa.logging>
+                <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
+                <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
+                <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
+            </properties>        
+        </profile>
         <profile>
             <id>toplink</id>
             <properties>
@@ -171,27 +186,6 @@
         <profile>
             <id>cayenne</id>
             <build>
-                <!--plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>process-classes</phase>
-                                <configuration>
-                                    <tasks>
-                                        <java classname="org.apache.cayenne.enhancer.Enhancer"
-                                              classpathref="maven.runtime.classpath"
-                                              dir="target/classes" fork="true" />
-                                    </tasks>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins-->
-                
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -236,28 +230,18 @@
         </profile>
         
         
-    </profiles>    
+    </profiles>
     <properties>
         <!-- Framework dependency versions -->
         <jpa_spec.groupId>javax.persistence</jpa_spec.groupId>
         <jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
         <jpa_spec.version>1.0.2</jpa_spec.version>
         
-        <jpa.groupId>org.apache.openjpa</jpa.groupId>
-        <jpa.artifactId>openjpa</jpa.artifactId>
-        <jpa.version>1.0.1</jpa.version>
-        <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
-        <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
-        <jpa.url>openjpa.ConnectionURL</jpa.url>
-        <jpa.username>openjpa.ConnectionUserName</jpa.username>
-        <jpa.password>openjpa.ConnectionPassword</jpa.password>
-        <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-        <jpa.ddl_value>buildSchema(ForeignKeys=true, SchemaAction='add')</jpa.ddl_value>
-        <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
-        <jpa.logging>openjpa.Log</jpa.logging>
-        <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>                
-        <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
-        <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
+        <jpa.groupId>net.sourceforge.orbroker</jpa.groupId>
+        <jpa.artifactId>orbroker</jpa.artifactId>
+        <jpa.version>2.0.3</jpa.version>
+        <jpa.username>toplink.jdbc.user</jpa.username>
+        <jpa.password>toplink.jdbc.password</jpa.password>
         
         <commons-pool.version>1.3</commons-pool.version>
     </properties>
