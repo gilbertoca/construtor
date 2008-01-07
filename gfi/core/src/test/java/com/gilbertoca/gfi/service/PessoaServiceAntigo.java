@@ -18,13 +18,13 @@ import static org.junit.Assert.*;
  *
  * @author gilberto
  */
-public class PessoaServiceTest {
+public class PessoaServiceAntigo {
 
     protected final Log log = LogFactory.getLog(getClass());
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
 
-    public PessoaServiceTest() {
+    public PessoaServiceAntigo() {
     }
 
     @Before
