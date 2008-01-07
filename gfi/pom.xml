@@ -259,10 +259,10 @@
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
         <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
         <jdbc.groupId>org.apache.derby</jdbc.groupId>
-        <jdbc.artifactId>derby</jdbc.artifactId>
+        <jdbc.artifactId>derbyclient</jdbc.artifactId>
         <jdbc.version>10.3.1.4</jdbc.version>
-        <jdbc.driverClassName>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:derby:gfi_db;create=true]]></jdbc.url>
+        <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>
+        <jdbc.url><![CDATA[jdbc:derby://localhost:1527/gfi_db]]></jdbc.url>
         <jdbc.username>gfi</jdbc.username>
         <jdbc.password>value</jdbc.password>
     </properties>
