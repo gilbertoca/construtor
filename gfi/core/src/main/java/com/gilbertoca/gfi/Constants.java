@@ -13,7 +13,7 @@ public class Constants {
    /**
     * O nome do arquivo de propriedades para construção do DBCPDataSource
     */    
-  public static final String DBCPCONFIGFILE = "dbcp.properties";
+  public static final String DBCPCONFIGFILE = "/dbcp.properties";
    /**
     * O nome do DataSource local
     */    
@@ -27,7 +27,7 @@ public class Constants {
     * orbroker-financeiro.xml,
     * orbroker-inventario.xml
     */    
-  public static final String ORBROKER_INVENTARIO = "orbroker-inventario.xml";
+  public static final String ORBROKER_INVENTARIO = "/META-INF/orbroker-inventario.xml";
   
     
    /**

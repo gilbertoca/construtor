@@ -9,7 +9,7 @@
 -->
 
 <broker name="inventario" version="2.0">
-    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.model.inventario.UnidadeMedida">
+    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.model.inventario2.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
         <property name="CdUnidadeMedida">
             <column name="CD_UNIDADE_MEDIDA"/>
@@ -26,37 +26,35 @@
         result-object="UnidadeMedida" 
             external-source="/UnidadeMedida.sql"
         /-->    
-	<sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
-		SELECT 
-			cd_unidade_medida,
-			descricao_unidade,
-			version
-		FROM 
-			gfi.unidade_medida
-            <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
-	</sql-statement>
-	 <sql-statement id="insertUnidadeMedida"><![CDATA[
+    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
+        SELECT 
+        cd_unidade_medida,
+        descricao_unidade,
+        version
+        FROM 
+        gfi.unidade_medida
+        <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
+    </sql-statement>
+    <sql-statement id="insertUnidadeMedida"><![CDATA[
 	    INSERT INTO gfi.unidade_medida (cd_unidade_medida,
 			descricao_unidade,
 			version)
 	    VALUES  (:unidadeMedida.cdUnidadeMedida,
-						:unidadeMedida.cdUnidadeMedida,
-						:unidadeMedida.descricaoUnidade,
-						:unidadeMedida.version)
-	  ]]></sql-statement>	
-	 <sql-statement id="updateUnidadeMedida"><![CDATA[
+                        :unidadeMedida.descricaoUnidade,
+                        :unidadeMedida.version)
+    ]]></sql-statement>	
+    <sql-statement id="updateUnidadeMedida"><![CDATA[
 	    UPDATE gfi.unidade_medida SET 
 			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
 			descricao_unidade = :unidadeMedida.descricaoUnidade,
 			version	= :unidadeMedida.version,
 		WHERE
 			cd_movimento_caixa  = :unidadeMedida.cdUnidadeMedida
-	  ]]></sql-statement>	
-	<sql-statement id="deleteUnidadeMedida">
-		DELETE
-		FROM 
-			gfi.unidade_medida
-		<append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
-	</sql-statement>        
+    ]]></sql-statement>	
+    <sql-statement id="deleteUnidadeMedida">
+        DELETE
+        FROM 
+        gfi.unidade_medida
+        <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
+    </sql-statement>        
 </broker>
-    

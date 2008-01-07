@@ -1,16 +1,16 @@
 package com.gilbertoca.gfi.model.inventario2;
 
-
-
 import java.io.Serializable;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
+
 /**
  *        @hibernate.class table="construtor.estoque_unidade_medida"
  *
-*/
+ */
 public class UnidadeMedida implements Serializable {
+
     private String descricaoUnidade;
     private String cdUnidadeMedida;
     /** 
@@ -19,8 +19,13 @@ public class UnidadeMedida implements Serializable {
      * Usado para determinar se instancia é transient or detached 
      */
     private int version = -1;
-    
+
     public UnidadeMedida() {
+    }
+
+    public UnidadeMedida(String cdUnidadeMedida, String descricaoUnidade) {
+        this.cdUnidadeMedida = cdUnidadeMedida;
+        this.descricaoUnidade = descricaoUnidade;
     }
 
     /**
@@ -32,21 +37,22 @@ public class UnidadeMedida implements Serializable {
     }
 
     /**
-    * @hibernate.id generator-class="assigned" unsaved-value="null"
-    *  type="java.lang.String" column="cd_unidade_medida" length="4"
-    *
-    */
+     * @hibernate.id generator-class="assigned" unsaved-value="null"
+     *  type="java.lang.String" column="cd_unidade_medida" length="4"
+     *
+     */
     public java.lang.String getCdUnidadeMedida() {
         return cdUnidadeMedida;
     }
 
-     public void setDescricaoUnidade(String descricaoUnidade) {
+    public void setDescricaoUnidade(String descricaoUnidade) {
         this.descricaoUnidade = descricaoUnidade;
     }
 
     public void setCdUnidadeMedida(String cdUnidadeMedida) {
         this.cdUnidadeMedida = cdUnidadeMedida;
     }
+
     /**
      * @return Returns the updated timestamp.
      * @hibernate.version unsaved-value = "negative" 
@@ -66,9 +72,9 @@ public class UnidadeMedida implements Serializable {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return new ToStringBuilder(this).append("cdUnidadeMedida", this.cdUnidadeMedida)
-                .append("descricaoUnidade", this.descricaoUnidade).toString();
+        return new ToStringBuilder(this).append("cdUnidadeMedida", this.cdUnidadeMedida).append("descricaoUnidade", this.descricaoUnidade).toString();
     }
+
     /**
      * @see java.lang.Object#hashCode()
      */
@@ -76,6 +82,7 @@ public class UnidadeMedida implements Serializable {
         return new HashCodeBuilder(-2100871471, -590516841).append(this.cdUnidadeMedida).append(
                 this.descricaoUnidade).toHashCode();
     }
+
     /**
      * @see java.lang.Object#equals(Object)
      */

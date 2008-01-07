@@ -15,9 +15,13 @@ import org.apache.commons.logging.LogFactory;
  */
 abstract public class Service {
     protected transient final Log log = LogFactory.getLog(getClass());
-    abstract public Broker getBroker(String BrokerName);
+    abstract public Broker getBroker();
+    protected Broker getBroker(String brokerName) {
+        return ResourceLocator.getInstance().getBroker(brokerName);
+    }
     abstract public Collection findAll();
     abstract public void insert(Object entity);
     abstract public void update(Object entity);
+    abstract public void delete(Object entity);
     abstract public Collection findByNamedQuery(String queryName);
 }
