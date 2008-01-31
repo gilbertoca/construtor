@@ -109,7 +109,7 @@ public class ResourceLocator {
     }
 
     /**
-     * This method obtains the datasource itself for a caller
+     * This method obtains the broker itself for a caller
      * @return the Broker corresponding to the name parameter
      */
     public Broker getBroker(String brokerName) throws ResourceLocatorException {

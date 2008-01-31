@@ -5,7 +5,9 @@
     Created on : January 4, 2008, 4:55 PM
     Author     : gilberto
     Description:
-        Purpose of the document follows.
+        Descritor para mapeamento de unidades de persistência do módulo inventário, mantido em /META-INF/.
+        Requisito para o uso desse arquivo, são os recursos mantidos na subpasta sql, podendo
+        ser alcançados dessa forma /META-INF/sql/.
 -->
 
 <broker name="inventario" version="2.0">
@@ -21,20 +23,17 @@
             <column name="VERSION"/>
         </property>        
     </result-object>
-    <!--sql-statement 
-        id="getUnidadeMedidas" 
-        result-object="UnidadeMedida" 
-            external-source="/UnidadeMedida.sql"
-        /-->    
-    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
+    <!--sql-statement id="getUnidadeMedida" result-object="UnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql"> 	
+    </sql-statement--> 	    
+    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida"><![CDATA[
         SELECT 
         cd_unidade_medida,
         descricao_unidade,
         version
         FROM 
         gfi.unidade_medida
-        <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
-    </sql-statement>
+        ]]><append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
+    </sql-statement>    
     <sql-statement id="insertUnidadeMedida"><![CDATA[
 	    INSERT INTO gfi.unidade_medida (cd_unidade_medida,
 			descricao_unidade,
@@ -47,9 +46,9 @@
 	    UPDATE gfi.unidade_medida SET 
 			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
 			descricao_unidade = :unidadeMedida.descricaoUnidade,
-			version	= :unidadeMedida.version,
+			version	= :unidadeMedida.version
 		WHERE
-			cd_movimento_caixa  = :unidadeMedida.cdUnidadeMedida
+			cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
     ]]></sql-statement>	
     <sql-statement id="deleteUnidadeMedida">
         DELETE
@@ -57,4 +56,14 @@
         gfi.unidade_medida
         <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
     </sql-statement>        
+    <sql-statement id="deleteUnidadeMedidaById"><![CDATA[
+        DELETE
+        FROM 
+        gfi.unidade_medida
+	#if ($unidadeMedida.cdUidadeMedida)
+		WHERE
+			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida
+	#end        
+    ]]></sql-statement>        
+    
 </broker>

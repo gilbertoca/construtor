@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="unidade_medida">
+        <column>cd_unidade_medida</column>
+        <column>descricao_unidade</column>
+        <column>version</column>
+        <row>
+            <value description="cd_unidade_medida">MT</value>
+            <value description="descricao_unidade"><![CDATA[Metros]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">KG</value>
+            <value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
+            <value description="version">1</value>
+        </row>
+    </table>
+</dataset>

@@ -12,12 +12,45 @@
     <packaging>jar</packaging>
     <name>Finanças e Inventário - Core</name>
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>                
-            </resource>
-        </resources>
+        <plugins>
+           <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>dbunit-maven-plugin</artifactId>
+                <version>1.0-beta-1</version>
+                <configuration>
+                    <dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
+                    <driver>${jdbc.driverClassName}</driver>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
+                    <url>${jdbc.url}</url>
+                    <src>src/test/resources/sample-data.xml</src>
+                    <type>${dbunit.operation.type}</type>
+                    <schema>${dbunit.schema}</schema>
+                    <skip>${maven.test.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>operation</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
     </build>
     <dependencies>
         <dependency>
@@ -30,6 +63,11 @@
             <artifactId>${jpa_spec.artifactId}</artifactId>
             <version>${jpa_spec.version}</version>
         </dependency>        
+        <dependency>
+            <groupId>${jpa_agent.groupId}</groupId>
+            <artifactId>${jpa_agent.artifactId}</artifactId>
+            <version>${jpa_agent.version}</version>
+        </dependency>
         <dependency>
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
@@ -228,14 +266,41 @@
                 <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>    
             </properties>            
         </profile>
-        
-        
+        <profile>
+            <id>netbeans-public</id>
+            <activation>
+                <property>
+                    <name>netbeans.execution</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib</classpathPrefix>
+                                    <mainClass></mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <properties>
         <!-- Framework dependency versions -->
         <jpa_spec.groupId>javax.persistence</jpa_spec.groupId>
         <jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
         <jpa_spec.version>1.0.2</jpa_spec.version>
+        <!-- Framework dependency versions -->
+        <jpa_agent.groupId>velocity</jpa_agent.groupId>
+        <jpa_agent.artifactId>velocity-dep</jpa_agent.artifactId>
+        <jpa_agent.version>1.4</jpa_agent.version>
         
         <jpa.groupId>net.sourceforge.orbroker</jpa.groupId>
         <jpa.artifactId>orbroker</jpa.artifactId>
