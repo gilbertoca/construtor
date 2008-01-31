@@ -63,12 +63,12 @@
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <additionalProjectnatures>
+                    <!--additionalProjectnatures>
                         <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
                     </additionalProjectnatures>
                     <additionalBuildcommands>
                         <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
+                    </additionalBuildcommands-->
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>true</downloadJavadocs>
                     <wtpversion>1.5</wtpversion>
@@ -197,6 +197,24 @@
         </plugins>
     </reporting>
     <profiles>
+      <!-- ================= Production Settings Profile ================= -->
+        <!-- Use "-P prod" when you want to use the settings in this profile -->
+        <!-- =============================================================== -->
+        <profile>
+            <id>prod</id>
+            <build>
+                <plugins>
+                    <!-- Override location of data file for DbUnit to load (doesn't have negative keys) -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>dbunit-maven-plugin</artifactId>
+                        <configuration>
+                            <src>src/main/resources/default-data.xml</src>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>        
         <!-- ================= Database Profiles ================= -->
         <profile>
             <id>oracle</id>
@@ -257,6 +275,7 @@
         <!-- Database settings -->
         <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <dbunit.schema>GFI</dbunit.schema> <!-- Make sure to capitalize the schema name -->        
         <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
         <jdbc.groupId>org.apache.derby</jdbc.groupId>
         <jdbc.artifactId>derbyclient</jdbc.artifactId>
