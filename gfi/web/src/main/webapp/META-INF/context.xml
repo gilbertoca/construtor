@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/gfi-webapp">
+<Context path="/gfi-webapp-1.0-SNAPSHOT">
   <Logger className="org.apache.catalina.logger.FileLogger" prefix="ROOT." suffix=".log" timestamp="true"/>
 </Context>

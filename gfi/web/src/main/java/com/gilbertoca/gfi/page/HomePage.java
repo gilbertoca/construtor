@@ -8,7 +8,7 @@ package com.gilbertoca.gfi.page;
 public class HomePage extends BorderPage {
 
     public HomePage() {
-        getModel().put("title", "Finan√ßa e Invent√°rio");
+        getModel().put("title", "FinanÁa e Invent·rio");
     }
 
 }

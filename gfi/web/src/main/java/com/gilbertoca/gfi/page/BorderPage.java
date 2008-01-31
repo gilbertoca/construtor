@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.gilbertoca.gfi.page;
 
 import net.sf.click.Page;
 import net.sf.click.extras.control.Menu;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 /**
  *
  * @author Gilberto
