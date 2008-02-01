@@ -4,10 +4,11 @@
  */
 package com.gilbertoca.gfi.service;
 
-import com.gilbertoca.gfi.model.inventario.Categoria;
-import com.gilbertoca.gfi.model.inventario.Item;
-import com.gilbertoca.gfi.model.inventario.Produto;
-import com.gilbertoca.gfi.model.inventario.UnidadeMedida;
+import com.gilbertoca.gfi.inventario.model.Categoria;
+import com.gilbertoca.gfi.inventario.model.Item;
+import com.gilbertoca.gfi.inventario.model.Produto;
+import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
+
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
