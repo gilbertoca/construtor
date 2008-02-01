@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.inventario;
+package com.gilbertoca.gfi.inventario.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -27,21 +27,21 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * Para exemplificar, vamos admitir o seguinte exemplo de política de estoques:
- *      Estoque de Matéria-prima X
- *      Estoque máximo: 4 unidades
- *      Estoque mínimo: 1 unidade
- *      Consumo médio mensal: 1 unidade
+ * Para exemplificar, vamos admitir o seguinte exemplo de polï¿½tica de estoques:
+ *      Estoque de Matï¿½ria-prima X
+ *      Estoque mï¿½ximo: 4 unidades
+ *      Estoque mï¿½nimo: 1 unidade
+ *      Consumo mï¿½dio mensal: 1 unidade
  *  Pede-se:
- *  1. Qual é o ponto de pedido, admitindo-se que o prazo médio de entrega seja
- *  igual a um mês?
- *  2. Qual é a quantidade a ser comprada?
- *  Solução:
- *  1- Ponto de Pedido, quando o estoque atingir o nível de 2 unidades
- *  2- Quantidade a ser comprada deverá se igual a 3 unidades, porque, quando
- *  ocorrer o recebimento do fornecedor, admitindo-se o prazo médio de entrega
- *  de 1 mês, o estoque estará no nível mínimo de 1 unidade que, adicionando as
- *  três unidades novas adquiridas, atingirá o nível máximo de 4 unidades.
+ *  1. Qual ï¿½ o ponto de pedido, admitindo-se que o prazo mï¿½dio de entrega seja
+ *  igual a um mï¿½s?
+ *  2. Qual ï¿½ a quantidade a ser comprada?
+ *  Soluï¿½ï¿½o:
+ *  1- Ponto de Pedido, quando o estoque atingir o nï¿½vel de 2 unidades
+ *  2- Quantidade a ser comprada deverï¿½ se igual a 3 unidades, porque, quando
+ *  ocorrer o recebimento do fornecedor, admitindo-se o prazo mï¿½dio de entrega
+ *  de 1 mï¿½s, o estoque estarï¿½ no nï¿½vel mï¿½nimo de 1 unidade que, adicionando as
+ *  trï¿½s unidades novas adquiridas, atingirï¿½ o nï¿½vel mï¿½ximo de 4 unidades.
  *  
  *  @hibernate.class table="construtor.estoque_item"
  *
@@ -74,7 +74,7 @@ public class Item implements Serializable {
     @Column(name="nome_item", length=80, nullable=false)
     private String nomeItem;
     /**
-     *  Campo utilizado para calculo do preço de venda
+     *  Campo utilizado para calculo do preï¿½o de venda
      *  <code>Formula: $precoVenda = $precoCusto + %percentualMargemLucro + $adicinalPrecoFixo</code>
      */
     @Column(name="percentual_margem_lucro")
@@ -134,8 +134,8 @@ public class Item implements Serializable {
     private Produto produto;
     /**
      * Valores que o campo tipoICMS pode assumir:
-     * I-Isento, T-Tributado, S-Substituição Tributária e N-Não Incidência
-     * // TODO: Substituir o tipoICMS por um tipo específico do hibernate (enumeration)
+     * I-Isento, T-Tributado, S-Substituiï¿½ï¿½o Tributï¿½ria e N-Nï¿½o Incidï¿½ncia
+     * // TODO: Substituir o tipoICMS por um tipo especï¿½fico do hibernate (enumeration)
      */
     @Column(name="tipo_icms",length=1)
     private String tipoICMS = "I";
@@ -144,19 +144,19 @@ public class Item implements Serializable {
     private Float aliquotaICM = new Float(0.0);
     /**
      * Valores que o campo tipoNotaFiscal pode assumir:
-     * 0-Padrão(00/40/1041);20-Com redução base de cálculo;
-     * 30-Isenta/Não tributada, ICMS por subs. tributária;
-     * 50-Suspensão;51-Diferimento;
-     * 60-ICMS cobrado ant. por subs. tributária;
-     * 70-Redução base cálc., ICMS por subs. tributária;
+     * 0-Padrï¿½o(00/40/1041);20-Com reduï¿½ï¿½o base de cï¿½lculo;
+     * 30-Isenta/Nï¿½o tributada, ICMS por subs. tributï¿½ria;
+     * 50-Suspensï¿½o;51-Diferimento;
+     * 60-ICMS cobrado ant. por subs. tributï¿½ria;
+     * 70-Reduï¿½ï¿½o base cï¿½lc., ICMS por subs. tributï¿½ria;
      * 90-Outros
-     * // TODO: Substituir o tipoNotaFiscal por um tipo específico do hibernate (enumeration)
+     * // TODO: Substituir o tipoNotaFiscal por um tipo especï¿½fico do hibernate (enumeration)
      */
     @Column(name="tipo_nota_fiscal")
     private Integer tipoNotaFiscal = new Integer(30);
     /**
      * Valores que o campo origemMercadoriaNotaFiscal pode assumir:
-     * 0-Nacional;1-Estrangeira/Importação Direta;
+     * 0-Nacional;1-Estrangeira/Importaï¿½ï¿½o Direta;
      * 2-Estrangeira/Adquirida Mercado Interno
      */
     @Column(name="origem_mercadoria_nota_fiscal")
@@ -172,7 +172,7 @@ public class Item implements Serializable {
     private String observacao;    
     
     @Transient
-    protected Set fornecedores = new HashSet();
+    protected Set<Fornecedor> fornecedores = new HashSet<Fornecedor>();
     
     /* Campos que podem ser implementados futuramente:
      * private Float pesoBruto;
@@ -703,7 +703,7 @@ public class Item implements Serializable {
         this.setEstoqueAtual(new Float(this.getEstoqueAtual().floatValue()+ quantidade.floatValue()));        
     }
     /**
-     * Realiza a diminuição da quantidade do item em estoque (estoqueAtual)
+     * Realiza a diminuiï¿½ï¿½o da quantidade do item em estoque (estoqueAtual)
      * @param quantidade
      */
     public void decrease(Float quantidade) {
@@ -711,7 +711,7 @@ public class Item implements Serializable {
     }
 
     /**
-     * Realiza o calculo do preço de venda, baseado nos seguintes parametros:
+     * Realiza o calculo do preï¿½o de venda, baseado nos seguintes parametros:
      * Compra de dois itens no valor de custo de 22,00 e um lucro de 5%
      * $valorLucro = (precoCusto/100) * %percentualMargemLucro
      * $precoVenda = valorLucro + precoCusto + $adicinalPrecoFixo 

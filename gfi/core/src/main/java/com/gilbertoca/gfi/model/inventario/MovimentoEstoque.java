@@ -1,8 +1,9 @@
-package com.gilbertoca.gfi.model.inventario;
+package com.gilbertoca.gfi.inventario.model;
 
 import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.component.Endereco;
-import com.gilbertoca.gfi.model.venda.Venda;
+import com.gilbertoca.gfi.venda.model.Venda;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;

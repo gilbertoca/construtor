@@ -1,5 +1,6 @@
-package com.gilbertoca.gfi.model.inventario;
+package com.gilbertoca.gfi.inventario.model;
 
+import com.gilbertoca.gfi.component.ContaBanco;
 import com.gilbertoca.gfi.component.Endereco;
 import java.io.Serializable;
 import java.util.Collections;
@@ -10,7 +11,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import to.gov.secad.component.ContaBanco;
 
 /**
  *        @hibernate.class
@@ -22,7 +22,7 @@ public class Fornecedor implements Serializable {
     private String nomeRazaoSocial;
     private String cpfCnpj;
     private String rgInscricaoEstadual;    
-    private Boolean flPessoaFisica = new Boolean(true);//pessoa física ou não
+    private Boolean flPessoaFisica = new Boolean(true);//pessoa fï¿½sica ou nï¿½o
     private Date dtCadastro = new Date();
     private Date dtFundacao;
     private Endereco endereco = new Endereco();   

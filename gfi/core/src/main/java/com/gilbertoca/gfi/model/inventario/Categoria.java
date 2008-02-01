@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.inventario;
+package com.gilbertoca.gfi.inventario.model;
 
 import java.io.Serializable;
 import java.util.Date;

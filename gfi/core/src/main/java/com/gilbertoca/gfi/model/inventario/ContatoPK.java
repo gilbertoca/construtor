@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.inventario;
+package com.gilbertoca.gfi.inventario.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
