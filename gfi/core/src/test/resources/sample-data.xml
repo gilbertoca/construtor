@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <table name="unidade_medida">
+	<table name="inventario_unidade_medida">
         <column>cd_unidade_medida</column>
         <column>descricao_unidade</column>
         <column>version</column>
