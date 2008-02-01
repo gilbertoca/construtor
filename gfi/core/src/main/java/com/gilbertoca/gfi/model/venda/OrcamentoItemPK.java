@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.venda;
+package com.gilbertoca.gfi.venda.model;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.venda;
+package com.gilbertoca.gfi.venda.model;
 
 import java.io.Serializable;
 import java.util.Collections;

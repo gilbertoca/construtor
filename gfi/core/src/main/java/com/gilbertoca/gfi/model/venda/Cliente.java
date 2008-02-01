@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.venda;
+package com.gilbertoca.gfi.venda.model;
 
 import com.gilbertoca.gfi.component.Endereco;
 import java.io.Serializable;
