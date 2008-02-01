@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+        name="com.gilbertoca.gfi.ger.model.PessoaDependencia"
         table="ger.ger_pessoadependencia"
     >
 
@@ -81,7 +81,7 @@
 
         <many-to-one
             name="gerPessoa"
-            class="com.gilbertoca.gfi.model.ger.Pessoa"
+            class="com.gilbertoca.gfi.ger.model.Pessoa"
             cascade="none"
             outer-join="auto"
             update="true"
@@ -94,7 +94,7 @@
 
         <many-to-one
             name="gerTpgrauparentesco"
-            class="com.gilbertoca.gfi.model.ger.TpGrauParentesco"
+            class="com.gilbertoca.gfi.ger.model.TpGrauParentesco"
             cascade="none"
             outer-join="auto"
             update="true"
@@ -107,7 +107,7 @@
 
         <many-to-one
             name="gerTpmotivoiniciodependencia"
-            class="com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia"
+            class="com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia"
             cascade="none"
             outer-join="auto"
             update="true"
@@ -120,7 +120,7 @@
 
         <many-to-one
             name="gerTpdependencia"
-            class="com.gilbertoca.gfi.model.ger.TpDependencia"
+            class="com.gilbertoca.gfi.ger.model.TpDependencia"
             cascade="none"
             outer-join="auto"
             update="true"
@@ -133,7 +133,7 @@
 
         <many-to-one
             name="gerTpmotivofimdependencia"
-            class="com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia"
+            class="com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia"
             cascade="none"
             outer-join="auto"
             update="true"

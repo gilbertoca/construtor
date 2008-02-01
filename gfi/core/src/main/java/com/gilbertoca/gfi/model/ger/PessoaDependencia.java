@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,22 +35,22 @@ public class PessoaDependencia implements Serializable {
     private Boolean fldepfinsprevidenciarios;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.Pessoa gerPessoa;
+    private com.gilbertoca.gfi.ger.model.Pessoa gerPessoa;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpGrauParentesco gerTpgrauparentesco;
+    private com.gilbertoca.gfi.ger.model.TpGrauParentesco gerTpgrauparentesco;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia gerTpmotivoiniciodependencia;
+    private com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia gerTpmotivoiniciodependencia;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpDependencia gerTpdependencia;
+    private com.gilbertoca.gfi.ger.model.TpDependencia gerTpdependencia;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia gerTpmotivofimdependencia;
+    private com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia gerTpmotivofimdependencia;
 
     /** full constructor */
-    public PessoaDependencia(Integer cdpessoadependencia, Integer cdpessoadependente, Date dtiniciodependencia, Date dtprevistafimdependencia, Date dtfimdependencia, Boolean flpensionista, Boolean fldepfinsprevidenciarios, com.gilbertoca.gfi.model.ger.Pessoa gerPessoa, com.gilbertoca.gfi.model.ger.TpGrauParentesco gerTpgrauparentesco, com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia gerTpmotivoiniciodependencia, com.gilbertoca.gfi.model.ger.TpDependencia gerTpdependencia, com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia gerTpmotivofimdependencia) {
+    public PessoaDependencia(Integer cdpessoadependencia, Integer cdpessoadependente, Date dtiniciodependencia, Date dtprevistafimdependencia, Date dtfimdependencia, Boolean flpensionista, Boolean fldepfinsprevidenciarios, com.gilbertoca.gfi.ger.model.Pessoa gerPessoa, com.gilbertoca.gfi.ger.model.TpGrauParentesco gerTpgrauparentesco, com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia gerTpmotivoiniciodependencia, com.gilbertoca.gfi.ger.model.TpDependencia gerTpdependencia, com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia gerTpmotivofimdependencia) {
         this.cdpessoadependencia = cdpessoadependencia;
         this.cdpessoadependente = cdpessoadependente;
         this.dtiniciodependencia = dtiniciodependencia;
@@ -70,7 +70,7 @@ public class PessoaDependencia implements Serializable {
     }
 
     /** minimal constructor */
-    public PessoaDependencia(Integer cdpessoadependencia, com.gilbertoca.gfi.model.ger.Pessoa gerPessoa, com.gilbertoca.gfi.model.ger.TpGrauParentesco gerTpgrauparentesco, com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia gerTpmotivoiniciodependencia, com.gilbertoca.gfi.model.ger.TpDependencia gerTpdependencia, com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia gerTpmotivofimdependencia) {
+    public PessoaDependencia(Integer cdpessoadependencia, com.gilbertoca.gfi.ger.model.Pessoa gerPessoa, com.gilbertoca.gfi.ger.model.TpGrauParentesco gerTpgrauparentesco, com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia gerTpmotivoiniciodependencia, com.gilbertoca.gfi.ger.model.TpDependencia gerTpdependencia, com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia gerTpmotivofimdependencia) {
         this.cdpessoadependencia = cdpessoadependencia;
         this.gerPessoa = gerPessoa;
         this.gerTpgrauparentesco = gerTpgrauparentesco;
@@ -184,11 +184,11 @@ public class PessoaDependencia implements Serializable {
      *            @hibernate.column name="cdpessoa"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.Pessoa getGerPessoa() {
+    public com.gilbertoca.gfi.ger.model.Pessoa getGerPessoa() {
         return this.gerPessoa;
     }
 
-    public void setGerPessoa(com.gilbertoca.gfi.model.ger.Pessoa gerPessoa) {
+    public void setGerPessoa(com.gilbertoca.gfi.ger.model.Pessoa gerPessoa) {
         this.gerPessoa = gerPessoa;
     }
 
@@ -198,11 +198,11 @@ public class PessoaDependencia implements Serializable {
      *            @hibernate.column name="cdtpgrauparentesco"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpGrauParentesco getGerTpgrauparentesco() {
+    public com.gilbertoca.gfi.ger.model.TpGrauParentesco getGerTpgrauparentesco() {
         return this.gerTpgrauparentesco;
     }
 
-    public void setGerTpgrauparentesco(com.gilbertoca.gfi.model.ger.TpGrauParentesco gerTpgrauparentesco) {
+    public void setGerTpgrauparentesco(com.gilbertoca.gfi.ger.model.TpGrauParentesco gerTpgrauparentesco) {
         this.gerTpgrauparentesco = gerTpgrauparentesco;
     }
 
@@ -212,11 +212,11 @@ public class PessoaDependencia implements Serializable {
      *            @hibernate.column name="cdtpmotivoiniciodependencia"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia getGerTpmotivoiniciodependencia() {
+    public com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia getGerTpmotivoiniciodependencia() {
         return this.gerTpmotivoiniciodependencia;
     }
 
-    public void setGerTpmotivoiniciodependencia(com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia gerTpmotivoiniciodependencia) {
+    public void setGerTpmotivoiniciodependencia(com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia gerTpmotivoiniciodependencia) {
         this.gerTpmotivoiniciodependencia = gerTpmotivoiniciodependencia;
     }
 
@@ -226,11 +226,11 @@ public class PessoaDependencia implements Serializable {
      *            @hibernate.column name="cdtpdependencia"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpDependencia getGerTpdependencia() {
+    public com.gilbertoca.gfi.ger.model.TpDependencia getGerTpdependencia() {
         return this.gerTpdependencia;
     }
 
-    public void setGerTpdependencia(com.gilbertoca.gfi.model.ger.TpDependencia gerTpdependencia) {
+    public void setGerTpdependencia(com.gilbertoca.gfi.ger.model.TpDependencia gerTpdependencia) {
         this.gerTpdependencia = gerTpdependencia;
     }
 
@@ -240,11 +240,11 @@ public class PessoaDependencia implements Serializable {
      *            @hibernate.column name="cdtpmotivofimdependencia"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia getGerTpmotivofimdependencia() {
+    public com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia getGerTpmotivofimdependencia() {
         return this.gerTpmotivofimdependencia;
     }
 
-    public void setGerTpmotivofimdependencia(com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia gerTpmotivofimdependencia) {
+    public void setGerTpmotivofimdependencia(com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia gerTpmotivofimdependencia) {
         this.gerTpmotivofimdependencia = gerTpmotivofimdependencia;
     }
 

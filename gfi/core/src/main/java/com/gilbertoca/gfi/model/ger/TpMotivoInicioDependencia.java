@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -76,7 +76,7 @@ public class TpMotivoInicioDependencia implements Serializable {
      *            @hibernate.collection-key
      *             column="cdtpmotivoiniciodependencia"
      *            @hibernate.collection-one-to-many
-     *             class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+     *             class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
      *         
      */
     public Set getGerPessoadependencias() {

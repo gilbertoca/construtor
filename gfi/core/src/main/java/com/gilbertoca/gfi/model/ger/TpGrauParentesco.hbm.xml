@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.TpGrauParentesco"
+        name="com.gilbertoca.gfi.ger.model.TpGrauParentesco"
         table="ger.ger_tpgrauparentesco"
     >
 
@@ -48,7 +48,7 @@
             </key>
 
             <one-to-many
-                  class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+                  class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
             />
 
         </set>

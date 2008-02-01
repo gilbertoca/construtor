@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.Pessoa"
+        name="com.gilbertoca.gfi.ger.model.Pessoa"
         table="ger.ger_pessoa"
     >
 
@@ -281,7 +281,7 @@
 
         <one-to-one
             name="gerPessoaDocumento"
-            class="com.gilbertoca.gfi.model.ger.PessoaDocumento"
+            class="com.gilbertoca.gfi.ger.model.PessoaDocumento"
             cascade="none"
             outer-join="auto"
             constrained="false"
@@ -289,7 +289,7 @@
 
         <one-to-one
             name="gerPessoaCaracteristica"
-            class="com.gilbertoca.gfi.model.ger.PessoaCaracteristica"
+            class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
             cascade="none"
             outer-join="auto"
             constrained="false"
@@ -309,7 +309,7 @@
             </key>
 
             <one-to-many
-                  class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+                  class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
             />
 
         </set>

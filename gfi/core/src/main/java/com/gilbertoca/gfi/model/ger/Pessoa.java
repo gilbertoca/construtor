@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -102,10 +102,10 @@ public class Pessoa implements Serializable {
     private String esferaServidorPublico;
 
     /** nullable persistent field */
-    private com.gilbertoca.gfi.model.ger.PessoaDocumento gerPessoaDocumento;
+    private com.gilbertoca.gfi.ger.model.PessoaDocumento gerPessoaDocumento;
 
     /** nullable persistent field */
-    private com.gilbertoca.gfi.model.ger.PessoaCaracteristica gerPessoaCaracteristica;
+    private com.gilbertoca.gfi.ger.model.PessoaCaracteristica gerPessoaCaracteristica;
 
     /** persistent field */
     private Set gerPessoaDependencias;
@@ -113,7 +113,7 @@ public class Pessoa implements Serializable {
 	private Set servidores;
 
     /** full constructor */
-    public Pessoa(Integer cdpessoa, String rgnumero, String fotopath, String apelido, String rgorgaoexp, Date rgemissao, String cpf, String cnnumero, String cnlv, String cnfls, String cncidade, String cnsubdistrito, String cnuf, String sexo, String nomepai, String nomemae, Date dtnascimento, Date dtfalecimento, String nome, Boolean fldependente, String ufeSg, Integer locNuSequencial, String tipologradouro, String logNome, String logComplemento, String baiNome, String cep, Boolean flservidorpublico, String esferaservidorpublico, com.gilbertoca.gfi.model.ger.PessoaDocumento gerPessoadocumento, com.gilbertoca.gfi.model.ger.PessoaCaracteristica gerPessoacaracteristica, Set gerPessoadependencias) {
+    public Pessoa(Integer cdpessoa, String rgnumero, String fotopath, String apelido, String rgorgaoexp, Date rgemissao, String cpf, String cnnumero, String cnlv, String cnfls, String cncidade, String cnsubdistrito, String cnuf, String sexo, String nomepai, String nomemae, Date dtnascimento, Date dtfalecimento, String nome, Boolean fldependente, String ufeSg, Integer locNuSequencial, String tipologradouro, String logNome, String logComplemento, String baiNome, String cep, Boolean flservidorpublico, String esferaservidorpublico, com.gilbertoca.gfi.ger.model.PessoaDocumento gerPessoadocumento, com.gilbertoca.gfi.ger.model.PessoaCaracteristica gerPessoacaracteristica, Set gerPessoadependencias) {
         this.cdPessoa = cdpessoa;
         this.rgNumero = rgnumero;
         this.fotoPath = fotopath;
@@ -610,11 +610,11 @@ public class Pessoa implements Serializable {
      *             outer-join="auto"
      *         
      */
-    public com.gilbertoca.gfi.model.ger.PessoaDocumento getGerPessoaDocumento() {
+    public com.gilbertoca.gfi.ger.model.PessoaDocumento getGerPessoaDocumento() {
         return this.gerPessoaDocumento;
     }
 
-    public void setGerPessoaDocumento(com.gilbertoca.gfi.model.ger.PessoaDocumento gerPessoadocumento) {
+    public void setGerPessoaDocumento(com.gilbertoca.gfi.ger.model.PessoaDocumento gerPessoadocumento) {
         this.gerPessoaDocumento = gerPessoadocumento;
     }
 
@@ -623,11 +623,11 @@ public class Pessoa implements Serializable {
      *             outer-join="auto"
      *         
      */
-    public com.gilbertoca.gfi.model.ger.PessoaCaracteristica getGerPessoaCaracteristica() {
+    public com.gilbertoca.gfi.ger.model.PessoaCaracteristica getGerPessoaCaracteristica() {
         return this.gerPessoaCaracteristica;
     }
 
-    public void setGerPessoaCaracteristica(com.gilbertoca.gfi.model.ger.PessoaCaracteristica gerPessoacaracteristica) {
+    public void setGerPessoaCaracteristica(com.gilbertoca.gfi.ger.model.PessoaCaracteristica gerPessoacaracteristica) {
         this.gerPessoaCaracteristica = gerPessoacaracteristica;
     }
 
@@ -639,7 +639,7 @@ public class Pessoa implements Serializable {
      *            @hibernate.collection-key
      *             column="cdPessoa"
      *            @hibernate.collection-one-to-many
-     *             class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+     *             class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
      *         
      */
     public Set getGerPessoaDependencias() {

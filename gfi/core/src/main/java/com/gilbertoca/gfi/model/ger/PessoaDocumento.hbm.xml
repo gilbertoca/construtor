@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.PessoaDocumento"
+        name="com.gilbertoca.gfi.ger.model.PessoaDocumento"
         table="ger.ger_pessoadocumento"
     >
 
@@ -252,7 +252,7 @@
 
         <one-to-one
             name="gerPessoa"
-            class="com.gilbertoca.gfi.model.ger.Pessoa"
+            class="com.gilbertoca.gfi.ger.model.Pessoa"
             cascade="none"
             outer-join="auto"
             constrained="true"

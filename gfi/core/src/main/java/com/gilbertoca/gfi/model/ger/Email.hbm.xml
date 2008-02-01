@@ -7,13 +7,13 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.Email"
+        name="com.gilbertoca.gfi.ger.model.Email"
         table="ger.ger_email"
     >
 
         <composite-id
             name="comp_id"
-            class="com.gilbertoca.gfi.model.ger.EmailPK"
+            class="com.gilbertoca.gfi.ger.model.EmailPK"
         >
                      <key-property
                         name="email"

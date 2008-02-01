@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;

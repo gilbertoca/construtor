@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia"
+        name="com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia"
         table="ger.ger_tpmotivofimdependencia"
     >
 
@@ -48,7 +48,7 @@
             </key>
 
             <one-to-many
-                  class="com.gilbertoca.gfi.model.ger.PessoaDependencia"
+                  class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
             />
 
         </set>

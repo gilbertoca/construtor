@@ -7,13 +7,13 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.Telefone"
+        name="com.gilbertoca.gfi.ger.model.Telefone"
         table="ger.ger_telefone"
     >
 
         <composite-id
             name="comp_id"
-            class="com.gilbertoca.gfi.model.ger.TelefonePK"
+            class="com.gilbertoca.gfi.ger.model.TelefonePK"
         >
                      <key-property
                         name="cdpessoa"

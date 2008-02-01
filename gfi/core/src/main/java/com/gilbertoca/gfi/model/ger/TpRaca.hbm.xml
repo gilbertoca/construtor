@@ -7,7 +7,7 @@
 <hibernate-mapping
 >
     <class
-        name="com.gilbertoca.gfi.model.ger.TpRaca"
+        name="com.gilbertoca.gfi.ger.model.TpRaca"
         table="ger.ger_tpraca"
     >
 
@@ -49,7 +49,7 @@
             </key>
 
             <one-to-many
-                  class="com.gilbertoca.gfi.model.ger.PessoaCaracteristica"
+                  class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
             />
 
         </set>

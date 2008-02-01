@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -22,31 +22,31 @@ public class PessoaCaracteristica implements Serializable {
     private Integer cdnaturalidade;
 
     /** nullable persistent field */
-    private com.gilbertoca.gfi.model.ger.Pessoa gerPessoa;
+    private com.gilbertoca.gfi.ger.model.Pessoa gerPessoa;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpSanguineo gerTpsanguineo;
+    private com.gilbertoca.gfi.ger.model.TpSanguineo gerTpsanguineo;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.EstadoCivil gerEstadocivil;
+    private com.gilbertoca.gfi.ger.model.EstadoCivil gerEstadocivil;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpNacionalidade gerTpnacionalidade;
+    private com.gilbertoca.gfi.ger.model.TpNacionalidade gerTpnacionalidade;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpReligiao gerTpreligiao;
+    private com.gilbertoca.gfi.ger.model.TpReligiao gerTpreligiao;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpDeficiencia gerTpdeficiencia;
+    private com.gilbertoca.gfi.ger.model.TpDeficiencia gerTpdeficiencia;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.Escolaridade gerEscolaridade;
+    private com.gilbertoca.gfi.ger.model.Escolaridade gerEscolaridade;
 
     /** persistent field */
-    private com.gilbertoca.gfi.model.ger.TpRaca gerTpraca;
+    private com.gilbertoca.gfi.ger.model.TpRaca gerTpraca;
 
     /** full constructor */
-    public PessoaCaracteristica(Integer cdpessoa, Boolean fldoadorsangue, Integer cdnaturalidade, com.gilbertoca.gfi.model.ger.Pessoa gerPessoa, com.gilbertoca.gfi.model.ger.TpSanguineo gerTpsanguineo, com.gilbertoca.gfi.model.ger.EstadoCivil gerEstadocivil, com.gilbertoca.gfi.model.ger.TpNacionalidade gerTpnacionalidade, com.gilbertoca.gfi.model.ger.TpReligiao gerTpreligiao, com.gilbertoca.gfi.model.ger.TpDeficiencia gerTpdeficiencia, com.gilbertoca.gfi.model.ger.Escolaridade gerEscolaridade, com.gilbertoca.gfi.model.ger.TpRaca gerTpraca) {
+    public PessoaCaracteristica(Integer cdpessoa, Boolean fldoadorsangue, Integer cdnaturalidade, com.gilbertoca.gfi.ger.model.Pessoa gerPessoa, com.gilbertoca.gfi.ger.model.TpSanguineo gerTpsanguineo, com.gilbertoca.gfi.ger.model.EstadoCivil gerEstadocivil, com.gilbertoca.gfi.ger.model.TpNacionalidade gerTpnacionalidade, com.gilbertoca.gfi.ger.model.TpReligiao gerTpreligiao, com.gilbertoca.gfi.ger.model.TpDeficiencia gerTpdeficiencia, com.gilbertoca.gfi.ger.model.Escolaridade gerEscolaridade, com.gilbertoca.gfi.ger.model.TpRaca gerTpraca) {
         this.cdpessoa = cdpessoa;
         this.fldoadorsangue = fldoadorsangue;
         this.cdnaturalidade = cdnaturalidade;
@@ -65,7 +65,7 @@ public class PessoaCaracteristica implements Serializable {
     }
 
     /** minimal constructor */
-    public PessoaCaracteristica(Integer cdpessoa, com.gilbertoca.gfi.model.ger.TpSanguineo gerTpsanguineo, com.gilbertoca.gfi.model.ger.EstadoCivil gerEstadocivil, com.gilbertoca.gfi.model.ger.TpNacionalidade gerTpnacionalidade, com.gilbertoca.gfi.model.ger.TpReligiao gerTpreligiao, com.gilbertoca.gfi.model.ger.TpDeficiencia gerTpdeficiencia, com.gilbertoca.gfi.model.ger.Escolaridade gerEscolaridade, com.gilbertoca.gfi.model.ger.TpRaca gerTpraca) {
+    public PessoaCaracteristica(Integer cdpessoa, com.gilbertoca.gfi.ger.model.TpSanguineo gerTpsanguineo, com.gilbertoca.gfi.ger.model.EstadoCivil gerEstadocivil, com.gilbertoca.gfi.ger.model.TpNacionalidade gerTpnacionalidade, com.gilbertoca.gfi.ger.model.TpReligiao gerTpreligiao, com.gilbertoca.gfi.ger.model.TpDeficiencia gerTpdeficiencia, com.gilbertoca.gfi.ger.model.Escolaridade gerEscolaridade, com.gilbertoca.gfi.ger.model.TpRaca gerTpraca) {
         this.cdpessoa = cdpessoa;
         this.gerTpsanguineo = gerTpsanguineo;
         this.gerEstadocivil = gerEstadocivil;
@@ -121,16 +121,16 @@ public class PessoaCaracteristica implements Serializable {
 
     /** 
      *            @hibernate.one-to-one
-     *             class="com.gilbertoca.gfi.model.ger.Pessoa"
+     *             class="com.gilbertoca.gfi.ger.model.Pessoa"
      *             outer-join="auto"
      *             constrained="true"
      *         
      */
-    public com.gilbertoca.gfi.model.ger.Pessoa getGerPessoa() {
+    public com.gilbertoca.gfi.ger.model.Pessoa getGerPessoa() {
         return this.gerPessoa;
     }
 
-    public void setGerPessoa(com.gilbertoca.gfi.model.ger.Pessoa gerPessoa) {
+    public void setGerPessoa(com.gilbertoca.gfi.ger.model.Pessoa gerPessoa) {
         this.gerPessoa = gerPessoa;
     }
 
@@ -140,11 +140,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdtpsanguineo"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpSanguineo getGerTpsanguineo() {
+    public com.gilbertoca.gfi.ger.model.TpSanguineo getGerTpsanguineo() {
         return this.gerTpsanguineo;
     }
 
-    public void setGerTpsanguineo(com.gilbertoca.gfi.model.ger.TpSanguineo gerTpsanguineo) {
+    public void setGerTpsanguineo(com.gilbertoca.gfi.ger.model.TpSanguineo gerTpsanguineo) {
         this.gerTpsanguineo = gerTpsanguineo;
     }
 
@@ -154,11 +154,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdestadocivil"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.EstadoCivil getGerEstadocivil() {
+    public com.gilbertoca.gfi.ger.model.EstadoCivil getGerEstadocivil() {
         return this.gerEstadocivil;
     }
 
-    public void setGerEstadocivil(com.gilbertoca.gfi.model.ger.EstadoCivil gerEstadocivil) {
+    public void setGerEstadocivil(com.gilbertoca.gfi.ger.model.EstadoCivil gerEstadocivil) {
         this.gerEstadocivil = gerEstadocivil;
     }
 
@@ -168,11 +168,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdtpnacionalidade"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpNacionalidade getGerTpnacionalidade() {
+    public com.gilbertoca.gfi.ger.model.TpNacionalidade getGerTpnacionalidade() {
         return this.gerTpnacionalidade;
     }
 
-    public void setGerTpnacionalidade(com.gilbertoca.gfi.model.ger.TpNacionalidade gerTpnacionalidade) {
+    public void setGerTpnacionalidade(com.gilbertoca.gfi.ger.model.TpNacionalidade gerTpnacionalidade) {
         this.gerTpnacionalidade = gerTpnacionalidade;
     }
 
@@ -182,11 +182,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdtpreligiao"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpReligiao getGerTpreligiao() {
+    public com.gilbertoca.gfi.ger.model.TpReligiao getGerTpreligiao() {
         return this.gerTpreligiao;
     }
 
-    public void setGerTpreligiao(com.gilbertoca.gfi.model.ger.TpReligiao gerTpreligiao) {
+    public void setGerTpreligiao(com.gilbertoca.gfi.ger.model.TpReligiao gerTpreligiao) {
         this.gerTpreligiao = gerTpreligiao;
     }
 
@@ -196,11 +196,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdtpdeficiencia"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpDeficiencia getGerTpdeficiencia() {
+    public com.gilbertoca.gfi.ger.model.TpDeficiencia getGerTpdeficiencia() {
         return this.gerTpdeficiencia;
     }
 
-    public void setGerTpdeficiencia(com.gilbertoca.gfi.model.ger.TpDeficiencia gerTpdeficiencia) {
+    public void setGerTpdeficiencia(com.gilbertoca.gfi.ger.model.TpDeficiencia gerTpdeficiencia) {
         this.gerTpdeficiencia = gerTpdeficiencia;
     }
 
@@ -210,11 +210,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdescolaridade"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.Escolaridade getGerEscolaridade() {
+    public com.gilbertoca.gfi.ger.model.Escolaridade getGerEscolaridade() {
         return this.gerEscolaridade;
     }
 
-    public void setGerEscolaridade(com.gilbertoca.gfi.model.ger.Escolaridade gerEscolaridade) {
+    public void setGerEscolaridade(com.gilbertoca.gfi.ger.model.Escolaridade gerEscolaridade) {
         this.gerEscolaridade = gerEscolaridade;
     }
 
@@ -224,11 +224,11 @@ public class PessoaCaracteristica implements Serializable {
      *            @hibernate.column name="cdtpraca"         
      *         
      */
-    public com.gilbertoca.gfi.model.ger.TpRaca getGerTpraca() {
+    public com.gilbertoca.gfi.ger.model.TpRaca getGerTpraca() {
         return this.gerTpraca;
     }
 
-    public void setGerTpraca(com.gilbertoca.gfi.model.ger.TpRaca gerTpraca) {
+    public void setGerTpraca(com.gilbertoca.gfi.ger.model.TpRaca gerTpraca) {
         this.gerTpraca = gerTpraca;
     }
 

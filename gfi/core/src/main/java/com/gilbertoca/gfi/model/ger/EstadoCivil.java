@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.ger;
+package com.gilbertoca.gfi.ger.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -71,7 +71,7 @@ public class EstadoCivil implements Serializable {
      *            @hibernate.collection-key
      *             column="cdestadocivil"
      *            @hibernate.collection-one-to-many
-     *             class="com.gilbertoca.gfi.model.ger.PessoaCaracteristica"
+     *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
      */
     public Set getGerPessoacaracteristicas() {
