@@ -3,10 +3,10 @@
     <persistence-unit name="annotatedPU" transaction-type="RESOURCE_LOCAL">
         <provider>${jpa.provider}</provider>
         <mapping-file>META-INF/orm.xml</mapping-file>
-        <class>com.gilbertoca.gfi.model.inventario.UnidadeMedida</class>
-        <class>com.gilbertoca.gfi.model.inventario.Produto</class>    
-        <class>com.gilbertoca.gfi.model.inventario.Categoria</class>
-        <class>com.gilbertoca.gfi.model.inventario.Item</class>
+        <class>com.gilbertoca.gfi.inventario.model.UnidadeMedida</class>
+        <class>com.gilbertoca.gfi.inventario.model.Produto</class>    
+        <class>com.gilbertoca.gfi.inventario.model.Categoria</class>
+        <class>com.gilbertoca.gfi.inventario.model.Item</class>
         <properties>
             <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
             <property name="${jpa.url}" value="${jdbc.url}"/>
@@ -21,7 +21,7 @@
     <persistence-unit name="metadataPU" transaction-type="RESOURCE_LOCAL">
         <provider>${jpa.provider}</provider>
         <mapping-file>META-INF/inventario.xml</mapping-file>
-        <class>com.gilbertoca.gfi.model.inventario2.Categoria</class>
+        <class>com.gilbertoca.gfi.inventario2.model.Categoria</class>
         <properties>
             <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
             <property name="${jpa.url}" value="${jdbc.url}"/>
@@ -35,23 +35,23 @@
     </persistence-unit>    
     <persistence-unit name="gfi-gerPU" transaction-type="RESOURCE_LOCAL">
         <provider>${jpa.provider}</provider>
-        <class>com.gilbertoca.gfi.model.ger.TpDeficiencia</class>
-        <class>com.gilbertoca.gfi.model.ger.TpDependencia</class>
-        <class>com.gilbertoca.gfi.model.ger.TpGrauParentesco</class>
-        <class>com.gilbertoca.gfi.model.ger.TpMotivoFimDependencia</class>
-        <class>com.gilbertoca.gfi.model.ger.TpMotivoInicioDependencia</class>
-        <class>com.gilbertoca.gfi.model.ger.TpNacionalidade</class>
-        <class>com.gilbertoca.gfi.model.ger.TpRaca</class>
-        <class>com.gilbertoca.gfi.model.ger.TpReligiao</class>
-        <class>com.gilbertoca.gfi.model.ger.TpSanguineo</class>
-        <class>com.gilbertoca.gfi.model.ger.Escolaridade</class>
-        <class>com.gilbertoca.gfi.model.ger.EstadoCivil</class>
-        <class>com.gilbertoca.gfi.model.ger.Pessoa</class>
-        <class>com.gilbertoca.gfi.model.ger.Email</class>
-        <class>com.gilbertoca.gfi.model.ger.Telefone</class>
-        <class>com.gilbertoca.gfi.model.ger.PessoaDocumento</class>
-        <class>com.gilbertoca.gfi.model.ger.PessoaCaracteristica</class>
-        <class>com.gilbertoca.gfi.model.ger.PessoaDependencia</class>
+        <class>com.gilbertoca.gfi.ger.model.TpDeficiencia</class>
+        <class>com.gilbertoca.gfi.ger.model.TpDependencia</class>
+        <class>com.gilbertoca.gfi.ger.model.TpGrauParentesco</class>
+        <class>com.gilbertoca.gfi.ger.model.TpMotivoFimDependencia</class>
+        <class>com.gilbertoca.gfi.ger.model.TpMotivoInicioDependencia</class>
+        <class>com.gilbertoca.gfi.ger.model.TpNacionalidade</class>
+        <class>com.gilbertoca.gfi.ger.model.TpRaca</class>
+        <class>com.gilbertoca.gfi.ger.model.TpReligiao</class>
+        <class>com.gilbertoca.gfi.ger.model.TpSanguineo</class>
+        <class>com.gilbertoca.gfi.ger.model.Escolaridade</class>
+        <class>com.gilbertoca.gfi.ger.model.EstadoCivil</class>
+        <class>com.gilbertoca.gfi.ger.model.Pessoa</class>
+        <class>com.gilbertoca.gfi.ger.model.Email</class>
+        <class>com.gilbertoca.gfi.ger.model.Telefone</class>
+        <class>com.gilbertoca.gfi.ger.model.PessoaDocumento</class>
+        <class>com.gilbertoca.gfi.ger.model.PessoaCaracteristica</class>
+        <class>com.gilbertoca.gfi.ger.model.PessoaDependencia</class>
         <properties>
             <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
             <property name="${jpa.url}" value="${jdbc.url}"/>

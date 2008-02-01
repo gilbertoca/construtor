@@ -9,7 +9,7 @@
             <schema>gfi</schema>
         </persistence-unit-defaults>
     </persistence-unit-metadata>     
-    <entity class="com.gilbertoca.gfi.model.inventario2.Categoria">
+    <entity class="com.gilbertoca.gfi.inventario2.model.Categoria">
         <table name="CATEGORIA" schema="GFI"/>
         <attributes>
             <id name="cdCategoria">

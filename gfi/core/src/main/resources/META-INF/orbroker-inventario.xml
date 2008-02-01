@@ -11,7 +11,7 @@
 -->
 
 <broker name="inventario" version="2.0">
-    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.model.inventario2.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
+    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario2.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
         <property name="CdUnidadeMedida">
             <column name="CD_UNIDADE_MEDIDA"/>
@@ -31,11 +31,11 @@
         descricao_unidade,
         version
         FROM 
-        gfi.unidade_medida
+        gfi.inventario_unidade_medida
         ]]><append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
     </sql-statement>    
     <sql-statement id="insertUnidadeMedida"><![CDATA[
-	    INSERT INTO gfi.unidade_medida (cd_unidade_medida,
+	    INSERT INTO gfi.inventario_unidade_medida (cd_unidade_medida,
 			descricao_unidade,
 			version)
 	    VALUES  (:unidadeMedida.cdUnidadeMedida,
@@ -43,7 +43,7 @@
                         :unidadeMedida.version)
     ]]></sql-statement>	
     <sql-statement id="updateUnidadeMedida"><![CDATA[
-	    UPDATE gfi.unidade_medida SET 
+	    UPDATE gfi.inventario_unidade_medida SET 
 			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
 			descricao_unidade = :unidadeMedida.descricaoUnidade,
 			version	= :unidadeMedida.version
@@ -53,13 +53,13 @@
     <sql-statement id="deleteUnidadeMedida">
         DELETE
         FROM 
-        gfi.unidade_medida
+        gfi.inventario_unidade_medida
         <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
     </sql-statement>        
     <sql-statement id="deleteUnidadeMedidaById"><![CDATA[
         DELETE
         FROM 
-        gfi.unidade_medida
+        gfi.inventario_unidade_medida
 	#if ($unidadeMedida.cdUidadeMedida)
 		WHERE
 			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida
