@@ -1,4 +1,4 @@
-package to.gov.secad.component;
+package com.gilbertoca.gfi.component;
 
 import java.io.Serializable;
 
