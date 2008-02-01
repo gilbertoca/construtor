@@ -11,28 +11,8 @@
     <artifactId>gfi-webapp</artifactId>
     <packaging>war</packaging>
     <name>Finanças e Inventário - Web (Click)</name>
-    <repositories>
-        <repository>
-            <id>EdAuUtil</id>
-            <url>http://maven.uat.educationau.edu.au/EdAuUtil</url>
-        </repository> 
-    </repositories>
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>RELEASE</version>
-                <configuration>
-                    <encoding>ISO-8859-15</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>RELEASE</version>
-                <configuration>
-                    <encoding>ISO-8859-15</encoding>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
@@ -78,48 +58,9 @@
                     </systemProperties>                    
                 </configuration>
             </plugin> 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <executable>java</executable>
-                    <mainClass>au.edu.educationau.opensource.devsupport.TestWebServer</mainClass>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.mortbay.jetty</groupId>
-                        <artifactId>jetty-util</artifactId>
-                        <version>6.1.5</version>
-                        <scope>compile</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.mortbay.jetty</groupId>
-                        <artifactId>jetty</artifactId>
-                        <version>6.1.5</version>
-                        <scope>compile</scope>
-                    </dependency>    
-                    <dependency>
-                        <groupId>org.apache.tomcat</groupId>
-                        <artifactId>jasper</artifactId>
-                        <version>6.0.13</version>
-                        <scope>test</scope>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-ant</artifactId>
-                        <version>0.8</version>
-                        <scope>test</scope>
-                    </dependency>    
-                </dependencies>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>au.edu.educationau.opensource</groupId>
-            <artifactId>EdAuUtils</artifactId>
-            <version>0.9</version>
-        </dependency>
         <dependency>
             <groupId>net.sf.click</groupId>
             <artifactId>click</artifactId>
