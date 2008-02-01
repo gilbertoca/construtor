@@ -1,7 +1,8 @@
-package com.gilbertoca.gfi.model.inventario2;
+package com.gilbertoca.gfi.inventario2.model;
 
-import com.gilbertoca.gfi.model.inventario.MovimentoEstoque;
-import com.gilbertoca.gfi.model.inventario.MovimentoEstoqueItemPK;
+import com.gilbertoca.gfi.inventario.model.MovimentoEstoque;
+import com.gilbertoca.gfi.inventario.model.MovimentoEstoqueItemPK;
+
 import java.io.Serializable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;

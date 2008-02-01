@@ -1,4 +1,4 @@
-package org.appfuse.model.estoque;
+package com.gilbertoca.gfi.inventario2.model;
 
 import java.io.Serializable;
 

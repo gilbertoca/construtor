@@ -1,7 +1,8 @@
-package com.gilbertoca.gfi.model.inventario2;
+package com.gilbertoca.gfi.inventario2.model;
 
 import com.gilbertoca.gfi.component.Endereco;
-import com.gilbertoca.gfi.model.inventario.NaturezaOperacao;
+import com.gilbertoca.gfi.inventario.model.NaturezaOperacao;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;

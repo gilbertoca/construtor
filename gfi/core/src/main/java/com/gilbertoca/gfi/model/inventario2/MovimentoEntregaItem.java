@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.model.inventario2;
+package com.gilbertoca.gfi.inventario2.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,7 +8,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.appfuse.model.estoque.MovimentoEntregaItemPK;
 /**
  * @hibernate.class table="construtor.estoque_movimento_entrega_item"
  */  
@@ -18,8 +17,8 @@ public class MovimentoEntregaItem implements Serializable{
 
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
-     * tipo de situação, por exemplo, removendo este atributo.
-     * Usado para determinar se instancia é transient or detached 
+     * tipo de situaï¿½ï¿½o, por exemplo, removendo este atributo.
+     * Usado para determinar se instancia ï¿½ transient or detached 
      */
     private int version = -1;
 
