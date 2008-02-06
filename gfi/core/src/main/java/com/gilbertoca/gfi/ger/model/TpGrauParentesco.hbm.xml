@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.ger.model.TpGrauParentesco"
+        table="ger.ger_tpgrauparentesco"
+    >
+
+        <id
+            name="cdtpgrauparentesco"
+            column="cdtpgrauparentesco"
+            type="java.lang.Short"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-TpGrauParentesco.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="dctpgrauparentesco"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="dctpgrauparentesco"
+            length="50"
+        />
+
+        <set
+            name="gerPessoadependencias"
+            lazy="true"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="cdtpgrauparentesco"
+            >
+            </key>
+
+            <one-to-many
+                  class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
+            />
+
+        </set>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-TpGrauParentesco.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

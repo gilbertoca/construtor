@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
+        table="ger.ger_pessoacaracteristica"
+    >
+
+        <id
+            name="cdpessoa"
+            column="cdpessoa"
+            type="java.lang.Integer"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PessoaCaracteristica.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="fldoadorsangue"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="fldoadorsangue"
+            length="1"
+        />
+
+        <property
+            name="cdnaturalidade"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="cdnaturalidade"
+            length="4"
+        />
+
+        <one-to-one
+            name="gerPessoa"
+            class="com.gilbertoca.gfi.ger.model.Pessoa"
+            cascade="none"
+            outer-join="auto"
+            constrained="true"
+        />
+
+        <many-to-one
+            name="gerTpsanguineo"
+            class="com.gilbertoca.gfi.ger.model.TpSanguineo"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdtpsanguineo" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerEstadocivil"
+            class="com.gilbertoca.gfi.ger.model.EstadoCivil"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdestadocivil" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerTpnacionalidade"
+            class="com.gilbertoca.gfi.ger.model.TpNacionalidade"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdtpnacionalidade" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerTpreligiao"
+            class="com.gilbertoca.gfi.ger.model.TpReligiao"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdtpreligiao" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerTpdeficiencia"
+            class="com.gilbertoca.gfi.ger.model.TpDeficiencia"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdtpdeficiencia" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerEscolaridade"
+            class="com.gilbertoca.gfi.ger.model.Escolaridade"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdescolaridade" 
+            />
+        </many-to-one>
+
+        <many-to-one
+            name="gerTpraca"
+            class="com.gilbertoca.gfi.ger.model.TpRaca"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+        >
+            <column
+                name="cdtpraca" 
+            />
+        </many-to-one>
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PessoaCaracteristica.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>
