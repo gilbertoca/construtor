@@ -5,11 +5,12 @@
 package com.gilbertoca.gfi.service;
 
 import com.gilbertoca.gfi.Constants;
+import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+
 import java.util.Collection;
 import net.sourceforge.orbroker.Broker;
 import net.sourceforge.orbroker.Query;
 import net.sourceforge.orbroker.Transaction;
-import com.gilbertoca.gfi.model.inventario2.UnidadeMedida;
 
 /**
  *
@@ -47,7 +48,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
     public UnidadeMedida findByPk(String pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador não pode ser nulo!");
+                    "Identificador nï¿½o pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
