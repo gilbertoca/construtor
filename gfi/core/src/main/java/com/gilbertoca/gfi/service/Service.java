@@ -13,6 +13,8 @@ import net.sourceforge.orbroker.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+
 /**
  * 
  * @author gilberto
@@ -29,13 +31,17 @@ abstract public class Service<T, PK extends Serializable> {
 	protected boolean findByPk(T entity) {
 		Query qry = getBroker().startQuery();
 		if (entity == null) {
-			throw new IllegalArgumentException("Entidade n�o pode ser nulo!");
+			throw new IllegalArgumentException("Entidade não pode ser nulo!");
 		}
-		qry.setParameter(entity.getClass().getSimpleName().toLowerCase(),
-				entity);
+		String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase()+entity.getClass().getSimpleName().substring(1);
+		String sentenca = "get" + entity.getClass().getSimpleName()	+ "ByPk";
+		qry.setParameter(parametro,	entity);
 		try {
-			return qry.selectOne("get" + entity.getClass().getSimpleName()
-					+ "ByPk", entity);
+			log.info("findByPk(T) --> Verificando parametros:"+
+					"\nQuery parameter: "+parametro+
+					"\nStament name   :"+sentenca+
+					"\n--> Verificando argumentos:\n"+entity);
+			return qry.selectOne(sentenca, entity);
 		} finally {
 			qry.close();
 		}
@@ -54,4 +60,6 @@ abstract public class Service<T, PK extends Serializable> {
 	protected Broker getBroker(String brokerName) {
 		return ResourceLocator.getInstance().getBroker(brokerName);
 	}
+
+	abstract public Collection<T> findLike(T entity);
 }

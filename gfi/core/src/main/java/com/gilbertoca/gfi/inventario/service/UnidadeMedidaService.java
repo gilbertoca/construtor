@@ -49,12 +49,23 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
     public UnidadeMedida findByPk(String pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador n�o pode ser nulo!");
+                    "Identificador não pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
-            qry.setParameter("cdUnidadeMedida", pk);
-            return (UnidadeMedida) qry.selectOne("getUnidadeMedidaByCdUnidadeMedida");
+            qry.setParameter("unidadeMedida.cdUnidadeMedida", pk);
+            return (UnidadeMedida) qry.selectOne("getUnidadeMedidaByPk");
+        } finally {
+            qry.close();
+        }
+    }
+    @Override
+    public Collection<UnidadeMedida> findLike(UnidadeMedida entity) {
+        Query qry = getBroker().startQuery();
+        try {
+            qry.setParameter("cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
+            qry.setParameter("descricaoUnidade", "%" + entity.getDescricaoUnidade() + "%");
+            return qry.selectMany("findLikeUnidadeMedida");
         } finally {
             qry.close();
         }
@@ -116,7 +127,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
         int recordsUpdated = 0;
         try {
             txn.setParameter("cdUnidadeMedida", pk);
-            recordsUpdated = txn.execute("deleteUnidadeMedidaByCdUnidadeMedida");
+            recordsUpdated = txn.execute("deleteUnidadeMedidaByPk");
             if (recordsUpdated != 1) {
                 txn.rollback();
             //throw new ThatsWeirdException();
@@ -131,8 +142,8 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
-            txn.setParameter("unidadeMedida", entity);
-            recordsUpdated = txn.execute("deleteUnidadeMedidaById");
+        	txn.setParameter("cdUnidadeMedida", entity.getCdUnidadeMedida());
+            recordsUpdated = txn.execute("deleteUnidadeMedidaByPk");
             if (recordsUpdated != 1) {
                 txn.rollback();
             //throw new ThatsWeirdException();

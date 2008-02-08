@@ -32,8 +32,24 @@
         version
         FROM 
         gfi.inventario_unidade_medida
-        ]]><append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
-    </sql-statement>    
+        ]]><append-statement id-suffix="ByPk">WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida</append-statement> 	
+    </sql-statement>
+    <sql-statement id="findLikeUnidadeMedida" result-object="UnidadeMedida"><![CDATA[
+        SELECT 
+        cd_unidade_medida,
+        descricao_unidade,
+        version
+        FROM 
+        gfi.inventario_unidade_medida
+        WHERE        
+        #if ($cdUnidadeMedida)
+			cd_unidade_medida like :cdUnidadeMedida
+        #end
+        #if ($descricaoUnidade)
+			OR descricao_unidade like :descricaoUnidade
+        #end
+    ]]></sql-statement>    
+        
     <sql-statement id="insertUnidadeMedida"><![CDATA[
 	    INSERT INTO gfi.inventario_unidade_medida (cd_unidade_medida,
 			descricao_unidade,
@@ -54,16 +70,6 @@
         DELETE
         FROM 
         gfi.inventario_unidade_medida
-        <append-statement id-suffix="ByCdUnidadeMedida">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
+        <append-statement id-suffix="ByPk">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
     </sql-statement>        
-    <sql-statement id="deleteUnidadeMedidaById"><![CDATA[
-        DELETE
-        FROM 
-        gfi.inventario_unidade_medida
-	#if ($unidadeMedida.cdUidadeMedida)
-		WHERE
-			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida
-	#end        
-    ]]></sql-statement>        
-    
 </broker>

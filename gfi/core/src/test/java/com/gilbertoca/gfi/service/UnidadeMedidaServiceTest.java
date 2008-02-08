@@ -54,6 +54,18 @@ public class UnidadeMedidaServiceTest {
         System.out.println(uM);
         assertTrue("O valor do campo cdUnidadeMedida", cdUnidadeMedida.equals(uM.getCdUnidadeMedida()));
     }
+    /**
+     * Test of findByPk method, of class UnidadeMedidaService.
+     */
+    @Test
+    public void findByPkIfExists() {
+        System.out.println("findByPkIfExists");
+        UnidadeMedida uM = new UnidadeMedida();
+        UnidadeMedidaService instance = new UnidadeMedidaService();
+        uM.setCdUnidadeMedida("MT");
+        assertTrue(instance.findByPk(uM));        
+        System.out.println(uM);
+    }
 
     /**
      * Test of update method, of class UnidadeMedidaService.
@@ -105,7 +117,7 @@ public class UnidadeMedidaServiceTest {
     @Test
     public void deleteObject() {
         System.out.println("delete");
-        String cdUnidadeMedida = "KG";
+        String cdUnidadeMedida = "MT3";
         UnidadeMedidaService instance = new UnidadeMedidaService();        
         UnidadeMedida uM = instance.findByPk(cdUnidadeMedida);
         instance.delete(uM);
