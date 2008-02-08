@@ -6,14 +6,18 @@ package com.gilbertoca.gfi.page;
 
 import net.sf.click.Page;
 import net.sf.click.extras.control.Menu;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.gilbertoca.gfi.service.Service;
 /**
  *
  * @author Gilberto
  */
 public class BorderPage extends Page{
     protected final Log log = LogFactory.getLog(getClass());
+    protected Service service;
    /** The root menu. */
     public Menu rootMenu = Menu.getRootMenu();
     /**
@@ -36,5 +40,17 @@ public class BorderPage extends Page{
     public String getTemplate() {
         return "/border-template.htm";
     }
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	public Log getLog() {
+		return log;
+	}
     
 }
