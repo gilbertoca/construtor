@@ -13,13 +13,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import net.sourceforge.orbroker.Broker;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
-import org.apache.commons.dbcp.SQLNestedException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -79,7 +76,7 @@ public class ResourceLocator {
         if (dataSource == null) {
             InputStream is = null;
             Properties properties = new Properties();
-            log.info("Loading DBCP properties file: " + Constants.DBCPDATASOURCE);
+            log.info("Loading DBCP properties file: " + Constants.DBCPCONFIGFILE);
             is = getClass().getResourceAsStream(Constants.DBCPCONFIGFILE);
             if (is == null) {
                 throw new ResourceLocatorException("DBCP properties file not found: " + is);

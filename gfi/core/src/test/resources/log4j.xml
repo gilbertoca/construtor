@@ -34,7 +34,7 @@
         <level value="INFO"/>
     </logger>
 
-    <logger name="com.gilbertoca.service">
+    <logger name="com.gilbertoca.gfi">
         <level value="DEBUG"/>
     </logger>
     

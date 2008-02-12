@@ -63,11 +63,11 @@
             <artifactId>${jpa_spec.artifactId}</artifactId>
             <version>${jpa_spec.version}</version>
         </dependency>        
-        <dependency>
+        <!--dependency>
             <groupId>${jpa_agent.groupId}</groupId>
             <artifactId>${jpa_agent.artifactId}</artifactId>
             <version>${jpa_agent.version}</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>

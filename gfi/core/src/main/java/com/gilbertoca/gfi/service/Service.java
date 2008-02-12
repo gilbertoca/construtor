@@ -13,7 +13,6 @@ import net.sourceforge.orbroker.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
 
 /**
  * 
