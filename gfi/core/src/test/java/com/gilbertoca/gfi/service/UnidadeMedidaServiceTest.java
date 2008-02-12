@@ -66,7 +66,17 @@ public class UnidadeMedidaServiceTest {
         assertTrue(instance.findByPk(uM));        
         System.out.println(uM);
     }
-
+    /**
+     * Test of findLike method, of class UnidadeMedidaService.
+     */
+    @Test
+    public void findLike(){
+        System.out.println("findLike");
+        UnidadeMedidaService instance = new UnidadeMedidaService();
+        Collection result = instance.findLike(new UnidadeMedida("MT", "Cu"));
+        System.out.println(result);
+        assertFalse(result.isEmpty());
+    }
     /**
      * Test of update method, of class UnidadeMedidaService.
      */
