@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
  */
 public class InventarioServiceAntigo {
 
-    protected final Log log = LogFactory.getLog(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
     private EntityManagerFactory emf = null;
     private EntityManager em = null;
     private static final String initId =

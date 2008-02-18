@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>gfi-webapp</artifactId>
   <packaging>war</packaging>
-  <name>Finanças e Inventário - Web (Click)</name>
+  <name>Financas e Inventario - Web (Click)</name>
   <build>
     <plugins>
       <plugin>

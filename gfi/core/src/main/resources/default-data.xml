@@ -5,13 +5,48 @@
         <column>descricao_unidade</column>
         <column>version</column>
         <row>
-            <value description="cd_unidade_medida">MT</value>
-            <value description="descricao_unidade"><![CDATA[Metros]]></value>
+            <value description="cd_unidade_medida">UN</value>
+            <value description="descricao_unidade"><![CDATA[Unidade]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">DZ</value>
+            <value description="descricao_unidade"><![CDATA[Duzia]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">G</value>
+            <value description="descricao_unidade"><![CDATA[Grama]]></value>
             <value description="version">1</value>
         </row>
         <row>
             <value description="cd_unidade_medida">KG</value>
-            <value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
+            <value description="descricao_unidade"><![CDATA[Quilograma]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">M</value>
+            <value description="descricao_unidade"><![CDATA[Metro]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">M3</value>
+            <value description="descricao_unidade"><![CDATA[Metro Cúbico]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">PÇ</value>
+            <value description="descricao_unidade"><![CDATA[Peça]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">PC</value>
+            <value description="descricao_unidade"><![CDATA[Pacote]]></value>
+            <value description="version">1</value>
+        </row>
+        <row>
+            <value description="cd_unidade_medida">SC</value>
+            <value description="descricao_unidade"><![CDATA[Saco]]></value>
             <value description="version">1</value>
         </row>
     </table>

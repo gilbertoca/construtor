@@ -1,11 +1,8 @@
 package com.gilbertoca.gfi.inventario2.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -16,36 +13,32 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * 
- * Para exemplificar, vamos admitir o seguinte exemplo de polÌtica de estoques:
- *      Estoque de MatÈria-prima X
- *      Estoque m·ximo: 4 unidades
- *      Estoque mÌnimo: 1 unidade
- *      Consumo mÈdio mensal: 1 unidade
+ * Para exemplificar, vamos admitir o seguinte exemplo de pol√≠tica de estoques:
+ *      Estoque de Mat√©ria-prima X
+ *      Estoque m√°ximo: 4 unidades
+ *      Estoque m√≠nimo: 1 unidade
+ *      Consumo m√©dio mensal: 1 unidade
  *  Pede-se:
- *  1. Qual È o ponto de pedido, admitindo-se que o prazo mÈdio de entrega seja
- *  igual a um mÍs?
- *  2. Qual È a quantidade a ser comprada?
- *  SoluÁ„o:
- *  1- Ponto de Pedido, quando o estoque atingir o nÌvel de 2 unidades
- *  2- Quantidade a ser comprada dever· se igual a 3 unidades, porque, quando
- *  ocorrer o recebimento do fornecedor, admitindo-se o prazo mÈdio de entrega
- *  de 1 mÍs, o estoque estar· no nÌvel mÌnimo de 1 unidade que, adicionando as
- *  trÍs unidades novas adquiridas, atingir· o nÌvel m·ximo de 4 unidades.
- *  
- *  @hibernate.class table="construtor.estoque_item"
+ *  1. Qual √© o ponto de pedido, admitindo-se que o prazo m√©dio de entrega seja
+ *  igual a um m√™s?
+ *  2. Qual √© a quantidade a ser comprada?
+ *  Solu√ß√£o:
+ *  1- Ponto de Pedido, quando o estoque atingir o n√≠vel de 2 unidades
+ *  2- Quantidade a ser comprada dever√° se igual a 3 unidades, porque, quando
+ *  ocorrer o recebimento do fornecedor, admitindo-se o prazo m√©dio de entrega
+ *  de 1 m√™s, o estoque estar√° no n√≠vel m√≠nimo de 1 unidade que, adicionando as
+ *  tr√™s unidades novas adquiridas, atingir√° o n√≠vel m√°ximo de 4 unidades.
  *
 */
 public class Item implements Serializable {
-    /** identifier field */
     private Integer cdItem;
     private Date dtCadastro = new Date();
     private Double precoVenda = new Double(0.0);
     private Double precoCusto = new Double(0.0);
     private Float percentualDescontoMaximo = new Float(0.0); 
-    /** persistent field */
     private String nomeItem;
     /**
-     *  Campo utilizado para calculo do preÁo de venda
+     *  Campo utilizado para calculo do pre√ßo de venda
      *  <code>Formula: $precoVenda = $precoCusto + %percentualMargemLucro + $adicinalPrecoFixo</code>
      */
     private Float percentualMargemLucro = new Float(0.0); 
@@ -69,25 +62,25 @@ public class Item implements Serializable {
     private Produto produto = new Produto();
     /**
      * Valores que o campo tipoICMS pode assumir:
-     * I-Isento, T-Tributado, S-SubstituiÁ„o Tribut·ria e N-N„o IncidÍncia
-     * // TODO: Substituir o tipoICMS por um tipo especÌfico do hibernate (enumeration)
+     * I-Isento, T-Tributado, S-Substitui√ß√£o Tribut√°ria e N-N√£o Incid√™ncia
+     * // TODO: Substituir o tipoICMS por um tipo espec√≠fico do hibernate (enumeration)
      */
     private String tipoICMS = "I";
     private Float aliquotaICM = new Float(0.0);
     /**
      * Valores que o campo tipoNotaFiscal pode assumir:
-     * 0-Padr„o(00/40/1041);20-Com reduÁ„o base de c·lculo;
-     * 30-Isenta/N„o tributada, ICMS por subs. tribut·ria;
-     * 50-Suspens„o;51-Diferimento;
-     * 60-ICMS cobrado ant. por subs. tribut·ria;
-     * 70-ReduÁ„o base c·lc., ICMS por subs. tribut·ria;
+     * 0-Padr√£o(00/40/1041);20-Com redu√ß√£o base de c√°lculo;
+     * 30-Isenta/N√£o tributada, ICMS por subs. tribut√°ria;
+     * 50-Suspens√£o;51-Diferimento;
+     * 60-ICMS cobrado ant. por subs. tribut√°ria;
+     * 70-Redu√ß√£o base c√°lc., ICMS por subs. tribut√°ria;
      * 90-Outros
-     * // TODO: Substituir o tipoNotaFiscal por um tipo especÌfico do hibernate (enumeration)
+     * // TODO: Substituir o tipoNotaFiscal por um tipo espec√≠fico do hibernate (enumeration)
      */
     private Integer tipoNotaFiscal = new Integer(30);
     /**
      * Valores que o campo origemMercadoriaNotaFiscal pode assumir:
-     * 0-Nacional;1-Estrangeira/ImportaÁ„o Direta;
+     * 0-Nacional;1-Estrangeira/Importa√ß√£o Direta;
      * 2-Estrangeira/Adquirida Mercado Interno
      */
     private Integer origemMercadoriaNotaFiscal = new Integer(0);
@@ -612,7 +605,7 @@ public class Item implements Serializable {
         this.setEstoqueAtual(new Float(this.getEstoqueAtual().floatValue()+ quantidade.floatValue()));        
     }
     /**
-     * Realiza a diminuiÁ„o da quantidade do item em estoque (estoqueAtual)
+     * Realiza a diminui√ß√£o da quantidade do item em estoque (estoqueAtual)
      * @param quantidade
      */
     public void decrease(Float quantidade) {
@@ -620,7 +613,7 @@ public class Item implements Serializable {
     }
 
     /**
-     * Realiza o calculo do preÁo de venda, baseado nos seguintes parametros:
+     * Realiza o calculo do pre√ßo de venda, baseado nos seguintes parametros:
      * Compra de dois itens no valor de custo de 22,00 e um lucro de 5%
      * $valorLucro = (precoCusto/100) * %percentualMargemLucro
      * $precoVenda = valorLucro + precoCusto + $adicinalPrecoFixo 

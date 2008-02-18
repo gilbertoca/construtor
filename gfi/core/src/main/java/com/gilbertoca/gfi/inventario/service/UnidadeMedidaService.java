@@ -21,7 +21,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
 
     @Override
     public Broker getBroker() {
-        return getBroker(Constants.ORBROKER_INVENTARIO);
+        return getBroker(Constants.ORBROKER_INVENTARIO, "gfi");
     }
 
     //============== Unidade de Medida =======================
@@ -49,12 +49,13 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
     public UnidadeMedida findByPk(String pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador n√£o pode ser nulo!");
+                    "Identificador n„o pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
             qry.setParameter("unidadeMedida.cdUnidadeMedida", pk);
-            return (UnidadeMedida) qry.selectOne("getUnidadeMedidaByPk");
+            qry.setParameter("ByPk", pk);
+            return (UnidadeMedida) qry.selectOne("getUnidadeMedida");
         } finally {
             qry.close();
         }
@@ -63,9 +64,10 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
     public Collection<UnidadeMedida> findLike(UnidadeMedida entity) {
         Query qry = getBroker().startQuery();
         try {
-            qry.setParameter("cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
-            qry.setParameter("descricaoUnidade", "%" + entity.getDescricaoUnidade() + "%");
-            return qry.selectMany("findLikeUnidadeMedida");
+            qry.setParameter("unidadeMedida.cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
+            qry.setParameter("unidadeMedida.descricaoUnidade", "%" + entity.getDescricaoUnidade() + "%");
+            qry.setParameter("like", "ok");
+            return qry.selectMany("getUnidadeMedida");
         } finally {
             qry.close();
         }
@@ -142,7 +144,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
-        	txn.setParameter("cdUnidadeMedida", entity.getCdUnidadeMedida());
+            txn.setParameter("cdUnidadeMedida", entity.getCdUnidadeMedida());
             recordsUpdated = txn.execute("deleteUnidadeMedidaByPk");
             if (recordsUpdated != 1) {
                 txn.rollback();

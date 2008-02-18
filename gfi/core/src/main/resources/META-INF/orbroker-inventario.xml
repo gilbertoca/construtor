@@ -9,7 +9,6 @@
         Requisito para o uso desse arquivo, são os recursos mantidos na subpasta sql, podendo
         ser alcançados dessa forma /META-INF/sql/.
 -->
-
 <broker name="inventario" version="2.0">
     <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario2.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
@@ -23,53 +22,9 @@
             <column name="VERSION"/>
         </property>        
     </result-object>
-    <!--sql-statement id="getUnidadeMedida" result-object="UnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql"> 	
-    </sql-statement--> 	    
-    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida"><![CDATA[
-        SELECT 
-        cd_unidade_medida,
-        descricao_unidade,
-        version
-        FROM 
-        gfi.inventario_unidade_medida
-        ]]><append-statement id-suffix="ByPk">WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida</append-statement> 	
-    </sql-statement>
-    <!--sql-statement id="findLikeUnidadeMedida" result-object="UnidadeMedida"><![CDATA[
-        SELECT 
-        cd_unidade_medida,
-        descricao_unidade,
-        version
-        FROM 
-        gfi.inventario_unidade_medida
-        WHERE        
-        #if ($cdUnidadeMedida)
-			cd_unidade_medida like :cdUnidadeMedida
-        #end
-        #if ($descricaoUnidade)
-			OR descricao_unidade like :descricaoUnidade
-        #end
-    ]]></sql-statement-->    
-        
-    <sql-statement id="insertUnidadeMedida"><![CDATA[
-	    INSERT INTO gfi.inventario_unidade_medida (cd_unidade_medida,
-			descricao_unidade,
-			version)
-	    VALUES  (:unidadeMedida.cdUnidadeMedida,
-                        :unidadeMedida.descricaoUnidade,
-                        :unidadeMedida.version)
-    ]]></sql-statement>	
-    <sql-statement id="updateUnidadeMedida"><![CDATA[
-	    UPDATE gfi.inventario_unidade_medida SET 
-			cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
-			descricao_unidade = :unidadeMedida.descricaoUnidade,
-			version	= :unidadeMedida.version
-		WHERE
-			cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
-    ]]></sql-statement>	
-    <sql-statement id="deleteUnidadeMedida">
-        DELETE
-        FROM 
-        gfi.inventario_unidade_medida
-        <append-statement id-suffix="ByPk">WHERE cd_unidade_medida = :cdUnidadeMedida</append-statement> 	
-    </sql-statement>        
+    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql"> 	
+    </sql-statement> 	    
+    <sql-statement id="insertUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
+    <sql-statement id="updateUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
+    <sql-statement id="deleteUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
 </broker>

@@ -22,8 +22,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -50,7 +50,7 @@ import org.apache.commons.logging.LogFactory;
 @Table(name = "item")
 public class Item implements Serializable {
     @Transient
-    protected final Log log = LogFactory.getLog(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE, generator="ItemGerador")
     @TableGenerator(name="ItemGerador", table="ID_GERADOR", pkColumnName="PK",

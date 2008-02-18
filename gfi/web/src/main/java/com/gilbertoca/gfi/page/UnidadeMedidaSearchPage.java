@@ -33,7 +33,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
     public ActionLink deleteLink = new ActionLink("Delete", this, "onDeleteClick");
 
     private TextField cdUnidadeMedidaField = new TextField("Unidade");
-    private TextField descricaoUnidadeField = new DateField("Descrição");
+    private TextField descricaoUnidadeField = new TextField("Descri��o");
 
     // ----------------------------------------------------------- Constructors
 
@@ -56,10 +56,10 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
         table.setShowBanner(true);
         table.setSortable(true);
 
-        Column column = new Column("Descrição");
+        Column column = new Column("descricaoUnidade");
         column.setWidth("140px;");
         table.addColumn(column);
-
+        table.addColumn(new Column("cdUnidadeMedida"));
         editLink.setImageSrc("/images/window-edit.png");
         editLink.setTitle("Edit customer details");
         editLink.setParameter("referrer", "/table/search-table.htm");

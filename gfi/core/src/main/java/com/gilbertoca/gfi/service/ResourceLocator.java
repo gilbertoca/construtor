@@ -17,8 +17,8 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import net.sourceforge.orbroker.Broker;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class is an implementation of the Service Locator pattern. It is
@@ -31,7 +31,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class ResourceLocator {
 
-    private transient final Log log = LogFactory.getLog(getClass());
+    private transient final Logger log = LoggerFactory.getLogger(getClass());
     private InitialContext ic;
     //used to hold references to EJBHomes/JMS Resources for re-use
     private Map cache = Collections.synchronizedMap(new HashMap());
@@ -110,6 +110,14 @@ public class ResourceLocator {
      * @return the Broker corresponding to the name parameter
      */
     public Broker getBroker(String brokerName) throws ResourceLocatorException {
+        return getBroker(brokerName, null);
+    }
+    
+    /**
+     * This method obtains the broker itself for a caller
+     * @return the Broker corresponding to the name parameter
+     */
+    public Broker getBroker(String brokerName, String schema) throws ResourceLocatorException {
         log.info("getBroker(String BrokerName) started");
         Broker broker = (Broker) cache.get(brokerName);
         if (broker == null) {
@@ -121,6 +129,9 @@ public class ResourceLocator {
             log.info("Loaded OrBroker xml file: " + is);
             try {
                 broker = new Broker(is, getDataSource());
+                if (schema != null){
+                    broker.setTextReplacement("schema", schema);
+                }
                 cache.put(brokerName, broker);
                 log.info("OrBroker created: " + broker);
             } catch (Exception e) {

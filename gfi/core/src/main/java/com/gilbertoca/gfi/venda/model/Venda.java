@@ -15,8 +15,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
  * @hibernate.class table = "construtor.venda_venda"
  */
 public class Venda implements Serializable{
-    protected final Log log = LogFactory.getLog(getClass());
+    protected final Logger log = LoggerFactory.getLogger(getClass());
     private Integer cdCaixa;
     private Integer cdEmpresa = new Integer(1);
     private Empresa empresa = new Empresa();

@@ -14,5 +14,10 @@
             <value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
             <value description="version">1</value>
         </row>
+        <row>
+            <value description="cd_unidade_medida">CEM</value>
+            <value description="descricao_unidade"><![CDATA[Centimetros]]></value>
+            <value description="version">1</value>
+        </row>
     </table>
 </dataset>
