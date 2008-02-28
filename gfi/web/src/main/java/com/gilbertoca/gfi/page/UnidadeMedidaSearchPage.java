@@ -16,7 +16,7 @@ import net.sf.click.extras.control.DateField;
 import net.sf.click.extras.control.LinkDecorator;
 
 import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario2.model.Item;
 
 /**
  * Provides an demonstration of Table control paging.
@@ -62,7 +62,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
         table.addColumn(new Column("cdUnidadeMedida"));
         editLink.setImageSrc("/images/window-edit.png");
         editLink.setTitle("Edit customer details");
-        editLink.setParameter("referrer", "/table/search-table.htm");
+        editLink.setParameter("referrer", "/UnidadeMedidaSearchPage.htm");
 
         deleteLink.setImageSrc("/images/window-delete.png");
         deleteLink.setTitle("Delete customer record");
@@ -96,7 +96,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      */
     public boolean onNewClick() {
         String path = getContext().getPagePath(EditUnidadeMedida.class);
-        path += "?referrer=/table/unidade-search-table.htm";
+        path += "?referrer=/UnidadeMedidaSearchPage.htm";
         setRedirect(path);
         return false;
     }
@@ -116,7 +116,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      * @see net.sf.click.Page#onRender()
      */
     public void onRender() {
-        List uMs = (List) getService().findLike(new UnidadeMedida(cdUnidadeMedidaField.getValue(), descricaoUnidadeField.getValue()));
+        List uMs = (List) getService().findLike(new Item(cdUnidadeMedidaField.getValue(), descricaoUnidadeField.getValue()));
         table.setRowList(uMs);
     }
 }

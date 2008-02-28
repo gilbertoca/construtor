@@ -12,7 +12,7 @@ import net.sf.click.extras.control.FieldColumn;
 import net.sf.click.extras.control.FormTable;
 
 import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario2.model.Item;
 
 /**
  * Provides an demonstration of Table control paging.
@@ -65,7 +65,7 @@ public class UnidadeMedidaPage extends BorderPage {
             
             List rowList = table.getRowList();
             for (Iterator i = rowList.iterator(); i.hasNext();) {
-            	UnidadeMedida row = (UnidadeMedida) i.next();
+            	Item row = (Item) i.next();
                 getService().update(row);
             }
             

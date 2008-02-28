@@ -22,9 +22,37 @@
             <column name="VERSION"/>
         </property>        
     </result-object>
-    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql"> 	
+    <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
+        SELECT cd_unidade_medida,descricao_unidade,version
+        FROM {{schema}}.inventario_unidade_medida
+        #if ($unidadeMedida.cdUnidadeMedida) 
+            WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
+        #end 
+        #if ($ByPk) 
+            WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
+        #end 
+        #if ($like) 
+            WHERE        
+                cd_unidade_medida like :unidadeMedida.cdUnidadeMedida OR descricao_unidade like :unidadeMedida.descricaoUnidade
+        #end         
     </sql-statement> 	    
-    <sql-statement id="insertUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
-    <sql-statement id="updateUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
-    <sql-statement id="deleteUnidadeMedida" external-source="/META-INF/sql/UnidadeMedida.sql" />
+    <sql-statement id="insertUnidadeMedida">
+        INSERT INTO {{schema}}.inventario_unidade_medida (cd_unidade_medida, descricao_unidade, version)
+        VALUES  (:unidadeMedida.cdUnidadeMedida, :unidadeMedida.descricaoUnidade, :unidadeMedida.version)
+    </sql-statement>
+    <sql-statement id="updateUnidadeMedida">
+        UPDATE {{schema}}.inventario_unidade_medida 
+        SET 
+            cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
+            descricao_unidade = :unidadeMedida.descricaoUnidade,
+            version	= :unidadeMedida.version
+        WHERE
+            cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
+    </sql-statement>
+    <sql-statement id="deleteUnidadeMedida">
+        DELETE FROM {{schema}}.inventario_unidade_medida
+        #if ($unidadeMedida.cdUnidadeMedida) 
+            WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
+        #end 
+    </sql-statement>
 </broker>

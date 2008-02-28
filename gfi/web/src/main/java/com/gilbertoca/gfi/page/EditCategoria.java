@@ -6,8 +6,8 @@ import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
-import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
-import com.gilbertoca.gfi.inventario2.model.Item;
+import com.gilbertoca.gfi.inventario.service.CategoriaService;
+import com.gilbertoca.gfi.inventario2.model.Categoria;
 
 /**
  * Provides an edit Customer Form example. The Customer business object
@@ -19,21 +19,21 @@ import com.gilbertoca.gfi.inventario2.model.Item;
  *
  * @author Malcolm Edgar
  */
-public class EditUnidadeMedida extends BorderPage {
+public class EditCategoria extends BorderPage {
     // Public controls are automatically added to the page
     public Form form = new Form("form");
     public HiddenField referrerField = new HiddenField("referrer", String.class);
-    public String cdUnidadeMedida;
+    public String cdCategoria;
 
-    public EditUnidadeMedida() {
-        setService(new UnidadeMedidaService());
+    public EditCategoria() {
+        setService(new CategoriaService());
         form.add(referrerField);
         FieldSet fieldSet = new FieldSet("Unidade Medida");
         form.add(fieldSet);
-        TextField cdUnidadeMedidaField = new TextField("cdUnidadeMedida", true);
-        cdUnidadeMedidaField.setMinLength(2);
-        cdUnidadeMedidaField.setFocus(true);
-        fieldSet.add(cdUnidadeMedidaField);
+        TextField cdCategoriaField = new TextField("cdCategoria", true);
+        cdCategoriaField.setMinLength(2);
+        cdCategoriaField.setFocus(true);
+        fieldSet.add(cdCategoriaField);
         TextField descricaoUnidadeField = new TextField("descricaoUnidade", true);
         descricaoUnidadeField.setFocus(true);
         fieldSet.add(descricaoUnidadeField);
@@ -47,22 +47,22 @@ public class EditUnidadeMedida extends BorderPage {
      * @see Page#onGet()
      */
     public void onGet() {
-        if (cdUnidadeMedida != null) {
-            Item unidadeMedida = (Item) getService().findByPk(cdUnidadeMedida);
-            if (unidadeMedida != null) {
-                form.copyFrom(unidadeMedida);
+        if (cdCategoria != null) {
+            Categoria categoria = (Categoria) getService().findByPk(cdCategoria);
+            if (categoria != null) {
+                form.copyFrom(categoria);
             }
         }
     }
 
     public boolean onOkClick() {
         if (form.isValid()) {
-            Item unidadeMedida = new Item();            
-            if (cdUnidadeMedida != null) {
-                unidadeMedida = (Item) getService().findByPk(cdUnidadeMedida);
+            Categoria categoria = new Categoria();            
+            if (cdCategoria != null) {
+                categoria = (Categoria) getService().findByPk(cdCategoria);
             }
-            form.copyTo(unidadeMedida,true);
-            getService().update(unidadeMedida);
+            form.copyTo(categoria,true);
+            getService().update(categoria);
             String referrer = referrerField.getValue();
             if (referrer != null) {
                 setRedirect(referrer);

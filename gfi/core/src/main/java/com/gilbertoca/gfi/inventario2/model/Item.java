@@ -47,10 +47,10 @@ public class Item implements Serializable {
     private String cdLocalizacaoSecao;
     private LocalizacaoSecao localizacaoSecao = new LocalizacaoSecao();
     private String cdUnidadeMedidaVenda;
-    private UnidadeMedida unidadeMedidaVenda = new UnidadeMedida();
+    private Item unidadeMedidaVenda = new Item();
     private Float qtdPorUnidade = new Float(0.0);
     private String cdUnidadeMedidaCompra;
-    private UnidadeMedida unidadeMedidaCompra = new UnidadeMedida();
+    private Item unidadeMedidaCompra = new Item();
     private Float estoqueAtual = new Float(0.0);
     private Float estoqueMinimo = new Float(0.0);
     private Float nivelReposicao = new Float(0.0);
@@ -378,25 +378,25 @@ public class Item implements Serializable {
     /**
      * @return Returns the unidadeMedidaCompra.
      */
-    public UnidadeMedida getUnidadeMedidaCompra() {
+    public Item getUnidadeMedidaCompra() {
         return unidadeMedidaCompra;
     }
     /**
      * @param unidadeMedidaCompra The unidadeMedidaCompra to set.
      */
-    public void setUnidadeMedidaCompra(UnidadeMedida unidadeMedidaCompra) {
+    public void setUnidadeMedidaCompra(Item unidadeMedidaCompra) {
         this.unidadeMedidaCompra = unidadeMedidaCompra;
     }
     /**
      * @return Returns the unidadeMedidaVenda.
      */
-    public UnidadeMedida getUnidadeMedidaVenda() {
+    public Item getUnidadeMedidaVenda() {
         return unidadeMedidaVenda;
     }
     /**
      * @param unidadeMedidaVenda The unidadeMedidaVenda to set.
      */
-    public void setUnidadeMedidaVenda(UnidadeMedida unidadeMedidaVenda) {
+    public void setUnidadeMedidaVenda(Item unidadeMedidaVenda) {
         this.unidadeMedidaVenda = unidadeMedidaVenda;
     }
     /**

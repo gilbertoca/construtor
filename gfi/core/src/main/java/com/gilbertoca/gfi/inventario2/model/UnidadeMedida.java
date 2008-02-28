@@ -5,13 +5,13 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
-public class UnidadeMedida implements Serializable {
+public class Item implements Serializable {
     private String descricaoUnidade;
     private String cdUnidadeMedida;
     private int version = -1;
 
-    public UnidadeMedida() {  }
-    public UnidadeMedida(String cdUnidadeMedida, String descricaoUnidade) {
+    public Item() {  }
+    public Item(String cdUnidadeMedida, String descricaoUnidade) {
         this.cdUnidadeMedida = cdUnidadeMedida;
         this.descricaoUnidade = descricaoUnidade;
     }
@@ -41,10 +41,10 @@ public class UnidadeMedida implements Serializable {
      * @see java.lang.Object#equals(Object)
      */
     public boolean equals(Object object) {
-        if (!(object instanceof UnidadeMedida)) {
+        if (!(object instanceof Item)) {
             return false;
         }
-        UnidadeMedida rhs = (UnidadeMedida) object;
+        Item rhs = (Item) object;
         return new EqualsBuilder().append(
                 this.cdUnidadeMedida, rhs.cdUnidadeMedida).append(this.descricaoUnidade,
                 rhs.descricaoUnidade).isEquals();

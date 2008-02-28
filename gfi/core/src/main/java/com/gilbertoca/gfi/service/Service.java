@@ -54,8 +54,14 @@ abstract public class Service<T, PK extends Serializable> {
 
     abstract public void deleteByPk(PK pk);
 
-    abstract public Collection<T> findByNamedQuery(String queryName);
-
+    protected Collection<T> findByNamedQuery(String queryName)
+        Query qry = getBroker().startQuery();
+        try {
+            return qry.selectMany(queryName);
+        } finally {
+            qry.close();
+        }
+    }
     protected Broker getBroker(String brokerName) {
         return ResourceLocator.getInstance().getBroker(brokerName);
     }

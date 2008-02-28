@@ -5,7 +5,7 @@
 package com.gilbertoca.gfi.service;
 
 import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario2.model.Item;
 
 import java.util.Collection;
 import net.sourceforge.orbroker.Broker;
@@ -35,7 +35,7 @@ public class UnidadeMedidaServiceTest {
     @Test
     public void insert() {
         System.out.println("insert");
-        UnidadeMedida entity = new UnidadeMedida("MT3", "Metros");
+        Item entity = new Item("MT3", "Metros");
         UnidadeMedidaService instance = new UnidadeMedidaService();
         instance.insert(entity);
         Collection result = instance.findAll();
@@ -50,7 +50,7 @@ public class UnidadeMedidaServiceTest {
         System.out.println("findByPk");
         String cdUnidadeMedida = "MT";
         UnidadeMedidaService instance = new UnidadeMedidaService();
-        UnidadeMedida uM = instance.findByPk(cdUnidadeMedida);
+        Item uM = instance.findByPk(cdUnidadeMedida);
         System.out.println(uM);
         assertTrue("O valor do campo cdUnidadeMedida", cdUnidadeMedida.equals(uM.getCdUnidadeMedida()));
     }
@@ -60,7 +60,7 @@ public class UnidadeMedidaServiceTest {
     @Test
     public void findByPkIfExists() {
         System.out.println("findByPkIfExists");
-        UnidadeMedida uM = new UnidadeMedida();
+        Item uM = new Item();
         UnidadeMedidaService instance = new UnidadeMedidaService();
         uM.setCdUnidadeMedida("MT");
         assertTrue(instance.findByPk(uM));        
@@ -73,7 +73,7 @@ public class UnidadeMedidaServiceTest {
     public void findLike(){
         System.out.println("findLike");
         UnidadeMedidaService instance = new UnidadeMedidaService();
-        Collection result = instance.findLike(new UnidadeMedida("MT", "Cu"));
+        Collection result = instance.findLike(new Item("MT", "Cu"));
         System.out.println(result);
         assertFalse(result.isEmpty());
     }
@@ -85,10 +85,10 @@ public class UnidadeMedidaServiceTest {
         System.out.println("update");
         String cdUnidadeMedida = "MT";
         UnidadeMedidaService instance = new UnidadeMedidaService();
-        UnidadeMedida uM = instance.findByPk(cdUnidadeMedida);
+        Item uM = instance.findByPk(cdUnidadeMedida);
         uM.setDescricaoUnidade("Cubicos");
         instance.update(uM);
-        UnidadeMedida uM2 = instance.findByPk(cdUnidadeMedida);
+        Item uM2 = instance.findByPk(cdUnidadeMedida);
         assertTrue("O valor do campo DcUnidadeMedida", uM.getDescricaoUnidade().equals(uM2.getDescricaoUnidade()));
     }
 
@@ -111,7 +111,7 @@ public class UnidadeMedidaServiceTest {
     public void delete() {
         System.out.println("delete");
         String cdUnidadeMedida = "KG";
-        UnidadeMedida uM = null;
+        Item uM = null;
         UnidadeMedidaService instance = new UnidadeMedidaService();
         instance.deleteByPk(cdUnidadeMedida);
         try {
@@ -129,7 +129,7 @@ public class UnidadeMedidaServiceTest {
         System.out.println("delete");
         String cdUnidadeMedida = "CEM";
         UnidadeMedidaService instance = new UnidadeMedidaService();        
-        UnidadeMedida uM = instance.findByPk(cdUnidadeMedida);
+        Item uM = instance.findByPk(cdUnidadeMedida);
         instance.delete(uM);
         try {
             uM = instance.findByPk(cdUnidadeMedida);

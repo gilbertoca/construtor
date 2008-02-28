@@ -17,36 +17,26 @@ import com.gilbertoca.gfi.service.Service;
  *
  * @author gilberto
  */
-public class UnidadeMedidaService extends Service<Item, String> {
+public class InventarioService extends Service<Item, Integer> {
 
     @Override
     public Broker getBroker() {
         return getBroker(Constants.ORBROKER_INVENTARIO, "gfi");
     }
 
-    //============== Unidade de Medida =======================
+    //============== Item =======================
     @Override
     public Collection<Item> findAll() {
         Query qry = getBroker().startQuery();
         try {
-            return findByNamedQuery("getUnidadeMedida");
+            return findByNamedQuery("getItem");
         } finally {
             qry.close();
         }
     }
 
     @Override
-    public Collection<Item> findByNamedQuery(String queryName) {
-        Query qry = getBroker().startQuery();
-        try {
-            return qry.selectMany(queryName);
-        } finally {
-            qry.close();
-        }
-    }
-
-    @Override
-    public Item findByPk(String pk) {
+    public Item findByPk(Integer pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
                     "Identificador não pode ser nulo!");
@@ -64,8 +54,7 @@ public class UnidadeMedidaService extends Service<Item, String> {
     public Collection<Item> findLike(Item entity) {
         Query qry = getBroker().startQuery();
         try {
-            qry.setParameter("unidadeMedida.cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
-            qry.setParameter("unidadeMedida.descricaoUnidade", "%" + entity.getDescricaoUnidade() + "%");
+            qry.setParameter("unidadeMedida.cdUnidadeMedida", "%" + entity.getNomeItem() + "%");
             qry.setParameter("like", "ok");
             return qry.selectMany("getUnidadeMedida");
         } finally {
@@ -124,7 +113,7 @@ public class UnidadeMedidaService extends Service<Item, String> {
     }
 
     @Override
-    public void deleteByPk(String pk) {
+    public void deleteByPk(Integer pk) {
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
