@@ -4,20 +4,21 @@
  */
 package com.gilbertoca.gfi.inventario.service;
 
-import com.gilbertoca.gfi.Constants;
 import java.util.Collection;
+
 import net.sourceforge.orbroker.Broker;
 import net.sourceforge.orbroker.Query;
 import net.sourceforge.orbroker.Transaction;
 
-import com.gilbertoca.gfi.inventario2.model.Item;
+import com.gilbertoca.gfi.Constants;
+import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.Service;
 
 /**
  *
  * @author gilberto
  */
-public class UnidadeMedidaService extends Service<Item, String> {
+public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
 
     @Override
     public Broker getBroker() {
@@ -26,7 +27,7 @@ public class UnidadeMedidaService extends Service<Item, String> {
 
     //============== Unidade de Medida =======================
     @Override
-    public Collection<Item> findAll() {
+    public Collection<UnidadeMedida> findAll() {
         Query qry = getBroker().startQuery();
         try {
             return findByNamedQuery("getUnidadeMedida");
@@ -36,32 +37,22 @@ public class UnidadeMedidaService extends Service<Item, String> {
     }
 
     @Override
-    public Collection<Item> findByNamedQuery(String queryName) {
-        Query qry = getBroker().startQuery();
-        try {
-            return qry.selectMany(queryName);
-        } finally {
-            qry.close();
-        }
-    }
-
-    @Override
-    public Item findByPk(String pk) {
+    public UnidadeMedida findByPk(String pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador n�o pode ser nulo!");
+                    "Identificador não pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
             qry.setParameter("unidadeMedida.cdUnidadeMedida", pk);
             qry.setParameter("ByPk", pk);
-            return (Item) qry.selectOne("getUnidadeMedida");
+            return (UnidadeMedida) qry.selectOne("getUnidadeMedida");
         } finally {
             qry.close();
         }
     }
     @Override
-    public Collection<Item> findLike(Item entity) {
+    public Collection<UnidadeMedida> findLike(UnidadeMedida entity) {
         Query qry = getBroker().startQuery();
         try {
             qry.setParameter("unidadeMedida.cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
@@ -74,7 +65,7 @@ public class UnidadeMedidaService extends Service<Item, String> {
     }
 
     @Override
-    public void insert(Item entity) {
+    public void insert(UnidadeMedida entity) {
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
@@ -91,7 +82,7 @@ public class UnidadeMedidaService extends Service<Item, String> {
     }
 
     @Override
-    public void update(Item entity) {
+    public void update(UnidadeMedida entity) {
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
@@ -125,22 +116,26 @@ public class UnidadeMedidaService extends Service<Item, String> {
 
     @Override
     public void deleteByPk(String pk) {
+        log.debug("Realizando deleção. Identificador usado como parâmetro: {} ",pk);
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
-            txn.setParameter("unidadeMedida.cdUnidadeMedida", pk);
+            txn.setParameter("cdUnidadeMedida", pk);
             recordsUpdated = txn.execute("deleteUnidadeMedida");
             if (recordsUpdated != 1) {
                 txn.rollback();
+            	log.debug("Problemas na deleção. Nº registros afetados: {} ",recordsUpdated);                
             //throw new ThatsWeirdException();
+            }else{
+            	txn.commit();
+            	log.info("Deleção realizada com sucesso.");
             }
-            txn.commit();
         } finally {
             txn.close();
         }
     }
 
-    public void delete(Item entity) {
+    public void delete(UnidadeMedida entity) {
          deleteByPk(entity.getCdUnidadeMedida());
     }
 }

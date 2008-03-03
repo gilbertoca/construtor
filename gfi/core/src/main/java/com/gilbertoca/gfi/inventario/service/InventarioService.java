@@ -39,7 +39,7 @@ public class InventarioService extends Service<Item, Integer> {
     public Item findByPk(Integer pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador não pode ser nulo!");
+                    "Identificador nï¿½o pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
@@ -130,6 +130,6 @@ public class InventarioService extends Service<Item, Integer> {
     }
 
     public void delete(Item entity) {
-         deleteByPk(entity.getCdUnidadeMedida());
+         deleteByPk(entity.getCdItem());
     }
 }

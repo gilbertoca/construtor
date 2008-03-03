@@ -51,8 +51,7 @@
     </sql-statement>
     <sql-statement id="deleteUnidadeMedida">
         DELETE FROM {{schema}}.inventario_unidade_medida
-        #if ($unidadeMedida.cdUnidadeMedida) 
-            WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
-        #end 
+        WHERE
+            cd_unidade_medida  = :cdUnidadeMedida
     </sql-statement>
 </broker>

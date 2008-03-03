@@ -5,17 +5,20 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
-public class Item implements Serializable {
-    private String descricaoUnidade;
+public class UnidadeMedida implements Serializable {
+	private String descricaoUnidade;
     private String cdUnidadeMedida;
     private int version = -1;
 
-    public Item() {  }
-    public Item(String cdUnidadeMedida, String descricaoUnidade) {
+    public UnidadeMedida() {  }
+    public UnidadeMedida(String cdUnidadeMedida, String descricaoUnidade) {
         this.cdUnidadeMedida = cdUnidadeMedida;
         this.descricaoUnidade = descricaoUnidade;
     }
-    public String getDescricaoUnidade() {return this.descricaoUnidade;}
+    public UnidadeMedida(String cdUnidadeMedida) {
+    	this.cdUnidadeMedida = cdUnidadeMedida;
+	}
+	public String getDescricaoUnidade() {return this.descricaoUnidade;}
     public String getCdUnidadeMedida() {return this.cdUnidadeMedida;}
     public void setDescricaoUnidade(String descricaoUnidade) {this.descricaoUnidade = descricaoUnidade;}
     public void setCdUnidadeMedida(String cdUnidadeMedida) {this.cdUnidadeMedida = cdUnidadeMedida;}
@@ -41,10 +44,10 @@ public class Item implements Serializable {
      * @see java.lang.Object#equals(Object)
      */
     public boolean equals(Object object) {
-        if (!(object instanceof Item)) {
+        if (!(object instanceof UnidadeMedida)) {
             return false;
         }
-        Item rhs = (Item) object;
+        UnidadeMedida rhs = (UnidadeMedida) object;
         return new EqualsBuilder().append(
                 this.cdUnidadeMedida, rhs.cdUnidadeMedida).append(this.descricaoUnidade,
                 rhs.descricaoUnidade).isEquals();

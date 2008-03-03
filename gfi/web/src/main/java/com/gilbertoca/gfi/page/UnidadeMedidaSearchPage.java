@@ -12,11 +12,10 @@ import net.sf.click.control.PageLink;
 import net.sf.click.control.Submit;
 import net.sf.click.control.Table;
 import net.sf.click.control.TextField;
-import net.sf.click.extras.control.DateField;
 import net.sf.click.extras.control.LinkDecorator;
 
 import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
-import com.gilbertoca.gfi.inventario2.model.Item;
+import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
 
 /**
  * Provides an demonstration of Table control paging.
@@ -47,7 +46,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
         form.add(descricaoUnidadeField);
         form.add(new Submit("Search"));
         form.add(new Submit("Clear", this, "onClearClick"));
-        form.add(new Button("Buuuuuuu"));
+        //form.add(new Button("0   "));
         form.add(new Submit("New...", this, "onNewClick"));
 
         // Setup customers table
@@ -60,6 +59,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
         column.setWidth("140px;");
         table.addColumn(column);
         table.addColumn(new Column("cdUnidadeMedida"));
+        table.addColumn(new Column("version"));
         editLink.setImageSrc("/images/window-edit.png");
         editLink.setTitle("Edit customer details");
         editLink.setParameter("referrer", "/UnidadeMedidaSearchPage.htm");
@@ -109,6 +109,8 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
     public boolean onDeleteClick() {
         String id = deleteLink.getValue();
         getService().deleteByPk(id);
+        log.debug("\n--- Realizando o evento de deleção --->\n"
+        		+"Identificador usado como parâmetro: {}",id);
         return true;
     }
 
@@ -116,7 +118,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      * @see net.sf.click.Page#onRender()
      */
     public void onRender() {
-        List uMs = (List) getService().findLike(new Item(cdUnidadeMedidaField.getValue(), descricaoUnidadeField.getValue()));
+        List uMs = (List) getService().findLike(new UnidadeMedida(cdUnidadeMedidaField.getValue(), descricaoUnidadeField.getValue()));
         table.setRowList(uMs);
     }
 }

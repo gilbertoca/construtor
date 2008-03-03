@@ -2,6 +2,7 @@
 <click-app charset="UTF-8">
 
   <pages package="com.gilbertoca.gfi.page"/>
-  <mode value="debug"/>
+  <mode value="development"/>
+  <!--mode value="debug"/-->
 
 </click-app> 

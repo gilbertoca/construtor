@@ -30,16 +30,16 @@ abstract public class Service<T, PK extends Serializable> {
     protected boolean findByPk(T entity) {
         Query qry = getBroker().startQuery();
         if (entity == null) {
-            throw new IllegalArgumentException("Entidade não pode ser nulo!");
+            throw new IllegalArgumentException("Entidade nÃ£o pode ser nulo!");
         }
         String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase() + entity.getClass().getSimpleName().substring(1);
         String sentenca = "get" + entity.getClass().getSimpleName();
         qry.setParameter(parametro, entity);
         try {
-            log.info("findByPk(T) --> Verificando parametros:" +
-                    "\nQuery parameter: " + parametro +
-                    "\nStament name   :" + sentenca +
-                    "\n--> Verificando argumentos:\n" + entity);
+            log.debug("Verificando parametros ..." +
+                    "\nQuery parameter: {}" +
+                    "\nStament name   : {}" +
+                    "\nArgumento: {}\n", new Object[] {parametro, sentenca, entity});
             return qry.selectOne(sentenca, entity);
         } finally {
             qry.close();
@@ -54,7 +54,7 @@ abstract public class Service<T, PK extends Serializable> {
 
     abstract public void deleteByPk(PK pk);
 
-    protected Collection<T> findByNamedQuery(String queryName)
+    protected Collection<T> findByNamedQuery(String queryName){
         Query qry = getBroker().startQuery();
         try {
             return qry.selectMany(queryName);

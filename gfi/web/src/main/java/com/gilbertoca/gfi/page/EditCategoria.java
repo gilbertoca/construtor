@@ -1,12 +1,13 @@
 package com.gilbertoca.gfi.page;
 
+import net.sf.click.Page;
 import net.sf.click.control.FieldSet;
 import net.sf.click.control.Form;
 import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
-import com.gilbertoca.gfi.inventario.service.CategoriaService;
+import com.gilbertoca.gfi.inventario.service.InventarioService;
 import com.gilbertoca.gfi.inventario2.model.Categoria;
 
 /**
@@ -26,7 +27,7 @@ public class EditCategoria extends BorderPage {
     public String cdCategoria;
 
     public EditCategoria() {
-        setService(new CategoriaService());
+        setService(new InventarioService());
         form.add(referrerField);
         FieldSet fieldSet = new FieldSet("Unidade Medida");
         form.add(fieldSet);
