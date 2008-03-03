@@ -91,11 +91,18 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>
+		</dependency>		
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>runtime</scope>			
+		</dependency>				
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -212,6 +219,7 @@
         <!-- Framework dependency versions -->
         <spring.version>2.5</spring.version>
         <slf4j.version>1.4.3</slf4j.version>
+		<logback.version>0.9.8</logback.version>
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
         
         <!-- Testing dependency versions -->
