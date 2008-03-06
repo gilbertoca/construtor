@@ -28,6 +28,7 @@ abstract public class Service<T, PK extends Serializable> {
     abstract public T findByPk(PK pk);
 
     protected boolean findByPk(T entity) {
+    	log.debug("Realizando consulta por entidade. Identificador usado como parâmetro: {} ",entity);
         Query qry = getBroker().startQuery();
         if (entity == null) {
             throw new IllegalArgumentException("Entidade não pode ser nulo!");

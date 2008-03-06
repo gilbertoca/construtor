@@ -128,7 +128,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
             //throw new ThatsWeirdException();
             }else{
             	txn.commit();
-            	log.info("Deleção realizada com sucesso.");
+            	log.debug("Deleção realizada com sucesso.");
             }
         } finally {
             txn.close();

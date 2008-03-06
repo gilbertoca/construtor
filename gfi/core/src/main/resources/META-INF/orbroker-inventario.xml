@@ -38,14 +38,14 @@
     </sql-statement> 	    
     <sql-statement id="insertUnidadeMedida">
         INSERT INTO {{schema}}.inventario_unidade_medida (cd_unidade_medida, descricao_unidade, version)
-        VALUES  (:unidadeMedida.cdUnidadeMedida, :unidadeMedida.descricaoUnidade, :unidadeMedida.version)
+        VALUES  (:unidadeMedida.cdUnidadeMedida, :unidadeMedida.descricaoUnidade, 0)
     </sql-statement>
     <sql-statement id="updateUnidadeMedida">
         UPDATE {{schema}}.inventario_unidade_medida 
         SET 
             cd_unidade_medida = :unidadeMedida.cdUnidadeMedida,
             descricao_unidade = :unidadeMedida.descricaoUnidade,
-            version	= :unidadeMedida.version
+            version	= :unidadeMedida.version + 1
         WHERE
             cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
     </sql-statement>

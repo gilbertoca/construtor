@@ -29,7 +29,9 @@ public class UnidadeMedida implements Serializable {
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return new ToStringBuilder(this).append("cdUnidadeMedida", this.cdUnidadeMedida).append("descricaoUnidade", this.descricaoUnidade).toString();
+        return new ToStringBuilder(this).append("Unidade", this.cdUnidadeMedida)
+								        .append("Descrição", this.descricaoUnidade)
+								        .append("Versão", this.version).toString();
     }
 
     /**
@@ -48,8 +50,8 @@ public class UnidadeMedida implements Serializable {
             return false;
         }
         UnidadeMedida rhs = (UnidadeMedida) object;
-        return new EqualsBuilder().append(
-                this.cdUnidadeMedida, rhs.cdUnidadeMedida).append(this.descricaoUnidade,
-                rhs.descricaoUnidade).isEquals();
+        return new EqualsBuilder().append(this.cdUnidadeMedida, rhs.cdUnidadeMedida)
+						        .append(this.descricaoUnidade, rhs.descricaoUnidade)
+						        .append(this.version, rhs.version).isEquals();
     }
 }

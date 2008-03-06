@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import net.sourceforge.orbroker.Broker;
@@ -71,27 +73,27 @@ public class ResourceLocator {
      * @return the DataSource
      */
     public DataSource getDataSource() throws ResourceLocatorException {
-        log.info("getDBCPDataSource() started");
+    	log.debug("Obtendo fonte de dados (DBCP DataSource) existente");
         DataSource dataSource = (DataSource) cache.get(Constants.DBCPDATASOURCE);
         if (dataSource == null) {
             InputStream is = null;
             Properties properties = new Properties();
-            log.info("Loading DBCP properties file: " + Constants.DBCPCONFIGFILE);
+            log.debug("Obtendo fonte de dados (DataSource), atraves de arquivo de propriedades: {}",Constants.DBCPCONFIGFILE);
             is = getClass().getResourceAsStream(Constants.DBCPCONFIGFILE);
             if (is == null) {
-                throw new ResourceLocatorException("DBCP properties file not found: " + is);
+                throw new ResourceLocatorException("Arquivo de propriedades não encontrado! ");
             }
             try {
-                properties.load(is);
-                log.info("Loaded DBCP properties: " + properties);
+                log.debug("Carregando arquivo de propriedades ...");
+            	properties.load(is);
                 dataSource = (DataSource) BasicDataSourceFactory.createDataSource(properties);
                 cache.put(Constants.DBCPDATASOURCE, dataSource);
-                log.info("DBCP BasicDataSource created: " + dataSource);
+                log.debug("Fonte de dados (DBCP DataSource) criada: {}", dataSource);
             } catch (IOException ex) {
-                log.debug("BUG: nao consegue carregar DBCP properties");
+                log.debug("ERRO: não foi possível carregar arquivo de propriedades");
                 ex.printStackTrace();
             } catch (Exception ex) {
-                log.debug("BUG: nao consegue carregar o driver");
+                log.debug("ERRO: não foi possível a criação da fonte de dados (DBCP DataSource)");
                 ex.printStackTrace();
             } finally {
                 try {
@@ -101,7 +103,6 @@ public class ResourceLocator {
                 }
             }
         }
-        log.info("getDBCPDataSource() finished");
         return dataSource;
     }
 
@@ -118,27 +119,35 @@ public class ResourceLocator {
      * @return the Broker corresponding to the name parameter
      */
     public Broker getBroker(String brokerName, String schema) throws ResourceLocatorException {
-        log.info("getBroker(String BrokerName) started");
+    	log.debug("Obtendo mecanismo de persistência (OrBroker) existente.");
         Broker broker = (Broker) cache.get(brokerName);
         if (broker == null) {
-            log.info("Loading OrBroker xml file: " + brokerName);
+            log.debug("Obtendo mecanismo de persistência (OrBroker), através do arquivo: {} e schema: {}", brokerName, schema);            
             InputStream is = getClass().getResourceAsStream(brokerName);
             if (is == null) {
-                throw new ResourceLocatorException("OrBroker xml file not found: " + is);
+                throw new ResourceLocatorException("Arquivo xml não encontrado! ");
             }
-            log.info("Loaded OrBroker xml file: " + is);
             try {
+                log.debug("Carregando arquivo xml ...");
                 broker = new Broker(is, getDataSource());
                 if (schema != null){
                     broker.setTextReplacement("schema", schema);
                 }
+                //Ativando/Desativando logging
+                Broker.setLoggingLevel(Level.SEVERE); 
                 cache.put(brokerName, broker);
-                log.info("OrBroker created: " + broker);
-            } catch (Exception e) {
-                throw new ResourceLocatorException(e);
+                log.debug("Mecanismo de persistência (OrBroker) criado: {}", broker);
+            } catch (Exception ex) {
+                log.debug("ERRO: não foi possível a criação do mecanismo de persistência (OrBroker)");
+                ex.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
-        log.info("getBroker(String BrokerName) finished");
         return broker;
     }
 
