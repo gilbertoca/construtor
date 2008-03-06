@@ -49,24 +49,31 @@ public class EditUnidadeMedida extends BorderPage {
      * @see Page#onGet()
      */
     public void onGet() {
+    	log.debug("Preparando a página para ser exibida.");
         if (cdUnidadeMedida != null) {
+        	log.debug("Identificador encontrado: {}, preparar página para edição de entidade",cdUnidadeMedida);
         	form.getField("cdUnidadeMedida").setReadonly(true);
             UnidadeMedida unidadeMedida = (UnidadeMedida) getService().findByPk(cdUnidadeMedida);
             if (unidadeMedida != null) {
                 form.copyFrom(unidadeMedida);
+                log.debug("Ligação (Binding) Entidade/Form realizada: {}",unidadeMedida);
             }
         }
     }
 
     public boolean onOkClick() {
+    	log.debug("Botão OK pressionado");
         if (form.isValid()) {
             UnidadeMedida unidadeMedida = new UnidadeMedida();
             form.copyTo(unidadeMedida);
+            log.debug("Ligação (Binding) Form/Entidade realizada: {}",unidadeMedida);
             if (unidadeMedida.getVersion() != -1) {
                 unidadeMedida = (UnidadeMedida) getService().findByPk(cdUnidadeMedida);
             	getService().update(unidadeMedida);
+            	log.debug("Operação de atualização realizada.");
             }else{
             	getService().insert(unidadeMedida);            	
+            	log.debug("Operação de inserção realizada.");
             }
             String referrer = referrerField.getValue();
             if (referrer != null) {

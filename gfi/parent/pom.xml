@@ -92,17 +92,11 @@
             <version>${slf4j.version}</version>
         </dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
+			<groupId>${SLF4Jbinding.group}</groupId>
+			<artifactId>${SLF4Jbinding.artifact}</artifactId>
+			<version>${SLF4Jbinding.version}</version>
 			<scope>runtime</scope>
 		</dependency>		
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-			<scope>runtime</scope>			
-		</dependency>				
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -202,6 +196,20 @@
                 <jdbc.password>postgres</jdbc.password>
             </properties>
         </profile>
+        <profile>
+            <id>hsqldb</id>
+            <properties>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+                <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+                <jdbc.groupId>hsqldb</jdbc.groupId>
+                <jdbc.artifactId>hsqldb</jdbc.artifactId>
+                <jdbc.version>1.8.0.7</jdbc.version>
+                <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:hsqldb:gfi;shutdown=true]]></jdbc.url>
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>
+            </properties>
+        </profile>		
         <!-- ================= Container Profiles ================= -->
         <profile>
             <id>jboss</id>
@@ -219,7 +227,9 @@
         <!-- Framework dependency versions -->
         <spring.version>2.5</spring.version>
         <slf4j.version>1.4.3</slf4j.version>
-		<logback.version>0.9.8</logback.version>
+		<SLF4Jbinding.group>org.slf4j</SLF4Jbinding.group>
+		<SLF4Jbinding.artifact>slf4j-log4j12</SLF4Jbinding.artifact>
+		<SLF4Jbinding.version>1.4.2</SLF4Jbinding.version>
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
         
         <!-- Testing dependency versions -->

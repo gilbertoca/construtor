@@ -22,7 +22,7 @@ import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
  *
  * @author Malcolm Edgar
  */
-public class UnidadeMedidaSearchPage extends BorderPage implements Serializable {
+public class TableUnidadeMedida extends BorderPage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
 
     // ----------------------------------------------------------- Constructors
 
-    public UnidadeMedidaSearchPage() {
+    public TableUnidadeMedida() {
     	setService(new UnidadeMedidaService());
         setStateful(true);
 
@@ -62,7 +62,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
         table.addColumn(new Column("version"));
         editLink.setImageSrc("/images/window-edit.png");
         editLink.setTitle("Edit customer details");
-        editLink.setParameter("referrer", "/UnidadeMedidaSearchPage.htm");
+        editLink.setParameter("referrer", "/table-unidade-medida.htm");
 
         deleteLink.setImageSrc("/images/window-delete.png");
         deleteLink.setTitle("Delete customer record");
@@ -96,7 +96,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      */
     public boolean onNewClick() {
         String path = getContext().getPagePath(EditUnidadeMedida.class);
-        path += "?referrer=/UnidadeMedidaSearchPage.htm";
+        path += "?referrer=/table-unidade-medida.htm";
         setRedirect(path);
         return false;
     }
@@ -108,9 +108,8 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      */
     public boolean onDeleteClick() {
         String id = deleteLink.getValue();
+        log.debug("Link Delete pressionado, argumento utilizado: {}", id);
         getService().deleteByPk(id);
-        log.debug("\n--- Realizando o evento de deleção --->\n"
-        		+"Identificador usado como parâmetro: {}",id);
         return true;
     }
 
@@ -118,6 +117,7 @@ public class UnidadeMedidaSearchPage extends BorderPage implements Serializable 
      * @see net.sf.click.Page#onRender()
      */
     public void onRender() {
+    	log.debug("Preparando a página para ser exibida.");
         List uMs = (List) getService().findLike(new UnidadeMedida(cdUnidadeMedidaField.getValue(), descricaoUnidadeField.getValue()));
         table.setRowList(uMs);
     }
