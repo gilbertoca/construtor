@@ -11,15 +11,15 @@ public class Categoria implements Serializable {
     private Integer cdCategoria;
     private String nomeCategoria;
     private String descricaoCategoria;
-    private Set produtos;
     private Date dtCadastro = new Date();
+    private int version = -1;
+    private Set produtos;
 
     /** full constructor */
-    public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria, Set produtos) {
+    public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria) {
         this.cdCategoria = cdCategoria;
         this.nomeCategoria = nomeCategoria;
         this.descricaoCategoria = descricaoCategoria;
-        this.produtos = produtos;
     }
 
     /** default constructor */
@@ -31,7 +31,12 @@ public class Categoria implements Serializable {
         this.produtos = produtos;
     }
 
-    public Integer getCdCategoria() {return this.cdCategoria;}
+    public Categoria(String nomeCategoria, String descricaoCategoria) {
+        this.nomeCategoria = nomeCategoria;
+        this.descricaoCategoria = descricaoCategoria;
+    }
+
+	public Integer getCdCategoria() {return this.cdCategoria;}
     public void setCdCategoria(Integer cdCategoria) {this.cdCategoria = cdCategoria;}
     public String getNomeCategoria() {return this.nomeCategoria;}
     public void setNomeCategoria(String nomeCategoria) {this.nomeCategoria = nomeCategoria;}
@@ -39,6 +44,8 @@ public class Categoria implements Serializable {
     public void setDescricaoCategoria(String descricaoCategoria) {this.descricaoCategoria = descricaoCategoria;}
     public Date getDtCadastro() {return dtCadastro;}
     public void setDtCadastro(Date dtCadastro) {this.dtCadastro = dtCadastro;}
+    public int getVersion() {return this.version;}
+    public void setVersion(int version) {this.version = version;}
     public Set getProdutos() {return this.produtos;}
     public void setProdutos(Set produtos) {this.produtos = produtos;}
     /**
@@ -53,7 +60,7 @@ public class Categoria implements Serializable {
                             this.produtos, rhs.produtos).append(this.nomeCategoria,
                             rhs.nomeCategoria).append(this.descricaoCategoria,
                             rhs.descricaoCategoria).append(this.cdCategoria,
-                            rhs.cdCategoria).isEquals();
+                            rhs.cdCategoria).append(this.version, rhs.version).isEquals();
     }
     /**
      * @see java.lang.Object#hashCode()
@@ -70,6 +77,6 @@ public class Categoria implements Serializable {
             return new ToStringBuilder(this).append("nomeCategoria",
                             this.nomeCategoria).append("descricaoCategoria",
                             this.descricaoCategoria).append("cdCategoria",
-                            this.cdCategoria).toString();
+                            this.cdCategoria).append("Versão", this.version).toString();
     }
 }

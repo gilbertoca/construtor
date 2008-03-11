@@ -16,7 +16,7 @@ public class OrcamentoItem implements Serializable {
     private OrcamentoItemPK comp_id = new OrcamentoItemPK();
 
     /** 
-     * Usado para determinar se instancia é transient or detached 
+     * Usado para determinar se instancia ï¿½ transient or detached 
      */
     private int version = -1;
     private Double desconto = new Double(0);
@@ -26,8 +26,8 @@ public class OrcamentoItem implements Serializable {
     private Item item = new Item();
     private Orcamento orcamento = new Orcamento();
     /** 
-     * Usado para simular a chamada de método interno que realiza a totalização do item.
-     * Como não podemos chamar o método getTotal() na interface web, então simularemos 
+     * Usado para simular a chamada de mï¿½todo interno que realiza a totalizaï¿½ï¿½o do item.
+     * Como nÃ£o podemos chamar o mï¿½todo getTotal() na interface web, entï¿½o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: Total;
      * 	- Criamos os metodos correspondentes set e get:
@@ -35,8 +35,8 @@ public class OrcamentoItem implements Serializable {
      */    
     private Double total = new Double(0);
     /** 
-     * Usado para simular a chamada de método interno que realiza a totalização do item.
-     * Como não podemos chamar o método getValorDesconto() na interface web, então simularemos 
+     * Usado para simular a chamada de mï¿½todo interno que realiza a totalizaï¿½ï¿½o do item.
+     * Como nÃ£o podemos chamar o mï¿½todo getValorDesconto() na interface web, entï¿½o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: valorDesconto;
      * 	- Criamos os metodos correspondentes set e get:

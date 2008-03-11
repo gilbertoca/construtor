@@ -27,9 +27,9 @@ public class Cliente implements Serializable{
     private String nomeContato;
     private String contatoCargo;
 
-    private Boolean flPessoaFisica = new Boolean(true);//pessoa física ou não
+    private Boolean flPessoaFisica = new Boolean(true);//pessoa fï¿½sica ou nÃ£o
     private String sexo = "M";//Sendo M ou F
-    private String estadoCivil = "SOLTEIRO";//Sendo:OUTROS,SOLTEIRO,CASADO,VIÚVO,SEPARADO,DIVORCIADO,UNIÃO ESTÁVEL;
+    private String estadoCivil = "SOLTEIRO";//Sendo:OUTROS,SOLTEIRO,CASADO,VIï¿½VO,SEPARADO,DIVORCIADO,UNIï¿½O ESTï¿½VEL;
 
     private String cpfCnpj;
     private String rgInscricaoEstadual;
@@ -52,7 +52,7 @@ public class Cliente implements Serializable{
     //private Funcionario vendedor = new Funcionario();
     private Integer cdFuncionario; //vendedor preferido
     /*
-     * campos que deverão ser calculados:
+     * campos que deverï¿½o ser calculados:
      *  dtPrimeiraCompra
      *  dtUltimaCompra
      *  valorPrimeiraCompra
@@ -60,7 +60,7 @@ public class Cliente implements Serializable{
      *  valorNumeroCompra
      *  numeroCompra
      * 
-     * poderiamos também colocar:
+     * poderiamos tambï¿½m colocar:
      * 	corPele
      *  corCabelo
      *  altura

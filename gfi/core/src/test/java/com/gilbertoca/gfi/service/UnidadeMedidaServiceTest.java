@@ -45,6 +45,7 @@ public class UnidadeMedidaServiceTest {
         UnidadeMedidaService instance = new UnidadeMedidaService();
         instance.insert(entity);
         Collection result = instance.findAll();
+        System.out.println(result);
         assertFalse(result.isEmpty());
     }
 

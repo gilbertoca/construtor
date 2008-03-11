@@ -22,7 +22,7 @@ public class Fornecedor implements Serializable {
     private String nomeRazaoSocial;
     private String cpfCnpj;
     private String rgInscricaoEstadual;    
-    private Boolean flPessoaFisica = new Boolean(true);//pessoa f�sica ou n�o
+    private Boolean flPessoaFisica = new Boolean(true);//pessoa f�sica ou não
     private Date dtCadastro = new Date();
     private Date dtFundacao;
     private Endereco endereco = new Endereco();   

@@ -50,7 +50,7 @@ public class Venda implements Serializable{
 
     /**
      * Forma pagamento na venda:
-     * D-Dinheiro; H-Cheque; P-Cheque-pré-datado;
+     * D-Dinheiro; H-Cheque; P-Cheque-prï¿½-datado;
      * C-Cartao de Credito; U-Dollar; T-Ticket/Vale;
      * B-Boleto Bancario; L-Duplicata ou O-Convenio.
      */
@@ -58,18 +58,18 @@ public class Venda implements Serializable{
     private String nomeCliente;
     private String telefone = "N/I";
     /**
-     * Usado para determinar os tipos de endereço:
-     * 0 - Sem endereço (Default sem endereço);
-     * 1 - Com endereço;
-     * 2 - Com endereço de entrega;
+     * Usado para determinar os tipos de endereï¿½o:
+     * 0 - Sem endereï¿½o (Default sem endereï¿½o);
+     * 1 - Com endereï¿½o;
+     * 2 - Com endereï¿½o de entrega;
      * 3 - Com ambos.
      */
     private int tipoEndereco = 0;
     private Endereco endereco = new Endereco();
     /**
-     * Usado para determinar se existe endereço de entrega.
-     * Se verdadeiro, o endereco de entrega é diferente do endereço.
-     * Caso constrário o endereço de entrega é o mesmo endereço.
+     * Usado para determinar se existe endereï¿½o de entrega.
+     * Se verdadeiro, o endereco de entrega ï¿½ diferente do endereï¿½o.
+     * Caso constrï¿½rio o endereï¿½o de entrega ï¿½ o mesmo endereï¿½o.
      */
     private Boolean flEnderecoEntrega = new Boolean(false);
     private Endereco enderecoEntrega = new Endereco();
@@ -84,7 +84,7 @@ public class Venda implements Serializable{
     private Double valorParcela = new Double(0.0);
     private Double valorTotalPrazo = new Double(0.0);
 
-    //totalização
+    //totalizaï¿½ï¿½o
     private Double totalProdutos = new Double(0.0);
     private Double totalDesconto = new Double(0.0);
     private Double valorTotal = new Double(0.0);
@@ -93,18 +93,18 @@ public class Venda implements Serializable{
 
     /**
      * Usado para determinar se o procedimento de "gerar registros de contas a receber"
-     * será executado. Caso o valor de flGerarRegistroContaReceber for true, iremos
+     * serï¿½ executado. Caso o valor de flGerarRegistroContaReceber for true, iremos
      * gerar no movimento de conta a receber o registro desta venda.
-     * // TODO: Implementar um método que realizará o gerar registros de contas a receber.
+     * // TODO: Implementar um mï¿½todo que realizarï¿½ o gerar registros de contas a receber.
      */
     private Boolean flGerarRegistroContaReceber = new Boolean(false);
 
     /**
      * Usado para determinar se o procedimento de "gerar o recibo de entrega dos itens da venda"
-     * será executado. Caso o valor de flGerarReciboEntrega for true, iremos
+     * serï¿½ executado. Caso o valor de flGerarReciboEntrega for true, iremos
      * gerar no movimento de entrega de itens de estoque desta venda, dizendo para cada item que
-     * o mesmo ainda não foi entregue.
-     * // TODO: Implementar um método que realizará o gerar registro de entrega dos itens da venda.
+     * o mesmo ainda nÃ£o foi entregue.
+     * // TODO: Implementar um mï¿½todo que realizarï¿½ o gerar registro de entrega dos itens da venda.
      */
     private Boolean flGerarReciboEntrega = new Boolean(true);
     private Boolean flProcessado = new Boolean(false);
@@ -344,9 +344,9 @@ public class Venda implements Serializable{
     /**
      *
      * Usado para determinar se o procedimento de "gerar o recibo de entrega dos itens da venda"
-     * será executado. Caso o valor de flGerarReciboEntrega for true, iremos
+     * serï¿½ executado. Caso o valor de flGerarReciboEntrega for true, iremos
      * gerar no movimento de entrega de itens de estoque desta venda, dizendo para cada item que
-     * o mesmo ainda não foi entregue.
+     * o mesmo ainda nÃ£o foi entregue.
      *
      * @hibernate.property  column="fl_gerar_recibo_entrega" length="1"
      */
@@ -376,10 +376,10 @@ public class Venda implements Serializable{
     }
 
     /**
-     * Usado para determinar os tipos de endereço:
-     * 0 - Sem endereço (Default sem endereço);
-     * 1 - Com endereço;
-     * 2 - Com endereço de entrega;
+     * Usado para determinar os tipos de endereï¿½o:
+     * 0 - Sem endereï¿½o (Default sem endereï¿½o);
+     * 1 - Com endereï¿½o;
+     * 2 - Com endereï¿½o de entrega;
      * 3 - Com ambos. 
      * @return Returns the tipoEndereco.
      * @hibernate.property column = "tipo_endereco" type = "integer"
@@ -800,7 +800,7 @@ public class Venda implements Serializable{
     }
 
     /**
-     * Faz a totalização da nota fiscal.
+     * Faz a totalizaï¿½ï¿½o da nota fiscal.
      * @return totalNota.
      */
     public Double getTotalInternal() {
@@ -862,7 +862,7 @@ public class Venda implements Serializable{
     }
     
     /**
-     * Após a totalização da venda, com o valor recebido, iremos totalizar
+     * Apï¿½s a totalizaï¿½ï¿½o da venda, com o valor recebido, iremos totalizar
      * o valor do troco.
      * @return Double.
      */

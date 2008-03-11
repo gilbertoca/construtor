@@ -66,6 +66,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
 
     @Override
     public void insert(UnidadeMedida entity) {
+    	log.debug("Realizando inserção. Entidade usada como parâmetro: {} ",entity);    	
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
@@ -73,9 +74,11 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
             recordsUpdated = txn.execute("insertUnidadeMedida");
             if (recordsUpdated != 1) {
                 txn.rollback();
+                log.debug("Problemas na inserção. Nº registros afetados: {} ",recordsUpdated);
             //throw new ThatsWeirdException();
             }
             txn.commit();
+            log.debug("Inserção realizada com sucesso.");
         } finally {
             txn.close();
         }
@@ -83,6 +86,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
 
     @Override
     public void update(UnidadeMedida entity) {
+    	log.debug("Realizando alteração. Entidade usada como parâmetro: {} ",entity);
         Transaction txn = getBroker().startTransaction();
         int recordsUpdated = 0;
         try {
@@ -90,25 +94,11 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
             recordsUpdated = txn.execute("updateUnidadeMedida");
             if (recordsUpdated != 1) {
                 txn.rollback();
+                log.debug("Problemas na alteração. Nº registros afetados: {} ",recordsUpdated);
             //throw new ThatsWeirdException();
             }
             txn.commit();
-        } finally {
-            txn.close();
-        }
-    }
-
-    @Override
-    public void deleteAll() {
-        Transaction txn = getBroker().startTransaction();
-        int recordsUpdated = 0;
-        try {
-            recordsUpdated = txn.execute("deleteUnidadeMedida");
-            if (recordsUpdated != 1) {
-                txn.rollback();
-            //throw new ThatsWeirdException();
-            }
-            txn.commit();
+            log.debug("Alteração realizada com sucesso.");
         } finally {
             txn.close();
         }

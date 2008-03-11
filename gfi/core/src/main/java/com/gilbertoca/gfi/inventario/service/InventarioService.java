@@ -39,7 +39,7 @@ public class InventarioService extends Service<Item, Integer> {
     public Item findByPk(Integer pk) {
         if (pk == null || pk.equals("")) {
             throw new IllegalArgumentException(
-                    "Identificador n�o pode ser nulo!");
+                    "Identificador não pode ser nulo!");
         }
         Query qry = getBroker().startQuery();
         try {
@@ -86,22 +86,6 @@ public class InventarioService extends Service<Item, Integer> {
         try {
             txn.setParameter("unidadeMedida", entity);
             recordsUpdated = txn.execute("updateUnidadeMedida");
-            if (recordsUpdated != 1) {
-                txn.rollback();
-            //throw new ThatsWeirdException();
-            }
-            txn.commit();
-        } finally {
-            txn.close();
-        }
-    }
-
-    @Override
-    public void deleteAll() {
-        Transaction txn = getBroker().startTransaction();
-        int recordsUpdated = 0;
-        try {
-            recordsUpdated = txn.execute("deleteUnidadeMedida");
             if (recordsUpdated != 1) {
                 txn.rollback();
             //throw new ThatsWeirdException();

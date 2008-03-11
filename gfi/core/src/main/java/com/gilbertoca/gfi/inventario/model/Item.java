@@ -134,7 +134,7 @@ public class Item implements Serializable {
     private Produto produto;
     /**
      * Valores que o campo tipoICMS pode assumir:
-     * I-Isento, T-Tributado, S-Substitui��o Tribut�ria e N-N�o Incid�ncia
+     * I-Isento, T-Tributado, S-Substitui��o Tribut�ria e N-não Incid�ncia
      * // TODO: Substituir o tipoICMS por um tipo espec�fico do hibernate (enumeration)
      */
     @Column(name="tipo_icms",length=1)
@@ -145,7 +145,7 @@ public class Item implements Serializable {
     /**
      * Valores que o campo tipoNotaFiscal pode assumir:
      * 0-Padr�o(00/40/1041);20-Com redu��o base de c�lculo;
-     * 30-Isenta/N�o tributada, ICMS por subs. tribut�ria;
+     * 30-Isenta/não tributada, ICMS por subs. tribut�ria;
      * 50-Suspens�o;51-Diferimento;
      * 60-ICMS cobrado ant. por subs. tribut�ria;
      * 70-Redu��o base c�lc., ICMS por subs. tribut�ria;

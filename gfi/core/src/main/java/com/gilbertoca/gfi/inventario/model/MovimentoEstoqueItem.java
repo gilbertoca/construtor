@@ -16,17 +16,17 @@ public class MovimentoEstoqueItem implements Serializable {
 
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
-     * tipo de situação, por exemplo, removendo este atributo.
-     * Usado para determinar se instancia é transient or detached 
+     * tipo de situaï¿½ï¿½o, por exemplo, removendo este atributo.
+     * Usado para determinar se instancia ï¿½ transient or detached 
      */
     private int version = -1;
 
     /**
-     * Usado para determinar se o procedimento de ajuste de preço de custo
-     * será executado. Caso o valor de flAjustarPrecoCusto for true, atualizaremos
-     * o preço de custo do item em questão.
-     * // TODO: Implementar um método que realizará o ajuste de preço custo e por
-     * consequencia o preço de venda.
+     * Usado para determinar se o procedimento de ajuste de preï¿½o de custo
+     * serï¿½ executado. Caso o valor de flAjustarPrecoCusto for true, atualizaremos
+     * o preï¿½o de custo do item em questï¿½o.
+     * // TODO: Implementar um mï¿½todo que realizarï¿½ o ajuste de preï¿½o custo e por
+     * consequencia o preï¿½o de venda.
      */
     private Boolean flAjustarPrecoCusto = new Boolean(false);
     private Double desconto = new Double(0);
@@ -34,16 +34,16 @@ public class MovimentoEstoqueItem implements Serializable {
     private Double precoUnitario = new Double(0);
     /**
      * Usado para determinar se um item, neste caso de venda (saida no movimento de estoque),
-     * já foi entregue. Após realizada uma venda, a baixa no estoque deste item será imediata.
-     * Mas não indicará a saída, fisicamente do mesmo.
+     * jï¿½ foi entregue. Apï¿½s realizada uma venda, a baixa no estoque deste item serï¿½ imediata.
+     * Mas nÃ£o indicarï¿½ a saï¿½da, fisicamente do mesmo.
      */
     private Boolean flEntregaRealizada = new Boolean(false);
     private Integer cdItem;
     private Item item = new Item();
     private MovimentoEstoque movimentoEstoque = new MovimentoEstoque();
     /** 
-     * Usado para simular a chamada de método interno que realiza a totalização do item com desconto.
-     * Como não podemos chamar o método getTotalComDesconto() na interface web, então simularemos
+     * Usado para simular a chamada de mï¿½todo interno que realiza a totalizaï¿½ï¿½o do item com desconto.
+     * Como nÃ£o podemos chamar o mï¿½todo getTotalComDesconto() na interface web, entï¿½o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalComDesconto;
      * 	- Criamos os metodos correspondentes set e get:
@@ -52,8 +52,8 @@ public class MovimentoEstoqueItem implements Serializable {
     private Double totalComDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de método interno que realiza a totalização do item sem desconto.
-     * Como não podemos chamar o método getTotalSemDesconto() na interface web, então simularemos
+     * Usado para simular a chamada de mï¿½todo interno que realiza a totalizaï¿½ï¿½o do item sem desconto.
+     * Como nÃ£o podemos chamar o mï¿½todo getTotalSemDesconto() na interface web, entï¿½o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalSemDesconto;
      * 	- Criamos os metodos correspondentes set e get:
@@ -62,8 +62,8 @@ public class MovimentoEstoqueItem implements Serializable {
     private Double totalSemDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de método interno que realiza a totalização do item.
-     * Como não podemos chamar o método getValorDesconto() na interface web, então simularemos 
+     * Usado para simular a chamada de mï¿½todo interno que realiza a totalizaï¿½ï¿½o do item.
+     * Como nÃ£o podemos chamar o mï¿½todo getValorDesconto() na interface web, entï¿½o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: valorDesconto;
      * 	- Criamos os metodos correspondentes set e get:

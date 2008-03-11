@@ -13,9 +13,12 @@ public class Produto implements Serializable {
     private String nomeProduto;
     private String descricaoProduto;
     private Integer cdCategoria;
-    private Categoria categoria;
+    private int version = -1;    
     private Date dtCadastro = new Date();
+
+    private Categoria categoria;
     private Set items;
+    
 
     /** full constructor */
     public Produto(Integer cdProduto, String nomeProduto, String descricaoProduto, Categoria categoria, Set items) {
@@ -47,6 +50,8 @@ public class Produto implements Serializable {
     public void setDescricaoProduto(String descricaoProduto) {this.descricaoProduto = descricaoProduto;}
     public Integer getCdCategoria() {return cdCategoria;}
     public void setCdCategoria(Integer cdCategoria) {this.cdCategoria = cdCategoria;}
+    public int getVersion() {return this.version;}
+    public void setVersion(int version) {this.version = version;}
     public Categoria getCategoria() {return this.categoria;}
     public void setCategoria(Categoria categoria) {this.categoria = categoria;}
     public Set getItems() {return this.items;}
@@ -64,7 +69,7 @@ public class Produto implements Serializable {
                             this.nomeProduto, rhs.nomeProduto).append(this.cdProduto,
                             rhs.cdProduto).append(this.dtCadastro, rhs.dtCadastro).append(this.descricaoProduto,
                             rhs.descricaoProduto).append(this.cdCategoria, rhs.cdCategoria)
-                            .isEquals();
+                            .append(this.version, rhs.version).isEquals();
     }
 
     /**
@@ -84,6 +89,6 @@ public class Produto implements Serializable {
                             .append("descricaoProduto", this.descricaoProduto).append(
                                             "cdCategoria", this.cdCategoria).append("nomeProduto",
                                             this.nomeProduto).append("cdProduto",this.cdProduto).append("dtCadastro", this.dtCadastro)
-                            .toString();
+                                            .append("Versão", this.version).toString();
     }
 }

@@ -106,6 +106,7 @@ create table gfi.inventario_item (
    fl_descontinuado smallint,
    cd_empresa integer,
    cd_produto integer,
+   version integer not null,
    primary key (cd_item)
 );
 create table gfi.inventario_unidade_medida (
@@ -146,6 +147,7 @@ create table gfi.inventario_categoria (
    nome_categoria varchar(80),
    descricao_categoria varchar(255),
    dt_cadastro timestamp not null,
+   version integer not null,
    primary key (cd_categoria)
 );
 create table gfi.inventario_produto (
@@ -154,6 +156,7 @@ create table gfi.inventario_produto (
    dt_cadastro timestamp not null,
    descricao_produto varchar(255),
    cd_categoria integer,
+   version integer not null,
    primary key (cd_produto)
 );
 create table gfi.inventario_contato (

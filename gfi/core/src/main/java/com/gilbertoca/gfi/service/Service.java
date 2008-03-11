@@ -51,8 +51,6 @@ abstract public class Service<T, PK extends Serializable> {
 
     abstract public void update(T entity);
 
-    abstract public void deleteAll();
-
     abstract public void deleteByPk(PK pk);
 
     protected Collection<T> findByNamedQuery(String queryName){

@@ -15,7 +15,7 @@
 	</logger>
 
 	<logger name="net.sourceforge">
-		<level value="WARN" />
+		<level value="DEBUG" />
 	</logger>
 	<!--
 		runtime.log.logsystem.class = org.apache.velocity.runtime.log.Log4JLogSystem
@@ -36,7 +36,7 @@
 		</logger>
 	-->
 	<logger name="com.gilbertoca">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 	<root>
 		<level value="WARN" />

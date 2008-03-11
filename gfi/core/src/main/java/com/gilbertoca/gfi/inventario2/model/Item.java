@@ -86,7 +86,8 @@ public class Item implements Serializable {
     private Integer origemMercadoriaNotaFiscal = new Integer(0);
     private Boolean flBaseTributariaIPI = new Boolean(false);
     private Float aliquotaIPI = new Float(0.0);
-    private String observacao;    
+    private String observacao;
+    private int version = -1;
     protected Set fornecedores = new HashSet();
     
     /* Campos que podem ser implementados futuramente:
@@ -596,6 +597,8 @@ public class Item implements Serializable {
 //        return itemFornecedores;
 //    }
 
+    public int getVersion() {return this.version;}
+    public void setVersion(int version) {this.version = version;}
     
     /**
      * Realiza o aumento da quantidade do item em estoque (estoqueAtual)
@@ -665,7 +668,7 @@ public class Item implements Serializable {
                         castOther.origemMercadoriaNotaFiscal).append(
                         flBaseTributariaIPI, castOther.flBaseTributariaIPI)
                 .append(aliquotaIPI, castOther.aliquotaIPI).append(observacao,
-                        castOther.observacao).isEquals();
+                        castOther.observacao).append(this.version, castOther.version).isEquals();
     }
 
     /**
@@ -713,7 +716,7 @@ public class Item implements Serializable {
                         origemMercadoriaNotaFiscal).append(
                         "flBaseTributariaIPI", flBaseTributariaIPI).append(
                         "aliquotaIPI", aliquotaIPI).append("observacao",
-                        observacao).toString();
+                        observacao).append("Versão", this.version).toString();
     }
 
 }
