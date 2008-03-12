@@ -28,12 +28,6 @@ drop table gfi.inventario_contato;
 drop table gfi.inventario_controle;
 drop table gfi.inventario_localizacao_secao;
 drop table gfi.inventario_entrega_item;
-drop sequence gfi.inventario_categoria_sequence;
-drop sequence gfi.inventario_entrega_sequence;
-drop sequence gfi.inventario_controle_sequence;
-drop sequence gfi.inventario_fornecedor_sequence;
-drop sequence gfi.inventario_item_sequence;
-drop sequence gfi.inventario_produto_sequence;
 create table gfi.inventario_item_fornecedor (
    cd_item integer not null,
    cd_fornecedor integer not null,
@@ -251,9 +245,3 @@ alter table gfi.inventario_controle add constraint FK7376DE51A99E825F foreign ke
 alter table gfi.inventario_controle add constraint FK7376DE519E9E2169 foreign key (loc_nu_sequencial) references log.log_localidade;
 alter table gfi.inventario_entrega_item add constraint FKB425B501CBBEB837 foreign key (cd_entrega) references gfi.inventario_entrega;
 alter table gfi.inventario_entrega_item add constraint FKB425B5018D3096FC foreign key (controle_cd_controle, controle_linha_numero) references gfi.inventario_controle_item;
-create sequence gfi.inventario_categoria_sequence;
-create sequence gfi.inventario_entrega_sequence;
-create sequence gfi.inventario_controle_sequence;
-create sequence gfi.inventario_fornecedor_sequence;
-create sequence gfi.inventario_item_sequence;
-create sequence gfi.inventario_produto_sequence;

@@ -24,20 +24,24 @@
         <column>cd_categoria</column>
         <column>descricao_categoria</column>
         <column>version</column>
+        <column>dt_cadastro</column>
         <row>
             <value description="cd_categoria">1</value>
             <value description="descricao_categoria"><![CDATA[Metros]]></value>
             <value description="version">1</value>
+            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
         </row>
         <row>
             <value description="cd_categoria">2</value>
             <value description="descricao_categoria"><![CDATA[Kilogramas]]></value>
             <value description="version">1</value>
+            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
         </row>
         <row>
             <value description="cd_categoria">3</value>
             <value description="descricao_categoria"><![CDATA[Centimetros]]></value>
             <value description="version">1</value>
+            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
         </row>
     </table>    
 </dataset>
