@@ -75,6 +75,12 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
@@ -121,7 +127,7 @@
 		<jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
 		<jpa_spec.version>1.0.2</jpa_spec.version>
 		<!-- Framework dependency versions -->
-		<jpa_agent.groupId>org.apache.velocity</jpa_agent.groupId>
+		<jpa_agent.groupId>velocity</jpa_agent.groupId>
 		<jpa_agent.artifactId>velocity-dep</jpa_agent.artifactId>
 		<jpa_agent.version>1.5</jpa_agent.version>
 

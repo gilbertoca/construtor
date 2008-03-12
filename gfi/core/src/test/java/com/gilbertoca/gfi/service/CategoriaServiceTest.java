@@ -41,7 +41,8 @@ public class CategoriaServiceTest {
     @Test
     public void insert() {
         System.out.println("insert");
-        Categoria entity = new Categoria("MT3", "Metros");
+        Categoria entity = new Categoria(4, "MT3", "Metros");
+        System.out.println(entity);
         CategoriaService instance = new CategoriaService();
         instance.insert(entity);
         Collection result = instance.findAll();
@@ -80,7 +81,7 @@ public class CategoriaServiceTest {
     public void findLike(){
         System.out.println("findLike");
         CategoriaService instance = new CategoriaService();
-        Collection result = instance.findLike(new Categoria("MT", "Cu"));
+        Collection result = instance.findLike(new Categoria(null, "MT", "Cub"));
         System.out.println(result);
         assertFalse(result.isEmpty());
     }

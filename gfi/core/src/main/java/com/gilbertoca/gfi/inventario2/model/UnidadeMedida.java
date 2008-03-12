@@ -38,8 +38,10 @@ public class UnidadeMedida implements Serializable {
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-        return new HashCodeBuilder(-2100871471, -590516841).append(this.cdUnidadeMedida).append(
-                this.descricaoUnidade).toHashCode();
+        return new HashCodeBuilder(-2100871471, -590516841)
+        	.append(this.cdUnidadeMedida)
+        	.append(this.descricaoUnidade)
+        	.append(this.version).toHashCode();
     }
 
     /**

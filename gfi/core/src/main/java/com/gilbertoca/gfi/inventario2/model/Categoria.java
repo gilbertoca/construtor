@@ -15,26 +15,16 @@ public class Categoria implements Serializable {
     private int version = -1;
     private Set produtos;
 
-    /** full constructor */
-    public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria) {
-        this.cdCategoria = cdCategoria;
-        this.nomeCategoria = nomeCategoria;
-        this.descricaoCategoria = descricaoCategoria;
-    }
-
     /** default constructor */
     public Categoria() {   }
+    
 
-    /** minimal constructor */
-    public Categoria(Integer cdCategoria, Set produtos) {
-        this.cdCategoria = cdCategoria;
-        this.produtos = produtos;
-    }
+	public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria) {
+		this.cdCategoria = cdCategoria;
+		this.nomeCategoria = nomeCategoria;
+		this.descricaoCategoria = descricaoCategoria;
+	}
 
-    public Categoria(String nomeCategoria, String descricaoCategoria) {
-        this.nomeCategoria = nomeCategoria;
-        this.descricaoCategoria = descricaoCategoria;
-    }
 
 	public Integer getCdCategoria() {return this.cdCategoria;}
     public void setCdCategoria(Integer cdCategoria) {this.cdCategoria = cdCategoria;}
@@ -56,27 +46,33 @@ public class Categoria implements Serializable {
                     return false;
             }
             Categoria rhs = (Categoria) object;
-            return new EqualsBuilder().appendSuper(super.equals(object)).append(
-                            this.produtos, rhs.produtos).append(this.nomeCategoria,
-                            rhs.nomeCategoria).append(this.descricaoCategoria,
-                            rhs.descricaoCategoria).append(this.cdCategoria,
-                            rhs.cdCategoria).append(this.version, rhs.version).isEquals();
+            return new EqualsBuilder().appendSuper(super.equals(object))
+            		.append(this.cdCategoria, rhs.cdCategoria)
+            		.append(this.nomeCategoria, rhs.nomeCategoria)
+            		.append(this.descricaoCategoria, rhs.descricaoCategoria)
+            		.append(this.dtCadastro, rhs.dtCadastro)
+            		.append(this.version, rhs.version).isEquals();
     }
     /**
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-            return new HashCodeBuilder(-1968403919, 1474371617).appendSuper(
-                            super.hashCode()).append(this.nomeCategoria).append(this.descricaoCategoria).append(
-                            this.cdCategoria).toHashCode();
+            return new HashCodeBuilder(-1968403919, 1474371617).appendSuper(super.hashCode())
+            .append(this.cdCategoria)
+            .append(this.nomeCategoria)
+            .append(this.descricaoCategoria)
+            .append(this.version)
+            .append(this.dtCadastro).toHashCode();
     }
     /**
      * @see java.lang.Object#toString()
      */
     public String toString() {
-            return new ToStringBuilder(this).append("nomeCategoria",
-                            this.nomeCategoria).append("descricaoCategoria",
-                            this.descricaoCategoria).append("cdCategoria",
-                            this.cdCategoria).append("Versão", this.version).toString();
+            return new ToStringBuilder(this)
+            .append("cdCategoria", this.cdCategoria)
+            .append("nomeCategoria", this.nomeCategoria)
+            .append("descricaoCategoria", this.descricaoCategoria)
+            .append("dtCadastro", this.dtCadastro)
+            .append("Versão", this.version).toString();
     }
 }

@@ -59,15 +59,21 @@
         <property name="CdCategoria">
             <column name="cd_categoria"/>
         </property>
+        <property name="nomeCategoria">
+            <column name="nome_categoria"/>
+        </property>        
         <property name="descricaoCategoria">
             <column name="descricao_categoria"/>
         </property>
         <property name="version">
             <column name="VERSION"/>
+        </property>
+        <property name="dtCadastro">
+            <column name="dt_cadastro"/>
         </property>        
     </result-object>
     <sql-statement id="getCategoria" result-object="Categoria">
-        SELECT cd_categoria,descricao_categoria,version
+        SELECT cd_categoria,nome_categoria, descricao_categoria,dt_cadastro, version
         FROM {{schema}}.inventario_categoria
         #if ($categoria.cdCategoria) 
             WHERE cd_categoria = :categoria.cdCategoria 
@@ -77,17 +83,19 @@
         #end 
         #if ($like) 
             WHERE        
-                cd_categoria like :categoria.cdCategoria OR descricao_categoria like :categoria.descricaoCategoria
+                nome_categoria like :categoria.nomeCategoria OR descricao_categoria like :categoria.descricaoCategoria
         #end         
     </sql-statement> 	    
     <sql-statement id="insertCategoria">
-        INSERT INTO {{schema}}.inventario_categoria (cd_categoria, descricao_categoria, version)
-        VALUES  (:categoria.cdCategoria, :categoria.descricaoCategoria, 0)
+        INSERT INTO {{schema}}.inventario_categoria (cd_categoria, nome_categoria, descricao_categoria, dt_cadastro, version)
+        VALUES  (:categoria.cdCategoria, :categoria.nomeCategoria, :categoria.descricaoCategoria, :categoria.dtCadastro, 0)
     </sql-statement>
     <sql-statement id="updateCategoria">
         UPDATE {{schema}}.inventario_categoria 
         SET 
-            descricao_categoria = :categoria.descricaoCategoria,
+			nome_categoria = :categoria.nomeCategoria,
+			descricao_categoria = :categoria.descricaoCategoria,        
+            dt_cadastro = :categoria.dtCadastro,
             version	= :categoria.version + 1
         WHERE
             cd_categoria  = :categoria.cdCategoria
