@@ -15,7 +15,7 @@
 	</logger>
 
 	<logger name="net.sourceforge">
-		<level value="ERROR" />
+		<level value="DEBUG" />
 	</logger>
 	<logger name="net.sf.click">
 		<level value="DEBUG" />
@@ -39,7 +39,7 @@
 		<level value="DEBUG"/>
 		</logger>
 	-->
-	<logger name="com.gilbertoca.gfi.page">
+	<logger name="com.gilbertoca">
 		<level value="DEBUG" />
 	</logger>
 	<root>

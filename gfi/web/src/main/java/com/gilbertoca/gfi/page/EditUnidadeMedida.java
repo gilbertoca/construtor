@@ -50,25 +50,30 @@ public class EditUnidadeMedida extends BorderPage {
      */
     public void onGet() {
     	log.debug("Preparando a página para ser exibida.");
+    	UnidadeMedida unidadeMedida;
         if (cdUnidadeMedida != null) {
         	log.debug("Identificador encontrado: {}, preparar página para edição de entidade",cdUnidadeMedida);
         	form.getField("cdUnidadeMedida").setReadonly(true);
-            UnidadeMedida unidadeMedida = (UnidadeMedida) getService().findByPk(cdUnidadeMedida);
+            unidadeMedida = (UnidadeMedida) getService().findByPk(cdUnidadeMedida);
             if (unidadeMedida != null) {
                 form.copyFrom(unidadeMedida);
                 log.debug("Ligação (Binding) Entidade/Form realizada: {}",unidadeMedida);
             }
+        }else{
+        	unidadeMedida = new UnidadeMedida();
+        	form.copyFrom(unidadeMedida);
         }
+        	
     }
 
     public boolean onOkClick() {
     	log.debug("Botão OK pressionado");
         if (form.isValid()) {
             UnidadeMedida unidadeMedida = new UnidadeMedida();
+            log.debug("Criação de um novo objeto: {}",unidadeMedida);
             form.copyTo(unidadeMedida);
             log.debug("Ligação (Binding) Form/Entidade realizada: {}",unidadeMedida);
             if (unidadeMedida.getVersion() != -1) {
-                unidadeMedida = (UnidadeMedida) getService().findByPk(cdUnidadeMedida);
             	getService().update(unidadeMedida);
             	log.debug("Operação de atualização realizada.");
             }else{
@@ -89,6 +94,7 @@ public class EditUnidadeMedida extends BorderPage {
     }
 
     public boolean onCancelClick() {
+    	form.setJavaScriptValidation(false);
         String referrer = referrerField.getValue();
         if (referrer != null) {
             setRedirect(referrer);

@@ -54,6 +54,20 @@
       <groupId>net.sf.click</groupId>
       <artifactId>click-extras</artifactId>
       <version>1.4</version>
+      <exclusions>
+        <exclusion>
+	      <groupId>springframework</groupId>
+	      <artifactId>spring</artifactId>
+        </exclusion>
+        <exclusion>        
+	      <groupId>org.hibernate</groupId>
+	      <artifactId>hibernate</artifactId>
+        </exclusion>
+        <exclusion>        	      
+	      <groupId>org.objectstyle.cayenne</groupId>
+	      <artifactId>cayenne-nodeps</artifactId>
+        </exclusion>	      
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.gilbertoca.gfi</groupId>
@@ -61,8 +75,8 @@
       <version>1.0-SNAPSHOT</version>
       <exclusions>
         <exclusion>
-          <artifactId>velocity-dep</artifactId>
-          <groupId>velocity</groupId>
+        	<groupId>velocity</groupId>
+          	<artifactId>velocity-dep</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
