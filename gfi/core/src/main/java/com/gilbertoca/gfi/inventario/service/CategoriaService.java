@@ -55,8 +55,8 @@ public class CategoriaService extends Service<Categoria, Integer> {
     public Collection<Categoria> findLike(Categoria entity) {
         Query qry = getBroker().startQuery();
         try {
-            qry.setParameter("categoria.cdCategoria", "%" + entity.getCdCategoria() + "%");
-            qry.setParameter("categoria.descricaoUnidade", "%" + entity.getDescricaoCategoria() + "%");
+            qry.setParameter("categoria.nomeCategoria", "%" + entity.getNomeCategoria() + "%");
+            qry.setParameter("categoria.descricaoCategoria", "%" + entity.getDescricaoCategoria() + "%");
             qry.setParameter("like", "ok");
             return qry.selectMany("getCategoria");
         } finally {

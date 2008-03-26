@@ -31,4 +31,14 @@
                 <activatedProfile>orbroker</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-postgresql</actionName>
+            <displayName>postgresql</displayName>
+            <goals>
+                <goal>test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>postgresql</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

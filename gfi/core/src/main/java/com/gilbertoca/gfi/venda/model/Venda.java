@@ -1,7 +1,7 @@
 package com.gilbertoca.gfi.venda.model;
 
 import com.gilbertoca.gfi.component.Endereco;
-import com.gilbertoca.gfi.inventario.model.Empresa;
+import com.gilbertoca.gfi.inventario2.model.Empresa;
 
 import java.io.Serializable;
 import java.text.NumberFormat;

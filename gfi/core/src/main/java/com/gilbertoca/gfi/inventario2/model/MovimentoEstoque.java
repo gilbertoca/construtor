@@ -1,7 +1,6 @@
 package com.gilbertoca.gfi.inventario2.model;
 
 import com.gilbertoca.gfi.component.Endereco;
-import com.gilbertoca.gfi.inventario.model.NaturezaOperacao;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -37,7 +36,7 @@ public class MovimentoEstoque implements Serializable{
     private String tipoPagamento = "Vista";
     /**
      * Forma pagamento no movimento do estoque:
-     * D-Dinheiro; H-Cheque; P-Cheque-pré-datado;
+     * D-Dinheiro; H-Cheque; P-Cheque-prï¿½-datado;
      * C-Cartao de Credito; U-Dollar; T-Ticket/Vale;
      * B-Boleto Bancario; L-Duplicata ou O-Convenio.
      */    
@@ -46,14 +45,14 @@ public class MovimentoEstoque implements Serializable{
     private Integer cdPlanoPagamento;
     //private PlanoPagamento planoPagamento;	
     /**
-     * Código da Venda no movimento do estoque. 
-     * Desta forma pela venda saberemos o nome/RazãoSocial e o cpf/cnpj do cliente.
+     * Cï¿½digo da Venda no movimento do estoque. 
+     * Desta forma pela venda saberemos o nome/Razï¿½oSocial e o cpf/cnpj do cliente.
      */    
     private Integer cdVenda;
     /**
-     * Código do Fornecedor no movimento do estoque. 
-     * Desta forma saberemos que é um fornecedor, obtendo assim, 
-     * o nome/RazãoSocial e o cpf/cnpj do fornecedor.
+     * Cï¿½digo do Fornecedor no movimento do estoque. 
+     * Desta forma saberemos que ï¿½ um fornecedor, obtendo assim, 
+     * o nome/Razï¿½oSocial e o cpf/cnpj do fornecedor.
      */    
     private Integer cdFornecedor;
     private String nomeRazaoSocial;
@@ -73,13 +72,13 @@ public class MovimentoEstoque implements Serializable{
     private Double valorIcmsSubstituicao = new Double(0);
     private Double totalProdutos = new Double(0);
     /**
-     * Determina de que maneira o valor do frete entrará no calculo na nota: 
-     *  Quando for 'Entrada' e o atributo fretePorConta=2, ou seja, por conta do Destinatário;
+     * Determina de que maneira o valor do frete entrarï¿½ no calculo na nota: 
+     *  Quando for 'Entrada' e o atributo fretePorConta=2, ou seja, por conta do Destinatï¿½rio;
      *  quanto for 'Saida' e o atributo fretePorConta=1, ou seja, por conta do Emitente.
      * Valores que o campo fretePorConta pode assumir:
      * 0-Sem Frete;
      * 1-Emitente;
-     * 2-Destinatário;
+     * 2-Destinatï¿½rio;
      */
     private Integer fretePorConta = new Integer(0);
     private Integer cdTransportadora;
@@ -90,9 +89,9 @@ public class MovimentoEstoque implements Serializable{
     private Double valorISS = new Double(0);
     /**
      * Usado para determinar se o procedimento de "gerar registros de contas a pagar"
-     * será executado. Caso o valor de flGerarRegistroContaPagar for true, iremos
+     * serï¿½ executado. Caso o valor de flGerarRegistroContaPagar for true, iremos
      * gerar no movimento de conta a pagar registro desta compra.
-     * // TODO: Implementar um método que realizará o gerar registros de contas a pagar.
+     * // TODO: Implementar um mï¿½todo que realizarï¿½ o gerar registros de contas a pagar.
      */
     private Boolean flGerarRegistroContaPagar = new Boolean(false);    
     private Set movimentoEstoqueItems = Collections.EMPTY_SET;
@@ -181,8 +180,8 @@ public class MovimentoEstoque implements Serializable{
 //    public MovimentoEstoque(Venda venda) {
 //        this.setTipoMovimento("Saida");
 //        this.setCdFuncionario(venda.getCdFuncionario());
-//        //TODO: verificar qual o codigo que corresponde à venda na tabela naturezaOperacao.
-//        this.setCdNaturezaOperacao(Constants.NATUREZAOPERACAO_VENDA);//Vendas de prod. própr. ou terc. p/ o Est.
+//        //TODO: verificar qual o codigo que corresponde ï¿½ venda na tabela naturezaOperacao.
+//        this.setCdNaturezaOperacao(Constants.NATUREZAOPERACAO_VENDA);//Vendas de prod. prï¿½pr. ou terc. p/ o Est.
 //        this.setCdPlanoPagamento(venda.getCdPlanoPagamento());
 //        this.setCdVenda(venda.getCdVenda()); 
 //        this.setCpfCnpj(venda.getCpfCliente());
@@ -759,8 +758,8 @@ public class MovimentoEstoque implements Serializable{
     }
     
     /**
-     * Faz a totalização da nota fiscal.
-     * _valorFrete entrará no cálculo quando:
+     * Faz a totalizaï¿½ï¿½o da nota fiscal.
+     * _valorFrete entrarï¿½ no cï¿½lculo quando:
      *      quando for 'Entrada' e o atributo fretePorConta=2;
      *      quanto for 'Saida' e o atributo fretePorConta=1.
      * @return totalNota.

@@ -7,7 +7,7 @@
 		<groupId>com.gilbertoca.gfi</groupId>
 		<artifactId>gfi</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath>.../parent/pom.xml</relativePath>
+		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
 	<artifactId>gfi-core</artifactId>
@@ -56,6 +56,7 @@
 					<src>src/test/resources/sample-data.xml</src>
 					<type>${dbunit.operation.type}</type>
 					<schema>${dbunit.schema}</schema>
+					<useQualifiedTableNames>false</useQualifiedTableNames>
 					<skip>${maven.test.skip}</skip>
 				</configuration>
 				<executions>
@@ -90,19 +91,14 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>${jpa.groupId}</groupId>
-			<artifactId>${jpa.artifactId}</artifactId>
-			<version>${jpa.version}</version>
+			<groupId>net.sourceforge.orbroker</groupId>
+			<artifactId>orbroker</artifactId>
+			<version>${orbroker.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${jpa_spec.groupId}</groupId>
-			<artifactId>${jpa_spec.artifactId}</artifactId>
-			<version>${jpa_spec.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${jpa_agent.groupId}</groupId>
-			<artifactId>${jpa_agent.artifactId}</artifactId>
-			<version>${jpa_agent.version}</version>
+			<groupId>velocity</groupId>
+			<artifactId>velocity-dep</artifactId>
+			<version>${velocity-dep.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-pool</groupId>
@@ -123,17 +119,8 @@
 	</dependencies>
 	<properties>
 		<!-- Framework dependency versions -->
-		<jpa_spec.groupId>javax.persistence</jpa_spec.groupId>
-		<jpa_spec.artifactId>persistence-api</jpa_spec.artifactId>
-		<jpa_spec.version>1.0.2</jpa_spec.version>
-		<!-- Framework dependency versions -->
-		<jpa_agent.groupId>velocity</jpa_agent.groupId>
-		<jpa_agent.artifactId>velocity-dep</jpa_agent.artifactId>
-		<jpa_agent.version>1.5</jpa_agent.version>
-
-		<jpa.groupId>net.sourceforge.orbroker</jpa.groupId>
-		<jpa.artifactId>orbroker</jpa.artifactId>
-		<jpa.version>2.0.4</jpa.version>
+		<orbroker.version>2.0.4</orbroker.version>
 		<commons-pool.version>1.3</commons-pool.version>
+		<velocity-dep.version>1.5</velocity-dep.version>
 	</properties>
 </project>

@@ -1,6 +1,6 @@
 package com.gilbertoca.gfi.venda.model;
 
-import com.gilbertoca.gfi.inventario.model.Item;
+import com.gilbertoca.gfi.inventario2.model.Item;
 
 import java.io.Serializable;
 

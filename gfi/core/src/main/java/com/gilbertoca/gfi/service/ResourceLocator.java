@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author gilberto
  */
 public class ResourceLocator {
-
+	static final String ORBROKER_LOG_LEVEL = "log.level";
     private transient final Logger log = LoggerFactory.getLogger(getClass());
     private InitialContext ic;
     //used to hold references to EJBHomes/JMS Resources for re-use
@@ -133,8 +133,21 @@ public class ResourceLocator {
                 if (schema != null){
                     broker.setTextReplacement("schema", schema);
                 }
-                //Ativando/Desativando logging
-                Broker.setLoggingLevel(Level.SEVERE); 
+                /*
+                 * Ativando/Desativando o logging especifico do ORBROKER
+                 * WARNING: Used for internally caught exceptions not considered severe.</li>
+                 * INFO: Shows transaction boundaries and SQL statements executed.</li>
+                 * CONFIG: Information about driver support and configuration setup</li>
+                 * FINE: Shows dynamic SQL statement after parsing.</li>
+                 */
+                
+                String level = System.getProperty(ORBROKER_LOG_LEVEL);
+                if (level == null) {
+                	Broker.setLoggingLevel(Level.OFF);
+                }else{
+                	log.debug("Ativando OrBroker logging com severidade: {}", level);
+               		Broker.setLoggingLevel(Level.parse(level.toUpperCase()));
+                }    
                 cache.put(brokerName, broker);
                 log.debug("Mecanismo de persistência (OrBroker) criado: {}", broker);
             } catch (Exception ex) {

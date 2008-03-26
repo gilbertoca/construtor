@@ -1,6 +1,7 @@
 package com.gilbertoca.gfi.inventario2.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -11,7 +12,7 @@ public class Categoria implements Serializable {
     private Integer cdCategoria;
     private String nomeCategoria;
     private String descricaoCategoria;
-    private Date dtCadastro = new Date();
+    private Timestamp dtCadastro = new Timestamp(new Date().getTime());
     private int version = -1;
     private Set produtos;
 
@@ -32,8 +33,8 @@ public class Categoria implements Serializable {
     public void setNomeCategoria(String nomeCategoria) {this.nomeCategoria = nomeCategoria;}
     public String getDescricaoCategoria() {return this.descricaoCategoria;}
     public void setDescricaoCategoria(String descricaoCategoria) {this.descricaoCategoria = descricaoCategoria;}
-    public Date getDtCadastro() {return dtCadastro;}
-    public void setDtCadastro(Date dtCadastro) {this.dtCadastro = dtCadastro;}
+    public Timestamp getDtCadastro() {return dtCadastro;}
+    public void setDtCadastro(Timestamp dtCadastro) {this.dtCadastro = dtCadastro;}
     public int getVersion() {return this.version;}
     public void setVersion(int version) {this.version = version;}
     public Set getProdutos() {return this.produtos;}
