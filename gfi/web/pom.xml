@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?><project>
-  <parent>
-    <artifactId>gfi</artifactId>
-    <groupId>com.gilbertoca.gfi</groupId>
-    <version>1.0-SNAPSHOT</version>
-    <relativePath>.../parent/pom.xml</relativePath>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gilbertoca.gfi</groupId>
+		<artifactId>gfi</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
   <artifactId>gfi-web</artifactId>
   <packaging>war</packaging>
+  
   <name>Financas e Inventario - Web (Click)</name>
   <build>
     <plugins>
