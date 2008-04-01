@@ -7,6 +7,7 @@ package com.gilbertoca.gfi.inventario.service;
 import java.util.Collection;
 
 import net.sourceforge.orbroker.Broker;
+import net.sourceforge.orbroker.ConstraintException;
 import net.sourceforge.orbroker.Query;
 import net.sourceforge.orbroker.Transaction;
 
@@ -53,9 +54,9 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
     }
     @Override
     public Collection<UnidadeMedida> findLike(UnidadeMedida entity) {
+    	log.debug("Realizando consulta. Entidade usada como parâmetro: {} ",entity);
         Query qry = getBroker().startQuery();
         try {
-            qry.setParameter("unidadeMedida.cdUnidadeMedida", "%" + entity.getCdUnidadeMedida() + "%");
             qry.setParameter("unidadeMedida.descricaoUnidade", "%" + entity.getDescricaoUnidade() + "%");
             qry.setParameter("like", "ok");
             return qry.selectMany("getUnidadeMedida");
@@ -75,7 +76,7 @@ public class UnidadeMedidaService extends Service<UnidadeMedida, String> {
             if (recordsUpdated != 1) {
                 txn.rollback();
                 log.debug("Problemas na inserção. Nº registros afetados: {} ",recordsUpdated);
-            //throw new ThatsWeirdException();
+                //throw new ConstraintException("");
             }
             txn.commit();
             log.debug("Inserção realizada com sucesso.");

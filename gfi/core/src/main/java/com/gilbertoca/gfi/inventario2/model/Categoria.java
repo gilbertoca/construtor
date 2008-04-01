@@ -9,12 +9,13 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Categoria implements Serializable {
+	private static final long serialVersionUID = 1L;
     private Integer cdCategoria;
     private String nomeCategoria;
     private String descricaoCategoria;
     private Timestamp dtCadastro = new Timestamp(new Date().getTime());
     private int version = -1;
-    private Set produtos;
+    private Set<Produto> produtos;
 
     /** default constructor */
     public Categoria() {   }
@@ -37,8 +38,8 @@ public class Categoria implements Serializable {
     public void setDtCadastro(Timestamp dtCadastro) {this.dtCadastro = dtCadastro;}
     public int getVersion() {return this.version;}
     public void setVersion(int version) {this.version = version;}
-    public Set getProdutos() {return this.produtos;}
-    public void setProdutos(Set produtos) {this.produtos = produtos;}
+    public Set<Produto> getProdutos() {return this.produtos;}
+    public void setProdutos(Set<Produto> produtos) {this.produtos = produtos;}
     /**
      * @see java.lang.Object#equals(Object)
      */

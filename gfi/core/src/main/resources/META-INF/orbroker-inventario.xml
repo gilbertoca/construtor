@@ -33,7 +33,7 @@
         #end 
         #if ($like) 
             WHERE        
-                cd_unidade_medida like :unidadeMedida.cdUnidadeMedida OR descricao_unidade like :unidadeMedida.descricaoUnidade
+                descricao_unidade like :unidadeMedida.descricaoUnidade
         #end         
     </sql-statement> 	    
     <sql-statement id="insertUnidadeMedida">

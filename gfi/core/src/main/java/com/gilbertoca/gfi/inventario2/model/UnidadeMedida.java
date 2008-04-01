@@ -6,6 +6,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 public class UnidadeMedida implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String descricaoUnidade;
     private String cdUnidadeMedida;
     private int version = -1;

@@ -36,7 +36,7 @@ public class ResourceLocator {
     private transient final Logger log = LoggerFactory.getLogger(getClass());
     private InitialContext ic;
     //used to hold references to EJBHomes/JMS Resources for re-use
-    private Map cache = Collections.synchronizedMap(new HashMap());
+    private Map<String, Object> cache = Collections.synchronizedMap(new HashMap<String, Object>());
     private static ResourceLocator instance = new ResourceLocator();
 
     public static ResourceLocator getInstance() {
