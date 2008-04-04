@@ -98,7 +98,7 @@
         <module>../web</module>
     </modules>
     <repositories>
-        <repository>
+        <!-- repository>
             <id>central</id>
             <url>http://repo1.maven.org/maven2</url>
         </repository>
@@ -109,6 +109,10 @@
         <repository>
             <id>Jboss repository</id>
             <url>http://repository.jboss.org/maven2</url>
+        </repository-->
+        <repository>
+        	<id>SourceForge Click repository</id>
+        	<url>http://click.sourceforge.net/maven2</url>
         </repository>
     </repositories>
     <dependencies>
