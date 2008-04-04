@@ -94,7 +94,7 @@ public class CategoriaServiceTest {
         Integer cdCategoria = 1;
         CategoriaService instance = new CategoriaService();
         Categoria uM = instance.findByPk(cdCategoria);
-        uM.setDescricaoCategoria("Cubicos");
+        uM.setNomeCategoria("Cubicos");
         instance.update(uM);
         Categoria uM2 = instance.findByPk(cdCategoria);
         assertTrue("O valor do campo DcCategoria", uM.getDescricaoCategoria().equals(uM2.getDescricaoCategoria()));
