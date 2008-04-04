@@ -53,12 +53,12 @@
     <dependency>
       <groupId>net.sf.click</groupId>
       <artifactId>click</artifactId>
-      <version>1.4</version>
+      <version>${click.version}</version>
     </dependency>
     <dependency>
       <groupId>net.sf.click</groupId>
       <artifactId>click-extras</artifactId>
-      <version>1.4</version>
+      <version>${click.version}</version>
       <exclusions>
         <exclusion>
 	      <groupId>springframework</groupId>
@@ -86,4 +86,9 @@
       </exclusions>
     </dependency>
   </dependencies>
+	<properties>
+		<!-- Framework dependency versions -->
+		<click.version>1.4.1</click.version>
+		<gfi.version>1.5</gfi.version>
+	</properties>
 </project>
