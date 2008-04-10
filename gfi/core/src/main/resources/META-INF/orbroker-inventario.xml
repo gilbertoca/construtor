@@ -51,7 +51,7 @@
     <sql-statement id="deleteUnidadeMedida">
         DELETE FROM {{schema}}.inventario_unidade_medida
         WHERE
-            cd_unidade_medida  = :cdUnidadeMedida
+            cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
     </sql-statement>
     <!-- Categoria -->
     <result-object id="Categoria" class="com.gilbertoca.gfi.inventario2.model.Categoria" key-columns="cd_categoria">
@@ -103,7 +103,7 @@
     <sql-statement id="deleteCategoria">
         DELETE FROM {{schema}}.inventario_categoria
         WHERE
-            cd_categoria  = :cdCategoria
+            cd_categoria  = :categoria.cdCategoria
     </sql-statement>
     
 </broker>
