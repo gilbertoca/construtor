@@ -28,9 +28,6 @@
         #if ($unidadeMedida.cdUnidadeMedida) 
             WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
         #end 
-        #if ($ByPk) 
-            WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
-        #end 
         #if ($like) 
             WHERE        
                 descricao_unidade like :unidadeMedida.descricaoUnidade
@@ -76,9 +73,6 @@
         SELECT cd_categoria,nome_categoria, descricao_categoria,dt_cadastro, version
         FROM {{schema}}.inventario_categoria
         #if ($categoria.cdCategoria) 
-            WHERE cd_categoria = :categoria.cdCategoria 
-        #end 
-        #if ($ByPk) 
             WHERE cd_categoria = :categoria.cdCategoria 
         #end 
         #if ($like) 

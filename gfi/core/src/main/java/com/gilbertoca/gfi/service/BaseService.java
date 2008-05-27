@@ -22,7 +22,7 @@ import com.gilbertoca.gfi.Constants;
  * 
  * @author gilberto
  */
-public class BaseService<T, PK extends Serializable> implements Service<T, PK>{
+public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 	protected String brokerName;
 	private Class<T> classEntity;
     protected transient final Logger log = LoggerFactory.getLogger(getClass());
@@ -56,33 +56,8 @@ public class BaseService<T, PK extends Serializable> implements Service<T, PK>{
         }    	
     }
 
-    public T find(PK primaryKey){
-    	log.debug("Realizando consulta por entidade. Identificador usado como parâmetro: {} ",primaryKey);
-        Query qry = getBroker().startQuery();
-        if (getClassEntity() == null) {
-            throw new IllegalArgumentException("ClassEntity não pode ser nulo!");
-        }
 
-    	if (primaryKey == null || primaryKey.equals("")) {
-            throw new IllegalArgumentException(
-                    "Identificador não pode ser nulo!");
-        }
-        
-        String parametro = getClassEntity().getSimpleName().substring(0, 1).toLowerCase() + getClassEntity().getSimpleName().substring(1);
-        String sentenca = "get" + getClassEntity().getSimpleName();
-        qry.setParameter(parametro, getClassEntity());
-        try {
-            log.debug("Verificando parametros ..." +
-                    "\nQuery parameter: {}" +
-                    "\nStament name   : {}" +
-                    "\nArgumento: {}\n", new Object[] {parametro, sentenca, getClassEntity()});
-            return (T) qry.selectOne(sentenca);
-        } finally {
-            qry.close();
-        }
-    }
-
-    public boolean findByPk(T entity) {
+    public boolean find(T entity) {
     	log.debug("Realizando consulta por entidade. Identificador usado como parâmetro: {} ",entity);
         Query qry = getBroker().startQuery();
         if (entity == null) {
