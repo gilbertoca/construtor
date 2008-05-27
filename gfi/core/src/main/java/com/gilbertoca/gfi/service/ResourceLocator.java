@@ -128,7 +128,7 @@ public class ResourceLocator {
                 throw new ResourceLocatorException("Arquivo xml não encontrado! ");
             }
             try {
-                log.debug("Carregando arquivo xml ...");
+                log.debug("Carregando arquivo xml ..."); 
                 broker = new Broker(is, getDataSource());
                 if (schema != null){
                     broker.setTextReplacement("schema", schema);

@@ -10,7 +10,7 @@ package com.gilbertoca.gfi.service;
  * @author gilberto
  */
 public class ResourceLocatorException extends RuntimeException {
-    public ResourceLocatorException() {}
+    public ResourceLocatorException() {} 
     public ResourceLocatorException(String msg) { super(msg); }
     public ResourceLocatorException(String msg, Throwable cause) { super(msg, cause); }
     public ResourceLocatorException(Throwable cause) { super(cause); }
