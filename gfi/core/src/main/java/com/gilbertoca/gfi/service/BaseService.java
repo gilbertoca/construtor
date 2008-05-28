@@ -150,7 +150,7 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
                     "\nNome senteça SQL: {}", parametro, sentenca);
         	
             txn.setParameter(parametro, entity);
-            recordsUpdated = txn.execute("deleteCategoria");
+            recordsUpdated = txn.execute(sentenca);
             if (recordsUpdated != 1) {
                 txn.rollback();
             	log.debug("Problemas na deleção. Nº registros afetados: {} ",recordsUpdated);                
@@ -164,6 +164,36 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
         }
     }
 
+	public Collection<T> findLike(String likeColumn, String likeValue) {
+    	log.debug("Realizando consulta retornando registros, para entidade {} estejam no filtro: columa {} e valor {} ", new Object[] {getClassEntity(), likeColumn, likeValue});
+        Query qry = getBroker().startQuery();
+        if (getClassEntity() == null) {
+            throw new IllegalArgumentException("ClassEntity não pode ser nulo!");
+        }
+    	if (likeColumn == null || likeColumn.equals("")) {
+            throw new IllegalArgumentException(
+                    "likeColumn não pode ser nulo!");
+        }
+    	if (likeValue == null || likeValue.equals("")) {
+            throw new IllegalArgumentException(
+                    "likeValue não pode ser nulo!");
+        }
+    	String parametro = "likeValue";
+        String sentenca = "get" + getClassEntity().getSimpleName();
+        qry.setTextReplacement("likeColumn", likeColumn);
+        qry.setParameter(parametro, likeValue);        
+        try {
+            log.debug("Verificando parametros ..." +
+            		"\nTextReplacement   : {}" +
+                    "\nQuery parameter: {}" +
+                    "\nStament name   : {}" +
+                    "\nArgumento: {}\n", new Object[] {likeColumn, parametro, sentenca, likeValue});
+            return qry.selectMany(sentenca);
+        } finally {
+            qry.close();
+        }    	
+	}
+    
     public Collection<T> findByNamedQuery(String queryName){
         Query qry = getBroker().startQuery();
         try {
