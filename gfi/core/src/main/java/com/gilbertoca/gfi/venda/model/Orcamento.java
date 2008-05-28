@@ -32,7 +32,7 @@ public class Orcamento implements Serializable{
     private String tipoPagamento = "Vista";
     /**
      * Forma pagamento na venda:
-     * D-Dinheiro; H-Cheque; P-Cheque-pré-datado;
+     * D-Dinheiro; H-Cheque; P-Cheque-prï¿½-datado;
      * C-Cartao de Credito; U-Dollar; T-Ticket/Vale;
      * B-Boleto Bancario; L-Duplicata ou O-Convenio.
      */
@@ -337,7 +337,7 @@ public class Orcamento implements Serializable{
     }
 
     /**
-     * Faz a totalização da nota fiscal.
+     * Faz a totalizaÃ§Ã£o da nota fiscal.
      * @return totalNota.
      */
     public Double getTotalInternal(){

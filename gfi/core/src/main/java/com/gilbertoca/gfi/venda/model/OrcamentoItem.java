@@ -26,7 +26,7 @@ public class OrcamentoItem implements Serializable {
     private Item item = new Item();
     private Orcamento orcamento = new Orcamento();
     /** 
-     * Usado para simular a chamada de m�todo interno que realiza a totaliza��o do item.
+     * Usado para simular a chamada de m�todo interno que realiza a totalização do item.
      * Como não podemos chamar o m�todo getTotal() na interface web, ent�o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: Total;
@@ -35,7 +35,7 @@ public class OrcamentoItem implements Serializable {
      */    
     private Double total = new Double(0);
     /** 
-     * Usado para simular a chamada de m�todo interno que realiza a totaliza��o do item.
+     * Usado para simular a chamada de m�todo interno que realiza a totalização do item.
      * Como não podemos chamar o m�todo getValorDesconto() na interface web, ent�o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: valorDesconto;

@@ -39,7 +39,15 @@ public class BaseServiceTest {
 		System.out.println(result);
         assertTrue(result.size() > size);
 	}
-    @Test
+
+	@Test
+	public void testFindLikeUnidadeMedida() {
+		Collection<UnidadeMedida> result = uS.findLike("cd_unidade_medida", "%MT%");
+		System.out.println(result);
+		assertTrue(result.size()==2);
+	}
+
+	@Test
     public void testInsertCategoria() {
     	int size = cS.getAll().size();
         Categoria entity = new Categoria(4, "MT3", "Metros");

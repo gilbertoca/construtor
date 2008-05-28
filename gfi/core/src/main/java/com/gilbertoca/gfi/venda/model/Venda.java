@@ -84,7 +84,7 @@ public class Venda implements Serializable{
     private Double valorParcela = new Double(0.0);
     private Double valorTotalPrazo = new Double(0.0);
 
-    //totaliza��o
+    //totalização
     private Double totalProdutos = new Double(0.0);
     private Double totalDesconto = new Double(0.0);
     private Double valorTotal = new Double(0.0);
@@ -800,7 +800,7 @@ public class Venda implements Serializable{
     }
 
     /**
-     * Faz a totaliza��o da nota fiscal.
+     * Faz a totalização da nota fiscal.
      * @return totalNota.
      */
     public Double getTotalInternal() {
@@ -862,7 +862,7 @@ public class Venda implements Serializable{
     }
     
     /**
-     * Ap�s a totaliza��o da venda, com o valor recebido, iremos totalizar
+     * Ap�s a totalização da venda, com o valor recebido, iremos totalizar
      * o valor do troco.
      * @return Double.
      */

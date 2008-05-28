@@ -17,7 +17,7 @@ public class MovimentoEstoqueItem implements Serializable{
 
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
-     * tipo de situa��o, por exemplo, removendo este atributo.
+     * tipo de situação, por exemplo, removendo este atributo.
      * Usado para determinar se instancia � transient or detached 
      */
     private int version = -1;
@@ -43,7 +43,7 @@ public class MovimentoEstoqueItem implements Serializable{
     private Item item = new Item();
     private MovimentoEstoque movimentoEstoque = new MovimentoEstoque();
     /** 
-     * Usado para simular a chamada de m�todo interno que realiza a totaliza��o do item com desconto.
+     * Usado para simular a chamada de m�todo interno que realiza a totalização do item com desconto.
      * Como não podemos chamar o m�todo getTotalComDesconto() na interface web, ent�o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalComDesconto;
@@ -53,7 +53,7 @@ public class MovimentoEstoqueItem implements Serializable{
     private Double totalComDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de m�todo interno que realiza a totaliza��o do item sem desconto.
+     * Usado para simular a chamada de m�todo interno que realiza a totalização do item sem desconto.
      * Como não podemos chamar o m�todo getTotalSemDesconto() na interface web, ent�o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalSemDesconto;
@@ -63,7 +63,7 @@ public class MovimentoEstoqueItem implements Serializable{
     private Double totalSemDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de m�todo interno que realiza a totaliza��o do item.
+     * Usado para simular a chamada de m�todo interno que realiza a totalização do item.
      * Como não podemos chamar o m�todo getValorDesconto() na interface web, ent�o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: valorDesconto;

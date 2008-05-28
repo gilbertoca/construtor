@@ -17,8 +17,8 @@ public class LocalizacaoSecao implements Serializable{
     private String cdLocalizacaoSecao;
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
-     * tipo de situação, por exemplo, removendo este atributo.
-     * Usado para determinar se instancia é transient or detached 
+     * tipo de situaÃ§Ã£o, por exemplo, removendo este atributo.
+     * Usado para determinar se instancia ï¿½ transient or detached 
      */
     private int version = -1;
 

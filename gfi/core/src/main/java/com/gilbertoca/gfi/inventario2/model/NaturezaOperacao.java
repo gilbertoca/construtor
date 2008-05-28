@@ -22,7 +22,7 @@ public class NaturezaOperacao implements Serializable {
     private Date dtCadastro = new Date();
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
-     * tipo de situa��o, por exemplo, removendo este atributo.
+     * tipo de situação, por exemplo, removendo este atributo.
      * Usado para determinar se instancia � transient or detached 
      */
     private int version = -1;

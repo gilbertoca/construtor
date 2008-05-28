@@ -758,7 +758,7 @@ public class MovimentoEstoque implements Serializable{
     }
     
     /**
-     * Faz a totaliza��o da nota fiscal.
+     * Faz a totalização da nota fiscal.
      * _valorFrete entrar� no c�lculo quando:
      *      quando for 'Entrada' e o atributo fretePorConta=2;
      *      quanto for 'Saida' e o atributo fretePorConta=1.
