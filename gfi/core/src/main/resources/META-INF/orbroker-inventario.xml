@@ -28,9 +28,9 @@
         #if ($unidadeMedida.cdUnidadeMedida) 
             WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
         #end 
-        #if ($like) 
+        #if ($likeValue) 
             WHERE        
-                descricao_unidade like :unidadeMedida.descricaoUnidade
+                {{likeColumn}} like :likeValue
         #end         
     </sql-statement> 	    
     <sql-statement id="insertUnidadeMedida">
@@ -77,7 +77,7 @@
         #end 
         #if ($like) 
             WHERE        
-                nome_categoria like :categoria.nomeCategoria OR descricao_categoria like :categoria.descricaoCategoria
+                {{likeColumn}} like :{{columnParameter}}
         #end         
     </sql-statement> 	    
     <sql-statement id="insertCategoria">
