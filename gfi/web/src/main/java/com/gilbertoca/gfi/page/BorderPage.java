@@ -10,14 +10,14 @@ import net.sf.click.extras.control.Menu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gilbertoca.gfi.service.Service;
+import com.gilbertoca.gfi.service.IService;
 /**
  *
  * @author Gilberto
  */
 public class BorderPage extends Page{
     protected final Logger log = LoggerFactory.getLogger(getClass());
-    protected Service service;
+    protected IService service;
    /** The root menu. */
     public Menu rootMenu = Menu.getRootMenu();
     /**
@@ -41,11 +41,11 @@ public class BorderPage extends Page{
         return "/border-template.htm";
     }
 
-	public Service getService() {
+	public IService getIService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setIService(IService service) {
 		this.service = service;
 	}
     

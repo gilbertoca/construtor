@@ -1,13 +1,15 @@
 package com.gilbertoca.gfi.page;
 
+import org.apache.commons.lang.StringUtils;
+
 import net.sf.click.control.FieldSet;
 import net.sf.click.control.Form;
 import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
-import com.gilbertoca.gfi.inventario.service.CategoriaService;
 import com.gilbertoca.gfi.inventario2.model.Categoria;
+import com.gilbertoca.gfi.service.BaseService;
 
 /**
  * Provides an edit Customer Form example. The Customer business object
@@ -17,7 +19,7 @@ import com.gilbertoca.gfi.inventario2.model.Categoria;
  * have their value automatically set with any identically named request
  * parameters after the page is created.
  *
- * @author Malcolm Edgar
+ * @author Gilberto Caetano de Andrade
  */
 public class EditCategoria extends BorderPage {
     // Public controls are automatically added to the page
@@ -27,7 +29,7 @@ public class EditCategoria extends BorderPage {
     public String cdCategoria;
 
     public EditCategoria() {
-        setService(new CategoriaService());
+        setIService(new BaseService<Categoria, Integer>(Categoria.class));
         form.add(referrerField);
         form.add(versionField);
         FieldSet fieldSet = new FieldSet("Unidade Medida");
@@ -49,36 +51,35 @@ public class EditCategoria extends BorderPage {
      * @see Page#onGet()
      */
     public void onGet() {
-    	log.debug("Preparando a p·gina para ser exibida.");
-    	Categoria categoria;
+    	log.debug("Preparando a p√°gina para ser exibida.");
+    	Categoria categoria = new Categoria();
         if (cdCategoria != null) {
-        	log.debug("Identificador encontrado: {}, preparar p·gina para ediÁ„o de entidade",cdCategoria);
+        	categoria.setCdCategoria(Integer.valueOf(cdCategoria));
+        	log.debug("Identificador encontrado: {}, preparar p√°gina para edi√ß√£o de entidade",cdCategoria);
         	form.getField("cdCategoria").setReadonly(true);
-            categoria = (Categoria) getService().findByPk(cdCategoria);
-            if (categoria != null) {
+            if (getIService().find(categoria)) {
                 form.copyFrom(categoria);
-                log.debug("LigaÁ„o (Binding) Entidade/Form realizada: {}",categoria);
+                log.debug("Liga√ß√£o (Binding) Entidade/Form realizada: {}",categoria);
             }
         }else{
-        	categoria = new Categoria();
         	form.copyFrom(categoria);
         }
         	
     }
 
     public boolean onOkClick() {
-    	log.debug("Bot„o OK pressionado");
+    	log.debug("Bot√£o OK pressionado");
         if (form.isValid()) {
             Categoria categoria = new Categoria();
-            log.debug("CriaÁ„o de um novo objeto: {}",categoria);
+            log.debug("Cria√ß√£o de um novo objeto: {}",categoria);
             form.copyTo(categoria);
-            log.debug("LigaÁ„o (Binding) Form/Entidade realizada: {}",categoria);
+            log.debug("Liga√ß√£o (Binding) Form/Entidade realizada: {}",categoria);
             if (categoria.getVersion() != -1) {
-            	getService().update(categoria);
-            	log.debug("OperaÁ„o de atualizaÁ„o realizada.");
+            	getIService().update(categoria);
+            	log.debug("Opera√ß√£o de atualiza√ß√£o realizada.");
             }else{
-            	getService().insert(categoria);            	
-            	log.debug("OperaÁ„o de inserÁ„o realizada.");
+            	getIService().insert(categoria);            	
+            	log.debug("Opera√ß√£o de inser√ß√£o realizada.");
             }
             String referrer = referrerField.getValue();
             if (referrer != null) {

@@ -13,8 +13,8 @@ import net.sf.click.control.Table;
 import net.sf.click.control.TextField;
 import net.sf.click.extras.control.LinkDecorator;
 
-import com.gilbertoca.gfi.inventario.service.UnidadeMedidaService;
 import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.service.BaseService;
 
 /**
  * Provides an demonstration of Table control paging.
@@ -35,7 +35,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
     // ----------------------------------------------------------- Constructors
 
     public TableUnidadeMedida() {
-    	setService(new UnidadeMedidaService());
+    	setIService(new BaseService<UnidadeMedida, String>(UnidadeMedida.class));
         setStateful(true);
 
         // Setup the search form
@@ -103,7 +103,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
     public boolean onDeleteClick() {
         String id = deleteLink.getValue();
         log.debug("Link Delete pressionado, argumento utilizado: {}", id);
-        getService().deleteByPk(id);
+        getIService().delete(new UnidadeMedida(id));
         return true;
     }
 
@@ -112,7 +112,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
      */
     public void onRender() {
     	log.debug("Preparando a página para ser exibida.");
-        List uMs = (List) getService().findLike(new UnidadeMedida(null, descricaoUnidadeField.getValue()));
+        List uMs = (List) getIService().findLike("descricao_unidade", "%"+descricaoUnidadeField.getValue()+"%");
         table.setRowList(uMs);
     }
 }
