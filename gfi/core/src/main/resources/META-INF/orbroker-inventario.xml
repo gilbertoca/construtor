@@ -10,7 +10,7 @@
         ser alcançados dessa forma /META-INF/sql/.
 -->
 <broker name="inventario" version="2.0">
-    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario2.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
+    <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
         <property name="CdUnidadeMedida">
             <column name="CD_UNIDADE_MEDIDA"/>
@@ -51,7 +51,7 @@
             cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida
     </sql-statement>
     <!-- Categoria -->
-    <result-object id="Categoria" class="com.gilbertoca.gfi.inventario2.model.Categoria" key-columns="cd_categoria">
+    <result-object id="Categoria" class="com.gilbertoca.gfi.inventario.model.Categoria" key-columns="cd_categoria">
         <!-- Id -->
         <property name="CdCategoria">
             <column name="cd_categoria"/>
