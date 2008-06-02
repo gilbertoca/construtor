@@ -32,7 +32,7 @@ public class BaseServiceTest {
 
 	@Test
 	public void testInsertUnidadeMedida() {
-    	int size = cS.getAll().size();		
+    	int size = uS.getAll().size();		
 		UnidadeMedida entity = new UnidadeMedida("MT3", "Metros");
 		uS.insert(entity);
 		Collection<UnidadeMedida> result = uS.getAll();
