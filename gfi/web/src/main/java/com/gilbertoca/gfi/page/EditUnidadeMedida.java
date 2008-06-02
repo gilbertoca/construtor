@@ -6,7 +6,7 @@ import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.BaseService;
 
 /**

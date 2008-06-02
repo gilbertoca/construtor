@@ -13,7 +13,7 @@ import net.sf.click.control.Table;
 import net.sf.click.control.TextField;
 import net.sf.click.extras.control.LinkDecorator;
 
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.BaseService;
 
 /**

@@ -8,7 +8,7 @@ import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
-import com.gilbertoca.gfi.inventario2.model.Categoria;
+import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.service.BaseService;
 
 /**
