@@ -205,7 +205,7 @@
         
         <jdbc.username>gfi</jdbc.username>        
         <jdbc.password>value</jdbc.password>
-        <jdbc.url>jdbc:derby://localhost:1527/gfi_db</jdbc.url>
+        <jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true</jdbc.url>
         <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>        
         <jdbc.groupId>org.apache.derby</jdbc.groupId>
         <jdbc.artifactId>derbyclient</jdbc.artifactId>
