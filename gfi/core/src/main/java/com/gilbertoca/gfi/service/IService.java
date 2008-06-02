@@ -11,8 +11,10 @@ import net.sourceforge.orbroker.Broker;
 
 
 /**
+ * Interface geral para uso com o mescanimo de persistência OrBroker. Estabelece assinaturas
+ * de métodos essenciais para operações de acesso a banco de dados.
  * 
- * @author gilberto
+ * @author Gilberto Caetano de Andrade
  */
 public interface IService<T, PK extends Serializable> {
     /**
@@ -48,6 +50,15 @@ public interface IService<T, PK extends Serializable> {
      * @param entity entidade a ser deletada.
      */    
     public void delete(T entity);
+    /**
+     * Método genérico para consulta nomeada preexistente.
+     * @param queryName nome da consulta.
+     */    
     public Collection<T> findByNamedQuery(String queryName);
-    public Collection<T> findLike(String likeColumn, String columnParameter);
+    /**
+     * Método genérico para personalizada com a cláusula SQL LIKE.
+     * @param likeColumn campo a ser usado na cláusula SQL.
+     * @param likeValue valor para pesquisa. 
+     */    
+    public Collection<T> findLike(String likeColumn, String likeValue);
 }
