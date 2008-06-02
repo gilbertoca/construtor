@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
  * de recursos como EJBHomes, Destinos JMS, DataSources, Mecanismos de Persistência(OrBroker), etc.
  * Essa implementação usa a estratégia "singleton", como também a estratégia "caching".
  * Essa implementação pode ser usada nas camada web e service.
+ * 
  * @author Gilberto Caetano de Andrade
  */
 public class ResourceLocator {
@@ -62,6 +63,7 @@ public class ResourceLocator {
     /**
      * Obtém uma Fonte de Dados (DataSource) através do mecanismo de nome de recursos(JNDI), usando
      * o nome do recurso como parâmetro.
+     * 
      * @param dataSourceName o nome do recurso.
      * @return a Fonte de Dados(DataSource)
      */
@@ -80,6 +82,7 @@ public class ResourceLocator {
 
     /**
      * Obtém uma Fonte de Dados (DataSource) local através do mecanismo de pooling DBCP.
+     * 
      * @return a Fonte de Dados(DataSource)
      */
     public DataSource getDataSource() throws ResourceLocatorException {
@@ -117,8 +120,9 @@ public class ResourceLocator {
     }
 
     /**
-     * Este método obtém um objeto broker através de seu nome.
-     * @param brokerName nome dado a Unidade de Persitência mantida pelo mecanismo OrBroker
+     * Este método obtém um objeto broker através do nome de arquivo.
+     * 
+     * @param brokerName nome do arquivo - Unidade de Persitência - mantido pelo mecanismo OrBroker.
      * @return o Broker correspondente ao parâmetro.
      */
     public Broker getBroker(String brokerName) throws ResourceLocatorException {
@@ -127,9 +131,10 @@ public class ResourceLocator {
     }
     
     /**
-     * Este método obtém um objeto broker através de seu nome e schema apropriado.
-     * @param brokerName nome dado a Unidade de Persitência mantida pelo mecanismo OrBroker, se omitido,
-     * será lançado uma IllegalArgumentException.
+     * Este método obtém um objeto broker através do nome de arquivo e schema apropriado.
+     * 
+     * @param brokerName nome do arquivo - Unidade de Persitência - mantido pelo mecanismo OrBroker, se omitido,
+     * será lançado a exceção IllegalArgumentException.
      * @param schema corresponde ao schema a ser usado pelo mecanismo de persistẽncia OrBroker, se omitido,
      * assume-se brokerName como schema.
      * @return o Broker correspondente ao parâmetro.
@@ -138,7 +143,7 @@ public class ResourceLocator {
     	log.debug("Obtendo mecanismo de persistência (OrBroker) existente.");
     	if (brokerName == null || brokerName.equals("")) {
             throw new IllegalArgumentException(
-                    "brokerName não pode ser nulo!");
+                    "Nome do arquivo - Unidade de Persistência - não pode ser nulo!");
         }    	
     	
         Broker broker = (Broker) cache.get(brokerName);
@@ -190,6 +195,7 @@ public class ResourceLocator {
     }
     /**
      * Obtém uma conexão da Fonte de Dados (DataSource) local (DBCP).
+     * 
      * @return uma conexão com banco de dados ativa.
      */
     public Connection getConnection() {

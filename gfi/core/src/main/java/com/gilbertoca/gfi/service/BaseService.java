@@ -17,10 +17,30 @@ import org.slf4j.LoggerFactory;
 import com.gilbertoca.gfi.Constants;
 
 
-
 /**
- * 
- * @author gilberto
+ * Esta classe é uma implementação padrão da interface IService. Fornece uma implementação básica 
+ * para todos os métodos dessa interface. O prerequisito para uso dessa classe é a existência de uma
+ * Unidade de Persistência (gerenciada pelo mecanismo OrBroker) e a definição nessa mesma unidade, das
+ * entidades a serem usadas nas operações implementadas.
+ * <p/>
+ * Como demonstração, suponha a existência de uma entidade <tt>UnidadeMedida</tt> já definida  
+ * <p/>
+ * <pre class="codeJava">
+ *	public class BaseServiceTest {
+ *
+ *	private BaseService&lt;UnidadeMedida, String&gt; uS = new BaseService&lt;UnidadeMedida, String&gt;(UnidadeMedida.class);
+ *
+ *	public void testInsertUnidadeMedida() {
+ *	int size = uS.getAll().size();		
+ *	UnidadeMedida entity = new UnidadeMedida("MT3", "Metros");
+ *	uS.insert(entity);
+ *	Collection&lt;UnidadeMedida&gt; result = uS.getAll();
+ *	System.out.println(result);
+ *	assertTrue(result.size() > size);
+ *	}
+ *	   ..
+ *	} </pre>
+ * @author Gilberto Caetano de Andrade
  */
 public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 	protected String brokerName;
@@ -31,19 +51,21 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 		super();
 		this.classEntity = classEntity;
 	}
-
-    
-	public Class<T> getClassEntity() {
-		return classEntity;
+    public BaseService(Class<T> classEntity, String brokerName) {
+		super();
+		this.classEntity = classEntity;
+		this.brokerName = brokerName;
 	}
 
+	public Class<T> getClassEntity() {return classEntity;}
 
 	public Collection<T> getAll(){
     	log.debug("Realizando consulta retornando todos os registros, para a entidade: {} ",getClassEntity());
-        Query qry = getBroker().startQuery();
+
         if (getClassEntity() == null) {
             throw new IllegalArgumentException("ClassEntity não pode ser nulo!");
         }
+        Query qry = getBroker().startQuery();        
         String sentenca = "get" + getClassEntity().getSimpleName();
         
         try {
@@ -59,10 +81,11 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
     public boolean find(T entity) {
     	log.debug("Realizando consulta por entidade. Identificador usado como parâmetro: {} ",entity);
-        Query qry = getBroker().startQuery();
+
         if (entity == null) {
             throw new IllegalArgumentException("Entidade não pode ser nulo!");
         }
+        Query qry = getBroker().startQuery();        
         String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase() + entity.getClass().getSimpleName().substring(1);
         String sentenca = "get" + entity.getClass().getSimpleName();
         qry.setParameter(parametro, entity);
@@ -79,10 +102,11 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
     public void insert(T entity){
     	log.debug("Realizando inserção. Entidade usada como parâmetro: {} ",entity);    	
-        Transaction txn = getBroker().startTransaction();
+
         if (entity == null) {
             throw new IllegalArgumentException("Entidade não pode ser nulo!");
         }
+        Transaction txn = getBroker().startTransaction();        
         String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase() + entity.getClass().getSimpleName().substring(1);
         String sentenca = "insert" + entity.getClass().getSimpleName();
         int recordsUpdated = 0;
@@ -107,10 +131,11 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
     public void update(T entity){
     	log.debug("Realizando alteração. Entidade usada como parâmetro: {} ",entity);
-        Transaction txn = getBroker().startTransaction();
+
         if (entity == null) {
             throw new IllegalArgumentException("Entidade não pode ser nulo!");
         }
+        Transaction txn = getBroker().startTransaction();        
         String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase() + entity.getClass().getSimpleName().substring(1);
         String sentenca = "update" + entity.getClass().getSimpleName();
         
@@ -136,10 +161,11 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
     public void delete(T entity){
         log.debug("Realizando deleção. Entidade usada como parâmetro: {} ",entity);
-        Transaction txn = getBroker().startTransaction();
+
         if (entity == null) {
             throw new IllegalArgumentException("Entidade não pode ser nulo!");
         }
+        Transaction txn = getBroker().startTransaction();        
         String parametro = entity.getClass().getSimpleName().substring(0, 1).toLowerCase() + entity.getClass().getSimpleName().substring(1);
         String sentenca = "delete" + entity.getClass().getSimpleName();
         
@@ -166,7 +192,7 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
 	public Collection<T> findLike(String likeColumn, String likeValue) {
     	log.debug("Realizando consulta retornando registros, para entidade {} estejam no filtro: columa {} e valor {} ", new Object[] {getClassEntity(), likeColumn, likeValue});
-        Query qry = getBroker().startQuery();
+
         if (getClassEntity() == null) {
             throw new IllegalArgumentException("ClassEntity não pode ser nulo!");
         }
@@ -178,6 +204,7 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
             throw new IllegalArgumentException(
                     "likeValue não pode ser nulo!");
         }
+        Query qry = getBroker().startQuery();    	
     	String parametro = "likeValue";
         String sentenca = "get" + getClassEntity().getSimpleName();
         qry.setTextReplacement("likeColumn", likeColumn);
@@ -205,6 +232,4 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
     public Broker getBroker() {
         return ResourceLocator.getInstance().getBroker(Constants.ORBROKER_INVENTARIO, "gfi");
     }
-
-
 }
