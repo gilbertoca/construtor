@@ -2,7 +2,7 @@ package com.gilbertoca.gfi.service;
 
 
 
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 
 public interface IUnidadeMedidaService extends IService<UnidadeMedida, Integer> {
     /**

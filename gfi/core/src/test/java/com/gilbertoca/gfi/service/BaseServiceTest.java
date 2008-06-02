@@ -6,8 +6,8 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import com.gilbertoca.gfi.inventario2.model.Categoria;
-import com.gilbertoca.gfi.inventario2.model.UnidadeMedida;
+import com.gilbertoca.gfi.inventario.model.Categoria;
+import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 
 public class BaseServiceTest {
 	private BaseService<UnidadeMedida, String> uS = new BaseService<UnidadeMedida, String>(UnidadeMedida.class);

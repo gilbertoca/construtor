@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import net.sourceforge.orbroker.Query;
 
-import com.gilbertoca.gfi.inventario2.model.Categoria;
+import com.gilbertoca.gfi.inventario.model.Categoria;
 
 public interface ICategoriaService extends IService<Categoria, Integer> {
     /**
