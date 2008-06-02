@@ -23,19 +23,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is an implementation of the Service Locator pattern. It is
- * used to looukup resources such as EJBHomes, JMS Destinations, etc.
- * This implementation uses the "singleton" strategy and also the "caching"
- * strategy.
- * This implementation is intended to be used on the web tier and
- * not on the ejb tier.
- * @author gilberto
+ * Esta classe é uma implementação do padrão Service Locator. É usada para pesquisa e obtenção
+ * de recursos como EJBHomes, Destinos JMS, DataSources, Mecanismos de Persistência(OrBroker), etc.
+ * Essa implementação usa a estratégia "singleton", como também a estratégia "caching".
+ * Essa implementação pode ser usada nas camada web e service.
+ * @author Gilberto Caetano de Andrade
  */
 public class ResourceLocator {
+	/**
+	 * Constante usada para capturar atraves de propriedades do sistema, o nível de log
+	 * a ser ajustado para o mecanismo de persistẽncia OrBroker.
+	 */
 	static final String ORBROKER_LOG_LEVEL = "log.level";
     private transient final Logger log = LoggerFactory.getLogger(getClass());
+    /**
+     * Contexto local usado para pesquisa e obtenção de recursos por nome.
+     */
     private InitialContext ic;
-    //used to hold references to EJBHomes/JMS Resources for re-use
+    /**
+     * Usado para manter referẽncias a recursos que consomem bastante processo: EJBHomes/JMS/DataSource.
+     * Sendo os mesmos reusados. 
+     */
     private Map<String, Object> cache = Collections.synchronizedMap(new HashMap<String, Object>());
     private static ResourceLocator instance = new ResourceLocator();
 
@@ -52,8 +60,10 @@ public class ResourceLocator {
     }
 
     /**
-     * This method obtains the datasource itself for a caller
-     * @return the DataSource corresponding to the name parameter
+     * Obtém uma Fonte de Dados (DataSource) através do mecanismo de nome de recursos(JNDI), usando
+     * o nome do recurso como parâmetro.
+     * @param dataSourceName o nome do recurso.
+     * @return a Fonte de Dados(DataSource)
      */
     public DataSource getDataSource(String dataSourceName) throws ResourceLocatorException {
         DataSource dataSource = (DataSource) cache.get(dataSourceName);
@@ -69,8 +79,8 @@ public class ResourceLocator {
     }
 
     /**
-     * This method obtains the datasource itself for a caller
-     * @return the DataSource
+     * Obtém uma Fonte de Dados (DataSource) local através do mecanismo de pooling DBCP.
+     * @return a Fonte de Dados(DataSource)
      */
     public DataSource getDataSource() throws ResourceLocatorException {
     	log.debug("Obtendo fonte de dados (DBCP DataSource) existente");
@@ -107,19 +117,30 @@ public class ResourceLocator {
     }
 
     /**
-     * This method obtains the broker itself for a caller
-     * @return the Broker corresponding to the name parameter
+     * Este método obtém um objeto broker através de seu nome.
+     * @param brokerName nome dado a Unidade de Persitência mantida pelo mecanismo OrBroker
+     * @return o Broker correspondente ao parâmetro.
      */
     public Broker getBroker(String brokerName) throws ResourceLocatorException {
+    	//Assume brokerName como schema
         return getBroker(brokerName, null);
     }
     
     /**
-     * This method obtains the broker itself for a caller
-     * @return the Broker corresponding to the name parameter
+     * Este método obtém um objeto broker através de seu nome e schema apropriado.
+     * @param brokerName nome dado a Unidade de Persitência mantida pelo mecanismo OrBroker, se omitido,
+     * será lançado uma IllegalArgumentException.
+     * @param schema corresponde ao schema a ser usado pelo mecanismo de persistẽncia OrBroker, se omitido,
+     * assume-se brokerName como schema.
+     * @return o Broker correspondente ao parâmetro.
      */
     public Broker getBroker(String brokerName, String schema) throws ResourceLocatorException {
     	log.debug("Obtendo mecanismo de persistência (OrBroker) existente.");
+    	if (brokerName == null || brokerName.equals("")) {
+            throw new IllegalArgumentException(
+                    "brokerName não pode ser nulo!");
+        }    	
+    	
         Broker broker = (Broker) cache.get(brokerName);
         if (broker == null) {
             log.debug("Obtendo mecanismo de persistência (OrBroker), através do arquivo: {} e schema: {}", brokerName, schema);            
@@ -130,9 +151,13 @@ public class ResourceLocator {
             try {
                 log.debug("Carregando arquivo xml ..."); 
                 broker = new Broker(is, getDataSource());
-                if (schema != null){
+                if (schema != null && !schema.equals("")){
                     broker.setTextReplacement("schema", schema);
+                }else{
+                	//Assume brokerName como schema
+                	broker.setTextReplacement("schema", brokerName);
                 }
+                
                 /*
                  * Ativando/Desativando o logging especifico do ORBROKER
                  * WARNING: Used for internally caught exceptions not considered severe.</li>
@@ -163,12 +188,15 @@ public class ResourceLocator {
         }
         return broker;
     }
-
+    /**
+     * Obtém uma conexão da Fonte de Dados (DataSource) local (DBCP).
+     * @return uma conexão com banco de dados ativa.
+     */
     public Connection getConnection() {
         try {
             return getDataSource().getConnection();
         } catch (SQLException ex) {
-            log.debug("Failed getting connection");
+            log.debug("Falha na obtençao da conexão.");
             ex.printStackTrace();
             throw new ResourceLocatorException(ex);
         }
