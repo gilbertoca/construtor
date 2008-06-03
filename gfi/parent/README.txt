@@ -8,33 +8,38 @@ ter múltiplos clientes para o mesmo backend (core).
 
 Para iniciar, por favor complete os seguintes passos:
 
+Configure seu ambiente de desenvolvimento:
 
-1. Download e instale o banco de dados Derby http://db.apache.org/derby/, depois 
+1. Download e instale JDK 5+ (verifique se a variável de ambiente JAVA_HOME aponta para JDK, e não JRE).
+2. Download e instale o banco de dados Derby http://db.apache.org/derby/, depois 
 inicie o banco em modo cliente/servidor (/bin/startNetworkServer.sh linux, /bin/startNetworkServer.bat win32)
 Atenção: 
 - Iniciando o banco no diretório especificado criará o banco de dados nesse mesmo diretório.
-- Uma alternativa é mudar para um diretório que desejar armazenar o banco de dados e iniciar o processo
+- Uma alternativa é mudar para um diretório que deseja armazenar o banco de dados e iniciar o processo
 nesse diretório.
-- O mais prático na minha opnião é a definição/especificação de uma propriedade de sistema - derby.system.home -
+- O mais prático na minha opnião é a definição/especificação de uma propriedade de sistema (derby.system.home)
 a qual indicará a localização do banco de dados ou bancos de dados. Exemplo:
 -Dderby.system.home=/home/usuario/bin/database
+3. Download e instale Maven 2.0.9+.
 
-2. Em uma área/diretório destinada ao desenvolvimento (/home/usuario/dev - linux, C:\Dev - win32),
-obtenha o projeto através de um cliente para o servidor subversion, exemplo:
-svn checkout http://construtor.googlecode.com/svn/trunk/gfi gfi
+Executando a aplicação:
 
-3. No prompt de comando, cd dentro diretório gfi/core e execute "mvn sql:execute". A execução
-desse goal (objetivo), irá criar o banco com os objetos preliminares e só deverá ser executado
-somente para inicialização do projeto.
+1. Em uma área/diretório destinada ao desenvolvimento (/home/usuario/dev - linux, C:\Dev - win32),
+obtenha o projeto através de um cliente de controle de versões - subversion, exemplo: tortoiseSVN -, 
+exemplo usando o prompt de comando: svn checkout http://construtor.googlecode.com/svn/trunk/gfi gfi
 
-4. Ainda no prompt de comando, dentro diretório gfi/core, execute "mvn test". Obtendo confirmação
+2. No prompt de comando, cd dentro diretório gfi/core e execute "mvn sql:execute". A execução
+desse goal (meta), irá criar o banco com os objetos preliminares e só deverá ser executado
+somente para inicialização do projeto ou a criação de um novo objeto de banco de dados.
+
+3. Ainda no prompt de comando, dentro diretório gfi/core, execute "mvn test". Obtendo confirmação
 de êxito na execução, proceda com a instalação do artefato (jar): mvn install.
 
-5. No prompt de comando, cd dentro diretório gfi/web e execute "mvn jetty:run". Agora você poderá
+4. No prompt de comando, cd dentro diretório gfi/web e execute "mvn jetty:run". Agora você poderá
 acessar a aplicação através do endereço http://localhost:8080/gfi-web/, mais especificamente 
 http://localhost:8080/gfi-web/table-unidade-medida.htm
 
-4. Mais informações podem ser encontrada em:
+5. Mais informações podem ser encontrada em:
 
     http://code.google.com/p/construtor/
 
