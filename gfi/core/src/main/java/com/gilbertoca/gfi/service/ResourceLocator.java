@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ResourceLocator {
 	/**
-	 * Constante usada para capturar atraves de propriedades do sistema, o nível de log
+	 * Constante usada para capturar, atraves de propriedades do sistema, o nível de log
 	 * a ser ajustado para o mecanismo de persistẽncia OrBroker.
 	 */
 	static final String ORBROKER_LOG_LEVEL = "log.level";
@@ -42,7 +42,7 @@ public class ResourceLocator {
      */
     private InitialContext ic;
     /**
-     * Usado para manter referẽncias a recursos que consomem bastante processo: EJBHomes/JMS/DataSource.
+     * Usado para manter referẽncias a recursos que consomem bastante processo e memória: EJBHomes/JMS/DataSource.
      * Sendo os mesmos reusados. 
      */
     private Map<String, Object> cache = Collections.synchronizedMap(new HashMap<String, Object>());
