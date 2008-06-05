@@ -20,6 +20,9 @@ public class Categoria implements Serializable {
     /** default constructor */
     public Categoria() {   }
     
+	public Categoria(Integer cdCategoria) {
+		this.cdCategoria = cdCategoria;
+	}
 
 	public Categoria(Integer cdCategoria, String nomeCategoria, String descricaoCategoria) {
 		this.cdCategoria = cdCategoria;
