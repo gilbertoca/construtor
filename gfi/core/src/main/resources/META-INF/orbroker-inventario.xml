@@ -75,9 +75,9 @@
         #if ($categoria.cdCategoria) 
             WHERE cd_categoria = :categoria.cdCategoria 
         #end 
-        #if ($like) 
+        #if ($likeValue) 
             WHERE        
-                {{likeColumn}} like :{{columnParameter}}
+                {{likeColumn}} like :likeValue
         #end         
     </sql-statement> 	    
     <sql-statement id="insertCategoria">
