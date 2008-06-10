@@ -1,45 +1,49 @@
-GFI - Gestão Financeira e Inventário
---------------------------------------------------------------------------------
-Há dois módulos nesse projeto. O primeiro é "core" e pretende conter Services
-(regras de negócio, incluindo mecanismo de persistência). O segundo é "web", 
-qualquer arquivo relacionado á camada web. Usar um projeto modular é recomendado 
-quando se planeja usar o módulo "core" em múltiplas aplicações, ou se planeja 
-ter múltiplos clientes para o mesmo backend (core).
+GFI - Financial Management and Inventory
 
-Para iniciar, por favor complete os seguintes passos:
+There are two modules in this project. The first is "core" and is meant to 
+contain Services(rules of business, including mechanism of persistence). The second is "web",
+any file related to web layer. Using a modular design is recommended
+when you plan to use the module "core" in multiple applications, or if plans
+have multiple customers for the same backend (core).
 
-Configure seu ambiente de desenvolvimento:
+To start, please complete the following steps:
 
-1. Download e instale JDK 5+ (verifique se a variável de ambiente JAVA_HOME aponta para JDK, e não JRE).
-2. Download e instale o banco de dados Derby http://db.apache.org/derby/, depois 
-inicie o banco em modo cliente/servidor (/bin/startNetworkServer.sh linux, /bin/startNetworkServer.bat win32)
-Atenção: 
-- Iniciando o banco no diretório especificado criará o banco de dados nesse mesmo diretório.
-- Uma alternativa é mudar para um diretório que deseja armazenar o banco de dados e iniciar o processo
-nesse diretório.
-- O mais prático na minha opnião é a definição/especificação de uma propriedade de sistema (derby.system.home)
-a qual indicará a localização do banco de dados ou bancos de dados. Exemplo:
--Dderby.system.home=/home/usuario/bin/database
-3. Download e instale Maven 2.0.9+.
+Set up your environment for development:
 
-Executando a aplicação:
+1. Download and install JDK 5 + (make sure the environment variable JAVA_HOME points to JDK, not JRE).
+2. Download and install the database http://db.apache.org/derby/ Derby, then
+start it in client/server mode (/bin/linux startNetworkServer.sh, /bin/startNetworkServer.bat win32)
+Attention:
+-- Launching the database in the specified directory will create the database in that directory.
+-- An alternative is to switch to a directory you want to store the database and begin the process
+that directory. Example:
+gilberto@sugep-dmasi15:~> cd bin/databases/
+gilberto@sugep-dmasi15:~/bin/databases> ln -s /home/gilberto/bin/db-derby-10.3.1.4-bin/bin/startNetworkServer start
+gilberto@sugep-dmasi15:~/bin/databases> ./start
+Security manager installed using the Basic server security policy.
+Apache Derby Network Server - 10.3.1.4 - (561794) started and ready to accept connections on port 1527 at 
 
-1. Em uma área/diretório destinada ao desenvolvimento (/home/usuario/dev - linux, C:\Dev - win32),
-obtenha o projeto através de um cliente de controle de versões - subversion, exemplo: tortoiseSVN -, 
-exemplo usando o prompt de comando: svn checkout http://construtor.googlecode.com/svn/trunk/gfi gfi
+-- The more practical in my opnion is the definition/specification of a system property (derby.system.home)
+which indicates the location of the database or databases. Example:
+- Dderby.system.home =/home/user/bin/database
+3. Download and install Maven 2.0.9 +.
 
-2. No prompt de comando, cd dentro diretório gfi/core e execute "mvn sql:execute". A execução
-desse goal (meta), irá criar o banco com os objetos preliminares e só deverá ser executado
-somente para inicialização do projeto ou a criação de um novo objeto de banco de dados.
+Running the application:
 
-3. Ainda no prompt de comando, dentro diretório gfi/core, execute "mvn test". Obtendo confirmação
-de êxito na execução, proceda com a instalação do artefato (jar): mvn install.
+1. In an area/directory intended for development (/home/user/dev - Linux, C:\Dev - win32),
+get the project through a control of versions - subversion, example: tortoiseSVN - client,
+example using the command prompt: svn checkout http://construtor.googlecode.com/svn/trunk/gfi gfi
 
-4. No prompt de comando, cd dentro diretório gfi/web e execute "mvn jetty:run". Agora você poderá
-acessar a aplicação através do endereço http://localhost:8080/gfi-web/, mais especificamente 
+2. In the command prompt, cd into gfi/core directory and run "mvn sql:execute". Executing
+that goal (target) will create the database with the preliminary objects  and should be executed
+only to initiate the project or creating a new object in the database.
+
+3. After, run "mvn test." Getting confirmation of success at the execution, proceed with the installation of artifact (jar): mvn install.
+
+4. In the command prompt, cd into gfi/web directory and run "mvn jetty:run". Now you can
+access the application via the address http://localhost:8080/gfi-web/, more specifically
 http://localhost:8080/gfi-web/table-unidade-medida.htm
 
-5. Mais informações podem ser encontrada em:
+5. More information can be found at:
 
-    http://code.google.com/p/construtor/
-
+     http://code.google.com/p/construtor/
