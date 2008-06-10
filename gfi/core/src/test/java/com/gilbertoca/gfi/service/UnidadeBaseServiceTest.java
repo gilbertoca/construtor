@@ -9,9 +9,8 @@ import org.junit.Test;
 import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 
-public class BaseServiceTest {
+public class UnidadeBaseServiceTest {
 	private BaseService<UnidadeMedida, String> uS = new BaseService<UnidadeMedida, String>(UnidadeMedida.class);
-	private BaseService<Categoria, Integer> cS = new BaseService<Categoria, Integer>(Categoria.class);
 
 	@Test
 	public void testGetAll() {
@@ -46,17 +45,4 @@ public class BaseServiceTest {
 		System.out.println(result);
 		assertTrue(result.size()==2);
 	}
-
-	@Test
-    public void testInsertCategoria() {
-    	int size = cS.getAll().size();
-        Categoria entity = new Categoria(4, "MT3", "Metros");
-        System.out.println(entity);
-        cS.insert(entity);
-        Collection<Categoria> result = cS.getAll();
-        System.out.println(result);
-        assertTrue(result.size() > size);
-    }
-	
-
 }
