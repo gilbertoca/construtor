@@ -40,6 +40,10 @@ import com.gilbertoca.gfi.Constants;
  *	}
  *	   ..
  *	} </pre>
+ * <p>
+ * A necessidade em passar um tipo Class da prórpria entidade, está relacionada a uma carateristica dos genéricos em java: erasure.
+ * Essa caraterística está bem descrita nesse blog: http://blog.caelum.com.br/2006/10/29/brincando-com-generics-o-bizarregenericdao/
+ * </p> 
  * @author Gilberto Caetano de Andrade
  */
 public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
