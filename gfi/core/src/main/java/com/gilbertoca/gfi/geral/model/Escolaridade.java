@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,59 +8,64 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpreligiao"
+ *         table="ger.ger_escolaridade"
  *     
 */
-public class TpReligiao implements Serializable {
+public class Escolaridade implements Serializable {
 
     /** identifier field */
-    private Short cdtpreligiao;
+    private Short cdescolaridade;
 
-    /** persistent field */
-    private String dctpreligiao;
+    /** nullable persistent field */
+    private String dcescolaridade;
 
     /** persistent field */
     private Set gerPessoacaracteristicas;
 
     /** full constructor */
-    public TpReligiao(Short cdtpreligiao, String dctpreligiao, Set gerPessoacaracteristicas) {
-        this.cdtpreligiao = cdtpreligiao;
-        this.dctpreligiao = dctpreligiao;
+    public Escolaridade(Short cdescolaridade, String dcescolaridade, Set gerPessoacaracteristicas) {
+        this.cdescolaridade = cdescolaridade;
+        this.dcescolaridade = dcescolaridade;
         this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** default constructor */
-    public TpReligiao() {
+    public Escolaridade() {
+    }
+
+    /** minimal constructor */
+    public Escolaridade(Short cdescolaridade, Set gerPessoacaracteristicas) {
+        this.cdescolaridade = cdescolaridade;
+        this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** 
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpreligiao"
+     *             column="cdescolaridade"
      *         
      */
-    public Short getCdtpreligiao() {
-        return this.cdtpreligiao;
+    public Short getCdescolaridade() {
+        return this.cdescolaridade;
     }
 
-    public void setCdtpreligiao(Short cdtpreligiao) {
-        this.cdtpreligiao = cdtpreligiao;
+    public void setCdescolaridade(Short cdescolaridade) {
+        this.cdescolaridade = cdescolaridade;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpreligiao"
-     *             length="20"
-     *             not-null="true"
+     *             column="dcescolaridade"
+     *             length="40"
      *         
      */
-    public String getDctpreligiao() {
-        return this.dctpreligiao;
+    public String getDcescolaridade() {
+        return this.dcescolaridade;
     }
 
-    public void setDctpreligiao(String dctpreligiao) {
-        this.dctpreligiao = dctpreligiao;
+    public void setDcescolaridade(String dcescolaridade) {
+        this.dcescolaridade = dcescolaridade;
     }
 
     /** 
@@ -69,7 +74,7 @@ public class TpReligiao implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpreligiao"
+     *             column="cdescolaridade"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
@@ -84,21 +89,21 @@ public class TpReligiao implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpreligiao", getCdtpreligiao())
+            .append("cdescolaridade", getCdescolaridade())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpReligiao) ) return false;
-        TpReligiao castOther = (TpReligiao) other;
+        if ( !(other instanceof Escolaridade) ) return false;
+        Escolaridade castOther = (Escolaridade) other;
         return new EqualsBuilder()
-            .append(this.getCdtpreligiao(), castOther.getCdtpreligiao())
+            .append(this.getCdescolaridade(), castOther.getCdescolaridade())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpreligiao())
+            .append(getCdescolaridade())
             .toHashCode();
     }
 

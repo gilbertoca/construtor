@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,59 +8,59 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpsanguineo"
+ *         table="ger.ger_estadocivil"
  *     
 */
-public class TpSanguineo implements Serializable {
+public class EstadoCivil implements Serializable {
 
     /** identifier field */
-    private Short cdtpsanguineo;
+    private Short cdestadocivil;
 
     /** persistent field */
-    private String dctpsanguineo;
+    private String dcestadocivil;
 
     /** persistent field */
     private Set gerPessoacaracteristicas;
 
     /** full constructor */
-    public TpSanguineo(Short cdtpsanguineo, String dctpsanguineo, Set gerPessoacaracteristicas) {
-        this.cdtpsanguineo = cdtpsanguineo;
-        this.dctpsanguineo = dctpsanguineo;
+    public EstadoCivil(Short cdestadocivil, String dcestadocivil, Set gerPessoacaracteristicas) {
+        this.cdestadocivil = cdestadocivil;
+        this.dcestadocivil = dcestadocivil;
         this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** default constructor */
-    public TpSanguineo() {
+    public EstadoCivil() {
     }
 
     /** 
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpsanguineo"
+     *             column="cdestadocivil"
      *         
      */
-    public Short getCdtpsanguineo() {
-        return this.cdtpsanguineo;
+    public Short getCdestadocivil() {
+        return this.cdestadocivil;
     }
 
-    public void setCdtpsanguineo(Short cdtpsanguineo) {
-        this.cdtpsanguineo = cdtpsanguineo;
+    public void setCdestadocivil(Short cdestadocivil) {
+        this.cdestadocivil = cdestadocivil;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpsanguineo"
-     *             length="6"
+     *             column="dcestadocivil"
+     *             length="30"
      *             not-null="true"
      *         
      */
-    public String getDctpsanguineo() {
-        return this.dctpsanguineo;
+    public String getDcestadocivil() {
+        return this.dcestadocivil;
     }
 
-    public void setDctpsanguineo(String dctpsanguineo) {
-        this.dctpsanguineo = dctpsanguineo;
+    public void setDcestadocivil(String dcestadocivil) {
+        this.dcestadocivil = dcestadocivil;
     }
 
     /** 
@@ -69,7 +69,7 @@ public class TpSanguineo implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpsanguineo"
+     *             column="cdestadocivil"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
@@ -84,21 +84,21 @@ public class TpSanguineo implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpsanguineo", getCdtpsanguineo())
+            .append("cdestadocivil", getCdestadocivil())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpSanguineo) ) return false;
-        TpSanguineo castOther = (TpSanguineo) other;
+        if ( !(other instanceof EstadoCivil) ) return false;
+        EstadoCivil castOther = (EstadoCivil) other;
         return new EqualsBuilder()
-            .append(this.getCdtpsanguineo(), castOther.getCdtpsanguineo())
+            .append(this.getCdestadocivil(), castOther.getCdestadocivil())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpsanguineo())
+            .append(getCdestadocivil())
             .toHashCode();
     }
 

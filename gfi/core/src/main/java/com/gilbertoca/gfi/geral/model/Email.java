@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -13,10 +13,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class Email implements Serializable {
 
     /** identifier field */
-    private com.gilbertoca.gfi.ger.model.EmailPK comp_id;
+    private com.gilbertoca.gfi.geral.model.EmailPK comp_id;
 
     /** full constructor */
-    public Email(com.gilbertoca.gfi.ger.model.EmailPK comp_id) {
+    public Email(com.gilbertoca.gfi.geral.model.EmailPK comp_id) {
         this.comp_id = comp_id;
     }
 
@@ -29,11 +29,11 @@ public class Email implements Serializable {
      *             generator-class="assigned"
      *         
      */
-    public com.gilbertoca.gfi.ger.model.EmailPK getComp_id() {
+    public com.gilbertoca.gfi.geral.model.EmailPK getComp_id() {
         return this.comp_id;
     }
 
-    public void setComp_id(com.gilbertoca.gfi.ger.model.EmailPK comp_id) {
+    public void setComp_id(com.gilbertoca.gfi.geral.model.EmailPK comp_id) {
         this.comp_id = comp_id;
     }
 

@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,34 +8,34 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpmotivofimdependencia"
+ *         table="ger.ger_tpgrauparentesco"
  *     
 */
-public class TpMotivoFimDependencia implements Serializable {
+public class TpGrauParentesco implements Serializable {
 
     /** identifier field */
-    private Short cdtpmotivofimdependencia;
+    private Short cdtpgrauparentesco;
 
     /** nullable persistent field */
-    private String dctpmotivofimdependencia;
+    private String dctpgrauparentesco;
 
     /** persistent field */
     private Set gerPessoadependencias;
 
     /** full constructor */
-    public TpMotivoFimDependencia(Short cdtpmotivofimdependencia, String dctpmotivofimdependencia, Set gerPessoadependencias) {
-        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
-        this.dctpmotivofimdependencia = dctpmotivofimdependencia;
+    public TpGrauParentesco(Short cdtpgrauparentesco, String dctpgrauparentesco, Set gerPessoadependencias) {
+        this.cdtpgrauparentesco = cdtpgrauparentesco;
+        this.dctpgrauparentesco = dctpgrauparentesco;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
     /** default constructor */
-    public TpMotivoFimDependencia() {
+    public TpGrauParentesco() {
     }
 
     /** minimal constructor */
-    public TpMotivoFimDependencia(Short cdtpmotivofimdependencia, Set gerPessoadependencias) {
-        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
+    public TpGrauParentesco(Short cdtpgrauparentesco, Set gerPessoadependencias) {
+        this.cdtpgrauparentesco = cdtpgrauparentesco;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
@@ -43,29 +43,29 @@ public class TpMotivoFimDependencia implements Serializable {
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpmotivofimdependencia"
+     *             column="cdtpgrauparentesco"
      *         
      */
-    public Short getCdtpmotivofimdependencia() {
-        return this.cdtpmotivofimdependencia;
+    public Short getCdtpgrauparentesco() {
+        return this.cdtpgrauparentesco;
     }
 
-    public void setCdtpmotivofimdependencia(Short cdtpmotivofimdependencia) {
-        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
+    public void setCdtpgrauparentesco(Short cdtpgrauparentesco) {
+        this.cdtpgrauparentesco = cdtpgrauparentesco;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpmotivofimdependencia"
+     *             column="dctpgrauparentesco"
      *             length="50"
      *         
      */
-    public String getDctpmotivofimdependencia() {
-        return this.dctpmotivofimdependencia;
+    public String getDctpgrauparentesco() {
+        return this.dctpgrauparentesco;
     }
 
-    public void setDctpmotivofimdependencia(String dctpmotivofimdependencia) {
-        this.dctpmotivofimdependencia = dctpmotivofimdependencia;
+    public void setDctpgrauparentesco(String dctpgrauparentesco) {
+        this.dctpgrauparentesco = dctpgrauparentesco;
     }
 
     /** 
@@ -74,7 +74,7 @@ public class TpMotivoFimDependencia implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpmotivofimdependencia"
+     *             column="cdtpgrauparentesco"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
      *         
@@ -89,21 +89,21 @@ public class TpMotivoFimDependencia implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpmotivofimdependencia", getCdtpmotivofimdependencia())
+            .append("cdtpgrauparentesco", getCdtpgrauparentesco())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpMotivoFimDependencia) ) return false;
-        TpMotivoFimDependencia castOther = (TpMotivoFimDependencia) other;
+        if ( !(other instanceof TpGrauParentesco) ) return false;
+        TpGrauParentesco castOther = (TpGrauParentesco) other;
         return new EqualsBuilder()
-            .append(this.getCdtpmotivofimdependencia(), castOther.getCdtpmotivofimdependencia())
+            .append(this.getCdtpgrauparentesco(), castOther.getCdtpgrauparentesco())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpmotivofimdependencia())
+            .append(getCdtpgrauparentesco())
             .toHashCode();
     }
 

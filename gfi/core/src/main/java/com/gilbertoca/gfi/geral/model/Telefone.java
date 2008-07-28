@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -13,13 +13,13 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class Telefone implements Serializable {
 
     /** identifier field */
-    private com.gilbertoca.gfi.ger.model.TelefonePK comp_id;
+    private com.gilbertoca.gfi.geral.model.TelefonePK comp_id;
 
     /** nullable persistent field */
     private String tptelefone;
 
     /** full constructor */
-    public Telefone(com.gilbertoca.gfi.ger.model.TelefonePK comp_id, String tptelefone) {
+    public Telefone(com.gilbertoca.gfi.geral.model.TelefonePK comp_id, String tptelefone) {
         this.comp_id = comp_id;
         this.tptelefone = tptelefone;
     }
@@ -29,7 +29,7 @@ public class Telefone implements Serializable {
     }
 
     /** minimal constructor */
-    public Telefone(com.gilbertoca.gfi.ger.model.TelefonePK comp_id) {
+    public Telefone(com.gilbertoca.gfi.geral.model.TelefonePK comp_id) {
         this.comp_id = comp_id;
     }
 
@@ -38,11 +38,11 @@ public class Telefone implements Serializable {
      *             generator-class="assigned"
      *         
      */
-    public com.gilbertoca.gfi.ger.model.TelefonePK getComp_id() {
+    public com.gilbertoca.gfi.geral.model.TelefonePK getComp_id() {
         return this.comp_id;
     }
 
-    public void setComp_id(com.gilbertoca.gfi.ger.model.TelefonePK comp_id) {
+    public void setComp_id(com.gilbertoca.gfi.geral.model.TelefonePK comp_id) {
         this.comp_id = comp_id;
     }
 

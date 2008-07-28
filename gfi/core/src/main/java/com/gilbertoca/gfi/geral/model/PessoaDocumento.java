@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -92,10 +92,10 @@ public class PessoaDocumento implements Serializable {
     private Date cnhvalidade;
 
     /** nullable persistent field */
-    private com.gilbertoca.gfi.ger.model.Pessoa gerPessoa;
+    private com.gilbertoca.gfi.geral.model.Pessoa gerPessoa;
 
     /** full constructor */
-    public PessoaDocumento(Integer cdpessoa, String numerosus, String pispasep, String crnumero, String crcategoria, String crserie, String crvrm, String crvsm, Date cremissao, String almserie, String almregmilitar, String almvrm, String almcsm, Date almemissao, String titelnumero, String titelsecao, String titelzona, Date titelemissao, String ctpsnumero, String ctpsserie, Date ctpsemissao, String ctpsuf, String cnhnumero, String cnhcategoria, Date cnhemissao, Date cnhvalidade, com.gilbertoca.gfi.ger.model.Pessoa gerPessoa) {
+    public PessoaDocumento(Integer cdpessoa, String numerosus, String pispasep, String crnumero, String crcategoria, String crserie, String crvrm, String crvsm, Date cremissao, String almserie, String almregmilitar, String almvrm, String almcsm, Date almemissao, String titelnumero, String titelsecao, String titelzona, Date titelemissao, String ctpsnumero, String ctpsserie, Date ctpsemissao, String ctpsuf, String cnhnumero, String cnhcategoria, Date cnhemissao, Date cnhvalidade, com.gilbertoca.gfi.geral.model.Pessoa gerPessoa) {
         this.cdpessoa = cdpessoa;
         this.numerosus = numerosus;
         this.pispasep = pispasep;
@@ -506,11 +506,11 @@ public class PessoaDocumento implements Serializable {
      *             constrained="true"
      *         
      */
-    public com.gilbertoca.gfi.ger.model.Pessoa getGerPessoa() {
+    public com.gilbertoca.gfi.geral.model.Pessoa getGerPessoa() {
         return this.gerPessoa;
     }
 
-    public void setGerPessoa(com.gilbertoca.gfi.ger.model.Pessoa gerPessoa) {
+    public void setGerPessoa(com.gilbertoca.gfi.geral.model.Pessoa gerPessoa) {
         this.gerPessoa = gerPessoa;
     }
 

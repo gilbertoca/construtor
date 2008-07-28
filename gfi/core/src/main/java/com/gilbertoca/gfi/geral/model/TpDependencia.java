@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,34 +8,34 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpgrauparentesco"
+ *         table="ger.ger_tpdependencia"
  *     
 */
-public class TpGrauParentesco implements Serializable {
+public class TpDependencia implements Serializable {
 
     /** identifier field */
-    private Short cdtpgrauparentesco;
+    private Short cdtpdependencia;
 
     /** nullable persistent field */
-    private String dctpgrauparentesco;
+    private String dctpdependencia;
 
     /** persistent field */
     private Set gerPessoadependencias;
 
     /** full constructor */
-    public TpGrauParentesco(Short cdtpgrauparentesco, String dctpgrauparentesco, Set gerPessoadependencias) {
-        this.cdtpgrauparentesco = cdtpgrauparentesco;
-        this.dctpgrauparentesco = dctpgrauparentesco;
+    public TpDependencia(Short cdtpdependencia, String dctpdependencia, Set gerPessoadependencias) {
+        this.cdtpdependencia = cdtpdependencia;
+        this.dctpdependencia = dctpdependencia;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
     /** default constructor */
-    public TpGrauParentesco() {
+    public TpDependencia() {
     }
 
     /** minimal constructor */
-    public TpGrauParentesco(Short cdtpgrauparentesco, Set gerPessoadependencias) {
-        this.cdtpgrauparentesco = cdtpgrauparentesco;
+    public TpDependencia(Short cdtpdependencia, Set gerPessoadependencias) {
+        this.cdtpdependencia = cdtpdependencia;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
@@ -43,29 +43,29 @@ public class TpGrauParentesco implements Serializable {
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpgrauparentesco"
+     *             column="cdtpdependencia"
      *         
      */
-    public Short getCdtpgrauparentesco() {
-        return this.cdtpgrauparentesco;
+    public Short getCdtpdependencia() {
+        return this.cdtpdependencia;
     }
 
-    public void setCdtpgrauparentesco(Short cdtpgrauparentesco) {
-        this.cdtpgrauparentesco = cdtpgrauparentesco;
+    public void setCdtpdependencia(Short cdtpdependencia) {
+        this.cdtpdependencia = cdtpdependencia;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpgrauparentesco"
+     *             column="dctpdependencia"
      *             length="50"
      *         
      */
-    public String getDctpgrauparentesco() {
-        return this.dctpgrauparentesco;
+    public String getDctpdependencia() {
+        return this.dctpdependencia;
     }
 
-    public void setDctpgrauparentesco(String dctpgrauparentesco) {
-        this.dctpgrauparentesco = dctpgrauparentesco;
+    public void setDctpdependencia(String dctpdependencia) {
+        this.dctpdependencia = dctpdependencia;
     }
 
     /** 
@@ -74,7 +74,7 @@ public class TpGrauParentesco implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpgrauparentesco"
+     *             column="cdtpdependencia"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
      *         
@@ -89,21 +89,21 @@ public class TpGrauParentesco implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpgrauparentesco", getCdtpgrauparentesco())
+            .append("cdtpdependencia", getCdtpdependencia())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpGrauParentesco) ) return false;
-        TpGrauParentesco castOther = (TpGrauParentesco) other;
+        if ( !(other instanceof TpDependencia) ) return false;
+        TpDependencia castOther = (TpDependencia) other;
         return new EqualsBuilder()
-            .append(this.getCdtpgrauparentesco(), castOther.getCdtpgrauparentesco())
+            .append(this.getCdtpdependencia(), castOther.getCdtpdependencia())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpgrauparentesco())
+            .append(getCdtpdependencia())
             .toHashCode();
     }
 

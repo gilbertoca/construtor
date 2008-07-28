@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,59 +8,59 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpnacionalidade"
+ *         table="ger.ger_tpsanguineo"
  *     
 */
-public class TpNacionalidade implements Serializable {
+public class TpSanguineo implements Serializable {
 
     /** identifier field */
-    private Short cdtpnacionalidade;
+    private Short cdtpsanguineo;
 
     /** persistent field */
-    private String dctpnacionalidade;
+    private String dctpsanguineo;
 
     /** persistent field */
     private Set gerPessoacaracteristicas;
 
     /** full constructor */
-    public TpNacionalidade(Short cdtpnacionalidade, String dctpnacionalidade, Set gerPessoacaracteristicas) {
-        this.cdtpnacionalidade = cdtpnacionalidade;
-        this.dctpnacionalidade = dctpnacionalidade;
+    public TpSanguineo(Short cdtpsanguineo, String dctpsanguineo, Set gerPessoacaracteristicas) {
+        this.cdtpsanguineo = cdtpsanguineo;
+        this.dctpsanguineo = dctpsanguineo;
         this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** default constructor */
-    public TpNacionalidade() {
+    public TpSanguineo() {
     }
 
     /** 
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpnacionalidade"
+     *             column="cdtpsanguineo"
      *         
      */
-    public Short getCdtpnacionalidade() {
-        return this.cdtpnacionalidade;
+    public Short getCdtpsanguineo() {
+        return this.cdtpsanguineo;
     }
 
-    public void setCdtpnacionalidade(Short cdtpnacionalidade) {
-        this.cdtpnacionalidade = cdtpnacionalidade;
+    public void setCdtpsanguineo(Short cdtpsanguineo) {
+        this.cdtpsanguineo = cdtpsanguineo;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpnacionalidade"
-     *             length="100"
+     *             column="dctpsanguineo"
+     *             length="6"
      *             not-null="true"
      *         
      */
-    public String getDctpnacionalidade() {
-        return this.dctpnacionalidade;
+    public String getDctpsanguineo() {
+        return this.dctpsanguineo;
     }
 
-    public void setDctpnacionalidade(String dctpnacionalidade) {
-        this.dctpnacionalidade = dctpnacionalidade;
+    public void setDctpsanguineo(String dctpsanguineo) {
+        this.dctpsanguineo = dctpsanguineo;
     }
 
     /** 
@@ -69,7 +69,7 @@ public class TpNacionalidade implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpnacionalidade"
+     *             column="cdtpsanguineo"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
@@ -84,21 +84,21 @@ public class TpNacionalidade implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpnacionalidade", getCdtpnacionalidade())
+            .append("cdtpsanguineo", getCdtpsanguineo())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpNacionalidade) ) return false;
-        TpNacionalidade castOther = (TpNacionalidade) other;
+        if ( !(other instanceof TpSanguineo) ) return false;
+        TpSanguineo castOther = (TpSanguineo) other;
         return new EqualsBuilder()
-            .append(this.getCdtpnacionalidade(), castOther.getCdtpnacionalidade())
+            .append(this.getCdtpsanguineo(), castOther.getCdtpsanguineo())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpnacionalidade())
+            .append(getCdtpsanguineo())
             .toHashCode();
     }
 

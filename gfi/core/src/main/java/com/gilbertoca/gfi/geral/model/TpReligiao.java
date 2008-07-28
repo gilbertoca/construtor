@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,59 +8,59 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpdeficiencia"
+ *         table="ger.ger_tpreligiao"
  *     
 */
-public class TpDeficiencia implements Serializable {
+public class TpReligiao implements Serializable {
 
     /** identifier field */
-    private Short cdtpdeficiencia;
+    private Short cdtpreligiao;
 
     /** persistent field */
-    private String dctpdeficiencia;
+    private String dctpreligiao;
 
     /** persistent field */
     private Set gerPessoacaracteristicas;
 
     /** full constructor */
-    public TpDeficiencia(Short cdtpdeficiencia, String dctpdeficiencia, Set gerPessoacaracteristicas) {
-        this.cdtpdeficiencia = cdtpdeficiencia;
-        this.dctpdeficiencia = dctpdeficiencia;
+    public TpReligiao(Short cdtpreligiao, String dctpreligiao, Set gerPessoacaracteristicas) {
+        this.cdtpreligiao = cdtpreligiao;
+        this.dctpreligiao = dctpreligiao;
         this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** default constructor */
-    public TpDeficiencia() {
+    public TpReligiao() {
     }
 
     /** 
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpdeficiencia"
+     *             column="cdtpreligiao"
      *         
      */
-    public Short getCdtpdeficiencia() {
-        return this.cdtpdeficiencia;
+    public Short getCdtpreligiao() {
+        return this.cdtpreligiao;
     }
 
-    public void setCdtpdeficiencia(Short cdtpdeficiencia) {
-        this.cdtpdeficiencia = cdtpdeficiencia;
+    public void setCdtpreligiao(Short cdtpreligiao) {
+        this.cdtpreligiao = cdtpreligiao;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpdeficiencia"
+     *             column="dctpreligiao"
      *             length="20"
      *             not-null="true"
      *         
      */
-    public String getDctpdeficiencia() {
-        return this.dctpdeficiencia;
+    public String getDctpreligiao() {
+        return this.dctpreligiao;
     }
 
-    public void setDctpdeficiencia(String dctpdeficiencia) {
-        this.dctpdeficiencia = dctpdeficiencia;
+    public void setDctpreligiao(String dctpreligiao) {
+        this.dctpreligiao = dctpreligiao;
     }
 
     /** 
@@ -69,7 +69,7 @@ public class TpDeficiencia implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpdeficiencia"
+     *             column="cdtpreligiao"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
@@ -84,21 +84,21 @@ public class TpDeficiencia implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpdeficiencia", getCdtpdeficiencia())
+            .append("cdtpreligiao", getCdtpreligiao())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpDeficiencia) ) return false;
-        TpDeficiencia castOther = (TpDeficiencia) other;
+        if ( !(other instanceof TpReligiao) ) return false;
+        TpReligiao castOther = (TpReligiao) other;
         return new EqualsBuilder()
-            .append(this.getCdtpdeficiencia(), castOther.getCdtpdeficiencia())
+            .append(this.getCdtpreligiao(), castOther.getCdtpreligiao())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpdeficiencia())
+            .append(getCdtpreligiao())
             .toHashCode();
     }
 

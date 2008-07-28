@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,34 +8,34 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpdependencia"
+ *         table="ger.ger_tpmotivofimdependencia"
  *     
 */
-public class TpDependencia implements Serializable {
+public class TpMotivoFimDependencia implements Serializable {
 
     /** identifier field */
-    private Short cdtpdependencia;
+    private Short cdtpmotivofimdependencia;
 
     /** nullable persistent field */
-    private String dctpdependencia;
+    private String dctpmotivofimdependencia;
 
     /** persistent field */
     private Set gerPessoadependencias;
 
     /** full constructor */
-    public TpDependencia(Short cdtpdependencia, String dctpdependencia, Set gerPessoadependencias) {
-        this.cdtpdependencia = cdtpdependencia;
-        this.dctpdependencia = dctpdependencia;
+    public TpMotivoFimDependencia(Short cdtpmotivofimdependencia, String dctpmotivofimdependencia, Set gerPessoadependencias) {
+        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
+        this.dctpmotivofimdependencia = dctpmotivofimdependencia;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
     /** default constructor */
-    public TpDependencia() {
+    public TpMotivoFimDependencia() {
     }
 
     /** minimal constructor */
-    public TpDependencia(Short cdtpdependencia, Set gerPessoadependencias) {
-        this.cdtpdependencia = cdtpdependencia;
+    public TpMotivoFimDependencia(Short cdtpmotivofimdependencia, Set gerPessoadependencias) {
+        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
         this.gerPessoadependencias = gerPessoadependencias;
     }
 
@@ -43,29 +43,29 @@ public class TpDependencia implements Serializable {
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpdependencia"
+     *             column="cdtpmotivofimdependencia"
      *         
      */
-    public Short getCdtpdependencia() {
-        return this.cdtpdependencia;
+    public Short getCdtpmotivofimdependencia() {
+        return this.cdtpmotivofimdependencia;
     }
 
-    public void setCdtpdependencia(Short cdtpdependencia) {
-        this.cdtpdependencia = cdtpdependencia;
+    public void setCdtpmotivofimdependencia(Short cdtpmotivofimdependencia) {
+        this.cdtpmotivofimdependencia = cdtpmotivofimdependencia;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpdependencia"
+     *             column="dctpmotivofimdependencia"
      *             length="50"
      *         
      */
-    public String getDctpdependencia() {
-        return this.dctpdependencia;
+    public String getDctpmotivofimdependencia() {
+        return this.dctpmotivofimdependencia;
     }
 
-    public void setDctpdependencia(String dctpdependencia) {
-        this.dctpdependencia = dctpdependencia;
+    public void setDctpmotivofimdependencia(String dctpmotivofimdependencia) {
+        this.dctpmotivofimdependencia = dctpmotivofimdependencia;
     }
 
     /** 
@@ -74,7 +74,7 @@ public class TpDependencia implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpdependencia"
+     *             column="cdtpmotivofimdependencia"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaDependencia"
      *         
@@ -89,21 +89,21 @@ public class TpDependencia implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpdependencia", getCdtpdependencia())
+            .append("cdtpmotivofimdependencia", getCdtpmotivofimdependencia())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpDependencia) ) return false;
-        TpDependencia castOther = (TpDependencia) other;
+        if ( !(other instanceof TpMotivoFimDependencia) ) return false;
+        TpMotivoFimDependencia castOther = (TpMotivoFimDependencia) other;
         return new EqualsBuilder()
-            .append(this.getCdtpdependencia(), castOther.getCdtpdependencia())
+            .append(this.getCdtpmotivofimdependencia(), castOther.getCdtpmotivofimdependencia())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpdependencia())
+            .append(getCdtpmotivofimdependencia())
             .toHashCode();
     }
 

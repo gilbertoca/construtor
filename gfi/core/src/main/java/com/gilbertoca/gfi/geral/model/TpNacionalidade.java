@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -8,59 +8,59 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** 
  *        @hibernate.class
- *         table="ger.ger_tpraca"
+ *         table="ger.ger_tpnacionalidade"
  *     
 */
-public class TpRaca implements Serializable {
+public class TpNacionalidade implements Serializable {
 
     /** identifier field */
-    private Short cdtpraca;
+    private Short cdtpnacionalidade;
 
     /** persistent field */
-    private String dctpraca;
+    private String dctpnacionalidade;
 
     /** persistent field */
     private Set gerPessoacaracteristicas;
 
     /** full constructor */
-    public TpRaca(Short cdtpraca, String dctpraca, Set gerPessoacaracteristicas) {
-        this.cdtpraca = cdtpraca;
-        this.dctpraca = dctpraca;
+    public TpNacionalidade(Short cdtpnacionalidade, String dctpnacionalidade, Set gerPessoacaracteristicas) {
+        this.cdtpnacionalidade = cdtpnacionalidade;
+        this.dctpnacionalidade = dctpnacionalidade;
         this.gerPessoacaracteristicas = gerPessoacaracteristicas;
     }
 
     /** default constructor */
-    public TpRaca() {
+    public TpNacionalidade() {
     }
 
     /** 
      *            @hibernate.id
      *             generator-class="assigned"
      *             type="java.lang.Short"
-     *             column="cdtpraca"
+     *             column="cdtpnacionalidade"
      *         
      */
-    public Short getCdtpraca() {
-        return this.cdtpraca;
+    public Short getCdtpnacionalidade() {
+        return this.cdtpnacionalidade;
     }
 
-    public void setCdtpraca(Short cdtpraca) {
-        this.cdtpraca = cdtpraca;
+    public void setCdtpnacionalidade(Short cdtpnacionalidade) {
+        this.cdtpnacionalidade = cdtpnacionalidade;
     }
 
     /** 
      *            @hibernate.property
-     *             column="dctpraca"
-     *             length="20"
+     *             column="dctpnacionalidade"
+     *             length="100"
      *             not-null="true"
      *         
      */
-    public String getDctpraca() {
-        return this.dctpraca;
+    public String getDctpnacionalidade() {
+        return this.dctpnacionalidade;
     }
 
-    public void setDctpraca(String dctpraca) {
-        this.dctpraca = dctpraca;
+    public void setDctpnacionalidade(String dctpnacionalidade) {
+        this.dctpnacionalidade = dctpnacionalidade;
     }
 
     /** 
@@ -69,7 +69,7 @@ public class TpRaca implements Serializable {
      *             inverse="true"
      *             cascade="none"
      *            @hibernate.collection-key
-     *             column="cdtpraca"
+     *             column="cdtpnacionalidade"
      *            @hibernate.collection-one-to-many
      *             class="com.gilbertoca.gfi.ger.model.PessoaCaracteristica"
      *         
@@ -84,21 +84,21 @@ public class TpRaca implements Serializable {
 
     public String toString() {
         return new ToStringBuilder(this)
-            .append("cdtpraca", getCdtpraca())
+            .append("cdtpnacionalidade", getCdtpnacionalidade())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TpRaca) ) return false;
-        TpRaca castOther = (TpRaca) other;
+        if ( !(other instanceof TpNacionalidade) ) return false;
+        TpNacionalidade castOther = (TpNacionalidade) other;
         return new EqualsBuilder()
-            .append(this.getCdtpraca(), castOther.getCdtpraca())
+            .append(this.getCdtpnacionalidade(), castOther.getCdtpnacionalidade())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
-            .append(getCdtpraca())
+            .append(getCdtpnacionalidade())
             .toHashCode();
     }
 

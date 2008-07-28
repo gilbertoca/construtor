@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.ger.model;
+package com.gilbertoca.gfi.geral.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -6,28 +6,40 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /** @author Hibernate CodeGenerator */
-public class TelefonePK implements Serializable {
+public class EmailPK implements Serializable {
+
+    /** identifier field */
+    private String email;
 
     /** identifier field */
     private Integer cdpessoa;
 
-    /** identifier field */
-    private String telefone;
-
     /** full constructor */
-    public TelefonePK(Integer cdpessoa, String telefone) {
+    public EmailPK(String email, Integer cdpessoa) {
+        this.email = email;
         this.cdpessoa = cdpessoa;
-        this.telefone = telefone;
     }
 
     /** default constructor */
-    public TelefonePK() {
+    public EmailPK() {
+    }
+
+    /** 
+     *                @hibernate.property
+     *                 column="email"
+     *             
+     */
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /** 
      *                @hibernate.property
      *                 column="cdpessoa"
-     *                 length="4"
      *             
      */
     public Integer getCdpessoa() {
@@ -38,40 +50,26 @@ public class TelefonePK implements Serializable {
         this.cdpessoa = cdpessoa;
     }
 
-    /** 
-     *                @hibernate.property
-     *                 column="telefone"
-     *                 length="30"
-     *             
-     */
-    public String getTelefone() {
-        return this.telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
     public String toString() {
         return new ToStringBuilder(this)
+            .append("email", getEmail())
             .append("cdpessoa", getCdpessoa())
-            .append("telefone", getTelefone())
             .toString();
     }
 
     public boolean equals(Object other) {
-        if ( !(other instanceof TelefonePK) ) return false;
-        TelefonePK castOther = (TelefonePK) other;
+        if ( !(other instanceof EmailPK) ) return false;
+        EmailPK castOther = (EmailPK) other;
         return new EqualsBuilder()
+            .append(this.getEmail(), castOther.getEmail())
             .append(this.getCdpessoa(), castOther.getCdpessoa())
-            .append(this.getTelefone(), castOther.getTelefone())
             .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder()
+            .append(getEmail())
             .append(getCdpessoa())
-            .append(getTelefone())
             .toHashCode();
     }
 
