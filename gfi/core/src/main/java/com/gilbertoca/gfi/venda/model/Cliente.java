@@ -52,7 +52,7 @@ public class Cliente implements Serializable{
     //private Funcionario vendedor = new Funcionario();
     private Integer cdFuncionario; //vendedor preferido
     /*
-     * campos que dever�o ser calculados:
+     * campos que deveráo ser calculados:
      *  dtPrimeiraCompra
      *  dtUltimaCompra
      *  valorPrimeiraCompra

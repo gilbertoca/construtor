@@ -19,7 +19,7 @@ public class VendaItem implements Serializable {
     /** 
      * TODO : Utilizar o novo mecanismo que hibernate3 fornece para este
      * tipo de situação, por exemplo, removendo este atributo.
-     * Usado para determinar se instancia � transient or detached 
+     * Usado para determinar se instancia é transient or detached 
      */
     private int version = -1;
 
@@ -30,8 +30,8 @@ public class VendaItem implements Serializable {
     private Item item = new Item();
     private Venda venda = new Venda();
     /**
-     * Usado para simular a chamada de m�todo interno que realiza a totalização do item com desconto.
-     * Como não podemos chamar o m�todo getTotalComDesconto() na interface web, ent�o simularemos
+     * Usado para simular a chamada de método interno que realiza a totalização do item com desconto.
+     * Como não podemos chamar o método getTotalComDesconto() na interface web, ent�o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalComDesconto;
      * 	- Criamos os metodos correspondentes set e get:
@@ -40,8 +40,8 @@ public class VendaItem implements Serializable {
     private Double totalComDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de m�todo interno que realiza a totalização do item sem desconto.
-     * Como não podemos chamar o m�todo getTotalSemDesconto() na interface web, ent�o simularemos
+     * Usado para simular a chamada de método interno que realiza a totalização do item sem desconto.
+     * Como não podemos chamar o método getTotalSemDesconto() na interface web, ent�o simularemos
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: totalSemDesconto;
      * 	- Criamos os metodos correspondentes set e get:
@@ -50,8 +50,8 @@ public class VendaItem implements Serializable {
     private Double totalSemDesconto = new Double(0);
 
     /**
-     * Usado para simular a chamada de m�todo interno que realiza a totalização do item.
-     * Como não podemos chamar o m�todo getValorDesconto() na interface web, ent�o simularemos 
+     * Usado para simular a chamada de método interno que realiza a totalização do item.
+     * Como não podemos chamar o método getValorDesconto() na interface web, ent�o simularemos 
      * a chamada de um bean, ou seja, set e get para uma propriedade:
      * 	- Criamos um atributo transiente: valorDesconto;
      * 	- Criamos os metodos correspondentes set e get:

@@ -13,7 +13,7 @@ public class Contato implements Serializable {
     /** identifier field */
     private ContatoPK comp_id = new ContatoPK();
     private Fornecedor fornecedor = new Fornecedor();
-    private int version = -1; //version int4 not null, --Hibernate-especifico:Usado para determinar se instancia � transient or detached 
+    private int version = -1; //version int4 not null, --Hibernate-especifico:Usado para determinar se instancia é transient or detached 
     
     private String representante;//Nome do representante deste fornecedor;pode ter mais de um
     private String nome;

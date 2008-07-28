@@ -50,7 +50,7 @@ public class Venda implements Serializable{
 
     /**
      * Forma pagamento na venda:
-     * D-Dinheiro; H-Cheque; P-Cheque-pr�-datado;
+     * D-Dinheiro; H-Cheque; P-Cheque-predatado;
      * C-Cartao de Credito; U-Dollar; T-Ticket/Vale;
      * B-Boleto Bancario; L-Duplicata ou O-Convenio.
      */
@@ -58,18 +58,18 @@ public class Venda implements Serializable{
     private String nomeCliente;
     private String telefone = "N/I";
     /**
-     * Usado para determinar os tipos de endere�o:
-     * 0 - Sem endere�o (Default sem endere�o);
-     * 1 - Com endere�o;
-     * 2 - Com endere�o de entrega;
+     * Usado para determinar os tipos de endereço:
+     * 0 - Sem endereço (Default sem endereço);
+     * 1 - Com endereço;
+     * 2 - Com endereço de entrega;
      * 3 - Com ambos.
      */
     private int tipoEndereco = 0;
     private Endereco endereco = new Endereco();
     /**
-     * Usado para determinar se existe endere�o de entrega.
-     * Se verdadeiro, o endereco de entrega � diferente do endere�o.
-     * Caso constr�rio o endere�o de entrega � o mesmo endere�o.
+     * Usado para determinar se existe endereço de entrega.
+     * Se verdadeiro, o endereco de entrega é diferente do endereço.
+     * Caso constrário o endereço de entrega é o mesmo endereço.
      */
     private Boolean flEnderecoEntrega = new Boolean(false);
     private Endereco enderecoEntrega = new Endereco();
@@ -93,18 +93,18 @@ public class Venda implements Serializable{
 
     /**
      * Usado para determinar se o procedimento de "gerar registros de contas a receber"
-     * ser� executado. Caso o valor de flGerarRegistroContaReceber for true, iremos
+     * será executado. Caso o valor de flGerarRegistroContaReceber for true, iremos
      * gerar no movimento de conta a receber o registro desta venda.
-     * // TODO: Implementar um m�todo que realizar� o gerar registros de contas a receber.
+     * // TODO: Implementar um método que realizará o gerar registros de contas a receber.
      */
     private Boolean flGerarRegistroContaReceber = new Boolean(false);
 
     /**
      * Usado para determinar se o procedimento de "gerar o recibo de entrega dos itens da venda"
-     * ser� executado. Caso o valor de flGerarReciboEntrega for true, iremos
+     * será executado. Caso o valor de flGerarReciboEntrega for true, iremos
      * gerar no movimento de entrega de itens de estoque desta venda, dizendo para cada item que
      * o mesmo ainda não foi entregue.
-     * // TODO: Implementar um m�todo que realizar� o gerar registro de entrega dos itens da venda.
+     * // TODO: Implementar um método que realizará o gerar registro de entrega dos itens da venda.
      */
     private Boolean flGerarReciboEntrega = new Boolean(true);
     private Boolean flProcessado = new Boolean(false);
@@ -344,7 +344,7 @@ public class Venda implements Serializable{
     /**
      *
      * Usado para determinar se o procedimento de "gerar o recibo de entrega dos itens da venda"
-     * ser� executado. Caso o valor de flGerarReciboEntrega for true, iremos
+     * será executado. Caso o valor de flGerarReciboEntrega for true, iremos
      * gerar no movimento de entrega de itens de estoque desta venda, dizendo para cada item que
      * o mesmo ainda não foi entregue.
      *
@@ -376,10 +376,10 @@ public class Venda implements Serializable{
     }
 
     /**
-     * Usado para determinar os tipos de endere�o:
-     * 0 - Sem endere�o (Default sem endere�o);
-     * 1 - Com endere�o;
-     * 2 - Com endere�o de entrega;
+     * Usado para determinar os tipos de endereço:
+     * 0 - Sem endereço (Default sem endereço);
+     * 1 - Com endereço;
+     * 2 - Com endereço de entrega;
      * 3 - Com ambos. 
      * @return Returns the tipoEndereco.
      * @hibernate.property column = "tipo_endereco" type = "integer"
@@ -862,7 +862,7 @@ public class Venda implements Serializable{
     }
     
     /**
-     * Ap�s a totalização da venda, com o valor recebido, iremos totalizar
+     * Após a totalização da venda, com o valor recebido, iremos totalizar
      * o valor do troco.
      * @return Double.
      */

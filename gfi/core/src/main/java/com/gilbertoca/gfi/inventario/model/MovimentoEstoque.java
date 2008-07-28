@@ -51,7 +51,7 @@ public class MovimentoEstoque implements Serializable{
     private Integer cdVenda;
     /**
      * C�digo do Fornecedor no movimento do estoque. 
-     * Desta forma saberemos que � um fornecedor, obtendo assim, 
+     * Desta forma saberemos que é um fornecedor, obtendo assim, 
      * o nome/Raz�oSocial e o cpf/cnpj do fornecedor.
      */    
     private Integer cdFornecedor;
@@ -72,7 +72,7 @@ public class MovimentoEstoque implements Serializable{
     private Double valorIcmsSubstituicao = new Double(0);
     private Double totalProdutos = new Double(0);
     /**
-     * Determina de que maneira o valor do frete entrar� no calculo na nota: 
+     * Determina de que maneira o valor do frete entrará no calculo na nota: 
      *  Quando for 'Entrada' e o atributo fretePorConta=2, ou seja, por conta do Destinat�rio;
      *  quanto for 'Saida' e o atributo fretePorConta=1, ou seja, por conta do Emitente.
      * Valores que o campo fretePorConta pode assumir:
@@ -89,9 +89,9 @@ public class MovimentoEstoque implements Serializable{
     private Double valorISS = new Double(0);
     /**
      * Usado para determinar se o procedimento de "gerar registros de contas a pagar"
-     * ser� executado. Caso o valor de flGerarRegistroContaPagar for true, iremos
+     * será executado. Caso o valor de flGerarRegistroContaPagar for true, iremos
      * gerar no movimento de conta a pagar registro desta compra.
-     * // TODO: Implementar um m�todo que realizar� o gerar registros de contas a pagar.
+     * // TODO: Implementar um método que realizará o gerar registros de contas a pagar.
      */
     private Boolean flGerarRegistroContaPagar = new Boolean(false);    
     private Set movimentoEstoqueItems = Collections.EMPTY_SET;
@@ -180,7 +180,7 @@ public class MovimentoEstoque implements Serializable{
 //    public MovimentoEstoque(Venda venda) {
 //        this.setTipoMovimento("Saida");
 //        this.setCdFuncionario(venda.getCdFuncionario());
-//        //TODO: verificar qual o codigo que corresponde � venda na tabela naturezaOperacao.
+//        //TODO: verificar qual o codigo que corresponde é venda na tabela naturezaOperacao.
 //        this.setCdNaturezaOperacao(Constants.NATUREZAOPERACAO_VENDA);//Vendas de prod. pr�pr. ou terc. p/ o Est.
 //        this.setCdPlanoPagamento(venda.getCdPlanoPagamento());
 //        this.setCdVenda(venda.getCdVenda()); 
@@ -759,7 +759,7 @@ public class MovimentoEstoque implements Serializable{
     
     /**
      * Faz a totalização da nota fiscal.
-     * _valorFrete entrar� no c�lculo quando:
+     * _valorFrete entrará no c�lculo quando:
      *      quando for 'Entrada' e o atributo fretePorConta=2;
      *      quanto for 'Saida' e o atributo fretePorConta=1.
      * @return totalNota.

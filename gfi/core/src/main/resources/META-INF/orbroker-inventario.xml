@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-15"?>
 
 <!--
-    Document   : orbroker-inventario.xml.xml
-    Created on : January 4, 2008, 4:55 PM
+    Document   : orbroker-inventario.xml
+    Created on : 04/04/2008
     Author     : gilberto
     Description:
         Descritor para mapeamento de unidades de persistência do módulo inventário, mantido em /META-INF/.
@@ -12,7 +12,7 @@
 <broker name="inventario" version="2.0">
     <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
-        <property name="CdUnidadeMedida">
+        <property name="cdUnidadeMedida">
             <column name="CD_UNIDADE_MEDIDA"/>
         </property>
         <property name="descricaoUnidade">
@@ -53,7 +53,7 @@
     <!-- Categoria -->
     <result-object id="Categoria" class="com.gilbertoca.gfi.inventario.model.Categoria" key-columns="cd_categoria">
         <!-- Id -->
-        <property name="CdCategoria">
+        <property name="cdCategoria">
             <column name="cd_categoria"/>
         </property>
         <property name="nomeCategoria">
