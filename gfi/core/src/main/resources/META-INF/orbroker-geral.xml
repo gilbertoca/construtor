@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+
+<!--
+    Document   : orbroker-geral.xml
+    Created on : 25/07/2008
+    Author     : gilberto
+    Description:
+        Descritor para mapeamento de unidades de persistência do módulo geral(ger), mantido em /META-INF/.
+        Requisito para o uso desse arquivo, são os recursos mantidos na subpasta sql, podendo
+        ser alcançados dessa forma /META-INF/sql/.
+-->
+<broker name="geral" version="2.0">
+    <!-- Pessoa -->
+    <result-object id="Categoria" class="com.gilbertoca.gfi.geral.model.Pessoa" key-columns="cd_categoria">
+        <!-- Id -->
+        <property name="cdPessoa"><column name="cd_pessoa"/></property>
+		<property name="rgNumero"><column name="rgnumero"/></property>
+		<property name="fotoPath"><column name="fotopath"/></property>
+		<property name="apelido"><column name="apelido"/></property>
+		<property name="rgOrgaoExp"><column name="rgorgaoexp"/></property>
+		<property name="rgEmissao"><column name="rgemissao"/></property>
+		<property name="cpf"><column name="cpf"/></property>
+		<property name="cnNumero"><column name="cnnumero"/></property>
+		<property name="cnLv"><column name="cnlv"/></property>
+		<property name="cnFls"><column name="cnfls"/></property>
+		<property name="cnCidade"><column name="cncidade"/></property>
+		<property name="cnSubdistrito"><column name="cnsubdistrito"/></property>
+		<property name="cnUf"><column name="cnuf"/></property>
+		<property name="sexo"><column name="sexo"/></property>
+		<property name="nomePai"><column name="nomepai"/></property>
+		<property name="nomeMae"><column name="nomemae"/></property>
+		<property name="dtNascimento"><column name="dtnascimento"/></property>
+		<property name="dtFalecimento"><column name="dtfalecimento"/></property>
+		<property name="nome"><column name="nome"/></property>
+		<property name="flDependente"><column name="fldependente"/></property>
+		<property name="ufeSg"><column name="ufe_sg"/></property>
+		<property name="locNuSequencial"><column name="loc_nu_sequencial"/></property>
+		<property name="tipoLogradouro"><column name="tipologradouro"/></property>
+		<property name="logNome"><column name="log_nome"/></property>
+		<property name="logComplemento"><column name="log_complemento"/></property>
+		<property name="baiNome"><column name="bai_nome"/></property>
+		<property name="cep"><column name="cep"/></property>
+		<property name="email"><column name="email"/></property>        
+        <property name="version">column name="VERSION"/></property>
+        <property name="dtCadastro"><column name="dt_cadastro"/></property>        
+    </result-object>
+    <sql-statement id="getPessoa" result-object="Pessoa">
+        SELECT cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
+				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,sexo,nomepai,nomemae,dtnascimento,
+				dtfalecimento,nome,fldependente,ufe_sg,loc_nu_sequencial,tipologradouro,log_nome,
+				log_complemento,bai_nome,cep,email,dtcadastro,version
+        FROM {{schema}}.geral_pessoa
+        #if ($pessoa.cdPessoa) 
+            WHERE cd_pessoa = :pessoa.cdPessoa 
+        #end 
+        #if ($likeValue) 
+            WHERE        
+                {{likeColumn}} like :likeValue
+        #end         
+    </sql-statement> 	    
+    <sql-statement id="insertPessoa">
+        INSERT INTO {{schema}}.geral_pessoa (cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
+				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,sexo,nomepai,nomemae,dtnascimento,
+				dtfalecimento,nome,fldependente,ufe_sg,loc_nu_sequencial,tipologradouro,log_nome,
+				log_complemento,bai_nome,cep,email,dtcadastro,version)
+        VALUES  (:pessoa.cdPessoa,:pessoa.rgNumero,:pessoa.fotoPath,:pessoa.apelido,:pessoa.rgOrgaoExp,
+				:pessoa.rgEmissao,:pessoa.cpf,:pessoa.cnNumero,:pessoa.cnLv,:pessoa.cnFls,:pessoa.cnCidade,:pessoa.cnSubDistrito,
+				:pessoa.cnUf,:pessoa.sexo,:pessoa.nomePai,:pessoa.nomeMae,:pessoa.dtNascimento,:pessoa.dtFalecimento,
+				:pessoa.nome,:pessoa.flDependente,:pessoa.ufeSg,:pessoa.locNuSequencial,:pessoa.tipoLogradouro,
+				:pessoa.logNome,:pessoa.logComplemento,:pessoa.baiNome,:pessoa.cep,:pessoa.email,:pessoa.dtCadastro,0)
+    </sql-statement>
+    <sql-statement id="updatePessoa">
+        UPDATE {{schema}}.geral_pessoa 
+        SET 
+			rgnumero = :pessoa.rgNumero,
+			fotopath = :pessoa.fotoPath,
+			apelido = :pessoa.apelido,
+			rgorgaoexp = :pessoa.rgOrgaoExp,
+			rgemissao = :pessoa.rgEmissao,
+			cpf = :pessoa.cpf,
+			cnnumero = :pessoa.cnNumero,
+			cnlv = :pessoa.cnLv,
+			cnfls = :pessoa.cnFls,
+			cncidade = :pessoa.cnCidade,
+			cnsubdistrito = :pessoa.cnSubDistrito,
+			cnuf = :pessoa.cnUf,
+			sexo = :pessoa.sexo,
+			nomepai = :pessoa.nomePai,
+			nomemae = :pessoa.nomeMae,
+			dtnascimento = :pessoa.dtNascimento,
+			dtfalecimento = :pessoa.dtFalecimento,
+			nome = :pessoa.nome,
+			fldependente = :pessoa.flDependente,
+			ufe_sg = :pessoa.ufeSg,
+			loc_nu_sequencial = :pessoa.locNuSequencial,
+			tipologradouro = :pessoa.tipoLogradouro,
+			log_nome = :pessoa.logNome,
+			log_complemento = :pessoa.logComplemento,
+			bai_nome = :pessoa.baiNome,
+			cep = :pessoa.cep,
+			email = :pessoa.email,
+            dt_cadastro = :pessoa.dtCadastro,
+            version	= :pessoa.version + 1
+        WHERE
+            cd_pessoa  = :pessoa.cdPessoa
+    </sql-statement>
+    <sql-statement id="deletePessoa">
+        DELETE FROM {{schema}}.geral_pessoa
+        WHERE
+            cd_pessoa  = :pessoa.cdPessoa
+    </sql-statement>
+    
+</broker>
