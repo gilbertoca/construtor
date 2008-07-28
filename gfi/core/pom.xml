@@ -38,6 +38,9 @@
 						<srcFile>
 							src/test/resources/sql/inventario.tab.sql
 						</srcFile>
+						<srcFile>
+							src/test/resources/sql/geral.tab.sql
+						</srcFile>
 					</srcFiles>
 				</configuration>
 			</plugin>
