@@ -6,11 +6,12 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.inventario.model.Categoria;
 
 public class CategoriaBaseServiceTest {
     private BaseService<Categoria, Integer> cS = new BaseService<Categoria, Integer>(
-	    Categoria.class);
+	    Categoria.class, Constants.ORBROKER_INVENTARIO);
 
     @Test
     public void testGetAll() {

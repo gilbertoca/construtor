@@ -12,15 +12,9 @@
 <broker name="inventario" version="2.0">
     <result-object id="UnidadeMedida" class="com.gilbertoca.gfi.inventario.model.UnidadeMedida" key-columns="CD_UNIDADE_MEDIDA">
         <!-- Id -->
-        <property name="cdUnidadeMedida">
-            <column name="CD_UNIDADE_MEDIDA"/>
-        </property>
-        <property name="descricaoUnidade">
-            <column name="DESCRICAO_UNIDADE"/>
-        </property>
-        <property name="version">
-            <column name="VERSION"/>
-        </property>        
+        <property name="cdUnidadeMedida"><column name="CD_UNIDADE_MEDIDA"/></property>
+        <property name="descricaoUnidade"><column name="DESCRICAO_UNIDADE"/></property>
+        <property name="version"><column name="VERSION"/></property>        
     </result-object>
     <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
         SELECT cd_unidade_medida,descricao_unidade,version

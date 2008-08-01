@@ -29,6 +29,7 @@ public class Constants {
      * modulos, como: orbroker-financeiro.xml, orbroker-inventario.xml
      */
     public static final String ORBROKER_INVENTARIO = "/META-INF/orbroker-inventario.xml";
+    public static final String ORBROKER_GERAL = "/META-INF/orbroker-geral.xml";    
 
     /**
      * O identificador da UF utilizado pelo logradouro UF=Estado do Tocantins.
@@ -72,4 +73,5 @@ public class Constants {
      * do Tocantins.
      */
     public static final String LOCALIDADE = "9902";
+
 }

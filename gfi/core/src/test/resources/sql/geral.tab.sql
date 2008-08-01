@@ -1,16 +1,34 @@
-drop table gfi.inventario_unidade_medida;
-drop table gfi.inventario_categoria;
-create table gfi.inventario_unidade_medida (
-   cd_unidade_medida varchar(4) not null,
-   version integer not null,
-   descricao_unidade varchar(30),
-   primary key (cd_unidade_medida)
-);
-create table gfi.inventario_categoria (
-   cd_categoria integer not null,
-   nome_categoria varchar(80),
-   descricao_categoria varchar(255),
-   dt_cadastro timestamp not null,
-   version integer not null,
-   primary key (cd_categoria)
+drop table gfi.geral_pessoa;
+create table gfi.geral_pessoa (
+	cdpessoa integer not null,
+	rgnumero varchar(30),
+	fotopath varchar(255),
+	apelido varchar(50),
+	rgorgaoexp varchar(6),
+	rgemissao date,
+	cpf varchar(11),
+	cnnumero varchar(20),
+	cnlv varchar(10),
+	cnfls varchar(10),
+	cncidade varchar(50),
+	cnsubdistrito varchar(50),
+	cnuf varchar(2),
+	sexo varchar(1) not null,
+	nomepai varchar(100),
+	nomemae varchar(100) not null,
+	dtnascimento date not null,
+	dtfalecimento date,
+	nome varchar(100) not null,
+	fldependente smallint,-- boolean type
+	ufe_sg varchar(2),
+	loc_nu_sequencial integer,
+	tipologradouro varchar(72),
+	log_nome varchar(125),
+	log_complemento varchar(100),
+	bai_nome varchar(72),
+	cep varchar(12),
+	email varchar(100),
+	dtcadastro timestamp not null,
+	version integer not null,
+	primary key (cdpessoa)
 );

@@ -1,51 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
 	<table name="inventario_unidade_medida">
-        <column>cd_unidade_medida</column>
-        <column>descricao_unidade</column>
-        <column>version</column>
-        <row>
-            <value description="cd_unidade_medida">MT</value>
-            <value description="descricao_unidade"><![CDATA[Metros]]></value>
-            <value description="version">1</value>
-        </row>
-        <row>
-            <value description="cd_unidade_medida">KG</value>
-            <value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
-            <value description="version">1</value>
-        </row>
-        <row>
-            <value description="cd_unidade_medida">CEM</value>
-            <value description="descricao_unidade"><![CDATA[Centimetros]]></value>
-            <value description="version">1</value>
-        </row>
-    </table>
+		<column>cd_unidade_medida</column>
+		<column>descricao_unidade</column>
+		<column>version</column>
+		<row>
+			<value description="cd_unidade_medida">MT</value>
+			<value description="descricao_unidade"><![CDATA[Metros]]></value>
+			<value description="version">1</value>
+		</row>
+		<row>
+			<value description="cd_unidade_medida">KG</value>
+			<value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
+			<value description="version">1</value>
+		</row>
+		<row>
+			<value description="cd_unidade_medida">CEM</value>
+			<value description="descricao_unidade"><![CDATA[Centimetros]]></value>
+			<value description="version">1</value>
+		</row>
+	</table>
 	<table name="inventario_categoria">
-        <column>cd_categoria</column>
-        <column>nome_categoria</column>
-        <column>descricao_categoria</column>
-        <column>version</column>
-        <column>dt_cadastro</column>
-        <row>
-            <value description="cd_categoria">1</value>
-            <value description="nome_categoria"><![CDATA[Sapatos]]></value>
-            <value description="descricao_categoria"><![CDATA[Sapatos]]></value>
-            <value description="version">1</value>
-            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
-        </row>
-        <row>
-            <value description="cd_categoria">2</value>
-            <value description="nome_categoria"><![CDATA[Calças]]></value>
-            <value description="descricao_categoria"><![CDATA[Calças]]></value>
-            <value description="version">1</value>
-            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
-        </row>
-        <row>
-            <value description="cd_categoria">3</value>
-            <value description="nome_categoria"><![CDATA[Chapeus]]></value>
-            <value description="descricao_categoria"><![CDATA[Chapeus]]></value>
-            <value description="version">1</value>
-            <value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
-        </row>
-    </table>    
+		<column>cd_categoria</column>
+		<column>nome_categoria</column>
+		<column>descricao_categoria</column>
+		<column>version</column>
+		<column>dt_cadastro</column>
+		<row>
+			<value description="cd_categoria">1</value>
+			<value description="nome_categoria"><![CDATA[Sapatos]]></value>
+			<value description="descricao_categoria"><![CDATA[Sapatos]]></value>
+			<value description="version">1</value>
+			<value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+		<row>
+			<value description="cd_categoria">2</value>
+			<value description="nome_categoria"><![CDATA[Calças]]></value>
+			<value description="descricao_categoria"><![CDATA[Calças]]></value>
+			<value description="version">1</value>
+			<value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+		<row>
+			<value description="cd_categoria">3</value>
+			<value description="nome_categoria"><![CDATA[Chapeus]]></value>
+			<value description="descricao_categoria"><![CDATA[Chapeus]]></value>
+			<value description="version">1</value>
+			<value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+	</table>
+	<table name='geral_pessoa'>
+		<column>cdpessoa</column>
+		<column>rgnumero</column>
+		<column>fotopath</column>
+		<column>apelido</column>
+		<column>rgorgaoexp</column>
+		<column>rgemissao</column>
+		<column>cpf</column>
+		<column>cnnumero</column>
+		<column>cnlv</column>
+		<column>cnfls</column>
+		<column>cncidade</column>
+		<column>cnsubdistrito</column>
+		<column>cnuf</column>
+		<column>sexo</column>
+		<column>nomepai</column>
+		<column>nomemae</column>
+		<column>dtnascimento</column>
+		<column>dtfalecimento</column>
+		<column>nome</column>
+		<column>fldependente</column>
+		<column>ufe_sg</column>
+		<column>loc_nu_sequencial</column>
+		<column>tipologradouro</column>
+		<column>log_nome</column>
+		<column>log_complemento</column>
+		<column>bai_nome</column>
+		<column>cep</column>
+		<column>email</column>
+		<column>version</column>
+		<column>dtcadastro</column>		
+		<row>
+			<value>1</value>
+			<value>rgnumero509</value>
+			<value>fotopath584</value>
+			<value>apelido153</value>
+			<value>rgorga</value>
+			<value>2005-07-13</value>
+			<value>cpf766</value>
+			<value>cnnumero154</value>
+			<value>cnlv678</value>
+			<value>cnfls401</value>
+			<value>cncidade401</value>
+			<value>cnsubdistrito964</value>
+			<value>uf</value>
+			<value>M</value>
+			<value>nomepai579</value>
+			<value>nomemae905</value>
+			<value>2005-07-13</value>
+			<value>2005-07-13</value>
+			<value>nome736</value>
+			<value>0</value>
+			<value>uf</value>
+			<value>812</value>
+			<value>tipologradouro787</value>
+			<value>logNome861</value>
+			<value>logComplemento781</value>
+			<value>baiNome463</value>
+			<value>cep626</value>
+			<value>email626</value>
+			<value description="version">1</value>
+			<value description="dtcadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+		<row>
+			<value>2</value>
+			<value>rgnumero40</value>
+			<value>fotopath633</value>
+			<value>apelido603</value>
+			<value>rgorga</value>
+			<value>2005-07-13</value>
+			<value>cpf641</value>
+			<value>cnnumero700</value>
+			<value>cnlv483</value>
+			<value>cnfls525</value>
+			<value>cncidade707</value>
+			<value>cnsubdistrito371</value>
+			<value>uf</value>
+			<value>M</value>
+			<value>nomepai796</value>
+			<value>nomemae526</value>
+			<value>2005-07-13</value>
+			<value>2005-07-13</value>
+			<value>nome930</value>
+			<value>0</value>
+			<value>uf</value>
+			<value>43</value>
+			<value>tipologradouro342</value>
+			<value>logNome35</value>
+			<value>logComplemento64</value>
+			<value>baiNome61</value>
+			<value>cep116</value>
+			<value>email628</value>
+			<value description="version">1</value>
+			<value description="dtcadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+		<row>
+			<value>3</value>
+			<value>rgnumero478</value>
+			<value>fotopath337</value>
+			<value>apelido987</value>
+			<value>rgorga</value>
+			<value>2005-07-13</value>
+			<value>cpf350</value>
+			<value>cnnumero593</value>
+			<value>cnlv282</value>
+			<value>cnfls980</value>
+			<value>cncidade283</value>
+			<value>cnsubdistrito873</value>
+			<value>uf</value>
+			<value>M</value>
+			<value>nomepai345</value>
+			<value>nomemae916</value>
+			<value>2005-07-13</value>
+			<value>2005-07-13</value>
+			<value>nome203</value>
+			<value>0</value>
+			<value>uf</value>
+			<value>906</value>
+			<value>tipologradouro688</value>
+			<value>logNome405</value>
+			<value>logComplemento83</value>
+			<value>baiNome379</value>
+			<value>cep872</value>
+			<value>email6826</value>
+			<value description="version">1</value>
+			<value description="dtcadastro"><![CDATA[1988-12-25]]></value>
+		</row>
+	</table>
 </dataset>

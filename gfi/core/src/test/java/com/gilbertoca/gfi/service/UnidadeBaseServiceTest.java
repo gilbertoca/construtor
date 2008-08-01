@@ -6,12 +6,13 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 
 public class UnidadeBaseServiceTest {
     private BaseService<UnidadeMedida, String> uS = new BaseService<UnidadeMedida, String>(
-	    UnidadeMedida.class);
+	    UnidadeMedida.class, Constants.ORBROKER_INVENTARIO);
 
     @Test
     public void testGetAll() {

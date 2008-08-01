@@ -234,6 +234,9 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
         }
     }
     public Broker getBroker() {
-        return ResourceLocator.getInstance().getBroker(Constants.ORBROKER_INVENTARIO, "gfi");
+        return ResourceLocator.getInstance().getBroker(brokerName, "gfi");
     }
+    public Broker getBroker(String brokerName) {
+        return ResourceLocator.getInstance().getBroker(brokerName, "gfi");
+    }    
 }

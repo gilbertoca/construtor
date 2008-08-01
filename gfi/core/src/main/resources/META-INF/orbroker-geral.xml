@@ -10,10 +10,8 @@
         ser alcançados dessa forma /META-INF/sql/.
 -->
 <broker name="geral" version="2.0">
-    <!-- Pessoa -->
-    <result-object id="Categoria" class="com.gilbertoca.gfi.geral.model.Pessoa" key-columns="cd_categoria">
-        <!-- Id -->
-        <property name="cdPessoa"><column name="cd_pessoa"/></property>
+    <result-object id="Pessoa" class="com.gilbertoca.gfi.geral.model.Pessoa" key-columns="cdpessoa">
+        <property name="cdPessoa"><column name="cdpessoa"/></property>
 		<property name="rgNumero"><column name="rgnumero"/></property>
 		<property name="fotoPath"><column name="fotopath"/></property>
 		<property name="apelido"><column name="apelido"/></property>
@@ -24,7 +22,7 @@
 		<property name="cnLv"><column name="cnlv"/></property>
 		<property name="cnFls"><column name="cnfls"/></property>
 		<property name="cnCidade"><column name="cncidade"/></property>
-		<property name="cnSubdistrito"><column name="cnsubdistrito"/></property>
+		<property name="cnSubDistrito"><column name="cnsubdistrito"/></property>
 		<property name="cnUf"><column name="cnuf"/></property>
 		<property name="sexo"><column name="sexo"/></property>
 		<property name="nomePai"><column name="nomepai"/></property>
@@ -40,9 +38,9 @@
 		<property name="logComplemento"><column name="log_complemento"/></property>
 		<property name="baiNome"><column name="bai_nome"/></property>
 		<property name="cep"><column name="cep"/></property>
-		<property name="email"><column name="email"/></property>        
-        <property name="version">column name="VERSION"/></property>
-        <property name="dtCadastro"><column name="dt_cadastro"/></property>        
+		<property name="email"><column name="email"/></property>
+        <property name="version"><column name="version"/></property>
+        <property name="dtCadastro"><column name="dtcadastro"/></property>
     </result-object>
     <sql-statement id="getPessoa" result-object="Pessoa">
         SELECT cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
@@ -51,7 +49,7 @@
 				log_complemento,bai_nome,cep,email,dtcadastro,version
         FROM {{schema}}.geral_pessoa
         #if ($pessoa.cdPessoa) 
-            WHERE cd_pessoa = :pessoa.cdPessoa 
+            WHERE cdpessoa = :pessoa.cdPessoa 
         #end 
         #if ($likeValue) 
             WHERE        
@@ -99,15 +97,14 @@
 			bai_nome = :pessoa.baiNome,
 			cep = :pessoa.cep,
 			email = :pessoa.email,
-            dt_cadastro = :pessoa.dtCadastro,
+            dtcadastro = :pessoa.dtCadastro,
             version	= :pessoa.version + 1
         WHERE
-            cd_pessoa  = :pessoa.cdPessoa
+            cdpessoa  = :pessoa.cdPessoa
     </sql-statement>
     <sql-statement id="deletePessoa">
         DELETE FROM {{schema}}.geral_pessoa
         WHERE
-            cd_pessoa  = :pessoa.cdPessoa
+            cdpessoa  = :pessoa.cdPessoa
     </sql-statement>
-    
 </broker>
