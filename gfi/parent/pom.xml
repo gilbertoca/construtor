@@ -80,7 +80,7 @@
                 <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
                 <jdbc.groupId>hsqldb</jdbc.groupId>
-                <jdbc.url>jdbc:hsqldb:/database/gfi;shutdown=true</jdbc.url>
+                <jdbc.url>jdbc:hsqldb:gfi;shutdown=true</jdbc.url>
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
                 <jdbc.artifactId>hsqldb</jdbc.artifactId>
                 <jdbc.username>sa</jdbc.username>
@@ -205,6 +205,8 @@
         
         <jdbc.username>gfi</jdbc.username>        
         <jdbc.password>value</jdbc.password>
+        <!--  Trace file
+        jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true;traceFile=trace.out</jdbc.url  -->
         <jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true</jdbc.url>
         <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>        
         <jdbc.groupId>org.apache.derby</jdbc.groupId>
