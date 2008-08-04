@@ -36,6 +36,9 @@
 					<skip>${maven.test.skip}</skip>
 					<srcFiles>
 						<srcFile>
+							src/test/resources/sql/gfi.usr.sql
+						</srcFile>
+						<srcFile>
 							src/test/resources/sql/inventario.tab.sql
 						</srcFile>
 						<srcFile>

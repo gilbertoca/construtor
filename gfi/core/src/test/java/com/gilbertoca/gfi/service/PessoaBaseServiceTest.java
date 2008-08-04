@@ -34,9 +34,9 @@ public class PessoaBaseServiceTest {
 
     @Test
     public void testFindLikePessoa() {
-	Collection<Pessoa> result = cS.findLike("nome", "%ilb%");
+	Collection<Pessoa> result = cS.findLike("apelido", "%apelido%");
 	System.out.println(result);
-	assertTrue(result.size() == 1);
+	assertTrue(result.size() > 2);
     }
 
     @Test
