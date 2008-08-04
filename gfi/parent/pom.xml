@@ -88,6 +88,20 @@
             </properties>
         </profile>
         <profile>
+            <id>h2</id>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+                <jdbc.groupId>com.h2database</jdbc.groupId>
+                <jdbc.artifactId>h2</jdbc.artifactId>                
+                <jdbc.version>1.0.76</jdbc.version>                
+                <jdbc.url>jdbc:h2:~/bin/databases/h2/gfi</jdbc.url>
+                <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>                
+                <jdbc.username>sa</jdbc.username>
+                <jdbc.password></jdbc.password>                
+            </properties>
+        </profile>        
+        <profile>
             <id>jboss</id>
             <properties>
                 <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-4.0.5.GA.zip</cargo.container.url>
@@ -201,17 +215,24 @@
         
         <dbunit.schema>GFI</dbunit.schema>
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-        <dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
-        
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+        <!--  Trace file        
         <jdbc.username>gfi</jdbc.username>        
         <jdbc.password>value</jdbc.password>
-        <!--  Trace file
-        jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true;traceFile=trace.out</jdbc.url  -->
+        jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true;traceFile=trace.out</jdbc.url  
         <jdbc.url>jdbc:derby://localhost:1527/gfi_db;create=true</jdbc.url>
         <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>        
         <jdbc.groupId>org.apache.derby</jdbc.groupId>
         <jdbc.artifactId>derbyclient</jdbc.artifactId>
-        <jdbc.version>10.3.1.4</jdbc.version>
+        <jdbc.version>10.3.1.4</jdbc.version>-->
+
+        <jdbc.groupId>com.h2database</jdbc.groupId>
+        <jdbc.artifactId>h2</jdbc.artifactId>                
+        <jdbc.version>1.0.76</jdbc.version>                
+        <jdbc.url>jdbc:h2:~/bin/databases/h2/gfi</jdbc.url>
+        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>                
+        <jdbc.username>sa</jdbc.username>
+        <jdbc.password></jdbc.password>                
         
         <commons-dbcp.version>1.2.2</commons-dbcp.version>        
         
