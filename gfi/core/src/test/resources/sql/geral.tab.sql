@@ -19,7 +19,7 @@ create table gfi.geral_pessoa (
 	dtnascimento date not null,
 	dtfalecimento date,
 	nome varchar(100) not null,
-	fldependente BOOLEAN,
+	fldependente BOOLEAN default 0,--Database domain type
 	ufe_sg varchar(2),
 	loc_nu_sequencial integer,
 	tipologradouro varchar(72),
