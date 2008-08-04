@@ -30,7 +30,7 @@ public class Pessoa implements Serializable {
     private Date dtNascimento;
     private Date dtFalecimento;
     private String nome;
-    private Boolean flDependente = false;
+    private boolean flDependente;
     private String ufeSg;
     private Integer locNuSequencial;
     private String tipoLogradouro;
