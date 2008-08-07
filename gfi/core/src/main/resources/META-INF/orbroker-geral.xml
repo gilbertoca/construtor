@@ -24,6 +24,9 @@
 		<property name="cnCidade"><column name="cncidade"/></property>
 		<property name="cnSubDistrito"><column name="cnsubdistrito"/></property>
 		<property name="cnUf"><column name="cnuf"/></property>
+		<property name="cdNacionalidade"><column name="cdnacionalidade"/></property>
+		<property name="estadoCivil"><column name="estadocivil"/></property>
+		<property name="escolaridade"><column name="escolaridade"/></property>		
 		<property name="sexo"><column name="sexo"/></property>
 		<property name="nomePai"><column name="nomepai"/></property>
 		<property name="nomeMae"><column name="nomemae"/></property>
@@ -44,7 +47,7 @@
     </result-object>
     <sql-statement id="getPessoa" result-object="Pessoa">
         SELECT cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
-				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,sexo,nomepai,nomemae,dtnascimento,
+				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,cdnacionalidade,estadocivil,escolaridade,sexo,nomepai,nomemae,dtnascimento,
 				dtfalecimento,nome,fldependente,ufe_sg,loc_nu_sequencial,tipologradouro,log_nome,
 				log_complemento,bai_nome,cep,email,dtcadastro,version
         FROM {{schema}}.geral_pessoa
@@ -58,12 +61,12 @@
     </sql-statement> 	    
     <sql-statement id="insertPessoa">
         INSERT INTO {{schema}}.geral_pessoa (cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
-				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,sexo,nomepai,nomemae,dtnascimento,
+				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,cdnacionalidade,estadocivil,escolaridade,sexo,nomepai,nomemae,dtnascimento,
 				dtfalecimento,nome,fldependente,ufe_sg,loc_nu_sequencial,tipologradouro,log_nome,
 				log_complemento,bai_nome,cep,email,dtcadastro,version)
         VALUES  (:pessoa.cdPessoa,:pessoa.rgNumero,:pessoa.fotoPath,:pessoa.apelido,:pessoa.rgOrgaoExp,
 				:pessoa.rgEmissao,:pessoa.cpf,:pessoa.cnNumero,:pessoa.cnLv,:pessoa.cnFls,:pessoa.cnCidade,:pessoa.cnSubDistrito,
-				:pessoa.cnUf,:pessoa.sexo,:pessoa.nomePai,:pessoa.nomeMae,:pessoa.dtNascimento,:pessoa.dtFalecimento,
+				:pessoa.cnUf,:pessoa.cdNacionalidade, :pessoa.estadoCivil,:pessoa.escolaridade,:pessoa.sexo,:pessoa.nomePai,:pessoa.nomeMae,:pessoa.dtNascimento,:pessoa.dtFalecimento,
 				:pessoa.nome,:pessoa.flDependente,:pessoa.ufeSg,:pessoa.locNuSequencial,:pessoa.tipoLogradouro,
 				:pessoa.logNome,:pessoa.logComplemento,:pessoa.baiNome,:pessoa.cep,:pessoa.email,:pessoa.dtCadastro,0)
     </sql-statement>
@@ -82,6 +85,9 @@
 			cncidade = :pessoa.cnCidade,
 			cnsubdistrito = :pessoa.cnSubDistrito,
 			cnuf = :pessoa.cnUf,
+			cdnacionalidade = :pessoa.cdNacionalidade,
+			estadocivil = :pessoa.estadoCivil,
+			escolaridade = :pessoa.escolaridade,
 			sexo = :pessoa.sexo,
 			nomepai = :pessoa.nomePai,
 			nomemae = :pessoa.nomeMae,
@@ -107,4 +113,43 @@
         WHERE
             cdpessoa  = :pessoa.cdPessoa
     </sql-statement>
+    
+    <!-- Nacionalidade -->
+    <result-object id="Nacionalidade" class="com.gilbertoca.gfi.geral.model.Nacionalidade" key-columns="cdnacionalidade">
+        <!-- Id -->
+        <property name="cdNacionalidade">
+            <column name="cdnacionalidade"/>
+        </property>
+        <property name="dcNacionalidade">
+            <column name="dcnacionalidade"/>
+        </property>        
+    </result-object>
+    <sql-statement id="getNacionalidade" result-object="Nacionalidade">
+        SELECT cdnacionalidade,dcnacionalidade
+        FROM {{schema}}.geral_nacionalidade
+        #if ($nacionalidade.cdNacionalidade) 
+            WHERE cd_nacionalidade = :nacionalidade.cdNacionalidade 
+        #end 
+        #if ($likeValue) 
+            WHERE        
+                {{likeColumn}} like :likeValue
+        #end         
+    </sql-statement> 	    
+    <sql-statement id="insertNacionalidade">
+        INSERT INTO {{schema}}.geral_nacionalidade (cdnacionalidade, dcnacionalidade)
+        VALUES  (:nacionalidade.cdNacionalidade, :nacionalidade.dcNacionalidade)
+    </sql-statement>
+    <sql-statement id="updateNacionalidade">
+        UPDATE {{schema}}.geral_nacionalidade 
+        SET 
+			dcnacionalidade = :nacionalidade.dcNacionalidade,
+        WHERE
+            cdnacionalidade  = :nacionalidade.cdNacionalidade
+    </sql-statement>
+    <sql-statement id="deleteNacionalidade">
+        DELETE FROM {{schema}}.geral_nacionalidade
+        WHERE
+            cdnacionalidade  = :nacionalidade.cdNacionalidade
+    </sql-statement>
+    
 </broker>

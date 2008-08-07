@@ -42,9 +42,8 @@ public class PessoaBaseServiceTest {
     @Test
     public void testInsertPessoa() {
 	int size = cS.getAll().size();
-	//JDBC time escape format: YYYY-MM-DD
-	//java.sql.Date.valueOf("1974-03-22")
-	Pessoa entity = new Pessoa(4, "M", "Gilberto", "Mom","Beto", java.sql.Date.valueOf("1974-03-22"));
+	Date dtNascimento = new Date("03/02/1974");
+	Pessoa entity = new Pessoa(4, "M", "Gilberto", "Mom","Beto", dtNascimento);
 	System.out.println(entity);
 	cS.insert(entity);
 	Collection<Pessoa> result = cS.getAll();
@@ -64,5 +63,15 @@ public class PessoaBaseServiceTest {
 	assertTrue("O valor do campo apelido", apelido.equals(c
 		.getApelido()));
     }
+    @Test
+    public void testDeletePessoa() {
+	Integer cdPessoa = 2;
+	Pessoa c = new Pessoa();
+	c.setCdPessoa(cdPessoa);
+	cS.delete(c);
+	System.out.println(c);
+	assertFalse("Objeto excluido!", cS.find(c));
+    }
+    
 
 }

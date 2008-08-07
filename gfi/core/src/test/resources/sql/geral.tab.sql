@@ -1,4 +1,11 @@
 drop table gfi.geral_pessoa;
+drop table gfi.geral_nacionalidade;
+create table gfi.geral_nacionalidade (
+   cdnacionalidade smallint not null,
+   dcnacionalidade varchar(40),
+   primary key (cdnacionalidade)
+);
+
 create table gfi.geral_pessoa (
 	cdpessoa integer not null,
 	rgnumero varchar(30),
@@ -13,7 +20,10 @@ create table gfi.geral_pessoa (
 	cncidade varchar(50),
 	cnsubdistrito varchar(50),
 	cnuf varchar(2),
-	sexo varchar(1) not null,
+	cdnacionalidade smallint,
+	estadocivil char(1) CHECK(estadocivil IN('S','C','D','V')),--S-olteiro, C-asado, D-ivorsiado ou V-iuvo
+	escolaridade varchar(20) CHECK(escolaridade IN ('Ensino Fundamental','Ensino Médio','Graduação','Mestrado','Doutorado','Pós-Doutorado')),
+	sexo char(1) CHECK(sexo IN('M','F')),--Masculino ou Feminio
 	nomepai varchar(100),
 	nomemae varchar(100) not null,
 	dtnascimento date not null,

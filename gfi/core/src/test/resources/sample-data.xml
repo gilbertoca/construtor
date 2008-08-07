@@ -62,6 +62,9 @@
 		<column>cncidade</column>
 		<column>cnsubdistrito</column>
 		<column>cnuf</column>
+		<column>cdnacionalidade</column>
+		<column>estadocivil</column>
+		<column>escolaridade</column>
 		<column>sexo</column>
 		<column>nomepai</column>
 		<column>nomemae</column>
@@ -93,6 +96,9 @@
 			<value>cncidade401</value>
 			<value>cnsubdistrito964</value>
 			<value>uf</value>
+			<value>1</value>
+			<value>S</value>
+			<value>Ensino Fundamental</value>
 			<value>M</value>
 			<value>nomepai579</value>
 			<value>nomemae905</value>
@@ -125,6 +131,9 @@
 			<value>cncidade707</value>
 			<value>cnsubdistrito371</value>
 			<value>uf</value>
+			<value>1</value>
+			<value>S</value>
+			<value>Ensino Fundamental</value>			
 			<value>M</value>
 			<value>nomepai796</value>
 			<value>nomemae526</value>
@@ -157,6 +166,9 @@
 			<value>cncidade283</value>
 			<value>cnsubdistrito873</value>
 			<value>uf</value>
+			<value>1</value>
+			<value>S</value>
+			<value>Ensino Fundamental</value>			
 			<value>M</value>
 			<value>nomepai345</value>
 			<value>nomemae916</value>

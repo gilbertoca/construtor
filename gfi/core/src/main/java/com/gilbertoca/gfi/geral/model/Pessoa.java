@@ -24,6 +24,9 @@ public class Pessoa implements Serializable {
     private String cnCidade;
     private String cnSubDistrito;
     private String cnUf;
+    private Short cdNacionalidade;
+    private String estadoCivil;
+    private String escolaridade;
     private String sexo;
     private String nomePai;
     private String nomeMae;
@@ -47,35 +50,14 @@ public class Pessoa implements Serializable {
     private Set<PessoaDependencia> gerPessoaDependencias;
 
     /** full constructor */
-    public Pessoa(
-	    Integer cdpessoa,
-	    String rgnumero,
-	    String fotopath,
-	    String apelido,
-	    String rgorgaoexp,
-	    Date rgemissao,
-	    String cpf,
-	    String cnnumero,
-	    String cnlv,
-	    String cnfls,
-	    String cncidade,
-	    String cnsubdistrito,
-	    String cnuf,
-	    String sexo,
-	    String nomepai,
-	    String nomemae,
-	    Date dtnascimento,
-	    Date dtfalecimento,
-	    String nome,
-	    Boolean fldependente,
-	    String ufeSg,
-	    Integer locNuSequencial,
-	    String tipologradouro,
-	    String logNome,
-	    String logComplemento,
-	    String baiNome,
-	    String cep,
-	    PessoaDocumento gerPessoadocumento,
+    public Pessoa(Integer cdpessoa, String rgnumero, String fotopath,
+	    String apelido, String rgorgaoexp, Date rgemissao, String cpf,
+	    String cnnumero, String cnlv, String cnfls, String cncidade,
+	    String cnsubdistrito, String cnuf,Short cdNacionalidade, String estadoCivil, String escolaridade, String sexo, String nomepai,
+	    String nomemae, Date dtnascimento, Date dtfalecimento, String nome,
+	    Boolean fldependente, String ufeSg, Integer locNuSequencial,
+	    String tipologradouro, String logNome, String logComplemento,
+	    String baiNome, String cep, PessoaDocumento gerPessoadocumento,
 	    PessoaCaracteristica gerPessoacaracteristica,
 	    Set<PessoaDependencia> gerPessoadependencias) {
 	this.cdPessoa = cdpessoa;
@@ -91,6 +73,9 @@ public class Pessoa implements Serializable {
 	this.cnCidade = cncidade;
 	this.cnSubDistrito = cnsubdistrito;
 	this.cnUf = cnuf;
+	this.cdNacionalidade = cdNacionalidade;
+	this.estadoCivil = estadoCivil;
+	this.escolaridade = escolaridade;
 	this.sexo = sexo;
 	this.nomePai = nomepai;
 	this.nomeMae = nomemae;
@@ -122,7 +107,7 @@ public class Pessoa implements Serializable {
 	this.nome = nome;
 	this.nomeMae = nomeMae;
 	this.apelido = apelido;
-	this.dtNascimento = dtNascimento;	
+	this.dtNascimento = dtNascimento;
     }
 
     /**
@@ -414,11 +399,11 @@ public class Pessoa implements Serializable {
      * @hibernate.property column="flDependente" length="1"
      * 
      */
-    public Boolean getFlDependente() {
+    public boolean getFlDependente() {
 	return this.flDependente;
     }
 
-    public void setFlDependente(Boolean fldependente) {
+    public void setFlDependente(boolean fldependente) {
 	this.flDependente = fldependente;
     }
 
@@ -506,6 +491,30 @@ public class Pessoa implements Serializable {
 	this.cep = cep;
     }
 
+    public Short getCdNacionalidade() {
+        return cdNacionalidade;
+    }
+
+    public void setCdNacionalidade(Short cdNacionalidade) {
+        this.cdNacionalidade = cdNacionalidade;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public String getEscolaridade() {
+        return escolaridade;
+    }
+
+    public void setEscolaridade(String escolaridade) {
+        this.escolaridade = escolaridade;
+    }
+
     /**
      * @hibernate.property column="email" length="100"
      * 
@@ -533,7 +542,7 @@ public class Pessoa implements Serializable {
     public void setVersion(int version) {
 	this.version = version;
     }
-    
+
     /**
      * @hibernate.one-to-one outer-join="auto"
      * 
@@ -554,7 +563,8 @@ public class Pessoa implements Serializable {
 	return this.gerPessoaCaracteristica;
     }
 
-    public void setGerPessoaCaracteristica(PessoaCaracteristica gerPessoacaracteristica) {
+    public void setGerPessoaCaracteristica(
+	    PessoaCaracteristica gerPessoacaracteristica) {
 	this.gerPessoaCaracteristica = gerPessoacaracteristica;
     }
 
@@ -568,76 +578,75 @@ public class Pessoa implements Serializable {
 	return this.gerPessoaDependencias;
     }
 
-    public void setGerPessoaDependencias(Set<PessoaDependencia> gerPessoadependencias) {
+    public void setGerPessoaDependencias(
+	    Set<PessoaDependencia> gerPessoadependencias) {
 	this.gerPessoaDependencias = gerPessoadependencias;
     }
 
     @Override
     public boolean equals(final Object other) {
-        if (!(other instanceof Pessoa))
-            return false;
-        Pessoa castOther = (Pessoa) other;
-        return new EqualsBuilder().append(cdPessoa, castOther.cdPessoa).append(
-        	rgNumero, castOther.rgNumero).append(fotoPath,
-        	castOther.fotoPath).append(apelido, castOther.apelido).append(
-        	rgOrgaoExp, castOther.rgOrgaoExp).append(rgEmissao,
-        	castOther.rgEmissao).append(cpf, castOther.cpf).append(
-        	cnNumero, castOther.cnNumero).append(cnLv, castOther.cnLv)
-        	.append(cnFls, castOther.cnFls).append(cnCidade,
-        		castOther.cnCidade).append(cnSubDistrito,
-        		castOther.cnSubDistrito).append(cnUf, castOther.cnUf)
-        	.append(sexo, castOther.sexo)
-        	.append(nomePai, castOther.nomePai).append(nomeMae,
-        		castOther.nomeMae).append(dtNascimento,
-        		castOther.dtNascimento).append(dtFalecimento,
-        		castOther.dtFalecimento).append(nome, castOther.nome)
-        	.append(flDependente, castOther.flDependente).append(ufeSg,
-        		castOther.ufeSg).append(locNuSequencial,
-        		castOther.locNuSequencial).append(tipoLogradouro,
-        		castOther.tipoLogradouro).append(logNome,
-        		castOther.logNome).append(logComplemento,
-        		castOther.logComplemento).append(baiNome,
-        		castOther.baiNome).append(cep, castOther.cep).append(
-        		email, castOther.email).append(dtCadastro,
-        		castOther.dtCadastro)
-        	.append(version, castOther.version).isEquals();
+	if (!(other instanceof Pessoa))
+	    return false;
+	Pessoa castOther = (Pessoa) other;
+	return new EqualsBuilder().append(cdPessoa, castOther.cdPessoa).append(
+		rgNumero, castOther.rgNumero).append(fotoPath,
+		castOther.fotoPath).append(apelido, castOther.apelido).append(
+		rgOrgaoExp, castOther.rgOrgaoExp).append(rgEmissao,
+		castOther.rgEmissao).append(cpf, castOther.cpf).append(
+		cnNumero, castOther.cnNumero).append(cnLv, castOther.cnLv)
+		.append(cnFls, castOther.cnFls).append(cnCidade,
+			castOther.cnCidade).append(cnSubDistrito,
+			castOther.cnSubDistrito).append(cnUf, castOther.cnUf)
+		.append(sexo, castOther.sexo)
+		.append(nomePai, castOther.nomePai).append(nomeMae,
+			castOther.nomeMae).append(dtNascimento,
+			castOther.dtNascimento).append(dtFalecimento,
+			castOther.dtFalecimento).append(nome, castOther.nome)
+		.append(flDependente, castOther.flDependente).append(ufeSg,
+			castOther.ufeSg).append(locNuSequencial,
+			castOther.locNuSequencial).append(tipoLogradouro,
+			castOther.tipoLogradouro).append(logNome,
+			castOther.logNome).append(logComplemento,
+			castOther.logComplemento).append(baiNome,
+			castOther.baiNome).append(cep, castOther.cep).append(
+			email, castOther.email).append(dtCadastro,
+			castOther.dtCadastro)
+		.append(version, castOther.version).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(cdPessoa).append(rgNumero).append(
-        	fotoPath).append(apelido).append(rgOrgaoExp).append(rgEmissao)
-        	.append(cpf).append(cnNumero).append(cnLv).append(cnFls)
-        	.append(cnCidade).append(cnSubDistrito).append(cnUf).append(
-        		sexo).append(nomePai).append(nomeMae).append(
-        		dtNascimento).append(dtFalecimento).append(nome)
-        	.append(flDependente).append(ufeSg).append(locNuSequencial)
-        	.append(tipoLogradouro).append(logNome).append(logComplemento)
-        	.append(baiNome).append(cep).append(email).append(dtCadastro)
-        	.append(version).toHashCode();
+	return new HashCodeBuilder().append(cdPessoa).append(rgNumero).append(
+		fotoPath).append(apelido).append(rgOrgaoExp).append(rgEmissao)
+		.append(cpf).append(cnNumero).append(cnLv).append(cnFls)
+		.append(cnCidade).append(cnSubDistrito).append(cnUf).append(
+			sexo).append(nomePai).append(nomeMae).append(
+			dtNascimento).append(dtFalecimento).append(nome)
+		.append(flDependente).append(ufeSg).append(locNuSequencial)
+		.append(tipoLogradouro).append(logNome).append(logComplemento)
+		.append(baiNome).append(cep).append(email).append(dtCadastro)
+		.append(version).toHashCode();
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-        	.append("cdPessoa", cdPessoa).append("rgNumero", rgNumero)
-        	.append("fotoPath", fotoPath).append("apelido", apelido)
-        	.append("rgOrgaoExp", rgOrgaoExp)
-        	.append("rgEmissao", rgEmissao).append("cpf", cpf).append(
-        		"cnNumero", cnNumero).append("cnLv", cnLv).append(
-        		"cnFls", cnFls).append("cnCidade", cnCidade).append(
-        		"cnSubDistrito", cnSubDistrito).append("cnUf", cnUf)
-        	.append("sexo", sexo).append("nomePai", nomePai).append(
-        		"nomeMae", nomeMae)
-        	.append("dtNascimento", dtNascimento).append("dtFalecimento",
-        		dtFalecimento).append("nome", nome).append(
-        		"flDependente", flDependente).append("ufeSg", ufeSg)
-        	.append("locNuSequencial", locNuSequencial).append(
-        		"tipoLogradouro", tipoLogradouro).append("logNome",
-        		logNome).append("logComplemento", logComplemento)
-        	.append("baiNome", baiNome).append("cep", cep).append("email",
-        		email).append("dtCadastro", dtCadastro).append(
-        		"version", version).toString();
+	return new ToStringBuilder(this).append("cdPessoa", cdPessoa).append(
+		"rgNumero", rgNumero).append("fotoPath", fotoPath).append(
+		"apelido", apelido).append("rgOrgaoExp", rgOrgaoExp).append(
+		"rgEmissao", rgEmissao).append("cpf", cpf).append("cnNumero",
+		cnNumero).append("cnLv", cnLv).append("cnFls", cnFls).append(
+		"cnCidade", cnCidade).append("cnSubDistrito", cnSubDistrito)
+		.append("cnUf", cnUf).append("sexo", sexo).append("nomePai",
+			nomePai).append("nomeMae", nomeMae).append(
+			"dtNascimento", dtNascimento).append("dtFalecimento",
+			dtFalecimento).append("nome", nome).append(
+			"flDependente", flDependente).append("ufeSg", ufeSg)
+		.append("locNuSequencial", locNuSequencial).append(
+			"tipoLogradouro", tipoLogradouro).append("logNome",
+			logNome).append("logComplemento", logComplemento)
+		.append("baiNome", baiNome).append("cep", cep).append("email",
+			email).append("dtCadastro", dtCadastro).append(
+			"version", version).toString();
     }
 
 }
