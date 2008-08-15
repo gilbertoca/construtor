@@ -48,6 +48,22 @@
 			<value description="dt_cadastro"><![CDATA[1988-12-25]]></value>
 		</row>
 	</table>
+	<table name="geral_nacionalidade">
+		<column>cdnacionalidade</column>
+		<column>dcnacionalidade</column>
+		<row>
+			<value description="cdnacionalidade">1</value>
+			<value description="dcnacionalidade"><![CDATA[Afeganistão]]></value>
+		</row>
+		<row>
+			<value description="cdnacionalidade">2</value>
+			<value description="dcnacionalidade"><![CDATA[Albânia]]></value>
+		</row>
+		<row>
+			<value description="cdnacionalidade">3</value>
+			<value description="dcnacionalidade"><![CDATA[Angola]]></value>
+		</row>
+	</table>	
 	<table name='geral_pessoa'>
 		<column>cdpessoa</column>
 		<column>rgnumero</column>
