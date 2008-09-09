@@ -47,8 +47,9 @@ public interface IService<T, PK extends Serializable> {
      * 
      * @param entity
      *                entidade a ser inserida.
+     * @throws InsertException 
      */
-    public void insert(T entity);
+    public void insert(T entity) throws InsertException;
 
     /**
      * Método genérico para atualização de uma entidade.

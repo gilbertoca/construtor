@@ -40,15 +40,18 @@ public class PessoaBaseServiceTest {
     }
 
     @Test
-    public void testInsertPessoa() {
+    public void testInsertPessoa() throws Exception {
 	int size = cS.getAll().size();
+	System.out.println("@@@@@@@@@@  Quantidade antes da inserção:"+size);	
 	Date dtNascimento = new Date("03/02/1974");
 	Pessoa entity = new Pessoa(4, "M", "Gilberto", "Mom","Beto", dtNascimento);
-	System.out.println(entity);
 	cS.insert(entity);
-	Collection<Pessoa> result = cS.getAll();
-	System.out.println(result);
-	assertTrue(result.size() > size);
+	Integer cdPessoa = 4;
+	Pessoa c = new Pessoa();
+	c.setCdPessoa(cdPessoa);
+	cS.find(c);
+	System.out.println(c);
+	assertTrue("Nome da Pessoa", c.getNome().equalsIgnoreCase("Gilberto"));
     }
     @Test
     public void testUpdatePessoa() {

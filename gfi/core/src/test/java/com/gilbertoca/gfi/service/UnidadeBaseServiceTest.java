@@ -32,7 +32,7 @@ public class UnidadeBaseServiceTest {
     }
 
     @Test
-    public void testInsertUnidadeMedida() {
+    public void testInsertUnidadeMedida() throws InsertException {
 	int size = uS.getAll().size();
 	UnidadeMedida entity = new UnidadeMedida("MT3", "Metros");
 	uS.insert(entity);

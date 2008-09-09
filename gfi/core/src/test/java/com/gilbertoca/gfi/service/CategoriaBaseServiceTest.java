@@ -38,7 +38,7 @@ public class CategoriaBaseServiceTest {
     }
 
     @Test
-    public void testInsertCategoria() {
+    public void testInsertCategoria() throws Exception {
 	int size = cS.getAll().size();
 	Categoria entity = new Categoria(4, "Vestuário", "Vestuário");
 	System.out.println(entity);

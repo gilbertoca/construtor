@@ -14,8 +14,6 @@ import net.sourceforge.orbroker.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gilbertoca.gfi.Constants;
-
 
 /**
  * Esta classe é uma implementação padrão da interface IService. Fornece uma implementação básica 
@@ -104,7 +102,7 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
         }
     }
 
-    public void insert(T entity){
+    public void insert(T entity) throws InsertException{
     	log.debug("Realizando inserção. Entidade usada como parâmetro: {} ",entity);    	
 
         if (entity == null) {
@@ -124,7 +122,7 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
             if (recordsUpdated != 1) {
                 txn.rollback();
                 log.debug("Problemas na inserção. Nº registros afetados: {} ",recordsUpdated);
-            //throw new ThatsWeirdException();
+                throw new InsertException("Incapaz de realizar inserção!");
             }
             txn.commit();
             log.debug("Inserção realizada com sucesso.");
