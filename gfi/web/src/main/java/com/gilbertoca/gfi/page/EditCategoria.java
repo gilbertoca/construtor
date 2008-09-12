@@ -10,6 +10,7 @@ import net.sf.click.control.TextField;
 
 import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.service.BaseService;
+import com.gilbertoca.gfi.service.InsertException;
 
 /**
  * Provides an edit Customer Form example. The Customer business object
@@ -78,7 +79,12 @@ public class EditCategoria extends BorderPage {
             	getIService().update(categoria);
             	log.debug("Operação de atualização realizada.");
             }else{
-            	getIService().insert(categoria);            	
+            	try {
+		    getIService().insert(categoria);
+		} catch (InsertException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}            	
             	log.debug("Operação de inserção realizada.");
             }
             String referrer = referrerField.getValue();

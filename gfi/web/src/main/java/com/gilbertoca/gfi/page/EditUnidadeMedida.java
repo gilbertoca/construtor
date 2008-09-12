@@ -8,6 +8,7 @@ import net.sf.click.control.TextField;
 
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.BaseService;
+import com.gilbertoca.gfi.service.InsertException;
 
 /**
  * Fornece um formulário para edição de Unidade de Medidas. 
@@ -77,7 +78,12 @@ public class EditUnidadeMedida extends BorderPage {
             	getIService().update(unidadeMedida);
             	log.debug("Operação de atualização realizada.");
             }else{
-            	getIService().insert(unidadeMedida);            	
+            	try {
+		    getIService().insert(unidadeMedida);
+		} catch (InsertException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}            	
             	log.debug("Operação de inserção realizada.");
             }
             String referrer = referrerField.getValue();
