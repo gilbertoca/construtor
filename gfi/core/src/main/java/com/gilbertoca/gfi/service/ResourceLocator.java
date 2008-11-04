@@ -31,11 +31,6 @@ import org.slf4j.LoggerFactory;
  * @author Gilberto Caetano de Andrade
  */
 public class ResourceLocator {
-	/**
-	 * Constante usada para capturar, atraves de propriedades do sistema, o nível de log
-	 * a ser ajustado para o mecanismo de persistẽncia OrBroker.
-	 */
-	static final String ORBROKER_LOG_LEVEL = "log.level";
     private transient final Logger log = LoggerFactory.getLogger(getClass());
     /**
      * Contexto local usado para pesquisa e obtenção de recursos por nome.
@@ -171,7 +166,7 @@ public class ResourceLocator {
                  * FINE: Shows dynamic SQL statement after parsing.</li>
                  */
                 
-                String level = System.getProperty(ORBROKER_LOG_LEVEL);
+                String level = System.getProperty(Constants.ORBROKER_LOG_LEVEL);
                 if (level == null) {
                 	Broker.setLoggingLevel(Level.OFF);
                 }else{

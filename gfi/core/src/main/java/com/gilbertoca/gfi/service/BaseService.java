@@ -14,6 +14,8 @@ import net.sourceforge.orbroker.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gilbertoca.gfi.Constants;
+
 
 /**
  * Esta classe é uma implementação padrão da interface IService. Fornece uma implementação básica 
@@ -21,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * Unidade de Persistência (gerenciada pelo mecanismo OrBroker) e a definição nessa mesma unidade, das
  * entidades a serem usadas nas operações implementadas.
  * <p/>
- * Como demonstração, suponha a existência de uma entidade <tt>UnidadeMedida</tt> já definida  
+ * Como demonstração, suponha a existência de uma entidade <tt>UnidadeMedida</tt> já definida:  
  * <p/>
  * <pre class="codeJava">
  *	public class BaseServiceTest {
@@ -61,6 +63,9 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
 
 	public Class<T> getClassEntity() {return classEntity;}
 
+	protected void setBrokerName(String brokerName) {
+	    this.brokerName = brokerName;
+	}
 	public Collection<T> getAll(){
     	log.debug("Realizando consulta retornando todos os registros, para a entidade: {} ",getClassEntity());
 
@@ -232,9 +237,9 @@ public class BaseService<T, PK extends Serializable> implements IService<T, PK>{
         }
     }
     public Broker getBroker() {
-        return ResourceLocator.getInstance().getBroker(brokerName, "gfi");
+        return ResourceLocator.getInstance().getBroker(brokerName, Constants.ORBROKER_SCHEMA);
     }
     public Broker getBroker(String brokerName) {
-        return ResourceLocator.getInstance().getBroker(brokerName, "gfi");
+        return ResourceLocator.getInstance().getBroker(brokerName, Constants.ORBROKER_SCHEMA);
     }    
 }

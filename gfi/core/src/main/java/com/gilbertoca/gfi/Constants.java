@@ -13,7 +13,12 @@ public class Constants {
     // ~ Static fields/initializers
     // =============================================
     /**
-     * O nome do arquivo de propriedades para construção do DBCPDataSource
+     * Constante usada para capturar, atraves de propriedades do sistema, o nÃ­vel de log
+     * a ser ajustado para o mecanismo de persistáº½ncia OrBroker.
+     */
+    public static final String ORBROKER_LOG_LEVEL = "log.level";
+    /**
+     * O nome do arquivo de propriedades para construÃ§Ã£o do DBCPDataSource
      */
     public static final String DBCPCONFIGFILE = "/dbcp.properties";
     /**
@@ -25,12 +30,12 @@ public class Constants {
      */
     public static final String DATASOURCE = "gfi";
     /**
-     * O nome do Módulo gerenciado pelo ORM OrBroker. Podemos dividi-lo em mais
+     * O nome do MÃ³dulo gerenciado pelo ORM OrBroker. Podemos dividi-lo em mais
      * modulos, como: orbroker-financeiro.xml, orbroker-inventario.xml
      */
     public static final String ORBROKER_INVENTARIO = "/META-INF/orbroker-inventario.xml";
     public static final String ORBROKER_GERAL = "/META-INF/orbroker-geral.xml";    
-
+    public static final String ORBROKER_SCHEMA = "gfi";
     /**
      * O identificador da UF utilizado pelo logradouro UF=Estado do Tocantins.
      */
@@ -41,8 +46,8 @@ public class Constants {
     public static final String TIPOLOGR_TIPOLOGRADOURO = "Rua";
 
     /**
-     * O identificador da natureza da operação utilizado pela venda.
-     * 5.101=Vendas de prod. própr. ou terc. p/ o Est.
+     * O identificador da natureza da operaï¿½ï¿½o utilizado pela venda.
+     * 5.101=Vendas de prod. prï¿½pr. ou terc. p/ o Est.
      */
     public static final String NATUREZAOPERACAO_VENDA = "5.101";
     /**
@@ -52,7 +57,7 @@ public class Constants {
     public static final String CAIXACONTA_VENDA = "4";
     /**
      * O identificador da conta caixa utilizado pela venda, em uma venda a prazo
-     * com cheque-pre. 85=Vendas com Cheque-Pré.
+     * com cheque-pre. 85=Vendas com Cheque-Prï¿½.
      */
     public static final String CAIXACONTA_VENDA_CHEQUE = "85";
 
@@ -69,9 +74,10 @@ public class Constants {
     public static final String CAIXACONTA_CONTA_PAGAR = "68";
 
     /**
-     * O identificador da cidade utilizado no componente Endereço. 9902=Paraíso
+     * O identificador da cidade utilizado no componente Endereï¿½o. 9902=Paraï¿½so
      * do Tocantins.
      */
     public static final String LOCALIDADE = "9902";
+
 
 }
