@@ -26,10 +26,8 @@ public class PessoaBaseServiceTest {
 	Integer cdPessoa = 1;
 	Pessoa c = new Pessoa();
 	c.setCdPessoa(cdPessoa);
-	cS.find(c);
+	assertTrue(cS.find(c));
 	System.out.println(c);
-	assertTrue("O valor do campo cdPessoa", cdPessoa.equals(c
-		.getCdPessoa()));
     }
 
     @Test
@@ -43,15 +41,21 @@ public class PessoaBaseServiceTest {
     public void testInsertPessoa() throws Exception {
 	int size = cS.getAll().size();
 	System.out.println("@@@@@@@@@@  Quantidade antes da inserção:"+size);	
-	Date dtNascimento = new Date("03/02/1974");
-	Pessoa entity = new Pessoa(4, "M", "Gilberto", "Mom","Beto", dtNascimento);
-	cS.insert(entity);
+
 	Integer cdPessoa = 4;
 	Pessoa c = new Pessoa();
 	c.setCdPessoa(cdPessoa);
-	cS.find(c);
-	System.out.println(c);
-	assertTrue("Nome da Pessoa", c.getNome().equalsIgnoreCase("Gilberto"));
+	assertFalse(cS.find(c));
+	assertNull(c.getNome());
+
+	Date dtNascimento = new Date("03/02/1974");
+	Pessoa entity = new Pessoa(4, "M", "Gilberto", "Mom","Gil", dtNascimento);
+	cS.insert(entity);
+	c = null;
+	c = new Pessoa();
+	c.setCdPessoa(cdPessoa);
+	assertTrue(cS.find(c));
+	assertTrue(c.getApelido().equalsIgnoreCase("Gil"));
     }
     @Test
     public void testUpdatePessoa() {
@@ -59,12 +63,18 @@ public class PessoaBaseServiceTest {
 	String apelido = "Beto";
 	Pessoa c = new Pessoa();
 	c.setCdPessoa(cdPessoa);
-	cS.find(c);
+	assertTrue(cS.find(c));
 	System.out.println(c);
 	c.setApelido(apelido);
+	c.setEmail("emailll");
+	c.setNomeMae("Francisca");
+	c.setNomePai("Americo");
 	cS.update(c);
-	assertTrue("O valor do campo apelido", apelido.equals(c
-		.getApelido()));
+	c = null;
+	c = new Pessoa();
+	c.setCdPessoa(cdPessoa);
+	assertTrue(cS.find(c));
+	assertTrue(c.getNomePai().equalsIgnoreCase("Americo"));
     }
     @Test
     public void testDeletePessoa() {
@@ -73,7 +83,7 @@ public class PessoaBaseServiceTest {
 	c.setCdPessoa(cdPessoa);
 	cS.delete(c);
 	System.out.println(c);
-	assertFalse("Objeto excluido!", cS.find(c));
+	assertFalse(cS.find(c));
     }
     
 

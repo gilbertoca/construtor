@@ -50,11 +50,15 @@
     </result-object>
     <sql-statement id="getPessoa" result-object="Pessoa">
         SELECT cdpessoa,rgnumero,fotopath,apelido,rgorgaoexp,rgemissao,cpf,cnnumero,
-				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,geral_nacionalidade.cdnacionalidade,geral_nacionalidade.dcnacionalidade,estadocivil,escolaridade,sexo,nomepai,nomemae,dtnascimento,
+				cnlv,cnfls,cncidade,cnsubdistrito,cnuf,
+				cdnacionalidade,
+				(SELECT dcnacionalidade
+        		 FROM {{schema}}.geral_nacionalidade
+	             WHERE geral_nacionalidade.cdnacionalidade = geral_pessoa.cdnacionalidade) as dcnacionalidade,
+				estadocivil,escolaridade,sexo,nomepai,nomemae,dtnascimento,
 				dtfalecimento,nome,fldependente,ufe_sg,loc_nu_sequencial,tipologradouro,log_nome,
 				log_complemento,bai_nome,cep,email,dtcadastro,version
-        FROM {{schema}}.geral_pessoa JOIN {{schema}}.geral_nacionalidade ON 
-        		(geral_pessoa.cdnacionalidade = geral_nacionalidade.cdnacionalidade)
+        FROM {{schema}}.geral_pessoa         		
         #if ($pessoa.cdPessoa) 
             WHERE cdpessoa = :pessoa.cdPessoa 
         #end 
