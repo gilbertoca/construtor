@@ -13,6 +13,7 @@ import net.sf.click.control.Table;
 import net.sf.click.control.TextField;
 import net.sf.click.extras.control.LinkDecorator;
 
+import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.BaseService;
 
@@ -35,7 +36,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
     // ----------------------------------------------------------- Constructors
 
     public TableUnidadeMedida() {
-    	setIService(new BaseService<UnidadeMedida, String>(UnidadeMedida.class));
+    	setIService(new BaseService<UnidadeMedida, String>(UnidadeMedida.class, Constants.ORBROKER_INVENTARIO));
         setStateful(true);
 
         // Setup the search form

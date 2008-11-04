@@ -6,6 +6,7 @@ import net.sf.click.control.HiddenField;
 import net.sf.click.control.Submit;
 import net.sf.click.control.TextField;
 
+import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 import com.gilbertoca.gfi.service.BaseService;
 import com.gilbertoca.gfi.service.InsertException;
@@ -29,7 +30,7 @@ public class EditUnidadeMedida extends BorderPage {
     public String cdUnidadeMedida;
 
     public EditUnidadeMedida() {
-        setIService(new BaseService<UnidadeMedida, String>(UnidadeMedida.class));
+        setIService(new BaseService<UnidadeMedida, String>(UnidadeMedida.class, Constants.ORBROKER_INVENTARIO));
         form.add(referrerField);
         form.add(versionField);
         FieldSet fieldSet = new FieldSet("Unidade Medida");
