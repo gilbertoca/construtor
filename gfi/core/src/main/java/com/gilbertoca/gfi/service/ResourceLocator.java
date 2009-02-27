@@ -37,7 +37,7 @@ public class ResourceLocator {
      */
     private InitialContext ic;
     /**
-     * Usado para manter referẽncias a recursos que consomem bastante processo e memória: EJBHomes/JMS/DataSource.
+     * Usado para manter referências a recursos que consomem bastante processo e memória: EJBHomes/JMS/DataSource.
      * Sendo os mesmos reusados. 
      */
     private Map<String, Object> cache = Collections.synchronizedMap(new HashMap<String, Object>());
