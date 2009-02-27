@@ -227,8 +227,8 @@
         <jdbc.version>10.3.1.4</jdbc.version>-->
 
         <jdbc.groupId>com.h2database</jdbc.groupId>
-        <jdbc.artifactId>h2</jdbc.artifactId>                
-        <jdbc.version>1.0.79</jdbc.version>                
+        <jdbc.artifactId>h2</jdbc.artifactId>                                
+        <jdbc.version>1.1.105</jdbc.version>
         <jdbc.url>jdbc:h2:~/bin/databases/h2/gfi</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>                
         <jdbc.username>sa</jdbc.username>
