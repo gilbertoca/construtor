@@ -1,10 +1,10 @@
 package com.gilbertoca.gfi.page;
 
-import net.sf.click.Page;
-import net.sf.click.control.Form;
-import net.sf.click.control.PasswordField;
-import net.sf.click.control.Submit;
-import net.sf.click.control.TextField;
+import org.apache.click.Page;
+import org.apache.click.control.Form;
+import org.apache.click.control.PasswordField;
+import org.apache.click.control.Submit;
+import org.apache.click.control.TextField;
 
 /**
  *

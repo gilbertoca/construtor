@@ -2,11 +2,11 @@ package com.gilbertoca.gfi.page;
 
 import org.apache.commons.lang.StringUtils;
 
-import net.sf.click.control.FieldSet;
-import net.sf.click.control.Form;
-import net.sf.click.control.HiddenField;
-import net.sf.click.control.Submit;
-import net.sf.click.control.TextField;
+import org.apache.click.control.FieldSet;
+import org.apache.click.control.Form;
+import org.apache.click.control.HiddenField;
+import org.apache.click.control.Submit;
+import org.apache.click.control.TextField;
 
 import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.service.BaseService;

@@ -3,15 +3,15 @@ package com.gilbertoca.gfi.page;
 import java.io.Serializable;
 import java.util.List;
 
-import net.sf.click.control.AbstractLink;
-import net.sf.click.control.ActionLink;
-import net.sf.click.control.Column;
-import net.sf.click.control.Form;
-import net.sf.click.control.PageLink;
-import net.sf.click.control.Submit;
-import net.sf.click.control.Table;
-import net.sf.click.control.TextField;
-import net.sf.click.extras.control.LinkDecorator;
+import org.apache.click.control.AbstractLink;
+import org.apache.click.control.ActionLink;
+import org.apache.click.control.Column;
+import org.apache.click.control.Form;
+import org.apache.click.control.PageLink;
+import org.apache.click.control.Submit;
+import org.apache.click.control.Table;
+import org.apache.click.control.TextField;
+import org.apache.click.extras.control.LinkDecorator;
 
 import com.gilbertoca.gfi.Constants;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
@@ -109,7 +109,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
     }
 
     /**
-     * @see net.sf.click.Page#onRender()
+     * @see org.apache.click.Page#onRender()
      */
     public void onRender() {
     	log.debug("Preparando a página para ser exibida.");

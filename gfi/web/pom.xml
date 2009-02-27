@@ -46,12 +46,12 @@
   </build>
   <dependencies>
     <dependency>
-      <groupId>net.sf.click</groupId>
+      <groupId>org.apache.click</groupId>
       <artifactId>click</artifactId>
       <version>${click.version}</version>
     </dependency>
     <dependency>
-      <groupId>net.sf.click</groupId>
+      <groupId>org.apache.click</groupId>
       <artifactId>click-extras</artifactId>
       <version>${click.version}</version>
       <exclusions>
@@ -82,7 +82,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <jetty-version>6.1.7</jetty-version>
-    <click.version>1.5</click.version>
+  	<jetty-version>6.1.10</jetty-version>
+  	<click.version>2.0.1</click.version>
   </properties>
 </project>

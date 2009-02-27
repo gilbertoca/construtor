@@ -4,8 +4,8 @@
  */
 package com.gilbertoca.gfi.page;
 
-import net.sf.click.Page;
-import net.sf.click.extras.control.Menu;
+import org.apache.click.Page;
+import org.apache.click.extras.control.Menu;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
