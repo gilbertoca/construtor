@@ -6,7 +6,7 @@
     <groupId>com.gilbertoca.gfi</groupId>
     <artifactId>gfi</artifactId>
     <packaging>pom</packaging>
-    <name>Finanacas e Inventario</name>
+    <name>Finanaças e Inventário</name>
     <version>1.0-SNAPSHOT</version>
     <url>http://www.mycompany.com</url>
     <issueManagement />
@@ -27,7 +27,7 @@
                     <source>1.5</source>
                     <target>1.5</target>
                 </configuration>
-            </plugin>
+            </plugin> 
         </plugins>
     </build>
     <profiles>
@@ -122,7 +122,7 @@
         <repository>
             <id>Ibiblio</id>
             <url>http://www.ibiblio.org/maven2</url>
-        </repository-->
+        </repository>
         <repository>
             <id>Jboss repository</id>
             <url>http://repository.jboss.org/maven2</url>
@@ -130,7 +130,7 @@
         <repository>
         	<id>SourceForge Click repository</id>
         	<url>http://click.sourceforge.net/maven2</url>
-        </repository>
+        </repository-->
     </repositories>
     <dependencies>
         <dependency>
@@ -228,7 +228,7 @@
 
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>                                
-        <jdbc.version>1.1.105</jdbc.version>
+        <jdbc.version>1.1.108</jdbc.version>
         <jdbc.url>jdbc:h2:~/bin/databases/h2/gfi</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>                
         <jdbc.username>sa</jdbc.username>
