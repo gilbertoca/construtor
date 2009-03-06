@@ -14,10 +14,11 @@
         <!-- Id -->
         <property name="cdUnidadeMedida"><column name="CD_UNIDADE_MEDIDA"/></property>
         <property name="descricaoUnidade"><column name="DESCRICAO_UNIDADE"/></property>
+        <property name="flNovo"><column name="fl_novo"/></property>
         <property name="version"><column name="VERSION"/></property>        
     </result-object>
     <sql-statement id="getUnidadeMedida" result-object="UnidadeMedida">
-        SELECT cd_unidade_medida,descricao_unidade,version
+        SELECT cd_unidade_medida,descricao_unidade,fl_novo,version
         FROM {{schema}}.inventario_unidade_medida
         #if ($unidadeMedida.cdUnidadeMedida) 
             WHERE cd_unidade_medida = :unidadeMedida.cdUnidadeMedida 
@@ -28,13 +29,14 @@
         #end         
     </sql-statement> 	    
     <sql-statement id="insertUnidadeMedida">
-        INSERT INTO {{schema}}.inventario_unidade_medida (cd_unidade_medida, descricao_unidade, version)
-        VALUES  (:unidadeMedida.cdUnidadeMedida, :unidadeMedida.descricaoUnidade, 0)
+        INSERT INTO {{schema}}.inventario_unidade_medida (cd_unidade_medida, descricao_unidade, fl_novo, version)
+        VALUES  (:unidadeMedida.cdUnidadeMedida, :unidadeMedida.descricaoUnidade, :unidadeMedida.flNovo, 0)
     </sql-statement>
     <sql-statement id="updateUnidadeMedida">
         UPDATE {{schema}}.inventario_unidade_medida 
         SET 
             descricao_unidade = :unidadeMedida.descricaoUnidade,
+            fl_novo = :unidadeMedida.flNovo,
             version	= :unidadeMedida.version + 1
         WHERE
             cd_unidade_medida  = :unidadeMedida.cdUnidadeMedida

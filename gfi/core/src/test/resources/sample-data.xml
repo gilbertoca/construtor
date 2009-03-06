@@ -3,20 +3,24 @@
 	<table name="inventario_unidade_medida">
 		<column>cd_unidade_medida</column>
 		<column>descricao_unidade</column>
+        <column>fl_novo</column>
 		<column>version</column>
 		<row>
 			<value description="cd_unidade_medida">MT</value>
 			<value description="descricao_unidade"><![CDATA[Metros]]></value>
+            <value description="fl_novo">1</value>
 			<value description="version">1</value>
 		</row>
 		<row>
 			<value description="cd_unidade_medida">KG</value>
 			<value description="descricao_unidade"><![CDATA[Kilogramas]]></value>
+            <value description="fl_novo">0</value>
 			<value description="version">1</value>
 		</row>
 		<row>
 			<value description="cd_unidade_medida">CEM</value>
 			<value description="descricao_unidade"><![CDATA[Centimetros]]></value>
+            <value description="fl_novo">0</value>
 			<value description="version">1</value>
 		</row>
 	</table>

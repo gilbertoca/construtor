@@ -5,6 +5,7 @@ create table gfi.inventario_unidade_medida (
    cd_unidade_medida varchar(4) not null,
    version integer not null,
    descricao_unidade varchar(30),
+   fl_novo bit,
    primary key (cd_unidade_medida)
 );
 create table gfi.inventario_categoria (

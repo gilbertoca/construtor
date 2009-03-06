@@ -7,7 +7,6 @@ import java.util.Collection;
 import org.junit.Test;
 
 import com.gilbertoca.gfi.Constants;
-import com.gilbertoca.gfi.inventario.model.Categoria;
 import com.gilbertoca.gfi.inventario.model.UnidadeMedida;
 
 public class UnidadeBaseServiceTest {
@@ -29,12 +28,14 @@ public class UnidadeBaseServiceTest {
 	System.out.println(uM);
 	assertTrue("O valor do campo cdUnidadeMedida", cdUnidadeMedida
 		.equals(uM.getCdUnidadeMedida()));
+    assertTrue(uM.isFlNovo());
     }
 
     @Test
     public void testInsertUnidadeMedida() throws InsertException {
 	int size = uS.getAll().size();
 	UnidadeMedida entity = new UnidadeMedida("MT3", "Metros");
+    entity.setFlNovo(true);
 	uS.insert(entity);
 	Collection<UnidadeMedida> result = uS.getAll();
 	System.out.println(result);
