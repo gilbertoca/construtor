@@ -55,6 +55,7 @@ public class TableUnidadeMedida extends BorderPage implements Serializable {
 
         table.addColumn(new Column("cdUnidadeMedida", "Unidade"));
         table.addColumn( new Column("descricaoUnidade","Descrição"));
+        table.addColumn( new Column("novo","Status"));
         editLink.setImageSrc("/images/window-edit.png");
         editLink.setTitle("Edit customer details");
         editLink.setParameter("referrer", "/table-unidade-medida.htm");
