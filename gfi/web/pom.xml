@@ -83,6 +83,6 @@
   </dependencies>
   <properties>
   	<jetty-version>6.1.10</jetty-version>
-  	<click.version>2.0.1</click.version>
+  	<click.version>2.0.1-incubating</click.version>
   </properties>
 </project>
