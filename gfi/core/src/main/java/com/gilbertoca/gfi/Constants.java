@@ -7,14 +7,14 @@ package com.gilbertoca.gfi;
  * <a href="Constants.java.html"><i>View Source</i></a>
  * </p>
  * 
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:gilbertoca@gmail.com">Gilberto Caetano de Andrade</a>
  */
 public class Constants {
     // ~ Static fields/initializers
     // =============================================
     /**
      * Constante usada para capturar, atraves de propriedades do sistema, o nível de log
-     * a ser ajustado para o mecanismo de persistẽncia OrBroker.
+     * a ser ajustado para o mecanismo de persistência OrBroker.
      */
     public static final String ORBROKER_LOG_LEVEL = "log.level";
     /**
