@@ -17,7 +17,8 @@ import com.gilbertoca.gfi.service.IService;
  */
 public class BorderPage extends Page{
     protected final Logger log = LoggerFactory.getLogger(getClass());
-    protected IService service;
+    @SuppressWarnings("unchecked")
+	protected IService service;
    /** The root menu. */
     public Menu rootMenu = Menu.getRootMenu();
     /**

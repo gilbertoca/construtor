@@ -1,5 +1,6 @@
 package com.gilbertoca.gfi.page;
 
+import org.apache.click.control.Checkbox;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -42,6 +43,10 @@ public class EditUnidadeMedida extends BorderPage {
         TextField descricaoUnidadeField = new TextField("descricaoUnidade", true);
         descricaoUnidadeField.setFocus(true);
         fieldSet.add(descricaoUnidadeField);
+        Checkbox flNovoField = new Checkbox("flNovo");
+        flNovoField.setFocus(true);
+        fieldSet.add(flNovoField);
+        
         form.add(new Submit("ok", "  OK  ", this, "onOkClick"));
         form.add(new Submit("cancel", this, "onCancelClick"));
     }
