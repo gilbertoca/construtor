@@ -15,7 +15,6 @@ import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -90,7 +89,7 @@ public class CustomerTest {
         log.debug("\nGetting an Natural Person by ID.\n");
         Customer c = em.find(Customer.class, 1000);
         log.debug("Object loaded: \n" + c);
-        assertNotNull(c.getName());
+        assertNotNull(c.getPerson().getName());
     }
 
     @Test
