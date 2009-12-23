@@ -1,9 +1,11 @@
 package park.model;
 
+import java.sql.DriverManager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,7 +20,6 @@ import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,10 +41,25 @@ public class CustomerTest {
         em = emf.createEntityManager();
         
         // Initializes DBUnit
-        connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
+        /*
+         connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
+         Esta opção não funcionou.
+         Vamos aplicar um Nija! rs rs
+         */
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
+        
+
+        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
+        connection = new DatabaseConnection(DriverManager.getConnection(
+                configurationProperties.getProperty("jdbc.url"),
+                configurationProperties.getProperty("jdbc.username"),
+                configurationProperties.getProperty("jdbc.password")));
+
         // http://dbunit.sourceforge.net/faq.html#typefactory
-        DatabaseConfig dbConfig = connection.getConfig();
-        dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
+        //DatabaseConfig dbConfig = connection.getConfig();
+        //Como instanciar H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
+        //dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
 
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("customer-dataset.xml"));
     }
