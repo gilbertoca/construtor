@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<architect-project version="1.0" appversion="0.9.13">
+<architect-project version="1.0" appversion="0.9.14">
  <project-name>park</project-name>
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
+   <property key="Logical" value="BcoProducao" />
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="JDBC URL" value="jdbc:postgresql://10.121.0.9:5433/bcoproducao" />
+   <property key="UID" value="park" />
+   <property key="PWD" value="park" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
   </data-source>
   <data-source id="DS2">
    <property key="Connection Type" value="PostgreSQL" />
@@ -11,6 +21,18 @@
    <property key="JDBC URL" value="jdbc:postgresql://10.121.0.9:5433/bcoproducao" />
    <property key="UID" value="gilberto" />
    <property key="PWD" value="gca852gca" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS4">
+   <property key="Connection Type" value="H2 Database" />
+   <property key="Logical" value="H2" />
+   <property key="JDBC URL" value="jdbc:h2:parkDB;create=true" />
+   <property key="UID" value="park" />
+   <property key="PWD" value="park" />
    <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
    <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
@@ -138,506 +160,309 @@
     <schema id="SCH96" populated="false" name="map" nativeTerm="schema" physicalName="map" />
     <schema id="SCH97" populated="false" name="migracao" nativeTerm="schema" physicalName="migracao" />
     <schema id="SCH98" populated="true" name="park" nativeTerm="schema" physicalName="park" >
-     <table id="TAB99" populated="true" name="customer" objectType="TABLE" physicalName="customer" >
-      <folder id="FOL100" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL101" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL102" populated="true" autoIncrement="false" defaultValue="" name="payment_day" nullable="1" physicalName="payment_day" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-      </folder>
-      <folder id="FOL103" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL104" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL105" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX106" populated="true" clustered="false" index-type="BTREE" name="customer_pkey" physicalName="customer_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC107" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL101" name="cd_customer" physicalName="cd_customer" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB108" populated="true" name="employee" objectType="TABLE" physicalName="employee" >
-      <folder id="FOL109" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL110" populated="true" autoIncrement="false" defaultValue="" name="cd_employee" nullable="0" physicalName="cd_employee" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL111" populated="true" autoIncrement="false" defaultValue="" name="dt_admission" nullable="0" physicalName="dt_admission" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
-       <column id="COL112" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL113" populated="true" autoIncrement="false" defaultValue="" name="username" nullable="1" physicalName="username" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL114" populated="true" autoIncrement="false" defaultValue="" name="password" nullable="1" physicalName="password" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-      </folder>
-      <folder id="FOL115" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL116" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL117" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX118" populated="true" clustered="false" index-type="BTREE" name="employee_pkey" physicalName="employee_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC119" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL110" name="cd_employee" physicalName="cd_employee" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB120" populated="true" name="legalentity" objectType="TABLE" physicalName="legalentity" >
-      <folder id="FOL121" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL122" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL123" populated="true" autoIncrement="false" defaultValue="" name="taxpayers_id" nullable="0" physicalName="taxpayers_id" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL124" populated="true" autoIncrement="false" defaultValue="" name="dt_foundation" nullable="0" physicalName="dt_foundation" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
-      </folder>
-      <folder id="FOL125" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL126" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL127" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX128" populated="true" clustered="false" index-type="BTREE" name="legalentity_pkey" physicalName="legalentity_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC129" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL122" name="cd_person" physicalName="cd_person" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB130" populated="true" name="naturalperson" objectType="TABLE" physicalName="naturalperson" >
-      <folder id="FOL131" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL132" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL133" populated="true" autoIncrement="false" defaultValue="" name="dt_birth" nullable="1" physicalName="dt_birth" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
-       <column id="COL134" populated="true" autoIncrement="false" defaultValue="" name="rg" nullable="1" physicalName="rg" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-      </folder>
-      <folder id="FOL135" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL136" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL137" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX138" populated="true" clustered="false" index-type="BTREE" name="naturalperson_pkey" physicalName="naturalperson_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC139" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL132" name="cd_person" physicalName="cd_person" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB140" populated="true" name="parking" objectType="TABLE" physicalName="parking" >
-      <folder id="FOL141" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL142" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL143" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="0" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL144" populated="true" autoIncrement="false" defaultValue="" name="parking_spaces" nullable="1" physicalName="parking_spaces" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-      </folder>
-      <folder id="FOL145" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL146" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL147" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX148" populated="true" clustered="false" index-type="BTREE" name="parking_pkey" physicalName="parking_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC149" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL142" name="cd_parking" physicalName="cd_parking" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB150" populated="true" name="person" objectType="TABLE" physicalName="person" >
-      <folder id="FOL151" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL152" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL153" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="1" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL154" populated="true" autoIncrement="false" defaultValue="" name="name" nullable="0" physicalName="name" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL155" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="1" referenceCount="1" remarks="" scale="0" sourceDataTypeName="bpchar" type="1" />
-      </folder>
-      <folder id="FOL156" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL157" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL158" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX159" populated="true" clustered="false" index-type="BTREE" name="person_pkey" physicalName="person_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC160" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL152" name="cd_person" physicalName="cd_person" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB161" populated="true" name="pricetable" objectType="TABLE" physicalName="pricetable" >
-      <folder id="FOL162" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL163" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL164" populated="true" autoIncrement="false" defaultValue="" name="item" nullable="0" physicalName="item" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL165" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="0" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" sourceDataTypeName="numeric" type="2" />
-      </folder>
-      <folder id="FOL166" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL167" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL168" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX169" populated="true" clustered="false" index-type="BTREE" name="pricetable_pkey" physicalName="pricetable_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC170" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL163" name="cd_price_table" physicalName="cd_price_table" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB171" populated="true" name="stay" objectType="TABLE" physicalName="stay" >
-      <folder id="FOL172" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL173" populated="true" autoIncrement="false" defaultValue="" name="cd_stay" nullable="0" physicalName="cd_stay" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL174" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL175" populated="true" autoIncrement="false" defaultValue="" name="dt_entrance" nullable="0" physicalName="dt_entrance" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
-       <column id="COL176" populated="true" autoIncrement="false" defaultValue="" name="dt_outgoing" nullable="1" physicalName="dt_outgoing" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
-       <column id="COL177" populated="true" autoIncrement="false" defaultValue="" name="hr_entrance" nullable="0" physicalName="hr_entrance" precision="6" referenceCount="1" remarks="" scale="6" sourceDataTypeName="time" type="92" />
-       <column id="COL178" populated="true" autoIncrement="false" defaultValue="" name="hr_outgoing" nullable="1" physicalName="hr_outgoing" precision="6" referenceCount="1" remarks="" scale="6" sourceDataTypeName="time" type="92" />
-       <column id="COL179" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_entrance" nullable="0" physicalName="cd_employee_entrance" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL180" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_outgoing" nullable="0" physicalName="cd_employee_outgoing" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL181" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" referenceCount="2" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL182" populated="true" autoIncrement="false" defaultValue="" name="status" nullable="1" physicalName="status" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int2" type="5" />
-       <column id="COL183" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="1" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" sourceDataTypeName="numeric" type="2" />
-      </folder>
-      <folder id="FOL184" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL185" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL186" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX187" populated="true" clustered="false" index-type="BTREE" name="stay_cd_parking_key" physicalName="stay_cd_parking_key" primaryKeyIndex="false" unique="true" >
-        <index-column id="IDC188" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL174" name="cd_parking" physicalName="cd_parking" />
-        <index-column id="IDC189" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL175" name="dt_entrance" physicalName="dt_entrance" />
-        <index-column id="IDC190" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL179" name="cd_employee_entrance" physicalName="cd_employee_entrance" />
-        <index-column id="IDC191" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL181" name="license_plate" physicalName="license_plate" />
-       </index>
-       <index id="IDX192" populated="true" clustered="false" index-type="BTREE" name="stay_pkey" physicalName="stay_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC193" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL173" name="cd_stay" physicalName="cd_stay" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB194" populated="true" name="vehicle" objectType="TABLE" physicalName="vehicle" >
-      <folder id="FOL195" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL196" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL197" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="20" referenceCount="2" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL198" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL199" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
-       <column id="COL200" populated="true" autoIncrement="false" defaultValue="" name="color" nullable="1" physicalName="color" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-      </folder>
-      <folder id="FOL201" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL202" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL203" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX204" populated="true" clustered="false" index-type="BTREE" name="vehicle_pkey" physicalName="vehicle_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC205" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL196" name="license_plate" physicalName="license_plate" />
-       </index>
-      </folder>
-     </table>
-     <table id="TAB206" populated="true" name="vehicletype" objectType="TABLE" physicalName="vehicletype" >
-      <folder id="FOL207" populated="true" name="Columns" physicalName="Columns" type="1" >
-       <column id="COL208" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL209" populated="true" autoIncrement="false" defaultValue="" name="manufacturer" nullable="1" physicalName="manufacturer" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-       <column id="COL210" populated="true" autoIncrement="false" defaultValue="" name="model" nullable="1" physicalName="model" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-      </folder>
-      <folder id="FOL211" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-      </folder>
-      <folder id="FOL212" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-      </folder>
-      <folder id="FOL213" populated="true" name="Indices" physicalName="Indices" type="4" >
-       <index id="IDX214" populated="true" clustered="false" index-type="BTREE" name="vehicletype_pkey" physicalName="vehicletype_pkey" primaryKeyIndex="true" unique="true" >
-        <index-column id="IDC215" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL208" name="TYPE" physicalName="TYPE" />
-       </index>
-      </folder>
-     </table>
     </schema>
-    <schema id="SCH216" populated="false" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" />
-    <schema id="SCH217" populated="false" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" />
-    <schema id="SCH218" populated="false" name="public" nativeTerm="schema" physicalName="public" />
-    <schema id="SCH219" populated="false" name="sad" nativeTerm="schema" physicalName="sad" />
-    <schema id="SCH220" populated="false" name="sag" nativeTerm="schema" physicalName="sag" />
-    <schema id="SCH221" populated="false" name="scc" nativeTerm="schema" physicalName="scc" />
-    <schema id="SCH222" populated="false" name="seg" nativeTerm="schema" physicalName="seg" />
-    <schema id="SCH223" populated="false" name="sgp" nativeTerm="schema" physicalName="sgp" />
-    <schema id="SCH224" populated="false" name="smq" nativeTerm="schema" physicalName="smq" />
-    <schema id="SCH225" populated="false" name="survey" nativeTerm="schema" physicalName="survey" />
-    <schema id="SCH226" populated="false" name="svl" nativeTerm="schema" physicalName="svl" />
-    <schema id="SCH227" populated="false" name="temp" nativeTerm="schema" physicalName="temp" />
-    <schema id="SCH228" populated="false" name="und" nativeTerm="schema" physicalName="und" />
+    <schema id="SCH99" populated="false" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" />
+    <schema id="SCH100" populated="false" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" />
+    <schema id="SCH101" populated="false" name="public" nativeTerm="schema" physicalName="public" />
+    <schema id="SCH102" populated="false" name="sad" nativeTerm="schema" physicalName="sad" />
+    <schema id="SCH103" populated="false" name="sag" nativeTerm="schema" physicalName="sag" />
+    <schema id="SCH104" populated="false" name="scc" nativeTerm="schema" physicalName="scc" />
+    <schema id="SCH105" populated="false" name="seg" nativeTerm="schema" physicalName="seg" />
+    <schema id="SCH106" populated="false" name="sgp" nativeTerm="schema" physicalName="sgp" />
+    <schema id="SCH107" populated="false" name="smq" nativeTerm="schema" physicalName="smq" />
+    <schema id="SCH108" populated="false" name="survey" nativeTerm="schema" physicalName="survey" />
+    <schema id="SCH109" populated="false" name="svl" nativeTerm="schema" physicalName="svl" />
+    <schema id="SCH110" populated="false" name="temp" nativeTerm="schema" physicalName="temp" />
+    <schema id="SCH111" populated="false" name="und" nativeTerm="schema" physicalName="und" />
    </catalog>
    <relationships>
-    <relationship id="REL229" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB194" fkCardinality="7" identifying="false" name="vehicle_cd_customer_fkey" physicalName="vehicle_cd_customer_fkey" pk-table-ref="TAB99" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP230" populated="true" fk-column-ref="COL198" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL101" />
-    </relationship>
-    <relationship id="REL231" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB99" fkCardinality="7" identifying="false" name="customer_cd_customer_fkey" physicalName="customer_cd_customer_fkey" pk-table-ref="TAB150" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP232" populated="true" fk-column-ref="COL101" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL152" />
-    </relationship>
-    <relationship id="REL233" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB171" fkCardinality="7" identifying="false" name="stay_cd_employee_outgoing_fkey" physicalName="stay_cd_employee_outgoing_fkey" pk-table-ref="TAB108" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP234" populated="true" fk-column-ref="COL180" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL110" />
-    </relationship>
-    <relationship id="REL235" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB171" fkCardinality="7" identifying="false" name="stay_cd_employee_entrance_fkey" physicalName="stay_cd_employee_entrance_fkey" pk-table-ref="TAB108" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP236" populated="true" fk-column-ref="COL179" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL110" />
-    </relationship>
-    <relationship id="REL237" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB108" fkCardinality="7" identifying="false" name="employee_cd_employee_fkey" physicalName="employee_cd_employee_fkey" pk-table-ref="TAB130" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP238" populated="true" fk-column-ref="COL110" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL132" />
-    </relationship>
-    <relationship id="REL239" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB108" fkCardinality="7" identifying="false" name="employee_cd_parking_fkey" physicalName="employee_cd_parking_fkey" pk-table-ref="TAB140" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP240" populated="true" fk-column-ref="COL112" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL142" />
-    </relationship>
-    <relationship id="REL241" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB120" fkCardinality="7" identifying="false" name="legalentity_cd_person_fkey" physicalName="legalentity_cd_person_fkey" pk-table-ref="TAB150" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP242" populated="true" fk-column-ref="COL122" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL152" />
-    </relationship>
-    <reference ref-id="REL237" />
-    <relationship id="REL243" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB130" fkCardinality="7" identifying="false" name="naturalperson_cd_person_fkey" physicalName="naturalperson_cd_person_fkey" pk-table-ref="TAB150" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP244" populated="true" fk-column-ref="COL132" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL152" />
-    </relationship>
-    <reference ref-id="REL239" />
-    <relationship id="REL245" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB171" fkCardinality="7" identifying="false" name="stay_cd_parking_fkey" physicalName="stay_cd_parking_fkey" pk-table-ref="TAB140" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP246" populated="true" fk-column-ref="COL174" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL142" />
-    </relationship>
-    <reference ref-id="REL231" />
-    <reference ref-id="REL241" />
-    <reference ref-id="REL243" />
-    <relationship id="REL247" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB194" fkCardinality="7" identifying="false" name="vehicle_cd_price_table_fkey" physicalName="vehicle_cd_price_table_fkey" pk-table-ref="TAB161" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP248" populated="true" fk-column-ref="COL199" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL163" />
-    </relationship>
-    <reference ref-id="REL233" />
-    <reference ref-id="REL235" />
-    <reference ref-id="REL245" />
-    <relationship id="REL249" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB171" fkCardinality="7" identifying="false" name="stay_license_plate_fkey" physicalName="stay_license_plate_fkey" pk-table-ref="TAB194" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP250" populated="true" fk-column-ref="COL181" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL196" />
-    </relationship>
-    <reference ref-id="REL249" />
-    <reference ref-id="REL229" />
-    <reference ref-id="REL247" />
-    <relationship id="REL251" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB194" fkCardinality="7" identifying="false" name="vehicle_TYPE_fkey" physicalName="vehicle_TYPE_fkey" pk-table-ref="TAB206" pkCardinality="2" updateRule="3" >
-     <column-mapping id="CMP252" populated="true" fk-column-ref="COL197" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL208" />
-    </relationship>
-    <reference ref-id="REL251" />
+   </relationships>
+  </database>
+  <database id="DB112" populated="true" dbcs-ref="DS4" name="H2" physicalName="H2" >
+   <catalog id="CAT113" populated="true" name="PARKDB" nativeTerm="catalog" physicalName="PARKDB" >
+    <schema id="SCH114" populated="true" name="INFORMATION_SCHEMA" nativeTerm="schema" physicalName="INFORMATION_SCHEMA" >
+    </schema>
+    <schema id="SCH115" populated="true" name="PUBLIC" nativeTerm="schema" physicalName="PUBLIC" >
+    </schema>
+   </catalog>
+   <relationships>
    </relationships>
   </database>
  </source-databases>
  <target-database id="ppdb" dbcs-ref="DS0">
-  <table id="TAB254" populated="true" name="customer" objectType="TABLE" physicalName="customer" >
-   <folder id="FOL255" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL256" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL101" sourceDataTypeName="int4" type="4" />
-    <column id="COL257" populated="true" autoIncrement="false" defaultValue="" name="payment_day" nullable="1" physicalName="payment_day" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL102" sourceDataTypeName="int4" type="4" />
+  <table id="TAB117" populated="true" name="customer" objectType="TABLE" physicalName="customer" >
+   <folder id="FOL118" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL119" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL120" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL121" populated="true" autoIncrement="false" defaultValue="" name="payment_day" nullable="1" physicalName="payment_day" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
    </folder>
-   <folder id="FOL258" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL122" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL259" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL123" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL260" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX261" populated="true" clustered="false" index-type="BTREE" name="customer_pkey" physicalName="customer_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC262" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL256" name="cd_customer" physicalName="cd_customer" />
+   <folder id="FOL124" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX125" populated="true" clustered="false" index-type="BTREE" name="customer_pkey" physicalName="customer_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC126" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL119" name="cd_customer" physicalName="cd_customer" />
+    </index>
+    <index id="IDX127" populated="true" clustered="false" name="customer_idx" physicalName="customer_idx" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC128" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL120" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB263" populated="true" name="employee" objectType="TABLE" physicalName="employee" >
-   <folder id="FOL264" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL265" populated="true" autoIncrement="false" defaultValue="" name="cd_employee" nullable="0" physicalName="cd_employee" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL110" sourceDataTypeName="int4" type="4" />
-    <column id="COL266" populated="true" autoIncrement="false" defaultValue="" name="dt_admission" nullable="0" physicalName="dt_admission" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL111" sourceDataTypeName="date" type="91" />
-    <column id="COL267" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL112" sourceDataTypeName="int4" type="4" />
-    <column id="COL268" populated="true" autoIncrement="false" defaultValue="" name="username" nullable="1" physicalName="username" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL113" sourceDataTypeName="varchar" type="12" />
-    <column id="COL269" populated="true" autoIncrement="false" defaultValue="" name="password" nullable="1" physicalName="password" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL114" sourceDataTypeName="varchar" type="12" />
+  <table id="TAB129" populated="true" name="employee" objectType="TABLE" physicalName="employee" remarks="" >
+   <folder id="FOL130" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL131" populated="true" autoIncrement="false" defaultValue="" name="cd_employee" nullable="0" physicalName="cd_employee" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL132" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL133" populated="true" autoIncrement="false" defaultValue="" name="dt_admission" nullable="0" physicalName="dt_admission" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
+    <column id="COL134" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL135" populated="true" autoIncrement="false" defaultValue="" name="username" nullable="1" physicalName="username" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL136" populated="true" autoIncrement="false" defaultValue="" name="password" nullable="1" physicalName="password" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
    </folder>
-   <folder id="FOL270" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL137" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL271" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL138" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL272" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX273" populated="true" clustered="false" index-type="BTREE" name="employee_pkey" physicalName="employee_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC274" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL265" name="cd_employee" physicalName="cd_employee" />
+   <folder id="FOL139" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX140" populated="true" clustered="false" index-type="BTREE" name="employee_pkey" physicalName="employee_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC141" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL131" name="cd_employee" physicalName="cd_employee" />
+    </index>
+    <index id="IDX142" populated="true" clustered="false" name="employee_idx" physicalName="employee_idx" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC143" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL132" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB275" populated="true" name="legalentity" objectType="TABLE" physicalName="legalentity" >
-   <folder id="FOL276" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL277" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL122" sourceDataTypeName="int4" type="4" />
-    <column id="COL278" populated="true" autoIncrement="false" defaultValue="" name="taxpayers_id" nullable="0" physicalName="taxpayers_id" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL123" sourceDataTypeName="varchar" type="12" />
-    <column id="COL279" populated="true" autoIncrement="false" defaultValue="" name="dt_foundation" nullable="0" physicalName="dt_foundation" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL124" sourceDataTypeName="date" type="91" />
+  <table id="TAB144" populated="true" name="legal_entity" objectType="TABLE" physicalName="legal_entity" remarks="" >
+   <folder id="FOL145" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL146" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL147" populated="true" autoIncrement="false" defaultValue="" name="taxpayers_id" nullable="0" physicalName="taxpayers_id" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL148" populated="true" autoIncrement="false" defaultValue="" name="dt_foundation" nullable="0" physicalName="dt_foundation" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
    </folder>
-   <folder id="FOL280" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL149" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL281" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL150" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL282" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX283" populated="true" clustered="false" index-type="BTREE" name="legalentity_pkey" physicalName="legalentity_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC284" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL277" name="cd_person" physicalName="cd_person" />
+   <folder id="FOL151" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX152" populated="true" clustered="false" index-type="BTREE" name="legal_entity_pkey" physicalName="legal_entity_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC153" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL146" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB285" populated="true" name="naturalperson" objectType="TABLE" physicalName="naturalperson" >
-   <folder id="FOL286" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL287" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL132" sourceDataTypeName="int4" type="4" />
-    <column id="COL288" populated="true" autoIncrement="false" defaultValue="" name="dt_birth" nullable="1" physicalName="dt_birth" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL133" sourceDataTypeName="date" type="91" />
-    <column id="COL289" populated="true" autoIncrement="false" defaultValue="" name="rg" nullable="1" physicalName="rg" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL134" sourceDataTypeName="varchar" type="12" />
+  <table id="TAB154" populated="true" name="natural_person" objectType="TABLE" physicalName="natural_person" remarks="" >
+   <folder id="FOL155" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL156" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL157" populated="true" autoIncrement="false" defaultValue="" name="dt_birth" nullable="1" physicalName="dt_birth" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
+    <column id="COL158" populated="true" autoIncrement="false" defaultValue="" name="rg" nullable="1" physicalName="rg" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
    </folder>
-   <folder id="FOL290" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL159" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL291" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL160" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL292" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX293" populated="true" clustered="false" index-type="BTREE" name="naturalperson_pkey" physicalName="naturalperson_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC294" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL287" name="cd_person" physicalName="cd_person" />
+   <folder id="FOL161" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX162" populated="true" clustered="false" index-type="BTREE" name="natural_person_pkey" physicalName="natural_person_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC163" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL156" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB295" populated="true" name="parking" objectType="TABLE" physicalName="parking" >
-   <folder id="FOL296" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL297" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL142" sourceDataTypeName="int4" type="4" />
-    <column id="COL298" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="0" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" source-column-ref="COL143" sourceDataTypeName="varchar" type="12" />
-    <column id="COL299" populated="true" autoIncrement="false" defaultValue="" name="parking_spaces" nullable="1" physicalName="parking_spaces" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL144" sourceDataTypeName="int4" type="4" />
+  <table id="TAB164" populated="true" name="parking" objectType="TABLE" physicalName="parking" >
+   <folder id="FOL165" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL166" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL167" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL168" populated="true" autoIncrement="false" defaultValue="" name="parking_spaces" nullable="1" physicalName="parking_spaces" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
    </folder>
-   <folder id="FOL300" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL169" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL301" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL170" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL302" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX303" populated="true" clustered="false" index-type="BTREE" name="parking_pkey" physicalName="parking_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC304" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL297" name="cd_parking" physicalName="cd_parking" />
+   <folder id="FOL171" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX172" populated="true" clustered="false" index-type="BTREE" name="parking_pkey" physicalName="parking_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC173" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL166" name="cd_parking" physicalName="cd_parking" />
+    </index>
+    <index id="IDX174" populated="true" clustered="false" name="parking_idx" physicalName="parking_idx" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC175" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL166" name="cd_parking" physicalName="cd_parking" />
+     <index-column id="IDC176" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL167" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB305" populated="true" name="person" objectType="TABLE" physicalName="person" >
-   <folder id="FOL306" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL307" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL152" sourceDataTypeName="int4" type="4" />
-    <column id="COL308" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="1" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" source-column-ref="COL153" sourceDataTypeName="varchar" type="12" />
-    <column id="COL309" populated="true" autoIncrement="false" defaultValue="" name="name" nullable="0" physicalName="name" precision="100" referenceCount="1" remarks="" scale="0" source-column-ref="COL154" sourceDataTypeName="varchar" type="12" />
-    <column id="COL310" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="1" referenceCount="1" remarks="" scale="0" source-column-ref="COL155" sourceDataTypeName="bpchar" type="1" />
+  <table id="TAB177" populated="true" name="person" objectType="TABLE" physicalName="person" >
+   <folder id="FOL178" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL179" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL180" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="1" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL181" populated="true" autoIncrement="false" defaultValue="" name="name" nullable="0" physicalName="name" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL182" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="1" referenceCount="1" remarks="" scale="0" sourceDataTypeName="bpchar" type="1" />
    </folder>
-   <folder id="FOL311" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL183" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL312" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL184" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL313" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX314" populated="true" clustered="false" index-type="BTREE" name="person_pkey" physicalName="person_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC315" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL307" name="cd_person" physicalName="cd_person" />
+   <folder id="FOL185" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX186" populated="true" clustered="false" index-type="BTREE" name="person_pkey" physicalName="person_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC187" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL179" name="cd_person" physicalName="cd_person" />
     </index>
    </folder>
   </table>
-  <table id="TAB316" populated="true" name="pricetable" objectType="TABLE" physicalName="pricetable" >
-   <folder id="FOL317" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL318" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL163" sourceDataTypeName="int4" type="4" />
-    <column id="COL319" populated="true" autoIncrement="false" defaultValue="" name="item" nullable="0" physicalName="item" precision="50" referenceCount="1" remarks="" scale="0" source-column-ref="COL164" sourceDataTypeName="varchar" type="12" />
-    <column id="COL320" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="0" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" source-column-ref="COL165" sourceDataTypeName="numeric" type="2" />
+  <table id="TAB188" populated="true" name="price_table" objectType="TABLE" physicalName="price_table" remarks="" >
+   <folder id="FOL189" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL190" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL191" populated="true" autoIncrement="false" defaultValue="" name="item" nullable="0" physicalName="item" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL192" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="0" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" sourceDataTypeName="numeric" type="2" />
    </folder>
-   <folder id="FOL321" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL193" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL322" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL194" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL323" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX324" populated="true" clustered="false" index-type="BTREE" name="pricetable_pkey" physicalName="pricetable_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC325" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL318" name="cd_price_table" physicalName="cd_price_table" />
+   <folder id="FOL195" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX196" populated="true" clustered="false" index-type="BTREE" name="price_table_pkey" physicalName="price_table_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC197" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL190" name="cd_price_table" physicalName="cd_price_table" />
     </index>
    </folder>
   </table>
-  <table id="TAB326" populated="true" name="stay" objectType="TABLE" physicalName="stay" >
-   <folder id="FOL327" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL328" populated="true" autoIncrement="false" defaultValue="" name="cd_stay" nullable="0" physicalName="cd_stay" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL173" sourceDataTypeName="int4" type="4" />
-    <column id="COL329" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL174" sourceDataTypeName="int4" type="4" />
-    <column id="COL330" populated="true" autoIncrement="false" defaultValue="" name="dt_entrance" nullable="0" physicalName="dt_entrance" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL175" sourceDataTypeName="date" type="91" />
-    <column id="COL331" populated="true" autoIncrement="false" defaultValue="" name="dt_outgoing" nullable="1" physicalName="dt_outgoing" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL176" sourceDataTypeName="date" type="91" />
-    <column id="COL332" populated="true" autoIncrement="false" defaultValue="" name="hr_entrance" nullable="0" physicalName="hr_entrance" precision="6" referenceCount="1" remarks="" scale="6" source-column-ref="COL177" sourceDataTypeName="time" type="92" />
-    <column id="COL333" populated="true" autoIncrement="false" defaultValue="" name="hr_outgoing" nullable="1" physicalName="hr_outgoing" precision="6" referenceCount="1" remarks="" scale="6" source-column-ref="COL178" sourceDataTypeName="time" type="92" />
-    <column id="COL334" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_entrance" nullable="0" physicalName="cd_employee_entrance" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL179" sourceDataTypeName="int4" type="4" />
-    <column id="COL335" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_outgoing" nullable="0" physicalName="cd_employee_outgoing" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL180" sourceDataTypeName="int4" type="4" />
-    <column id="COL336" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" referenceCount="2" remarks="" scale="0" source-column-ref="COL181" sourceDataTypeName="varchar" type="12" />
-    <column id="COL337" populated="true" autoIncrement="false" defaultValue="" name="status" nullable="1" physicalName="status" precision="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL182" sourceDataTypeName="int2" type="5" />
-    <column id="COL338" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="1" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" source-column-ref="COL183" sourceDataTypeName="numeric" type="2" />
+  <table id="TAB198" populated="true" name="stay" objectType="TABLE" physicalName="stay" remarks="" >
+   <folder id="FOL199" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL200" populated="true" autoIncrement="false" defaultValue="" name="cd_stay" nullable="0" physicalName="cd_stay" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL201" populated="true" autoIncrement="false" defaultValue="" name="cd_parking" nullable="0" physicalName="cd_parking" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL202" populated="true" autoIncrement="false" defaultValue="" name="dt_entrance" nullable="0" physicalName="dt_entrance" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
+    <column id="COL203" populated="true" autoIncrement="false" defaultValue="" name="dt_outgoing" nullable="1" physicalName="dt_outgoing" precision="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="date" type="91" />
+    <column id="COL204" populated="true" autoIncrement="false" defaultValue="" name="hr_entrance" nullable="0" physicalName="hr_entrance" precision="6" referenceCount="1" remarks="" scale="6" sourceDataTypeName="time" type="92" />
+    <column id="COL205" populated="true" autoIncrement="false" defaultValue="" name="hr_outgoing" nullable="1" physicalName="hr_outgoing" precision="6" referenceCount="1" remarks="" scale="6" sourceDataTypeName="time" type="92" />
+    <column id="COL206" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_entrance" nullable="0" physicalName="cd_employee_entrance" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL207" populated="true" autoIncrement="false" defaultValue="" name="cd_employee_outgoing" nullable="0" physicalName="cd_employee_outgoing" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL208" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" referenceCount="2" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL209" populated="true" autoIncrement="false" defaultValue="" name="status" nullable="1" physicalName="status" precision="0" referenceCount="1" remarks="" scale="0" type="5" />
+    <column id="COL210" populated="true" autoIncrement="false" defaultValue="" name="price" nullable="1" physicalName="price" precision="1000" referenceCount="1" remarks="" scale="0" sourceDataTypeName="numeric" type="2" />
    </folder>
-   <folder id="FOL339" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL211" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL340" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL212" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL341" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX342" populated="true" clustered="false" index-type="BTREE" name="stay_pkey" physicalName="stay_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC343" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL328" name="cd_stay" physicalName="cd_stay" />
+   <folder id="FOL213" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX214" populated="true" clustered="false" index-type="BTREE" name="stay_pkey" physicalName="stay_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC215" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL200" name="cd_stay" physicalName="cd_stay" />
     </index>
-    <index id="IDX344" populated="true" clustered="false" index-type="BTREE" name="stay_cd_parking_key" physicalName="stay_cd_parking_key" primaryKeyIndex="false" unique="true" >
-     <index-column id="IDC345" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL329" name="cd_parking" physicalName="cd_parking" />
-     <index-column id="IDC346" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL330" name="dt_entrance" physicalName="dt_entrance" />
-     <index-column id="IDC347" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL334" name="cd_employee_entrance" physicalName="cd_employee_entrance" />
-     <index-column id="IDC348" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL336" name="license_plate" physicalName="license_plate" />
-    </index>
-   </folder>
-  </table>
-  <table id="TAB349" populated="true" name="vehicle" objectType="TABLE" physicalName="vehicle" >
-   <folder id="FOL350" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL351" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL196" sourceDataTypeName="varchar" type="12" />
-    <column id="COL352" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="20" referenceCount="2" remarks="" scale="0" source-column-ref="COL197" sourceDataTypeName="varchar" type="12" />
-    <column id="COL353" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL198" sourceDataTypeName="int4" type="4" />
-    <column id="COL354" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" referenceCount="2" remarks="" scale="0" source-column-ref="COL199" sourceDataTypeName="int4" type="4" />
-    <column id="COL355" populated="true" autoIncrement="false" defaultValue="" name="color" nullable="1" physicalName="color" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL200" sourceDataTypeName="varchar" type="12" />
-   </folder>
-   <folder id="FOL356" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
-   </folder>
-   <folder id="FOL357" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
-   </folder>
-   <folder id="FOL358" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX359" populated="true" clustered="false" index-type="BTREE" name="vehicle_pkey" physicalName="vehicle_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC360" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL351" name="license_plate" physicalName="license_plate" />
+    <index id="IDX216" populated="true" clustered="false" name="stay_idx" physicalName="stay_idx" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC217" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL200" name="cd_stay" physicalName="cd_stay" />
+     <index-column id="IDC218" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL201" name="cd_parking" physicalName="cd_parking" />
+     <index-column id="IDC219" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL202" name="dt_entrance" physicalName="dt_entrance" />
+     <index-column id="IDC220" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL204" name="hr_entrance" physicalName="hr_entrance" />
+     <index-column id="IDC221" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL206" name="cd_employee_entrance" physicalName="cd_employee_entrance" />
+     <index-column id="IDC222" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL208" name="license_plate" physicalName="license_plate" />
     </index>
    </folder>
   </table>
-  <table id="TAB361" populated="true" name="vehicletype" objectType="TABLE" physicalName="vehicletype" >
-   <folder id="FOL362" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL363" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" source-column-ref="COL208" sourceDataTypeName="varchar" type="12" />
-    <column id="COL364" populated="true" autoIncrement="false" defaultValue="" name="manufacturer" nullable="1" physicalName="manufacturer" precision="50" referenceCount="1" remarks="" scale="0" source-column-ref="COL209" sourceDataTypeName="varchar" type="12" />
-    <column id="COL365" populated="true" autoIncrement="false" defaultValue="" name="model" nullable="1" physicalName="model" precision="20" referenceCount="1" remarks="" scale="0" source-column-ref="COL210" sourceDataTypeName="varchar" type="12" />
+  <table id="TAB223" populated="true" name="vehicle" objectType="TABLE" physicalName="vehicle" >
+   <folder id="FOL224" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL225" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL226" populated="true" autoIncrement="false" defaultValue="" name="type" nullable="0" physicalName="TYPE" precision="20" referenceCount="2" remarks="" scale="0" type="12" />
+    <column id="COL227" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL228" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
+    <column id="COL229" populated="true" autoIncrement="false" defaultValue="" name="color" nullable="1" physicalName="color" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
    </folder>
-   <folder id="FOL366" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   <folder id="FOL230" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
-   <folder id="FOL367" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   <folder id="FOL231" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
    </folder>
-   <folder id="FOL368" populated="true" name="Indices" physicalName="Indices" type="4" >
-    <index id="IDX369" populated="true" clustered="false" index-type="BTREE" name="vehicletype_pkey" physicalName="vehicletype_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC370" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL363" name="TYPE" physicalName="TYPE" />
+   <folder id="FOL232" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX233" populated="true" clustered="false" index-type="BTREE" name="vehicle_pkey" physicalName="vehicle_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC234" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL225" name="license_plate" physicalName="license_plate" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB235" populated="true" name="vehicle_type" objectType="TABLE" physicalName="vehicle_type" remarks="" >
+   <folder id="FOL236" populated="true" name="Columns" physicalName="Columns" type="1" >
+    <column id="COL237" populated="true" autoIncrement="false" defaultValue="" name="type" nullable="0" physicalName="type" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="12" />
+    <column id="COL238" populated="true" autoIncrement="false" defaultValue="" name="manufacturer" nullable="1" physicalName="manufacturer" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+    <column id="COL239" populated="true" autoIncrement="false" defaultValue="" name="model" nullable="1" physicalName="model" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
+   </folder>
+   <folder id="FOL240" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
+   </folder>
+   <folder id="FOL241" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2" >
+   </folder>
+   <folder id="FOL242" populated="true" name="Indices" physicalName="Indices" type="4" >
+    <index id="IDX243" populated="true" clustered="false" index-type="BTREE" name="vehicle_type_pkey" physicalName="vehicle_type_pkey" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC244" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL237" name="type" physicalName="TYPE" />
     </index>
    </folder>
   </table>
   <relationships>
-   <relationship id="REL371" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB349" fkCardinality="7" identifying="false" name="vehicle_cd_customer_fkey" physicalName="vehicle_cd_customer_fkey" pk-table-ref="TAB254" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP372" populated="true" fk-column-ref="COL353" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL256" />
+   <relationship id="REL245" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB223" fkCardinality="7" identifying="false" name="vehicle_cd_customer_fkey" physicalName="vehicle_cd_customer_fkey" pk-table-ref="TAB117" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP246" populated="true" fk-column-ref="COL227" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL119" />
    </relationship>
-   <relationship id="REL373" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB254" fkCardinality="3" identifying="true" name="customer_cd_customer_fkey" physicalName="customer_cd_customer_fkey" pk-table-ref="TAB305" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP374" populated="true" fk-column-ref="COL256" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL307" />
+   <relationship id="REL247" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB117" fkCardinality="3" identifying="true" name="customer_cd_person_fk" physicalName="customer_cd_person_fk" pk-table-ref="TAB177" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP248" populated="true" fk-column-ref="COL120" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL179" />
    </relationship>
-   <relationship id="REL375" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB326" fkCardinality="7" identifying="false" name="stay_cd_employee_outgoing_fkey" physicalName="stay_cd_employee_outgoing_fkey" pk-table-ref="TAB263" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP376" populated="true" fk-column-ref="COL335" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL265" />
+   <relationship id="REL249" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB198" fkCardinality="7" identifying="false" name="stay_cd_employee_outgoing_fkey" physicalName="stay_cd_employee_outgoing_fkey" pk-table-ref="TAB129" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP250" populated="true" fk-column-ref="COL207" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL131" />
    </relationship>
-   <relationship id="REL377" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB326" fkCardinality="7" identifying="false" name="stay_cd_employee_entrance_fkey" physicalName="stay_cd_employee_entrance_fkey" pk-table-ref="TAB263" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP378" populated="true" fk-column-ref="COL334" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL265" />
+   <relationship id="REL251" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB198" fkCardinality="7" identifying="false" name="stay_cd_employee_entrance_fkey" physicalName="stay_cd_employee_entrance_fkey" pk-table-ref="TAB129" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP252" populated="true" fk-column-ref="COL206" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL131" />
    </relationship>
-   <relationship id="REL379" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB263" fkCardinality="3" identifying="true" name="employee_cd_employee_fkey" physicalName="employee_cd_employee_fkey" pk-table-ref="TAB285" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP380" populated="true" fk-column-ref="COL265" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL287" />
+   <relationship id="REL253" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB129" fkCardinality="7" identifying="false" name="parking_cd_employee_fkey" physicalName="parking_cd_employee_fkey" pk-table-ref="TAB164" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP254" populated="true" fk-column-ref="COL134" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL166" />
    </relationship>
-   <relationship id="REL381" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB263" fkCardinality="7" identifying="false" name="employee_cd_parking_fkey" physicalName="employee_cd_parking_fkey" pk-table-ref="TAB295" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP382" populated="true" fk-column-ref="COL267" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL297" />
+   <relationship id="REL255" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB129" fkCardinality="3" identifying="true" name="employee_cd_person_fk" physicalName="employee_cd_person_fk" pk-table-ref="TAB154" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP256" populated="true" fk-column-ref="COL132" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL156" />
    </relationship>
-   <relationship id="REL383" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB275" fkCardinality="3" identifying="true" name="legalentity_cd_person_fkey" physicalName="legalentity_cd_person_fkey" pk-table-ref="TAB305" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP384" populated="true" fk-column-ref="COL277" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL307" />
+   <relationship id="REL257" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB164" fkCardinality="7" identifying="false" name="parking_cd_person_fk" physicalName="parking_cd_person_fk" pk-table-ref="TAB144" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP258" populated="true" fk-column-ref="COL167" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL146" />
    </relationship>
-   <reference ref-id="REL379" />
-   <relationship id="REL385" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB285" fkCardinality="3" identifying="true" name="naturalperson_cd_person_fkey" physicalName="naturalperson_cd_person_fkey" pk-table-ref="TAB305" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP386" populated="true" fk-column-ref="COL287" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL307" />
+   <relationship id="REL259" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB144" fkCardinality="3" identifying="true" name="legalentity_cd_person_fkey" physicalName="legalentity_cd_person_fkey" pk-table-ref="TAB177" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP260" populated="true" fk-column-ref="COL146" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL179" />
    </relationship>
-   <reference ref-id="REL381" />
-   <relationship id="REL387" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB326" fkCardinality="7" identifying="false" name="stay_cd_parking_fkey" physicalName="stay_cd_parking_fkey" pk-table-ref="TAB295" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP388" populated="true" fk-column-ref="COL329" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL297" />
+   <reference ref-id="REL255" />
+   <relationship id="REL261" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB154" fkCardinality="3" identifying="true" name="naturalperson_cd_person_fkey" physicalName="naturalperson_cd_person_fkey" pk-table-ref="TAB177" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP262" populated="true" fk-column-ref="COL156" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL179" />
    </relationship>
-   <reference ref-id="REL373" />
-   <reference ref-id="REL383" />
-   <reference ref-id="REL385" />
-   <relationship id="REL389" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB349" fkCardinality="7" identifying="false" name="vehicle_cd_price_table_fkey" physicalName="vehicle_cd_price_table_fkey" pk-table-ref="TAB316" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP390" populated="true" fk-column-ref="COL354" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL318" />
+   <reference ref-id="REL253" />
+   <relationship id="REL263" populated="true" deferrability="7" deleteRule="0" fk-table-ref="TAB198" fkCardinality="7" identifying="false" name="stay_cd_parking_fkey" physicalName="stay_cd_parking_fkey" pk-table-ref="TAB164" pkCardinality="2" updateRule="0" >
+    <column-mapping id="CMP264" populated="true" fk-column-ref="COL201" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL166" />
    </relationship>
-   <reference ref-id="REL375" />
-   <reference ref-id="REL377" />
-   <reference ref-id="REL387" />
-   <relationship id="REL391" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB326" fkCardinality="7" identifying="false" name="stay_license_plate_fkey" physicalName="stay_license_plate_fkey" pk-table-ref="TAB349" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP392" populated="true" fk-column-ref="COL336" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL351" />
+   <reference ref-id="REL257" />
+   <reference ref-id="REL247" />
+   <reference ref-id="REL259" />
+   <reference ref-id="REL261" />
+   <relationship id="REL265" populated="true" deferrability="7" deleteRule="1" fk-table-ref="TAB223" fkCardinality="7" identifying="false" name="vehicle_cd_price_table_fkey" physicalName="vehicle_cd_price_table_fkey" pk-table-ref="TAB188" pkCardinality="2" updateRule="1" >
+    <column-mapping id="CMP266" populated="true" fk-column-ref="COL228" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL190" />
    </relationship>
-   <reference ref-id="REL391" />
-   <reference ref-id="REL371" />
-   <reference ref-id="REL389" />
-   <relationship id="REL393" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB349" fkCardinality="7" identifying="false" name="vehicle_TYPE_fkey" physicalName="vehicle_type_fkey" pk-table-ref="TAB361" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP394" populated="true" fk-column-ref="COL352" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL363" />
+   <reference ref-id="REL249" />
+   <reference ref-id="REL251" />
+   <reference ref-id="REL263" />
+   <relationship id="REL267" populated="true" deferrability="7" deleteRule="3" fk-table-ref="TAB198" fkCardinality="7" identifying="false" name="stay_license_plate_fkey" physicalName="stay_license_plate_fkey" pk-table-ref="TAB223" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP268" populated="true" fk-column-ref="COL208" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL225" />
    </relationship>
-   <reference ref-id="REL393" />
+   <reference ref-id="REL267" />
+   <reference ref-id="REL245" />
+   <reference ref-id="REL265" />
+   <relationship id="REL269" populated="true" deferrability="7" deleteRule="1" fk-table-ref="TAB223" fkCardinality="7" identifying="false" name="vehicle_type_fkey" physicalName="vehicle_type_fkey" pk-table-ref="TAB235" pkCardinality="2" updateRule="1" >
+    <column-mapping id="CMP270" populated="true" fk-column-ref="COL226" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL237" />
+   </relationship>
+   <reference ref-id="REL269" />
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="park"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="park"> </ddl-generator>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
-  <table-pane table-ref="TAB254" x="275" y="82" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB263" x="59" y="456" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB275" x="264" y="215" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB285" x="48" y="247" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB295" x="481" y="561" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB305" x="51" y="78" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB316" x="742" y="336" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB326" x="485" y="290" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB349" x="498" y="77" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB361" x="762" y="77" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL379" pk-x="75" pk-y="75" fk-x="64" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL381" pk-x="0" pk-y="19" fk-x="184" fk-y="72" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="18"/>
-  <table-link relationship-ref="REL373" pk-x="162" pk-y="53" fk-x="0" fk-y="49" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL383" pk-x="162" pk-y="73" fk-x="77" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="129"/>
-  <table-link relationship-ref="REL385" pk-x="82" pk-y="90" fk-x="85" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL375" pk-x="184" pk-y="22" fk-x="0" fk-y="142" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL377" pk-x="165" pk-y="0" fk-x="0" fk-y="98" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="40"/>
-  <table-link relationship-ref="REL387" pk-x="119" pk-y="0" fk-x="122" fk-y="195" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="72"/>
-  <table-link relationship-ref="REL391" pk-x="87" pk-y="105" fk-x="100" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL371" pk-x="181" pk-y="41" fk-x="0" fk-y="46" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL389" pk-x="95" pk-y="0" fk-x="206" fk-y="78" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="24"/>
-  <table-link relationship-ref="REL393" pk-x="0" pk-y="35" fk-x="206" fk-y="35" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-pane table-ref="TAB117" x="299" y="83" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB129" x="307" y="324" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB144" x="51" y="315" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB154" x="285" y="195" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB164" x="118" y="471" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB177" x="86" y="78" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB188" x="723" y="286" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB198" x="592" y="368" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB223" x="533" y="77" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB235" x="808" y="76" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL253" pk-x="169" pk-y="28" fk-x="165" fk-y="120" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="65"/>
+  <table-link relationship-ref="REL259" pk-x="42" pk-y="90" fk-x="77" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL261" pk-x="82" pk-y="90" fk-x="0" fk-y="48" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL249" pk-x="178" pk-y="89" fk-x="0" fk-y="64" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL251" pk-x="178" pk-y="60" fk-x="0" fk-y="33" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL263" pk-x="169" pk-y="46" fk-x="0" fk-y="149" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL267" pk-x="87" pk-y="105" fk-x="100" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL245" pk-x="175" pk-y="40" fk-x="0" fk-y="46" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL265" pk-x="75" pk-y="0" fk-x="127" fk-y="105" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-link relationship-ref="REL269" pk-x="0" pk-y="10" fk-x="206" fk-y="91" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL247" pk-x="162" pk-y="43" fk-x="0" fk-y="38" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL255" pk-x="122" pk-y="75" fk-x="100" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL257" pk-x="70" pk-y="75" fk-x="96" fk-y="0" rLineColor="0x333333" pkLabelText="" fkLabelText="" orientation="132"/>
  </play-pen>
  <profiles topNCount="10">
   </profiles>
