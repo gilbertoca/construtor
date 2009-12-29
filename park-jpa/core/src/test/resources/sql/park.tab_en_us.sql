@@ -10,10 +10,10 @@ DROP TABLE PRICE_TABLE CASCADE;
 DROP TABLE VEHICLE_TYPE CASCADE;
 
 CREATE TABLE park.vehicle_type (
-                type VARCHAR(20) NOT NULL,
+                v_type VARCHAR(20) NOT NULL,
                 manufacturer VARCHAR(50),
                 model VARCHAR(20),
-                CONSTRAINT vehicle_type_pkey PRIMARY KEY (type)
+                CONSTRAINT vehicle_v_type_pkey PRIMARY KEY (v_type)
 );
 
 
@@ -29,7 +29,7 @@ CREATE TABLE park.person (
                 cd_person INTEGER NOT NULL,
                 address VARCHAR(100),
                 name VARCHAR(100) NOT NULL,
-                TYPE CHAR(1) NOT NULL,
+                p_type CHAR(1) NOT NULL,
                 CONSTRAINT person_pkey PRIMARY KEY (cd_person)
 );
 
@@ -91,7 +91,7 @@ CREATE UNIQUE INDEX customer_idx
 
 CREATE TABLE park.vehicle (
                 license_plate VARCHAR(20) NOT NULL,
-                TYPE VARCHAR(20) NOT NULL,
+                v_type VARCHAR(20) NOT NULL,
                 cd_customer INTEGER NOT NULL,
                 cd_price_table INTEGER NOT NULL,
                 color VARCHAR(20),
@@ -119,9 +119,9 @@ CREATE UNIQUE INDEX stay_idx
  ON park.stay
  ( cd_stay, cd_parking, dt_entrance, hr_entrance, cd_employee_entrance, license_plate );
 
-ALTER TABLE park.vehicle ADD CONSTRAINT vehicle_type_fkey
-FOREIGN KEY (TYPE)
-REFERENCES park.vehicle_type (type)
+ALTER TABLE park.vehicle ADD CONSTRAINT vehicle_v_type_fkey
+FOREIGN KEY (v_type)
+REFERENCES park.vehicle_type (v_type)
 ON DELETE RESTRICT
 ON UPDATE RESTRICT
 NOT DEFERRABLE;
