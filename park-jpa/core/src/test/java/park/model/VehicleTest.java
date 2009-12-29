@@ -42,7 +42,7 @@ public class VehicleTest {
         // Initializes DBUnit
         /*
          connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-         Esta opção não funcionou.
+         Esta opï¿½ï¿½o nï¿½o funcionou.
          Vamos aplicar um Nija! rs rs
          */
         Properties configurationProperties = new Properties();
@@ -88,7 +88,7 @@ public class VehicleTest {
     @Test
     public void GetVehicleById() {
         log.debug("\nGetting an Vehicle by ID.\n");
-        Vehicle v = em.find(Vehicle.class, 100);
+        Vehicle v = em.find(Vehicle.class, "LC100");
         log.debug("Object loaded: \n" + v);
         assertNotNull(v.getLicensePlate());
     }
@@ -98,11 +98,11 @@ public class VehicleTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery(Vehicle.FIND_ALL);
-        assertEquals("Should have 2 Vehicle", query.getResultList().size(), 2);
+        assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
         Vehicle v = new Vehicle();
-        v.setLicensePlate("250-MVU");
+        v.setLicensePlate("LC103");
         v.setColor("vermelho");
         //relationships
         PriceTable pT = em.find(PriceTable.class, 100);
@@ -118,7 +118,7 @@ public class VehicleTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
+        assertEquals("Should have 4 Vehicle", query.getResultList().size(), 4);
 
         // Removes the object from the database
         tx.begin();
@@ -126,7 +126,7 @@ public class VehicleTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 Vehicle", query.getResultList().size(), 2);
+        assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
     }
 }
 
