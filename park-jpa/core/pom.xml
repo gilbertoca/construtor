@@ -97,15 +97,41 @@
                                 <phase>process-classes</phase>
                                 <configuration>
                                     <tasks>
-                                        <java classname="org.apache.openjpa.enhance.PCEnhancer"
-                                              classpathref="maven.runtime.classpath"
-                                              dir="target/classes" fork="true" />
+                                        <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="maven.compile.classpath"/>
+                                        <openjpac>
+                                            <classpath refid="maven.compile.classpath"/>
+                                        </openjpac>
                                     </tasks>
                                 </configuration>
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
                             </execution>
+                            <execution>
+                                <id>javaschematool.resources</id>
+                                <phase>generate-test-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <!-- define the reversemappingtool task; this can be done at the top of -->
+                                  <!-- the build.xml file, so it will be available for all targets        -->
+                                        <taskdef name="reversemappingtool"
+                                                 classname="org.apache.openjpa.jdbc.ant.ReverseMappingToolTask"
+                                                 classpathref="maven.compile.classpath"/>
+
+                                        <!-- reverse map the entire database -->
+                                        <reversemappingtool  package="reversemapping" directory="src/main/java">
+                                            <!-- This must be set to your database -->
+                                            <config   propertiesfile="${project.build.outputDirectory}/META-INF/persistence.xml"/>
+
+                                            <codeformat tabSpaces="4" spaceBeforeParen="true" braceOnSameLine="false"/>
+                                        </reversemappingtool>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+
                         </executions>
                     </plugin>
 
