@@ -4,8 +4,8 @@
  <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="BcoProducao" />
    <property key="Connection Type" value="PostgreSQL" />
+   <property key="Logical" value="BcoProducao" />
    <property key="JDBC URL" value="jdbc:postgresql://10.121.0.9:5433/bcoproducao" />
    <property key="UID" value="park" />
    <property key="PWD" value="park" />
@@ -288,7 +288,7 @@
     <column id="COL179" populated="true" autoIncrement="false" defaultValue="" name="cd_person" nullable="0" physicalName="cd_person" precision="0" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
     <column id="COL180" populated="true" autoIncrement="false" defaultValue="" name="address" nullable="1" physicalName="address" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
     <column id="COL181" populated="true" autoIncrement="false" defaultValue="" name="name" nullable="0" physicalName="name" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-    <column id="COL182" populated="true" autoIncrement="false" defaultValue="" name="TYPE" nullable="0" physicalName="TYPE" precision="1" referenceCount="1" remarks="" scale="0" sourceDataTypeName="bpchar" type="1" />
+    <column id="COL182" populated="true" autoIncrement="false" autoIncrementSequenceName="person_d_type_seq" defaultValue="" name="p_type" nullable="0" physicalName="d_type" precision="1" referenceCount="1" remarks="" scale="0" type="1" />
    </folder>
    <folder id="FOL183" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3" >
    </folder>
@@ -351,7 +351,7 @@
   <table id="TAB223" populated="true" name="vehicle" objectType="TABLE" physicalName="vehicle" >
    <folder id="FOL224" populated="true" name="Columns" physicalName="Columns" type="1" >
     <column id="COL225" populated="true" autoIncrement="false" defaultValue="" name="license_plate" nullable="0" physicalName="license_plate" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
-    <column id="COL226" populated="true" autoIncrement="false" defaultValue="" name="type" nullable="0" physicalName="TYPE" precision="20" referenceCount="2" remarks="" scale="0" type="12" />
+    <column id="COL226" populated="true" autoIncrement="false" defaultValue="" name="v_type" nullable="0" physicalName="TYPE" precision="20" referenceCount="2" remarks="" scale="0" type="12" />
     <column id="COL227" populated="true" autoIncrement="false" defaultValue="" name="cd_customer" nullable="0" physicalName="cd_customer" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
     <column id="COL228" populated="true" autoIncrement="false" defaultValue="" name="cd_price_table" nullable="0" physicalName="cd_price_table" precision="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="int4" type="4" />
     <column id="COL229" populated="true" autoIncrement="false" defaultValue="" name="color" nullable="1" physicalName="color" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
@@ -368,7 +368,7 @@
   </table>
   <table id="TAB235" populated="true" name="vehicle_type" objectType="TABLE" physicalName="vehicle_type" remarks="" >
    <folder id="FOL236" populated="true" name="Columns" physicalName="Columns" type="1" >
-    <column id="COL237" populated="true" autoIncrement="false" defaultValue="" name="type" nullable="0" physicalName="type" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="12" />
+    <column id="COL237" populated="true" autoIncrement="false" autoIncrementSequenceName="vehicle_v_type_type_seq" defaultValue="" name="v_type" nullable="0" physicalName="v_type" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="12" />
     <column id="COL238" populated="true" autoIncrement="false" defaultValue="" name="manufacturer" nullable="1" physicalName="manufacturer" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
     <column id="COL239" populated="true" autoIncrement="false" defaultValue="" name="model" nullable="1" physicalName="model" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="varchar" type="12" />
    </folder>
@@ -378,7 +378,7 @@
    </folder>
    <folder id="FOL242" populated="true" name="Indices" physicalName="Indices" type="4" >
     <index id="IDX243" populated="true" clustered="false" index-type="BTREE" name="vehicle_type_pkey" physicalName="vehicle_type_pkey" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC244" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL237" name="type" physicalName="TYPE" />
+     <index-column id="IDC244" populated="true" ascendingOrDescending="UNSPECIFIED" column-ref="COL237" name="v_type" physicalName="TYPE" />
     </index>
    </folder>
   </table>
@@ -437,9 +437,9 @@
    <reference ref-id="REL269" />
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="park"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="park"> </ddl-generator>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="1.0" viewportX="21" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB117" x="299" y="83" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB129" x="307" y="324" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB144" x="51" y="315" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
