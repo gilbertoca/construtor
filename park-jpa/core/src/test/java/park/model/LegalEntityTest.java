@@ -41,7 +41,7 @@ public class LegalEntityTest {
         // Initializes DBUnit
         /*
          connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-         Esta opÁ„o n„o funcionou.
+         Esta op√ß√£o n√£o funcionou.
          Vamos aplicar um Nija! rs rs
          */
         Properties configurationProperties = new Properties();

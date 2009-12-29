@@ -42,7 +42,7 @@ public class VehicleTest {
         // Initializes DBUnit
         /*
          connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-         Esta op��o n�o funcionou.
+         Esta opção não funcionou.
          Vamos aplicar um Nija! rs rs
          */
         Properties configurationProperties = new Properties();
