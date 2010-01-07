@@ -19,7 +19,7 @@ public class Employee implements Serializable {
 	@Column(name="CD_EMPLOYEE")
 	private Integer cdEmployee;
 
-    @Temporal( TemporalType.DATE)
+        @Temporal( TemporalType.DATE)
 	@Column(name="DT_ADMISSION", nullable=false)
 	private Date dtAdmission;
 
