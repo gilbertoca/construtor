@@ -27,7 +27,7 @@ public class BorderPage extends Page{
      * </ul>
      */
     public BorderPage() {
-        addModel("title", "Página Principal");
+        addModel("title", "PÃ¡gina Principal");
     }
 
     /**
