@@ -35,20 +35,16 @@
     -->
   <persistence-unit name="parkPU" transaction-type="RESOURCE_LOCAL">
     <provider>${jpa.provider}</provider>
-    <!--class>park.model.Customer</class>
-        <class>park.model.Employee</class>
-        <class>park.model.Parking</class>
-        <class>park.model.Stay</class-->
     <class>park.model.Vehicle</class>
+    <class>park.model.Person</class>
     <class>park.model.VehicleType</class>
     <class>park.model.PriceTable</class>
-    <class>park.model.Person</class>
-    <class>park.model.NaturalPerson</class>
-    <class>park.model.LegalEntity</class>
-    <class>park.model.Customer</class>
     <class>park.model.Stay</class>
-    <class>park.model.Parking</class>
     <class>park.model.Employee</class>
+    <class>park.model.NaturalPerson</class>
+    <class>park.model.Customer</class>
+    <class>park.model.LegalEntity</class>
+    <class>park.model.Parking</class>
     <properties>
       <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
       <property name="${jpa.url}" value="${jdbc.url}"/>
