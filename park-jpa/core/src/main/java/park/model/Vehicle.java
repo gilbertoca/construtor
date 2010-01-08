@@ -1,112 +1,130 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package park.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import java.util.Set;
-
+import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
- * The persistent class for the vehicle database table.
- * 
+ *
+ * @author gilberto
  */
 @Entity
-@Table(name="VEHICLE")
+@Table(name = "vehicle")
 @NamedQueries({
-    @NamedQuery(name = Vehicle.FIND_ALL, query = "SELECT v FROM Vehicle v")
-})
+    @NamedQuery(name = "Vehicle.findAll", query = "SELECT v FROM Vehicle v")})
 public class Vehicle implements Serializable {
-	private static final long serialVersionUID = 1L;
-	public static final String FIND_ALL = "findAllVehicle";
-	@Id
-	@Column(name="LICENSE_PLATE", length=20)
-	private String licensePlate;
-
-	@Column(length=20)
-	private String color;
-
-	//bi-directional many-to-one association to Stay
-	@OneToMany(mappedBy="vehicle")
-	private Set<Stay> stays;
-
-	//bi-directional many-to-one association to Customer
-    @ManyToOne
-	@JoinColumn(name="CD_CUSTOMER", nullable=false)
-	private Customer customer;
-    @OneToOne
-    @JoinColumn(name="CD_PRICE_TABLE")
-    private PriceTable priceTable;
-
-    @OneToOne
-    @JoinColumn(name="VTYPE")
-	private VehicleType vehicleType;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "license_plate")
+    private String licensePlate;
+    @Column(name = "color")
+    private String color;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "licensePlate")
+    private Collection<Stay> stayCollection;
+    @JoinColumn(name = "cd_customer", referencedColumnName = "cd_customer")
+    @ManyToOne(optional = false)
+    private Customer cdCustomer;
+    @JoinColumn(name = "cd_price_table", referencedColumnName = "cd_price_table")
+    @ManyToOne(optional = false)
+    private PriceTable cdPriceTable;
+    @JoinColumn(name = "v_type", referencedColumnName = "v_type")
+    @ManyToOne(optional = false)
+    private VehicleType vType;
 
     public Vehicle() {
     }
 
-	/**
-	 * @param licensePlate
-	 * @param color
-	 * @param stays
-	 * @param customer
-	 * @param priceTable
-	 * @param vehicleType
-	 */
-	public Vehicle(String licensePlate, String color, Customer customer, PriceTable priceTable, VehicleType vehicleType) {
-		super();
-		this.licensePlate = licensePlate;
-		this.color = color;
-		this.customer = customer;
-		this.priceTable = priceTable;
-		this.vehicleType = vehicleType;
-	}
+    public Vehicle(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
 
-	public String getLicensePlate() {
-		return this.licensePlate;
-	}
+    public String getLicensePlate() {
+        return licensePlate;
+    }
 
-	public void setLicensePlate(String licensePlate) {
-		this.licensePlate = licensePlate;
-	}
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
 
-	public String getColor() {
-		return this.color;
-	}
+    public String getColor() {
+        return color;
+    }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-	public Set<Stay> getStays() {
-		return this.stays;
-	}
+    public Collection<Stay> getStayCollection() {
+        return stayCollection;
+    }
 
-	public void setStays(Set<Stay> stays) {
-		this.stays = stays;
-	}
-	
-	public Customer getCustomer() {
-		return this.customer;
-	}
+    public void setStayCollection(Collection<Stay> stayCollection) {
+        this.stayCollection = stayCollection;
+    }
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
-	public PriceTable getPricetable() {
-		return this.priceTable;
-	}
+    public Customer getCdCustomer() {
+        return cdCustomer;
+    }
 
-	public void setPricetable(PriceTable pricetable) {
-		this.priceTable = pricetable;
-	}
-	
-	public VehicleType getVehicletype() {
-		return this.vehicleType;
-	}
+    public void setCdCustomer(Customer cdCustomer) {
+        this.cdCustomer = cdCustomer;
+    }
 
-	public void setVehicletype(VehicleType vehicletype) {
-		this.vehicleType = vehicletype;
-	}
-	
+    public PriceTable getCdPriceTable() {
+        return cdPriceTable;
+    }
+
+    public void setCdPriceTable(PriceTable cdPriceTable) {
+        this.cdPriceTable = cdPriceTable;
+    }
+
+    public VehicleType getVType() {
+        return vType;
+    }
+
+    public void setVType(VehicleType vType) {
+        this.vType = vType;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (licensePlate != null ? licensePlate.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Vehicle)) {
+            return false;
+        }
+        Vehicle other = (Vehicle) object;
+        if ((this.licensePlate == null && other.licensePlate != null) || (this.licensePlate != null && !this.licensePlate.equals(other.licensePlate))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "park.model.Vehicle[licensePlate=" + licensePlate + "]";
+    }
+
 }
