@@ -37,7 +37,7 @@ CREATE TABLE park.person (
 CREATE TABLE park.natural_person (
                 cd_person INTEGER NOT NULL,
                 dt_birth DATE,
-                rg VARCHAR(20),
+                legal_document VARCHAR(20),
                 CONSTRAINT natural_person_pkey PRIMARY KEY (cd_person)
 );
 
