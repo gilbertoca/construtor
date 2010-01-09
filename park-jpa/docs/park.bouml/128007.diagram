@@ -8,23 +8,38 @@ end
 classcanvas 128135 class_ref 128135 // NaturalPerson
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   color darkgreen
-  xyz 58.7 182.7 2000
+  xyz 256.7 175.7 2000
 end
 classcanvas 128391 class_ref 128263 // LegalEntity
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   color darkgreen
-  xyz 224 158 2000
+  xyz 62 190 2000
 end
 classcanvas 129159 class_ref 128391 // Customer
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 512 26 2000
+  xyz 352 27 2000
 end
 classcanvas 129415 class_ref 128519 // Employee
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 497 196 2000
+  xyz 81 373 2000
+end
+classcanvas 129799 class_ref 128647 // Vehicle
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color darkgreen
+  xyz 557 9 2000
+end
+classcanvas 130055 class_ref 128775 // vehicleType
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumblue
+  xyz 310 383 2000
+end
+classcanvas 130183 class_ref 128903 // priceTable
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumblue
+  xyz 522 330 2000
 end
 relationcanvas 128263 relation_ref 128007 // <generalisation>
-  decenter_end 481
+  decenter_end 913
   from ref 128135 z 2001 to ref 128007
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
@@ -36,8 +51,28 @@ relationcanvas 129031 relation_ref 128135 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129287 relation_ref 128263 // PersonCustomer
-  from ref 128007 z 2001 label "PersonCustomer" italic xyz 317 46 3000 to ref 129159
+  from ref 128007 z 2001 label "PersonCustomer" italic xyz 237 46 3000 to ref 129159
   no_role_a no_role_b
-  multiplicity_a_pos 481 70 3000 multiplicity_b_pos 233 70 3000
+  multiplicity_a_pos 321 70 3000 multiplicity_b_pos 233 70 3000
+end
+relationcanvas 129671 relation_ref 128519 // NaturalPersonEmployee
+  from ref 128135 z 2001 label "NaturalPersonEmployee" italic xyz 220 289.5 3000 to ref 129415
+  no_role_a no_role_b
+  multiplicity_a_pos 171 371 3000 multiplicity_b_pos 258 264 3000
+end
+relationcanvas 129927 relation_ref 128647 // CustomerVehicles
+  from ref 129159 z 2001 label "CustomerVehicles" italic xyz 444 46.5 3000 to ref 129799
+  no_role_a no_role_b
+  multiplicity_a_pos 541 71 3000 multiplicity_b_pos 450 71 3000
+end
+relationcanvas 130311 relation_ref 128775 // DescVehicle
+  from ref 130055 z 2001 label "DescVehicle" italic xyz 455 233 3000 to ref 129799
+  no_role_a no_role_b
+  multiplicity_a_pos 566 125 3000 multiplicity_b_pos 388 361 3000
+end
+relationcanvas 130439 relation_ref 128903 // PriceVehicle
+  from ref 130183 z 2001 label "PriceVehicle" italic xyz 561 207 3000 to ref 129799
+  no_role_a no_role_b
+  multiplicity_a_pos 600 125 3000 multiplicity_b_pos 566 308 3000
 end
 end
