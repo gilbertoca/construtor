@@ -1,12 +1,13 @@
 package park.model;
 
 import java.io.Serializable;
-public class Person implements Serializable {
+
+public abstract class Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idPerson;
+    private long idPerson;
     private String address;
     private String name;
-    private char pType;
+    private char[2] pType;
     private NaturalPerson naturalPerson;
     private Customer customer;
     private LegalEntity legalEntity;
@@ -14,21 +15,21 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(Integer idPerson) {
+    public Person(long idPerson) {
         this.idPerson = idPerson;
     }
 
-    public Person(Integer idPerson, String name, char pType) {
+    public Person(long idPerson, String name, char[2] pType) {
         this.idPerson = idPerson;
         this.name = name;
         this.pType = pType;
     }
 
-    public Integer getIdPerson() {
+    public long getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(Integer idPerson) {
+    public void setIdPerson(long idPerson) {
         this.idPerson = idPerson;
     }
 
@@ -48,11 +49,11 @@ public class Person implements Serializable {
         this.name = name;
     }
 
-    public char getPType() {
+    public char[2] getPType() {
         return pType;
     }
 
-    public void setPType(char pType) {
+    public void setPType(char[2] pType) {
         this.pType = pType;
     }
 
