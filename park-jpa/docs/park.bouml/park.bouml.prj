@@ -2,6 +2,7 @@ format 71
 "park.bouml"
   revision 1
   modified_by 7 "Gilberto"
+  java_root_dir "e:/tools/workspace/park-jpa/docs/"
 
 
   
