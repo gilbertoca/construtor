@@ -1,79 +1,36 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "employee")
-@NamedQueries({
-    @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e")})
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cd_employee")
-    private Integer cdEmployee;
-    @Basic(optional = false)
-    @Column(name = "dt_admission")
-    @Temporal(TemporalType.DATE)
+    private Integer idEmployee;
     private Date dtAdmission;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmployeeEntrance")
     private Collection<Stay> stayCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdEmployeeOutgoing")
     private Collection<Stay> stayCollection1;
-    @JoinColumn(name = "cd_person", referencedColumnName = "cd_person")
-    @OneToOne(optional = false)
-    private NaturalPerson cdPerson;
-    @JoinColumn(name = "cd_parking", referencedColumnName = "cd_parking")
-    @ManyToOne(optional = false)
-    private Parking cdParking;
+    private NaturalPerson idPerson;
+    private Parking idParking;
 
     public Employee() {
     }
 
-    public Employee(Integer cdEmployee) {
-        this.cdEmployee = cdEmployee;
+    public Employee(Integer idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public Employee(Integer cdEmployee, Date dtAdmission) {
-        this.cdEmployee = cdEmployee;
+    public Employee(Integer idEmployee, Date dtAdmission) {
+        this.idEmployee = idEmployee;
         this.dtAdmission = dtAdmission;
     }
 
-    public Integer getCdEmployee() {
-        return cdEmployee;
+    public Integer getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setCdEmployee(Integer cdEmployee) {
-        this.cdEmployee = cdEmployee;
+    public void setIdEmployee(Integer idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public Date getDtAdmission() {
@@ -82,22 +39,6 @@ public class Employee implements Serializable {
 
     public void setDtAdmission(Date dtAdmission) {
         this.dtAdmission = dtAdmission;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Collection<Stay> getStayCollection() {
@@ -116,26 +57,26 @@ public class Employee implements Serializable {
         this.stayCollection1 = stayCollection1;
     }
 
-    public NaturalPerson getCdPerson() {
-        return cdPerson;
+    public NaturalPerson getIdPerson() {
+        return idPerson;
     }
 
-    public void setCdPerson(NaturalPerson cdPerson) {
-        this.cdPerson = cdPerson;
+    public void setIdPerson(NaturalPerson idPerson) {
+        this.idPerson = idPerson;
     }
 
-    public Parking getCdParking() {
-        return cdParking;
+    public Parking getIdParking() {
+        return idParking;
     }
 
-    public void setCdParking(Parking cdParking) {
-        this.cdParking = cdParking;
+    public void setIdParking(Parking idParking) {
+        this.idParking = idParking;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdEmployee != null ? cdEmployee.hashCode() : 0);
+        hash += (idEmployee != null ? idEmployee.hashCode() : 0);
         return hash;
     }
 
@@ -146,7 +87,7 @@ public class Employee implements Serializable {
             return false;
         }
         Employee other = (Employee) object;
-        if ((this.cdEmployee == null && other.cdEmployee != null) || (this.cdEmployee != null && !this.cdEmployee.equals(other.cdEmployee))) {
+        if ((this.idEmployee == null && other.idEmployee != null) || (this.idEmployee != null && !this.idEmployee.equals(other.idEmployee))) {
             return false;
         }
         return true;
@@ -154,7 +95,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Employee[cdEmployee=" + cdEmployee + "]";
+        return "park.model.Employee[idEmployee=" + idEmployee + "]";
     }
 
 }

@@ -1,69 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "person")
-@NamedQueries({
-    @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")})
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cd_person")
-    private Integer cdPerson;
-    @Column(name = "address")
+    private Integer idPerson;
     private String address;
-    @Basic(optional = false)
-    @Column(name = "name")
     private String name;
-    @Basic(optional = false)
-    @Column(name = "p_type")
     private char pType;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
     private NaturalPerson naturalPerson;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cdPerson")
     private Customer customer;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
     private LegalEntity legalEntity;
 
     public Person() {
     }
 
-    public Person(Integer cdPerson) {
-        this.cdPerson = cdPerson;
+    public Person(Integer idPerson) {
+        this.idPerson = idPerson;
     }
 
-    public Person(Integer cdPerson, String name, char pType) {
-        this.cdPerson = cdPerson;
+    public Person(Integer idPerson, String name, char pType) {
+        this.idPerson = idPerson;
         this.name = name;
         this.pType = pType;
     }
 
-    public Integer getCdPerson() {
-        return cdPerson;
+    public Integer getIdPerson() {
+        return idPerson;
     }
 
-    public void setCdPerson(Integer cdPerson) {
-        this.cdPerson = cdPerson;
+    public void setIdPerson(Integer idPerson) {
+        this.idPerson = idPerson;
     }
 
     public String getAddress() {
@@ -117,7 +83,7 @@ public class Person implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPerson != null ? cdPerson.hashCode() : 0);
+        hash += (idPerson != null ? idPerson.hashCode() : 0);
         return hash;
     }
 
@@ -128,7 +94,7 @@ public class Person implements Serializable {
             return false;
         }
         Person other = (Person) object;
-        if ((this.cdPerson == null && other.cdPerson != null) || (this.cdPerson != null && !this.cdPerson.equals(other.cdPerson))) {
+        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
             return false;
         }
         return true;
@@ -136,7 +102,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Person[cdPerson=" + cdPerson + "]";
+        return "park.model.Person[idPerson=" + idPerson + "]";
     }
 
 }

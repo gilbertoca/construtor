@@ -1,41 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "vehicle_type")
-@NamedQueries({
-    @NamedQuery(name = "VehicleType.findAll", query = "SELECT v FROM VehicleType v")})
 public class VehicleType implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "v_type")
     private String vType;
-    @Column(name = "manufacturer")
     private String manufacturer;
-    @Column(name = "model")
     private String model;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vType")
     private Collection<Vehicle> vehicleCollection;
 
     public VehicleType() {

@@ -1,50 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "vehicle")
-@NamedQueries({
-    @NamedQuery(name = "Vehicle.findAll", query = "SELECT v FROM Vehicle v")})
 public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "license_plate")
     private String licensePlate;
-    @Column(name = "color")
     private String color;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "licensePlate")
     private Collection<Stay> stayCollection;
-    @JoinColumn(name = "cd_customer", referencedColumnName = "cd_customer")
-    @ManyToOne(optional = false)
-    private Customer cdCustomer;
-    @JoinColumn(name = "cd_price_table", referencedColumnName = "cd_price_table")
-    @ManyToOne(optional = false)
-    private PriceTable cdPriceTable;
-    @JoinColumn(name = "v_type", referencedColumnName = "v_type")
-    @ManyToOne(optional = false)
+    private Customer idCustomer;
+    private PriceTable idPriceTable;
     private VehicleType vType;
 
     public Vehicle() {
@@ -78,20 +43,20 @@ public class Vehicle implements Serializable {
         this.stayCollection = stayCollection;
     }
 
-    public Customer getCdCustomer() {
-        return cdCustomer;
+    public Customer getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setCdCustomer(Customer cdCustomer) {
-        this.cdCustomer = cdCustomer;
+    public void setIdCustomer(Customer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
-    public PriceTable getCdPriceTable() {
-        return cdPriceTable;
+    public PriceTable getIdPriceTable() {
+        return idPriceTable;
     }
 
-    public void setCdPriceTable(PriceTable cdPriceTable) {
-        this.cdPriceTable = cdPriceTable;
+    public void setIdPriceTable(PriceTable idPriceTable) {
+        this.idPriceTable = idPriceTable;
     }
 
     public VehicleType getVType() {

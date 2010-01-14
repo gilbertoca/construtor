@@ -6,84 +6,41 @@
 package park.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "stay")
-@NamedQueries({
-    @NamedQuery(name = "Stay.findAll", query = "SELECT s FROM Stay s")})
 public class Stay implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cd_stay")
-    private Integer cdStay;
-    @Basic(optional = false)
-    @Column(name = "dt_entrance")
-    @Temporal(TemporalType.DATE)
+    private Integer idStay;
     private Date dtEntrance;
-    @Column(name = "dt_outgoing")
-    @Temporal(TemporalType.DATE)
     private Date dtOutgoing;
-    @Basic(optional = false)
-    @Column(name = "hr_entrance")
-    @Temporal(TemporalType.TIME)
     private Date hrEntrance;
-    @Column(name = "hr_outgoing")
-    @Temporal(TemporalType.TIME)
     private Date hrOutgoing;
-    @Column(name = "status")
     private Short status;
-    @Column(name = "price")
-    private BigInteger price;
-    @JoinColumn(name = "cd_employee_entrance", referencedColumnName = "cd_employee")
-    @ManyToOne(optional = false)
-    private Employee cdEmployeeEntrance;
-    @JoinColumn(name = "cd_employee_outgoing", referencedColumnName = "cd_employee")
-    @ManyToOne(optional = false)
-    private Employee cdEmployeeOutgoing;
-    @JoinColumn(name = "cd_parking", referencedColumnName = "cd_parking")
-    @ManyToOne(optional = false)
-    private Parking cdParking;
-    @JoinColumn(name = "license_plate", referencedColumnName = "license_plate")
-    @ManyToOne(optional = false)
+    private Double price;
+    private Employee idEmployeeEntrance;
+    private Employee idEmployeeOutgoing;
+    private Parking idParking;
     private Vehicle licensePlate;
 
     public Stay() {
     }
 
-    public Stay(Integer cdStay) {
-        this.cdStay = cdStay;
+    public Stay(Integer idStay) {
+        this.idStay = idStay;
     }
 
-    public Stay(Integer cdStay, Date dtEntrance, Date hrEntrance) {
-        this.cdStay = cdStay;
+    public Stay(Integer idStay, Date dtEntrance, Date hrEntrance) {
+        this.idStay = idStay;
         this.dtEntrance = dtEntrance;
         this.hrEntrance = hrEntrance;
     }
 
-    public Integer getCdStay() {
-        return cdStay;
+    public Integer getIdStay() {
+        return idStay;
     }
 
-    public void setCdStay(Integer cdStay) {
-        this.cdStay = cdStay;
+    public void setIdStay(Integer idStay) {
+        this.idStay = idStay;
     }
 
     public Date getDtEntrance() {
@@ -126,36 +83,36 @@ public class Stay implements Serializable {
         this.status = status;
     }
 
-    public BigInteger getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Employee getCdEmployeeEntrance() {
-        return cdEmployeeEntrance;
+    public Employee getIdEmployeeEntrance() {
+        return idEmployeeEntrance;
     }
 
-    public void setCdEmployeeEntrance(Employee cdEmployeeEntrance) {
-        this.cdEmployeeEntrance = cdEmployeeEntrance;
+    public void setIdEmployeeEntrance(Employee idEmployeeEntrance) {
+        this.idEmployeeEntrance = idEmployeeEntrance;
     }
 
-    public Employee getCdEmployeeOutgoing() {
-        return cdEmployeeOutgoing;
+    public Employee getIdEmployeeOutgoing() {
+        return idEmployeeOutgoing;
     }
 
-    public void setCdEmployeeOutgoing(Employee cdEmployeeOutgoing) {
-        this.cdEmployeeOutgoing = cdEmployeeOutgoing;
+    public void setIdEmployeeOutgoing(Employee idEmployeeOutgoing) {
+        this.idEmployeeOutgoing = idEmployeeOutgoing;
     }
 
-    public Parking getCdParking() {
-        return cdParking;
+    public Parking getIdParking() {
+        return idParking;
     }
 
-    public void setCdParking(Parking cdParking) {
-        this.cdParking = cdParking;
+    public void setIdParking(Parking idParking) {
+        this.idParking = idParking;
     }
 
     public Vehicle getLicensePlate() {
@@ -169,7 +126,7 @@ public class Stay implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdStay != null ? cdStay.hashCode() : 0);
+        hash += (idStay != null ? idStay.hashCode() : 0);
         return hash;
     }
 
@@ -180,7 +137,7 @@ public class Stay implements Serializable {
             return false;
         }
         Stay other = (Stay) object;
-        if ((this.cdStay == null && other.cdStay != null) || (this.cdStay != null && !this.cdStay.equals(other.cdStay))) {
+        if ((this.idStay == null && other.idStay != null) || (this.idStay != null && !this.idStay.equals(other.idStay))) {
             return false;
         }
         return true;
@@ -188,7 +145,7 @@ public class Stay implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Stay[cdStay=" + cdStay + "]";
+        return "park.model.Stay[idStay=" + idStay + "]";
     }
 
 }

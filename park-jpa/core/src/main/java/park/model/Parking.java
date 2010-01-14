@@ -1,61 +1,29 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "parking")
-@NamedQueries({
-    @NamedQuery(name = "Parking.findAll", query = "SELECT p FROM Parking p")})
 public class Parking implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cd_parking")
-    private Integer cdParking;
-    @Column(name = "parking_spaces")
+    private Integer idParking;
     private Integer parkingSpaces;
-    @JoinColumn(name = "cd_person", referencedColumnName = "cd_person")
-    @ManyToOne(optional = false)
-    private LegalEntity cdPerson;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdParking")
+    private LegalEntity idPerson;
     private Collection<Stay> stayCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdParking")
     private Collection<Employee> employeeCollection;
 
     public Parking() {
     }
 
-    public Parking(Integer cdParking) {
-        this.cdParking = cdParking;
+    public Parking(Integer idParking) {
+        this.idParking = idParking;
     }
 
-    public Integer getCdParking() {
-        return cdParking;
+    public Integer getIdParking() {
+        return idParking;
     }
 
-    public void setCdParking(Integer cdParking) {
-        this.cdParking = cdParking;
+    public void setIdParking(Integer idParking) {
+        this.idParking = idParking;
     }
 
     public Integer getParkingSpaces() {
@@ -66,12 +34,12 @@ public class Parking implements Serializable {
         this.parkingSpaces = parkingSpaces;
     }
 
-    public LegalEntity getCdPerson() {
-        return cdPerson;
+    public LegalEntity getIdPerson() {
+        return idPerson;
     }
 
-    public void setCdPerson(LegalEntity cdPerson) {
-        this.cdPerson = cdPerson;
+    public void setIdPerson(LegalEntity idPerson) {
+        this.idPerson = idPerson;
     }
 
     public Collection<Stay> getStayCollection() {
@@ -93,7 +61,7 @@ public class Parking implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdParking != null ? cdParking.hashCode() : 0);
+        hash += (idParking != null ? idParking.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +72,7 @@ public class Parking implements Serializable {
             return false;
         }
         Parking other = (Parking) object;
-        if ((this.cdParking == null && other.cdParking != null) || (this.cdParking != null && !this.cdParking.equals(other.cdParking))) {
+        if ((this.idParking == null && other.idParking != null) || (this.idParking != null && !this.idParking.equals(other.idParking))) {
             return false;
         }
         return true;
@@ -112,7 +80,7 @@ public class Parking implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Parking[cdParking=" + cdParking + "]";
+        return "park.model.Parking[idParking=" + idParking + "]";
     }
 
 }

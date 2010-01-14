@@ -1,65 +1,34 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-/**
- *
- * @author gilberto
- */
-@Entity
-@Table(name = "price_table")
-@NamedQueries({
-    @NamedQuery(name = "PriceTable.findAll", query = "SELECT p FROM PriceTable p")})
 public class PriceTable implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "cd_price_table")
-    private Integer cdPriceTable;
-    @Basic(optional = false)
-    @Column(name = "item")
+    private Integer idPriceTable;
     private String item;
-    @Basic(optional = false)
-    @Column(name = "price")
-    private BigInteger price;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cdPriceTable")
+    private Double price;
     private Collection<Vehicle> vehicleCollection;
 
     public PriceTable() {
     }
 
-    public PriceTable(Integer cdPriceTable) {
-        this.cdPriceTable = cdPriceTable;
+    public PriceTable(Integer idPriceTable) {
+        this.idPriceTable = idPriceTable;
     }
 
-    public PriceTable(Integer cdPriceTable, String item, BigInteger price) {
-        this.cdPriceTable = cdPriceTable;
+    public PriceTable(Integer idPriceTable, String item, Double price) {
+        this.idPriceTable = idPriceTable;
         this.item = item;
         this.price = price;
     }
 
-    public Integer getCdPriceTable() {
-        return cdPriceTable;
+    public Integer getIdPriceTable() {
+        return idPriceTable;
     }
 
-    public void setCdPriceTable(Integer cdPriceTable) {
-        this.cdPriceTable = cdPriceTable;
+    public void setIdPriceTable(Integer idPriceTable) {
+        this.idPriceTable = idPriceTable;
     }
 
     public String getItem() {
@@ -70,11 +39,11 @@ public class PriceTable implements Serializable {
         this.item = item;
     }
 
-    public BigInteger getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -89,7 +58,7 @@ public class PriceTable implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cdPriceTable != null ? cdPriceTable.hashCode() : 0);
+        hash += (idPriceTable != null ? idPriceTable.hashCode() : 0);
         return hash;
     }
 
@@ -100,7 +69,7 @@ public class PriceTable implements Serializable {
             return false;
         }
         PriceTable other = (PriceTable) object;
-        if ((this.cdPriceTable == null && other.cdPriceTable != null) || (this.cdPriceTable != null && !this.cdPriceTable.equals(other.cdPriceTable))) {
+        if ((this.idPriceTable == null && other.idPriceTable != null) || (this.idPriceTable != null && !this.idPriceTable.equals(other.idPriceTable))) {
             return false;
         }
         return true;
@@ -108,7 +77,7 @@ public class PriceTable implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.PriceTable[cdPriceTable=" + cdPriceTable + "]";
+        return "park.model.PriceTable[idPriceTable=" + idPriceTable + "]";
     }
 
 }
