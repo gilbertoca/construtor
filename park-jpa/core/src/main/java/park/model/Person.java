@@ -2,21 +2,12 @@ package park.model;
 
 import java.io.Serializable;
 
-public enum PersonType {
-    NATURAL_PERSON,
-    LEGAL_ENTITY
-};
-
 public abstract class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     private long idPerson;
     private String address;
     private String name;
     private PersonType pType;
-    private NaturalPerson naturalPerson;
-    private Customer customer;
-    private LegalEntity legalEntity;
-
     public Person() {
     }
 
@@ -62,53 +53,56 @@ public abstract class Person implements Serializable {
         this.pType = pType;
     }
 
-    public NaturalPerson getNaturalPerson() {
-        return naturalPerson;
-    }
+    /* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idPerson ^ (idPerson >>> 32));
+		result = prime * result + ((pType == null) ? 0 : pType.hashCode());
+		return result;
+	}
 
-    public void setNaturalPerson(NaturalPerson naturalPerson) {
-        this.naturalPerson = naturalPerson;
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (idPerson != other.idPerson)
+			return false;
+		if (pType == null) {
+			if (other.pType != null)
+				return false;
+		} else if (!pType.equals(other.pType))
+			return false;
+		return true;
+	}
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public LegalEntity getLegalEntity() {
-        return legalEntity;
-    }
-
-    public void setLegalEntity(LegalEntity legalEntity) {
-        this.legalEntity = legalEntity;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPerson != null ? idPerson.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "park.model.Person[idPerson=" + idPerson + "]";
-    }
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Person [address=");
+		builder.append(address);
+		builder.append(", idPerson=");
+		builder.append(idPerson);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", pType=");
+		builder.append(pType);
+		builder.append("]");
+		return builder.toString();
+	}
+    
 }
