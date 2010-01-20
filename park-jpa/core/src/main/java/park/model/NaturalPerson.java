@@ -3,27 +3,16 @@ package park.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class NaturalPerson implements Serializable {
+public class NaturalPerson extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idPerson;
     private Date dtBirth;
     private String legalDocument;
-    private Person person;
-    private Employee employee;
-
+    
     public NaturalPerson() {
     }
 
     public NaturalPerson(Integer idPerson) {
-        this.idPerson = idPerson;
-    }
-
-    public Integer getIdPerson() {
-        return idPerson;
-    }
-
-    public void setIdPerson(Integer idPerson) {
-        this.idPerson = idPerson;
+        super(idPerson);
     }
 
     public Date getDtBirth() {
@@ -42,45 +31,56 @@ public class NaturalPerson implements Serializable {
         this.legalDocument = legalDocument;
     }
 
-    public Person getPerson() {
-        return person;
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((dtBirth == null) ? 0 : dtBirth.hashCode());
+		result = prime * result
+				+ ((legalDocument == null) ? 0 : legalDocument.hashCode());
+		return result;
+	}
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NaturalPerson other = (NaturalPerson) obj;
+		if (dtBirth == null) {
+			if (other.dtBirth != null)
+				return false;
+		} else if (!dtBirth.equals(other.dtBirth))
+			return false;
+		if (legalDocument == null) {
+			if (other.legalDocument != null)
+				return false;
+		} else if (!legalDocument.equals(other.legalDocument))
+			return false;
+		return true;
+	}
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPerson != null ? idPerson.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NaturalPerson)) {
-            return false;
-        }
-        NaturalPerson other = (NaturalPerson) object;
-        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "park.model.NaturalPerson[idPerson=" + idPerson + "]";
-    }
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("NaturalPerson [dtBirth=");
+		builder.append(dtBirth);
+		builder.append(", legalDocument=");
+		builder.append(legalDocument);
+		builder.append("]");
+		return builder.toString();
+	}
 
 }
