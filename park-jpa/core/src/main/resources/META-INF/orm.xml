@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Java Persistence API object/relational mapping file schema -->
 <entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_0.xsd"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+                 http://java.sun.com/xml/ns/persistence/orm/orm_2_0.xsd"
                  version="2.0">
-
     <!--persistence-unit-metadata>
         <persistence-unit-defaults>
             <schema>park</schema>
         </persistence-unit-defaults>
     </persistence-unit-metadata-->
-
+    <package>park.model</package>
+    <entity class="Person">
+       <!-- CREATE TABLE person (
+            id_person INTEGER NOT NULL,
+            address VARCHAR(100),
+            name VARCHAR(100) NOT NULL,
+            p_type CHAR(2) NOT NULL, //NaturalPerson(NP) or LegalEntity(LE)
+            version SMALLINT NOT NULL
+            CONSTRAINT person_pkey PRIMARY KEY (id_person)
+        );
+        -->
+        <table name="person"/>
+        <inheritance strategy="JOINED"/>
+        <discriminator-column name="p_type" length="2" discriminator-type="CHAR"/>
+        <attributes>
+            <id name="idPerson">
+                <column name="id_person"/>
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="name">
+                    <column length="100"/>
+            </basic>
+            <basic name="address">
+                    <column length="100"/>
+            </basic>
+            <version name="version"/>
+        </attributes>
+    </entity>
+    <entity class="NaturalPerson">
+        <!--CREATE TABLE natural_person (
+            id_person INTEGER NOT NULL,
+            dt_birth DATE,
+            legal_document VARCHAR(20),
+            CONSTRAINT natural_person_pkey PRIMARY KEY (id_person)
+        );
+        -->
+        <table name="natural_person"/>
+        <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
+        <discriminator-value>NP</discriminator-value>
+        <named-query name="findAll">
+            <query>SELECT n FROM NaturalPerson n</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="deleteById">
+            <query>DELETE FROM NaturalPerson n WHERE n.idPerson = :idPerson</query>
+        </named-query>
+        <attributes>
+            <basic name="dtBirth">
+                <column name="dt_birth"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="legalDocument">
+                <column name="legal_document" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
 </entity-mappings>

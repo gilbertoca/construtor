@@ -29,7 +29,8 @@ CREATE TABLE person (
                 id_person INTEGER NOT NULL,
                 address VARCHAR(100),
                 name VARCHAR(100) NOT NULL,
-                p_type CHAR(1) NOT NULL,
+                p_type CHAR(2) NOT NULL,
+                version SMALLINT NOT NULL,
                 CONSTRAINT person_pkey PRIMARY KEY (id_person)
 );
 
