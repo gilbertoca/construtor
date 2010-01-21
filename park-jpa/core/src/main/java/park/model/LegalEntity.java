@@ -4,33 +4,25 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
-public class LegalEntity implements Serializable {
+public class LegalEntity extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idPerson;
     private String taxpayersId;
     private Date dtFoundation;
     private Collection<Parking> parkingCollection;
-    private Person person;
 
     public LegalEntity() {
     }
 
-    public LegalEntity(Integer idPerson) {
-        this.idPerson = idPerson;
-    }
-
-    public LegalEntity(Integer idPerson, String taxpayersId, Date dtFoundation) {
-        this.idPerson = idPerson;
+    public LegalEntity(Person person, String taxpayersId, Date dtFoundation) {
+        super(person.getName(), person.getAddress());
         this.taxpayersId = taxpayersId;
         this.dtFoundation = dtFoundation;
     }
 
-    public Integer getIdPerson() {
-        return idPerson;
-    }
-
-    public void setIdPerson(Integer idPerson) {
-        this.idPerson = idPerson;
+    public LegalEntity(String address, String name, Date dtFoundation, String taxpayersId) {
+        super(address, name);
+        this.taxpayersId = taxpayersId;
+        this.dtFoundation = dtFoundation;
     }
 
     public String getTaxpayersId() {
@@ -57,37 +49,27 @@ public class LegalEntity implements Serializable {
         this.parkingCollection = parkingCollection;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPerson != null ? idPerson.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LegalEntity)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        LegalEntity other = (LegalEntity) object;
-        if ((this.idPerson == null && other.idPerson != null) || (this.idPerson != null && !this.idPerson.equals(other.idPerson))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LegalEntity other = (LegalEntity) obj;
+        if ((this.taxpayersId == null) ? (other.taxpayersId != null) : !this.taxpayersId.equals(other.taxpayersId)) {
+            return false;
+        }
+        if (this.dtFoundation != other.dtFoundation && (this.dtFoundation == null || !this.dtFoundation.equals(other.dtFoundation))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString() {
-        return "park.model.LegalEntity[idPerson=" + idPerson + "]";
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
-
 }

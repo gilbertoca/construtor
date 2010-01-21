@@ -7,18 +7,14 @@ public abstract class Person implements Serializable {
     private long idPerson;
     private String address;
     private String name;
-    private PersonType pType;
+    private int version;
+    
     public Person() {
     }
 
-    public Person(long idPerson) {
-        this.idPerson = idPerson;
-    }
-
-    public Person(long idPerson, String name, PersonType pType) {
-        this.idPerson = idPerson;
+    public Person(String address, String name) {
+        this.address = address;
         this.name = name;
-        this.pType = pType;
     }
 
     public long getIdPerson() {
@@ -45,13 +41,14 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
-    public PersonType getPType() {
-        return pType;
+    public int getVersion() {
+        return version;
     }
 
-    public void setPType(PersonType pType) {
-        this.pType = pType;
+    public void setVersion(int version) {
+        this.version = version;
     }
+
 
     /* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -61,7 +58,6 @@ public abstract class Person implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (idPerson ^ (idPerson >>> 32));
-		result = prime * result + ((pType == null) ? 0 : pType.hashCode());
 		return result;
 	}
 
@@ -79,11 +75,6 @@ public abstract class Person implements Serializable {
 		Person other = (Person) obj;
 		if (idPerson != other.idPerson)
 			return false;
-		if (pType == null) {
-			if (other.pType != null)
-				return false;
-		} else if (!pType.equals(other.pType))
-			return false;
 		return true;
 	}
 
@@ -99,8 +90,6 @@ public abstract class Person implements Serializable {
 		builder.append(idPerson);
 		builder.append(", name=");
 		builder.append(name);
-		builder.append(", pType=");
-		builder.append(pType);
 		builder.append("]");
 		return builder.toString();
 	}

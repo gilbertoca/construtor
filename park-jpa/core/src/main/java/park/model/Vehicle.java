@@ -8,9 +8,9 @@ public class Vehicle implements Serializable {
     private String licensePlate;
     private String color;
     private Collection<Stay> stayCollection;
-    private Customer idCustomer;
-    private PriceTable idPriceTable;
-    private VehicleType vType;
+    private Customer customer;
+    private PriceTable priceTable;
+    private VehicleType V_TYPE;
 
     public Vehicle() {
     }
@@ -43,28 +43,28 @@ public class Vehicle implements Serializable {
         this.stayCollection = stayCollection;
     }
 
-    public Customer getIdCustomer() {
-        return idCustomer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setIdCustomer(Customer idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public PriceTable getIdPriceTable() {
-        return idPriceTable;
+    public PriceTable getPriceTable() {
+        return priceTable;
     }
 
-    public void setIdPriceTable(PriceTable idPriceTable) {
-        this.idPriceTable = idPriceTable;
+    public void setPriceTable(PriceTable priceTable) {
+        this.priceTable = priceTable;
     }
 
-    public VehicleType getVType() {
-        return vType;
+    public VehicleType getV_TYPE() {
+        return V_TYPE;
     }
 
-    public void setVType(VehicleType vType) {
-        this.vType = vType;
+    public void setV_TYPE(VehicleType V_TYPE) {
+        this.V_TYPE = V_TYPE;
     }
 
     @Override

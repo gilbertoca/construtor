@@ -8,7 +8,7 @@ public class Customer implements Serializable {
     private Integer idCustomer;
     private Integer paymentDay;
     private Collection<Vehicle> vehicleCollection;
-    private Person idPerson;
+    private Person person;
 
     public Customer() {
     }
@@ -41,12 +41,12 @@ public class Customer implements Serializable {
         this.vehicleCollection = vehicleCollection;
     }
 
-    public Person getIdPerson() {
-        return idPerson;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setIdPerson(Person idPerson) {
-        this.idPerson = idPerson;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override

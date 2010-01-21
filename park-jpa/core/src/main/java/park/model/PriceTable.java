@@ -13,12 +13,7 @@ public class PriceTable implements Serializable {
     public PriceTable() {
     }
 
-    public PriceTable(Integer idPriceTable) {
-        this.idPriceTable = idPriceTable;
-    }
-
-    public PriceTable(Integer idPriceTable, String item, Double price) {
-        this.idPriceTable = idPriceTable;
+    public PriceTable(String item, Double price) {
         this.item = item;
         this.price = price;
     }
