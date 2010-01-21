@@ -84,7 +84,7 @@ public class NaturalPersonTest {
     @Test
     public void GetNaturalPersonById() {
         log.debug("\nGetting an Natural Person by ID.\n");
-        NaturalPerson nP = em.find(NaturalPerson.class, 1000);
+        NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
         log.debug("Object loaded: \n" + nP);
         assertNotNull(nP.getName());
     }
@@ -93,7 +93,7 @@ public class NaturalPersonTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery(NaturalPerson.FIND_ALL);
+        Query query = em.createNamedQuery("findAll");
         assertEquals("Should have 2 artists", query.getResultList().size(), 2);
 
         // Creates a new object and persists it

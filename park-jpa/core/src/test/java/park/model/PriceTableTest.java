@@ -97,7 +97,7 @@ public class PriceTableTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery(PriceTable.FIND_ALL);
+        Query query = em.createNamedQuery("FIND_ALL");
         assertEquals("Should have 3 PriceTable", query.getResultList().size(), 3);
 
         // Creates a new object and persists it

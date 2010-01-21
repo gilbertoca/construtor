@@ -96,14 +96,14 @@ public class CustomerTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery(Customer.FIND_ALL);
+        Query query = em.createNamedQuery("FIND_ALL");
         assertEquals("Should have 2 customers", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
         //Customer c = new Customer(1002, 3);
         Customer c = new Customer();
         LegalEntity lP = em.find(LegalEntity.class, 1002);
-        c.setPerson(lP);
+        //c.setPerson(lP);
         c.setPaymentDay(3);
         tx.begin();
         em.persist(c);

@@ -97,7 +97,7 @@ public class VehicleTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery(Vehicle.FIND_ALL);
+        Query query = em.createNamedQuery("FIND_ALL");
         assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
@@ -110,8 +110,8 @@ public class VehicleTest {
         Customer c = em.find(Customer.class, 1000);
         //set relationships
         v.setCustomer(c);
-        v.setPricetable(pT);
-        v.setVehicletype(vT);
+        v.setPriceTable(pT);
+        v.setV_TYPE(vT);
         
         tx.begin();
         em.persist(v);
