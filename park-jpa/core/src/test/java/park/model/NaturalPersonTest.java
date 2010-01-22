@@ -84,7 +84,7 @@ public class NaturalPersonTest {
     @Test
     public void GetNaturalPersonById() {
         log.debug("\nGetting an Natural Person by ID.\n");
-        NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
+        NaturalPerson nP = em.find(NaturalPerson.class, 1000);
         log.debug("Object loaded: \n" + nP);
         assertNotNull(nP.getName());
     }
@@ -93,8 +93,8 @@ public class NaturalPersonTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("findAll");
-        assertEquals("Should have 2 artists", query.getResultList().size(), 2);
+        Query query = em.createNamedQuery("findAllNaturalPerson");
+        assertEquals("Should have 2 natural persons", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
         NaturalPerson nP = new NaturalPerson("NATURAL_PERSON1005", "ADDRESS1005", new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"), "LEGAL_DOCUMENT1005");
@@ -103,7 +103,7 @@ public class NaturalPersonTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 artists", query.getResultList().size(), 3);
+        assertEquals("Should have 3 natural persons", query.getResultList().size(), 3);
 
         // Removes the object from the database
         tx.begin();
@@ -111,6 +111,6 @@ public class NaturalPersonTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 artists", query.getResultList().size(), 2);
+        assertEquals("Should have 2 natural persons", query.getResultList().size(), 2);
     }
 }

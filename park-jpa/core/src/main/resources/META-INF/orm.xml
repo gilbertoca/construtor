@@ -11,18 +11,18 @@
     </persistence-unit-metadata-->
     <package>park.model</package>
     <entity class="Person">
-       <!-- CREATE TABLE person (
-            id_person INTEGER NOT NULL,
-            address VARCHAR(100),
-            name VARCHAR(100) NOT NULL,
-            p_type CHAR(2) NOT NULL, //NaturalPerson(NP) or LegalEntity(LE)
-            version SMALLINT NOT NULL
-            CONSTRAINT person_pkey PRIMARY KEY (id_person)
+       <!-- CREATE TABLE PERSON (
+            ID_PERSON INTEGER NOT NULL,
+            ADDRESS VARCHAR(100),
+            NAME VARCHAR(100) NOT NULL,
+            P_TYPE CHAR(2) NOT NULL, //NATURALPERSON(NP) OR LEGALENTITY(LE)
+            VERSION SMALLINT NOT NULL
+            CONSTRAINT PERSON_PKEY PRIMARY KEY (ID_PERSON)
         );
         -->
         <table name="person"/>
         <inheritance strategy="JOINED"/>
-        <discriminator-column name="p_type" length="2" discriminator-type="CHAR"/>
+        <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="CHAR"/>
         <attributes>
             <id name="idPerson">
                 <column name="id_person"/>
@@ -38,21 +38,21 @@
         </attributes>
     </entity>
     <entity class="NaturalPerson">
-        <!--CREATE TABLE natural_person (
-            id_person INTEGER NOT NULL,
-            dt_birth DATE,
-            legal_document VARCHAR(20),
-            CONSTRAINT natural_person_pkey PRIMARY KEY (id_person)
+        <!--CREATE TABLE NATURAL_PERSON (
+            ID_PERSON INTEGER NOT NULL,
+            DT_BIRTH DATE,
+            LEGAL_DOCUMENT VARCHAR(20),
+            CONSTRAINT NATURAL_PERSON_PKEY PRIMARY KEY (ID_PERSON)
         );
         -->
         <table name="natural_person"/>
         <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
         <discriminator-value>NP</discriminator-value>
-        <named-query name="findAll">
+        <named-query name="findAllNaturalPerson">
             <query>SELECT n FROM NaturalPerson n</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
-        <named-query name="deleteById">
+        <named-query name="deleteNaturalPersonById">
             <query>DELETE FROM NaturalPerson n WHERE n.idPerson = :idPerson</query>
         </named-query>
         <attributes>
@@ -65,4 +65,34 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="LegalEntity">
+        <!--
+            CREATE TABLE LEGAL_ENTITY (
+                ID_PERSON INTEGER NOT NULL,
+                TAXPAYERS_ID VARCHAR(20) NOT NULL,
+                DT_FOUNDATION DATE NOT NULL,
+                CONSTRAINT LEGAL_ENTITY_PK PRIMARY KEY (ID_PERSON)
+            );
+        -->
+        <table name="legal_entity"/>
+        <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
+        <discriminator-value>LE</discriminator-value>
+        <named-query name="findAllLegalEntity">
+            <query>SELECT l FROM LegalEntity l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="deleteLegalEntityById">
+            <query>DELETE FROM LegalEntity l WHERE l.idPerson = :idPerson</query>
+        </named-query>
+        <attributes>
+            <basic name="dtFoundation">
+                <column name="dt_foundation"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="taxpayersId">
+                <column name="taxpayers_id" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
+
 </entity-mappings>

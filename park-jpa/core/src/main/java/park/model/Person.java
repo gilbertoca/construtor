@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Person implements Serializable {
     private static final long serialVersionUID = 1L;
-    private long idPerson;
+    private int idPerson;
     private String address;
     private String name;
     private int version;
@@ -17,11 +17,11 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
-    public long getIdPerson() {
+    public int getIdPerson() {
         return idPerson;
     }
 
-    public void setIdPerson(long idPerson) {
+    public void setIdPerson(int idPerson) {
         this.idPerson = idPerson;
     }
 
