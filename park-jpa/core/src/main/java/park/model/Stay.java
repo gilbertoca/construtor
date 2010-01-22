@@ -15,7 +15,13 @@ public class Stay implements Serializable {
     private Date dtOutgoing;
     private Date hrEntrance;
     private Date hrOutgoing;
-    private Short status;
+    /**
+     * Can be:
+     * E - Entrance;
+     * O - Outgoing;
+     * C - Cancelled.
+     */
+    private char status;
     private Double price;
     private Employee idEmployeeEntrance;
     private Employee idEmployeeOutgoing;
@@ -75,11 +81,11 @@ public class Stay implements Serializable {
         this.hrOutgoing = hrOutgoing;
     }
 
-    public Short getStatus() {
+    public char getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(char status) {
         this.status = status;
     }
 

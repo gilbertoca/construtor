@@ -9,202 +9,202 @@ DROP TABLE PERSON CASCADE;
 DROP TABLE PRICE_TABLE CASCADE;
 DROP TABLE VEHICLE_TYPE CASCADE;
 
-CREATE TABLE vehicle_type (
-                v_type VARCHAR(20) NOT NULL,
-                manufacturer VARCHAR(50),
-                model VARCHAR(20),
-                CONSTRAINT vehicle_v_type_pkey PRIMARY KEY (v_type)
+CREATE TABLE VEHICLE_TYPE (
+                V_TYPE VARCHAR(20) NOT NULL,
+                MANUFACTURER VARCHAR(50),
+                MODEL VARCHAR(20),
+                CONSTRAINT VEHICLE_V_TYPE_PKEY PRIMARY KEY (V_TYPE)
 );
 
 
-CREATE TABLE price_table (
-                id_price_table INTEGER NOT NULL,
-                item VARCHAR(50) NOT NULL,
-                price NUMERIC(1000,0) NOT NULL,
-                CONSTRAINT price_table_pkey PRIMARY KEY (id_price_table)
+CREATE TABLE PRICE_TABLE (
+                ID_PRICE_TABLE INTEGER NOT NULL,
+                ITEM VARCHAR(50) NOT NULL,
+                PRICE DECIMAL(12,2) NOT NULL,
+                CONSTRAINT PRICE_TABLE_PKEY PRIMARY KEY (ID_PRICE_TABLE)
 );
 
 
-CREATE TABLE person (
-                id_person INTEGER NOT NULL,
-                address VARCHAR(100),
-                name VARCHAR(100) NOT NULL,
-                p_type CHAR(2) NOT NULL,
-                version SMALLINT NOT NULL,
-                CONSTRAINT person_pkey PRIMARY KEY (id_person)
+CREATE TABLE PERSON (
+                ID_PERSON INTEGER NOT NULL,
+                ADDRESS VARCHAR(100),
+                NAME VARCHAR(100) NOT NULL,
+                P_TYPE CHAR(2) NOT NULL,
+                VERSION SMALLINT NOT NULL,
+                CONSTRAINT PERSON_PKEY PRIMARY KEY (ID_PERSON)
 );
 
 
-CREATE TABLE natural_person (
-                id_person INTEGER NOT NULL,
-                dt_birth DATE,
-                legal_document VARCHAR(20),
-                CONSTRAINT natural_person_pkey PRIMARY KEY (id_person)
+CREATE TABLE NATURAL_PERSON (
+                ID_PERSON INTEGER NOT NULL,
+                DT_BIRTH DATE,
+                LEGAL_DOCUMENT VARCHAR(20),
+                CONSTRAINT NATURAL_PERSON_PKEY PRIMARY KEY (ID_PERSON)
 );
 
 
-CREATE TABLE legal_entity (
-                id_person INTEGER NOT NULL,
-                taxpayers_id VARCHAR(20) NOT NULL,
-                dt_foundation DATE NOT NULL,
-                CONSTRAINT legal_entity_pkey PRIMARY KEY (id_person)
+CREATE TABLE LEGAL_ENTITY (
+                ID_PERSON INTEGER NOT NULL,
+                TAXPAYERS_ID VARCHAR(20) NOT NULL,
+                DT_FOUNDATION DATE NOT NULL,
+                CONSTRAINT LEGAL_ENTITY_PKEY PRIMARY KEY (ID_PERSON)
 );
 
 
-CREATE TABLE parking (
-                id_parking INTEGER NOT NULL,
-                id_person INTEGER NOT NULL,
-                parking_spaces INTEGER,
-                CONSTRAINT parking_pkey PRIMARY KEY (id_parking)
+CREATE TABLE PARKING (
+                ID_PARKING INTEGER NOT NULL,
+                ID_PERSON INTEGER NOT NULL,
+                PARKING_SPACES INTEGER,
+                CONSTRAINT PARKING_PKEY PRIMARY KEY (ID_PARKING)
 );
 
 
-CREATE UNIQUE INDEX parking_idx
- ON parking
- ( id_parking, id_person );
+CREATE UNIQUE INDEX PARKING_IDX
+ ON PARKING
+ ( ID_PARKING, ID_PERSON );
 
-CREATE TABLE employee (
-                id_employee INTEGER NOT NULL,
-                id_person INTEGER NOT NULL,
-                dt_admission DATE NOT NULL,
-                id_parking INTEGER NOT NULL,
-                CONSTRAINT employee_pkey PRIMARY KEY (id_employee)
+CREATE TABLE EMPLOYEE (
+                ID_EMPLOYEE INTEGER NOT NULL,
+                ID_PERSON INTEGER NOT NULL,
+                DT_ADMISSION DATE NOT NULL,
+                ID_PARKING INTEGER NOT NULL,
+                CONSTRAINT EMPLOYEE_PKEY PRIMARY KEY (ID_EMPLOYEE)
 );
 
 
-CREATE UNIQUE INDEX employee_idx
- ON employee
- ( id_person );
+CREATE UNIQUE INDEX EMPLOYEE_IDX
+ ON EMPLOYEE
+ ( ID_PERSON );
 
-CREATE TABLE customer (
-                id_customer INTEGER NOT NULL,
-                id_person INTEGER NOT NULL,
-                payment_day INTEGER,
-                CONSTRAINT customer_pkey PRIMARY KEY (id_customer)
+CREATE TABLE CUSTOMER (
+                ID_CUSTOMER INTEGER NOT NULL,
+                ID_PERSON INTEGER NOT NULL,
+                PAYMENT_DAY INTEGER,
+                CONSTRAINT CUSTOMER_PKEY PRIMARY KEY (ID_CUSTOMER)
 );
 
 
-CREATE UNIQUE INDEX customer_idx
- ON customer
- ( id_person );
+CREATE UNIQUE INDEX CUSTOMER_IDX
+ ON CUSTOMER
+ ( ID_PERSON );
 
-CREATE TABLE vehicle (
-                license_plate VARCHAR(20) NOT NULL,
-                v_type VARCHAR(20) NOT NULL,
-                id_customer INTEGER NOT NULL,
-                id_price_table INTEGER NOT NULL,
-                color VARCHAR(20),
-                CONSTRAINT vehicle_pkey PRIMARY KEY (license_plate)
+CREATE TABLE VEHICLE (
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                V_TYPE VARCHAR(20) NOT NULL,
+                ID_CUSTOMER INTEGER NOT NULL,
+                ID_PRICE_TABLE INTEGER NOT NULL,
+                COLOR VARCHAR(20),
+                CONSTRAINT VEHICLE_PKEY PRIMARY KEY (LICENSE_PLATE)
 );
 
 
-CREATE TABLE stay (
-                id_stay INTEGER NOT NULL,
-                id_parking INTEGER NOT NULL,
-                dt_entrance DATE NOT NULL,
-                dt_outgoing DATE,
-                hr_entrance TIME NOT NULL,
-                hr_outgoing TIME,
-                id_employee_entrance INTEGER NOT NULL,
-                id_employee_outgoing INTEGER NOT NULL,
-                license_plate VARCHAR(20) NOT NULL,
-                status SMALLINT,
-                price NUMERIC(1000,0),
-                CONSTRAINT stay_pkey PRIMARY KEY (id_stay)
+CREATE TABLE STAY (
+                ID_STAY INTEGER NOT NULL,
+                ID_PARKING INTEGER NOT NULL,
+                DT_ENTRANCE DATE NOT NULL,
+                DT_OUTGOING DATE,
+                HR_ENTRANCE TIME NOT NULL,
+                HR_OUTGOING TIME,
+                ID_EMPLOYEE_ENTRANCE INTEGER NOT NULL,
+                ID_EMPLOYEE_OUTGOING INTEGER NOT NULL,
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                STATUS SMALLINT,
+                PRICE DECIMAL(12,2),
+                CONSTRAINT STAY_PKEY PRIMARY KEY (ID_STAY)
 );
 
 
-CREATE UNIQUE INDEX stay_idx
- ON stay
- ( id_stay, id_parking, dt_entrance, hr_entrance, id_employee_entrance, license_plate );
+CREATE UNIQUE INDEX STAY_IDX
+ ON STAY
+ ( ID_STAY, ID_PARKING, DT_ENTRANCE, HR_ENTRANCE, ID_EMPLOYEE_ENTRANCE, LICENSE_PLATE );
 
-ALTER TABLE vehicle ADD CONSTRAINT vehicle_v_type_fkey
-FOREIGN KEY (v_type)
-REFERENCES vehicle_type (v_type)
+ALTER TABLE VEHICLE ADD CONSTRAINT VEHICLE_V_TYPE_FKEY
+FOREIGN KEY (V_TYPE)
+REFERENCES VEHICLE_TYPE (V_TYPE)
 ON DELETE RESTRICT
 ON UPDATE RESTRICT
-NOT DEFERRABLE;
+;
 
-ALTER TABLE vehicle ADD CONSTRAINT vehicle_id_price_table_fkey
-FOREIGN KEY (id_price_table)
-REFERENCES price_table (id_price_table)
+ALTER TABLE VEHICLE ADD CONSTRAINT VEHICLE_ID_PRICE_TABLE_FKEY
+FOREIGN KEY (ID_PRICE_TABLE)
+REFERENCES PRICE_TABLE (ID_PRICE_TABLE)
 ON DELETE RESTRICT
 ON UPDATE RESTRICT
-NOT DEFERRABLE;
+;
 
-ALTER TABLE customer ADD CONSTRAINT customer_id_person_fk
-FOREIGN KEY (id_person)
-REFERENCES person (id_person)
+ALTER TABLE CUSTOMER ADD CONSTRAINT CUSTOMER_ID_PERSON_FK
+FOREIGN KEY (ID_PERSON)
+REFERENCES PERSON (ID_PERSON)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE legal_entity ADD CONSTRAINT legalentity_id_person_fkey
-FOREIGN KEY (id_person)
-REFERENCES person (id_person)
+ALTER TABLE LEGAL_ENTITY ADD CONSTRAINT LEGALENTITY_ID_PERSON_FKEY
+FOREIGN KEY (ID_PERSON)
+REFERENCES PERSON (ID_PERSON)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE natural_person ADD CONSTRAINT naturalperson_id_person_fkey
-FOREIGN KEY (id_person)
-REFERENCES person (id_person)
+ALTER TABLE NATURAL_PERSON ADD CONSTRAINT NATURALPERSON_ID_PERSON_FKEY
+FOREIGN KEY (ID_PERSON)
+REFERENCES PERSON (ID_PERSON)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE employee ADD CONSTRAINT employee_id_person_fk
-FOREIGN KEY (id_person)
-REFERENCES natural_person (id_person)
+ALTER TABLE EMPLOYEE ADD CONSTRAINT EMPLOYEE_ID_PERSON_FK
+FOREIGN KEY (ID_PERSON)
+REFERENCES NATURAL_PERSON (ID_PERSON)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE parking ADD CONSTRAINT parking_id_person_fk
-FOREIGN KEY (id_person)
-REFERENCES legal_entity (id_person)
+ALTER TABLE PARKING ADD CONSTRAINT PARKING_ID_PERSON_FK
+FOREIGN KEY (ID_PERSON)
+REFERENCES LEGAL_ENTITY (ID_PERSON)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE employee ADD CONSTRAINT parking_id_employee_fkey
-FOREIGN KEY (id_parking)
-REFERENCES parking (id_parking)
+ALTER TABLE EMPLOYEE ADD CONSTRAINT PARKING_ID_EMPLOYEE_FKEY
+FOREIGN KEY (ID_PARKING)
+REFERENCES PARKING (ID_PARKING)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
-NOT DEFERRABLE;
+;
 
-ALTER TABLE stay ADD CONSTRAINT stay_id_parking_fkey
-FOREIGN KEY (id_parking)
-REFERENCES parking (id_parking)
+ALTER TABLE STAY ADD CONSTRAINT STAY_ID_PARKING_FKEY
+FOREIGN KEY (ID_PARKING)
+REFERENCES PARKING (ID_PARKING)
 ON DELETE CASCADE
 ON UPDATE CASCADE
-NOT DEFERRABLE;
+;
 
-ALTER TABLE stay ADD CONSTRAINT stay_id_employee_outgoing_fkey
-FOREIGN KEY (id_employee_outgoing)
-REFERENCES employee (id_employee)
+ALTER TABLE STAY ADD CONSTRAINT STAY_ID_EMPLOYEE_OUTGOING_FKEY
+FOREIGN KEY (ID_EMPLOYEE_OUTGOING)
+REFERENCES EMPLOYEE (ID_EMPLOYEE)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
-NOT DEFERRABLE;
+;
 
-ALTER TABLE stay ADD CONSTRAINT stay_id_employee_entrance_fkey
-FOREIGN KEY (id_employee_entrance)
-REFERENCES employee (id_employee)
+ALTER TABLE STAY ADD CONSTRAINT STAY_ID_EMPLOYEE_ENTRANCE_FKEY
+FOREIGN KEY (ID_EMPLOYEE_ENTRANCE)
+REFERENCES EMPLOYEE (ID_EMPLOYEE)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
-NOT DEFERRABLE;
+;
 
-ALTER TABLE vehicle ADD CONSTRAINT vehicle_id_customer_fkey
-FOREIGN KEY (id_customer)
-REFERENCES customer (id_customer)
+ALTER TABLE VEHICLE ADD CONSTRAINT VEHICLE_ID_CUSTOMER_FKEY
+FOREIGN KEY (ID_CUSTOMER)
+REFERENCES CUSTOMER (ID_CUSTOMER)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
-NOT DEFERRABLE;
+;
 
-ALTER TABLE stay ADD CONSTRAINT stay_license_plate_fkey
-FOREIGN KEY (license_plate)
-REFERENCES vehicle (license_plate)
+ALTER TABLE STAY ADD CONSTRAINT STAY_LICENSE_PLATE_FKEY
+FOREIGN KEY (LICENSE_PLATE)
+REFERENCES VEHICLE (LICENSE_PLATE)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
-NOT DEFERRABLE;
+;

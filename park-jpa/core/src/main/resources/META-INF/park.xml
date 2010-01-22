@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd" version="1.0">
+    <package>
+        reversemapping
+    </package>
+    <access>
+        PROPERTY
+    </access>
+    <entity class="Customer">
+        <table schema="APP" name="CUSTOMER"/>
+        <attributes>
+            <id name="idCustomer">
+                <column name="ID_CUSTOMER"/>
+            </id>
+            <basic name="paymentDay">
+                <column name="PAYMENT_DAY"/>
+            </basic>
+            <one-to-many name="vehicles" target-entity="reversemapping.Vehicle" mapped-by="customer">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+            <one-to-one name="person" fetch="LAZY">
+                <join-column name="ID_PERSON" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="Employee">
+        <table schema="APP" name="EMPLOYEE"/>
+        <attributes>
+            <id name="idEmployee">
+                <column name="ID_EMPLOYEE"/>
+            </id>
+            <basic name="dtAdmission">
+                <column name="DT_ADMISSION" nullable="false"/>
+                <temporal>
+                    DATE
+                </temporal>
+            </basic>
+            <many-to-one name="parking" fetch="LAZY">
+                <join-column name="ID_PARKING" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <one-to-many name="stays" target-entity="reversemapping.Stay" mapped-by="employee">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+            <one-to-many name="stays2" target-entity="reversemapping.Stay" mapped-by="employee2">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+            <one-to-one name="naturalPerson" fetch="LAZY">
+                <join-column name="ID_PERSON" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="LegalEntity">
+        <table schema="APP" name="LEGAL_ENTITY"/>
+        <attributes>
+            <id name="idPerson">
+                <column name="ID_PERSON"/>
+            </id>
+            <basic name="dtFoundation">
+                <column name="DT_FOUNDATION" nullable="false"/>
+                <temporal>
+                    DATE
+                </temporal>
+            </basic>
+            <basic name="taxpayersId">
+                <column name="TAXPAYERS_ID" nullable="false" length="20"/>
+            </basic>
+            <one-to-many name="parkings" target-entity="reversemapping.Parking" mapped-by="legalEntity">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+            <one-to-one name="person" fetch="LAZY">
+                <join-column name="ID_PERSON"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="NaturalPerson">
+        <table schema="APP" name="NATURAL_PERSON"/>
+        <attributes>
+            <id name="idPerson">
+                <column name="ID_PERSON"/>
+            </id>
+            <basic name="dtBirth">
+                <column name="DT_BIRTH"/>
+                <temporal>
+                    DATE
+                </temporal>
+            </basic>
+            <basic name="legalDocument">
+                <column name="LEGAL_DOCUMENT" length="20"/>
+            </basic>
+            <one-to-one name="employee" fetch="LAZY" mapped-by="naturalPerson">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+            <one-to-one name="person" fetch="LAZY">
+                <join-column name="ID_PERSON"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="Parking">
+        <table schema="APP" name="PARKING"/>
+        <attributes>
+            <id name="idParking">
+                <column name="ID_PARKING"/>
+            </id>
+            <basic name="parkingSpaces">
+                <column name="PARKING_SPACES"/>
+            </basic>
+            <many-to-one name="legalEntity" fetch="LAZY">
+                <join-column name="ID_PERSON" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <one-to-many name="employees" target-entity="reversemapping.Employee" mapped-by="parking">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+            <one-to-many name="stays" target-entity="reversemapping.Stay" mapped-by="parking">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+    <entity class="Person">
+        <table schema="APP" name="PERSON"/>
+        <attributes>
+            <id name="idPerson">
+                <column name="ID_PERSON"/>
+            </id>
+            <basic name="address">
+                <column name="ADDRESS" length="100"/>
+            </basic>
+            <basic name="name">
+                <column name="NAME" nullable="false" length="100"/>
+            </basic>
+            <basic name="pType">
+                <column name="P_TYPE" nullable="false" length="2"/>
+            </basic>
+            <basic name="version">
+                <column name="VERSION"/>
+            </basic>
+            <one-to-one name="customer" fetch="LAZY" mapped-by="person">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+            <one-to-one name="legalEntity" fetch="LAZY" mapped-by="person">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+            <one-to-one name="naturalPerson" fetch="LAZY" mapped-by="person">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="PriceTable">
+        <table schema="APP" name="PRICE_TABLE"/>
+        <attributes>
+            <id name="idPriceTable">
+                <column name="ID_PRICE_TABLE"/>
+            </id>
+            <basic name="item">
+                <column name="ITEM" nullable="false" length="50"/>
+            </basic>
+            <basic name="price">
+                <column name="PRICE" column-definition="NUMERIC"/>
+            </basic>
+            <one-to-many name="vehicles" target-entity="reversemapping.Vehicle" mapped-by="priceTable">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+    <entity class="Stay">
+        <table schema="APP" name="STAY"/>
+        <attributes>
+            <id name="idStay">
+                <column name="ID_STAY"/>
+            </id>
+            <basic name="dtEntrance">
+                <column name="DT_ENTRANCE" nullable="false"/>
+                <temporal>
+                    DATE
+                </temporal>
+            </basic>
+            <basic name="dtOutgoing">
+                <column name="DT_OUTGOING"/>
+                <temporal>
+                    DATE
+                </temporal>
+            </basic>
+            <basic name="hrEntrance">
+                <column name="HR_ENTRANCE" nullable="false"/>
+                <temporal>
+                    TIME
+                </temporal>
+            </basic>
+            <basic name="hrOutgoing">
+                <column name="HR_OUTGOING"/>
+                <temporal>
+                    TIME
+                </temporal>
+            </basic>
+            <basic name="price">
+                <column name="PRICE" column-definition="NUMERIC"/>
+            </basic>
+            <basic name="status">
+                <column name="STATUS"/>
+            </basic>
+            <many-to-one name="employee" fetch="LAZY">
+                <join-column name="ID_EMPLOYEE_ENTRANCE" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="employee2" fetch="LAZY">
+                <join-column name="ID_EMPLOYEE_OUTGOING" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="parking" fetch="LAZY">
+                <join-column name="ID_PARKING" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="vehicle" fetch="LAZY">
+                <join-column name="LICENSE_PLATE" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="Vehicle">
+        <table schema="APP" name="VEHICLE"/>
+        <attributes>
+            <id name="licensePlate">
+                <column name="LICENSE_PLATE" length="20"/>
+            </id>
+            <basic name="color">
+                <column name="COLOR" length="20"/>
+            </basic>
+            <many-to-one name="customer" fetch="LAZY">
+                <join-column name="ID_CUSTOMER" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="priceTable" fetch="LAZY">
+                <join-column name="ID_PRICE_TABLE" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="vehicleType" fetch="LAZY">
+                <join-column name="V_TYPE" nullable="false"/>
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </many-to-one>
+            <one-to-many name="stays" target-entity="reversemapping.Stay" mapped-by="vehicle">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+    <entity class="VehicleType">
+        <table schema="APP" name="VEHICLE_TYPE"/>
+        <attributes>
+            <id name="vType">
+                <column name="V_TYPE" length="20"/>
+            </id>
+            <basic name="manufacturer">
+                <column name="MANUFACTURER" length="50"/>
+            </basic>
+            <basic name="model">
+                <column name="MODEL" length="20"/>
+            </basic>
+            <one-to-many name="vehicles" target-entity="reversemapping.Vehicle" mapped-by="vehicleType">
+                <cascade>
+                    <cascade-merge/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+</entity-mappings>
