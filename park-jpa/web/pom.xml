@@ -36,6 +36,5 @@
     </dependencies>
     <properties>
 	<click.version>2.1.0-RC1-incubating</click.version>
-        <netbeans.hint.deploy.server>Tomcat55</netbeans.hint.deploy.server>
     </properties>
 </project>
