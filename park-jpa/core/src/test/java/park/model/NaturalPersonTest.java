@@ -82,7 +82,7 @@ public class NaturalPersonTest {
      * Test of setVehicletype method, of class Vehicle.
      */
     @Test
-    public void GetNaturalPersonById() {
+    public void getNaturalPersonById() {
         log.debug("\nGetting an Natural Person by ID.\n");
         NaturalPerson nP = em.find(NaturalPerson.class, 1000);
         log.debug("Object loaded: \n" + nP);

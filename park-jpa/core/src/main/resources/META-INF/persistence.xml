@@ -37,6 +37,7 @@
     <provider>${jpa.provider}</provider>
     <class>park.model.Person</class>
     <class>park.model.NaturalPerson</class>
+    <class>park.model.LegalEntity</class>
     <properties>
       <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
       <property name="${jpa.url}" value="${jdbc.url}"/>
