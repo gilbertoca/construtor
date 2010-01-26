@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <click-app> 
 
-  <pages package="com.gilbertoca.gfi.page"/>
+  <pages package="park.web.page"/>
 
   <mode value="debug"/>
 
-</click-app> 
+</click-app>

@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.page;
+package park.web.page;
 
 /**
  * Provides the applications home page.

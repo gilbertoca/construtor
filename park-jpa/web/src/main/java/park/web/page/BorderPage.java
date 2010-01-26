@@ -1,4 +1,4 @@
-package com.gilbertoca.gfi.page;
+package park.web.page;
 
 import org.apache.click.Page;
 import org.apache.click.extras.control.Menu;
@@ -12,7 +12,7 @@ public class BorderPage extends Page{
     public Menu rootMenu = Menu.getRootMenu();
 
     public BorderPage() {
-        addModel("title", "Página Principal");
+        addModel("title", "Pï¿½gina Principal");
     }
 
     /**
