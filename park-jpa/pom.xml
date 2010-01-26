@@ -196,19 +196,21 @@
             <id>oracle</id>
             <properties>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
-                <dbunit.schema>SYSTEM</dbunit.schema> <!-- Make sure to capitalize the schema name -->
+                <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
                 <jdbc.groupId>com.oracle</jdbc.groupId>
                 <jdbc.artifactId>ojdbc14</jdbc.artifactId>
                 <jdbc.version>10.2.0.2.0</jdbc.version>
                 <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:oracle:thin:@localhost:1521:XE]]></jdbc.url>
-                <jdbc.username>system</jdbc.username>
-                <jdbc.password>system</jdbc.password>
+                <jdbc.username>park</jdbc.username>
+                <jdbc.password>park</jdbc.password>
             </properties>
         </profile>
         <profile>
             <id>postgresql</id>
             <properties>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
                 <jdbc.groupId>postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
                 <jdbc.version>8.3-603.jdbc3</jdbc.version>
@@ -250,13 +252,13 @@
 
         <!-- Database settings -->
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
-        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
 
         <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
         <jdbc.version>1.2.120</jdbc.version>
-        <jdbc.url>jdbc:h2:parkDB;create=true</jdbc.url>
+        <jdbc.url>jdbc:h2:parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
         <jdbc.username>park</jdbc.username>
         <jdbc.password>park</jdbc.password>

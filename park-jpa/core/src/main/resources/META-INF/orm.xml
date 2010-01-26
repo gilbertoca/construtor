@@ -4,11 +4,11 @@
                  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
                  http://java.sun.com/xml/ns/persistence/orm/orm_2_0.xsd"
                  version="2.0">
-    <!--persistence-unit-metadata>
+    <persistence-unit-metadata>
         <persistence-unit-defaults>
             <schema>park</schema>
         </persistence-unit-defaults>
-    </persistence-unit-metadata-->
+    </persistence-unit-metadata>
     <package>park.model</package>
     <entity class="Person">
        <!-- CREATE TABLE PERSON (
@@ -22,11 +22,11 @@
         -->
         <table name="person"/>
         <inheritance strategy="JOINED"/>
-        <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="CHAR"/>
+        <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
         <attributes>
             <id name="idPerson">
                 <column name="id_person"/>
-                <generated-value strategy="IDENTITY"/>
+                <generated-value strategy="AUTO"/>
             </id>
             <basic name="name">
                     <column length="100"/>

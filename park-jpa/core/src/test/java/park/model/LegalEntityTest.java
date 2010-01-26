@@ -11,12 +11,10 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +50,7 @@ public class LegalEntityTest {
         connection = new DatabaseConnection(DriverManager.getConnection(
                 configurationProperties.getProperty("jdbc.url"),
                 configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+                configurationProperties.getProperty("jdbc.password")), configurationProperties.getProperty("dbunit.schema"));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         //DatabaseConfig dbConfig = connection.getConfig();

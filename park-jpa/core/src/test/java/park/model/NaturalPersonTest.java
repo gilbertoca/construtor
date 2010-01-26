@@ -50,7 +50,7 @@ public class NaturalPersonTest {
         connection = new DatabaseConnection(DriverManager.getConnection(
                 configurationProperties.getProperty("jdbc.url"),
                 configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+                configurationProperties.getProperty("jdbc.password")), configurationProperties.getProperty("dbunit.schema"));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         //DatabaseConfig dbConfig = connection.getConfig();
