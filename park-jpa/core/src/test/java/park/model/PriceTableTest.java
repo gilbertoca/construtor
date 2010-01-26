@@ -15,9 +15,11 @@ import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
@@ -40,26 +42,26 @@ public class PriceTableTest {
         em = emf.createEntityManager();
 
         // Initializes DBUnit
-        /*
-         connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-         Esta opção não funcionou.
-         Vamos aplicar um Nija! rs rs
-         */
+        // For now, getting connection from one JPA provider is impossible
+        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
+        // So, let's take a work around ...
+
+        // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
-
+        //Let's create a new connection to work with DBUnit
         Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
         connection = new DatabaseConnection(DriverManager.getConnection(
                 configurationProperties.getProperty("jdbc.url"),
                 configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+                configurationProperties.getProperty("jdbc.password")), configurationProperties.getProperty("dbunit.schema"));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
-        //DatabaseConfig dbConfig = connection.getConfig();
-        //Como instanciar H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        //dbConfig.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
-
+        DatabaseConfig config = connection.getConfig();
+        //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("price-table-dataset.xml"));
 
     }
