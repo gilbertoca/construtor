@@ -9,7 +9,7 @@
     <name>Simple Apache Click Project</name>
     <url>http://www.mycompany.com</url>
     <build>
-        <finalName>${project.groupId}-${project.artifactId}</finalName>
+        <finalName>${groupId}-${artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -27,5 +27,5 @@
   </description>
   <artifactId>maven-archetype-click</artifactId>
   <name>Apache Click Webapp Archetype</name>
-  <version>2.1.0</version>
+  <version>1.0</version>
 </project>
