@@ -8,7 +8,7 @@ package park.web.page;
 public class HomePage extends BorderPage {
 
     public HomePage() {
-        getModel().put("title", "Finança e Inventário");
+        getModel().put("title", "Parking Control");
     }
 
 }

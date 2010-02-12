@@ -12,7 +12,7 @@ public class BorderPage extends Page{
     public Menu rootMenu = Menu.getRootMenu();
 
     public BorderPage() {
-        addModel("title", "P�gina Principal");
+        addModel("title", "Main Page");
     }
 
     /**
