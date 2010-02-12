@@ -48,11 +48,11 @@
         <table name="natural_person"/>
         <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
         <discriminator-value>NP</discriminator-value>
-        <named-query name="findAllNaturalPerson">
+        <named-query name="NaturalPerson.findAll">
             <query>SELECT n FROM NaturalPerson n</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
-        <named-query name="deleteNaturalPersonById">
+        <named-query name="NaturalPerson.deleteById">
             <query>DELETE FROM NaturalPerson n WHERE n.idPerson = :idPerson</query>
         </named-query>
         <attributes>
@@ -77,11 +77,11 @@
         <table name="legal_entity"/>
         <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
         <discriminator-value>LE</discriminator-value>
-        <named-query name="findAllLegalEntity">
+        <named-query name="LegalEntity.findAll">
             <query>SELECT l FROM LegalEntity l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
-        <named-query name="deleteLegalEntityById">
+        <named-query name="LegalEntity.deleteById">
             <query>DELETE FROM LegalEntity l WHERE l.idPerson = :idPerson</query>
         </named-query>
         <attributes>

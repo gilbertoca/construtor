@@ -81,7 +81,7 @@ public class NaturalPersonTest {
     }
 
     /**
-     * Test of setVehicletype method, of class Vehicle.
+     * Test of getNaturalPerson method, of class NaturalPerson.
      */
     @Test
     public void getNaturalPersonById() {
@@ -95,7 +95,7 @@ public class NaturalPersonTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("findAllNaturalPerson");
+        Query query = em.createNamedQuery("NaturalPerson.findAll");
         assertEquals("Should have 2 natural persons", query.getResultList().size(), 2);
 
         // Creates a new object and persists it

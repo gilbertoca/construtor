@@ -81,7 +81,7 @@
             <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
-                <jpa.version>2.0.0-M3</jpa.version>
+                <jpa.version>2.0.0-beta</jpa.version>
                 <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
                 <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
                 <jpa.url>openjpa.ConnectionURL</jpa.url>

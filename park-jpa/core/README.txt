@@ -1,7 +1,9 @@
 Until now it works with H2.
 I've not tested with other database, but I've setup other profiles with PostgreSQL and Oracle.
+I've setup it to work with EclipseLink and OpenJpa. Use the -P parameter to change it. EclipseLink is the default one.
+Let's go:
 
-1-edit the following park-jpa/pom.xml properties(the actual value is mine):
+1-edit the following park-jpa/pom.xml properties(the actual value is mine) if you want to change the H2 server type:
 
 <jdbc.url>jdbc:h2:parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
 
@@ -9,7 +11,11 @@ I've not tested with other database, but I've setup other profiles with PostgreS
 
 mvn -PinitSchema compile
 
-3-after that, only use 'mvn -PinitSchema compile' when initializing the database again
+After that, only use 'mvn -PinitSchema compile' when initializing the database again.
+
+4-now you can test:
+
+mvn test
 
 
 More information:

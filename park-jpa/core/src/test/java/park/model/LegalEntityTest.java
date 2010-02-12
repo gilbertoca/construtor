@@ -95,7 +95,7 @@ public class LegalEntityTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("findAllLegalEntity");
+        Query query = em.createNamedQuery("LegalEntity.findAll");
         assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
