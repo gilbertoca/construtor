@@ -3,6 +3,6 @@
 
   <pages package="park.web.page"/>
 
-  <mode value="debug"/>
+  <mode value="developmentd"/>
 
 </click-app>

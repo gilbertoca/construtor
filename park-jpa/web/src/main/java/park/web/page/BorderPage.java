@@ -1,5 +1,7 @@
 package park.web.page;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.apache.click.Page;
 import org.apache.click.extras.control.Menu;
 
@@ -9,7 +11,8 @@ import org.apache.click.extras.control.Menu;
  */
 public class BorderPage extends Page{
    /** The root menu. */
-    public Menu rootMenu = Menu.getRootMenu();
+    protected Menu rootMenu = Menu.getRootMenu();
+    @PersistenceContext protected EntityManager em;
 
     public BorderPage() {
         addModel("title", "Main Page");

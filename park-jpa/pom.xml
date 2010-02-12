@@ -82,10 +82,10 @@
             <id>Ibiblio</id>
             <url>http://www.ibiblio.org/maven2</url>
         </repository>
-        <repository>
+        <!--repository>
             <id>apache-snapshots</id>
             <url>http://people.apache.org/repo/m2-snapshot-repository</url>
-        </repository>
+        </repository-->
         <repository>
             <id>maven2-repository.dev.java.net</id>
             <name>Java.net Repository for Maven</name>
@@ -243,7 +243,7 @@
 
         <!-- Testing dependency versions -->
         <jmock.version>1.1.0</jmock.version>
-        <junit.version>4.5</junit.version>
+        <junit.version>[4.,)</junit.version>
         <dbunit.version>2.4.7</dbunit.version>
         <SLF4Jbinding.artifact>slf4j-log4j12</SLF4Jbinding.artifact>
         <SLF4Jbinding.version>1.5.2</SLF4Jbinding.version>
