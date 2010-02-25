@@ -2,7 +2,6 @@
 <click-app> 
 
   <pages package="park.web.page"/>
-
-  <mode value="developmentd"/>
+  <mode value="debug"/>
 
 </click-app>

@@ -7,7 +7,7 @@
     Provides a HTTP response GZIP compression filter to improve network 
     performance. In production applications you may use a compression module
     provided by a web server instead.
-    -->
+    
     <filter>
         <filter-name>compression-filter</filter-name>
         <filter-class>org.apache.click.extras.filter.CompressionFilter</filter-class>
@@ -16,7 +16,8 @@
     <filter-mapping>
         <filter-name>compression-filter</filter-name>
         <servlet-name>click-servlet</servlet-name>
-    </filter-mapping>    
+    </filter-mapping>
+    -->
     <servlet>
         <servlet-name>click-servlet</servlet-name>
         <servlet-class>org.apache.click.ClickServlet</servlet-class>

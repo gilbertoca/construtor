@@ -103,7 +103,7 @@ public class LegalEntityTest {
         tx.begin();
         em.persist(lP);
         tx.commit();
-
+                
         // Gets all the objects from the database
         assertEquals("Should have 4 LegalEntity", query.getResultList().size(), 4);
 

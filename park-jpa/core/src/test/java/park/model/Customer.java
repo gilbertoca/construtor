@@ -1,8 +1,6 @@
 package park.model;
 
 import java.sql.DriverManager;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -26,8 +24,10 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class CustomerTest {
+
+public class Customer {
 
     protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
@@ -92,7 +92,7 @@ public class CustomerTest {
         log.debug("\nGetting an Natural Person by ID.\n");
         Customer c = em.find(Customer.class, 1000);
         log.debug("Object loaded: \n" + c);
-        assertNotNull(c.getPerson().getName());
+        //assertNotNull(c.getPerson().getName());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class CustomerTest {
         Customer c = new Customer();
         LegalEntity lP = em.find(LegalEntity.class, 1002);
         //c.setPerson(lP);
-        c.setPaymentDay(3);
+        //c.setPaymentDay(3);
         tx.begin();
         em.persist(c);
         tx.commit();

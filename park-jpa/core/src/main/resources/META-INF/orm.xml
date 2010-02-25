@@ -94,5 +94,36 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="PriceTable">
+        <!--
+            CREATE TABLE PRICE_TABLE (
+                ID_PRICE_TABLE INTEGER NOT NULL,
+                ITEM VARCHAR(50) NOT NULL,
+                PRICE NUMERIC(12,2) NOT NULL,
+                CONSTRAINT price_table_pk PRIMARY KEY (ID_PRICE_TABLE)
+            );
+        -->
+        <table name="price_table"/>
+        <named-query name="PriceTable.findAll">
+            <query>SELECT l FROM PriceTable l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="PriceTable.deleteById">
+            <query>DELETE FROM PriceTable l WHERE l.idPriceTable = :idPriceTable</query>
+        </named-query>
+
+        <attributes>
+            <id name="idPriceTable">
+                <column name="id_price_table"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="item">
+                <column name="ITEM" nullable="false" length="50"/>
+            </basic>
+            <basic name="price">
+                <column name="PRICE" column-definition="NUMERIC(12,2)"/>
+            </basic>
+        </attributes>
+    </entity>
 
 </entity-mappings>

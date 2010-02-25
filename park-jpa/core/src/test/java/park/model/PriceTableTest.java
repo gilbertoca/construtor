@@ -1,8 +1,6 @@
 package park.model;
 
 import java.sql.DriverManager;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -26,6 +24,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class PriceTableTest {
 
@@ -99,7 +99,7 @@ public class PriceTableTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("FIND_ALL");
+        Query query = em.createNamedQuery("PriceTable.findAll");
         assertEquals("Should have 3 PriceTable", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
