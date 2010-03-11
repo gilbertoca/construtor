@@ -125,5 +125,35 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="VehicleType">
+        <!--
+            CREATE TABLE VEHICLE_TYPE (
+                            V_TYPE VARCHAR(20) NOT NULL,
+                            MANUFACTURER VARCHAR(50),
+                            MODEL VARCHAR(20),
+                            CONSTRAINT vehicle_type_pk PRIMARY KEY (V_TYPE)
+            );
+        -->
+        <table name="vehicle_type"/>
+        <named-query name="VehicleType.findAll">
+            <query>SELECT l FROM VehicleType l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="VehicleType.deleteById">
+            <query>DELETE FROM VehicleType l WHERE l.vType = :vType</query>
+        </named-query>
+
+        <attributes>
+            <id name="vType">
+                <column name="V_TYPE" nullable="false" length="20"/>
+            </id>
+            <basic name="manufacturer">
+                <column name="MANUFACTURER" length="50"/>
+            </basic>
+            <basic name="model">
+                <column name="MODEL" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
 
 </entity-mappings>
