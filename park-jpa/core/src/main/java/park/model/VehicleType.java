@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class VehicleType implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String V_TYPE;
+    private String vType;
     private String manufacturer;
     private String model;
     private Collection<Vehicle> vehicleCollection;
@@ -13,16 +13,23 @@ public class VehicleType implements Serializable {
     public VehicleType() {
     }
 
-    public VehicleType(String V_TYPE) {
-        this.V_TYPE = V_TYPE;
+    public VehicleType(String vType) {
+        this.vType = vType;
     }
 
-    public String getV_TYPE() {
-        return V_TYPE;
+    public VehicleType(String vType, String manufacturer, String model) {
+        this.vType = vType;
+        this.manufacturer = manufacturer;
+        this.model = model;
     }
 
-    public void setV_TYPE(String V_TYPE) {
-        this.V_TYPE = V_TYPE;
+
+    public String getVtype() {
+        return vType;
+    }
+
+    public void setVtype(String vType) {
+        this.vType = vType;
     }
 
     public String getManufacturer() {
@@ -52,7 +59,7 @@ public class VehicleType implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (V_TYPE != null ? V_TYPE.hashCode() : 0);
+        hash += (vType != null ? vType.hashCode() : 0);
         return hash;
     }
 
@@ -63,7 +70,7 @@ public class VehicleType implements Serializable {
             return false;
         }
         VehicleType other = (VehicleType) object;
-        if ((this.V_TYPE == null && other.V_TYPE != null) || (this.V_TYPE != null && !this.V_TYPE.equals(other.V_TYPE))) {
+        if ((this.vType == null && other.vType != null) || (this.vType != null && !this.vType.equals(other.vType))) {
             return false;
         }
         return true;
@@ -71,7 +78,7 @@ public class VehicleType implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.VehicleType[V_TYPE=" + V_TYPE + "]";
+        return "park.model.VehicleType[V_TYPE=" + vType + "]";
     }
 
 }

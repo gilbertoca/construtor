@@ -10,7 +10,7 @@ public class Vehicle implements Serializable {
     private Collection<Stay> stayCollection;
     private Customer customer;
     private PriceTable priceTable;
-    private VehicleType V_TYPE;
+    private VehicleType vType;
 
     public Vehicle() {
     }
@@ -59,12 +59,12 @@ public class Vehicle implements Serializable {
         this.priceTable = priceTable;
     }
 
-    public VehicleType getV_TYPE() {
-        return V_TYPE;
+    public VehicleType getVtype() {
+        return vType;
     }
 
-    public void setV_TYPE(VehicleType V_TYPE) {
-        this.V_TYPE = V_TYPE;
+    public void setVtype(VehicleType vType) {
+        this.vType = vType;
     }
 
     @Override
