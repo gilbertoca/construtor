@@ -1,16 +1,14 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this tgetEntityManager()plate, choose Tools | TgetEntityManager()plates
+ * and open the tgetEntityManager()plate in the editor.
  */
 
 package park.web.page;
 
-import javax.persistence.EntityManager;
 import org.apache.click.Page;
 import org.apache.click.control.Column;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
-import org.apache.click.control.Option;
 import org.apache.click.control.Select;
 import org.apache.click.control.Submit;
 import org.apache.click.control.Table;
@@ -26,7 +24,6 @@ public class LegalEntityPage extends BorderPage{
     protected Form form = new Form();
     protected Table table = new Table();
     protected String msg;
-    EntityManager em = emf.createEntityManager();
     private Select investmentSelect = new Select("investment");
 
     // -------------------------------------------------------- Constructor
@@ -84,11 +81,12 @@ public class LegalEntityPage extends BorderPage{
     @Override
     public void onInit() {
         //investmentSelect.add(Option.EMPTY_OPTION);
-        //investmentSelect.addAll(em.createNamedQuery("LegalEntity.findAll").getResultList());
+        //investmentSelect.addAll(getEntityManager().createNamedQuery("LegalEntity.findAll").getResultList());
     }
 
+    @Override
     public void onRender() {
-         table.setRowList(em.createNamedQuery("LegalEntity.findAll").getResultList());
+         table.setRowList(getEntityManager().createNamedQuery("LegalEntity.findAll").getResultList());
      }
 
     /**
@@ -101,9 +99,9 @@ public class LegalEntityPage extends BorderPage{
             LegalEntity legalEntity = new LegalEntity();
             form.copyTo(legalEntity);
 
-            em.getTransaction().begin();
-            em.persist(legalEntity);
-            em.getTransaction().commit();
+            getEntityManager().getTransaction().begin();
+            getEntityManager().persist(legalEntity);
+            getEntityManager().getTransaction().commit();
             
             form.clearValues();
 

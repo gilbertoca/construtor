@@ -1,5 +1,6 @@
 package park.web.page;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.apache.click.Page;
@@ -29,4 +30,7 @@ public class BorderPage extends Page{
         return "/border-template.htm";
     }
     
+    protected EntityManager getEntityManager(){
+        return emf.createEntityManager();
+    }
 }

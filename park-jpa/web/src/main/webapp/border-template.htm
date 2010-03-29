@@ -1,23 +1,27 @@
+<!doctype html>
 <html>
-<head>
-<title>Click Quick Start - $title</title>
-<link rel="stylesheet" type="text/css" href="$context/assets/style.css" title="Style"></link>
-$imports
-</head>
+    <head>
+        <title>Click JPA Example - $title</title>
+        <link rel="stylesheet" type="text/css" href="$context/assets/style.css" title="Style"/>
+        <link rel="stylesheet" type="text/css" href="${context}/assets/css/syntax-highlighter.css"/>
+        <script type="text/javascript" src="${context}/assets/js/syntax-highlighter.js"></script>
+        ${headElements}
+    </head>
 
-<body>
+    <body>
 
-  <div id="header">
-  	<span id="title">Quick Start :: $title</span>
-  </div>
-  Vamos colocar o menu
-#if ($rootMenu) 
-  #writeMenu($rootMenu) 
-#end
+        <div id="header">
+            <span id="title">JPA Park :: $title</span>
+        </div>
 
-  <div id="container">
-    #parse($path)
-  </div>
- 
-</body>
+        #if ($rootMenu)
+        #writeMenu($rootMenu)
+        #end
+
+        <div id="container">
+            #parse($path)
+        </div>
+
+        ${jsElements}
+    </body>
 </html>
