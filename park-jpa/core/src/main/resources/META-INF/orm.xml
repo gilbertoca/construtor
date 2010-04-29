@@ -11,7 +11,7 @@
     </persistence-unit-metadata>
     <package>park.model</package>
     <entity class="Person">
-       <!-- CREATE TABLE PERSON (
+        <!-- CREATE TABLE PERSON (
             ID_PERSON INTEGER NOT NULL,
             ADDRESS VARCHAR(100),
             NAME VARCHAR(100) NOT NULL,
@@ -29,10 +29,10 @@
                 <generated-value strategy="AUTO"/>
             </id>
             <basic name="name">
-                    <column length="100"/>
+                <column length="100"/>
             </basic>
             <basic name="address">
-                    <column length="100"/>
+                <column length="100"/>
             </basic>
             <version name="version"/>
         </attributes>
@@ -153,6 +153,45 @@
             <basic name="model">
                 <column name="MODEL" length="20"/>
             </basic>
+        </attributes>
+    </entity>
+    <entity class="Vehicle">
+        <!--
+        CREATE TABLE VEHICLE (
+                        LICENSE_PLATE VARCHAR(20) NOT NULL,
+                        V_TYPE VARCHAR(20) NOT NULL,
+                        ID_CUSTOMER INTEGER NOT NULL,
+                        ID_PRICE_TABLE INTEGER NOT NULL,
+                        COLOR VARCHAR(20),
+                        CONSTRAINT vehicle_pk PRIMARY KEY (LICENSE_PLATE)
+        );
+        -->
+        <table name="vehicle"/>
+        <named-query name="Vehicle.findAll">
+            <query>SELECT l FROM Vehicle l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Vehicle.deleteById">
+            <query>DELETE FROM Vehicle l WHERE l.licensePlate = :licensePlate</query>
+        </named-query>
+
+        <attributes>
+            <id name="licensePlate">
+                <column name="LICENSE_PLATE" nullable="false" length="20"/>
+            </id>
+            <basic name="color">
+                <column name="COLOR" length="20"/>
+            </basic>
+            <many-to-one name="customer">
+                <join-column name="ID_CUSTOMER" referenced-column-name="ID_CUSTOMER"/>
+            </many-to-one>
+            <many-to-one name="priceTable">
+                <join-column name="ID_PRICE_TABLE" referenced-column-name="ID_PRICE_TABLE"/>
+            </many-to-one>
+            <many-to-one name="vType">
+                <join-column name="V_TYPE" referenced-column-name="V_TYPE"/>
+            </many-to-one>
+
         </attributes>
     </entity>
 
