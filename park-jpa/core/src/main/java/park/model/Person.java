@@ -3,8 +3,8 @@ package park.model;
 import java.io.Serializable;
 
 public abstract class Person implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private int idPerson;
+    private static final Long serialVersionUID = 1L;
+    private Long id;
     private String address;
     private String name;
     private int version;
@@ -17,12 +17,12 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
-    public int getIdPerson() {
-        return idPerson;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPerson(int idPerson) {
-        this.idPerson = idPerson;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAddress() {
@@ -57,7 +57,7 @@ public abstract class Person implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idPerson ^ (idPerson >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 
@@ -73,7 +73,7 @@ public abstract class Person implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
-		if (idPerson != other.idPerson)
+		if (id != other.id)
 			return false;
 		return true;
 	}
@@ -86,8 +86,8 @@ public abstract class Person implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Person [address=");
 		builder.append(address);
-		builder.append(", idPerson=");
-		builder.append(idPerson);
+		builder.append(", id=");
+		builder.append(id);
 		builder.append(", name=");
 		builder.append(name);
 		builder.append("]");

@@ -2,7 +2,6 @@ package park.model;
 
 import java.sql.DriverManager;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -27,7 +26,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class Vehicle {
+public class VehicleTest {
 
     protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
@@ -109,7 +108,7 @@ public class Vehicle {
         //relationships
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
-        Customer c = em.find(Customer.class, 1000);
+        CustomerTest c = em.find(CustomerTest.class, 1000);
         //set relationships
         //v.setCustomer(c);
         //v.setPriceTable(pT);

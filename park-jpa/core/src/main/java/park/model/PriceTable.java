@@ -1,14 +1,12 @@
 package park.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 public class PriceTable implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idPriceTable;
+    private Integer id;
     private String item;
     private Double price;
-    private Collection<Vehicle> vehicleCollection;
 
     public PriceTable() {
     }
@@ -18,12 +16,12 @@ public class PriceTable implements Serializable {
         this.price = price;
     }
 
-    public Integer getIdPriceTable() {
-        return idPriceTable;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPriceTable(Integer idPriceTable) {
-        this.idPriceTable = idPriceTable;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getItem() {
@@ -42,18 +40,10 @@ public class PriceTable implements Serializable {
         this.price = price;
     }
 
-    public Collection<Vehicle> getVehicleCollection() {
-        return vehicleCollection;
-    }
-
-    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
-        this.vehicleCollection = vehicleCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPriceTable != null ? idPriceTable.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -64,7 +54,7 @@ public class PriceTable implements Serializable {
             return false;
         }
         PriceTable other = (PriceTable) object;
-        if ((this.idPriceTable == null && other.idPriceTable != null) || (this.idPriceTable != null && !this.idPriceTable.equals(other.idPriceTable))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -72,7 +62,7 @@ public class PriceTable implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.PriceTable[idPriceTable=" + idPriceTable + "]";
+        return "park.model.PriceTable[id=" + id + "]";
     }
 
 }

@@ -12,20 +12,20 @@
     <package>park.model</package>
     <entity class="Person">
         <!-- CREATE TABLE PERSON (
-            ID_PERSON INTEGER NOT NULL,
+            ID INTEGER NOT NULL,
             ADDRESS VARCHAR(100),
             NAME VARCHAR(100) NOT NULL,
             P_TYPE CHAR(2) NOT NULL, //NATURALPERSON(NP) OR LEGALENTITY(LE)
             VERSION SMALLINT NOT NULL
-            CONSTRAINT PERSON_PKEY PRIMARY KEY (ID_PERSON)
+            CONSTRAINT PERSON_PKEY PRIMARY KEY (ID)
         );
         -->
         <table name="person"/>
         <inheritance strategy="JOINED"/>
         <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
         <attributes>
-            <id name="idPerson">
-                <column name="id_person"/>
+            <id name="id">
+                <column name="id"/>
                 <generated-value strategy="AUTO"/>
             </id>
             <basic name="name">
@@ -39,21 +39,21 @@
     </entity>
     <entity class="NaturalPerson">
         <!--CREATE TABLE NATURAL_PERSON (
-            ID_PERSON INTEGER NOT NULL,
+            PERSON_ID INTEGER NOT NULL,
             DT_BIRTH DATE,
             LEGAL_DOCUMENT VARCHAR(20),
-            CONSTRAINT NATURAL_PERSON_PKEY PRIMARY KEY (ID_PERSON)
+            CONSTRAINT NATURAL_PERSON_PKEY PRIMARY KEY (PERSON_ID)
         );
         -->
         <table name="natural_person"/>
-        <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
+        <primary-key-join-column name="person_id" referenced-column-name="id"/>
         <discriminator-value>NP</discriminator-value>
         <named-query name="NaturalPerson.findAll">
             <query>SELECT n FROM NaturalPerson n</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="NaturalPerson.deleteById">
-            <query>DELETE FROM NaturalPerson n WHERE n.idPerson = :idPerson</query>
+            <query>DELETE FROM NaturalPerson n WHERE n.id = :personID</query>
         </named-query>
         <attributes>
             <basic name="dtBirth">
@@ -68,21 +68,21 @@
     <entity class="LegalEntity">
         <!--
             CREATE TABLE LEGAL_ENTITY (
-                ID_PERSON INTEGER NOT NULL,
+                PERSON_ID INTEGER NOT NULL,
                 TAXPAYERS_ID VARCHAR(20) NOT NULL,
                 DT_FOUNDATION DATE NOT NULL,
-                CONSTRAINT LEGAL_ENTITY_PK PRIMARY KEY (ID_PERSON)
+                CONSTRAINT LEGAL_ENTITY_PK PRIMARY KEY (PERSON_ID)
             );
         -->
         <table name="legal_entity"/>
-        <primary-key-join-column name="id_person" referenced-column-name="id_person"/>
+        <primary-key-join-column name="person_id" referenced-column-name="id"/>
         <discriminator-value>LE</discriminator-value>
         <named-query name="LegalEntity.findAll">
             <query>SELECT l FROM LegalEntity l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="LegalEntity.deleteById">
-            <query>DELETE FROM LegalEntity l WHERE l.idPerson = :idPerson</query>
+            <query>DELETE FROM LegalEntity l WHERE l.id = :personID</query>
         </named-query>
         <attributes>
             <basic name="dtFoundation">
@@ -94,13 +94,43 @@
             </basic>
         </attributes>
     </entity>
+    <entity class="Customer">
+        <!--
+            CREATE TABLE CUSTOMER (
+                            PERSON_ID INTEGER NOT NULL,
+                            PAYMENT_DAY INTEGER,
+                            CONSTRAINT CUSTOMER_PK PRIMARY KEY (PERSON_ID)
+            );
+        -->
+        <table name="customer"/>
+        <named-query name="Customer.findAll">
+            <query>SELECT l FROM Customer l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Customer.deleteById">
+            <query>DELETE FROM Customer l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="personId">
+                <column name="person_id"/>
+            </id>
+            <basic name="paymentDay">
+                <column name="payment_day"/>
+            </basic>
+            <one-to-many name="vehicles" target-entity="park.model.Vehicle" mapped-by="customer">
+            </one-to-many>
+            <one-to-one name="person" maps-id="true"/>
+
+        </attributes>
+    </entity>
+
     <entity class="PriceTable">
         <!--
             CREATE TABLE PRICE_TABLE (
-                ID_PRICE_TABLE INTEGER NOT NULL,
+                ID INTEGER NOT NULL,
                 ITEM VARCHAR(50) NOT NULL,
                 PRICE NUMERIC(12,2) NOT NULL,
-                CONSTRAINT price_table_pk PRIMARY KEY (ID_PRICE_TABLE)
+                CONSTRAINT PRICE_TABLE_PK PRIMARY KEY (ID)
             );
         -->
         <table name="price_table"/>
@@ -109,19 +139,19 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="PriceTable.deleteById">
-            <query>DELETE FROM PriceTable l WHERE l.idPriceTable = :idPriceTable</query>
+            <query>DELETE FROM PriceTable l WHERE l.id = :id</query>
         </named-query>
 
         <attributes>
-            <id name="idPriceTable">
-                <column name="id_price_table"/>
+            <id name="id">
+                <column name="id"/>
                 <generated-value strategy="AUTO"/>
             </id>
             <basic name="item">
-                <column name="ITEM" nullable="false" length="50"/>
+                <column name="item" nullable="false" length="50"/>
             </basic>
             <basic name="price">
-                <column name="PRICE" column-definition="NUMERIC(12,2)"/>
+                <column name="price" column-definition="NUMERIC(12,2)"/>
             </basic>
         </attributes>
     </entity>
@@ -131,7 +161,7 @@
                             V_TYPE VARCHAR(20) NOT NULL,
                             MANUFACTURER VARCHAR(50),
                             MODEL VARCHAR(20),
-                            CONSTRAINT vehicle_type_pk PRIMARY KEY (V_TYPE)
+                            CONSTRAINT VEHICLE_TYPE_PK PRIMARY KEY (V_TYPE)
             );
         -->
         <table name="vehicle_type"/>
@@ -145,13 +175,13 @@
 
         <attributes>
             <id name="vType">
-                <column name="V_TYPE" nullable="false" length="20"/>
+                <column name="v_type" nullable="false" length="20"/>
             </id>
             <basic name="manufacturer">
-                <column name="MANUFACTURER" length="50"/>
+                <column name="manufacturer" length="50"/>
             </basic>
             <basic name="model">
-                <column name="MODEL" length="20"/>
+                <column name="model" length="20"/>
             </basic>
         </attributes>
     </entity>
@@ -160,10 +190,10 @@
         CREATE TABLE VEHICLE (
                         LICENSE_PLATE VARCHAR(20) NOT NULL,
                         V_TYPE VARCHAR(20) NOT NULL,
-                        ID_CUSTOMER INTEGER NOT NULL,
-                        ID_PRICE_TABLE INTEGER NOT NULL,
+                        CUSTOMER_ID INTEGER NOT NULL,
+                        PRICE_TABLE_ID INTEGER NOT NULL,
                         COLOR VARCHAR(20),
-                        CONSTRAINT vehicle_pk PRIMARY KEY (LICENSE_PLATE)
+                        CONSTRAINT VEHICLE_PK PRIMARY KEY (LICENSE_PLATE)
         );
         -->
         <table name="vehicle"/>
@@ -177,20 +207,26 @@
 
         <attributes>
             <id name="licensePlate">
-                <column name="LICENSE_PLATE" nullable="false" length="20"/>
+                <column name="license_plate" length="20"/>
             </id>
             <basic name="color">
-                <column name="COLOR" length="20"/>
+                <column name="color" length="20"/>
             </basic>
             <many-to-one name="customer">
-                <join-column name="ID_CUSTOMER" referenced-column-name="ID_CUSTOMER"/>
+                <join-column name="customer_id" referenced-column-name="id"/>
             </many-to-one>
             <many-to-one name="priceTable">
-                <join-column name="ID_PRICE_TABLE" referenced-column-name="ID_PRICE_TABLE"/>
+                <join-column name="price_table_id" referenced-column-name="id"/>
             </many-to-one>
             <many-to-one name="vType">
-                <join-column name="V_TYPE" referenced-column-name="V_TYPE"/>
+                <join-column name="v_type" referenced-column-name="v_type"/>
             </many-to-one>
+            <!-- one-to-many name="stays">
+                <order-by/>
+                <join-table name="stay">
+                    <join-column name="stay_id" referenced-column-name="id"/>
+                </join-table>
+            </one-to-many-->
 
         </attributes>
     </entity>

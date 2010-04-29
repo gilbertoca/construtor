@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Stay implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idStay;
+    private Integer id;
     private Date dtEntrance;
     private Date dtOutgoing;
     private Date hrEntrance;
@@ -31,22 +31,22 @@ public class Stay implements Serializable {
     public Stay() {
     }
 
-    public Stay(Integer idStay) {
-        this.idStay = idStay;
+    public Stay(Integer id) {
+        this.id = id;
     }
 
-    public Stay(Integer idStay, Date dtEntrance, Date hrEntrance) {
-        this.idStay = idStay;
+    public Stay(Integer id, Date dtEntrance, Date hrEntrance) {
+        this.id = id;
         this.dtEntrance = dtEntrance;
         this.hrEntrance = hrEntrance;
     }
 
-    public Integer getIdStay() {
-        return idStay;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdStay(Integer idStay) {
-        this.idStay = idStay;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getDtEntrance() {
@@ -132,7 +132,7 @@ public class Stay implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idStay != null ? idStay.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -143,7 +143,7 @@ public class Stay implements Serializable {
             return false;
         }
         Stay other = (Stay) object;
-        if ((this.idStay == null && other.idStay != null) || (this.idStay != null && !this.idStay.equals(other.idStay))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -151,7 +151,7 @@ public class Stay implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Stay[idStay=" + idStay + "]";
+        return "park.model.Stay[id=" + id + "]";
     }
 
 }

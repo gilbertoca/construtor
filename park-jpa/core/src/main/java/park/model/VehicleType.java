@@ -1,14 +1,12 @@
 package park.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 public class VehicleType implements Serializable {
     private static final long serialVersionUID = 1L;
     private String vType;
     private String manufacturer;
     private String model;
-    private Collection<Vehicle> vehicleCollection;
 
     public VehicleType() {
     }
@@ -46,14 +44,6 @@ public class VehicleType implements Serializable {
 
     public void setModel(String model) {
         this.model = model;
-    }
-
-    public Collection<Vehicle> getVehicleCollection() {
-        return vehicleCollection;
-    }
-
-    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
-        this.vehicleCollection = vehicleCollection;
     }
 
     @Override

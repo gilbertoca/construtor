@@ -5,24 +5,24 @@ import java.util.Collection;
 
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idCustomer;
+    private Long personId;
     private Integer paymentDay;
-    private Collection<Vehicle> vehicleCollection;
+    private Collection<Vehicle> vehicles;
     private Person person;
 
     public Customer() {
     }
 
-    public Customer(Integer idCustomer) {
-        this.idCustomer = idCustomer;
+    public Customer(Long id) {
+        this.personId = id;
     }
 
-    public Integer getIdCustomer() {
-        return idCustomer;
+    public Long getId() {
+        return personId;
     }
 
-    public void setIdCustomer(Integer idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setId(Long id) {
+        this.personId = id;
     }
 
     public Integer getPaymentDay() {
@@ -33,12 +33,12 @@ public class Customer implements Serializable {
         this.paymentDay = paymentDay;
     }
 
-    public Collection<Vehicle> getVehicleCollection() {
-        return vehicleCollection;
+    public Collection<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setVehicleCollection(Collection<Vehicle> vehicleCollection) {
-        this.vehicleCollection = vehicleCollection;
+    public void setVehicles(Collection<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     public Person getPerson() {
@@ -52,7 +52,7 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCustomer != null ? idCustomer.hashCode() : 0);
+        hash += (personId != null ? personId.hashCode() : 0);
         return hash;
     }
 
@@ -63,7 +63,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.idCustomer == null && other.idCustomer != null) || (this.idCustomer != null && !this.idCustomer.equals(other.idCustomer))) {
+        if ((this.personId == null && other.personId != null) || (this.personId != null && !this.personId.equals(other.personId))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Customer[idCustomer=" + idCustomer + "]";
+        return "park.model.Customer[id=" + personId + "]";
     }
 
 }

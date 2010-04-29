@@ -1,14 +1,12 @@
 package park.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
     private String licensePlate;
     private String color;
-    private Collection<Stay> stayCollection;
-    private Customer customer;
+    private transient Customer customer;
     private PriceTable priceTable;
     private VehicleType vType;
 
@@ -33,14 +31,6 @@ public class Vehicle implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public Collection<Stay> getStayCollection() {
-        return stayCollection;
-    }
-
-    public void setStayCollection(Collection<Stay> stayCollection) {
-        this.stayCollection = stayCollection;
     }
 
     public Customer getCustomer() {

@@ -1,14 +1,12 @@
 package park.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 
 public class LegalEntity extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     private String taxpayersId;
     private Date dtFoundation;
-    private Collection<Parking> parkingCollection;
 
     public LegalEntity() {
     }
@@ -40,15 +38,7 @@ public class LegalEntity extends Person implements Serializable {
     public void setDtFoundation(Date dtFoundation) {
         this.dtFoundation = dtFoundation;
     }
-
-    public Collection<Parking> getParkingCollection() {
-        return parkingCollection;
-    }
-
-    public void setParkingCollection(Collection<Parking> parkingCollection) {
-        this.parkingCollection = parkingCollection;
-    }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
