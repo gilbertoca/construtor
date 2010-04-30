@@ -6,7 +6,7 @@ public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
     private String licensePlate;
     private String color;
-    private transient Customer customer;
+    private Customer customer;
     private PriceTable priceTable;
     private VehicleType vType;
 

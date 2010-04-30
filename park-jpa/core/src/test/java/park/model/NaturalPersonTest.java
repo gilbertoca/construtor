@@ -87,7 +87,7 @@ public class NaturalPersonTest {
     @Test
     public void getNaturalPersonById() {
         log.debug("\nGetting an Natural Person by ID.\n");
-        NaturalPerson nP = em.find(NaturalPerson.class, 1000);
+        NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
         log.debug("Object loaded: \n" + nP);
         assertNotNull(nP.getName());
     }

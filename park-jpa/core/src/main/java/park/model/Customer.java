@@ -5,24 +5,24 @@ import java.util.Collection;
 
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Long personId;
+    private Long id; //references PERSON.ID
     private Integer paymentDay;
     private Collection<Vehicle> vehicles;
-    private Person person;
+    private Person person; //references PERSON.ID
 
     public Customer() {
     }
 
     public Customer(Long id) {
-        this.personId = id;
+        this.id = id;
     }
 
     public Long getId() {
-        return personId;
+        return id;
     }
 
     public void setId(Long id) {
-        this.personId = id;
+        this.id = id;
     }
 
     public Integer getPaymentDay() {
@@ -52,7 +52,7 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (personId != null ? personId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -63,7 +63,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.personId == null && other.personId != null) || (this.personId != null && !this.personId.equals(other.personId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -71,7 +71,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Customer[id=" + personId + "]";
+        return "park.model.Customer[id=" + id + "]";
     }
 
 }

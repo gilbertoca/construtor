@@ -86,7 +86,7 @@ public class LegalEntityTest {
     @Test
     public void GetLegalEntityById() {
         log.debug("\nGetting an Legal Person by ID.\n");
-        LegalEntity lP = em.find(LegalEntity.class, 1002);
+        LegalEntity lP = em.find(LegalEntity.class, 1002L);
         log.debug("Object loaded: \n" + lP);
         assertNotNull(lP.getName());
     }
