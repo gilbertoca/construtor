@@ -117,7 +117,7 @@
             <basic name="paymentDay">
                 <column name="payment_day"/>
             </basic>
-            <one-to-many name="vehicles" target-entity="park.model.Vehicle" mapped-by="customer">
+            <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer">
             </one-to-many>
             <!--one-to-one name="person" id="true" fetch="EAGER" target-entity="park.model.Person">
                 <join-column name="person_id" />

@@ -91,7 +91,7 @@ public class CustomerTest {
         log.debug("\nGetting an Natural Person by ID.\n");
         Customer c = em.find(Customer.class, 1000);
         log.debug("Object loaded: \n" + c);
-        assertNotNull(c.getPerson().getName());
+        assertNotNull(c.getPerson());
     }
 
     @Test
