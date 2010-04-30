@@ -259,7 +259,7 @@
         <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>1.2.129</jdbc.version>
+        <jdbc.version>1.2.131</jdbc.version>
         <jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
         <jdbc.username>park</jdbc.username>
