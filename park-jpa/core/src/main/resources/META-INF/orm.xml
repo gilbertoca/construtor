@@ -108,7 +108,7 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="Customer.deleteById">
-            <query>DELETE FROM Customer l WHERE l.id = :id</query>
+            <query>DELETE FROM Customer l WHERE l.personId = :personId</query>
         </named-query>
         <attributes>
             <id name="personId">
@@ -119,8 +119,12 @@
             </basic>
             <one-to-many name="vehicles" target-entity="park.model.Vehicle" mapped-by="customer">
             </one-to-many>
-            <one-to-one name="person" maps-id="true"/>
-
+            <!--one-to-one name="person" id="true" fetch="EAGER" target-entity="park.model.Person">
+                <join-column name="person_id" />
+                <cascade>
+                    <cascade-all />
+                </cascade>
+            </one-to-one-->
         </attributes>
     </entity>
 
