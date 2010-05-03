@@ -10,44 +10,16 @@ public class Customer implements Serializable {
     private Collection<Vehicle> vehicles;
     private Person person; //references PERSON.ID
 
-    public Customer() {
-    }
-
-    public Customer(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getPaymentDay() {
-        return paymentDay;
-    }
-
-    public void setPaymentDay(Integer paymentDay) {
-        this.paymentDay = paymentDay;
-    }
-
-    public Collection<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(Collection<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+    public Customer() { }
+    public Customer(Long id) {this.id = id;}
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public Integer getPaymentDay() {return paymentDay;}
+    public void setPaymentDay(Integer paymentDay) {this.paymentDay = paymentDay;}
+    public Collection<Vehicle> getVehicles() {return vehicles;}
+    public void setVehicles(Collection<Vehicle> vehicles) {this.vehicles = vehicles;}
+    public Person getPerson() { return person;}
+    public void setPerson(Person person) {this.person = person;}
 
     @Override
     public int hashCode() {

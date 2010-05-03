@@ -98,21 +98,20 @@ public class VehicleTest {
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("FIND_ALL");
+        Query query = em.createNamedQuery("Vehicle.findAll");
         assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
         Vehicle v = new Vehicle();
-        //v.setLicensePlate("LC103");
-        //v.setColor("vermelho");
-        //relationships
+        v.setLicensePlate("LC103");
+        v.setColor("vermelho");
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
-        CustomerTest c = em.find(CustomerTest.class, 1000);
+        Customer c = em.find(Customer.class, 1000);
         //set relationships
-        //v.setCustomer(c);
-        //v.setPriceTable(pT);
-        //v.setV_TYPE(vT);
+        v.setCustomer(c);
+        v.setPriceTable(pT);
+        v.setVtype(vT);
         
         tx.begin();
         em.persist(v);

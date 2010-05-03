@@ -105,7 +105,9 @@ public class CustomerTest {
         //Customer c = new Customer(1002, 3);
         Customer c = new Customer();
         LegalEntity lP = em.find(LegalEntity.class, 1002);
-        c.setPerson(lP);
+        log.debug("Foreign Ket Object loaded: \n" + lP);
+        c.setPerson(lP); //Setting the class attribute will need manual set of customer.id?
+        //c.setId(lP.getId());
         c.setPaymentDay(3);
         tx.begin();
         em.persist(c);

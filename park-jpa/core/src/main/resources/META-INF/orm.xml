@@ -117,14 +117,11 @@
             <basic name="paymentDay">
                 <column name="payment_day"/>
             </basic>
-            <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer">
-            </one-to-many>
-            <!--one-to-one name="person" id="true" fetch="EAGER" target-entity="park.model.Person">
-                <join-column name="person_id" />
-                <cascade>
-                    <cascade-all />
-                </cascade>
-            </one-to-one-->
+            <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
+            <one-to-one name="person" target-entity="Person" maps-id="">
+                <join-column name="person_id" referenced-column-name="id" />
+            </one-to-one>
+
         </attributes>
     </entity>
 
