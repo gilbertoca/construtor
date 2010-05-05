@@ -11,12 +11,6 @@ public class NaturalPerson extends Person implements Serializable {
     public NaturalPerson() {
     }
 
-    public NaturalPerson(Person person, Date dtBirth, String legalDocument) {
-        super(person.getName(), person.getAddress());
-        this.dtBirth = dtBirth;
-        this.legalDocument = legalDocument;
-    }
-
     public NaturalPerson(String address, String name, Date dtBirth, String legalDocument) {
         super(address, name);
         this.dtBirth = dtBirth;

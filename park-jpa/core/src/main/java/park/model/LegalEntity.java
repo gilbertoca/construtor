@@ -11,8 +11,8 @@ public class LegalEntity extends Person implements Serializable {
     public LegalEntity() {
     }
 
-    public LegalEntity(Person person, String taxpayersId, Date dtFoundation) {
-        super(person.getName(), person.getAddress());
+    public LegalEntity(String address, String name, String taxpayersId, Date dtFoundation) {
+        super(name, address);
         this.taxpayersId = taxpayersId;
         this.dtFoundation = dtFoundation;
     }

@@ -121,7 +121,6 @@
             <one-to-one name="person" target-entity="Person" maps-id="">
                 <join-column name="person_id" referenced-column-name="id" />
             </one-to-one>
-
         </attributes>
     </entity>
 
@@ -159,10 +158,10 @@
     <entity class="VehicleType">
         <!--
             CREATE TABLE VEHICLE_TYPE (
-                            V_TYPE VARCHAR(20) NOT NULL,
-                            MANUFACTURER VARCHAR(50),
-                            MODEL VARCHAR(20),
-                            CONSTRAINT VEHICLE_TYPE_PK PRIMARY KEY (V_TYPE)
+                V_TYPE VARCHAR(20) NOT NULL,
+                MANUFACTURER VARCHAR(50),
+                MODEL VARCHAR(20),
+                CONSTRAINT VEHICLE_TYPE_PK PRIMARY KEY (V_TYPE)
             );
         -->
         <table name="vehicle_type"/>
@@ -189,12 +188,12 @@
     <entity class="Vehicle">
         <!--
         CREATE TABLE VEHICLE (
-                        LICENSE_PLATE VARCHAR(20) NOT NULL,
-                        V_TYPE VARCHAR(20) NOT NULL,
-                        CUSTOMER_ID INTEGER NOT NULL,
-                        PRICE_TABLE_ID INTEGER NOT NULL,
-                        COLOR VARCHAR(20),
-                        CONSTRAINT VEHICLE_PK PRIMARY KEY (LICENSE_PLATE)
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                V_TYPE VARCHAR(20) NOT NULL,
+                CUSTOMER_ID INTEGER NOT NULL,
+                PRICE_TABLE_ID INTEGER NOT NULL,
+                COLOR VARCHAR(20),
+                CONSTRAINT VEHICLE_PK PRIMARY KEY (LICENSE_PLATE)
         );
         -->
         <table name="vehicle"/>
