@@ -87,7 +87,7 @@ public class EmployeeTest {
     @Test
     public void GetEmployeeById() {
         log.debug("\nGetting an Employee by ID.\n");
-        Employee c = em.find(Employee.class, 1000L);
+        Employee c = em.find(Employee.class, 1004L);
         log.debug("Object loaded: \n" + c);
         assertNotNull(c.getNaturalPerson());
     }
@@ -97,17 +97,17 @@ public class EmployeeTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Employee.findAll");
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
 
         // Creates a new object and persists it
         //Employee c = new Employee(1002, 3);
         Employee c = new Employee();
-        NaturalPerson nP = em.find(NaturalPerson.class, 1002L);
+        NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         log.debug("Foreign Key Object loaded: \n" + nP);
         c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
         //c.setId(lP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
-        Parking p = em.find(Parking.class, 1002L);
+        Parking p = em.find(Parking.class, 1001L);
         log.debug("Foreign Key Object loaded: \n" + p);
 
         c.setParking(p);
@@ -116,7 +116,7 @@ public class EmployeeTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 employees", query.getResultList().size(), 3);
+        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
 
         // Removes the object from the database
         tx.begin();
@@ -124,6 +124,6 @@ public class EmployeeTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
     }
 }

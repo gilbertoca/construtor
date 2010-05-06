@@ -82,38 +82,44 @@ public class StayTest {
     }
 
     /**
-     * Test of getNaturalPerson method, of class NaturalPerson.
+     * Test of getStay method, of class Stay.
      */
     @Test
-    public void getNaturalPersonById() {
-        log.debug("\nGetting an Natural Person by ID.\n");
-        NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
-        log.debug("Object loaded: \n" + nP);
-        assertNotNull(nP.getName());
+    public void getStayById() {
+        log.debug("\nGetting an Stay by ID.\n");
+        Stay s = em.find(Stay.class, 100L);
+        log.debug("Object loaded: \n" + s);
+        assertNotNull(s.getStatus());
     }
 
     @Test
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("NaturalPerson.findAll");
-        assertEquals("Should have 2 natural persons", query.getResultList().size(), 2);
+        Query query = em.createNamedQuery("Stay.findAll");
+        assertEquals("Should have 2 stays", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
-        NaturalPerson nP = new NaturalPerson("NATURAL_PERSON1005", "ADDRESS1005", new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"), "LEGAL_DOCUMENT1005");
+        Stay s = new Stay();
+        s.setDtEntrance(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/2010"));
+        s.setHrEntrance(new SimpleDateFormat("hh:mm:ss").parse("10:00:02"));
+        Employee employee = em.find(Employee.class, 1004L);
+        s.setEmployeeEntrance(employee);
+        s.setParking(employee.getParking());
+        s.setVehicle(em.find(Vehicle.class, "LC102"));
         tx.begin();
-        em.persist(nP);
+        em.persist(s);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 natural persons", query.getResultList().size(), 3);
+        assertEquals("Should have 3 stays", query.getResultList().size(), 3);
 
         // Removes the object from the database
         tx.begin();
-        em.remove(nP);
+        em.remove(s);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 natural persons", query.getResultList().size(), 2);
+        assertEquals("Should have 2 stays", query.getResultList().size(), 2);
     }
 }

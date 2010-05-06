@@ -21,24 +21,14 @@ public class Stay implements Serializable {
      * O - Outgoing;
      * C - Cancelled.
      */
-    private StayStatus status;
-    private Double price;
+    private StayStatus status = StayStatus.ENTRANCE;
+    private Double totalPrice;
     private Employee employeeEntrance;
     private Employee employeeOutgoing;
     private Parking parking;
     private Vehicle vehicle;
 
     public Stay() {
-    }
-
-    public Stay(Integer id) {
-        this.id = id;
-    }
-
-    public Stay(Integer id, Date dtEntrance, Date hrEntrance) {
-        this.id = id;
-        this.dtEntrance = dtEntrance;
-        this.hrEntrance = hrEntrance;
     }
 
     public Integer getId() {
@@ -88,13 +78,15 @@ public class Stay implements Serializable {
     public void setStatus(StayStatus status) {
         this.status = status;
     }
-
-    public Double getPrice() {
-        return price;
+    public Double calcTotal(){
+        return null;
+    }
+    public Double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Employee getEmployeeEntrance() {

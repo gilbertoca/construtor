@@ -91,7 +91,7 @@ public class ParkingTest {
         log.debug("\nGetting an Parking by ID.\n");
         Parking v = em.find(Parking.class, 1000L);
         log.debug("Object loaded: \n" + v);
-        assertEquals(v.getAddress(), "");
+        assertEquals(v.getAddress(), "RUA DAS FLORES");
     }
 
     @Test
@@ -99,7 +99,7 @@ public class ParkingTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Parking.findAll");
-        assertEquals("Should have 3 Parking", query.getResultList().size(), 3);
+        assertEquals("Should have 2 Parking", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
         Parking v = new Parking();
@@ -111,7 +111,7 @@ public class ParkingTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 4 Parking", query.getResultList().size(), 4);
+        assertEquals("Should have 3 Parking", query.getResultList().size(), 3);
 
         // Removes the object from the database
         tx.begin();
@@ -119,6 +119,6 @@ public class ParkingTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 Parking", query.getResultList().size(), 3);
+        assertEquals("Should have 2 Parking", query.getResultList().size(), 2);
     }
 }

@@ -53,7 +53,7 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="NaturalPerson.deleteById">
-            <query>DELETE FROM NaturalPerson n WHERE n.id = :personID</query>
+            <query>DELETE FROM NaturalPerson n WHERE n.id = :id</query>
         </named-query>
         <attributes>
             <basic name="dtBirth">
@@ -82,7 +82,7 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="LegalEntity.deleteById">
-            <query>DELETE FROM LegalEntity l WHERE l.id = :personID</query>
+            <query>DELETE FROM LegalEntity l WHERE l.id = :id</query>
         </named-query>
         <attributes>
             <basic name="dtFoundation">
@@ -148,10 +148,13 @@
                 <column name="dt_admission"/>
                 <temporal>DATE</temporal>
             </basic>
+            <many-to-one name="parking">
+                <join-column name="parking_id" referenced-column-name="id"/>
+            </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
             <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="">
-                <join-column name="person_id" referenced-column-name="id" />
+                <join-column name="person_id" referenced-column-name="person_id" />
             </one-to-one>
         </attributes>
     </entity>
@@ -302,7 +305,7 @@
                 EMPLOYEE_ID_OUTGOING INTEGER NOT NULL,
                 LICENSE_PLATE VARCHAR(20) NOT NULL,
                 STATUS CHAR(1),
-                PRICE NUMERIC(12,2),
+                TOTAL_PRICE NUMERIC(12,2),
                 CONSTRAINT STAY_PK PRIMARY KEY (ID)
             );
         -->
@@ -337,11 +340,11 @@
                 <temporal>TIME</temporal>
             </basic>
             <basic name="status">
-                <column name="status" column-definition="CHAR(2)" length="2"/>
+                <column name="status"/>
                 <enumerated>STRING</enumerated>
             </basic>
-            <basic name="price">
-                <column name="price" column-definition="NUMERIC(12,2)"/>
+            <basic name="totalPrice">
+                <column name="total_price" column-definition="NUMERIC(12,2)"/>
             </basic>
             <many-to-one name="employeeEntrance">
                 <join-column name="employee_id_entrance" referenced-column-name="person_id"/>

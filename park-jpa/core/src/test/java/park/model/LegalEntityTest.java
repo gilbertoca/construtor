@@ -96,7 +96,7 @@ public class LegalEntityTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("LegalEntity.findAll");
-        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
+        assertEquals("Should have 2 LegalEntity", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
         LegalEntity lP = new LegalEntity("LegalEntity", "address", new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"), "TAXPAYERS100");
@@ -105,7 +105,7 @@ public class LegalEntityTest {
         tx.commit();
                 
         // Gets all the objects from the database
-        assertEquals("Should have 4 LegalEntity", query.getResultList().size(), 4);
+        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
 
         // Removes the object from the database
         tx.begin();
@@ -113,6 +113,6 @@ public class LegalEntityTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
+        assertEquals("Should have 2 LegalEntity", query.getResultList().size(), 2);
     }
 }
