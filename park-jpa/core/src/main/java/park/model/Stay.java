@@ -21,7 +21,7 @@ public class Stay implements Serializable {
      * O - Outgoing;
      * C - Cancelled.
      */
-    private char status;
+    private StayStatus status;
     private Double price;
     private Employee employeeEntrance;
     private Employee employeeOutgoing;
@@ -81,11 +81,11 @@ public class Stay implements Serializable {
         this.hrOutgoing = hrOutgoing;
     }
 
-    public char getStatus() {
+    public StayStatus getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(StayStatus status) {
         this.status = status;
     }
 

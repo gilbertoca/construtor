@@ -1,6 +1,7 @@
 package park.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -9,6 +10,7 @@ public class Vehicle implements Serializable {
     private Customer customer;
     private PriceTable priceTable;
     private VehicleType vType;
+    private Collection<Stay> stays;
 
     public Vehicle() {
     }
@@ -55,6 +57,14 @@ public class Vehicle implements Serializable {
 
     public void setVtype(VehicleType vType) {
         this.vType = vType;
+    }
+
+    public Collection<Stay> getStays() {
+        return stays;
+    }
+
+    public void setStays(Collection<Stay> stays) {
+        this.stays = stays;
     }
 
     @Override

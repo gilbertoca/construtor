@@ -5,63 +5,62 @@ import java.util.Collection;
 
 public class Parking implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idParking;
-    private Integer parkingSpaces;
-    private LegalEntity idPerson;
-    private Collection<Stay> stayCollection;
-    private Collection<Employee> employeeCollection;
+    private Long id;
+    private String address;
+    private Integer parkingSpace;//meters
+    private Collection<Stay> stays;
+    private Collection<Employee> employees;
 
     public Parking() {
     }
 
-    public Parking(Integer idParking) {
-        this.idParking = idParking;
+    public Parking(Long id) {
+        this.id = id;
     }
 
-    public Integer getIdParking() {
-        return idParking;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdParking(Integer idParking) {
-        this.idParking = idParking;
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getAddress() {
+        return address;
     }
 
-    public Integer getParkingSpaces() {
-        return parkingSpaces;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setParkingSpaces(Integer parkingSpaces) {
-        this.parkingSpaces = parkingSpaces;
+    public Integer getParkingSpace() {
+        return parkingSpace;
     }
 
-    public LegalEntity getIdPerson() {
-        return idPerson;
+    public void setParkingSpace(Integer parkingSpace) {
+        this.parkingSpace = parkingSpace;
     }
 
-    public void setIdPerson(LegalEntity idPerson) {
-        this.idPerson = idPerson;
+    public Collection<Stay> getStays() {
+        return stays;
     }
 
-    public Collection<Stay> getStayCollection() {
-        return stayCollection;
+    public void setStays(Collection<Stay> stays) {
+        this.stays = stays;
     }
 
-    public void setStayCollection(Collection<Stay> stayCollection) {
-        this.stayCollection = stayCollection;
+    public Collection<Employee> getEmployees() {
+        return employees;
     }
 
-    public Collection<Employee> getEmployeeCollection() {
-        return employeeCollection;
-    }
-
-    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
-        this.employeeCollection = employeeCollection;
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idParking != null ? idParking.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -72,7 +71,7 @@ public class Parking implements Serializable {
             return false;
         }
         Parking other = (Parking) object;
-        if ((this.idParking == null && other.idParking != null) || (this.idParking != null && !this.idParking.equals(other.idParking))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -80,7 +79,7 @@ public class Parking implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Parking[idParking=" + idParking + "]";
+        return "park.model.Parking[id=" + id + "]";
     }
 
 }

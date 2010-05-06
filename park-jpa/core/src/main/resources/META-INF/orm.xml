@@ -155,6 +155,39 @@
             </one-to-one>
         </attributes>
     </entity>
+    <entity class="Parking">
+        <!--
+            CREATE TABLE PARKING (
+                ID INTEGER NOT NULL,
+                PARKING_SPACE INTEGER, //meters
+                ADDRESS VARCHAR(100),
+                CONSTRAINT PARKING_PK PRIMARY KEY (ID)
+            );
+        -->
+        <table name="parking"/>
+        <named-query name="Parking.findAll">
+            <query>SELECT l FROM Parking l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Parking.deleteById">
+            <query>DELETE FROM Parking l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="parkingSpace">
+                <column name="parking_space"/>
+            </basic>
+            <basic name="address">
+                <column length="100"/>
+            </basic>
+
+            <one-to-many name="stays" target-entity="Stay" mapped-by="parking"/>
+            <one-to-many name="employees" target-entity="Employee" mapped-by="parking"/>
+        </attributes>
+    </entity>
 
     <entity class="PriceTable">
         <!--
@@ -253,13 +286,7 @@
             <many-to-one name="vType">
                 <join-column name="v_type" referenced-column-name="v_type"/>
             </many-to-one>
-            <!-- one-to-many name="stays">
-                <order-by/>
-                <join-table name="stay">
-                    <join-column name="stay_id" referenced-column-name="id"/>
-                </join-table>
-            </one-to-many-->
-
+            <one-to-many name="stays" target-entity="Stay" mapped-by="vehicle"/>
         </attributes>
     </entity>
     <entity class="Stay">
@@ -301,31 +328,34 @@
                 <column name="dt_outgoing"/>
                 <temporal>DATE</temporal>
             </basic>
-            <basic name="dtAdmission">
-                <column name="dt_admission"/>
-                <temporal>DATE</temporal>
+            <basic name="hrEntrance">
+                <column name="hr_entrance"/>
+                <temporal>TIME</temporal>
             </basic>
-            <basic name="dtAdmission">
-                <column name="dt_admission"/>
-                <temporal>DATE</temporal>
+            <basic name="hrOutgoing">
+                <column name="hr_outgoing" />
+                <temporal>TIME</temporal>
             </basic>
+            <basic name="status">
+                <column name="status" column-definition="CHAR(2)" length="2"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="price">
+                <column name="price" column-definition="NUMERIC(12,2)"/>
+            </basic>
+            <many-to-one name="employeeEntrance">
+                <join-column name="employee_id_entrance" referenced-column-name="person_id"/>
+            </many-to-one>
+            <many-to-one name="employeeOutgoing">
+                <join-column name="employee_id_outgoing" referenced-column-name="person_id"/>
+            </many-to-one>
 
-            <many-to-one name="customer">
-                <join-column name="customer_id" referenced-column-name="person_id"/>
+            <many-to-one name="vehicle">
+                <join-column name="license_plate" referenced-column-name="license_plate"/>
             </many-to-one>
-            <many-to-one name="priceTable">
-                <join-column name="price_table_id" referenced-column-name="id"/>
+            <many-to-one name="parking">
+                <join-column name="parking_id" referenced-column-name="id"/>
             </many-to-one>
-            <many-to-one name="vType">
-                <join-column name="v_type" referenced-column-name="v_type"/>
-            </many-to-one>
-            <!-- one-to-many name="stays">
-                <order-by/>
-                <join-table name="stay">
-                    <join-column name="stay_id" referenced-column-name="id"/>
-                </join-table>
-            </one-to-many-->
-
         </attributes>
     </entity>
 

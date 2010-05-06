@@ -1,14 +1,17 @@
 package park.model;
 
 import java.sql.DriverManager;
+import static org.junit.Assert.assertEquals;
+
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Properties;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.DatabaseConfig;
@@ -22,10 +25,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-
-public class EmployeeTest {
+public class ParkingTest {
 
     protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
@@ -60,7 +61,8 @@ public class EmployeeTest {
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
-        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("employee-dataset.xml"));
+        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("parking-dataset.xml"));
+
     }
 
     @AfterClass
@@ -82,48 +84,41 @@ public class EmployeeTest {
     }
 
     /**
-     * Test of setVehicletype method, of class Vehicle.
+     * Test of setParking method, of class Parking.
      */
     @Test
-    public void GetEmployeeById() {
-        log.debug("\nGetting an Employee by ID.\n");
-        Employee c = em.find(Employee.class, 1000L);
-        log.debug("Object loaded: \n" + c);
-        assertNotNull(c.getNaturalPerson());
+    public void GetParkingById() {
+        log.debug("\nGetting an Parking by ID.\n");
+        Parking v = em.find(Parking.class, 1000L);
+        log.debug("Object loaded: \n" + v);
+        assertEquals(v.getAddress(), "");
     }
 
     @Test
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("Employee.findAll");
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        Query query = em.createNamedQuery("Parking.findAll");
+        assertEquals("Should have 3 Parking", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
-        //Employee c = new Employee(1002, 3);
-        Employee c = new Employee();
-        NaturalPerson nP = em.find(NaturalPerson.class, 1002L);
-        log.debug("Foreign Key Object loaded: \n" + nP);
-        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
-        //c.setId(lP.getId());
-        c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
-        Parking p = em.find(Parking.class, 1002L);
-        log.debug("Foreign Key Object loaded: \n" + p);
-
-        c.setParking(p);
+        Parking v = new Parking();
+        v.setAddress("Rua tal");
+        v.setParkingSpace(250);
+        
         tx.begin();
-        em.persist(c);
+        em.persist(v);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 employees", query.getResultList().size(), 3);
+        assertEquals("Should have 4 Parking", query.getResultList().size(), 4);
 
         // Removes the object from the database
         tx.begin();
-        em.remove(c);
+        em.remove(v);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 3 Parking", query.getResultList().size(), 3);
     }
 }
