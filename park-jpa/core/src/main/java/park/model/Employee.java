@@ -6,31 +6,31 @@ import java.util.Date;
 
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer idEmployee;
+    private Long id; //references NATURAL_PERSON.PERSON_ID
     private Date dtAdmission;
-    private Collection<Stay> stayCollection;
-    private Collection<Stay> stayCollection1;
-    private NaturalPerson idPerson;
-    private Parking idParking;
+    private Collection<Stay> staysOutgoing;
+    private Collection<Stay> staysEntrance;
+    private NaturalPerson naturalPerson;  //references NATURAL_PERSON.PERSON_ID
+    private Parking parking;
 
     public Employee() {
     }
 
-    public Employee(Integer idEmployee) {
-        this.idEmployee = idEmployee;
+    public Employee(Long id) {
+        this.id = id;
     }
 
-    public Employee(Integer idEmployee, Date dtAdmission) {
-        this.idEmployee = idEmployee;
+    public Employee(Long id, Date dtAdmission) {
+        this.id = id;
         this.dtAdmission = dtAdmission;
     }
 
-    public Integer getIdEmployee() {
-        return idEmployee;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdEmployee(Integer idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDtAdmission() {
@@ -41,42 +41,42 @@ public class Employee implements Serializable {
         this.dtAdmission = dtAdmission;
     }
 
-    public Collection<Stay> getStayCollection() {
-        return stayCollection;
+    public Collection<Stay> getStaysOutgoing() {
+        return staysOutgoing;
     }
 
-    public void setStayCollection(Collection<Stay> stayCollection) {
-        this.stayCollection = stayCollection;
+    public void setStaysOutgoing(Collection<Stay> staysOutgoing) {
+        this.staysOutgoing = staysOutgoing;
     }
 
-    public Collection<Stay> getStayCollection1() {
-        return stayCollection1;
+    public Collection<Stay> getStaysEntrance() {
+        return staysEntrance;
     }
 
-    public void setStayCollection1(Collection<Stay> stayCollection1) {
-        this.stayCollection1 = stayCollection1;
+    public void setStaysEntrance(Collection<Stay> staysEntrance) {
+        this.staysEntrance = staysEntrance;
     }
 
-    public NaturalPerson getIdPerson() {
-        return idPerson;
+    public NaturalPerson getNaturalPerson() {
+        return naturalPerson;
     }
 
-    public void setIdPerson(NaturalPerson idPerson) {
-        this.idPerson = idPerson;
+    public void setNaturalPerson(NaturalPerson naturalPerson) {
+        this.naturalPerson = naturalPerson;
     }
 
-    public Parking getIdParking() {
-        return idParking;
+    public Parking getParking() {
+        return parking;
     }
 
-    public void setIdParking(Parking idParking) {
-        this.idParking = idParking;
+    public void setParking(Parking parking) {
+        this.parking = parking;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEmployee != null ? idEmployee.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -87,7 +87,7 @@ public class Employee implements Serializable {
             return false;
         }
         Employee other = (Employee) object;
-        if ((this.idEmployee == null && other.idEmployee != null) || (this.idEmployee != null && !this.idEmployee.equals(other.idEmployee))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -95,7 +95,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.Employee[idEmployee=" + idEmployee + "]";
+        return "park.model.Employee[id=" + id + "]";
     }
 
 }

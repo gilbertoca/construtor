@@ -23,10 +23,10 @@ public class Stay implements Serializable {
      */
     private char status;
     private Double price;
-    private Employee idEmployeeEntrance;
-    private Employee idEmployeeOutgoing;
-    private Parking idParking;
-    private Vehicle licensePlate;
+    private Employee employeeEntrance;
+    private Employee employeeOutgoing;
+    private Parking parking;
+    private Vehicle vehicle;
 
     public Stay() {
     }
@@ -97,36 +97,36 @@ public class Stay implements Serializable {
         this.price = price;
     }
 
-    public Employee getIdEmployeeEntrance() {
-        return idEmployeeEntrance;
+    public Employee getEmployeeEntrance() {
+        return employeeEntrance;
     }
 
-    public void setIdEmployeeEntrance(Employee idEmployeeEntrance) {
-        this.idEmployeeEntrance = idEmployeeEntrance;
+    public void setEmployeeEntrance(Employee employeeEntrance) {
+        this.employeeEntrance = employeeEntrance;
     }
 
-    public Employee getIdEmployeeOutgoing() {
-        return idEmployeeOutgoing;
+    public Employee getEmployeeOutgoing() {
+        return employeeOutgoing;
     }
 
-    public void setIdEmployeeOutgoing(Employee idEmployeeOutgoing) {
-        this.idEmployeeOutgoing = idEmployeeOutgoing;
+    public void setEmployeeOutgoing(Employee employeeOutgoing) {
+        this.employeeOutgoing = employeeOutgoing;
     }
 
-    public Parking getIdParking() {
-        return idParking;
+    public Parking getParking() {
+        return parking;
     }
 
-    public void setIdParking(Parking idParking) {
-        this.idParking = idParking;
+    public void setParking(Parking parking) {
+        this.parking = parking;
     }
 
-    public Vehicle getLicensePlate() {
-        return licensePlate;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setLicensePlate(Vehicle licensePlate) {
-        this.licensePlate = licensePlate;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override

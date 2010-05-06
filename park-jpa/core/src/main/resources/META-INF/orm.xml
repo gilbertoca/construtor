@@ -123,6 +123,38 @@
             </one-to-one>
         </attributes>
     </entity>
+    <entity class="Employee">
+        <!--
+            CREATE TABLE EMPLOYEE (
+                PERSON_ID INTEGER NOT NULL,
+                DT_ADMISSION DATE NOT NULL,
+                PARKING_ID INTEGER NOT NULL,
+                CONSTRAINT EMPLOYEE_PK PRIMARY KEY (PERSON_ID)
+            );
+        -->
+        <table name="employee"/>
+        <named-query name="Employee.findAll">
+            <query>SELECT l FROM Employee l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Employee.deleteById">
+            <query>DELETE FROM Employee l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="person_id"/>
+            </id>
+            <basic name="dtAdmission">
+                <column name="dt_admission"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
+            <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="">
+                <join-column name="person_id" referenced-column-name="id" />
+            </one-to-one>
+        </attributes>
+    </entity>
 
     <entity class="PriceTable">
         <!--
@@ -212,6 +244,72 @@
             <basic name="color">
                 <column name="color" length="20"/>
             </basic>
+            <many-to-one name="customer">
+                <join-column name="customer_id" referenced-column-name="person_id"/>
+            </many-to-one>
+            <many-to-one name="priceTable">
+                <join-column name="price_table_id" referenced-column-name="id"/>
+            </many-to-one>
+            <many-to-one name="vType">
+                <join-column name="v_type" referenced-column-name="v_type"/>
+            </many-to-one>
+            <!-- one-to-many name="stays">
+                <order-by/>
+                <join-table name="stay">
+                    <join-column name="stay_id" referenced-column-name="id"/>
+                </join-table>
+            </one-to-many-->
+
+        </attributes>
+    </entity>
+    <entity class="Stay">
+        <!--
+            CREATE TABLE STAY (
+                ID INTEGER NOT NULL,
+                PARKING_ID INTEGER NOT NULL,
+                DT_ENTRANCE DATE NOT NULL,
+                DT_OUTGOING DATE,
+                HR_ENTRANCE TIME NOT NULL,
+                HR_OUTGOING TIME,
+                EMPLOYEE_ID_ENTRANCE INTEGER NOT NULL,
+                EMPLOYEE_ID_OUTGOING INTEGER NOT NULL,
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                STATUS CHAR(1),
+                PRICE NUMERIC(12,2),
+                CONSTRAINT STAY_PK PRIMARY KEY (ID)
+            );
+        -->
+        <table name="stay"/>
+        <named-query name="Stay.findAll">
+            <query>SELECT l FROM Stay l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Stay.deleteById">
+            <query>DELETE FROM Stay l WHERE l.id = :id</query>
+        </named-query>
+
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="AUTO"/>
+            </id>
+            <basic name="dtEntrance">
+                <column name="dt_entrance"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="dtOutgoing">
+                <column name="dt_outgoing"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="dtAdmission">
+                <column name="dt_admission"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="dtAdmission">
+                <column name="dt_admission"/>
+                <temporal>DATE</temporal>
+            </basic>
+
             <many-to-one name="customer">
                 <join-column name="customer_id" referenced-column-name="person_id"/>
             </many-to-one>
