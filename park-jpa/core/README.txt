@@ -5,7 +5,7 @@ Let's go:
 
 1-edit the following park-jpa/pom.xml properties(the actual value is mine) if you want to change the H2 server type:
 
-<jdbc.url>jdbc:h2:parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
+<jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
 
 2-first create the database schema(just tested with H2 and PostgreSQL), invoke 'mvn -PinitSchema compile':
 
