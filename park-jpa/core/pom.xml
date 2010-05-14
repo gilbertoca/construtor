@@ -84,7 +84,34 @@
 
         </profile>
         <profile>
+            <id>eclipselink</id>
+            <properties>
+                <jpa.groupId>org.eclipse.persistence</jpa.groupId>
+                <jpa.artifactId>eclipselink</jpa.artifactId>
+                <jpa.version>2.0.2</jpa.version>
+                <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
+                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
+                <jpa.url>javax.persistence.jdbc.url</jpa.url>
+                <jpa.username>javax.persistence.jdbc.user</jpa.username>
+                <jpa.password>javax.persistence.jdbc.password</jpa.password>
+                <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
+                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
+                <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
+                <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
+                <jpa.logging>eclipselink.logging.level</jpa.logging>
+                <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
+                <jpa.logging_value>FINE</jpa.logging_value>
+                <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
+                <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
+
+            </properties>
+
+        </profile>
+        <profile>
             <id>openjpa</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
@@ -97,9 +124,8 @@
                 <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
                 <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
-                <!--jpa.ddl_value>buildSchema(SchemaAction='add,deleteTableContents')</jpa.ddl_value-->
+                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
+                <jpa.ddl_value>buildSchema(SchemaAction='refresh')</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
@@ -136,41 +162,41 @@
             </properties>
             <build>
                 <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.3</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>${jdbc.groupId}</groupId>
-                            <artifactId>${jdbc.artifactId}</artifactId>
-                            <version>${jdbc.version}</version>
-                        </dependency>
-                    </dependencies>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>sql-maven-plugin</artifactId>
+                        <version>1.3</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>${jdbc.groupId}</groupId>
+                                <artifactId>${jdbc.artifactId}</artifactId>
+                                <version>${jdbc.version}</version>
+                            </dependency>
+                        </dependencies>
 
-                    <configuration>
-                        <driver>${jdbc.driverClassName}</driver>
-                        <username>${jdbc.username}</username>
-                        <password>${jdbc.password}</password>
-                        <url>${jdbc.url}</url>
-                        <skip>${maven.test.skip}</skip>
-                        <onError>continue</onError>
-                        <autocommit>true</autocommit>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>create-schema</id>
-                            <phase>process-resources</phase>
-                            <goals>
-                                <goal>execute</goal>
-                            </goals>
-                            <configuration>
-                                <srcFiles>
-                                    <srcFile>
-                                        src/test/resources/sql/park.usr.sql
-                                    </srcFile>
-                                </srcFiles>
-                            </configuration>
+                        <configuration>
+                            <driver>${jdbc.driverClassName}</driver>
+                            <username>${jdbc.username}</username>
+                            <password>${jdbc.password}</password>
+                            <url>${jdbc.url}</url>
+                            <skip>${maven.test.skip}</skip>
+                            <onError>continue</onError>
+                            <autocommit>true</autocommit>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-schema</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <srcFiles>
+                                        <srcFile>
+                                            src/test/resources/sql/park.usr.sql
+                                        </srcFile>
+                                    </srcFiles>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -178,26 +204,6 @@
             </build>
         </profile>
     </profiles>
-
-    <properties>
-        <jpa.groupId>org.eclipse.persistence</jpa.groupId>
-        <jpa.artifactId>eclipselink</jpa.artifactId>
-        <jpa.version>2.0.2</jpa.version>
-        <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
-        <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
-        <jpa.url>javax.persistence.jdbc.url</jpa.url>
-        <jpa.username>javax.persistence.jdbc.user</jpa.username>
-        <jpa.password>javax.persistence.jdbc.password</jpa.password>
-        <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
-                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
-        <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-        <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
-        <jpa.logging>eclipselink.logging.level</jpa.logging>
-        <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-        <jpa.logging_value>FINE</jpa.logging_value>
-        <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
-        <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
-    </properties>
 
 </project>
 

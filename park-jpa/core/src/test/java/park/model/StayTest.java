@@ -87,7 +87,7 @@ public class StayTest {
     @Test
     public void getStayById() {
         log.debug("\nGetting an Stay by ID.\n");
-        Stay s = em.find(Stay.class, 100L);
+        Stay s = em.find(Stay.class, 100);
         log.debug("Object loaded: \n" + s);
         assertNotNull(s.getStatus());
     }

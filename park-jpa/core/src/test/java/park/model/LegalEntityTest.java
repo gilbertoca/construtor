@@ -107,9 +107,23 @@ public class LegalEntityTest {
         // Gets all the objects from the database
         assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
 
+        // Creates a new one object with default constructor and persists it
+        LegalEntity lP2 = new LegalEntity();
+        lP2.setName("LegalEntity2");
+        lP2.setAddress("address2");
+        lP2.setDtFoundation(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
+        lP2.setTaxpayersId("TAXPAYERS1002");
+        tx.begin();
+        em.persist(lP2);
+        tx.commit();
+
+        // Gets all the objects from the database
+        assertEquals("Should have 4 LegalEntity", query.getResultList().size(), 4);
+
         // Removes the object from the database
         tx.begin();
         em.remove(lP);
+        em.remove(lP2);
         tx.commit();
 
         // Gets all the objects from the database
