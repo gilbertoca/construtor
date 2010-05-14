@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 public class JpaHelper {
 
     private static final ThreadLocal<EntityManager> THREAD_LOCAL = new ThreadLocal<EntityManager>();
-    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("transactions-optional");
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("parkPU");
 
     private JpaHelper() {
     }
