@@ -3,6 +3,7 @@ package park.model;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -89,6 +90,16 @@ public class LegalEntityTest {
         LegalEntity lP = em.find(LegalEntity.class, 1002L);
         log.debug("Object loaded: \n" + lP);
         assertNotNull(lP.getName());
+    }
+    @Test
+    public void GetLegalEntityByName() {
+        log.debug("\nGetting an Legal Entity by name.\n");
+        // Gets all the objects from the database
+        Query query = em.createNamedQuery("LegalEntity.findByName");
+        query.setParameter("name", "%1002%");
+        List list = query.getResultList();
+        log.debug("Object loaded: \n" + list);
+        assertEquals("Should have 1 LegalEntity", list.size(), 1);
     }
 
     @Test
