@@ -8,10 +8,10 @@ public class LegalEntityPageTest extends BaseClickTestCase {
         container.start();
 
         // Simulate a user requesting the page, HomePage.   
-        LegalEntityPage page = (LegalEntityPage) container.testPage(LegalEntityPage.class);
+        ViewLegalEntity page = (ViewLegalEntity) container.testPage(ViewLegalEntity.class);
 
         // Assert that HomePage presents the title field.  
-        Assert.assertTrue(page.msg.equals("Home"));
+        Assert.assertTrue(page.table.getName().equals("table"));
 
         container.stop();
     }

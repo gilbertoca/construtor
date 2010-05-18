@@ -6,7 +6,7 @@
         <artifactId>park</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
     <artifactId>park-webapp</artifactId>
     <packaging>war</packaging>
     <name>Parking Control - Web (Click)</name>
@@ -19,7 +19,17 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>7.0.1.v20091125</version>
                 <configuration>
-                     <reload>manual</reload>
+                    <reload>manual</reload>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>maven-h2-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <dbName>../parkDB</dbName>
+                    <mode>server</mode>
+                    <!-- h2 custom settings -->
                 </configuration>
             </plugin>
         </plugins>
