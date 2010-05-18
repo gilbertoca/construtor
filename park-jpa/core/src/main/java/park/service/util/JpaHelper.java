@@ -1,5 +1,6 @@
 package park.service.util;
 
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,5 +35,36 @@ public class JpaHelper {
 
     public static void setEntityManager(EntityManager em) {
         THREAD_LOCAL.set(em);
+    }
+
+    public static void create(Serializable obj) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist((Object) obj);
+        em.getTransaction().commit();
+    }
+
+    public static Object retrieve(Class clz, Serializable key) {
+        return getEntityManager().find(clz, (Object) key);
+    }
+
+    public static Object update(Serializable obj) {
+        Serializable objReturn;
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            objReturn = (Serializable) em.merge((Object) obj);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return objReturn;
+    }
+
+    public static void delete(Serializable obj) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove((Object) obj);
+        em.getTransaction().commit();
     }
 }
