@@ -124,8 +124,8 @@
                 <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
                 <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
-                <jpa.ddl_value>buildSchema(SchemaAction='refresh')</jpa.ddl_value>
+                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
+                <!--jpa.ddl_value>buildSchema(SchemaAction='refresh')</jpa.ddl_value-->
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>

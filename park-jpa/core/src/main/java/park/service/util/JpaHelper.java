@@ -1,9 +1,12 @@
 package park.service.util;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import park.model.LegalEntity;
 
 /**
  *
@@ -67,4 +70,20 @@ public class JpaHelper {
         em.remove((Object) obj);
         em.getTransaction().commit();
     }
+    public static void delete(String namedQuery, String parameter, Object value) {
+        EntityManager em = getEntityManager();
+        Query query = em.createNamedQuery(namedQuery);
+        query.setParameter(parameter, value);
+        em.getTransaction().begin();
+        query.executeUpdate();
+        em.getTransaction().commit();
+
+    }
+    public static List namedQuery(String namedQuery, String parameter, Object value) {
+        EntityManager em = getEntityManager();
+        Query query = em.createNamedQuery(namedQuery);
+        query.setParameter(parameter, value);
+        return query.getResultList();
+    }
+
 }
