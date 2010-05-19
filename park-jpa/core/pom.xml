@@ -97,7 +97,8 @@
                 <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
+                <jpa.ddl_value>none</jpa.ddl_value>
+                <!--jpa.ddl_value>drop-and-create-tables</jpa.ddl_value-->
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
                 <jpa.logging_value>FINE</jpa.logging_value>
@@ -124,8 +125,8 @@
                 <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
                 <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='refresh')</jpa.ddl_value-->
+                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
+                <jpa.ddl_value>buildSchema(SchemaAction='refresh')</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
