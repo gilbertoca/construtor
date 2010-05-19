@@ -18,6 +18,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -76,7 +77,12 @@ public class NaturalPersonTest {
     }
 
     @Before
-    public void cleanDB() throws Exception {
+    public void cleanBeforeDB() throws Exception {
+        // Cleans the database with DbUnit
+        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+    }
+    @After
+    public void cleanAfterDB() throws Exception {
         // Cleans the database with DbUnit
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
