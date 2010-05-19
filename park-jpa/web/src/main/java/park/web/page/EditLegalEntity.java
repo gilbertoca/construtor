@@ -106,14 +106,12 @@ public class EditLegalEntity extends BorderPage {
         }
     }
 
-    public boolean onCancelClick() {
-        System.out.println("\n         Cancelled           \n");
-        form.clearValues();
+ public boolean onCancelClick() {
         String referrer = referrerField.getValue();
         if (referrer != null) {
             setRedirect(referrer);
         } else {
-            setRedirect(ViewLegalEntity.class);
+            setRedirect(NaturalPersonPage.class);
         }
         return true;
     }
