@@ -215,22 +215,33 @@
                 <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
                 <jdbc.groupId>postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
-                <jdbc.version>8.3-603.jdbc3</jdbc.version>
-                <jdbc.url>jdbc:postgresql://10.121.0.9:5433/bcoproducao</jdbc.url>
+                <jdbc.version>8.4-701.jdbc3</jdbc.version>
+                <jdbc.url>jdbc:postgresql://127.0.0.1:5432/parkDB</jdbc.url>
                 <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
                 <jdbc.username>park</jdbc.username>
                 <jdbc.password>park</jdbc.password>
             </properties>
         </profile>
-        <!-- ================= Container Profiles ================= -->
         <profile>
-            <id>jboss</id>
+            <id>h2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
-                <cargo.container>jboss4x</cargo.container>
-                <cargo.container.home>${env.JBOSS_HOME}</cargo.container.home>
-                <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-4.0.5.GA.zip</cargo.container.url>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
+
+                <!-- Default Database Connection-->
+                <jdbc.groupId>com.h2database</jdbc.groupId>
+                <jdbc.artifactId>h2</jdbc.artifactId>
+                <jdbc.version>1.2.131</jdbc.version>
+                <jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
+                <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+                <jdbc.username>park</jdbc.username>
+                <jdbc.password>park</jdbc.password>
             </properties>
         </profile>
+
     </profiles>
 
     <properties>
@@ -250,20 +261,6 @@
         <SLF4Jbinding.artifact>slf4j-log4j12</SLF4Jbinding.artifact>
         <SLF4Jbinding.version>1.5.2</SLF4Jbinding.version>
         <slf4j.version>1.5.2</slf4j.version>
-        <servlet.version>2.4</servlet.version>
-
-        <!-- Database settings -->
-        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
-        <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
-
-        <!-- Default Database Connection-->
-        <jdbc.groupId>com.h2database</jdbc.groupId>
-        <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>1.2.131</jdbc.version>
-        <jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
-        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <jdbc.username>park</jdbc.username>
-        <jdbc.password>park</jdbc.password>
 
     </properties>
 </project>
