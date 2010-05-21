@@ -124,13 +124,13 @@
                 <jpa.password>openjpa.ConnectionPassword</jpa.password>
                 <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
                 <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
-                <!-- This one is necessary -->
-                <jpa.ddl>openjpa.jdbc.SchemaFactory</jpa.ddl>
-                <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value>
+                <!-- This one is necessary (versrion 1.3)-->
+                <!--jpa.ddl>openjpa.jdbc.SchemaFactory</jpa.ddl>
+                <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value-->
                 <!-- This one is for generate database schema -->
-                <!--jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
-                <jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value-->
+                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
+                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
+                <jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
