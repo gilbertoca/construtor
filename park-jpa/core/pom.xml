@@ -101,7 +101,7 @@
                 <!--jpa.ddl_value>drop-and-create-tables</jpa.ddl_value-->
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-                <jpa.logging_value>FINE</jpa.logging_value>
+                <jpa.logging_value>WARNING</jpa.logging_value>
                 <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
 

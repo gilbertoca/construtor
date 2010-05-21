@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -61,12 +62,15 @@ public class EmployeeTest {
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("employee-dataset.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException {
+    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
         em.close();
         emf.close();
+        //before we close the connection
+        DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
 
@@ -78,7 +82,7 @@ public class EmployeeTest {
     @Before
     public void cleanDB() throws Exception {
         // Cleans the database with DbUnit
-        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+        DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
     /**

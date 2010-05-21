@@ -1,6 +1,7 @@
 package park.model;
 
 import java.sql.DriverManager;
+import org.dbunit.DatabaseUnitException;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
@@ -62,13 +63,15 @@ public class ParkingTest {
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("parking-dataset.xml"));
-
+        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException {
+    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
         em.close();
         emf.close();
+        //before we close the connection
+        DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
 
@@ -80,7 +83,7 @@ public class ParkingTest {
     @Before
     public void cleanDB() throws Exception {
         // Cleans the database with DbUnit
-        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+        DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
     /**

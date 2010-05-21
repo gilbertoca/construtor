@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-TestWithEclipseAndPostgreSQL</actionName>
+            <displayName>TestWithEclipseAndPostgreSQL</displayName>
+            <goals>
+                <goal>test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>eclipselink,</activatedProfile>
+                <activatedProfile>postgresql</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

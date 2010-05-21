@@ -20,7 +20,7 @@ After that, only use 'mvn -PinitSchema compile' when initializing the database a
 
 mvn test
 
-5-to change the way the jpa engeine drop/create the database object you need to edit the following park-jpa/core/pom.xml properties(the actual value is mine):
+5-to change the way the jpa engine drop/create the database object you need to edit the following park-jpa/core/pom.xml properties(the actual value is mine):
 
 openjpa:
     <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>

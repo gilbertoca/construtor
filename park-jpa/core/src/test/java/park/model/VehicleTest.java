@@ -1,6 +1,7 @@
 package park.model;
 
 import java.sql.DriverManager;
+import org.dbunit.DatabaseUnitException;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
@@ -62,13 +63,15 @@ public class VehicleTest {
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("vehicle-dataset.xml"));
-
+        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException {
+    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
         em.close();
         emf.close();
+        //before we close the connection
+        DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
 
@@ -79,8 +82,8 @@ public class VehicleTest {
 
     @Before
     public void cleanDB() throws Exception {
-        // Cleans the database with DbUnit
-        DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+        // REFRESH the database with DbUnit
+        DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
     /**
@@ -107,7 +110,7 @@ public class VehicleTest {
         v.setColor("vermelho");
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
-        Customer c = em.find(Customer.class, 1000);
+        Customer c = em.find(Customer.class, 1000L);
         //set relationships
         v.setCustomer(c);
         v.setPriceTable(pT);
