@@ -1,4 +1,4 @@
-This module represents the service layer, until now it works with H2 and Postgresql.
+This module represents the service(database access and bussines logic) layer, until now it works with H2 and Postgresql.
 
 I've not tested with other database, but I've setup other Oracle profile.
 I've setup it to work with EclipseLink and OpenJpa. Use the -P parameter to change it. OpenJpa is the default one.
@@ -8,9 +8,9 @@ Let's go:
 
 <jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
 
-2-first create the database schema(just tested with H2), invoke 'mvn -PinitSchema compile':
-#to work for postgresql, you need to, before, create a database and change the property
-#mentioned on item 1 accordingly with postgresql setup
+2-first create the database schema(just for H2), invoke 'mvn -PinitSchema compile':
+#For postgresql or other database, you need to create a database schema before starting.
+#I've setup some script files to help on this task. They are in park-jpa/core/src/test/resources/sql.
 
 mvn -PinitSchema compile
 

@@ -163,7 +163,7 @@
         <profile>
             <id>initSchema</id>
             <properties>
-                <!-- Database Creation-->
+                <!-- H2 Database Schema Creation-->
             </properties>
             <build>
                 <plugins>
@@ -198,7 +198,7 @@
                                 <configuration>
                                     <srcFiles>
                                         <srcFile>
-                                            src/test/resources/sql/park.usr.sql
+                                            src/test/resources/sql/park.usr.h2.sql
                                         </srcFile>
                                     </srcFiles>
                                 </configuration>
