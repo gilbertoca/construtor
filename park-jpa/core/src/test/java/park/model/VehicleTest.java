@@ -94,7 +94,7 @@ public class VehicleTest {
         log.debug("\nGetting an Vehicle by ID.\n");
         Vehicle v = em.find(Vehicle.class, "LC100");
         log.debug("Object loaded: \n" + v);
-       // assertNotNull(v.getLicensePlate());
+        assertEquals(v.getColor(), "RED");
     }
 
     @Test
