@@ -10,6 +10,7 @@
         </persistence-unit-defaults>
     </persistence-unit-metadata>
     <package>park.model</package>
+    <table-generator name="table_generator" table="table_generator" schema="park" pk-column-name="table_name" pk-column-value="DEFAULT" value-column-name="sequence_value" allocation-size="1"/>
     <entity class="Person">
         <!-- CREATE TABLE PERSON (
             ID INTEGER NOT NULL,
@@ -26,7 +27,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="AUTO"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="person"/>
             </id>
             <basic name="name">
                 <column length="100"/>
@@ -121,7 +122,7 @@
                 <column name="payment_day"/>
             </basic>
             <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
-            <one-to-one name="person" target-entity="Person" maps-id="">
+            <one-to-one name="person" target-entity="Person" maps-id=" ">
                 <join-column name="person_id" referenced-column-name="id" />
             </one-to-one>
         </attributes>
@@ -156,7 +157,7 @@
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
-            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="">
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
                 <join-column name="person_id" referenced-column-name="person_id" />
             </one-to-one>
         </attributes>
@@ -181,7 +182,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="AUTO"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="parking"/>
             </id>
             <basic name="parkingSpace">
                 <column name="parking_space"/>
@@ -216,7 +217,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="AUTO"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="price_table"/>
             </id>
             <basic name="item">
                 <column name="item" nullable="false" length="50"/>
@@ -324,7 +325,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="AUTO"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="stay"/>
             </id>
             <basic name="dtEntrance">
                 <column name="dt_entrance"/>

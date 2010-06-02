@@ -107,7 +107,7 @@ public class VehicleTest {
         // Creates a new object and persists it
         Vehicle v = new Vehicle();
         v.setLicensePlate("LC103");
-        v.setColor("vermelho");
+        v.setColor("RED");
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
         Customer c = em.find(Customer.class, 1000L);
@@ -132,32 +132,3 @@ public class VehicleTest {
         assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
     }
 }
-
-/*    @Test
-    public void testInsert() {
-        System.out.println("InsertVehicletype");
-        Integer size = em.getAll().size();
-        //Vehicle entity = baseCayenneTemplate.registerNewObject(Vehicle);
-        Vehicle entity = new Vehicle();
-        entity.setLicensePlate("250-MVU");
-        entity.setColor("vermelho");
-        //relationships
-        PriceTable pT = bCTPriceTable.getById(1);
-        VehicleType vT = emType.getById("CARRO");
-        Customer c = bCTCustomer.getById(2);
-        //set relationships
-        entity.setToCustomer(c);
-        entity.setToPricetable(pT);
-        entity.setToVehicletype(vT);
-        try {
-            em.insert(entity);
-        } catch (InsertException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        Collection<Vehicle> result = em.getAll();
-        System.out.println(result);
-        assertTrue(result.size() > size);
-    }
-}
-*/

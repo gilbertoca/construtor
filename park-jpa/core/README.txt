@@ -1,7 +1,7 @@
 This module represents the service(database access and bussines logic) layer, until now it works with H2 and Postgresql.
 
 I've not tested with other database, but I've setup other Oracle profile.
-I've setup it to work with EclipseLink and OpenJpa. Use the -P parameter to change it. OpenJpa is the default one.
+I've setup it to work with EclipseLink and OpenJpa. Use the -P parameter to change it. EclipseLink is the default one.
 Let's go:
 
 1-edit the following park-jpa/pom.xml properties(the actual value is mine) if you want to change the H2 server type:

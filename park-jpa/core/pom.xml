@@ -85,6 +85,9 @@
         </profile>
         <profile>
             <id>eclipselink</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
                 <jpa.artifactId>eclipselink</jpa.artifactId>
@@ -97,8 +100,10 @@
                 <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <jpa.ddl_value>none</jpa.ddl_value>
-                <!--jpa.ddl_value>drop-and-create-tables</jpa.ddl_value-->
+                <!--jpa.ddl_value>none</jpa.ddl_value-->
+                <jpa.ddl_value>create-tables</jpa.ddl_value>
+                <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
+		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
                 <jpa.logging_value>WARNING</jpa.logging_value>
@@ -110,9 +115,6 @@
         </profile>
         <profile>
             <id>openjpa</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
@@ -129,8 +131,8 @@
                 <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value-->
                 <!-- This one is for generate database schema -->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
-                <jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value>
+                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
+                <!--jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value-->
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
