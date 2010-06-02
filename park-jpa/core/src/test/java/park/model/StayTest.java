@@ -3,6 +3,7 @@ package park.model;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,7 +25,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class StayTest {
 
@@ -59,7 +59,7 @@ public class StayTest {
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("stay-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
@@ -125,5 +125,29 @@ public class StayTest {
 
         // Gets all the objects from the database
         assertEquals("Should have 2 stays", query.getResultList().size(), 2);
+    }
+
+    @Test
+    public void romeveBidirectional() throws Exception {
+        log.debug("\nGetting an Vehicle by ID.\n");
+        Vehicle v = em.find(Vehicle.class, "LC100");
+        log.debug("Object loaded: \n" + v);
+        assertEquals(v.getColor(), "RED");
+        assertEquals("Should have 2 stays", v.getStays().size(), 2);
+        for (Stay s : v.getStays()) {
+            if (s.getId().equals(100)) {
+                v.getStays().remove(s);
+                s.setVehicle(null);
+            }
+        }
+        //Another way:
+        //Stay s = em.find(Stay.class, 100);
+        //v.getStays().remove(s);
+        //s.setVehicle(null);
+
+        tx.begin();
+        em.merge(v);
+        tx.commit();
+        assertEquals("Should have 1 stays", v.getStays().size(), 1);
     }
 }
