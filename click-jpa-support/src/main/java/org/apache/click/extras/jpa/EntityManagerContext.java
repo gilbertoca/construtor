@@ -44,146 +44,141 @@ import javax.persistence.*;
  * 
  * @author Takashi Okamoto
  * @author Malcolm Edgar
+ * @author Gilberto Caetano de Andrade
  */
 public class EntityManagerContext {
 
-	/** The EntityManageractory. */
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    /** The EntityManageractory. */
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY;
+    /** The ThreadLocal EntityManager holder. */
+    private static final ThreadLocal ENTITY_MANAGER_HOLDER = new ThreadLocal();
+    /** Default Persistence Unit */
+    private static final String DEFAULT_PERSISTENCE_UNIT = "click";
 
-	/** The ThreadLocal EntityManager holder. */
-	private static final ThreadLocal ENTITY_MANAGER_HOLDER = new ThreadLocal();
+    static {
+        try {
+            String persistenceUnit = System.getProperty("click.jpa.persistenceUnit");
+            if (persistenceUnit == null) {
+                persistenceUnit = DEFAULT_PERSISTENCE_UNIT;
+            }
+            ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory(persistenceUnit);
+        } catch (Throwable e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
 
-	/** Default Persistence Unit */
-	private static final String DEFAULT_PERSISTENCE_UNIT = "click";
+    /**
+     * Get the EntityManager for the current Thread, creating one if neccessary.
+     *
+     * @return the EntityManager from the current Thread.
+     */
+    public static EntityManager getEntityManager() {
+        EntityManager entityManager = (EntityManager) ENTITY_MANAGER_HOLDER.get();
 
-	static {
-		try {
-			String persistenceUnit = System.getProperty("click.jpa.persistenceUnit");
-			if (persistenceUnit == null) {
-				persistenceUnit = DEFAULT_PERSISTENCE_UNIT;
-			}
-			ENTITY_MANAGER_FACTORY = Persistence
-					.createEntityManagerFactory(persistenceUnit);
-		} catch (Throwable e) {
-			throw new ExceptionInInitializerError(e);
-		}
-	}
+        if (entityManager == null) {
+            entityManager = getEntityManagerFactory().createEntityManager();
+            ENTITY_MANAGER_HOLDER.set(entityManager);
+        }
 
-	/**
-	 * Get the EntityManager for the current Thread, creating one if neccessary.
-	 * 
-	 * @return the EntityManager from the current Thread.
-	 */
-	public static EntityManager getEntityManager() {
-		EntityManager entityManager = (EntityManager) ENTITY_MANAGER_HOLDER
-				.get();
+        return entityManager;
+    }
 
-		if (entityManager == null) {
-			entityManager = getEntityManagerFactory().createEntityManager();
-			ENTITY_MANAGER_HOLDER.set(entityManager);
-		}
+    /**
+     * Close the EntityManager held by the current Thread. The close EntityManager will also
+     * be removed from the ThreadLocal variable.
+     */
+    public static void close() {
+        EntityManager entityManager = (EntityManager) ENTITY_MANAGER_HOLDER.get();
 
-		return entityManager;
-	}
+        if (entityManager != null && entityManager.isOpen()) {
+            entityManager.close();
+        }
 
-	/**
-	 * Close the EntityManager held by the current Thread. The close EntityManager will also
-	 * be removed from the ThreadLocal variable.
-	 */
-	public static void close() {
-		EntityManager entityManager = (EntityManager) ENTITY_MANAGER_HOLDER
-				.get();
+        ENTITY_MANAGER_HOLDER.set(null);
+    }
 
-		if (entityManager != null && entityManager.isOpen()) {
-			entityManager.close();
-		}
+    /**
+     * Return true if a EntityManager is open.
+     *
+     * @return true if a EntityManager is currently open.
+     */
+    public static boolean hasEntityManager() {
+        return (ENTITY_MANAGER_HOLDER.get() != null);
+    }
 
-		ENTITY_MANAGER_HOLDER.set(null);
-	}
+    /**
+     * Return the EntityManagerFactory.
+     *
+     * @return the EntityManagerFactory
+     */
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return ENTITY_MANAGER_FACTORY;
+    }
 
-	/**
-	 * Return true if a EntityManager is open.
-	 * 
-	 * @return true if a EntityManager is currently open.
-	 */
-	public static boolean hasEntityManager() {
-		return (ENTITY_MANAGER_HOLDER.get() != null);
-	}
+    /**
+     * Return the persistent instance of the given entity class with the given
+     * identifier, or null if there is no such persistent instance. (If the
+     * instance, or a proxy for the instance, is already associated with the
+     * session, return that instance or proxy.) <p/> This method provides a
+     * convenience wrapper around the corresponding <tt>EntityManager</tt> method.
+     *
+     * @param clazz
+     *            a persistent class
+     * @param id
+     *            an identifier
+     * @return a persistent instance or null
+     */
+    public static Object find(Class clazz, Serializable id) {
+        return getEntityManager().find(clazz, id);
+    }
 
-	/**
-	 * Return the EntityManagerFactory.
-	 * 
-	 * @return the EntityManagerFactory
-	 */
-	public static EntityManagerFactory getEntityManagerFactory() {
-		return ENTITY_MANAGER_FACTORY;
-	}
+    /**
+     * Remove a persistent instance from the datastore. The argument may be an
+     * instance associated with the receiving EntityManager or a transient instance
+     * with an identifier associated with existing persistent state. This
+     * operation cascades to associated instances if cascade delete is enabled.<p/>
+     *  This method provides a convenience wrapper around the corresponding
+     *  <tt>EntityManager</tt> method.
+     *
+     * @param object
+     *            the instance to be removed
+     */
+    public static void remove(Object object) {
+        getEntityManager().remove(object);
+    }
 
-	/**
-	 * Return the persistent instance of the given entity class with the given
-	 * identifier, or null if there is no such persistent instance. (If the
-	 * instance, or a proxy for the instance, is already associated with the
-	 * session, return that instance or proxy.) <p/> This method provides a
-	 * convenience wrapper around the corresponding <tt>EntityManager</tt> method.
-	 * 
-	 * @param clazz
-	 *            a persistent class
-	 * @param id
-	 *            an identifier
-	 * @return a persistent instance or null
- 	 */
-	public static Object find(Class clazz, Serializable id) {
-		return getEntityManager().find(clazz, id);
-	}
+    /**
+     * Create a new instance of Query for the given query string. <p/> This
+     * method provides a convenience wrapper around the corresponding
+     * <tt>EntityManager</tt> method.
+     *
+     * @param queryString
+     *            a Java Persistence query string
+     * @return a Java Persistence query
+     */
+    public static Query createQuery(String queryString) {
+        return getEntityManager().createQuery(queryString);
+    }
 
-	/**
-	 * Remove a persistent instance from the datastore. The argument may be an
-	 * instance associated with the receiving EntityManager or a transient instance
-	 * with an identifier associated with existing persistent state. This
-	 * operation cascades to associated instances if cascade delete is enabled.<p/>
-	 *  This method provides a convenience wrapper around the corresponding
-	 *  <tt>EntityManager</tt> method.
-	 * 
-	 * @param object
-	 *            the instance to be removed
-	 */
-	public static void remove(Object object) {
-		getEntityManager().remove(object);
-	}
+    /**
+     * Obtain an instance of Query for a named query string defined.<p/>
+     * This method provides a convenience wrapper around the corresponding
+     * <tt>EntityManager</tt> method.
+     *
+     * @param queryName
+     *            the name of a query defined externally
+     * @return a Java Persistence query
+     */
+    public static Query getNamedQuery(String queryName) {
+        return getEntityManager().createNamedQuery(queryName);
+    }
 
-	/**
-	 * Create a new instance of Query for the given query string. <p/> This
-	 * method provides a convenience wrapper around the corresponding
-	 * <tt>EntityManager</tt> method.
-	 * 
-	 * @param queryString
-	 *            a Java Persistence query string
-	 * @return a Java Persistence query
-	 */
-	public static Query createQuery(String queryString) {
-		return getEntityManager().createQuery(queryString);
-	}
-
-	/**
-	 * Obtain an instance of Query for a named query string defined.<p/>
-	 * This method provides a convenience wrapper around the corresponding
-	 * <tt>EntityManager</tt> method.
-	 * 
-	 * @param queryName
-	 *            the name of a query defined externally
-	 * @return a Java Persistence query
-	 */
-	public static Query getNamedQuery(String queryName) {
-		return getEntityManager().createNamedQuery(queryName);
-	}
-	
-	/**
-	 * Rollback the Transaction. 
-	 * This method provides a convenience wrapper around the corresponding
-	 * <tt>EntityManager</tt> method.
-	 */
-	public static void rollback() {
-		getEntityManager().getTransaction().rollback();
-	}
-
+    /**
+     * Rollback the Transaction.
+     * This method provides a convenience wrapper around the corresponding
+     * <tt>EntityManager</tt> method.
+     */
+    public static void rollback() {
+        getEntityManager().getTransaction().rollback();
+    }
 }

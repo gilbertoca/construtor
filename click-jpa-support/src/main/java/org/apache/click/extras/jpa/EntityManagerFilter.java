@@ -58,68 +58,66 @@ import java.io.IOException;
  * 
  * @author Takashi Okamoto
  * @author Malcolm Edgar
+ * @author Gilberto Caetano de Andrade
  */
 public class EntityManagerFilter implements Filter {
 
-	/**
-	 * Initialize the JPA Configuration and EntityManagerFactory.
-	 * 
-	 * @see Filter#init(FilterConfig)
-	 * 
-	 * @param filterConfig
-	 *            the filter configuration
-	 * @throws ServletException
-	 *             if an initialization error occurs
-	 */
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// Load the EntityManagerContext class initializing the
-		// EntityManagerFactory
-		try {
-			EntityManagerContext.class.getName();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new ServletException(e);
-		}
-	}
+    /**
+     * Initialize the JPA Configuration and EntityManagerFactory.
+     *
+     * @see Filter#init(FilterConfig)
+     *
+     * @param filterConfig
+     *            the filter configuration
+     * @throws ServletException
+     *             if an initialization error occurs
+     */
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Load the EntityManagerContext class initializing the
+        // EntityManagerFactory
+        try {
+            EntityManagerContext.class.getName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
+    }
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-	}
+    /**
+     * @see Filter#destroy()
+     */
+    public void destroy() {
+    }
 
-	/**
-	 * Close any user defined sessions if present.
-	 * 
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 * 
-	 * @param request
-	 *            the servlet request
-	 * @param response
-	 *            the servlet response
-	 * @param chain
-	 *            the filter chain
-	 * @throws IOException
-	 *             if an I/O error occurs
-	 * @throws ServletException
-	 *             if a servlet error occurs
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+    /**
+     * Close any user defined sessions if present.
+     *
+     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+     *
+     * @param request
+     *            the servlet request
+     * @param response
+     *            the servlet response
+     * @param chain
+     *            the filter chain
+     * @throws IOException
+     *             if an I/O error occurs
+     * @throws ServletException
+     *             if a servlet error occurs
+     */
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException {
 
-		EntityTransaction transaction = EntityManagerContext.getEntityManager()
-				.getTransaction();
-		transaction.begin();
-		chain.doFilter(request, response);
+        EntityTransaction transaction = EntityManagerContext.getEntityManager().getTransaction();
+        transaction.begin();
+        chain.doFilter(request, response);
 
-		if (EntityManagerContext.hasEntityManager()
-				&& EntityManagerContext.getEntityManager().isOpen()) {
-			if (EntityManagerContext.getEntityManager().getTransaction()
-					.isActive()) {
-				transaction.commit();
-			}
-			EntityManagerContext.close();
-		}
-	}
-
+        if (EntityManagerContext.hasEntityManager()
+                && EntityManagerContext.getEntityManager().isOpen()) {
+            if (EntityManagerContext.getEntityManager().getTransaction().isActive()) {
+                transaction.commit();
+            }
+            EntityManagerContext.close();
+        }
+    }
 }

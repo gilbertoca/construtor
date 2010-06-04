@@ -119,6 +119,7 @@ import org.apache.commons.lang.StringUtils;
  *
  * @author Takashi Okamoto
  * @author Malcolm Edgar
+ * @author Gilberto Caetano de Andrade
  */
 public class JpaForm extends Form {
 
