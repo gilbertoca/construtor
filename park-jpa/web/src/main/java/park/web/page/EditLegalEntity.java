@@ -77,10 +77,11 @@ public class EditLegalEntity extends BorderPage {
     public boolean onOkClick() throws Exception {
         boolean isNew = false;
         if (form.isValid()) {
+            LegalEntity legalEntity = null;
             Long id = (Long) idField.getValueObject();
-            LegalEntity legalEntity = (LegalEntity) JpaHelper.retrieve(LegalEntity.class, id);
-
-            if (legalEntity == null) {
+            if (id != null){
+                legalEntity = (LegalEntity) JpaHelper.retrieve(LegalEntity.class, id);
+            }else{
                 isNew = true;
                 legalEntity = new LegalEntity();
             }
