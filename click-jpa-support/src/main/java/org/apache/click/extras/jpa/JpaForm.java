@@ -174,7 +174,6 @@ public class JpaForm extends Form {
 
         Metamodel classMetadata = getEntityManager().getMetamodel();
         EntityType entityType = classMetadata.entity(valueClass);
-        //SingularAttribute type = entityType.getId(entityType.getIdType().getClass());
         //Whether the identifiable type has a single id attribute.
         if (entityType.hasSingleIdAttribute()) {
             oidField = new HiddenField(FO_ID, entityType.getIdType().getJavaType());
