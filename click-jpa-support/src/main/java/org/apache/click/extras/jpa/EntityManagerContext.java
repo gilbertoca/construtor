@@ -58,8 +58,7 @@ public class EntityManagerContext {
 
 	static {
 		try {
-			String persistenceUnit = System
-					.getProperty("click.jpa.persistenceUnit");
+			String persistenceUnit = System.getProperty("click.jpa.persistenceUnit");
 			if (persistenceUnit == null) {
 				persistenceUnit = DEFAULT_PERSISTENCE_UNIT;
 			}

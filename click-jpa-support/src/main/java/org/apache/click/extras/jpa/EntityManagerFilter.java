@@ -35,17 +35,17 @@ import java.io.IOException;
  * <pre class="codeConfig">
  *  &lt;web-app&gt;
  *    &lt;filter&gt;
- *      &lt;filter-name&gt;&lt;span class=&quot;blue&quot;&gt;entityManager-filter&lt;/span&gt;&lt;/filter-name&gt;
- *      &lt;filter-class&gt;&lt;span class=&quot;red&quot;&gt;net.sf.click.extras.jpa.EntityManagerFilter&lt;/span&gt;&lt;/filter-class&gt;
+ *      &lt;filter-name&gt;&lt;font color=&quot;blue&quot;&gt;entityManager-filter&lt;/font&gt;&lt;/filter-name&gt;
+ *      &lt;filter-class&gt;&lt;font color=&quot;red&quot;&gt;net.sf.click.extras.jpa.EntityManagerFilter&lt;/font&gt;&lt;/filter-class&gt;
  *    &lt;/filter&gt;
  * 
  *    &lt;filter-mapping&gt;
- *      &lt;filter-name&gt;&lt;span class=&quot;blue&quot;&gt;entityManager-filter&lt;/span&gt;&lt;/filter-name&gt;
- *      &lt;servlet-name&gt;&lt;span class=&quot;green&quot;&gt;click-servlet&lt;/span&gt;&lt;/servlet-name&gt;
+ *      &lt;filter-name&gt;&lt;font color=&quot;blue&quot;&gt;entityManager-filter&lt;/font&gt;&lt;/filter-name&gt;
+ *      &lt;servlet-name&gt;&lt;font color=&quot;green&quot;&gt;click-servlet&lt;/font&gt;&lt;/servlet-name&gt;
  *    &lt;/filter-mapping&gt;
  * 
  *    &lt;servlet&gt;
- *      &lt;servlet-name&gt;&lt;span class=&quot;green&quot;&gt;click-servlet&lt;/span&gt;&lt;/servlet-name&gt;
+ *      &lt;servlet-name&gt;&lt;font color=&quot;green&quot;&gt;click-servlet&lt;/font&gt;&lt;/servlet-name&gt;
  *    ..
  *  &lt;/web-app&gt;
  * </pre>

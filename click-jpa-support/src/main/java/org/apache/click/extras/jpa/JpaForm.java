@@ -16,20 +16,19 @@
 package org.apache.click.extras.jpa;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
+import javax.persistence.metamodel.SingularAttribute;
 
-import net.sf.click.control.Field;
-import net.sf.click.control.Form;
-import net.sf.click.control.HiddenField;
+import org.apache.click.control.Field;
+import org.apache.click.control.Form;
+import org.apache.click.control.HiddenField;
 
 import org.apache.commons.lang.StringUtils;
-import org.hibernate.EntityMode;
-import org.hibernate.ejb.HibernateEntityManagerFactory;
-import org.hibernate.metadata.ClassMetadata;
-import org.hibernate.type.Type;
 
 /**
  * Provides JPA data aware Form control: &nbsp; &lt;form method='POST'&gt;.
@@ -124,27 +123,19 @@ import org.hibernate.type.Type;
 public class JpaForm extends Form {
 
     private static final long serialVersionUID = -7134198516606088333L;
-
     /** The form value object classname parameter name. */
     protected static final String FO_CLASS = "FO_CLASS";
-
     /** The form value object id parameter name. */
     protected static final String FO_ID = "FO_ID";
-
     // ----------------------------------------------------- Instance Variables
-
     /** The value object class name hidden field. */
     protected HiddenField classField;
-
     /** The value object identifier hidden field. */
     protected HiddenField oidField;
-
     /** The EntityManager. */
     protected EntityManager entityManager;
-
     /** The EntityManagerFactory. */
     protected EntityManagerFactory entityManagerFactory;
-
     /**
      * The flag specifying that object validation meta data has been applied to
      * the form fields.
@@ -152,7 +143,6 @@ public class JpaForm extends Form {
     protected boolean metaDataApplied = false;
 
     // ----------------------------------------------------------- Constructors
-
     /**
      * Create a new JpaForm with the given form name and value object
      * class.
@@ -162,7 +152,7 @@ public class JpaForm extends Form {
      */
     public JpaForm(String name, Class valueClass) {
         super(name);
-        
+
         if (valueClass == null) {
             throw new IllegalArgumentException("Null valueClass parameter");
         }
@@ -171,20 +161,31 @@ public class JpaForm extends Form {
         classField.setValue(valueClass.getName());
         add(classField);
 
+        /*
         String classname = getClassname(valueClass);
 
         ClassMetadata classMetadata =
-        	((HibernateEntityManagerFactory)getEntityManagerFactory()).getSessionFactory().getClassMetadata(classname);
+        ((HibernateEntityManagerFactory)getEntityManagerFactory()).getSessionFactory().getClassMetadata(classname);
 
         Type identifierType = classMetadata.getIdentifierType();
         oidField = new HiddenField(FO_ID, identifierType.getReturnedClass());
         add(oidField);
+         */
+
+        Metamodel classMetadata = getEntityManager().getMetamodel();
+        EntityType entityType = classMetadata.entity(valueClass);
+        //SingularAttribute type = entityType.getId(entityType.getIdType().getClass());
+        //Whether the identifiable type has a single id attribute.
+        if (entityType.hasSingleIdAttribute()) {
+            oidField = new HiddenField(FO_ID, entityType.getIdType().getJavaType());
+        } else {
+            throw new IllegalArgumentException("The identifiable type is idclass attribute, the form won't work!");
+        }
+        add(oidField);
 
     }
 
-
     // --------------------------------------------------------- Public Methods
-
     /**
      * Return the form <tt>EntityManager</tt>. If form EntityManager is not
      * defined this method will obtain a EntityManager from the
@@ -278,13 +279,14 @@ public class JpaForm extends Form {
      */
     public void setValueObject(Object valueObject) {
         if (valueObject != null) {
-        	
+            /*
             String classname = getClassname(valueObject.getClass());
-            ClassMetadata classMetadata =
-            	((HibernateEntityManagerFactory)getEntityManagerFactory()).getSessionFactory().getClassMetadata(classname);
+            Metamodel classMetadata =
+            ((HibernateEntityManagerFactory) getEntityManagerFactory()).getSessionFactory().getMetamodel(classname);
 
-            Object identifier =
-                classMetadata.getIdentifier(valueObject, EntityMode.POJO);
+            Object identifier = classMetadata.getIdentifier(valueObject, EntityMode.POJO);
+             */
+            Object identifier = getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(valueObject);
             oidField.setValueObject(identifier);
 
             copyFrom(valueObject);
@@ -296,17 +298,17 @@ public class JpaForm extends Form {
      * 
      * @param id Primary key object.
      */
-    public void loadEntity(Object id){
+    public void loadEntity(Object id) {
         Class valueClass;
-		try {
-			valueClass = Class.forName(classField.getValue());
-	    	Object entity = getEntityManager().find(valueClass, id);
-	    	setValueObject(entity);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+        try {
+            valueClass = Class.forName(classField.getValue());
+            Object entity = getEntityManager().find(valueClass, id);
+            setValueObject(entity);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     /**
      * Save or update the object to the database and return true.
      * <p/>
@@ -328,7 +330,6 @@ public class JpaForm extends Form {
      */
     public boolean saveChanges() {
         Object valueObject = getValueObject();
-        
 
         EntityManager entityManager = getEntityManager();
         entityManager.merge(valueObject);
@@ -363,7 +364,6 @@ public class JpaForm extends Form {
     }
 
     // ------------------------------------------------------ Protected Methods
-
     /**
      * Applies the <tt>ClassMetadata</tt> validation database meta data to the
      * form fields.
@@ -381,22 +381,34 @@ public class JpaForm extends Form {
         try {
             Class valueClass = Class.forName(classField.getValue());
 
+            /*
             String classname = getClassname(valueClass);
 
-            ClassMetadata metadata =
-            	((HibernateEntityManagerFactory)getEntityManagerFactory()).getSessionFactory().getClassMetadata(classname);
+            Metamodel metadata =
+            ((HibernateEntityManagerFactory) getEntityManagerFactory()).getSessionFactory().getMetamodel(classname);
 
             String[] propertyNames = metadata.getPropertyNames();
 
             boolean[] propertyNullability = metadata.getPropertyNullability();
-
+             
             for (int i = 0; i < propertyNames.length; i++) {
                 Field field = getField(propertyNames[i]);
                 if (field != null) {
                     field.setRequired(propertyNullability[i]);
                 }
             }
+             */
+            Metamodel classMetadata = getEntityManager().getMetamodel();
+            EntityType entityType = classMetadata.entity(valueClass);
 
+            Set<SingularAttribute> attrs = entityType.getAttributes();
+
+            for (SingularAttribute a : attrs) {
+                Field field = getField(a.getName());
+                if (field != null) {
+                    field.setRequired(a.isOptional());
+                }
+            }
         } catch (ClassNotFoundException cnfe) {
             throw new RuntimeException(cnfe);
         }
@@ -420,5 +432,4 @@ public class JpaForm extends Form {
 
         return classname;
     }
-
 }
