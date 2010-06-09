@@ -27,8 +27,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator"/>
-                <table-generator name="table_generator"  pk-column-value="person"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="person"/>
             </id>
             <basic name="name">
                 <column length="100"/>
@@ -183,8 +182,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator"/>
-                <table-generator name="table_generator"  pk-column-value="parking"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="parking"/>
             </id>
             <basic name="parkingSpace">
                 <column name="parking_space"/>
@@ -219,8 +217,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator"/>
-                <table-generator name="table_generator"  pk-column-value="price_table"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="price_table"/>
             </id>
             <basic name="item">
                 <column name="item" nullable="false" length="50"/>
@@ -328,8 +325,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator"/>
-                <table-generator name="table_generator"  pk-column-value="stay"/>
+                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="stay"/>
             </id>
             <basic name="dtEntrance">
                 <column name="dt_entrance"/>
