@@ -11,4 +11,42 @@
                 <activatedProfile>postgresql</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-InstallWithouTestH2Eclipse</actionName>
+            <displayName>InstallWithouTestH2Eclipse</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>h2,</activatedProfile>
+                <activatedProfile>eclipselink</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-InstallWithOutTestH2Eclipse</actionName>
+            <displayName>InstallWithOutTestH2Eclipse</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>h2</activatedProfile>
+                <activatedProfile>eclipselink</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-init_db</actionName>
+            <displayName>init_db</displayName>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>initSchema</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

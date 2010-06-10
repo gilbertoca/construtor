@@ -10,7 +10,6 @@
         </persistence-unit-defaults>
     </persistence-unit-metadata>
     <package>park.model</package>
-    <table-generator name="table_generator" table="table_generator" schema="park" pk-column-name="table_name" pk-column-value="DEFAULT" value-column-name="sequence_value" allocation-size="1"/>
     <entity class="Person">
         <!-- CREATE TABLE PERSON (
             ID INTEGER NOT NULL,
@@ -24,10 +23,18 @@
         <table name="person"/>
         <inheritance strategy="JOINED"/>
         <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
+        <table-generator
+            name="person_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="person"
+            initial-value="1"
+            allocation-size="1"/>
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="person"/>
+                <generated-value strategy="TABLE" generator="person_table_generator "/>
             </id>
             <basic name="name">
                 <column length="100"/>
@@ -122,7 +129,7 @@
                 <column name="payment_day"/>
             </basic>
             <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
-            <one-to-one name="person" target-entity="Person" maps-id=" ">
+            <one-to-one name="person" target-entity="Person" maps-id="">
                 <join-column name="person_id" referenced-column-name="id" />
             </one-to-one>
         </attributes>
@@ -157,7 +164,7 @@
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
-            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="">
                 <join-column name="person_id" referenced-column-name="person_id" />
             </one-to-one>
         </attributes>
@@ -172,6 +179,14 @@
             );
         -->
         <table name="parking"/>
+        <table-generator
+            name="parking_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="parking"
+            initial-value="1"
+            allocation-size="1"/>
         <named-query name="Parking.findAll">
             <query>SELECT l FROM Parking l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
@@ -182,7 +197,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="parking"/>
+                <generated-value strategy="TABLE" generator="parking_table_generator"/>
             </id>
             <basic name="parkingSpace">
                 <column name="parking_space"/>
@@ -206,6 +221,15 @@
             );
         -->
         <table name="price_table"/>
+        <table-generator
+            name="price_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="price_table"
+            initial-value="1"
+            allocation-size="1"/>
+
         <named-query name="PriceTable.findAll">
             <query>SELECT l FROM PriceTable l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
@@ -217,7 +241,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="price_table"/>
+                <generated-value strategy="TABLE" generator="price_table_generator"/>
             </id>
             <basic name="item">
                 <column name="item" nullable="false" length="50"/>
@@ -314,6 +338,15 @@
             );
         -->
         <table name="stay"/>
+        <table-generator
+            name="stay_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="stay"
+            initial-value="1"
+            allocation-size="1"/>
+
         <named-query name="Stay.findAll">
             <query>SELECT l FROM Stay l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
@@ -325,7 +358,7 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="table_generator" pk-column-value="stay"/>
+                <generated-value strategy="TABLE" generator="stay_table_generator"/>
             </id>
             <basic name="dtEntrance">
                 <column name="dt_entrance"/>

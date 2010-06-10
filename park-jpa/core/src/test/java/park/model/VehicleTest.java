@@ -111,6 +111,8 @@ public class VehicleTest {
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
         Customer c = em.find(Customer.class, 1000L);
+        log.debug("Customer Object loaded: \n" + c);
+        log.debug("Customer's Person Object loaded: \n" + c.getPerson());
         //set relationships
         v.setCustomer(c);
         v.setPriceTable(pT);
