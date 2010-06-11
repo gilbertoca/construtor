@@ -134,7 +134,7 @@
                 <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
                 <jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
-                <jpa.logging_value>DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
+                <jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>
             </properties>

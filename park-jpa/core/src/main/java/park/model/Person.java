@@ -3,7 +3,7 @@ package park.model;
 import java.io.Serializable;
 
 public abstract class Person implements Serializable {
-    private static final Long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private Long id;
     private String address;
     private String name;
