@@ -27,7 +27,7 @@
     <name>Click JPA Support</name>
     <url>org.apache.click</url>
     <build>
-        <finalName>Click Jpa Support</finalName>
+        <finalName>click-extras-jpa</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -63,19 +63,22 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mortbay.jetty</groupId>
+            <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api-version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>2.0.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -105,7 +108,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.2.0</click.version>
-        <servlet-api-version>[2.,)</servlet-api-version>
+        <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>
     </properties>
 </project>
