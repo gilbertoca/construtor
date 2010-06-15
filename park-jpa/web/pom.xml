@@ -52,7 +52,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mortbay.jetty</groupId>
+            <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api-version}</version>
             <scope>test</scope>
@@ -72,8 +72,8 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.2.0-RC1</click.version>
-        <servlet-api-version>[2.,)</servlet-api-version>
+        <click.version>2.2.0</click.version>
+        <servlet-api-version>2.5</servlet-api-version>
     </properties>
 </project>
 
