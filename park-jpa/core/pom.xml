@@ -100,13 +100,13 @@
                 <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <!--jpa.ddl_value>none</jpa.ddl_value-->
-                <jpa.ddl_value>create-tables</jpa.ddl_value>
+                <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
+                <jpa.ddl_value>none</jpa.ddl_value>
                 <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
 		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-                <jpa.logging_value>OFF</jpa.logging_value>
+                <jpa.logging_value>INFO</jpa.logging_value>
                 <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
 
@@ -132,9 +132,10 @@
                 <!-- This one is for generate database schema -->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
                 <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
-                <jpa.ddl_value>buildSchema(SchemaAction='none')</jpa.ddl_value>
+                <jpa.ddl_value>buildSchema</jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
-                <jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value>
+                <jpa.logging_value>SQL=TRACE</jpa.logging_value>
+                <!--jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value-->
                 <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>
             </properties>
