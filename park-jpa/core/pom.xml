@@ -100,8 +100,8 @@
                 <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
-                <jpa.ddl_value>none</jpa.ddl_value>
+                <!--jpa.ddl_value>none</jpa.ddl_value-->
+                <jpa.ddl_value>create-tables</jpa.ddl_value>
                 <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
 		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
