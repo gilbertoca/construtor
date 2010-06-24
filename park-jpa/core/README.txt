@@ -12,9 +12,9 @@ Let's go:
 #For postgresql or other database, you need to create a database schema before starting.
 #I've setup some script files to help on this task. They are in park-jpa/core/src/test/resources/sql.
 
-mvn -PinitSchema compile
+ mvn -Ph2,eclipselink,initSchema compile
 
-After that, only use 'mvn -PinitSchema compile' when initializing the database again.
+After that, only use 'mvn -Ph2,eclipselink,initSchema compile' when initializing the database again.
 
 4-now you can test:
 
