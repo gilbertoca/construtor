@@ -197,6 +197,7 @@
         <profile>
             <id>oracle</id>
             <properties>
+                <db_name>oracle</db_name>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.OracleDataTypeFactory</dbunit.dataTypeFactoryName>
                 <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
                 <jdbc.groupId>com.oracle</jdbc.groupId>
@@ -211,6 +212,7 @@
         <profile>
             <id>postgresql</id>
             <properties>
+                <db_name>postgresql</db_name>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</dbunit.dataTypeFactoryName>
                 <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
                 <jdbc.groupId>postgresql</jdbc.groupId>
@@ -225,9 +227,10 @@
         <profile>
             <id>h2</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
+                <db_name>h2</db_name>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
                 <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
 
@@ -241,7 +244,26 @@
                 <jdbc.password>park</jdbc.password>
             </properties>
         </profile>
+        <profile>
+            <id>hsqldb</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db_name>hsqldb</db_name>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.schema>PARK</dbunit.schema> <!-- Make sure to capitalize the schema name -->
 
+                <!-- Default Database Connection-->
+                <jdbc.groupId>org.hsqldb</jdbc.groupId>
+                <jdbc.artifactId>hsqldb</jdbc.artifactId>
+                <jdbc.version>2.0.0</jdbc.version>
+                <jdbc.url>jdbc:hsqldb:../parkDB;create=true</jdbc.url>
+                <jdbc.driverClassName>org.hsqldb.jdbc.JDBCDriver</jdbc.driverClassName>
+                <jdbc.username>park</jdbc.username>
+                <jdbc.password>park</jdbc.password>
+            </properties>
+        </profile>
     </profiles>
 
     <properties>
