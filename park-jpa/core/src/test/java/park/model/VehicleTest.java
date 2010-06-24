@@ -103,6 +103,7 @@ public class VehicleTest {
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Vehicle.findAll");
         assertEquals("Should have 3 Vehicle", query.getResultList().size(), 3);
+        
         // Creates a new object and persists it
         Vehicle v = new Vehicle();
         v.setLicensePlate("LC103");
