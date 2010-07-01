@@ -26,7 +26,11 @@ openjpa:
     <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
 or
 eclipselink:
-    <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
+    <jpa.ddl_value>create-tables</jpa.ddl_value>
+
+You can change the properties through the command line:
+
+mvn clean -Ph2,eclipselink install -Djpa.ddl_value=NONE
 
 To know more take a look at the park-jpa/core/pom.xml profiles.
 
