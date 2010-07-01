@@ -227,7 +227,7 @@
         <profile>
             <id>h2</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <db_name>h2</db_name>
@@ -239,6 +239,7 @@
                 <jdbc.artifactId>h2</jdbc.artifactId>
                 <jdbc.version>1.2.131</jdbc.version>
                 <jdbc.url>jdbc:h2:../parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
+                <!--jdbc.url>jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url-->
                 <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
                 <jdbc.username>park</jdbc.username>
                 <jdbc.password>park</jdbc.password>
@@ -246,9 +247,6 @@
         </profile>
         <profile>
             <id>hsqldb</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <db_name>hsqldb</db_name>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
