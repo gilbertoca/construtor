@@ -56,7 +56,7 @@ public class CustomerTest {
         connection = new DatabaseConnection(DriverManager.getConnection(
                 configurationProperties.getProperty("jdbc.url"),
                 configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")), configurationProperties.getProperty("dbunit.schema"));
+                configurationProperties.getProperty("jdbc.password")));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();

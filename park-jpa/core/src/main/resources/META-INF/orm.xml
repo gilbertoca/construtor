@@ -5,9 +5,14 @@
                  http://java.sun.com/xml/ns/persistence/orm/orm_2_0.xsd"
                  version="2.0">
     <persistence-unit-metadata>
+        <!-- There is no need to set this property:
+        Oracle, PostgreSQL: you need create it manually
+        H2, hsqldb: we use in-memory database
+
         <persistence-unit-defaults>
             <schema>park</schema>
         </persistence-unit-defaults>
+        -->
     </persistence-unit-metadata>
     <package>park.model</package>
     <entity class="Person">
