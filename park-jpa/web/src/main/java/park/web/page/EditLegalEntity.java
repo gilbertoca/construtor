@@ -112,7 +112,7 @@ public class EditLegalEntity extends BorderPage {
         if (referrer != null) {
             setRedirect(referrer);
         } else {
-            setRedirect(NaturalPersonPage.class);
+            setRedirect(ViewLegalEntity.class);
         }
         return true;
     }
