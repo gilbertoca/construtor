@@ -85,15 +85,23 @@ public class LegalEntityTest {
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
-    /**
-     * Test of setVehicletype method, of class Vehicle.
-     */
     @Test
     public void GetLegalEntityById() {
         log.debug("\nGetting an Legal Person by ID.\n");
         LegalEntity lP = em.find(LegalEntity.class, 1002L);
         log.debug("Object loaded: \n" + lP);
         assertNotNull(lP.getName());
+    }
+    @Test
+    public void DeleteById() {
+        log.debug("\nDeleting Legal Entity by ID.\n");
+        Query query = em.createNamedQuery("LegalEntity.deleteById");
+        query.setParameter("id", 1010L);
+        tx.begin();
+        int del = 0;
+        del = query.executeUpdate();
+        tx.commit();
+        assertEquals(del, 1);
     }
     @Test
     public void GetLegalEntityByName() {
@@ -111,7 +119,7 @@ public class LegalEntityTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("LegalEntity.findAll");
-        assertEquals("Should have 2 LegalEntity", query.getResultList().size(), 2);
+        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
         LegalEntity lP = new LegalEntity("LegalEntity", "address", new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"), "TAXPAYERS100");
@@ -120,7 +128,7 @@ public class LegalEntityTest {
         tx.commit();
                 
         // Gets all the objects from the database
-        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
+        assertEquals("Should have 4 LegalEntity", query.getResultList().size(), 4);
 
         // Creates a new one object with default constructor and persists it
         LegalEntity lP2 = new LegalEntity();
@@ -133,7 +141,7 @@ public class LegalEntityTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 4 LegalEntity", query.getResultList().size(), 4);
+        assertEquals("Should have 5 LegalEntity", query.getResultList().size(), 5);
 
         // Removes the object from the database
         tx.begin();
@@ -142,6 +150,6 @@ public class LegalEntityTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 LegalEntity", query.getResultList().size(), 2);
+        assertEquals("Should have 3 LegalEntity", query.getResultList().size(), 3);
     }
 }
