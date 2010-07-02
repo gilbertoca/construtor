@@ -12,6 +12,7 @@ import org.apache.click.control.TextField;
 import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
+import org.apache.commons.lang.NotImplementedException;
 import park.model.LegalEntity;
 import park.service.util.JpaHelper;
 
@@ -22,16 +23,13 @@ import park.service.util.JpaHelper;
 public class ViewLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
-
     protected Form form = new Form("form");
     protected Table table = new Table("table");
     protected PageLink editLink = new PageLink("Edit", EditLegalEntity.class);
     protected ActionLink deleteLink = new ActionLink("Delete", this, "onDeleteClick");
-
     private TextField nameField = new TextField("name");
 
     // Constructor ------------------------------------------------------------
-
     public ViewLegalEntity() {
         addControl(form);
         addControl(table);
@@ -68,20 +66,20 @@ public class ViewLegalEntity extends BorderPage {
 
         Column column = new Column("Action");
         column.setTextAlign("center");
-        AbstractLink[] links = new AbstractLink[] { editLink, deleteLink };
+        AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
         column.setDecorator(new LinkDecorator(table, links, "id"));
         column.setSortable(false);
         table.addColumn(column);
-        System.out.println("%"+nameField.getValue()+"%");
+        System.out.println("%" + nameField.getValue() + "%");
         table.setDataProvider(new DataProvider<LegalEntity>() {
+
             public List<LegalEntity> getData() {
-                return JpaHelper.namedQuery("LegalEntity.findByName","name", "%"+nameField.getValue()+"%");
+                return JpaHelper.namedQuery("LegalEntity.findByName", "name", "%" + nameField.getValue() + "%");
             }
         });
     }
 
     // Event Handlers ---------------------------------------------------------
-
     /**
      * Handle the clear button click event.
      *
@@ -112,8 +110,11 @@ public class ViewLegalEntity extends BorderPage {
      */
     public boolean onDeleteClick() {
         Long id = deleteLink.getValueLong();
-	JpaHelper.delete("LegalEntity.deleteById", "id", id);
+        if (id != null) {
+            JpaHelper.delete("LegalEntity.deleteById", "id", id);
+        } else {
+            throw new NotImplementedException(); 
+        }
         return true;
     }
-
 }

@@ -37,11 +37,11 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
+        <!--dependency>
             <groupId>org.apache.click</groupId>
             <artifactId>click</artifactId>
             <version>${click.version}</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.apache.click</groupId>
             <artifactId>click-extras</artifactId>

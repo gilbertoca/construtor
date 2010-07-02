@@ -2,6 +2,7 @@ package park.web.page;
 
 import org.apache.click.Page;
 import org.apache.click.extras.control.Menu;
+import org.apache.click.extras.control.MenuFactory;
 
 /**
  *
@@ -9,17 +10,55 @@ import org.apache.click.extras.control.Menu;
  */
 public class BorderPage extends Page {
 
-    /** The root menu. */
-    protected Menu rootMenu = Menu.getRootMenu();
-    public BorderPage() {
-        addModel("title", "Main Page");
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * The root menu. Note this transient variable is reinitialized in onInit()
+     * to support serialized stateful pages.
+     */
+    private transient Menu rootMenu;
+
+
+    // Event Handlers ---------------------------------------------------------
+
+    /**
+     * @see org.apache.click.Page#onInit()
+     */
+    @Override
+    public void onInit() {
+        super.onInit();
+
+        MenuFactory menuFactory = new MenuFactory();
+        rootMenu = menuFactory.getRootMenu();
+
+        // Add rootMenu to Page control list. Note: rootMenu is removed in Page
+        // onDestroy() to ensure rootMenu is not serialized
+        addControl(rootMenu);
     }
 
     /**
-     * Returns the name of the border template: &nbsp; <tt>"/border-template.htm"</tt>
-     *
-     * @see Page#getTemplate()
+     * @see org.apache.click.Page#onDestroy()
      */
+    @Override
+    public void onDestroy() {
+        // Remove menu for when BorderPage is serialized
+        if (rootMenu != null) {
+            removeControl(rootMenu);
+        }
+    }
+
+    // Public Methods ---------------------------------------------------------
+
+    /**
+     * Returns the name of the border template: &nbsp; <tt>"/border-template.htm"</tt>
+     * <p/>
+     * Please note this page is designed for extending by Page subclasses and will
+     * not be auto mapped as the template name <tt>"border-template.htm"</tt> does
+     * not match the Pages class name <tt>BorderPage</tt>.
+     *
+     * @see org.apache.click.Page#getTemplate()
+     */
+    @Override
     public String getTemplate() {
         return "/border-template.htm";
     }
