@@ -1,0 +1,13 @@
+#if ($pageContext.request.locale.language != 'en')
+    <div id="switchLocale"><a href="$link.setForward("/?locale=en")">$messages.get("webapp.name") in English</a></div>
+#end
+
+<div id="branding">
+    <h1><a href="<c:url value='/'/>">$messages.get("webapp.name")</a></h1>
+    <p>$messages.get("webapp.tagline")</p>
+</div>
+<hr />
+
+#* Put constants into request scope
+<appfuse:constants scope="request"/>
+*#
