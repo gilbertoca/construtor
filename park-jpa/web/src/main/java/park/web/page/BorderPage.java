@@ -18,7 +18,6 @@ public class BorderPage extends Page {
      */
     private transient Menu rootMenu;
 
-
     // Event Handlers ---------------------------------------------------------
 
     /**
@@ -60,6 +59,6 @@ public class BorderPage extends Page {
      */
     @Override
     public String getTemplate() {
-        return "/border-template.htm";
+        return "/assets/common/border-template.htm";
     }
 }

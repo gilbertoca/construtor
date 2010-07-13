@@ -1,5 +1,5 @@
 #if ($pageContext.request.locale.language != 'en')
-    <div id="switchLocale"><a href="$link.setForward("/?locale=en")">$messages.get("webapp.name") in English</a></div>
+    <div id="switchLocale"><a href="$link.setRelative("/").addQueryData("locale","en")">$messages.get("webapp.name") in English</a></div>
 #end
 
 <div id="branding">

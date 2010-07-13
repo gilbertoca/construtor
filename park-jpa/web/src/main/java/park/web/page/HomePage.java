@@ -26,7 +26,9 @@ public class HomePage extends BorderPage {
     private static final long serialVersionUID = 1L;
 
     public HomePage() {
-        getModel().put("title", "Main Page");
+        getModel().put("title", getMessage("title"));
+        getModel().put("heading", getMessage("heading"));
+
     }
 
 }

@@ -31,6 +31,8 @@ public class ViewLegalEntity extends BorderPage {
 
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
+        getModel().put("title", getMessage("title"));
+        getModel().put("heading", getMessage("heading"));
         addControl(form);
         addControl(table);
         setStateful(true);
