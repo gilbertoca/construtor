@@ -1,2 +1,0 @@
-#set ($ctx =$pageContext.request.contextPath)
-#set ($datePattern = $messages.get("date.format"))
