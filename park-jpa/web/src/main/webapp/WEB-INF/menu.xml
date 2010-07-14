@@ -19,7 +19,7 @@
 -->
 
 <menu>
-    <menu label=" Home" path="home.htm" imageSrc="/assets/images/home.png">
+    <menu label="Main Page" path="main-menu.htm" imageSrc="/assets/images/home.png">
         <menu separator="true"/>
         <menu label=" View Legal Entity" path="view-legal-entity.htm"/>
     </menu>

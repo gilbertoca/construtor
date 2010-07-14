@@ -1,6 +1,7 @@
 package park.web.page;
 
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
@@ -31,8 +32,10 @@ public class ViewLegalEntity extends BorderPage {
 
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
-        getModel().put("title", getMessage("title"));
-        getModel().put("heading", getMessage("heading"));
+        getModel().put("title", getMessage("viewLegalEntity.title"));
+        getModel().put("heading", getMessage("viewLegalEntity.heading"));
+        getModel().put("menu", "userMenu");
+
         addControl(form);
         addControl(table);
         setStateful(true);

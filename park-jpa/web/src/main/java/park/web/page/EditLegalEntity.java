@@ -25,6 +25,10 @@ public class EditLegalEntity extends BorderPage {
 
     // Constructor -----------------------------------------------------------
     public EditLegalEntity() {
+        getModel().put("title", getMessage("editLegalEntity.title"));
+        getModel().put("heading", getMessage("editLegalEntity.heading"));
+        getModel().put("menu", "userMenu");
+
         addControl(form);
         form.add(referrerField);
         form.add(idField);

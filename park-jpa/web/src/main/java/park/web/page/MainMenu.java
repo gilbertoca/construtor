@@ -17,18 +17,19 @@
  * under the License.
  */
 package park.web.page;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Provides the applications home page.
  */
-public class HomePage extends BorderPage {
+public class MainMenu extends BorderPage {
 
     private static final long serialVersionUID = 1L;
 
-    public HomePage() {
-        getModel().put("title", getMessage("title"));
-        getModel().put("heading", getMessage("heading"));
-
+    public MainMenu() {
+        getModel().put("title", getMessage("mainMenu.title"));
+        getModel().put("heading", getMessage("mainMenu.heading"));
+        getModel().put("menu", "MainMenu");
     }
 
 }
