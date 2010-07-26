@@ -1,18 +1,27 @@
-<title>Click Maven Template - $title</title>
+<html>
+<head>
+<title>Maven Apache Click Archetype - $title</title>
 <link rel="stylesheet" type="text/css" href="$context/assets/style.css" title="Style"></link>
-$imports
+$headElements
 </head>
 
 <body>
 
   <div id="header">
-  	<span id="title">Click Maven Template :: $title</span>
+  	<span id="title">project-name :: $title</span>
   </div>
-  
+    #* You can improve your application's navigation through the <a href="http://click.apache.org/docs/extras-api/org/apache/click/extras/control/MenuFactory.html">Menu control<a>.
+       Just uncomment the following velocity block and edit the menu.xml file
+       localized in the WEB-INF/ directory.
 
+    #if ($rootMenu)
+      #writeMenu($rootMenu)
+    #end
+    *#
   <div id="container">
     #parse($path)
   </div>
- 
+
+  $jsElements
 </body>
-</html> 
+</html>

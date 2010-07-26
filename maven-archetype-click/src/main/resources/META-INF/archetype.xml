@@ -13,6 +13,7 @@
     <resource>src/main/webapp/assets/banner.png</resource>
     <resource>src/main/webapp/assets/home.png</resource>
     <resource>src/main/webapp/WEB-INF/click.xml</resource>
+    <resource>src/main/webapp/WEB-INF/menu.xml</resource>
     <resource>src/main/webapp/WEB-INF/web.xml</resource>
     <resource filtered="false">src/main/webapp/border-template.htm</resource>
     <resource>src/main/webapp/home.htm</resource>

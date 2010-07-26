@@ -19,7 +19,7 @@
   <welcome-file-list>
     <welcome-file>redirect.html</welcome-file>
   </welcome-file-list>
-	<!-- 
+  <!--
 	Provides a web application performance filter which compresses the response
 	and sets the Expires header on selected static resources. 
 	The "cachable-paths" init parameter tells the filter resources can have 
