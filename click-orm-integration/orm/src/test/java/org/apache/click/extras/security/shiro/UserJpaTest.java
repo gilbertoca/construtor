@@ -80,7 +80,7 @@ public class UserJpaTest{
         User user = userService.find(-1L);
 
         assertNotNull(user);
-        assertEquals(1, user.getRoles().size());
+        assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
     @Test
@@ -89,7 +89,7 @@ public class UserJpaTest{
         User user = userService.getUserByName("bruce@hotmail.com");
 
         assertNotNull(user);
-        assertEquals(1, user.getRoles().size());
+        assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
 
@@ -124,7 +124,7 @@ public class UserJpaTest{
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
         User user = userService.find(-1L);
-        assertEquals(1, user.getRoles().size());
+        assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
         user.addRole(role);
