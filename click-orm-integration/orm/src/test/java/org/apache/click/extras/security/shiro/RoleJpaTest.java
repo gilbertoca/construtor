@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import org.apache.click.extras.orm.jpa.EntityManagerContext;
-import org.apache.click.extras.security.shiro.model.Role;
+import org.apache.click.extras.security.jpa.model.Role;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;

@@ -1,4 +1,4 @@
-package org.apache.click.extras.security.shiro.model;
+package org.apache.click.extras.security.jpa.model;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

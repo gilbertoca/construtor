@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.click.extras.orm.jpa.BaseJPAService;
-import org.apache.click.extras.security.shiro.model.Role;
+import org.apache.click.extras.security.jpa.model.Role;
 /**
  * This class interacts with EntityManagerFactory's EntityManager 
  * retrieve Role objects.

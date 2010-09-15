@@ -17,8 +17,8 @@
  * under the License.
  */
 package org.apache.click.extras.security.shiro;
-import org.apache.click.extras.security.shiro.model.Role;
-import org.apache.click.extras.security.shiro.model.User;
+import org.apache.click.extras.security.jpa.model.Role;
+import org.apache.click.extras.security.jpa.model.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -32,7 +32,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.apache.click.extras.security.shiro.model.User;
+import org.apache.click.extras.security.jpa.model.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

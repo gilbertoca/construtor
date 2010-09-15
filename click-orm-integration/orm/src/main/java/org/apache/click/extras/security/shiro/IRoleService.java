@@ -19,7 +19,7 @@
 package org.apache.click.extras.security.shiro;
 
 import org.apache.click.extras.orm.IService;
-import org.apache.click.extras.security.shiro.model.Role;
+import org.apache.click.extras.security.jpa.model.Role;
 
 interface IRoleService extends IService<Role, Long> {
 

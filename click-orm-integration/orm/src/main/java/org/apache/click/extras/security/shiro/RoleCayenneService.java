@@ -21,25 +21,25 @@ package org.apache.click.extras.security.shiro;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.click.extras.orm.jpa.BaseJPAService;
-import org.apache.click.extras.security.jpa.model.User;
+import org.apache.click.extras.orm.cayenne.BaseCayenneService;
+import org.apache.click.extras.security.jpa.model.Role;
 /**
  * This class interacts with EntityManagerFactory's EntityManager 
- * retrieve User objects.
+ * retrieve Role objects.
  **/
-public class UserJPAService extends BaseJPAService<User, Long> implements IUserService{
+public class RoleCayenneService extends BaseCayenneService<Role, Long> implements IRoleService{
 
-    public UserJPAService() {
-        super(User.class);
+    public RoleCayenneService() {
+        super(Role.class);
     }
-    public User getUserByName(String userName) {
+    public Role getRoleByName(String roleName) {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("userName", userName);
-        List<User> users = (List<User>) findByNamedQuery(User.FIND_BY_USER_NAME, map);
-        if (users.isEmpty()) {
+        map.put("name", roleName);
+        List<Role> roles = (List<Role>) findByNamedQuery(Role.FIND_BY_ROLE_NAME, map);
+        if (roles.isEmpty()) {
             return null;
         } else {
-            return users.get(0);
+            return roles.get(0);
         }
     }
 

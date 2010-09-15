@@ -19,7 +19,7 @@
 package org.apache.click.extras.security.shiro;
 
 import org.apache.click.extras.orm.IService;
-import org.apache.click.extras.security.shiro.model.User;
+import org.apache.click.extras.security.jpa.model.User;
 
 interface IUserService extends IService<User, Long> {
 
