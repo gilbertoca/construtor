@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+  project-version="3.0.0.1">
+	<property name="defaultPackage" value="org.apache.click.extras.orm.cayenne.domain"/>
+	<db-entity name="SHIRO_ROLE">
+		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="SHIRO_ROLE_PERMISSION">
+		<db-attribute name="PERMISSION" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
+		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="SHIRO_USER">
+		<db-attribute name="EMAIL" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="PASSWORD" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="USERNAME" type="VARCHAR" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="SHIRO_USER_ROLE">
+		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="USER_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<obj-entity name="Role" className="org.apache.click.extras.orm.cayenne.domain.Role" dbEntityName="SHIRO_ROLE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
+	<obj-entity name="User" className="org.apache.click.extras.orm.cayenne.domain.User" dbEntityName="SHIRO_USER">
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="PASSWORD"/>
+		<obj-attribute name="username" type="java.lang.String" db-attribute-path="USERNAME"/>
+	</obj-entity>
+	<db-relationship name="ROLE_TO_PERMISSION" source="SHIRO_ROLE" target="SHIRO_ROLE_PERMISSION" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="ROLE_ID"/>
+	</db-relationship>
+	<db-relationship name="ROLE_TO_USER" source="SHIRO_ROLE" target="SHIRO_USER_ROLE" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="ROLE_ID"/>
+	</db-relationship>
+	<db-relationship name="ROLE_TO_PERMISSION" source="SHIRO_ROLE_PERMISSION" target="SHIRO_ROLE" toMany="true">
+		<db-attribute-pair source="ROLE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="USER_TO_ROLE" source="SHIRO_USER" target="SHIRO_USER_ROLE" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="USER_ID"/>
+	</db-relationship>
+	<db-relationship name="TO_ROLE" source="SHIRO_USER_ROLE" target="SHIRO_ROLE" toMany="true">
+		<db-attribute-pair source="ROLE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="TO_USER" source="SHIRO_USER_ROLE" target="SHIRO_USER" toMany="true">
+		<db-attribute-pair source="USER_ID" target="ID"/>
+	</db-relationship>
+</data-map>

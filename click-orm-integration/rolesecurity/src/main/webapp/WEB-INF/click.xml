@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<click-app> 
+  <pages package="org.apache.click.extras.security.examples.secure">
+    <!--page path="index.htm" classname="Home"/-->
+    <page path="login.htm" classname="Login"/>
+    <page path="logout.htm" classname="Logout"/>
+    <page path="admin/user-view.htm" classname="UserView"/>
+  </pages>
+
+  <mode value="debug"/>
+</click-app>
