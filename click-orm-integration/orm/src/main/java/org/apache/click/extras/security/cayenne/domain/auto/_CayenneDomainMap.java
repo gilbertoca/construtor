@@ -1,4 +1,4 @@
-package org.apache.click.extras.orm.cayenne.domain.auto;
+package org.apache.click.extras.security.cayenne.domain.auto;
 
 
 

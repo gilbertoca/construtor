@@ -18,7 +18,7 @@
  */
 package org.apache.click.extras.orm.cayenne;
 
-import org.apache.click.extras.orm.cayenne.domain.User;
+import org.apache.click.extras.security.cayenne.domain.User;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;

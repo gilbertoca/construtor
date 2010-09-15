@@ -1,6 +1,6 @@
-package org.apache.click.extras.orm.cayenne.domain;
+package org.apache.click.extras.security.cayenne.domain;
 
-import org.apache.click.extras.orm.cayenne.domain.auto._CayenneDomainMap;
+import org.apache.click.extras.security.cayenne.domain.auto._CayenneDomainMap;
 
 public class CayenneDomainMap extends _CayenneDomainMap {
 
