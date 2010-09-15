@@ -1,8 +1,10 @@
-Project structure:
-park (you are here)
+Project structure(click-orm-intergration):
+coi (you are here)
 |
-------core (persistence and service layer)
+------orm (persistence and service layer)
 |
-------web (front-end with apache Click)
+------web's (examples using front-end with apache Click)
 
-To know about each one, go to the sub-folder and read the README.txt file.
+Note:
+- to work with the examples you need to install orm;
+- to know about each one, go to the sub-folder and read the README.txt file.

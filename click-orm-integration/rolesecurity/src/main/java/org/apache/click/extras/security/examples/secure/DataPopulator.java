@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.click.extras.security.shiro.RoleJPAService;
 import org.apache.click.extras.security.shiro.UserJPAService;
-import org.apache.click.extras.security.shiro.model.Role;
-import org.apache.click.extras.security.shiro.model.User;
+import org.apache.click.extras.security.jpa.model.Role;
+import org.apache.click.extras.security.jpa.model.User;
 
 public class DataPopulator {
     public UserJPAService userService = new UserJPAService();

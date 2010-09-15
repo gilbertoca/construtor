@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
   project-version="3.0.0.1">
-	<property name="defaultPackage" value="org.apache.click.extras.orm.cayenne.domain"/>
+	<property name="defaultPackage" value="org.apache.click.extras.security.cayenne.domain"/>
 	<db-entity name="SHIRO_ROLE">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
