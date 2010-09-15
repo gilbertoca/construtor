@@ -14,8 +14,11 @@ This module represents the service(database access and bussines logic) layer, un
 To adjust the database parameters edit the following orm/pom.xml properties(the actual value is mine) if you want to change the H2 server type:
 
 <jdbc.url>jdbc:h2:file:data/shiroDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
-After that you need to generate the database running:mvn sql:execute, which will create database
-objects necessary to both JPA and Cayenne ORM.
+After that you need to generate the database running:
+
+mvn sql:execute,
+
+which will create database objects necessary to both JPA and Cayenne ORM.
 
 JPA
 
