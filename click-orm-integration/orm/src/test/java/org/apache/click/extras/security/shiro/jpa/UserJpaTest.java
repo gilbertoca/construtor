@@ -1,4 +1,4 @@
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.jpa;
 
 import org.apache.click.extras.security.shiro.jpa.UserJPAService;
 import org.apache.click.extras.security.shiro.jpa.RoleJPAService;
