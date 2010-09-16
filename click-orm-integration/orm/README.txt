@@ -30,13 +30,14 @@ mvn test
 To change the way the jpa engine drop/create the database object you need to edit the following coi/orm/pom.xml properties(the actual value is mine):
 
 eclipselink:
-    <jpa.ddl_value>create-tables</jpa.ddl_value>
+    <jpa.ddl_value>NONE</jpa.ddl_value>
 
 You can change the properties through the command line:
 
-mvn clean install -Djpa.ddl_value=NONE
+mvn clean install -Djpa.ddl_value=create-tables
 
 Cayenne
 
 I've setup the cayenne maven plugin so that we can config it easy: mvn cayenne-modeler:run .
-You need change the database access properties and classpath (tools-preferences->local datasources)
+You need change the database access properties and classpath (tools-preferences->local datasources).
+The orm/pom.xml properties has no effect on Cayenne since it is configured separately.
