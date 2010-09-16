@@ -21,8 +21,8 @@ package org.apache.click.extras.security.examples.secure;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.click.extras.security.shiro.RoleJPAService;
-import org.apache.click.extras.security.shiro.UserJPAService;
+import org.apache.click.extras.security.shiro.jpa.RoleJPAService;
+import org.apache.click.extras.security.shiro.jpa.UserJPAService;
 import org.apache.click.extras.security.jpa.model.Role;
 import org.apache.click.extras.security.jpa.model.User;
 

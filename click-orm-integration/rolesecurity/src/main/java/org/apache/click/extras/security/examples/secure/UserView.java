@@ -23,7 +23,7 @@ import org.apache.click.Page;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
-import org.apache.click.extras.security.shiro.UserJPAService;
+import org.apache.click.extras.security.shiro.jpa.UserJPAService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
