@@ -152,7 +152,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.2.0</click.version>
-        <cayenne.version>3.0</cayenne.version>
+        <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
         <shiro.version>1.0.0-incubating</shiro.version>
         <servlet-api-version>2.5</servlet-api-version>

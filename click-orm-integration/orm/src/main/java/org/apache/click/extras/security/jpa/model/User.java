@@ -1,5 +1,3 @@
-package org.apache.click.extras.security.jpa.model;
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -18,6 +16,7 @@ package org.apache.click.extras.security.jpa.model;
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.click.extras.security.jpa.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
