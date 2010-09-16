@@ -5,6 +5,9 @@
 
 package org.apache.click.extras.security.shiro;
 
+import org.apache.click.extras.security.shiro.jpa.IUserService;
+import org.apache.click.extras.security.shiro.jpa.UserJPAService;
+import org.apache.click.extras.security.shiro.jpa.ClickShiroRealm;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;

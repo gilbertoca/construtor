@@ -16,26 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.cayenne;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.click.extras.orm.jpa.BaseJPAService;
-import org.apache.click.extras.security.jpa.model.User;
+import org.apache.click.extras.orm.cayenne.BaseCayenneService;
+import org.apache.click.extras.security.cayenne.domain.User;
 /**
- * This class interacts with EntityManagerFactory's EntityManager 
- * retrieve User objects.
+ * This class interacts with DataContext to retrieve User objects.
  **/
-public class UserJPAService extends BaseJPAService<User, Long> implements IUserService{
+public class UserCayenneService extends BaseCayenneService<User, Long> implements IUserService{
 
-    public UserJPAService() {
+    public UserCayenneService() {
         super(User.class);
     }
     public User getUserByName(String userName) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("userName", userName);
-        List<User> users = (List<User>) findByNamedQuery(User.FIND_BY_USER_NAME, map);
+        List<User> users = (List<User>) findByNamedQuery("User.FIND_BY_USER_NAME", map);
         if (users.isEmpty()) {
             return null;
         } else {

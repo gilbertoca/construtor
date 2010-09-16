@@ -16,17 +16,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.jpa;
 
-import org.apache.click.extras.orm.IService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.click.extras.orm.jpa.BaseJPAService;
 import org.apache.click.extras.security.jpa.model.User;
+/**
+ * This class interacts with EntityManagerFactory's EntityManager 
+ * retrieve User objects.
+ **/
+public class UserJPAService extends BaseJPAService<User, Long> implements IUserService{
 
-interface IUserService extends IService<User, Long> {
+    public UserJPAService() {
+        super(User.class);
+    }
+    public User getUserByName(String userName) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("userName", userName);
+        List<User> users = (List<User>) findByNamedQuery(User.FIND_BY_USER_NAME, map);
+        if (users.isEmpty()) {
+            return null;
+        } else {
+            return users.get(0);
+        }
+    }
 
-    /**
-     * Gets users information based on login name.
-     * @param username the user's username
-     * @return user populated user object or null if not found.
-     */
-    User getUserByName(String userName);
 }

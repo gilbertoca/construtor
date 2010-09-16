@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
-import org.apache.click.extras.security.jpa.model.Role;
-import org.apache.click.extras.security.jpa.model.User;
+package org.apache.click.extras.security.shiro.cayenne;
+import org.apache.click.extras.security.cayenne.domain.Role;
+import org.apache.click.extras.security.cayenne.domain.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

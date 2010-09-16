@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.jpa;
 
 import java.util.HashMap;
 import java.util.List;

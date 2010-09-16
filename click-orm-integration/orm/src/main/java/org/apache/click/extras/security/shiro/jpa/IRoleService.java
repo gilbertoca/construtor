@@ -16,31 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.jpa;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.apache.click.extras.orm.cayenne.BaseCayenneService;
+import org.apache.click.extras.orm.IService;
 import org.apache.click.extras.security.jpa.model.Role;
-/**
- * This class interacts with EntityManagerFactory's EntityManager 
- * retrieve Role objects.
- **/
-public class RoleCayenneService extends BaseCayenneService<Role, Long> implements IRoleService{
 
-    public RoleCayenneService() {
-        super(Role.class);
-    }
-    public Role getRoleByName(String roleName) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("name", roleName);
-        List<Role> roles = (List<Role>) findByNamedQuery(Role.FIND_BY_ROLE_NAME, map);
-        if (roles.isEmpty()) {
-            return null;
-        } else {
-            return roles.get(0);
-        }
-    }
+interface IRoleService extends IService<Role, Long> {
 
+    /**
+     * Gets role information based on roleName
+     * @param rolename the roleName
+     * @return populated role object
+     */
+    Role getRoleByName(String roleName);
 }

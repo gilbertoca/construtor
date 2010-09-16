@@ -16,17 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro;
+package org.apache.click.extras.security.shiro.cayenne;
 
 import org.apache.click.extras.orm.IService;
-import org.apache.click.extras.security.jpa.model.Role;
+import org.apache.click.extras.security.cayenne.domain.User;
 
-interface IRoleService extends IService<Role, Long> {
+interface IUserService extends IService<User, Long> {
 
     /**
-     * Gets role information based on roleName
-     * @param rolename the roleName
-     * @return populated role object
+     * Gets users information based on login name.
+     * @param username the user's username
+     * @return user populated user object or null if not found.
      */
-    Role getRoleByName(String roleName);
+    User getUserByName(String userName);
 }

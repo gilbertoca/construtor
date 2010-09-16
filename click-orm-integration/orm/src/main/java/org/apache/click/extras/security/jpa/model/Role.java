@@ -36,7 +36,7 @@ import java.util.Set;
         )
 })
 public class Role {
-    public static final String FIND_BY_ROLE_NAME = "User.findByRoleName";
+    public static final String FIND_BY_ROLE_NAME = "Role.findByRoleName";
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE, generator="SHIRO_ROLE_SEQ")
     @TableGenerator(name="SHIRO_ROLE_SEQ", table="SHIRO_SEQUENCE", pkColumnName="SEQ_NAME",
