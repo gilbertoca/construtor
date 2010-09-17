@@ -74,7 +74,7 @@ public class UserCayenneTest{
         User user = userService.find(-1L);
 
         assertNotNull(user);
-        assertEquals(2, user.getShiroUserRoles().size());
+        assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
     @Test
@@ -83,7 +83,7 @@ public class UserCayenneTest{
         User user = userService.getUserByName("bruce@hotmail.com");
 
         assertNotNull(user);
-        assertEquals(2, user.getShiroUserRoles().size());
+        assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
 
@@ -118,27 +118,27 @@ public class UserCayenneTest{
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
         User user = userService.find(-1L);
-        assertEquals(2, user.getShiroUserRoles().size());
+        assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
-        user.addToShiroUserRoles(role);
+        user.addToRoles(role);
         userService.update(user);
 
         user = userService.find(-1L);
-        assertEquals(2, user.getShiroUserRoles().size());
+        assertEquals(2, user.getRoles().size());
 
         //add the same role twice - should result in no additional role
-        user.addToShiroUserRoles(role);
+        user.addToRoles(role);
         userService.update(user);
 
         user = userService.find(-1L);
-        assertEquals("more than 2 roles", 2, user.getShiroUserRoles().size());
+        assertEquals("more than 2 roles", 2, user.getRoles().size());
 
-        user.getShiroUserRoles().remove(role);
+        user.getRoles().remove(role);
         userService.update(user);
 
         user = userService.find(-1L);
-        assertEquals(1, user.getShiroUserRoles().size());
+        assertEquals(1, user.getRoles().size());
     }
 
     @Test
@@ -152,7 +152,7 @@ public class UserCayenneTest{
         Role role = roleService.getRoleByName("USER_ROLE");
         System.out.println("***** getting role "+role+" for a new user. *****");
         assertNotNull(role);
-        user.addToShiroUserRoles(role);
+        user.addToRoles(role);
 
         userService.insert(user);
         System.out.println("***** what does happen if we don't get id by find method? *****");

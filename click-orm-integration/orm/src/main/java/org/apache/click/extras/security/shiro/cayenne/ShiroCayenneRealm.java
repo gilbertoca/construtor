@@ -54,9 +54,9 @@ public class ShiroCayenneRealm extends AuthorizingRealm {
         if (user != null) {
             Collection<String> cS = null;
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            for (Role role : user.getShiroUserRoles()) {
+            for (Role role : user.getRoles()) {
                 info.addRole(role.getName());
-                for (RolePermission rP : role.getShiroRolePermissions()){
+                for (RolePermission rP : role.getPermissions()){
                     cS.add(rP.getPermission());
                 }
                 info.addStringPermissions(cS);

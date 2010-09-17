@@ -18,7 +18,7 @@ public abstract class _User extends CayenneDataObject {
     public static final String PASSWORD_PROPERTY = "password";
     public static final String USERNAME_PROPERTY = "username";
     public static final String VERSION_PROPERTY = "version";
-    public static final String SHIRO_USER_ROLES_PROPERTY = "shiroUserRoles";
+    public static final String ROLES_PROPERTY = "roles";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -57,15 +57,15 @@ public abstract class _User extends CayenneDataObject {
         return (Integer)readProperty("version");
     }
 
-    public void addToShiroUserRoles(Role obj) {
-        addToManyTarget("shiroUserRoles", obj, true);
+    public void addToRoles(Role obj) {
+        addToManyTarget("roles", obj, true);
     }
-    public void removeFromShiroUserRoles(Role obj) {
-        removeToManyTarget("shiroUserRoles", obj, true);
+    public void removeFromRoles(Role obj) {
+        removeToManyTarget("roles", obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<Role> getShiroUserRoles() {
-        return (List<Role>)readProperty("shiroUserRoles");
+    public List<Role> getRoles() {
+        return (List<Role>)readProperty("roles");
     }
 
 
