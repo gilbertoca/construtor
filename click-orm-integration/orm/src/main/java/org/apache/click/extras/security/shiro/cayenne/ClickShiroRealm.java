@@ -51,9 +51,9 @@ public class ClickShiroRealm extends AuthorizingRealm {
         User user = userService.find(userId);
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            for (Role role : user.getRoles()) {
+            for (Role role : user.getShiroUserRoles()) {
                 info.addRole(role.getName());
-                info.addStringPermissions(role.getPermissions());
+                info.addStringPermissions(role.getShiroRolePermissions().);
             }
             return info;
         } else {

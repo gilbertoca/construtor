@@ -4,24 +4,29 @@
   xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
   project-version="3.0.0.1">
 	<property name="defaultPackage" value="org.apache.click.extras.security.cayenne.domain"/>
-	<db-entity name="SHIRO_ROLE">
+	<db-entity name="SHIRO_ROLE" catalog="SHIRODB">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
 	</db-entity>
-	<db-entity name="SHIRO_ROLE_PERMISSION">
+	<db-entity name="SHIRO_ROLE_PERMISSION" catalog="SHIRODB">
 		<db-attribute name="PERMISSION" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
-		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
-	<db-entity name="SHIRO_USER">
+	<db-entity name="SHIRO_SEQUENCE" catalog="SHIRODB">
+		<db-attribute name="SEQ_COUNT" type="DECIMAL" length="38"/>
+		<db-attribute name="SEQ_NAME" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="SHIRO_USER" catalog="SHIRODB">
 		<db-attribute name="EMAIL" type="VARCHAR" isMandatory="true" length="100"/>
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="PASSWORD" type="VARCHAR" isMandatory="true" length="50"/>
 		<db-attribute name="USERNAME" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="VERSION" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="SHIRO_USER_ROLE">
-		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
-		<db-attribute name="USER_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true"/>
+	<db-entity name="SHIRO_USER_ROLE" catalog="SHIRODB">
+		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="USER_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
 	<obj-entity name="Role" className="org.apache.click.extras.security.cayenne.domain.Role" dbEntityName="SHIRO_ROLE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
@@ -29,37 +34,42 @@
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
 	<obj-entity name="RolePermission" className="org.apache.click.extras.security.cayenne.domain.RolePermission" dbEntityName="SHIRO_ROLE_PERMISSION">
+		<obj-attribute name="permission" type="java.lang.String" db-attribute-path="PERMISSION"/>
+		<obj-attribute name="roleId" type="java.lang.Long" db-attribute-path="ROLE_ID"/>
 	</obj-entity>
 	<obj-entity name="User" className="org.apache.click.extras.security.cayenne.domain.User" dbEntityName="SHIRO_USER">
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="password" type="java.lang.String" db-attribute-path="PASSWORD"/>
 		<obj-attribute name="username" type="java.lang.String" db-attribute-path="USERNAME"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="UserRole" className="org.apache.click.extras.security.cayenne.domain.UserRole" dbEntityName="SHIRO_USER_ROLE">
+		<obj-attribute name="roleId" type="java.lang.Long" db-attribute-path="ROLE_ID"/>
+		<obj-attribute name="userId" type="java.lang.Long" db-attribute-path="USER_ID"/>
 	</obj-entity>
-	<db-relationship name="permissions" source="SHIRO_ROLE" target="SHIRO_ROLE_PERMISSION" toMany="true">
+	<db-relationship name="shiroRolePermissions" source="SHIRO_ROLE" target="SHIRO_ROLE_PERMISSION" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="ROLE_ID"/>
 	</db-relationship>
-	<db-relationship name="users" source="SHIRO_ROLE" target="SHIRO_USER_ROLE" toMany="true">
+	<db-relationship name="shiroUserRoles" source="SHIRO_ROLE" target="SHIRO_USER_ROLE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="ROLE_ID"/>
 	</db-relationship>
-	<db-relationship name="role" source="SHIRO_ROLE_PERMISSION" target="SHIRO_ROLE" toDependentPK="true" toMany="false">
+	<db-relationship name="role" source="SHIRO_ROLE_PERMISSION" target="SHIRO_ROLE" toMany="false">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="roles" source="SHIRO_USER" target="SHIRO_USER_ROLE" toMany="true">
+	<db-relationship name="shiroUserRoles" source="SHIRO_USER" target="SHIRO_USER_ROLE" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="USER_ID"/>
 	</db-relationship>
-	<db-relationship name="role" source="SHIRO_USER_ROLE" target="SHIRO_ROLE" toDependentPK="true" toMany="false">
+	<db-relationship name="role" source="SHIRO_USER_ROLE" target="SHIRO_ROLE" toMany="false">
 		<db-attribute-pair source="ROLE_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="user" source="SHIRO_USER_ROLE" target="SHIRO_USER" toDependentPK="true" toMany="false">
+	<db-relationship name="user" source="SHIRO_USER_ROLE" target="SHIRO_USER" toMany="false">
 		<db-attribute-pair source="USER_ID" target="ID"/>
 	</db-relationship>
-	<obj-relationship name="permissions" source="Role" target="RolePermission" deleteRule="Deny" db-relationship-path="permissions"/>
-	<obj-relationship name="users" source="Role" target="UserRole" deleteRule="Deny" db-relationship-path="users"/>
+	<obj-relationship name="shiroRolePermissions" source="Role" target="RolePermission" deleteRule="Deny" db-relationship-path="shiroRolePermissions"/>
+	<obj-relationship name="shiroUserRoles" source="Role" target="UserRole" deleteRule="Deny" db-relationship-path="shiroUserRoles"/>
 	<obj-relationship name="role" source="RolePermission" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="roles" source="User" target="UserRole" deleteRule="Deny" db-relationship-path="roles"/>
+	<obj-relationship name="shiroUserRoles" source="User" target="Role" deleteRule="Deny" db-relationship-path="shiroUserRoles.role"/>
 	<obj-relationship name="role" source="UserRole" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
 	<obj-relationship name="user" source="UserRole" target="User" deleteRule="Nullify" db-relationship-path="user"/>
 </data-map>

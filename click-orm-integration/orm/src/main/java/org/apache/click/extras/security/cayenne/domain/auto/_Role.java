@@ -17,8 +17,8 @@ public abstract class _Role extends CayenneDataObject {
     public static final String DESCRIPTION_PROPERTY = "description";
     public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String PERMISSIONS_PROPERTY = "permissions";
-    public static final String USERS_PROPERTY = "users";
+    public static final String SHIRO_ROLE_PERMISSIONS_PROPERTY = "shiroRolePermissions";
+    public static final String SHIRO_USER_ROLES_PROPERTY = "shiroUserRoles";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -43,27 +43,27 @@ public abstract class _Role extends CayenneDataObject {
         return (String)readProperty("name");
     }
 
-    public void addToPermissions(RolePermission obj) {
-        addToManyTarget("permissions", obj, true);
+    public void addToShiroRolePermissions(RolePermission obj) {
+        addToManyTarget("shiroRolePermissions", obj, true);
     }
-    public void removeFromPermissions(RolePermission obj) {
-        removeToManyTarget("permissions", obj, true);
+    public void removeFromShiroRolePermissions(RolePermission obj) {
+        removeToManyTarget("shiroRolePermissions", obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<RolePermission> getPermissions() {
-        return (List<RolePermission>)readProperty("permissions");
+    public List<RolePermission> getShiroRolePermissions() {
+        return (List<RolePermission>)readProperty("shiroRolePermissions");
     }
 
 
-    public void addToUsers(UserRole obj) {
-        addToManyTarget("users", obj, true);
+    public void addToShiroUserRoles(UserRole obj) {
+        addToManyTarget("shiroUserRoles", obj, true);
     }
-    public void removeFromUsers(UserRole obj) {
-        removeToManyTarget("users", obj, true);
+    public void removeFromShiroUserRoles(UserRole obj) {
+        removeToManyTarget("shiroUserRoles", obj, true);
     }
     @SuppressWarnings("unchecked")
-    public List<UserRole> getUsers() {
-        return (List<UserRole>)readProperty("users");
+    public List<UserRole> getShiroUserRoles() {
+        return (List<UserRole>)readProperty("shiroUserRoles");
     }
 
 
