@@ -127,14 +127,15 @@ public class UserJpaTest{
         assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
-        user.addRole(role);
+        user.getRoles().add(role);
+        //should threw a exception since we already have such record
         userService.update(user);
-
+        
         user = userService.find(-1L);
         assertEquals(2, user.getRoles().size());
 
         //add the same role twice - should result in no additional role
-        user.addRole(role);
+        user.getRoles().add(role);
         userService.update(user);
 
         user = userService.find(-1L);
