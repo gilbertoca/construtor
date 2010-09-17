@@ -66,10 +66,10 @@
 	<db-relationship name="user" source="SHIRO_USER_ROLE" target="SHIRO_USER" toMany="false">
 		<db-attribute-pair source="USER_ID" target="ID"/>
 	</db-relationship>
-	<obj-relationship name="shiroRolePermissions" source="Role" target="RolePermission" deleteRule="Deny" db-relationship-path="shiroRolePermissions"/>
-	<obj-relationship name="shiroUserRoles" source="Role" target="UserRole" deleteRule="Deny" db-relationship-path="shiroUserRoles"/>
-	<obj-relationship name="role" source="RolePermission" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="shiroUserRoles" source="User" target="Role" deleteRule="Deny" db-relationship-path="shiroUserRoles.role"/>
-	<obj-relationship name="role" source="UserRole" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="user" source="UserRole" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<query name="Role.findByRoleName" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Role">
+		<qualifier><![CDATA[name = $name]]></qualifier>
+	</query>
+	<query name="User.findByUserName" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="User">
+		<qualifier><![CDATA[username = $userName]]></qualifier>
+	</query>
 </data-map>

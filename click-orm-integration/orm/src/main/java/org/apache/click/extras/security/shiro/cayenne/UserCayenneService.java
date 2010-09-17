@@ -34,7 +34,7 @@ public class UserCayenneService extends BaseCayenneService<User, Long> implement
     public User getUserByName(String userName) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("userName", userName);
-        List<User> users = (List<User>) findByNamedQuery("User.FIND_BY_USER_NAME", map);
+        List<User> users = (List<User>) findByNamedQuery("User.findByUserName", map);
         if (users.isEmpty()) {
             return null;
         } else {

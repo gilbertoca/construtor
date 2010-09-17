@@ -16,9 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro.jpa;
-import org.apache.click.extras.security.jpa.model.Role;
-import org.apache.click.extras.security.jpa.model.User;
+package org.apache.click.extras.security.shiro.cayenne;
+import java.util.Collection;
+import org.apache.click.extras.security.cayenne.domain.Role;
+import org.apache.click.extras.security.cayenne.domain.RolePermission;
+import org.apache.click.extras.security.cayenne.domain.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -29,10 +31,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-public class ClickShiroRealm extends AuthorizingRealm {
+public class ShiroCayenneRealm extends AuthorizingRealm {
     private IUserService userService;
 
-    public ClickShiroRealm() {
+    public ShiroCayenneRealm() {
         setName("ClickShiroRealm"); //This name must match the name in the User class's getPrincipals() method
     }
 
@@ -50,10 +52,14 @@ public class ClickShiroRealm extends AuthorizingRealm {
         Long userId = (Long) principals.fromRealm(getName()).iterator().next();
         User user = userService.find(userId);
         if (user != null) {
+            Collection<String> cS = null;
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            for (Role role : user.getRoles()) {
+            for (Role role : user.getShiroUserRoles()) {
                 info.addRole(role.getName());
-                info.addStringPermissions(role.getPermissions());
+                for (RolePermission rP : role.getShiroRolePermissions()){
+                    cS.add(rP.getPermission());
+                }
+                info.addStringPermissions(cS);
             }
             return info;
         } else {

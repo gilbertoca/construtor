@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  *
  * @author Gilberto
  */
-public class ClickShiroRealmTest {
+public class ShiroJPARealmTest {
     private static IUserService userService;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
@@ -75,7 +75,7 @@ public class ClickShiroRealmTest {
     @Test
     public void testGetAuthenticationInfo() {
         System.out.println("testGetAuthenticationInfo");
-        ClickShiroRealm instance = new ClickShiroRealm();
+        ShiroJPARealm instance = new ShiroJPARealm();
         instance.setUserService(userService);
         //User doesn't exists
         assertNull(instance.doGetAuthenticationInfo(new UsernamePasswordToken("bruce@", "bruce")));

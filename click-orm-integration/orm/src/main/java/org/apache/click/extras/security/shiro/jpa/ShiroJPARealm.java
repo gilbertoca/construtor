@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.shiro.cayenne;
-import org.apache.click.extras.security.cayenne.domain.Role;
-import org.apache.click.extras.security.cayenne.domain.User;
+package org.apache.click.extras.security.shiro.jpa;
+import org.apache.click.extras.security.jpa.model.Role;
+import org.apache.click.extras.security.jpa.model.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -29,10 +29,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-public class ClickShiroRealm extends AuthorizingRealm {
+public class ShiroJPARealm extends AuthorizingRealm {
     private IUserService userService;
 
-    public ClickShiroRealm() {
+    public ShiroJPARealm() {
         setName("ClickShiroRealm"); //This name must match the name in the User class's getPrincipals() method
     }
 
@@ -51,9 +51,9 @@ public class ClickShiroRealm extends AuthorizingRealm {
         User user = userService.find(userId);
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            for (Role role : user.getShiroUserRoles()) {
+            for (Role role : user.getRoles()) {
                 info.addRole(role.getName());
-                info.addStringPermissions(role.getShiroRolePermissions().);
+                info.addStringPermissions(role.getPermissions());
             }
             return info;
         } else {
