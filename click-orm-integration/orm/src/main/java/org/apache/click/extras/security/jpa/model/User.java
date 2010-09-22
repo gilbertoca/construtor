@@ -71,6 +71,11 @@ public class User implements Serializable {
     @JoinTable(name = "shiro_user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    /**
+     * Set of Role. Note: we use HashSet because we don't want duplication.
+     * Take care, because adding the same role twice - user.getRoles().add(role);
+     * won't cause anything on roles set.
+     */
     private Set<Role> roles = new HashSet<Role>();
 
     public User() {

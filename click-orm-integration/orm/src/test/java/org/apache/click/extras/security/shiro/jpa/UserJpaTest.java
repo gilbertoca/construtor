@@ -124,19 +124,26 @@ public class UserJpaTest{
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
         User user = userService.find(-1L);
+        //User has USER_ROLE and ADMIN_ROLE
+
         assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
         user.getRoles().add(role);
-        //should threw a exception since we already have such record
+        System.out.println("***** what happen if we add the same Role? "+user+"****");
+        //Should threw a exception since we already have such record?
+        //I don't think so, since we use HashSet
         userService.update(user);
-        
+
         user = userService.find(-1L);
         assertEquals(2, user.getRoles().size());
 
-        //add the same role twice - should result in no additional role
+        System.out.println("***** add the same role twice - should result in no additional role *****");
         user.getRoles().add(role);
         userService.update(user);
+        System.out.println("***** what happen again? "+user+"****");
+        //Should threw a exception since we already have such record?
+        //I don't think so, since we use HashSet
 
         user = userService.find(-1L);
         assertEquals("more than 2 roles", 2, user.getRoles().size());

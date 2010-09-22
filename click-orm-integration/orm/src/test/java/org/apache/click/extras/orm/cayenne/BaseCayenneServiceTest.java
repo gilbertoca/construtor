@@ -73,6 +73,7 @@ public class BaseCayenneServiceTest {
     @AfterClass
     public static void closeEntityManager() throws SQLException, DatabaseUnitException {
         //EntityManagerContext.close();
+        //userService.getDataContext()
         //before we close the connection
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();

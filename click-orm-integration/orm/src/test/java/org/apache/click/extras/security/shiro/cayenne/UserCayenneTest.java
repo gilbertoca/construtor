@@ -3,6 +3,9 @@ package org.apache.click.extras.security.shiro.cayenne;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import org.apache.cayenne.CayenneRuntimeException;
+import org.apache.cayenne.access.DataContext;
+import org.apache.click.extras.orm.cayenne.BaseCayenneService;
 import org.apache.click.extras.security.cayenne.domain.Role;
 import org.apache.click.extras.security.cayenne.domain.User;
 import org.dbunit.DatabaseUnitException;
@@ -18,7 +21,8 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class UserCayenneTest{
+public class UserCayenneTest {
+
     private static UserCayenneService userService;
     private static RoleCayenneService roleService;
     private static IDatabaseConnection connection;
@@ -48,7 +52,7 @@ public class UserCayenneTest{
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("shiro-user-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
@@ -77,6 +81,7 @@ public class UserCayenneTest{
         assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
+
     @Test
     public void testGetUserByName() throws Exception {
         System.out.println("===========testGetUserByName======");
@@ -114,25 +119,22 @@ public class UserCayenneTest{
         //userService.update(userUpdated);
     }
 
-    @Test
+    @Test(expected=CayenneRuntimeException.class)
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
         User user = userService.find(-1L);
+        //User has USER_ROLE and ADMIN_ROLE
         assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
         user.addToRoles(role);
+        System.out.println("***** what happen if we add the same Role? " + user + "****");
+        //Should threw a exception since we already have such record?
+        //Yes, since cayenne uses List as default to all relationship
         userService.update(user);
 
-        user = userService.find(-1L);
-        assertEquals(2, user.getRoles().size());
-
-        //add the same role twice - should result in no additional role
-        user.addToRoles(role);
-        userService.update(user);
-
-        user = userService.find(-1L);
-        assertEquals("more than 2 roles", 2, user.getRoles().size());
+        User user2 = userService.find(-1L);
+        assertEquals(2, user2.getRoles().size());
 
         user.getRoles().remove(role);
         userService.update(user);
@@ -150,16 +152,16 @@ public class UserCayenneTest{
         user.setEmail("testuser@appfuse.org");
 
         Role role = roleService.getRoleByName("USER_ROLE");
-        System.out.println("***** getting role "+role+" for a new user. *****");
+        System.out.println("***** getting role " + role + " for a new user. *****");
         assertNotNull(role);
         user.addToRoles(role);
 
         userService.insert(user);
-        System.out.println("***** what does happen if we don't get id by find method? *****");
+        System.out.println("***** Does the object was update or shoul I get it by find method? *****");
         assertNotNull(user.getId());
 
         user = userService.find(user.getId());
-        System.out.println("***** get id by find method should use cache? "+user+"*****");
+        System.out.println("***** should use cache? " + user + "*****");
         assertEquals("testpass", user.getPassword());
 
         userService.delete(user.getId());
@@ -185,5 +187,4 @@ public class UserCayenneTest{
         boolean b = userService.find(user);
         assertFalse(b);
     }
-
 }
