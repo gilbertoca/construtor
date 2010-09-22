@@ -111,12 +111,6 @@ public class UserCayenneTest {
 
         User userUpdated = userService.find(-1L);
         assertEquals("novo@com.br", userUpdated.getEmail());
-
-        // verify that violation occurs when adding new user with same username
-        //userUpdated.setId(null);
-
-        // should throw some persistence Exception
-        //userService.update(userUpdated);
     }
 
     @Test(expected=CayenneRuntimeException.class)
@@ -132,15 +126,6 @@ public class UserCayenneTest {
         //Should threw a exception since we already have such record?
         //Yes, since cayenne uses List as default to all relationship
         userService.update(user);
-
-        User user2 = userService.find(-1L);
-        assertEquals(2, user2.getRoles().size());
-
-        user.getRoles().remove(role);
-        userService.update(user);
-
-        user = userService.find(-1L);
-        assertEquals(1, user.getRoles().size());
     }
 
     @Test
