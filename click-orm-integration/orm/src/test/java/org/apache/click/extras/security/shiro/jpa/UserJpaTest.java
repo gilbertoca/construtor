@@ -112,12 +112,6 @@ public class UserJpaTest{
 
         User userUpdated = userService.find(-1L);
         assertEquals("novo@com.br", userUpdated.getEmail());
-
-        // verify that violation occurs when adding new user with same username
-        //userUpdated.setId(null);
-
-        // should throw some persistence Exception
-        //userService.update(userUpdated);
     }
 
     @Test
