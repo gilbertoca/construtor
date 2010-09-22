@@ -129,10 +129,11 @@ public class UserJpaTest{
         assertEquals(2, user.getRoles().size());
 
         Role role = roleService.getRoleByName("USER_ROLE");
-        user.getRoles().add(role);
         System.out.println("***** what happen if we add the same Role? "+user+"****");
         //Should threw a exception since we already have such record?
-        //I don't think so, since we use HashSet
+        //I don't think so, since we use HashSet it will return false and won't add nothing!
+        //Changing the Role collection type, for example to List, will threw an database exception
+        user.getRoles().add(role);
         userService.update(user);
 
         user = userService.find(-1L);
