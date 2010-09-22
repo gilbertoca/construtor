@@ -4,8 +4,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.apache.cayenne.CayenneRuntimeException;
-import org.apache.cayenne.access.DataContext;
-import org.apache.click.extras.orm.cayenne.BaseCayenneService;
 import org.apache.click.extras.security.cayenne.domain.Role;
 import org.apache.click.extras.security.cayenne.domain.User;
 import org.dbunit.DatabaseUnitException;
