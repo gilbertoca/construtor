@@ -111,6 +111,23 @@ public class UserCayenneTest {
         User userUpdated = userService.find(-1L);
         assertEquals("novo@com.br", userUpdated.getEmail());
     }
+    @Test
+    public void testUserExists() throws Exception {
+        System.out.println("===========testUserExists======");
+        User user = new User();
+        user.setId(-1L);
+        boolean b = userService.find(user);
+        assertTrue(b);
+    }
+
+    @Test
+    public void testUserNotExists() throws Exception {
+        System.out.println("===========testUserNotExists======");
+        User user = new User();
+        user.setId(Long.MIN_VALUE);
+        boolean b = userService.find(user);
+        assertFalse(b);
+    }
 
     @Test(expected=CayenneRuntimeException.class)
     public void testAddUserRole() throws Exception {
@@ -152,23 +169,5 @@ public class UserCayenneTest {
 
         System.out.println("***** what does happen if the entity doesn't exist? *****");
         userService.find(user.getId());
-    }
-
-    @Test
-    public void testUserExists() throws Exception {
-        System.out.println("===========testUserExists======");
-        User user = new User();
-        user.setId(-1L);
-        boolean b = userService.find(user);
-        assertTrue(b);
-    }
-
-    @Test
-    public void testUserNotExists() throws Exception {
-        System.out.println("===========testUserNotExists======");
-        User user = new User();
-        user.setId(Long.MIN_VALUE);
-        boolean b = userService.find(user);
-        assertFalse(b);
     }
 }
