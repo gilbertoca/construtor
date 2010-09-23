@@ -23,7 +23,6 @@ import java.util.Collection;
 import java.util.Map;
 import javax.persistence.EntityTransaction;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -129,13 +128,6 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     }
 
-    public boolean find(T entity) {
-        Validate.notNull(entity, "Null Entity parameter");
-        Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
-        PK identifier = (PK) EntityManagerContext.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
-        entity = getEntityManager().find(getClassEntity(), identifier);
-        return (entity != null);
-    }
     public T find(PK pk) {
         Validate.notNull(pk, "Null PK parameter");
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");

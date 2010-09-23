@@ -8,17 +8,11 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import org.apache.cayenne.BaseContext;
-import org.apache.cayenne.CayenneRuntimeException;
-import org.apache.cayenne.DataObject;
 import org.apache.cayenne.DataObjectUtils;
 import org.apache.cayenne.ObjectId;
 import org.apache.cayenne.Persistent;
 import org.apache.cayenne.access.DataContext;
-import org.apache.cayenne.map.DbAttribute;
-import org.apache.cayenne.map.DbEntity;
-import org.apache.cayenne.map.ObjEntity;
 import org.apache.cayenne.query.NamedQuery;
-import org.apache.cayenne.query.ObjectIdQuery;
 import org.apache.cayenne.query.SelectQuery;
 import org.apache.click.extras.orm.IService;
 import org.apache.commons.lang.Validate;
@@ -48,7 +42,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
      *
      * @return the thread local DataContext
      */
-    protected DataContext getDataContext() {
+    public DataContext getDataContext() {
         try {
             return (DataContext) BaseContext.getThreadObjectContext();
 
@@ -57,74 +51,6 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
             BaseContext.bindThreadObjectContext(dataContext);
             return dataContext;
         }
-    }
-
-    /**
-     * Perform a query returning the data object specified by the
-     * class and the primary key value. If the refresh parameter is true a
-     * database query will be performed, otherwise the a query against the
-     * object cache will be performed first.
-     *
-     * @param dataObjectClass the data object class to retrieve
-     * @param id the data object primary key
-     * @param refresh the refresh the object cache mode
-     * @return the data object for the given class and id
-     */
-    protected DataObject getObjectForPK(Class dataObjectClass, Object id, boolean refresh) {
-        Validate.notNull(dataObjectClass, "Null dataObjectClass parameter.");
-
-        ObjEntity objEntity =
-                getDataContext().getEntityResolver().lookupObjEntity(dataObjectClass);
-
-        if (objEntity == null) {
-            throw new CayenneRuntimeException("Unmapped DataObject Class: "
-                    + dataObjectClass.getName());
-        }
-
-        String pkName = getPkName(dataObjectClass);
-
-        ObjectId objectId = new ObjectId(objEntity.getName(), pkName, id);
-
-        int refreshMode = (refresh) ? ObjectIdQuery.CACHE_REFRESH : ObjectIdQuery.CACHE;
-
-        ObjectIdQuery objectIdQuery = new ObjectIdQuery(objectId, false, refreshMode);
-
-        return (DataObject) DataObjectUtils.objectForQuery(getDataContext(), objectIdQuery);
-    }
-
-    /**
-     * Return the database primary key column name for the given data object.
-     *
-     * @param dataObjectClass the class of the data object
-     * @return the primary key column name
-     */
-    protected String getPkName(Class dataObjectClass) {
-        Validate.notNull(dataObjectClass, "Null dataObjectClass parameter.");
-
-        ObjEntity objEntity =
-                getDataContext().getEntityResolver().lookupObjEntity(dataObjectClass);
-
-        if (objEntity == null) {
-            throw new CayenneRuntimeException("Unmapped DataObject Class: "
-                    + dataObjectClass.getName());
-        }
-
-        DbEntity dbEntity = objEntity.getDbEntity();
-        if (dbEntity == null) {
-            throw new CayenneRuntimeException("No DbEntity for ObjEntity: "
-                    + objEntity.getName());
-        }
-
-        Collection pkAttributes = dbEntity.getPrimaryKeys();
-        if (pkAttributes.size() != 1) {
-            throw new CayenneRuntimeException("PK contains "
-                    + pkAttributes.size()
-                    + " columns, expected 1.");
-        }
-
-        DbAttribute attr = (DbAttribute) pkAttributes.iterator().next();
-
-        return attr.getName();
     }
 
     public Collection<T> getAll() {
@@ -136,7 +62,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public void insert(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
         if (((Persistent) entity).getObjectContext() == null) {
-            getDataContext().registerNewObject((DataObject) entity);
+            getDataContext().registerNewObject(entity);
         }
         getDataContext().commitChanges();
     }
@@ -144,7 +70,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public void insert(Collection<T> entities) {
         for (T entity : entities) {
             if (((Persistent) entity).getObjectContext() == null) {
-                getDataContext().registerNewObject((DataObject) entity);
+                getDataContext().registerNewObject(entity);
             }
         }
         getDataContext().commitChanges();
@@ -153,7 +79,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public void update(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
         if (((Persistent) entity).getObjectContext() == null) {
-            getDataContext().registerNewObject((DataObject) entity);
+            getDataContext().registerNewObject(entity);
         }
         getDataContext().commitChanges();
     }
@@ -161,7 +87,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public void update(Collection<T> entities) {
         for (T entity : entities) {
             if (((Persistent) entity).getObjectContext() == null) {
-                getDataContext().registerNewObject((DataObject) entity);
+                getDataContext().registerNewObject(entity);
             }
         }
         getDataContext().commitChanges();
@@ -170,6 +96,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public void delete(PK pk) {
         Validate.notNull(pk, "Null pk parameter");
         getDataContext().deleteObject(find(pk));
+        getDataContext().commitChanges();
     }
 
     public void delete(T entity) {
@@ -183,17 +110,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         Validate.notNull(pk, "Null PK parameter");
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
 
-        return (T) getObjectForPK(getClassEntity(), pk, true);
-    }
-
-    public boolean find(T entity) {
-        Validate.notNull(entity, "Null Entity parameter");
-        Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
-        
-         if (((Persistent) entity).getObjectContext() == null) {
-                getDataContext().registerNewObject(entity);
-            }
-        return getObjectForPK(getClassEntity(), (Persistent) entity.getObjectId(), true) == null) ? true : false;
+        return (T) DataObjectUtils.objectForPK(getDataContext(), getClassEntity(), pk);
     }
 
     public Collection<T> findByNamedQuery(String namedQuery, Map<String, ?> params) {

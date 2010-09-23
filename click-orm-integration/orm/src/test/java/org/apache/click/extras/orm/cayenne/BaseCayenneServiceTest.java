@@ -18,8 +18,10 @@
  */
 package org.apache.click.extras.orm.cayenne;
 
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.conf.Configuration;
 import org.apache.click.extras.security.cayenne.domain.User;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.dbunit.DatabaseUnitException;
@@ -42,38 +44,30 @@ public class BaseCayenneServiceTest {
     private static IDataSet dataset;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
+    public static void initDataContext() throws Exception {
         userService = new BaseCayenneService<User, Long>(User.class);
 
         // Initializes DBUnit
-        // For now, getting connection from one JPA provider is impossible
-        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-        // So, let's take a work around ...
-
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
-        //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        DataDomain domain = Configuration.getSharedConfiguration().getDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("shiro-user-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
-        //EntityManagerContext.close();
-        //userService.getDataContext()
+    public static void closeDataContext() throws SQLException, DatabaseUnitException {
+        //userService.getDataContext().clear?
         //before we close the connection
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();

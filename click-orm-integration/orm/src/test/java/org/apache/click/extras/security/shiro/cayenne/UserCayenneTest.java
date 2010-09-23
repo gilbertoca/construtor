@@ -1,9 +1,12 @@
 package org.apache.click.extras.security.shiro.cayenne;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 import org.apache.cayenne.CayenneRuntimeException;
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.conf.Configuration;
 import org.apache.click.extras.security.cayenne.domain.Role;
 import org.apache.click.extras.security.cayenne.domain.User;
 import org.dbunit.DatabaseUnitException;
@@ -27,25 +30,18 @@ public class UserCayenneTest {
     private static IDataSet dataset;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
+    public static void initDataContext() throws Exception {
         userService = new UserCayenneService();
         roleService = new RoleCayenneService();
 
         // Initializes DBUnit
-        // For now, getting connection from one Cayenne provider is impossible
-        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-        // So, let's take a work around ...
-
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
-        //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        DataDomain domain = Configuration.getSharedConfiguration().getDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
@@ -57,8 +53,10 @@ public class UserCayenneTest {
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
+    public static void closeDataContext() throws SQLException, DatabaseUnitException {
+        //userService.getDataContext().clear?
         //before we close the connection
+
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
@@ -111,38 +109,6 @@ public class UserCayenneTest {
         User userUpdated = userService.find(-1L);
         assertEquals("novo@com.br", userUpdated.getEmail());
     }
-    @Test
-    public void testUserExists() throws Exception {
-        System.out.println("===========testUserExists======");
-        User user = new User();
-        user.setId(-1L);
-        boolean b = userService.find(user);
-        assertTrue(b);
-    }
-
-    @Test
-    public void testUserNotExists() throws Exception {
-        System.out.println("===========testUserNotExists======");
-        User user = new User();
-        user.setId(Long.MIN_VALUE);
-        boolean b = userService.find(user);
-        assertFalse(b);
-    }
-
-    @Test(expected=CayenneRuntimeException.class)
-    public void testAddUserRole() throws Exception {
-        System.out.println("===========testAddUserRole======");
-        User user = userService.find(-1L);
-        //User has USER_ROLE and ADMIN_ROLE
-        assertEquals(2, user.getRoles().size());
-
-        Role role = roleService.getRoleByName("USER_ROLE");
-        user.addToRoles(role);
-        System.out.println("***** what happen if we add the same Role? " + user + "****");
-        //Should threw a exception since we already have such record?
-        //Yes, since cayenne uses List as default to all relationship
-        userService.update(user);
-    }
 
     @Test
     public void testAddAndRemoveUser() throws Exception {
@@ -158,6 +124,10 @@ public class UserCayenneTest {
         user.addToRoles(role);
 
         userService.insert(user);
+
+        List<User> lU = (List<User>) userService.getAll();
+        assertEquals(4, lU.size());
+
         System.out.println("***** Does the object was update or shoul I get it by find method? *****");
         assertNotNull(user.getId());
 
@@ -168,6 +138,40 @@ public class UserCayenneTest {
         userService.delete(user.getId());
 
         System.out.println("***** what does happen if the entity doesn't exist? *****");
-        userService.find(user.getId());
+        user = userService.find(user.getId());
+        assertNull(user);
+    }
+
+    public void testAddUserRole() throws Exception {
+        System.out.println("===========testAddUserRole======");
+        User user = userService.find(-2L);
+
+        System.out.println("*****User has USER_ROLE**********"+user.getRoles().get(0));
+
+        assertEquals(1, user.getRoles().size());
+
+        Role role = roleService.getRoleByName("ADMIN_ROLE");
+        user.addToRoles(role);
+        userService.update(user);
+
+        assertEquals(2, user.getRoles().size());
+    }
+
+
+    @Test(expected=CayenneRuntimeException.class)
+    public void testAddUserRoleInvalid() throws Exception {
+        System.out.println("===========testAddUserRoleInvalid======");
+        User user = userService.find(-1L);
+        
+        System.out.println("*****User has USER_ROLE and ADMIN_ROLE**********"+user.getRoles().get(0));
+
+        assertEquals(2, user.getRoles().size());
+
+        Role role = roleService.getRoleByName("USER_ROLE");
+        user.addToRoles(role);
+        System.out.println("***** what happen if we add the same Role? " + user + "****");
+        //Should threw a exception since we already have such record?
+        //Yes, since cayenne uses List as default to all relationship
+        userService.update(user);
     }
 }

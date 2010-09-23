@@ -43,16 +43,6 @@ public interface IService<T, PK extends Serializable> {
     Collection<T> getAll();
 
     /**
-     * Here we use the find by primary key method as well, but using the
-     * EntityManagerFactory().getPersistenceUnitUtil().getIdentifier(Entity) method
-     * to discovery the entity's id, searching for an entity of the specified class and primary key.
-     * If the entity instance is contained in the persistence context, it is returned from there.
-     * @param entity  the entity
-     * @return true if found entity instance or false if the entity does not exist.
-     */
-    boolean find(T entity);
-
-    /**
      * Find by primary key. Search for an entity of the specified class and primary key.
      * If the entity instance is contained in the persistence context, it is returned from there.
      * @param primaryKey  primary key
