@@ -189,7 +189,11 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
     public boolean find(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
-        return (DataObjectUtils.objectForPK(getDataContext(), (ObjectId) DataObjectUtils.pkForObject((Persistent) entity)) == null) ? true : false;
+        
+         if (((Persistent) entity).getObjectContext() == null) {
+                getDataContext().registerNewObject(entity);
+            }
+        return getObjectForPK(getClassEntity(), (Persistent) entity.getObjectId(), true) == null) ? true : false;
     }
 
     public Collection<T> findByNamedQuery(String namedQuery, Map<String, ?> params) {
