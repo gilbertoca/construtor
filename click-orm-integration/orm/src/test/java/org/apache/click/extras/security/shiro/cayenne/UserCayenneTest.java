@@ -67,7 +67,8 @@ public class UserCayenneTest {
     public void testGetUserInvalid() throws Exception {
         System.out.println("===========testGetUserInvalid======");
         // should throw DataAccessException
-        userService.find(1000L);
+        User user = userService.find(1000L);
+        assertNull(user);
     }
 
     @Test
