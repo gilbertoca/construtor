@@ -31,19 +31,6 @@ public class DataPopulator {
     public RoleJPAService roleService = new RoleJPAService();
 
     public DataPopulator() {
-    /*it could be BaseCayenneService as well
-    <SHIRO_USER ID='-1' USERNAME='bruce@hotmail.com' PASSWORD='bruce' EMAIL='bruce@hotmail.com' VERSION='1'/>
-    <SHIRO_USER ID='-2' USERNAME='sue@hotmail.com' PASSWORD='sue12' EMAIL='sue@hotmail.com' VERSION='1'/>
-    <SHIRO_USER ID='-3' USERNAME='jack@hotmail.com' PASSWORD='jack1' EMAIL='jack@hotmail.com' VERSION='1'/>
-    <SHIRO_ROLE ID='-1' NAME='ADMIN_ROLE' DESCRIPTION='Administrator role (can edit Users)' />
-    <SHIRO_ROLE ID='-2' NAME='USER_ROLE' DESCRIPTION='Default role for all Users' />
-    <SHIRO_ROLE_PERMISSION ROLE_ID='-1' PERMISSION='admin' />
-    <SHIRO_ROLE_PERMISSION ROLE_ID='-1' PERMISSION='secure' />
-    <SHIRO_ROLE_PERMISSION ROLE_ID='-2' PERMISSION='none' />
-    <SHIRO_USER_ROLE USER_ID='-1' ROLE_ID='-1' />
-    <SHIRO_USER_ROLE USER_ID='-1' ROLE_ID='-2' />
-    <SHIRO_USER_ROLE USER_ID='-2' ROLE_ID='-2' />
-    <SHIRO_USER_ROLE USER_ID='-3' ROLE_ID='-2' />*/
         //User's roles
         Role role1, role2;
         List<Role> roleEntities = new ArrayList<Role>(2);
