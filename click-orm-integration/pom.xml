@@ -86,6 +86,7 @@
     <modules>
         <module>orm</module>
         <module>rolesecurity</module>
+        <module>park</module>
     </modules>
 
     <reporting>
