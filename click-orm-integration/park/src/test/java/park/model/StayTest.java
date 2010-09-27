@@ -14,8 +14,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -31,7 +29,6 @@ import org.junit.Test;
 
 public class StayTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -93,9 +90,9 @@ public class StayTest {
      */
     @Test
     public void getStayById() {
-        log.debug("\nGetting an Stay by ID.\n");
+        System.out.println("\nGetting an Stay by ID.\n");
         Stay s = em.find(Stay.class, 100);
-        log.debug("Object loaded: \n" + s);
+        System.out.println("Object loaded: \n" + s);
         assertNotNull(s.getStatus());
     }
 
@@ -132,9 +129,9 @@ public class StayTest {
 
     @Test
     public void romeveBidirectional() throws Exception {
-        log.debug("\nGetting an Vehicle by ID.\n");
+        System.out.println("\nGetting an Vehicle by ID.\n");
         Vehicle v = em.find(Vehicle.class, "LC100");
-        log.debug("Object loaded: \n" + v);
+        System.out.println("Object loaded: \n" + v);
         assertEquals(v.getColor(), "RED");
         assertEquals("Should have 2 stays", v.getStays().size(), 2);
         for (Stay s : v.getStays()) {

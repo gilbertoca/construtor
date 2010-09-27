@@ -10,8 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -28,7 +26,6 @@ import static org.junit.Assert.*;
 
 public class LegalEntityTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -87,14 +84,14 @@ public class LegalEntityTest {
 
     @Test
     public void GetLegalEntityById() {
-        log.debug("\nGetting an Legal Person by ID.\n");
+        System.out.println("\nGetting an Legal Person by ID.\n");
         LegalEntity lP = em.find(LegalEntity.class, 1002L);
-        log.debug("Object loaded: \n" + lP);
+        System.out.println("Object loaded: \n" + lP);
         assertNotNull(lP.getName());
     }
     @Test
     public void DeleteById() {
-        log.debug("\nDeleting Legal Entity by ID.\n");
+        System.out.println("\nDeleting Legal Entity by ID.\n");
         Query query = em.createNamedQuery("LegalEntity.deleteById");
         query.setParameter("id", 1010L);
         tx.begin();
@@ -105,12 +102,12 @@ public class LegalEntityTest {
     }
     @Test
     public void GetLegalEntityByName() {
-        log.debug("\nGetting an Legal Entity by name.\n");
+        System.out.println("\nGetting an Legal Entity by name.\n");
         // Gets all the objects from the database
         Query query = em.createNamedQuery("LegalEntity.findByName");
         query.setParameter("name", "%1002%");
         List list = query.getResultList();
-        log.debug("Object loaded: \n" + list);
+        System.out.println("Object loaded: \n" + list);
         assertEquals("Should have 1 LegalEntity", list.size(), 1);
     }
 

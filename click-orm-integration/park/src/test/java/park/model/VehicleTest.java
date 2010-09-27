@@ -13,8 +13,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -29,7 +27,6 @@ import org.junit.Test;
 
 public class VehicleTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -91,9 +88,9 @@ public class VehicleTest {
      */
     @Test
     public void GetVehicleById() {
-        log.debug("\nGetting an Vehicle by ID.\n");
+        System.out.println("\nGetting an Vehicle by ID.\n");
         Vehicle v = em.find(Vehicle.class, "LC100");
-        log.debug("Object loaded: \n" + v);
+        System.out.println("Object loaded: \n" + v);
         assertEquals(v.getColor(), "RED");
     }
 
@@ -111,8 +108,8 @@ public class VehicleTest {
         PriceTable pT = em.find(PriceTable.class, 100);
         VehicleType vT = em.find(VehicleType.class, "CAR");
         Customer c = em.find(Customer.class, 1000L);
-        log.debug("Customer Object loaded: \n" + c);
-        log.debug("Customer's Person Object loaded: \n" + c.getPerson());
+        System.out.println("Customer Object loaded: \n" + c);
+        System.out.println("Customer's Person Object loaded: \n" + c.getPerson());
         //set relationships
         v.setCustomer(c);
         v.setPriceTable(pT);

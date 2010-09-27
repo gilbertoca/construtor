@@ -11,8 +11,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -30,7 +28,6 @@ import static org.junit.Assert.*;
 
 public class CustomerTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -92,9 +89,9 @@ public class CustomerTest {
      */
     @Test
     public void GetCustomerById() {
-        log.debug("\nGetting an Natural Person by ID.\n");
+        System.out.println("\nGetting an Natural Person by ID.\n");
         Customer c = em.find(Customer.class, 1000L);
-        log.debug("Object loaded: \n" + c);
+        System.out.println("Object loaded: \n" + c);
         assertNotNull(c.getPerson());
     }
 
@@ -109,7 +106,7 @@ public class CustomerTest {
         //Customer c = new Customer(1002, 3);
         Customer c = new Customer();
         LegalEntity lP = em.find(LegalEntity.class, 1003L);
-        log.debug("Foreign Ket Object loaded: \n" + lP);
+        System.out.println("Foreign Ket Object loaded: \n" + lP);
         c.setPerson(lP); //Setting the class attribute will need manual set of customer.id?
         //c.setId(lP.getId());
         c.setPaymentDay(3);

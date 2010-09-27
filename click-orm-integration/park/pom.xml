@@ -107,9 +107,15 @@
             <version>2.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.2.131</version>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.artifactId}</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -123,6 +129,21 @@
         <click.version>2.2.0</click.version>
         <coi.version>1.0-SNAPSHOT</coi.version>
         <eclipselink.version>2.0.2</eclipselink.version>
+        <dbunit.version>2.4.7</dbunit.version>
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
+        <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
+
+                <!-- Default Database Connection-->
+        <jdbc.groupId>com.h2database</jdbc.groupId>
+        <jdbc.artifactId>h2</jdbc.artifactId>
+        <jdbc.version>1.2.131</jdbc.version>
+        <!--jdbc.url>jdbc:h2:mem;create=true</jdbc.url-->
+        <jdbc.url>jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
+        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+        <ddl-generation>NONE</ddl-generation>
+        <jdbc.username>click</jdbc.username>
+        <jdbc.password>click</jdbc.password>
+
         <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>
         <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>

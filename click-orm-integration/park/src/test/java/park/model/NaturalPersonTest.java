@@ -9,8 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -29,7 +27,6 @@ import static org.junit.Assert.*;
 
 public class NaturalPersonTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -91,9 +88,9 @@ public class NaturalPersonTest {
      */
     @Test
     public void getNaturalPersonById() {
-        log.debug("\nGetting an Natural Person by ID.\n");
+        System.out.println("\nGetting an Natural Person by ID.\n");
         NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
-        log.debug("Object loaded: \n" + nP);
+        System.out.println("Object loaded: \n" + nP);
         assertNotNull(nP.getName());
     }
 

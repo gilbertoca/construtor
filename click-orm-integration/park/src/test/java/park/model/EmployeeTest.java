@@ -9,8 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -28,7 +26,6 @@ import static org.junit.Assert.*;
 
 public class EmployeeTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -90,9 +87,9 @@ public class EmployeeTest {
      */
     @Test
     public void GetEmployeeById() {
-        log.debug("\nGetting an Employee by ID.\n");
+        System.out.println("\nGetting an Employee by ID.\n");
         Employee c = em.find(Employee.class, 1004L);
-        log.debug("Object loaded: \n" + c);
+        System.out.println("Object loaded: \n" + c);
         assertNotNull(c.getNaturalPerson());
     }
 
@@ -107,12 +104,12 @@ public class EmployeeTest {
         //Employee c = new Employee(1002, 3);
         Employee c = new Employee();
         NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
-        log.debug("Foreign Key Object loaded: \n" + nP);
+        System.out.println("Foreign Key Object loaded: \n" + nP);
         c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
         //c.setId(lP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         Parking p = em.find(Parking.class, 1001L);
-        log.debug("Foreign Key Object loaded: \n" + p);
+        System.out.println("Foreign Key Object loaded: \n" + p);
 
         c.setParking(p);
         tx.begin();

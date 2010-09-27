@@ -11,8 +11,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -30,7 +28,6 @@ import static org.junit.Assert.*;
 
 public class VehicleTypeTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -92,9 +89,9 @@ public class VehicleTypeTest {
      */
     @Test
     public void GetVehicleTypeById() {
-        log.debug("\nGetting an VehicleType by ID.\n");
+        System.out.println("\nGetting an VehicleType by ID.\n");
         VehicleType pT = em.find(VehicleType.class, "CAR");
-        log.debug("Object loaded: \n" + pT);
+        System.out.println("Object loaded: \n" + pT);
         assertNotNull(pT.getManufacturer());
     }
 

@@ -13,8 +13,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
@@ -29,7 +27,6 @@ import org.junit.Test;
 
 public class ParkingTest {
 
-    protected final Log log = LogFactory.getLog(getClass());
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static EntityTransaction tx;
@@ -91,9 +88,9 @@ public class ParkingTest {
      */
     @Test
     public void GetParkingById() {
-        log.debug("\nGetting an Parking by ID.\n");
+        System.out.println("\nGetting an Parking by ID.\n");
         Parking v = em.find(Parking.class, 1000L);
-        log.debug("Object loaded: \n" + v);
+        System.out.println("Object loaded: \n" + v);
         assertEquals(v.getAddress(), "RUA DAS FLORES");
     }
 
