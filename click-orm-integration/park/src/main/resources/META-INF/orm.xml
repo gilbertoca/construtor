@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+                 http://java.sun.com/xml/ns/persistence/orm/orm_2_0.xsd"
+                 version="2.0">
+    <persistence-unit-metadata>
+        <!-- There is no need to set this property:
+        Oracle, PostgreSQL: you need create it manually
+        H2, hsqldb: we use in-memory database
+
+        <persistence-unit-defaults>
+            <schema>park</schema>
+        </persistence-unit-defaults>
+        -->
+    </persistence-unit-metadata>
+    <package>park.model</package>
+    <entity class="Person">
+        <!-- CREATE TABLE PERSON (
+            ID INTEGER NOT NULL,
+            ADDRESS VARCHAR(100),
+            NAME VARCHAR(100) NOT NULL,
+            P_TYPE CHAR(2) NOT NULL, //NATURALPERSON(NP) OR LEGALENTITY(LE)
+            VERSION SMALLINT NOT NULL
+            CONSTRAINT PERSON_PKEY PRIMARY KEY (ID)
+        );
+        -->
+        <table name="person"/>
+        <inheritance strategy="JOINED"/>
+        <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
+        <table-generator
+            name="person_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="person"
+            initial-value="1"
+            allocation-size="1"/>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="TABLE" generator="person_table_generator "/>
+            </id>
+            <basic name="name">
+                <column length="100"/>
+            </basic>
+            <basic name="address">
+                <column length="100"/>
+            </basic>
+            <version name="version"/>
+        </attributes>
+    </entity>
+    <entity class="NaturalPerson">
+        <!--CREATE TABLE NATURAL_PERSON (
+            PERSON_ID INTEGER NOT NULL,
+            DT_BIRTH DATE,
+            LEGAL_DOCUMENT VARCHAR(20),
+            CONSTRAINT NATURAL_PERSON_PKEY PRIMARY KEY (PERSON_ID)
+        );
+        -->
+        <table name="natural_person"/>
+        <primary-key-join-column name="person_id" referenced-column-name="id"/>
+        <discriminator-value>NP</discriminator-value>
+        <named-query name="NaturalPerson.findAll">
+            <query>SELECT n FROM NaturalPerson n</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="NaturalPerson.deleteById">
+            <query>DELETE FROM NaturalPerson n WHERE n.id = :id</query>
+        </named-query>
+        <attributes>
+            <basic name="dtBirth">
+                <column name="dt_birth"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="legalDocument">
+                <column name="legal_document" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="LegalEntity">
+        <!--
+            CREATE TABLE LEGAL_ENTITY (
+                PERSON_ID INTEGER NOT NULL,
+                TAXPAYERS_ID VARCHAR(20) NOT NULL,
+                DT_FOUNDATION DATE NOT NULL,
+                CONSTRAINT LEGAL_ENTITY_PK PRIMARY KEY (PERSON_ID)
+            );
+        -->
+        <table name="legal_entity"/>
+        <primary-key-join-column name="person_id" referenced-column-name="id"/>
+        <discriminator-value>LE</discriminator-value>
+        <named-query name="LegalEntity.findAll">
+            <query>SELECT l FROM LegalEntity l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="LegalEntity.findByName">
+            <query>SELECT l FROM LegalEntity l WHERE l.name LIKE :name</query>
+        </named-query>
+        <named-query name="LegalEntity.deleteById">
+            <query>DELETE FROM LegalEntity l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <basic name="dtFoundation">
+                <column name="dt_foundation"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="taxpayersId">
+                <column name="taxpayers_id" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="Customer">
+        <!--
+            CREATE TABLE CUSTOMER (
+                PERSON_ID INTEGER NOT NULL,
+                PAYMENT_DAY INTEGER,
+                CONSTRAINT CUSTOMER_PK PRIMARY KEY (PERSON_ID)
+            );
+        -->
+        <table name="customer"/>
+        <named-query name="Customer.findAll">
+            <query>SELECT l FROM Customer l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Customer.deleteById">
+            <query>DELETE FROM Customer l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="person_id"/>
+            </id>
+            <basic name="paymentDay">
+                <column name="payment_day"/>
+            </basic>
+            <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
+            <one-to-one name="person" target-entity="Person" maps-id=" ">
+                <join-column name="person_id" referenced-column-name="id" />
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="Employee">
+        <!--
+            CREATE TABLE EMPLOYEE (
+                PERSON_ID INTEGER NOT NULL,
+                DT_ADMISSION DATE NOT NULL,
+                PARKING_ID INTEGER NOT NULL,
+                CONSTRAINT EMPLOYEE_PK PRIMARY KEY (PERSON_ID)
+            );
+        -->
+        <table name="employee"/>
+        <named-query name="Employee.findAll">
+            <query>SELECT l FROM Employee l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Employee.deleteById">
+            <query>DELETE FROM Employee l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="person_id"/>
+            </id>
+            <basic name="dtAdmission">
+                <column name="dt_admission"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <many-to-one name="parking">
+                <join-column name="parking_id" referenced-column-name="id"/>
+            </many-to-one>
+            <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
+            <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
+                <join-column name="person_id" referenced-column-name="person_id" />
+            </one-to-one>
+        </attributes>
+    </entity>
+    <entity class="Parking">
+        <!--
+            CREATE TABLE PARKING (
+                ID INTEGER NOT NULL,
+                PARKING_SPACE INTEGER, //meters
+                ADDRESS VARCHAR(100),
+                CONSTRAINT PARKING_PK PRIMARY KEY (ID)
+            );
+        -->
+        <table name="parking"/>
+        <table-generator
+            name="parking_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="parking"
+            initial-value="1"
+            allocation-size="1"/>
+        <named-query name="Parking.findAll">
+            <query>SELECT l FROM Parking l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Parking.deleteById">
+            <query>DELETE FROM Parking l WHERE l.id = :id</query>
+        </named-query>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="TABLE" generator="parking_table_generator"/>
+            </id>
+            <basic name="parkingSpace">
+                <column name="parking_space"/>
+            </basic>
+            <basic name="address">
+                <column length="100"/>
+            </basic>
+
+            <one-to-many name="stays" target-entity="Stay" mapped-by="parking"/>
+            <one-to-many name="employees" target-entity="Employee" mapped-by="parking"/>
+        </attributes>
+    </entity>
+
+    <entity class="PriceTable">
+        <!--
+            CREATE TABLE PRICE_TABLE (
+                ID INTEGER NOT NULL,
+                ITEM VARCHAR(50) NOT NULL,
+                PRICE NUMERIC(12,2) NOT NULL,
+                CONSTRAINT PRICE_TABLE_PK PRIMARY KEY (ID)
+            );
+        -->
+        <table name="price_table"/>
+        <table-generator
+            name="price_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="price_table"
+            initial-value="1"
+            allocation-size="1"/>
+
+        <named-query name="PriceTable.findAll">
+            <query>SELECT l FROM PriceTable l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="PriceTable.deleteById">
+            <query>DELETE FROM PriceTable l WHERE l.id = :id</query>
+        </named-query>
+
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="TABLE" generator="price_table_generator"/>
+            </id>
+            <basic name="item">
+                <column name="item" nullable="false" length="50"/>
+            </basic>
+            <basic name="price">
+                <column name="price" column-definition="NUMERIC(12,2)"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="VehicleType">
+        <!--
+            CREATE TABLE VEHICLE_TYPE (
+                V_TYPE VARCHAR(20) NOT NULL,
+                MANUFACTURER VARCHAR(50),
+                MODEL VARCHAR(20),
+                CONSTRAINT VEHICLE_TYPE_PK PRIMARY KEY (V_TYPE)
+            );
+        -->
+        <table name="vehicle_type"/>
+        <named-query name="VehicleType.findAll">
+            <query>SELECT l FROM VehicleType l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="VehicleType.deleteById">
+            <query>DELETE FROM VehicleType l WHERE l.vType = :vType</query>
+        </named-query>
+
+        <attributes>
+            <id name="vType">
+                <column name="v_type" nullable="false" length="20"/>
+            </id>
+            <basic name="manufacturer">
+                <column name="manufacturer" length="50"/>
+            </basic>
+            <basic name="model">
+                <column name="model" length="20"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="Vehicle">
+        <!--
+        CREATE TABLE VEHICLE (
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                V_TYPE VARCHAR(20) NOT NULL,
+                CUSTOMER_ID INTEGER NOT NULL,
+                PRICE_TABLE_ID INTEGER NOT NULL,
+                COLOR VARCHAR(20),
+                CONSTRAINT VEHICLE_PK PRIMARY KEY (LICENSE_PLATE)
+        );
+        -->
+        <table name="vehicle"/>
+        <named-query name="Vehicle.findAll">
+            <query>SELECT l FROM Vehicle l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Vehicle.deleteById">
+            <query>DELETE FROM Vehicle l WHERE l.licensePlate = :licensePlate</query>
+        </named-query>
+
+        <attributes>
+            <id name="licensePlate">
+                <column name="license_plate" length="20"/>
+            </id>
+            <basic name="color">
+                <column name="color" length="20"/>
+            </basic>
+            <many-to-one name="customer">
+                <join-column name="customer_id" referenced-column-name="person_id"/>
+            </many-to-one>
+            <many-to-one name="priceTable">
+                <join-column name="price_table_id" referenced-column-name="id"/>
+            </many-to-one>
+            <many-to-one name="vType">
+                <join-column name="v_type" referenced-column-name="v_type"/>
+            </many-to-one>
+            <one-to-many name="stays" target-entity="Stay" mapped-by="vehicle"/>
+        </attributes>
+    </entity>
+    <entity class="Stay">
+        <!--
+            CREATE TABLE STAY (
+                ID INTEGER NOT NULL,
+                PARKING_ID INTEGER NOT NULL,
+                DT_ENTRANCE DATE NOT NULL,
+                DT_OUTGOING DATE,
+                HR_ENTRANCE TIME NOT NULL,
+                HR_OUTGOING TIME,
+                EMPLOYEE_ID_ENTRANCE INTEGER NOT NULL,
+                EMPLOYEE_ID_OUTGOING INTEGER NOT NULL,
+                LICENSE_PLATE VARCHAR(20) NOT NULL,
+                STATUS CHAR(1),
+                TOTAL_PRICE NUMERIC(12,2),
+                CONSTRAINT STAY_PK PRIMARY KEY (ID)
+            );
+        -->
+        <table name="stay"/>
+        <table-generator
+            name="stay_table_generator"
+            table="table_generator"
+            pk-column-name="table_name"
+            value-column-name="table_value"
+            pk-column-value="stay"
+            initial-value="1"
+            allocation-size="1"/>
+
+        <named-query name="Stay.findAll">
+            <query>SELECT l FROM Stay l</query>
+            <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
+        </named-query>
+        <named-query name="Stay.deleteById">
+            <query>DELETE FROM Stay l WHERE l.id = :id</query>
+        </named-query>
+
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+                <generated-value strategy="TABLE" generator="stay_table_generator"/>
+            </id>
+            <basic name="dtEntrance">
+                <column name="dt_entrance"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="dtOutgoing">
+                <column name="dt_outgoing"/>
+                <temporal>DATE</temporal>
+            </basic>
+            <basic name="hrEntrance">
+                <column name="hr_entrance"/>
+                <temporal>TIME</temporal>
+            </basic>
+            <basic name="hrOutgoing">
+                <column name="hr_outgoing" />
+                <temporal>TIME</temporal>
+            </basic>
+            <basic name="status">
+                <column name="status"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="totalPrice">
+                <column name="total_price" column-definition="NUMERIC(12,2)"/>
+            </basic>
+            <many-to-one name="employeeEntrance">
+                <join-column name="employee_id_entrance" referenced-column-name="person_id"/>
+            </many-to-one>
+            <many-to-one name="employeeOutgoing">
+                <join-column name="employee_id_outgoing" referenced-column-name="person_id"/>
+            </many-to-one>
+
+            <many-to-one name="vehicle">
+                <join-column name="license_plate" referenced-column-name="license_plate"/>
+            </many-to-one>
+            <many-to-one name="parking">
+                <join-column name="parking_id" referenced-column-name="id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+</entity-mappings>
