@@ -1,16 +1,12 @@
 First:
-
-svn checkout http://construtor.googlecode.com/svn/trunk/click-orm-integration coi
-
-and
-
 cd coi/orm
-
 
 Database
 
-This module represents the service(database access and bussines logic) layer, until now it works with H2.
+NOTE: We use the shiroDB database as test and implementation example. Those config files (both cayenne and jpa) are in the src/test/resources folder.
+      You can use the Cayenne or JPA implementation with your own setup or use the provide one as template.
 
+This module represents the service(database access and bussines logic) layer, until now it works with H2.
 To adjust the database parameters edit the following orm/pom.xml properties(the actual value is mine) if you want to change the H2 server type:
 
 <jdbc.url>jdbc:h2:file:data/shiroDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
