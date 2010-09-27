@@ -2,6 +2,7 @@ package org.apache.click.extras.security.shiro.jpa;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
@@ -166,17 +167,21 @@ public class UserJpaTest{
         user.addRole(role);
 
         userService.insert(user);
-        System.out.println("***** what does happen if we don't get id by find method? *****");
+        List<User> lU = (List<User>) userService.getAll();
+        assertEquals(4, lU.size());
+
+        System.out.println("***** Does the object was update or shoul I get it by find method? *****");
         assertNotNull(user.getId());
 
         user = userService.find(user.getId());
-        System.out.println("***** get id by find method should use cache? "+user+"*****");
+        System.out.println("***** should it use cache? " + user + "*****");
         assertEquals("testpass", user.getPassword());
 
         userService.delete(user.getId());
 
         System.out.println("***** what does happen if the entity doesn't exist? *****");
-        userService.find(user.getId());
+        user = userService.find(user.getId());
+        assertNull(user);
     }
 
 }
