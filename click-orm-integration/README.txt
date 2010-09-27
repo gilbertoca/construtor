@@ -1,4 +1,8 @@
+First:
+svn checkout http://construtor.googlecode.com/svn/trunk/click-orm-integration coi
+
 Project structure(click-orm-intergration):
+
 coi (you are here)
 |
 ------orm (persistence and service layer)
