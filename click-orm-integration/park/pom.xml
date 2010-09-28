@@ -86,7 +86,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.click</groupId>
+            <groupId>com.google.constructor</groupId>
             <artifactId>extras-orm</artifactId>
             <version>${coi.version}</version>
         </dependency>
