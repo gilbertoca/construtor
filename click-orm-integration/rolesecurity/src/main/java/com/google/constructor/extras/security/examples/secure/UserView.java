@@ -23,9 +23,7 @@ import org.apache.click.Page;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
-import org.apache.click.extras.security.shiro.jpa.UserJPAService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
+import com.google.constructor.extras.security.shiro.jpa.UserJPAService;
 
 public class UserView extends Page {
 
@@ -55,35 +53,4 @@ public class UserView extends Page {
         });
     }
     // ----------------------------------------------------- Event Handlers
-
-    /**
-     * @see Page#onSecurityCheck()
-     */
-/*
-    @Override
-    public boolean onSecurityCheck() {
-        //Get the user associated with this request
-        //see: http://incubator.apache.org/shiro/static/current/apidocs/org/apache/shiro/subject/Subject.html
-        Subject currentUser = SecurityUtils.getSubject();
-        String url = "/login.htm";
-        //check if the user is logged in
-        //see http://incubator.apache.org/shiro/static/current/apidocs/org/apache/shiro/subject/Subject.html
-        if (currentUser.isAuthenticated() && !currentUser.hasRole("admin")) {
-            //user is authenticated but doesn't have a role that
-            //allows her to access this feature
-            url = "/unauthorized.jsp";
-        }
-        //check if the user is logged in
-        //and has a role of admin
-        if (currentUser.isAuthenticated() && currentUser.hasRole("admin")) {
-            //user is logged in
-            //get users from data store
-            //and forward to /admin/users.jsp
-            //url = "/admin/users.jsp";
-            return true;
-        } else {
-            setRedirect(url + "?redirect" + "/admin/user-view.htm");
-            return false;
-        }
-    }*/
 }

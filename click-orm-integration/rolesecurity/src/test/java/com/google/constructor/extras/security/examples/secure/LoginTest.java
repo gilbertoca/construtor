@@ -1,8 +1,6 @@
 package com.google.constructor.extras.security.examples.secure;
 
-import com.google.constructor.extras.security.examples.secure.Login;
 import junit.framework.Assert;
-import org.apache.click.servlet.MockRequest;
 
 public class LoginTest extends BaseClickTestCase {
 

@@ -21,10 +21,10 @@ package com.google.constructor.extras.security.examples.secure;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.click.extras.security.shiro.jpa.RoleJPAService;
-import org.apache.click.extras.security.shiro.jpa.UserJPAService;
-import org.apache.click.extras.security.jpa.model.Role;
-import org.apache.click.extras.security.jpa.model.User;
+import com.google.constructor.extras.security.shiro.jpa.RoleJPAService;
+import com.google.constructor.extras.security.shiro.jpa.UserJPAService;
+import com.google.constructor.extras.security.jpa.model.Role;
+import com.google.constructor.extras.security.jpa.model.User;
 
 public class DataPopulator {
     public UserJPAService userService = new UserJPAService();

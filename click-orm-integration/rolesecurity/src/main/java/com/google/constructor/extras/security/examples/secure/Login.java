@@ -24,7 +24,7 @@ import org.apache.click.control.HiddenField;
 import org.apache.click.control.PasswordField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
-import org.apache.click.extras.security.jpa.model.User;
+import com.google.constructor.extras.security.jpa.model.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
