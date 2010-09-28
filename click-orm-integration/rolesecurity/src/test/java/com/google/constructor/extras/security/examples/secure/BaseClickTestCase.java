@@ -1,4 +1,4 @@
-package org.apache.click.extras.security.examples.secure;
+package com.google.constructor.extras.security.examples.secure;
 
 import junit.framework.TestCase;
 import org.apache.click.MockContainer;

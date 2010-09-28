@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.apache.click.extras.security.examples.secure;
+package com.google.constructor.extras.security.examples.secure;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.subject.Subject;

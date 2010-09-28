@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.click.extras.security.examples.secure;
+package com.google.constructor.extras.security.examples.secure;
 
 import java.util.ArrayList;
 import java.util.List;
