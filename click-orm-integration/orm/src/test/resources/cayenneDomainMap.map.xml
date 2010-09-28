@@ -44,10 +44,6 @@
 		<obj-attribute name="username" type="java.lang.String" db-attribute-path="USERNAME"/>
 		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
 	</obj-entity>
-	<obj-entity name="UserRole" className="com.google.constructor.extras.security.cayenne.domain.UserRole" dbEntityName="SHIRO_USER_ROLE">
-		<obj-attribute name="roleId" type="java.lang.Long" db-attribute-path="ROLE_ID"/>
-		<obj-attribute name="userId" type="java.lang.Long" db-attribute-path="USER_ID"/>
-	</obj-entity>
 	<db-relationship name="permissions" source="SHIRO_ROLE" target="SHIRO_ROLE_PERMISSION" toDependentPK="true" toMany="true">
 		<db-attribute-pair source="ID" target="ROLE_ID"/>
 	</db-relationship>
@@ -70,8 +66,6 @@
 	<obj-relationship name="users" source="Role" target="User" deleteRule="Cascade" db-relationship-path="users.user"/>
 	<obj-relationship name="role" source="RolePermission" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
 	<obj-relationship name="roles" source="User" target="Role" deleteRule="Cascade" db-relationship-path="roles.role"/>
-	<obj-relationship name="role" source="UserRole" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="user" source="UserRole" target="User" deleteRule="Nullify" db-relationship-path="user"/>
 	<query name="Role.findByRoleName" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Role">
 		<qualifier><![CDATA[name = $name]]></qualifier>
 	</query>
