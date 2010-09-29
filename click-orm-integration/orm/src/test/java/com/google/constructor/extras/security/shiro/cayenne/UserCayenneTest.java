@@ -143,7 +143,7 @@ public class UserCayenneTest {
         user = userService.find(user.getId());
         assertNull(user);
     }
-
+    @Test
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
         User user = userService.find(-2L);
@@ -155,7 +155,7 @@ public class UserCayenneTest {
         Role role = roleService.getRoleByName("ADMIN_ROLE");
         user.addToRoles(role);
         userService.update(user);
-
+        System.out.println("*****Now user has USER_ROLE and ADMIN_ROLE**********"+user.getRoles());
         assertEquals(2, user.getRoles().size());
     }
 
