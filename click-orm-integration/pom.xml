@@ -87,6 +87,7 @@
         <module>orm</module>
         <module>rolesecurity</module>
         <module>park</module>
+        <module>park-cayenne</module>
     </modules>
 
     <reporting>
