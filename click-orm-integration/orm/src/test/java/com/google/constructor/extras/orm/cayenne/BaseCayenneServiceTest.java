@@ -18,6 +18,7 @@
  */
 package com.google.constructor.extras.orm.cayenne;
 
+import com.google.constructor.extras.security.cayenne.domain.Role;
 import com.google.constructor.extras.orm.cayenne.BaseCayenneService;
 import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
@@ -41,12 +42,14 @@ import static org.junit.Assert.*;
 public class BaseCayenneServiceTest {
 
     private static BaseCayenneService<User, Long> userService;
+    private static BaseCayenneService<Role, Long> roleService;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
 
     @BeforeClass
     public static void initDataContext() throws Exception {
         userService = new BaseCayenneService<User, Long>(User.class);
+        roleService = new BaseCayenneService<Role, Long>(Role.class);
 
         // Initializes DBUnit
         // I presume you've set the src/test/resources/jdbc.properties
@@ -81,14 +84,33 @@ public class BaseCayenneServiceTest {
         user.setUsername("gilberto@company.com");
         user.setPassword("12345");
         user.setEmail("gilberto@company.com");
+        Role roleUSER = roleService.find(-2L);
+
+        assertNotNull(roleUSER);
+        //Add USER_ROLE to user
+        user.addToRoles(roleUSER);
+
+        //Inserting a new user
         userService.insert(user);
 
         // Gets all the objects from the database
-        assertEquals("Should have 5 User", 4, userService.getAll().size());
+        assertEquals("Should have 4 User", 4, userService.getAll().size());
 
+        //Getting the new user from database
+        User userUpdated = userService.find(user.getId());
+
+        Role roleADMIN = roleService.find(-1L);
+
+        assertNotNull(roleADMIN);
+        
+        //Updating user with a new ADMIN_ROLE role
+        user.addToRoles(roleADMIN);
+
+        assertEquals(2, userUpdated.getRoles().size());
+        
         // Removes the object from the database
         userService.delete(user);
         // Gets all the objects from the database
-        assertEquals("Should have 4 User", 3, userService.getAll().size());
+        assertEquals("Should have 3 User", 3, userService.getAll().size());
     }
 }

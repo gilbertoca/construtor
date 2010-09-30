@@ -145,22 +145,31 @@ public class UserCayenneTest {
         System.out.println("===========testAddUserRole======");
         System.out.println("***** Checking # users *****");
         assertEquals(3, userService.getAll().size());
+
         System.out.println("***** Checking # roles *****");
         assertEquals(2, roleService.getAll().size());
 
         User user = userService.find(-2L);
         System.out.println("***** Checking # user -2L *****");
         assertNotNull(user);
+
         System.out.println("***** Checking # user -2L and roles *****");
         assertEquals(1, user.getRoles().size());
 
-        Role role = roleService.getRoleByName("ADMIN_ROLE");
+        Role roleADMIN = roleService.getRoleByName("ADMIN_ROLE");
         System.out.println("***** Checking # user -2L and roles, adding one more *****");
-        user.addToRoles(role);
+        user.addToRoles(roleADMIN);
         userService.update(user);
         System.out.println("*****Now user has USER_ROLE and ADMIN_ROLE**********"+user.getRoles());
         User userUpdated = userService.find(-2L);
         assertEquals(2, userUpdated.getRoles().size());
+
+        System.out.println("***** Checking # user -2L and roles, removing the ADMIN_ROLE *****");
+        userUpdated.getRoles().remove(roleADMIN);
+        userService.update(user);
+        System.out.println("***** Checking # user -2L and roles *****");
+        assertEquals(1, user.getRoles().size());
+
     }
 
 /*
