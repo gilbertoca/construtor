@@ -1,0 +1,54 @@
+## Velocity Template.
+#set ($objEntityList = $classGen.Entity.DataMap.ObjEntities)
+###
+###
+package com.xyz.applications.myApp.cayenne;
+
+import java.util.List;
+
+import org.objectstyle.cayenne.access.DataContext;
+
+import com.xyz.applications.myApp._MyAppDAO;
+##
+#foreach ($objEntity in $objEntityList)
+import com.xyz.cayenne.ebpp.entity.${objEntity.Name};
+#end## ($objEntity in $objEntityList)
+##
+import com.xyz.utilities.entity.DataAccessException;
+
+public class _MyAppDAOCayenne extends BaseDAOCayenne implements _MyAppDAO
+{
+    public _MyAppDAOCayenne(DataContext dataContext, User
+administrativeUser, User selectedUser) {
+        super(dataContext, administrativeUser, selectedUser);
+    }
+#foreach ($objEntity in $objEntityList)
+
+
+    public List<${objEntity.Name}> get${objEntity.Name}List() throws
+DataAccessException {
+        return (List<${objEntity.Name}>)getAllObjects(${objEntity.Name}.class);
+    }
+#if (! $objEntity.isReadOnly())
+
+    public ${objEntity.Name} create${objEntity.Name}() {
+                return (${objEntity.Name})${objEntity.Name}.createAndInsertInstance(getDataContext());
+    }
+
+    public void delete${objEntity.Name}(${objEntity.Name} object)
+throws DataAccessException {
+        object.deleteObject(getAdministrativeUser(), getSelectedUser());
+    }
+#end##if ($objEntity.isReadOnly())
+##
+    public ${objEntity.Name} find${objEntity.Name}ByPrimaryKey(Object
+primaryKey) throws DataAccessException
+    {
+    ${objEntity.Name} matching${objEntity.Name} =
+(${objEntity.Name})objectMatchingPrimaryKey(getDataContext(),
+${objEntity.Name}.class, primaryKey);
+    return matching${objEntity.Name};
+    }
+
+#end## ($objEntity in $objEntityList)
+}
