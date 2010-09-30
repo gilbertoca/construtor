@@ -141,6 +141,7 @@
             <groupId>${jdbc.groupId}</groupId>
             <artifactId>${jdbc.artifactId}</artifactId>
             <version>${jdbc.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.dbunit</groupId>
