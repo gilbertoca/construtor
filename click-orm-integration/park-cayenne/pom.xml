@@ -43,6 +43,11 @@
 
         <plugins>
             <plugin>
+                <groupId>org.apache.cayenne.plugins</groupId>
+                <artifactId>maven-cayenne-modeler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
@@ -86,6 +91,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.cayenne</groupId>
+            <artifactId>cayenne-server</artifactId>
+            <version>${cayenne.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.google.constructor</groupId>
             <artifactId>extras-orm</artifactId>
             <version>${coi.version}</version>
@@ -115,16 +126,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${jpa.groupId}</groupId>
-            <artifactId>${jpa.artifactId}</artifactId>
-            <version>${jpa.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>${jdbc.groupId}</groupId>
             <artifactId>${jdbc.artifactId}</artifactId>
             <version>${jdbc.version}</version>
@@ -146,6 +147,7 @@
         <!-- versions -->
         <click.version>2.2.0</click.version>
         <coi.version>1.0-SNAPSHOT</coi.version>
+        <cayenne.version>3.0.1</cayenne.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
@@ -164,85 +166,5 @@
         <junit.version>4.5</junit.version>
         <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     </properties>
-    <profiles>
-        <profile>
-            <id>eclipselink</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <jpa.groupId>org.eclipse.persistence</jpa.groupId>
-                <jpa.artifactId>eclipselink</jpa.artifactId>
-                <jpa.version>2.1.1</jpa.version>
-                <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
-                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
-                <jpa.url>javax.persistence.jdbc.url</jpa.url>
-                <jpa.username>javax.persistence.jdbc.user</jpa.username>
-                <jpa.password>javax.persistence.jdbc.password</jpa.password>
-                <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
-                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
-                <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <!--jpa.ddl_value>NONE</jpa.ddl_value-->
-                <jpa.ddl_value>create-tables</jpa.ddl_value>
-                <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
-		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
-                <jpa.logging>eclipselink.logging.level</jpa.logging>
-                <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-                <jpa.logging_value>INFO</jpa.logging_value>
-                <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
-                <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
-            </properties>
-        </profile>
-        <profile>
-            <id>openjpa</id>
-            <properties>
-                <jpa.groupId>org.apache.openjpa</jpa.groupId>
-                <jpa.artifactId>openjpa</jpa.artifactId>
-                <jpa.version>2.0.0</jpa.version>
-                <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
-                <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
-                <jpa.url>openjpa.ConnectionURL</jpa.url>
-                <jpa.username>openjpa.ConnectionUserName</jpa.username>
-                <jpa.password>openjpa.ConnectionPassword</jpa.password>
-                <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
-                <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
-                <!-- This one is necessary (versrion 1.3)-->
-                <!--jpa.ddl>openjpa.jdbc.SchemaFactory</jpa.ddl>
-                <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value-->
-                <!-- This one is for generate database schema -->
-                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
-                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
-                <jpa.ddl_value>buildSchema</jpa.ddl_value>
-                <jpa.logging>openjpa.Log</jpa.logging>
-                <jpa.logging_value>SQL=TRACE</jpa.logging_value>
-                <!--jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value-->
-                <jpa.minConnections>toplink.jdbc.read-connections.min</jpa.minConnections>
-                <jpa.maxConnections>toplink.jdbc.read-connections.max</jpa.maxConnections>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>process-classes</phase>
-                                <configuration>
-                                    <tasks>
-                                        <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="maven.compile.classpath"/>
-                                        <openjpac>
-                                            <classpath refid="maven.compile.classpath"/>
-                                        </openjpac>
-                                    </tasks>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
 

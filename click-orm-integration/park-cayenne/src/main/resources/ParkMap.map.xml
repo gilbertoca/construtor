@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+  project-version="3.0.0.1">
+	<property name="defaultPackage" value="park.model"/>
+	<db-entity name="CUSTOMER" catalog="PARKDB">
+		<db-attribute name="PAYMENT_DAY" type="INTEGER" length="10"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+	</db-entity>
+	<db-entity name="EMPLOYEE" catalog="PARKDB">
+		<db-attribute name="DT_ADMISSION" type="DATE" length="8"/>
+		<db-attribute name="PARKING_ID" type="BIGINT" length="19"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+	</db-entity>
+	<db-entity name="LEGAL_ENTITY" catalog="PARKDB">
+		<db-attribute name="DT_FOUNDATION" type="DATE" length="8"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="TAXPAYERS_ID" type="VARCHAR" length="20"/>
+	</db-entity>
+	<db-entity name="NATURAL_PERSON" catalog="PARKDB">
+		<db-attribute name="DT_BIRTH" type="DATE" length="8"/>
+		<db-attribute name="LEGAL_DOCUMENT" type="VARCHAR" length="20"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+	</db-entity>
+	<db-entity name="PARKING" catalog="PARKDB">
+		<db-attribute name="ADDRESS" type="VARCHAR" length="100"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="PARKING_SPACE" type="INTEGER" length="10"/>
+	</db-entity>
+	<db-entity name="PERSON" catalog="PARKDB">
+		<db-attribute name="ADDRESS" type="VARCHAR" length="100"/>
+		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="NAME" type="VARCHAR" length="100"/>
+		<db-attribute name="P_TYPE" type="CHAR" length="2"/>
+		<db-attribute name="VERSION" type="INTEGER" length="10"/>
+	</db-entity>
+	<db-entity name="PRICE_TABLE" catalog="PARKDB">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="ITEM" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="PRICE" type="DECIMAL" length="12" scale="2"/>
+	</db-entity>
+	<db-entity name="STAY" catalog="PARKDB">
+		<db-attribute name="DT_ENTRANCE" type="DATE" length="8"/>
+		<db-attribute name="DT_OUTGOING" type="DATE" length="8"/>
+		<db-attribute name="EMPLOYEE_ID_ENTRANCE" type="BIGINT" length="19"/>
+		<db-attribute name="EMPLOYEE_ID_OUTGOING" type="BIGINT" length="19"/>
+		<db-attribute name="HR_ENTRANCE" type="TIME" length="6"/>
+		<db-attribute name="HR_OUTGOING" type="TIME" length="6"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="LICENSE_PLATE" type="VARCHAR" length="20"/>
+		<db-attribute name="PARKING_ID" type="BIGINT" length="19"/>
+		<db-attribute name="STATUS" type="VARCHAR" length="2147483647"/>
+		<db-attribute name="TOTAL_PRICE" type="DECIMAL" length="12" scale="2"/>
+	</db-entity>
+	<db-entity name="VEHICLE" catalog="PARKDB">
+		<db-attribute name="COLOR" type="VARCHAR" length="20"/>
+		<db-attribute name="CUSTOMER_ID" type="BIGINT" length="19"/>
+		<db-attribute name="LICENSE_PLATE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
+		<db-attribute name="PRICE_TABLE_ID" type="INTEGER" length="10"/>
+		<db-attribute name="V_TYPE" type="VARCHAR" length="20"/>
+	</db-entity>
+	<db-entity name="VEHICLE_TYPE" catalog="PARKDB">
+		<db-attribute name="MANUFACTURER" type="VARCHAR" length="50"/>
+		<db-attribute name="MODEL" type="VARCHAR" length="20"/>
+		<db-attribute name="V_TYPE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
+	</db-entity>
+	<obj-entity name="Customer" className="park.model.Customer" dbEntityName="CUSTOMER">
+		<obj-attribute name="paymentDay" type="java.lang.Integer" db-attribute-path="PAYMENT_DAY"/>
+		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
+	</obj-entity>
+	<obj-entity name="Employee" className="park.model.Employee" dbEntityName="EMPLOYEE">
+		<obj-attribute name="dtAdmission" type="java.util.Date" db-attribute-path="DT_ADMISSION"/>
+		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
+	</obj-entity>
+	<obj-entity name="LegalEntity" className="park.model.LegalEntity" dbEntityName="LEGAL_ENTITY">
+		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="DT_FOUNDATION"/>
+		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
+		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="TAXPAYERS_ID"/>
+	</obj-entity>
+	<obj-entity name="NaturalPerson" className="park.model.NaturalPerson" dbEntityName="NATURAL_PERSON">
+		<obj-attribute name="dtBirth" type="java.util.Date" db-attribute-path="DT_BIRTH"/>
+		<obj-attribute name="legalDocument" type="java.lang.String" db-attribute-path="LEGAL_DOCUMENT"/>
+		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
+	</obj-entity>
+	<obj-entity name="Parking" className="park.model.Parking" dbEntityName="PARKING">
+		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
+		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
+		<obj-attribute name="parkingSpace" type="java.lang.Integer" db-attribute-path="PARKING_SPACE"/>
+	</obj-entity>
+	<obj-entity name="Person" className="park.model.Person" dbEntityName="PERSON">
+		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
+		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+		<obj-attribute name="pType" type="java.lang.String" db-attribute-path="P_TYPE"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
+	</obj-entity>
+	<obj-entity name="PriceTable" className="park.model.PriceTable" dbEntityName="PRICE_TABLE">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
+		<obj-attribute name="item" type="java.lang.String" db-attribute-path="ITEM"/>
+		<obj-attribute name="price" type="java.math.BigDecimal" db-attribute-path="PRICE"/>
+	</obj-entity>
+	<obj-entity name="Stay" className="park.model.Stay" dbEntityName="STAY">
+		<obj-attribute name="dtEntrance" type="java.util.Date" db-attribute-path="DT_ENTRANCE"/>
+		<obj-attribute name="dtOutgoing" type="java.util.Date" db-attribute-path="DT_OUTGOING"/>
+		<obj-attribute name="hrEntrance" type="java.util.Date" db-attribute-path="HR_ENTRANCE"/>
+		<obj-attribute name="hrOutgoing" type="java.util.Date" db-attribute-path="HR_OUTGOING"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="ID"/>
+		<obj-attribute name="status" type="java.lang.String" db-attribute-path="STATUS"/>
+		<obj-attribute name="totalPrice" type="java.math.BigDecimal" db-attribute-path="TOTAL_PRICE"/>
+	</obj-entity>
+	<obj-entity name="Vehicle" className="park.model.Vehicle" dbEntityName="VEHICLE">
+		<obj-attribute name="color" type="java.lang.String" db-attribute-path="COLOR"/>
+		<obj-attribute name="licensePlate" type="java.lang.String" db-attribute-path="LICENSE_PLATE"/>
+	</obj-entity>
+	<obj-entity name="VehicleType" className="park.model.VehicleType" dbEntityName="VEHICLE_TYPE">
+		<obj-attribute name="manufacturer" type="java.lang.String" db-attribute-path="MANUFACTURER"/>
+		<obj-attribute name="model" type="java.lang.String" db-attribute-path="MODEL"/>
+		<obj-attribute name="vType" type="java.lang.String" db-attribute-path="V_TYPE"/>
+	</obj-entity>
+	<db-relationship name="person" source="CUSTOMER" target="PERSON" toMany="false">
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="vehicles" source="CUSTOMER" target="VEHICLE" toMany="true">
+		<db-attribute-pair source="PERSON_ID" target="CUSTOMER_ID"/>
+	</db-relationship>
+	<db-relationship name="parking" source="EMPLOYEE" target="PARKING" toMany="false">
+		<db-attribute-pair source="PARKING_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="person" source="EMPLOYEE" target="PERSON" toMany="false">
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="stays" source="EMPLOYEE" target="STAY" toMany="true">
+		<db-attribute-pair source="PERSON_ID" target="EMPLOYEE_ID_ENTRANCE"/>
+	</db-relationship>
+	<db-relationship name="stays1" source="EMPLOYEE" target="STAY" toMany="true">
+		<db-attribute-pair source="PERSON_ID" target="EMPLOYEE_ID_OUTGOING"/>
+	</db-relationship>
+	<db-relationship name="person" source="LEGAL_ENTITY" target="PERSON" toMany="false">
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="person" source="NATURAL_PERSON" target="PERSON" toMany="false">
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="employees" source="PARKING" target="EMPLOYEE" toMany="true">
+		<db-attribute-pair source="ID" target="PARKING_ID"/>
+	</db-relationship>
+	<db-relationship name="stays" source="PARKING" target="STAY" toMany="true">
+		<db-attribute-pair source="ID" target="PARKING_ID"/>
+	</db-relationship>
+	<db-relationship name="person" source="PERSON" target="CUSTOMER" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="person1" source="PERSON" target="EMPLOYEE" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="person2" source="PERSON" target="LEGAL_ENTITY" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="person3" source="PERSON" target="NATURAL_PERSON" toDependentPK="true" toMany="false">
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="vehicles" source="PRICE_TABLE" target="VEHICLE" toMany="true">
+		<db-attribute-pair source="ID" target="PRICE_TABLE_ID"/>
+	</db-relationship>
+	<db-relationship name="parking" source="STAY" target="PARKING" toMany="false">
+		<db-attribute-pair source="PARKING_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="toEmployee" source="STAY" target="EMPLOYEE" toMany="false">
+		<db-attribute-pair source="EMPLOYEE_ID_ENTRANCE" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="toEmployee1" source="STAY" target="EMPLOYEE" toMany="false">
+		<db-attribute-pair source="EMPLOYEE_ID_OUTGOING" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="toVehicle" source="STAY" target="VEHICLE" toMany="false">
+		<db-attribute-pair source="LICENSE_PLATE" target="LICENSE_PLATE"/>
+	</db-relationship>
+	<db-relationship name="customer" source="VEHICLE" target="CUSTOMER" toMany="false">
+		<db-attribute-pair source="CUSTOMER_ID" target="PERSON_ID"/>
+	</db-relationship>
+	<db-relationship name="priceTable" source="VEHICLE" target="PRICE_TABLE" toMany="false">
+		<db-attribute-pair source="PRICE_TABLE_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="stays" source="VEHICLE" target="STAY" toMany="true">
+		<db-attribute-pair source="LICENSE_PLATE" target="LICENSE_PLATE"/>
+	</db-relationship>
+	<db-relationship name="toVehicleType" source="VEHICLE" target="VEHICLE_TYPE" toMany="false">
+		<db-attribute-pair source="V_TYPE" target="V_TYPE"/>
+	</db-relationship>
+	<db-relationship name="vehicles" source="VEHICLE_TYPE" target="VEHICLE" toMany="true">
+		<db-attribute-pair source="V_TYPE" target="V_TYPE"/>
+	</db-relationship>
+	<obj-relationship name="person" source="Customer" target="Person" deleteRule="Nullify" db-relationship-path="person"/>
+	<obj-relationship name="vehicles" source="Customer" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+	<obj-relationship name="parking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
+	<obj-relationship name="person" source="Employee" target="Person" deleteRule="Nullify" db-relationship-path="person"/>
+	<obj-relationship name="stays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
+	<obj-relationship name="stays1" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="stays1"/>
+	<obj-relationship name="person" source="LegalEntity" target="Person" deleteRule="Nullify" db-relationship-path="person"/>
+	<obj-relationship name="person" source="NaturalPerson" target="Person" deleteRule="Nullify" db-relationship-path="person"/>
+	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
+	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
+	<obj-relationship name="person" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="person"/>
+	<obj-relationship name="person1" source="Person" target="Employee" deleteRule="Nullify" db-relationship-path="person1"/>
+	<obj-relationship name="person2" source="Person" target="LegalEntity" deleteRule="Nullify" db-relationship-path="person2"/>
+	<obj-relationship name="person3" source="Person" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="person3"/>
+	<obj-relationship name="vehicles" source="PriceTable" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+	<obj-relationship name="parking" source="Stay" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
+	<obj-relationship name="toEmployee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee"/>
+	<obj-relationship name="toEmployee1" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee1"/>
+	<obj-relationship name="toVehicle" source="Stay" target="Vehicle" deleteRule="Nullify" db-relationship-path="toVehicle"/>
+	<obj-relationship name="customer" source="Vehicle" target="Customer" deleteRule="Nullify" db-relationship-path="customer"/>
+	<obj-relationship name="priceTable" source="Vehicle" target="PriceTable" deleteRule="Nullify" db-relationship-path="priceTable"/>
+	<obj-relationship name="stays" source="Vehicle" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
+	<obj-relationship name="toVehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
+	<obj-relationship name="vehicles" source="VehicleType" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+</data-map>
