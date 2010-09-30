@@ -63,9 +63,9 @@
 		<db-attribute-pair source="USER_ID" target="ID"/>
 	</db-relationship>
 	<obj-relationship name="permissions" source="Role" target="RolePermission" deleteRule="Cascade" db-relationship-path="permissions"/>
-	<obj-relationship name="users" source="Role" target="User" deleteRule="Cascade" db-relationship-path="users.user"/>
+	<obj-relationship name="users" source="Role" target="User" deleteRule="Nullify" db-relationship-path="users.user"/>
 	<obj-relationship name="role" source="RolePermission" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
-	<obj-relationship name="roles" source="User" target="Role" deleteRule="Cascade" db-relationship-path="roles.role"/>
+	<obj-relationship name="roles" source="User" target="Role" deleteRule="Nullify" db-relationship-path="roles.role"/>
 	<query name="Role.findByRoleName" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Role">
 		<qualifier><![CDATA[name = $name]]></qualifier>
 	</query>
