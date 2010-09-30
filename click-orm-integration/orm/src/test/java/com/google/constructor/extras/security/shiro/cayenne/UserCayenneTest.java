@@ -165,7 +165,8 @@ public class UserCayenneTest {
         assertEquals(2, userUpdated.getRoles().size());
 
         System.out.println("***** Checking # user -2L and roles, removing the ADMIN_ROLE *****");
-        userUpdated.getRoles().remove(roleADMIN);
+        //userUpdated.getRoles().remove(roleADMIN);
+        userUpdated.removeFromRoles(roleADMIN);
         userService.update(user);
         System.out.println("***** Checking # user -2L and roles *****");
         assertEquals(1, user.getRoles().size());
