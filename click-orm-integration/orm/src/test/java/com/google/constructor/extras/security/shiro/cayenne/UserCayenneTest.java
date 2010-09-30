@@ -1,11 +1,8 @@
 package com.google.constructor.extras.security.shiro.cayenne;
 
-import com.google.constructor.extras.security.shiro.cayenne.RoleCayenneService;
-import com.google.constructor.extras.security.shiro.cayenne.UserCayenneService;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
-import org.apache.cayenne.CayenneRuntimeException;
 import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.conf.Configuration;
@@ -146,17 +143,24 @@ public class UserCayenneTest {
     @Test
     public void testAddUserRole() throws Exception {
         System.out.println("===========testAddUserRole======");
+        System.out.println("***** Checking # users *****");
+        assertEquals(3, userService.getAll().size());
+        System.out.println("***** Checking # roles *****");
+        assertEquals(2, roleService.getAll().size());
+
         User user = userService.find(-2L);
-
-        System.out.println("*****User has USER_ROLE**********"+user.getRoles().get(0));
-
+        System.out.println("***** Checking # user -2L *****");
+        assertNotNull(user);
+        System.out.println("***** Checking # user -2L and roles *****");
         assertEquals(1, user.getRoles().size());
 
         Role role = roleService.getRoleByName("ADMIN_ROLE");
+        System.out.println("***** Checking # user -2L and roles, adding one more *****");
         user.addToRoles(role);
         userService.update(user);
         System.out.println("*****Now user has USER_ROLE and ADMIN_ROLE**********"+user.getRoles());
-        assertEquals(2, user.getRoles().size());
+        User userUpdated = userService.find(-2L);
+        assertEquals(2, userUpdated.getRoles().size());
     }
 
 /*
