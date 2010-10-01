@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="0.9.16">
+ <project-name>park</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="PostgreSQL" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+   <property key="Logical" value="PostgresqlPARK" />
+   <property key="JDBC URL" value="jdbc:postgresql://127.0.0.1:5432/parkDB" />
+   <property key="UID" value="park" />
+   <property key="PWD" value="park" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="0f76826e-fc99-4948-b9b4-e08c34853048" dbcs-ref="DS2" name="PostgresqlPARK" physicalName="PostgresqlPARK" >
+   <catalog id="CAT1" populated="true" UUID="e5e52b75-a5fe-4b99-8676-f402a71ff59a" name="parkDB" nativeTerm="database" physicalName="parkDB" >
+    <schema id="SCH2" populated="true" UUID="27e6d59e-30b9-456b-9383-a6bf00f51d66" name="information_schema" nativeTerm="schema" physicalName="information_schema" >
+    </schema>
+    <schema id="SCH3" populated="true" UUID="dfeddd10-5e53-49c1-ab25-56c5fc4e74ae" name="park" nativeTerm="schema" physicalName="park" >
+    </schema>
+    <schema id="SCH4" populated="true" UUID="632ea3f4-6956-489d-8a6f-0bb4238b7d39" name="pg_catalog" nativeTerm="schema" physicalName="pg_catalog" >
+    </schema>
+    <schema id="SCH5" populated="true" UUID="6817258d-86f1-4126-9939-d39cbf2c282b" name="pg_toast_temp_1" nativeTerm="schema" physicalName="pg_toast_temp_1" >
+    </schema>
+    <schema id="SCH6" populated="true" UUID="c3581c1d-99b7-49ec-af49-f4f98ca388f7" name="public" nativeTerm="schema" physicalName="public" >
+    </schema>
+   </catalog>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB8" populated="true" UUID="bd8e8b68-4cae-4da1-84ad-ba6cb59633b9" name="PERSON" objectType="TABLE" physicalName="PERSON" remarks="" >
+   <folder id="FOLTAB81" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL9" populated="true" UUID="d1845afd-57c6-4ca5-90bf-bb99a3ab4f25" autoIncrement="false" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="19" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL10" populated="true" UUID="a711509b-6bbe-4be1-9aed-b7ecc4cd1c4c" autoIncrement="false" defaultValue="" name="ADDRESS" nullable="1" physicalName="ADDRESS" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL11" populated="true" UUID="e4fe6c2e-9ef1-4738-a1a3-f0f8e5ec21b6" autoIncrement="false" defaultValue="" name="NAME" nullable="1" physicalName="NAME" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL12" populated="true" UUID="0d3c8368-980a-4050-9d3d-4c5185d36599" autoIncrement="false" defaultValue="" name="P_TYPE" nullable="1" physicalName="P_TYPE" precision="2" referenceCount="1" remarks="" scale="0" sourceDataTypeName="CHAR" type="1" />
+    <column id="COL13" populated="true" UUID="e5df6f36-f9b9-415f-bcb5-1ecdf91eefa3" autoIncrement="false" defaultValue="" name="VERSION" nullable="1" physicalName="VERSION" precision="10" referenceCount="1" remarks="" scale="0" sourceDataTypeName="INTEGER" type="4" />
+    </folder>
+    <folder id="FOLTAB83" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB82" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB84" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX14" populated="true" UUID="03d026c6-f27d-454c-a154-a8683981cfef" clustered="false" name="PERSON_pk" physicalName="person_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC15" populated="true" UUID="a221a281-aed6-4298-927f-d63664ddd2ed" ascendingOrDescending="UNSPECIFIED" column-ref="COL9" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX16" populated="true" UUID="3bc35f38-7aec-45bd-bbf2-01d9217cc5f2" clustered="false" filterCondition="" name="PRIMARY_KEY_8" physicalName="primary_key_8" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC17" populated="true" UUID="8767bb68-2389-4533-b880-69ed346dc38f" ascendingOrDescending="ASCENDING" column-ref="COL9" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX18" populated="true" UUID="e210d72e-504f-4173-a7ef-434aab061255" clustered="false" filterCondition="" name="I_PERSON_DTYPE" physicalName="i_person_dtype" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC19" populated="true" UUID="3c4faaea-19f8-4550-9bb8-1eed9b07bed4" ascendingOrDescending="ASCENDING" column-ref="COL12" name="P_TYPE" physicalName="P_TYPE" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB20" populated="true" UUID="73abb2f1-9d94-4876-b737-8ecd77631888" name="NATURAL_PERSON" objectType="TABLE" physicalName="NATURAL_PERSON" remarks="" >
+   <folder id="FOLTAB201" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL21" populated="true" UUID="756707c9-0b22-4d20-b6b5-6d5ba13770a0" autoIncrement="false" defaultValue="" name="PERSON_ID" nullable="0" physicalName="PERSON_ID" precision="19" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL22" populated="true" UUID="faa584b3-69ca-4e88-bcfc-216ff6d9348d" autoIncrement="false" defaultValue="" name="DT_BIRTH" nullable="1" physicalName="DT_BIRTH" precision="8" referenceCount="1" remarks="" scale="0" sourceDataTypeName="DATE" type="91" />
+    <column id="COL23" populated="true" UUID="1cb88785-056b-4415-9778-b2990e04e16d" autoIncrement="false" defaultValue="" name="LEGAL_DOCUMENT" nullable="1" physicalName="LEGAL_DOCUMENT" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    </folder>
+    <folder id="FOLTAB203" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB202" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB204" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX24" populated="true" UUID="26775127-3fed-4246-a0e5-3ed2158c36b6" clustered="false" name="NATURAL_PERSON_pk" physicalName="natural_person_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC25" populated="true" UUID="38af1eea-795b-43b9-add3-b96c93bc0260" ascendingOrDescending="UNSPECIFIED" column-ref="COL21" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+    <index id="IDX26" populated="true" UUID="527f1df6-3dba-4029-bd86-5a0b9d741fb9" clustered="false" filterCondition="" name="PRIMARY_KEY_4" physicalName="primary_key_4" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC27" populated="true" UUID="139c923a-a73c-4057-ae89-0da02b42c6aa" ascendingOrDescending="ASCENDING" column-ref="COL21" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB28" populated="true" UUID="1566fd95-9961-4ecf-9756-070f926c01dc" name="LEGAL_ENTITY" objectType="TABLE" physicalName="LEGAL_ENTITY" remarks="" >
+   <folder id="FOLTAB281" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL29" populated="true" UUID="6e6673c5-fda4-4674-ae6f-14ffaa45d31f" autoIncrement="false" defaultValue="" name="PERSON_ID" nullable="0" physicalName="PERSON_ID" precision="19" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL30" populated="true" UUID="ac71dd19-b4f2-4229-97d0-e19e58aa0052" autoIncrement="false" defaultValue="" name="DT_FOUNDATION" nullable="1" physicalName="DT_FOUNDATION" precision="8" referenceCount="1" remarks="" scale="0" sourceDataTypeName="DATE" type="91" />
+    <column id="COL31" populated="true" UUID="9b759e6f-dade-4ee2-bd55-fe4267b07d69" autoIncrement="false" defaultValue="" name="TAXPAYERS_ID" nullable="1" physicalName="TAXPAYERS_ID" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    </folder>
+    <folder id="FOLTAB283" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB282" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB284" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX32" populated="true" UUID="0f2d7d16-d1fb-4717-844f-a94e69cb8cd0" clustered="false" name="LEGAL_ENTITY_pk" physicalName="legal_entity_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC33" populated="true" UUID="56c03eb7-182f-4885-ac37-d4c39dd0d43a" ascendingOrDescending="UNSPECIFIED" column-ref="COL29" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+    <index id="IDX34" populated="true" UUID="9f679c50-8953-4c5b-b846-bc4d94f92e70" clustered="false" filterCondition="" name="PRIMARY_KEY_C" physicalName="primary_key_c" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC35" populated="true" UUID="500f7ea9-68e5-42ac-869b-25eb4fe2ea31" ascendingOrDescending="ASCENDING" column-ref="COL29" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB36" populated="true" UUID="8b7fa4c7-7938-43ea-8f5c-eada1828b393" name="CUSTOMER" objectType="TABLE" physicalName="CUSTOMER" remarks="" >
+   <folder id="FOLTAB361" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL37" populated="true" UUID="1eb7ca87-4b07-45de-8919-db5c6c6ee18a" autoIncrement="false" defaultValue="" name="PERSON_ID" nullable="0" physicalName="PERSON_ID" precision="19" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL38" populated="true" UUID="95673a70-89e4-466b-b722-0b27f0d9c885" autoIncrement="false" defaultValue="" name="PAYMENT_DAY" nullable="1" physicalName="PAYMENT_DAY" precision="10" referenceCount="1" remarks="" scale="0" sourceDataTypeName="INTEGER" type="4" />
+    </folder>
+    <folder id="FOLTAB363" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB362" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB364" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX39" populated="true" UUID="15338d3f-c7fd-424a-b488-487a354e6633" clustered="false" name="CUSTOMER_pk" physicalName="customer_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC40" populated="true" UUID="25a2f3ef-b911-4fc8-a994-d6d9e0c9af38" ascendingOrDescending="UNSPECIFIED" column-ref="COL37" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+    <index id="IDX41" populated="true" UUID="cfea4385-90fb-4ea9-9dfd-a2fbeb99f9a0" clustered="false" filterCondition="" name="PRIMARY_KEY_5" physicalName="primary_key_5" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC42" populated="true" UUID="73d7884e-92aa-41b4-813d-0bf3e182fd3f" ascendingOrDescending="ASCENDING" column-ref="COL37" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB43" populated="true" UUID="a9bd63ce-c7b6-49c3-a2c8-15cccc1c3681" name="PRICE_TABLE" objectType="TABLE" physicalName="PRICE_TABLE" remarks="" >
+   <folder id="FOLTAB431" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL44" populated="true" UUID="2169b120-eea5-4913-91e6-19fcaa57a88f" autoIncrement="false" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="INTEGER" type="4" />
+    <column id="COL45" populated="true" UUID="1688c56a-186b-44d5-9042-b1124e336929" autoIncrement="false" defaultValue="" name="ITEM" nullable="0" physicalName="ITEM" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL46" populated="true" UUID="c77ec174-0b06-4df1-a2ef-1c316a71e4b6" autoIncrement="false" defaultValue="" name="PRICE" nullable="1" physicalName="PRICE" precision="12" referenceCount="1" remarks="" scale="2" sourceDataTypeName="DECIMAL" type="3" />
+    </folder>
+    <folder id="FOLTAB433" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB432" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB434" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX47" populated="true" UUID="42e82a86-59e1-4ce4-a153-81d483e39868" clustered="false" name="PRICE_TABLE_pk" physicalName="price_table_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC48" populated="true" UUID="403d648b-5120-4854-9b81-21036d4d1ef2" ascendingOrDescending="UNSPECIFIED" column-ref="COL44" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX49" populated="true" UUID="37163ef0-1ddf-40b7-a0d0-21d52c285760" clustered="false" filterCondition="" name="PRIMARY_KEY_2" physicalName="primary_key_2" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC50" populated="true" UUID="c87a16f5-758e-4d39-aabe-77bf62f456d0" ascendingOrDescending="ASCENDING" column-ref="COL44" name="ID" physicalName="ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB51" populated="true" UUID="09f8b0e0-3715-4aa4-bdfa-abc475629c42" name="VEHICLE" objectType="TABLE" physicalName="VEHICLE" remarks="" >
+   <folder id="FOLTAB511" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL52" populated="true" UUID="366199b3-42a2-48aa-a35c-d8305697da51" autoIncrement="false" defaultValue="" name="LICENSE_PLATE" nullable="0" physicalName="LICENSE_PLATE" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL53" populated="true" UUID="2e1dbc46-1183-4ae7-a2c0-03934c618070" autoIncrement="false" defaultValue="" name="COLOR" nullable="1" physicalName="COLOR" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL54" populated="true" UUID="ff32a682-ddcc-4f32-b077-1a298cab7706" autoIncrement="false" defaultValue="" name="CUSTOMER_ID" nullable="1" physicalName="CUSTOMER_ID" precision="19" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL55" populated="true" UUID="0f39cf88-84dc-4803-ba1c-d19d3e82203e" autoIncrement="false" defaultValue="" name="PRICE_TABLE_ID" nullable="1" physicalName="PRICE_TABLE_ID" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL56" populated="true" UUID="b8d0fe5f-488d-4920-a0be-5d1d8ca6e273" autoIncrement="false" defaultValue="" name="V_TYPE" nullable="1" physicalName="V_TYPE" precision="20" referenceCount="1" remarks="" scale="0" type="12" />
+    </folder>
+    <folder id="FOLTAB513" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB512" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB514" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX57" populated="true" UUID="f814e85a-792b-4d57-9b48-59812040a24e" clustered="false" name="VEHICLE_pk" physicalName="vehicle_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC58" populated="true" UUID="d76a112e-d313-467a-b015-259b9d21af56" ascendingOrDescending="UNSPECIFIED" column-ref="COL52" name="LICENSE_PLATE" physicalName="LICENSE_PLATE" />
+    </index>
+    <index id="IDX59" populated="true" UUID="f449f78a-176b-49e9-b25b-1d44d14b4a8a" clustered="false" filterCondition="" name="PRIMARY_KEY_3" physicalName="primary_key_3" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC60" populated="true" UUID="6959ccb7-11c9-45aa-b892-05a393bb8d1b" ascendingOrDescending="ASCENDING" column-ref="COL52" name="LICENSE_PLATE" physicalName="LICENSE_PLATE" />
+    </index>
+    <index id="IDX61" populated="true" UUID="b02dc96a-f1f7-422f-8185-595124298868" clustered="false" filterCondition="" name="I_VEHICLE_CUSTOMER" physicalName="i_vehicle_customer" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC62" populated="true" UUID="6cf02e28-8e39-4140-a403-0cc5cdcc8be5" ascendingOrDescending="ASCENDING" column-ref="COL54" name="CUSTOMER_ID" physicalName="CUSTOMER_ID" />
+    </index>
+    <index id="IDX63" populated="true" UUID="8b50c944-fe72-47dc-ac86-8db7c47ef870" clustered="false" filterCondition="" name="I_VEHICLE_PRICETABLE" physicalName="i_vehicle_pricetable" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC64" populated="true" UUID="7ba6c80e-61b2-418d-a1ca-9b78321fa55f" ascendingOrDescending="ASCENDING" column-ref="COL55" name="PRICE_TABLE_ID" physicalName="PRICE_TABLE_ID" />
+    </index>
+    <index id="IDX65" populated="true" UUID="0629f4ed-714d-45a7-a44d-911755f83f31" clustered="false" filterCondition="" name="I_VEHICLE_VTYPE" physicalName="i_vehicle_vtype" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC66" populated="true" UUID="4c097b03-b8ab-4487-b22b-9c55ebbde8df" ascendingOrDescending="ASCENDING" column-ref="COL56" name="V_TYPE" physicalName="V_TYPE" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB67" populated="true" UUID="5fb13bb7-0608-4df3-9404-66418ce16f7a" name="VEHICLE_TYPE" objectType="TABLE" physicalName="VEHICLE_TYPE" remarks="" >
+   <folder id="FOLTAB671" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL68" populated="true" UUID="c8d70364-410d-4ee4-bbed-3f351cc2206f" autoIncrement="false" defaultValue="" name="V_TYPE" nullable="0" physicalName="V_TYPE" precision="20" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL69" populated="true" UUID="23f43f96-d0aa-4171-b3da-1e9f37ab2104" autoIncrement="false" defaultValue="" name="MANUFACTURER" nullable="1" physicalName="MANUFACTURER" precision="50" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL70" populated="true" UUID="388bbd1c-c2b1-426c-b9c3-8bb7298f23f1" autoIncrement="false" defaultValue="" name="MODEL" nullable="1" physicalName="MODEL" precision="20" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    </folder>
+    <folder id="FOLTAB673" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB672" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB674" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX71" populated="true" UUID="6029b33c-4611-414b-b75a-ec32d7e53624" clustered="false" name="VEHICLE_TYPE_pk" physicalName="vehicle_type_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC72" populated="true" UUID="83efba53-4dbb-4151-b6ae-e0f380c85bfc" ascendingOrDescending="UNSPECIFIED" column-ref="COL68" name="V_TYPE" physicalName="V_TYPE" />
+    </index>
+    <index id="IDX73" populated="true" UUID="4329a102-1314-4935-82e9-ae23d5eb2c8a" clustered="false" filterCondition="" name="PRIMARY_KEY_1" physicalName="primary_key_1" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC74" populated="true" UUID="cf6a2a9a-14a5-4d6b-9a60-c50f82b15fc3" ascendingOrDescending="ASCENDING" column-ref="COL68" name="V_TYPE" physicalName="V_TYPE" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB75" populated="true" UUID="2b1c7606-c237-4a74-815c-6e5bb6e97e12" name="EMPLOYEE" objectType="TABLE" physicalName="EMPLOYEE" remarks="" >
+   <folder id="FOLTAB751" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL76" populated="true" UUID="89f85c73-39a0-4e82-90ba-d83cdd96a206" autoIncrement="false" defaultValue="" name="PERSON_ID" nullable="0" physicalName="PERSON_ID" precision="19" primaryKeySeq="0" referenceCount="2" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL77" populated="true" UUID="570c351e-c28b-4ad6-bbf5-74910dc19a71" autoIncrement="false" defaultValue="" name="DT_ADMISSION" nullable="1" physicalName="DT_ADMISSION" precision="8" referenceCount="1" remarks="" scale="0" sourceDataTypeName="DATE" type="91" />
+    <column id="COL78" populated="true" UUID="cf044004-dd0a-4ad2-b447-495e259c6482" autoIncrement="false" defaultValue="" name="PARKING_ID" nullable="1" physicalName="PARKING_ID" precision="19" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    </folder>
+    <folder id="FOLTAB753" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB752" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB754" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX79" populated="true" UUID="edd770d7-cf0d-4ec2-90cb-cd68cfaaea9f" clustered="false" name="EMPLOYEE_pk" physicalName="employee_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC80" populated="true" UUID="5fbcf2ae-5a0b-4a61-9f05-421e30d00528" ascendingOrDescending="UNSPECIFIED" column-ref="COL76" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+    <index id="IDX81" populated="true" UUID="c7755d9d-f859-4ec7-a519-654985620348" clustered="false" filterCondition="" name="PRIMARY_KEY_7" physicalName="primary_key_7" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC82" populated="true" UUID="53e739e1-66a3-4023-9b64-8ba38cd71955" ascendingOrDescending="ASCENDING" column-ref="COL76" name="PERSON_ID" physicalName="PERSON_ID" />
+    </index>
+    <index id="IDX83" populated="true" UUID="ac129855-d90e-4e24-a857-801081dc22e2" clustered="false" filterCondition="" name="I_MPLOYEE_PARKING" physicalName="i_mployee_parking" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC84" populated="true" UUID="6475731c-5503-4355-a6de-fd45a0ff70db" ascendingOrDescending="ASCENDING" column-ref="COL78" name="PARKING_ID" physicalName="PARKING_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB85" populated="true" UUID="4330907f-c596-4466-845a-2cf288f648ee" name="PARKING" objectType="TABLE" physicalName="PARKING" remarks="" >
+   <folder id="FOLTAB851" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL86" populated="true" UUID="32757936-21d2-4501-af4e-b71df8565895" autoIncrement="false" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="19" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL87" populated="true" UUID="2aaaf9bb-a4cb-46f3-b058-67cb4a6a7d09" autoIncrement="false" defaultValue="" name="ADDRESS" nullable="1" physicalName="ADDRESS" precision="100" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL88" populated="true" UUID="d50500c8-7147-492c-8f7c-52dae6c0796b" autoIncrement="false" defaultValue="" name="PARKING_SPACE" nullable="1" physicalName="PARKING_SPACE" precision="10" referenceCount="1" remarks="" scale="0" sourceDataTypeName="INTEGER" type="4" />
+    </folder>
+    <folder id="FOLTAB853" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB852" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB854" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX89" populated="true" UUID="cf90d43c-8929-486e-9756-33951de6de8a" clustered="false" name="PARKING_pk" physicalName="parking_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC90" populated="true" UUID="b01a2d43-a459-491c-9205-e7a2b3c22b3a" ascendingOrDescending="UNSPECIFIED" column-ref="COL86" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX91" populated="true" UUID="2ced11d8-f7c3-4ddd-92da-6587d9ea1cd5" clustered="false" filterCondition="" name="PRIMARY_KEY_F" physicalName="primary_key_f" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC92" populated="true" UUID="99bfc1a7-5ecb-4f5d-b9e2-f3cb9b9186a9" ascendingOrDescending="ASCENDING" column-ref="COL86" name="ID" physicalName="ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB93" populated="true" UUID="81ad489e-b290-44c8-a2f5-f3f17b78b09b" name="STAY" objectType="TABLE" physicalName="STAY" remarks="" >
+   <folder id="FOLTAB931" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL94" populated="true" UUID="1f0bac0b-d9ee-4215-9781-403ecd1cc533" autoIncrement="false" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" sourceDataTypeName="INTEGER" type="4" />
+    <column id="COL95" populated="true" UUID="8c0020b6-b159-4ea6-9c87-fa102ecdcbf6" autoIncrement="false" defaultValue="" name="DT_ENTRANCE" nullable="1" physicalName="DT_ENTRANCE" precision="8" referenceCount="1" remarks="" scale="0" sourceDataTypeName="DATE" type="91" />
+    <column id="COL96" populated="true" UUID="58bd276d-1a21-43a9-bafc-68de295d9211" autoIncrement="false" defaultValue="" name="DT_OUTGOING" nullable="1" physicalName="DT_OUTGOING" precision="8" referenceCount="1" remarks="" scale="0" sourceDataTypeName="DATE" type="91" />
+    <column id="COL97" populated="true" UUID="7665546b-fd93-42c6-a346-7fd11bfc1e7f" autoIncrement="false" defaultValue="" name="HR_ENTRANCE" nullable="1" physicalName="HR_ENTRANCE" precision="6" referenceCount="1" remarks="" scale="0" sourceDataTypeName="TIME" type="92" />
+    <column id="COL98" populated="true" UUID="3897dad5-df04-47d2-90e6-0dbeb3c4f815" autoIncrement="false" defaultValue="" name="HR_OUTGOING" nullable="1" physicalName="HR_OUTGOING" precision="6" referenceCount="1" remarks="" scale="0" sourceDataTypeName="TIME" type="92" />
+    <column id="COL99" populated="true" UUID="2ed2f796-ede2-44da-aae2-112881355aa1" autoIncrement="false" defaultValue="" name="STATUS" nullable="1" physicalName="STATUS" precision="255" referenceCount="1" remarks="" scale="0" sourceDataTypeName="VARCHAR" type="12" />
+    <column id="COL100" populated="true" UUID="df2e0f97-f4f3-4fe2-bf72-c6d29678cd25" autoIncrement="false" defaultValue="" name="TOTAL_PRICE" nullable="1" physicalName="TOTAL_PRICE" precision="12" referenceCount="1" remarks="" scale="2" sourceDataTypeName="DECIMAL" type="3" />
+    <column id="COL101" populated="true" UUID="4addbafd-903e-484d-93f0-a5dd5de3493f" autoIncrement="false" defaultValue="" name="LICENSE_PLATE" nullable="1" physicalName="LICENSE_PLATE" precision="20" referenceCount="1" remarks="" scale="0" type="12" />
+    <column id="COL102" populated="true" UUID="5287fec2-767c-4857-b597-e8fd28e070ee" autoIncrement="false" defaultValue="" name="EMPLOYEE_ID_ENTRANCE" nullable="1" physicalName="EMPLOYEE_ID_ENTRANCE" precision="19" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL103" populated="true" UUID="23a29faf-50b2-490e-95fe-d8c3a71a845e" autoIncrement="false" defaultValue="" name="EMPLOYEE_ID_OUTGOING" nullable="1" physicalName="EMPLOYEE_ID_OUTGOING" precision="19" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    <column id="COL104" populated="true" UUID="4f674e66-876f-4224-92ce-061801b1463f" autoIncrement="false" defaultValue="" name="PARKING_ID" nullable="1" physicalName="PARKING_ID" precision="19" referenceCount="1" remarks="" scale="0" sourceDataTypeName="BIGINT" type="-5" />
+    </folder>
+    <folder id="FOLTAB933" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB932" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB934" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX105" populated="true" UUID="d50b756e-3ba9-4cf3-826b-99b9ef5fad22" clustered="false" name="STAY_pk" physicalName="stay_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC106" populated="true" UUID="2854d225-d709-424b-a8b5-8df4b8639406" ascendingOrDescending="UNSPECIFIED" column-ref="COL94" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX107" populated="true" UUID="2dad0f52-4a1c-45c5-a456-ecd35b31ab04" clustered="false" filterCondition="" name="PRIMARY_KEY_26" physicalName="primary_key_26" primaryKeyIndex="false" qualifier="PARKDB" unique="true" >
+     <index-column id="IDC108" populated="true" UUID="dc44437e-4297-4554-8724-3164b69d00cd" ascendingOrDescending="ASCENDING" column-ref="COL94" name="ID" physicalName="ID" />
+    </index>
+    <index id="IDX109" populated="true" UUID="7aa22508-c4e3-4bf1-8a83-9bf2816017d9" clustered="false" filterCondition="" name="I_STAY_EMPLOYEEENTRANCE" physicalName="i_stay_employeeentrance" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC110" populated="true" UUID="e3f2c7bf-385a-46b9-abce-7a2892c92527" ascendingOrDescending="ASCENDING" column-ref="COL102" name="EMPLOYEE_ID_ENTRANCE" physicalName="EMPLOYEE_ID_ENTRANCE" />
+    </index>
+    <index id="IDX111" populated="true" UUID="250ee41e-7a16-4712-b68c-01cdb1de1088" clustered="false" filterCondition="" name="I_STAY_EMPLOYEEOUTGOING" physicalName="i_stay_employeeoutgoing" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC112" populated="true" UUID="abb24835-1aa5-4cc5-bd1a-e741ef1046f3" ascendingOrDescending="ASCENDING" column-ref="COL103" name="EMPLOYEE_ID_OUTGOING" physicalName="EMPLOYEE_ID_OUTGOING" />
+    </index>
+    <index id="IDX113" populated="true" UUID="5516c284-4f61-40df-90ef-e89441f8544c" clustered="false" filterCondition="" name="I_STAY_PARKING" physicalName="i_stay_parking" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC114" populated="true" UUID="f552e0e9-7d8b-4540-bd6f-61df1ffc6779" ascendingOrDescending="ASCENDING" column-ref="COL104" name="PARKING_ID" physicalName="PARKING_ID" />
+    </index>
+    <index id="IDX115" populated="true" UUID="fade48b1-0279-485e-be89-5b09687b55c9" clustered="false" filterCondition="" name="I_STAY_VEHICLE" physicalName="i_stay_vehicle" primaryKeyIndex="false" qualifier="PARKDB" unique="false" >
+     <index-column id="IDC116" populated="true" UUID="1e5c40e0-322e-408c-aeec-e1d672b9de57" ascendingOrDescending="ASCENDING" column-ref="COL101" name="LICENSE_PLATE" physicalName="LICENSE_PLATE" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL117" populated="true" UUID="636c14dc-e0ac-48bd-ac0f-7912071bae79" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="3" identifying="true" name="fk_legal_entity_person_id" physicalName="fk_legal_entity_person_id" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP118" populated="true" UUID="3816c62e-db21-4ecd-893d-26bc5c401abb" fk-column-ref="COL29" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   </relationship>
+   <relationship id="REL119" populated="true" UUID="4ab45513-8043-47c2-b501-1a951ee4cb80" deferrability="7" deleteRule="3" fk-table-ref="TAB20" fkCardinality="3" identifying="true" name="fk_natural_person_person_id" physicalName="fk_natural_person_person_id" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP120" populated="true" UUID="6e8bca72-4762-48be-b3f3-1ac2609fdcc5" fk-column-ref="COL21" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   </relationship>
+   <relationship id="REL121" populated="true" UUID="44b02dbf-6013-4519-9b22-c1068e102b22" deferrability="7" deleteRule="3" fk-table-ref="TAB36" fkCardinality="3" identifying="true" name="fk_customer_person_id" physicalName="fk_customer_person_id" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP122" populated="true" UUID="4925c09e-9a18-460e-9c23-b70548009242" fk-column-ref="COL37" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   </relationship>
+   <relationship id="REL123" populated="true" UUID="c57a9528-e7d7-4c8e-80b4-d97649e11adc" deferrability="7" deleteRule="3" fk-table-ref="TAB75" fkCardinality="3" identifying="true" name="fk_employee_person_id" physicalName="fk_employee_person_id" pk-table-ref="TAB20" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP124" populated="true" UUID="7a2468da-52e0-4c9f-96b8-50de3c65d297" fk-column-ref="COL76" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
+   </relationship>
+   <relationship id="REL125" populated="true" UUID="df801880-c50f-4199-86be-11881b233559" deferrability="7" deleteRule="3" fk-table-ref="TAB51" fkCardinality="7" identifying="true" name="fk_vehicle_customer_id" physicalName="fk_vehicle_customer_id" pk-table-ref="TAB36" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP126" populated="true" UUID="5a7bf5cf-b0c0-4da3-bb40-a49122e4715c" fk-column-ref="COL54" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL37" />
+   </relationship>
+   <relationship id="REL127" populated="true" UUID="f63d0f0d-603b-4393-a563-62455a096f0c" deferrability="7" deleteRule="3" fk-table-ref="TAB51" fkCardinality="7" identifying="true" name="fk_vehicle_price_table_id" physicalName="fk_vehicle_price_table_id" pk-table-ref="TAB43" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP128" populated="true" UUID="5bc44bcd-84d0-4d20-9da1-25d3f151faa0" fk-column-ref="COL55" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL44" />
+   </relationship>
+   <relationship id="REL129" populated="true" UUID="9af8d75f-35ff-464e-b388-4a5a49397813" deferrability="7" deleteRule="3" fk-table-ref="TAB93" fkCardinality="7" identifying="true" name="fk_stay_license_plate" physicalName="fk_stay_license_plate" pk-table-ref="TAB51" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP130" populated="true" UUID="fe1f7dbe-1612-4300-a250-0a76e173e244" fk-column-ref="COL101" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL52" />
+   </relationship>
+   <relationship id="REL131" populated="true" UUID="2fc48e5f-09ff-499b-8aaf-e20d10f83b81" deferrability="7" deleteRule="3" fk-table-ref="TAB51" fkCardinality="7" identifying="true" name="fk_vehicle_v_type" physicalName="fk_vehicle_v_type" pk-table-ref="TAB67" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP132" populated="true" UUID="b053fffc-0b7a-4049-9041-d801aec22ad2" fk-column-ref="COL56" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL68" />
+   </relationship>
+   <relationship id="REL133" populated="true" UUID="1761817d-68db-47c6-bd2a-4455f0dd1863" deferrability="7" deleteRule="3" fk-table-ref="TAB93" fkCardinality="7" identifying="true" name="fk_stay_employee_id_entrance" physicalName="fk_stay_employee_id_entrance" pk-table-ref="TAB75" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP134" populated="true" UUID="b0b8d1e7-6069-450a-8387-b002b335bfdf" fk-column-ref="COL102" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL76" />
+   </relationship>
+   <relationship id="REL135" populated="true" UUID="361ba375-35ff-47c7-a8cc-0f71bd4ad994" deferrability="7" deleteRule="3" fk-table-ref="TAB93" fkCardinality="7" identifying="false" name="fk_stay_employee_id_outgoing" physicalName="fk_stay_employee_id_outgoing" pk-table-ref="TAB75" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP136" populated="true" UUID="b1a40217-9a88-4b92-a8fc-20334230e373" fk-column-ref="COL103" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL76" />
+   </relationship>
+   <relationship id="REL137" populated="true" UUID="57ff9c93-299d-4325-85c0-77d34e0d51bf" deferrability="7" deleteRule="3" fk-table-ref="TAB75" fkCardinality="7" identifying="true" name="fk_employee_parking_id" physicalName="fk_employee_parking_id" pk-table-ref="TAB85" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP138" populated="true" UUID="0a335d58-1de9-480d-8784-21e5fee6f662" fk-column-ref="COL78" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL86" />
+   </relationship>
+   <relationship id="REL139" populated="true" UUID="d31944c1-03b9-4d25-9b3c-fe770746c013" deferrability="7" deleteRule="3" fk-table-ref="TAB93" fkCardinality="7" identifying="true" name="fk_stay_parking_id" physicalName="fk_stay_parking_id" pk-table-ref="TAB85" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP140" populated="true" UUID="e1f7c574-ce40-43b8-907d-81de17d25697" fk-column-ref="COL104" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL86" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="park"> </ddl-generator>
+ <compare-dm-settings  ddlGenerator="ca.sqlpower.architect.ddl.PostgresDDLGenerator"  outputFormatAsString="SQL" >
+  <source-stuff   datastoreTypeAsString="PROJECT"   filePath=""  />  <target-stuff   datastoreTypeAsString="DATABASE"   connectName="PostgresqlPARK"   filePath=""  /> </compare-dm-settings>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="0.840896415253715" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB8" x="110" y="39" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB20" x="64" y="217" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB28" x="350" y="162" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB36" x="580" y="33" bgColor="0xe4e4b8" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB43" x="556" y="430" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB51" x="563" y="178" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB67" x="602" y="557" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB75" x="21" y="463" bgColor="0xe6d794" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB85" x="347" y="619" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB93" x="274" y="322" bgColor="0xf6bcbc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL117" pk-x="166" pk-y="53" fk-x="0" fk-y="35" rLineColor="0x202020" pkLabelText="" fkLabelText="Is a Person" orientation="33"/>
+  <table-link relationship-ref="REL119" pk-x="62" pk-y="111" fk-x="20" fk-y="0" rLineColor="0x202020" pkLabelText="" fkLabelText="Is a Person" orientation="132"/>
+  <table-link relationship-ref="REL121" pk-x="166" pk-y="25" fk-x="0" fk-y="31" rLineColor="0x202020" pkLabelText="" fkLabelText="Customer Role" orientation="33"/>
+  <table-link relationship-ref="REL127" pk-x="45" pk-y="0" fk-x="128" fk-y="111" rLineColor="0x202020" pkLabelText="" fkLabelText="Description" orientation="72"/>
+  <table-link relationship-ref="REL131" pk-x="111" pk-y="0" fk-x="233" fk-y="111" rLineColor="0x202020" pkLabelText="" fkLabelText="Description" orientation="72"/>
+  <table-link relationship-ref="REL125" pk-x="169" pk-y="63" fk-x="74" fk-y="0" rLineColor="0x202020" pkLabelText="" fkLabelText="Customer&apos;s thing" orientation="132"/>
+  <table-link relationship-ref="REL123" pk-x="123" pk-y="79" fk-x="65" fk-y="0" rLineColor="0x202020" pkLabelText="" fkLabelText="Employee Role" orientation="132"/>
+  <table-link relationship-ref="REL137" pk-x="0" pk-y="36" fk-x="93" fk-y="79" rLineColor="0x202020" pkLabelText="" fkLabelText="Is a place for" orientation="66"/>
+  <table-link relationship-ref="REL129" pk-x="0" pk-y="95" fk-x="256" fk-y="38" rLineColor="0x202020" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL133" pk-x="169" pk-y="53" fk-x="0" fk-y="135" rLineColor="0x202020" pkLabelText="" fkLabelText="Entrance" orientation="33"/>
+  <table-link relationship-ref="REL135" pk-x="144" pk-y="0" fk-x="0" fk-y="77" rLineColor="0x202020" pkLabelText="" fkLabelText="Outgoing" orientation="40"/>
+  <table-link relationship-ref="REL139" pk-x="87" pk-y="0" fk-x="51" fk-y="207" rLineColor="0x202020" pkLabelText="" fkLabelText="Is a place for" orientation="72"/>
+ </play-pen>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>
