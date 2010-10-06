@@ -11,6 +11,10 @@
     <!-- Print only messages of level warn or above in the package com.foo -->
     <level value="debug"/>
   </logger>
+  <logger name="org.apache.cayenne">
+    <!-- Print only messages of level warn or above in the package com.foo -->
+    <level value="debug"/>
+  </logger>
   <logger name="org.dbunit">
     <!-- Print only messages of level warn or above in the package com.foo -->
     <level value="info"/>
