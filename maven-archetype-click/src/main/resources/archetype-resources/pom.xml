@@ -31,11 +31,6 @@
     <dependencies>
         <dependency>
             <groupId>org.apache.click</groupId>
-            <artifactId>click</artifactId>
-            <version>${click.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.click</groupId>
             <artifactId>click-extras</artifactId>
             <version>${click.version}</version>
         </dependency>
