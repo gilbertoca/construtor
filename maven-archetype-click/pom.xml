@@ -26,11 +26,9 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>maven-archetype-click</artifactId>
   <version>1.0</version>
-  <packaging>maven-archetype</packaging>
+  <packaging>jar</packaging>
   <name>Maven Apache Click Archetype</name>
-  <description>
-    An archetype which contains a simplifed sample Apache Click web application.
-  </description>
+  <description>An archetype which contains a simplifed sample of the Apache Click Framework. </description>
   <build>
     <extensions>
       <extension>
