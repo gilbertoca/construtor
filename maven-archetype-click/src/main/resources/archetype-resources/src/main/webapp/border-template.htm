@@ -4,24 +4,32 @@
 <link rel="stylesheet" type="text/css" href="$context/assets/style.css" title="Style"></link>
 $headElements
 </head>
-
 <body>
-
   <div id="header">
   	<span id="title">project-name :: $title</span>
   </div>
-    #* You can improve your application's navigation through the <a href="http://click.apache.org/docs/extras-api/org/apache/click/extras/control/MenuFactory.html">Menu control<a>.
-       Just uncomment the following velocity block and edit the menu.xml file
-       localized in the WEB-INF/ directory.
-
+    <pre>
+        <p>
+        You can improve your application's navigation through the <a href="http://click.apache.org/docs/extras-api/org/apache/click/extras/control/MenuFactory.html">Menu control<a>.
+        Just add the following velocity block, uncomment java block in the BorderPage.java and edit the menu.xml file
+        localized in the WEB-INF/ directory.
+        </p>
+        #literal()
+        <span>
+        #if ($rootMenu)
+            $rootMenu
+        #end
+        </span>
+        #end
+    </pre>
+    #*
     #if ($rootMenu)
-      #writeMenu($rootMenu)
+        $rootMenu
     #end
     *#
-  <div id="container">
-    #parse($path)
-  </div>
-
+    <div id="container">
+        #parse($path)
+    </div>
   $jsElements
 </body>
 </html>

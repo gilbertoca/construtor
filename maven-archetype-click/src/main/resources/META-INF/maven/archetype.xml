@@ -18,7 +18,7 @@
     <resource>src/main/webapp/WEB-INF/web.xml</resource>
     <resource filtered="false">src/main/webapp/border-template.htm</resource>
     <resource>src/main/webapp/home.htm</resource>
-    <resource>src/main/webapp/macro.vm</resource>
+    <resource filtered="false">src/main/webapp/macro.vm</resource>
     <resource>src/main/webapp/redirect.html</resource>
   </resources>
 </archetype>
