@@ -17,31 +17,26 @@
   -->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <parent>
-    <artifactId>maven-archetype-bundles</artifactId>
-    <groupId>org.apache.maven.archetypes</groupId>
-    <version>4</version>
-  </parent>
-
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>maven-archetype-click</artifactId>
-  <version>1.0</version>
-  <packaging>jar</packaging>
-  <name>Maven Apache Click Archetype</name>
-  <description>An archetype which contains a simplifed sample of the Apache Click Framework. </description>
-  <build>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.archetype</groupId>
-        <artifactId>archetype-packaging</artifactId>
-        <version>2.0-alpha-5</version>
-      </extension>
-    </extensions>
-    <plugins>
-      <plugin>
-        <artifactId>maven-archetype-plugin</artifactId>
-        <extensions>true</extensions>
-      </plugin>
-    </plugins>
-  </build>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.apache.click.archetypes</groupId>
+    <artifactId>click-archetype-quickstart</artifactId>
+    <version>1.0</version>
+    <packaging>maven-archetype</packaging>
+    <name>Click QuickStart Archetype</name>
+    <description>An archetype which generates a simplifed sample of the Apache Click Framework. </description>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.0-alpha-5</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
