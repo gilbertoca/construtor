@@ -74,12 +74,14 @@
 		<obj-attribute name="dtAdmission" type="java.util.Date" db-attribute-path="DT_ADMISSION"/>
 		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
 	</obj-entity>
-	<obj-entity name="LegalEntity" className="park.model.LegalEntity" dbEntityName="LEGAL_ENTITY">
+	<obj-entity name="LegalEntity" superEntityName="Person" className="park.model.LegalEntity" dbEntityName="LEGAL_ENTITY">
+		<qualifier><![CDATA[pType = "LE"]]></qualifier>
 		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="DT_FOUNDATION"/>
 		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
 		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="TAXPAYERS_ID"/>
 	</obj-entity>
-	<obj-entity name="NaturalPerson" className="park.model.NaturalPerson" dbEntityName="NATURAL_PERSON">
+	<obj-entity name="NaturalPerson" superEntityName="Person" className="park.model.NaturalPerson" dbEntityName="NATURAL_PERSON">
+		<qualifier><![CDATA[pType = "NP"]]></qualifier>
 		<obj-attribute name="dtBirth" type="java.util.Date" db-attribute-path="DT_BIRTH"/>
 		<obj-attribute name="legalDocument" type="java.lang.String" db-attribute-path="LEGAL_DOCUMENT"/>
 		<obj-attribute name="personId" type="java.lang.Long" db-attribute-path="PERSON_ID"/>
@@ -89,7 +91,7 @@
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="parkingSpace" type="java.lang.Integer" db-attribute-path="PARKING_SPACE"/>
 	</obj-entity>
-	<obj-entity name="Person" className="park.model.Person" dbEntityName="PERSON">
+	<obj-entity name="Person" abstract="true" className="park.model.Person" dbEntityName="PERSON">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
@@ -200,6 +202,8 @@
 	<obj-relationship name="person" source="LegalEntity" target="Person" deleteRule="Nullify" db-relationship-path="person"/>
 	<obj-relationship name="person" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="person"/>
 	<obj-relationship name="person1" source="NaturalPerson" target="Person" deleteRule="Nullify" db-relationship-path="person1"/>
+	<obj-relationship name="person11" source="NaturalPerson" target="Person" deleteRule="Nullify" db-relationship-path="person1"/>
+	<obj-relationship name="person3" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="person"/>
 	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
 	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
 	<obj-relationship name="person" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="person"/>
