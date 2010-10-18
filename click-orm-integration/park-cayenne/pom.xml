@@ -45,6 +45,7 @@
             <plugin>
                 <groupId>org.apache.cayenne.plugins</groupId>
                 <artifactId>maven-cayenne-modeler-plugin</artifactId>
+                <version>${cayenne.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -120,7 +121,6 @@
             <groupId>org.apache.cayenne</groupId>
             <artifactId>cayenne-server</artifactId>
             <version>${cayenne.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.constructor</groupId>
