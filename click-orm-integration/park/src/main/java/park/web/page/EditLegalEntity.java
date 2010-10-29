@@ -1,5 +1,6 @@
 package park.web.page;
 
+import com.google.constructor.extras.orm.jpa.BaseJPAService;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -7,7 +8,6 @@ import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.extras.control.DateField;
 import park.model.LegalEntity;
-import park.orm.jpa.EntityManagerContext;
 
 /**
  *
@@ -16,6 +16,7 @@ import park.orm.jpa.EntityManagerContext;
 public class EditLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+    private BaseJPAService<LegalEntity, Long> legalEntityService;
     private Form form = new Form("form");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
     private HiddenField idField = new HiddenField("id", Long.class);
@@ -25,6 +26,7 @@ public class EditLegalEntity extends BorderPage {
 
     // Constructor -----------------------------------------------------------
     public EditLegalEntity() {
+        legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
         getModel().put("title", getMessage("editLegalEntity.title"));
         getModel().put("heading", getMessage("editLegalEntity.heading"));
         getModel().put("menu", "userMenu");
@@ -63,7 +65,7 @@ public class EditLegalEntity extends BorderPage {
     @Override
     public void onGet() {
         if (id != null) {
-            LegalEntity legalEntity = (LegalEntity) EntityManagerContext.find(LegalEntity.class, id);
+            LegalEntity legalEntity = legalEntityService.find(id);
 
             if (legalEntity != null) {
                 // Copy legalEntity data to form. The idField value will be set by
@@ -84,7 +86,7 @@ public class EditLegalEntity extends BorderPage {
             LegalEntity legalEntity = null;
             Long id = (Long) idField.getValueObject();
             if (id != null){
-                legalEntity = (LegalEntity) EntityManagerContext.find(LegalEntity.class, id);
+                legalEntity = legalEntityService.find(id);
             }else{
                 isNew = true;
                 legalEntity = new LegalEntity();
@@ -92,12 +94,10 @@ public class EditLegalEntity extends BorderPage {
 
             form.copyTo(legalEntity);
             if (isNew) {
-                EntityManagerContext.persist(legalEntity);
+                legalEntityService.insert(legalEntity);
             } else {
-                EntityManagerContext.merge(legalEntity);
+                legalEntityService.update(legalEntity);
             }
-            //commit modifications
-            EntityManagerContext.commit();
             String referrer = referrerField.getValue();
             if (referrer != null) {
                 setRedirect(referrer);

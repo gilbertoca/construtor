@@ -1,5 +1,6 @@
 package park.web.page;
 
+import com.google.constructor.extras.orm.jpa.BaseJPAService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
 import park.model.LegalEntity;
-import park.orm.jpa.EntityManagerContext;
 
 /**
  *
@@ -25,6 +25,7 @@ import park.orm.jpa.EntityManagerContext;
 public class ViewLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+    private BaseJPAService<LegalEntity, Long> legalEntityService;
     protected Form form = new Form("form");
     protected Table table = new Table("table");
     protected PageLink editLink = new PageLink("Edit", EditLegalEntity.class);
@@ -33,6 +34,7 @@ public class ViewLegalEntity extends BorderPage {
 
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
+        legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
         getModel().put("title", getMessage("viewLegalEntity.title"));
         getModel().put("heading", getMessage("viewLegalEntity.heading"));
         getModel().put("menu", "userMenu");
@@ -82,7 +84,7 @@ public class ViewLegalEntity extends BorderPage {
             public List<LegalEntity> getData() {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("name", "%" + nameField.getValue() + "%");
-                return (List<LegalEntity>) EntityManagerContext.findByNamedQuery("LegalEntity.findByName", map);
+                return (List<LegalEntity>) legalEntityService.findByNamedQuery("LegalEntity.findByName", map);
             }
         });
     }
@@ -119,9 +121,7 @@ public class ViewLegalEntity extends BorderPage {
     public boolean onDeleteClick() {
         Long id = deleteLink.getValueLong();
         if (id != null) {
-            EntityManagerContext.remove((LegalEntity) EntityManagerContext.find(LegalEntity.class, id));
-            //commit modifications
-            EntityManagerContext.commit();
+            legalEntityService.delete(id);
         } else {
             throw new NotImplementedException(); 
         }
