@@ -96,7 +96,8 @@ public class EditLegalEntity extends BorderPage {
             } else {
                 EntityManagerContext.merge(legalEntity);
             }
-
+            //commit modifications
+            EntityManagerContext.commit();
             String referrer = referrerField.getValue();
             if (referrer != null) {
                 setRedirect(referrer);

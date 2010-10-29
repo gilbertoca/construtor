@@ -120,6 +120,8 @@ public class ViewLegalEntity extends BorderPage {
         Long id = deleteLink.getValueLong();
         if (id != null) {
             EntityManagerContext.remove((LegalEntity) EntityManagerContext.find(LegalEntity.class, id));
+            //commit modifications
+            EntityManagerContext.commit();
         } else {
             throw new NotImplementedException(); 
         }

@@ -54,7 +54,7 @@ public class EntityManagerContext {
     /** The ThreadLocal EntityManager holder. */
     private static final ThreadLocal ENTITY_MANAGER_HOLDER = new ThreadLocal();
     /** Default Persistence Unit */
-    private static final String DEFAULT_PERSISTENCE_UNIT = "click";
+    private static final String DEFAULT_PERSISTENCE_UNIT = "parkPU";
 
     static {
         try {
