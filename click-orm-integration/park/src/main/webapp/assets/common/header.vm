@@ -1,0 +1,10 @@
+
+#if ($pageContext.request.locale.language != "en")
+    <div id="switchLocale"><a href="${context}/?locale=en">$messages.get("webapp.name") in English</a></div>
+#end
+
+<div id="branding">
+    <h1><a href="${context}/">$messages.get("webapp.name")</a></h1>
+    <p>$messages.get("webapp.tagline")</p>
+</div>
+<hr />

@@ -21,8 +21,13 @@ package park.web.page;
 /**
  * Provides the applications home page.
  */
-public class MainPage extends BorderPage {
+public class MainMenu extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+    public MainMenu(){
+        getModel().put("title", getMessage("mainMenu.title"));
+        getModel().put("heading", getMessage("mainMenu.heading"));
+        getModel().put("menu", "MainMenu");
+    }
 
 }

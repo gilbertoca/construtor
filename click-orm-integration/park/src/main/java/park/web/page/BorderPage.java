@@ -42,24 +42,6 @@ public class BorderPage extends Page {
      */
     private transient Menu rootMenu;
 
-    // Constructor ------------------------------------------------------------
-
-    /**
-     * Create a BorderedPage and set the model attributes <tt>$title</tt> and
-     * <tt>$srcPath</tt>.
-     * <ul>
-     * <li><tt>$title</tt> &nbsp; - &nbsp; the Page title from classname</li>
-     * <li><tt>$srcPath</tt> &nbsp; - &nbsp; the Page Java source path</li>
-     * </ul>
-     */
-    public BorderPage() {
-        String className = getClass().getName();
-
-        String shortName = className.substring(className.lastIndexOf('.') + 1);
-        String title = ClickUtils.toLabel(shortName);
-        addModel("title", title);
-    }
-
     // Event Handlers ---------------------------------------------------------
 
     /**
@@ -101,7 +83,7 @@ public class BorderPage extends Page {
      */
     @Override
     public String getTemplate() {
-        return "/border-template.htm";
+        return "/assets/common/border-template.htm";
     }
 
 }
