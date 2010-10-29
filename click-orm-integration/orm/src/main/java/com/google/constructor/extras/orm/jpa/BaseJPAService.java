@@ -29,14 +29,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.google.constructor.extras.orm.IService;
 import org.apache.commons.lang.Validate;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public class BaseJPAService<T, PK extends Serializable> implements IService<T, PK> {
-    /**
-     * Log variable for all child classes. Uses LogFactory.getLog(getClass()) from Commons Logging
-     */
-    protected final Log log = LogFactory.getLog(getClass());
 
     /** The EntityManager. */
     protected EntityManager entityManager;
@@ -133,7 +127,7 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
         T entity = (T)getEntityManager().find(getClassEntity(), pk);
         if (entity == null) {
-            log.warn("Uh oh, '" + this.classEntity + "' object with id '" + pk + "' not found...");
+            //log.warn("Uh oh, '" + this.classEntity + "' object with id '" + pk + "' not found...");
             //throw new EntityNotFoundException("entity: "+getClassEntity()+"primary key: "+pk);
         }
         return entity;
