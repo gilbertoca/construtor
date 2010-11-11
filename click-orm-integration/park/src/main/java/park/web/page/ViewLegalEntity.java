@@ -25,12 +25,14 @@ import park.model.LegalEntity;
 public class ViewLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
-    private BaseJPAService<LegalEntity, Long> legalEntityService;
+
     protected Form form = new Form("form");
     protected Table table = new Table("table");
-    protected PageLink editLink = new PageLink("Edit", EditLegalEntity.class);
-    protected ActionLink deleteLink = new ActionLink("Delete", this, "onDeleteClick");
-    private TextField nameField = new TextField("name");
+    protected PageLink editLink = new PageLink("edit", getMessage("viewLegalEntity.edit"), EditLegalEntity.class);
+    protected ActionLink deleteLink = new ActionLink("delete", getMessage("viewLegalEntity.delete"), this, "onDeleteClick");
+    private TextField nameField = new TextField("name", getMessage("viewLegalEntity.name"));
+
+    private BaseJPAService<LegalEntity, Long> legalEntityService;
 
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
@@ -46,9 +48,9 @@ public class ViewLegalEntity extends BorderPage {
         // Setup the search form
         form.setColumns(2);
         form.add(nameField);
-        form.add(new Submit("Search"));
-        form.add(new Submit("Clear", this, "onClearClick"));
-        form.add(new Submit("New...", this, "onNewClick"));
+        form.add(new Submit("search",getMessage("viewLegalEntity.search")));
+        form.add(new Submit("clear", getMessage("viewLegalEntity.clear"), this, "onClearClick"));
+        form.add(new Submit("new", getMessage("viewLegalEntity.new"), this, "onNewClick"));
 
         // Setup LegalEntitys table
         table.setClass(Table.CLASS_ITS);
@@ -58,21 +60,19 @@ public class ViewLegalEntity extends BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        table.addColumn(new Column("id"));
+        table.addColumn(new Column("name",getMessage("viewLegalEntity.column.name")));
 
-        table.addColumn(new Column("name"));
-
-        table.addColumn(new Column("dtFoundation"));
+        table.addColumn(new Column("dtFoundation",getMessage("viewLegalEntity.column.dtFoundation")));
 
         editLink.setImageSrc("/assets/images/table-edit.png");
-        editLink.setTitle("Edit LegalEntity details");
+        editLink.setTitle(getMessage("viewLegalEntity.edit.title"));
         editLink.setParameter("referrer", "/view-legal-entity.htm");
 
         deleteLink.setImageSrc("/assets/images/table-delete.png");
-        deleteLink.setTitle("Delete LegalEntity record");
-        deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
+        deleteLink.setTitle(getMessage("viewLegalEntity.delete.title"));
+        deleteLink.setAttribute("onclick", "return window.confirm('"+getMessage("viewLegalEntity.delete.attribute")+"')");
 
-        Column column = new Column("Action");
+        Column column = new Column("Action",getMessage("viewLegalEntity.column.action"));
         column.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
         column.setDecorator(new LinkDecorator(table, links, "id"));

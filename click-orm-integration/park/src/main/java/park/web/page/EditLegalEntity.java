@@ -16,13 +16,16 @@ import park.model.LegalEntity;
 public class EditLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
-    private BaseJPAService<LegalEntity, Long> legalEntityService;
+
     private Form form = new Form("form");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
     private HiddenField idField = new HiddenField("id", Long.class);
+
     // Bindable variables can automatically have their value set by request parameters
     public Long id;
     public String referrer;
+
+    private BaseJPAService<LegalEntity, Long> legalEntityService;
 
     // Constructor -----------------------------------------------------------
     public EditLegalEntity() {
@@ -35,25 +38,25 @@ public class EditLegalEntity extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-        FieldSet fieldSet = new FieldSet("Legal Entity");
+        FieldSet fieldSet = new FieldSet("addressFieldSet",  getMessage("editLegalEntity.addressFieldSet"));
         form.add(fieldSet);
 
-        TextField nameField = new TextField("name", true);
+        TextField nameField = new TextField("name", getMessage("editLegalEntity.name"), true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
         fieldSet.add(nameField);
-        TextField addressField = new TextField("address", true);
+        TextField addressField = new TextField("address", getMessage("editLegalEntity.address"), true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
         fieldSet.add(addressField);
-        fieldSet.add(new DateField("dtFoundation", true));
-        TextField taxpayersIdField = new TextField("taxpayersId", true);
+        fieldSet.add(new DateField("dtFoundation", getMessage("editLegalEntity.dtFoundation"), true));
+        TextField taxpayersField = new TextField("taxpayersId", getMessage("editLegalEntity.taxpayersId"), true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
-        fieldSet.add(taxpayersIdField);
+        fieldSet.add(taxpayersField);
 
-        form.add(new Submit("ok", "  OK  ", this, "onOkClick"));
-        form.add(new Submit("cancel", this, "onCancelClick"));
+        form.add(new Submit("ok", getMessage("editLegalEntity.ok"), this, "onOkClick"));
+        form.add(new Submit("cancel", getMessage("editLegalEntity.cancel"), this, "onCancelClick"));
     }
 
     // Event Handlers ---------------------------------------------------------
@@ -81,6 +84,7 @@ public class EditLegalEntity extends BorderPage {
     }
 
     public boolean onOkClick() throws Exception {
+        //isNew(false)=update, othewise insert
         boolean isNew = false;
         if (form.isValid()) {
             LegalEntity legalEntity = null;
