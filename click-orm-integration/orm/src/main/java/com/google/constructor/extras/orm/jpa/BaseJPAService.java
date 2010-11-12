@@ -34,7 +34,10 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     /** The EntityManager. */
     protected EntityManager entityManager;
+    /** By default we use auto-commit(true), otherwise (false) you get the control.*/
+    protected boolean autoCommit=true;
     private Class<T> classEntity;
+    
     public BaseJPAService(Class<T> classEntity) {
         super();
         Validate.notNull(classEntity, "Null ClassEntity parameter");
@@ -73,19 +76,29 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void insert(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        EntityTransaction tx = getEntityManager().getTransaction();
-        tx.begin();
-        getEntityManager().persist(entity);
-        tx.commit();
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            getEntityManager().persist(entity);
+            tx.commit();
+        }else{
+            getEntityManager().persist(entity);
+        }
     }
 
     public void insert(Collection<T> entities) {
-        EntityTransaction tx = getEntityManager().getTransaction();
-        tx.begin();
-        for (T entity : entities) {
-            getEntityManager().persist(entity);
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            for (T entity : entities) {
+                getEntityManager().persist(entity);
+            }
+            tx.commit();
+        }else{
+            for (T entity : entities) {
+                getEntityManager().persist(entity);
+            }
         }
-        tx.commit();
     }
 
     public void update(T entity) {
@@ -143,6 +156,10 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
             }
         }
         return queryObject.getResultList();
+    }
+
+    public void autoCommit(boolean autoCommit) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

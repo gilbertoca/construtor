@@ -18,12 +18,12 @@
  */
 package com.google.constructor.extras.orm.cayenne;
 
-import com.google.constructor.extras.security.cayenne.domain.Role;
+import com.google.constructor.extras.cayenne.domain.Role;
 import com.google.constructor.extras.orm.cayenne.BaseCayenneService;
 import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.conf.Configuration;
-import com.google.constructor.extras.security.cayenne.domain.User;
+import com.google.constructor.extras.cayenne.domain.User;
 import java.sql.SQLException;
 import java.util.Properties;
 import org.dbunit.DatabaseUnitException;
