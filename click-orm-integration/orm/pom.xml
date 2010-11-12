@@ -115,12 +115,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.6</version>
@@ -156,7 +150,6 @@
         <click.version>2.2.0</click.version>
         <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
-        <shiro.version>1.0.0-incubating</shiro.version>
         <servlet-api-version>2.5</servlet-api-version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
