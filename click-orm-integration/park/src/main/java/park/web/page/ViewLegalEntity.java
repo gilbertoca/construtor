@@ -28,9 +28,9 @@ public class ViewLegalEntity extends BorderPage {
 
     protected Form form = new Form("form");
     protected Table table = new Table("table");
-    protected PageLink editLink = new PageLink("edit", EditLegalEntity.class);
-    protected ActionLink deleteLink = new ActionLink("delete", this, "onDeleteClick");
-    private TextField nameField = new TextField("name", getMessage("viewLegalEntity.name"));
+    protected PageLink editLink = new PageLink("editLink", EditLegalEntity.class);
+    protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
+    private TextField nameField = new TextField("nameField");
 
     private BaseJPAService<LegalEntity, Long> legalEntityService;
 
@@ -48,9 +48,9 @@ public class ViewLegalEntity extends BorderPage {
         // Setup the search form
         form.setColumns(2);
         form.add(nameField);
-        form.add(new Submit("search",getMessage("viewLegalEntity.search")));
-        form.add(new Submit("clear", getMessage("viewLegalEntity.clear"), this, "onClearClick"));
-        form.add(new Submit("new", getMessage("viewLegalEntity.new"), this, "onNewClick"));
+        form.add(new Submit("searchBt"));
+        form.add(new Submit("clearBt", this, "onClearClick"));
+        form.add(new Submit("newBt", this, "onNewClick"));
 
         // Setup LegalEntitys table
         table.setClass(Table.CLASS_ITS);
@@ -60,23 +60,21 @@ public class ViewLegalEntity extends BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        Column column =  new Column("name",getMessage("viewLegalEntity.column.name"));
+        Column column =  new Column("name");
         table.addColumn(column);
-        column = new Column("dtFoundation",getMessage("viewLegalEntity.column.dtFoundation"));
-        column.setFormat("{0,date,dd/MMM/yyyy}");
+        column = new Column("taxpayersId");
+        table.addColumn(column);
+        column = new Column("dtFoundation");
+        column.setFormat("{0,date,dd/MM/yyyy}");
         table.addColumn(column);
 
-        editLink.setLabel(getMessage("viewLegalEntity.edit"));
         editLink.setImageSrc("/assets/images/table-edit.png");
-        editLink.setTitle(getMessage("viewLegalEntity.edit.title"));
         editLink.setParameter("referrer", "/view-legal-entity.htm");
 
-        deleteLink.setLabel(getMessage("viewLegalEntity.delete"));
         deleteLink.setImageSrc("/assets/images/table-delete.png");
-        deleteLink.setTitle(getMessage("viewLegalEntity.delete.title"));
-        deleteLink.setAttribute("onclick", "return window.confirm('"+getMessage("viewLegalEntity.delete.attribute")+"')");
+        //deleteLink.setAttribute("onclick");
 
-        column = new Column("Action",getMessage("viewLegalEntity.column.action"));
+        column = new Column("action");
         column.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
         column.setDecorator(new LinkDecorator(table, links, "id"));

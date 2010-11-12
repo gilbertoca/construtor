@@ -38,25 +38,27 @@ public class EditLegalEntity extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-        FieldSet fieldSet = new FieldSet("addressFieldSet",  getMessage("editLegalEntity.addressFieldSet"));
+        FieldSet fieldSet = new FieldSet("addressFieldSet");
         form.add(fieldSet);
 
-        TextField nameField = new TextField("name", getMessage("editLegalEntity.name"), true);
+        TextField nameField = new TextField("name", true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
         fieldSet.add(nameField);
-        TextField addressField = new TextField("address", getMessage("editLegalEntity.address"), true);
+        TextField addressField = new TextField("address", true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
         fieldSet.add(addressField);
-        fieldSet.add(new DateField("dtFoundation", getMessage("editLegalEntity.dtFoundation"), true));
-        TextField taxpayersField = new TextField("taxpayersId", getMessage("editLegalEntity.taxpayersId"), true);
+        DateField dtFoundationField = new DateField("dtFoundation", true);
+        dtFoundationField.setFormatPattern(getMessage("date.format"));
+        fieldSet.add(dtFoundationField);
+        TextField taxpayersField = new TextField("taxpayersId", true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
         fieldSet.add(taxpayersField);
 
-        form.add(new Submit("ok", getMessage("editLegalEntity.ok"), this, "onOkClick"));
-        form.add(new Submit("cancel", getMessage("editLegalEntity.cancel"), this, "onCancelClick"));
+        form.add(new Submit("okBt", this, "onOkClick"));
+        form.add(new Submit("cancelBt", this, "onCancelClick"));
     }
 
     // Event Handlers ---------------------------------------------------------
