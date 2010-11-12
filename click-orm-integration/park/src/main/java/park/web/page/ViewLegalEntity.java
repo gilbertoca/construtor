@@ -28,8 +28,8 @@ public class ViewLegalEntity extends BorderPage {
 
     protected Form form = new Form("form");
     protected Table table = new Table("table");
-    protected PageLink editLink = new PageLink("edit", getMessage("viewLegalEntity.edit"), EditLegalEntity.class);
-    protected ActionLink deleteLink = new ActionLink("delete", getMessage("viewLegalEntity.delete"), this, "onDeleteClick");
+    protected PageLink editLink = new PageLink("edit", EditLegalEntity.class);
+    protected ActionLink deleteLink = new ActionLink("delete", this, "onDeleteClick");
     private TextField nameField = new TextField("name", getMessage("viewLegalEntity.name"));
 
     private BaseJPAService<LegalEntity, Long> legalEntityService;
@@ -43,7 +43,7 @@ public class ViewLegalEntity extends BorderPage {
 
         addControl(form);
         addControl(table);
-        setStateful(true);
+        //setStateful(true);
 
         // Setup the search form
         form.setColumns(2);
@@ -60,25 +60,29 @@ public class ViewLegalEntity extends BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        table.addColumn(new Column("name",getMessage("viewLegalEntity.column.name")));
+        Column column =  new Column("name",getMessage("viewLegalEntity.column.name"));
+        table.addColumn(column);
+        column = new Column("dtFoundation",getMessage("viewLegalEntity.column.dtFoundation"));
+        column.setFormat("{0,date,dd/MMM/yyyy}");
+        table.addColumn(column);
 
-        table.addColumn(new Column("dtFoundation",getMessage("viewLegalEntity.column.dtFoundation")));
-
+        editLink.setLabel(getMessage("viewLegalEntity.edit"));
         editLink.setImageSrc("/assets/images/table-edit.png");
         editLink.setTitle(getMessage("viewLegalEntity.edit.title"));
         editLink.setParameter("referrer", "/view-legal-entity.htm");
 
+        deleteLink.setLabel(getMessage("viewLegalEntity.delete"));
         deleteLink.setImageSrc("/assets/images/table-delete.png");
         deleteLink.setTitle(getMessage("viewLegalEntity.delete.title"));
         deleteLink.setAttribute("onclick", "return window.confirm('"+getMessage("viewLegalEntity.delete.attribute")+"')");
 
-        Column column = new Column("Action",getMessage("viewLegalEntity.column.action"));
+        column = new Column("Action",getMessage("viewLegalEntity.column.action"));
         column.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
         column.setDecorator(new LinkDecorator(table, links, "id"));
         column.setSortable(false);
         table.addColumn(column);
-        System.out.println("%" + nameField.getValue() + "%");
+
         table.setDataProvider(new DataProvider<LegalEntity>() {
 
             public List<LegalEntity> getData() {
