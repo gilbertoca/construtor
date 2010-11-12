@@ -85,6 +85,7 @@
     
     <modules>
         <module>orm</module>
+        <module>shiro</module>
         <module>rolesecurity</module>
         <module>park</module>
         <module>park-cayenne</module>
