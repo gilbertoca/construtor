@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.Map;
 import org.apache.cayenne.BaseContext;
 import org.apache.cayenne.DataObjectUtils;
-import org.apache.cayenne.ObjectId;
 import org.apache.cayenne.Persistent;
 import org.apache.cayenne.access.DataContext;
 import org.apache.cayenne.query.NamedQuery;
@@ -118,6 +117,10 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         Validate.notNull(params, "Null params parameter");
         NamedQuery query = new NamedQuery(namedQuery, params);
         return (Collection<T>) getDataContext().performQuery(query);
+    }
+
+    public void autoCommit(boolean autoCommit) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

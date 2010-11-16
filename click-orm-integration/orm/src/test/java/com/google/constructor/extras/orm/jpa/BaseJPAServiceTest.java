@@ -18,6 +18,7 @@
  */
 package com.google.constructor.extras.orm.jpa;
 
+import com.google.constructor.extras.security.jpa.model.User;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
