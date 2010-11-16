@@ -37,6 +37,7 @@ public class ViewLegalEntity extends BorderPage {
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
         legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
+        
         getModel().put("title", getMessage("viewLegalEntity.title"));
         getModel().put("heading", getMessage("viewLegalEntity.heading"));
         getModel().put("menu", "userMenu");
