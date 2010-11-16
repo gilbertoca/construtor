@@ -1,4 +1,4 @@
-package com.google.constructor.extras.security.jpa.model;
+package com.google.constructor.cip.security.jpa.model;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.security.jpa.model;
+package com.google.constructor.cip.security.jpa.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

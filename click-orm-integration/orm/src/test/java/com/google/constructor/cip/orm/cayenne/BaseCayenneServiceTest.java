@@ -16,13 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.orm.jpa;
+package com.google.constructor.cip.orm.cayenne;
 
-import com.google.constructor.extras.security.jpa.model.User;
-import java.sql.DriverManager;
+import com.google.constructor.cip.orm.cayenne.BaseCayenneService;
+import com.google.constructor.cip.security.cayenne.domain.Role;
+import com.google.constructor.cip.security.cayenne.domain.User;
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.conf.Configuration;
 import java.sql.SQLException;
 import java.util.Properties;
-import javax.persistence.EntityManager;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -36,46 +39,39 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class BaseJPAServiceTest {
+public class BaseCayenneServiceTest {
 
-    private static BaseJPAService<User, Long> userService;
+    private static BaseCayenneService<User, Long> userService;
+    private static BaseCayenneService<Role, Long> roleService;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
-    private static EntityManager em;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
-        em = EntityManagerContext.getEntityManager();
-        userService = new BaseJPAService<User, Long>(User.class);
+    public static void initDataContext() throws Exception {
+        userService = new BaseCayenneService<User, Long>(User.class);
+        roleService = new BaseCayenneService<Role, Long>(Role.class);
 
         // Initializes DBUnit
-        // For now, getting connection from one JPA provider is impossible
-        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-        // So, let's take a work around ...
-
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
-        //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        DataDomain domain = Configuration.getSharedConfiguration().getDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("shiro-user-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
-        EntityManagerContext.close();
+    public static void closeDataContext() throws SQLException, DatabaseUnitException {
+        //userService.getDataContext().clear?
         //before we close the connection
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
@@ -84,15 +80,37 @@ public class BaseJPAServiceTest {
     @Test
     public void insertFindUpdateDelete() throws Exception {
 
-        User pT = new User("TRUCK", "TRUCK", "Mercedes");
-        userService.insert(pT);
+        User user = new User();
+        user.setUsername("gilberto@company.com");
+        user.setPassword("12345");
+        user.setEmail("gilberto@company.com");
+        Role roleUSER = roleService.find(-2L);
+
+        assertNotNull(roleUSER);
+        //Add USER_ROLE to user
+        user.addToRoles(roleUSER);
+
+        //Inserting a new user
+        userService.insert(user);
 
         // Gets all the objects from the database
-        assertEquals("Should have 5 User", 4, userService.getAll().size());
+        assertEquals("Should have 4 User", 4, userService.getAll().size());
 
+        //Getting the new user from database
+        User userUpdated = userService.find(user.getId());
+
+        Role roleADMIN = roleService.find(-1L);
+
+        assertNotNull(roleADMIN);
+        
+        //Updating user with a new ADMIN_ROLE role
+        user.addToRoles(roleADMIN);
+
+        assertEquals(2, userUpdated.getRoles().size());
+        
         // Removes the object from the database
-        userService.delete(pT.getId());
+        userService.delete(user);
         // Gets all the objects from the database
-        assertEquals("Should have 4 User", 3, userService.getAll().size());
+        assertEquals("Should have 3 User", 3, userService.getAll().size());
     }
 }

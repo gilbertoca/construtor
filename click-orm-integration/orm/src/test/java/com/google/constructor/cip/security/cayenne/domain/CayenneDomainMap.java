@@ -1,6 +1,6 @@
-package com.google.constructor.extras.security.cayenne.domain;
+package com.google.constructor.cip.security.cayenne.domain;
 
-import com.google.constructor.extras.security.cayenne.domain.auto._CayenneDomainMap;
+import com.google.constructor.cip.security.cayenne.domain.auto._CayenneDomainMap;
 
 public class CayenneDomainMap extends _CayenneDomainMap {
 
