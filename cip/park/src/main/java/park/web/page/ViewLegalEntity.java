@@ -1,6 +1,6 @@
 package park.web.page;
 
-import com.google.constructor.extras.orm.jpa.BaseJPAService;
+import com.google.constructor.cip.orm.jpa.BaseJPAService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

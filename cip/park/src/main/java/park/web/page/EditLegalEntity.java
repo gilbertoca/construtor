@@ -1,6 +1,6 @@
 package park.web.page;
 
-import com.google.constructor.extras.orm.jpa.BaseJPAService;
+import com.google.constructor.cip.orm.jpa.BaseJPAService;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
