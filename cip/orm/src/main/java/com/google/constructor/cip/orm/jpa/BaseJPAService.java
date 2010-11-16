@@ -35,13 +35,21 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     /** The EntityManager. */
     protected EntityManager entityManager;
     /** By default we use auto-commit(true), otherwise (false) you get the control.*/
-    protected boolean autoCommit=true;
+    protected boolean autoCommit;
     private Class<T> classEntity;
     
     public BaseJPAService(Class<T> classEntity) {
         super();
         Validate.notNull(classEntity, "Null ClassEntity parameter");
         this.classEntity = classEntity;
+        autoCommit=true;
+    }
+
+    public BaseJPAService(Class<T> classEntity, boolean autoCommit) {
+        super();
+        Validate.notNull(classEntity, "Null ClassEntity parameter");
+        this.classEntity = classEntity;
+        this.autoCommit = autoCommit;
     }
 
     public Class<T> getClassEntity() {

@@ -30,7 +30,7 @@ import java.util.Map;
 public interface IService<T, PK extends Serializable> {
     /**
      * Stablish how will transaction work.
-     * This particular class is defined in the constructor of the implementation of this interface.
+     * This particular property is defined in the constructor of the implementation of this interface.
      * @param autoCommit By default we use auto-commit, otherwise (false) you get the control.
      */
     void autoCommit(boolean autoCommit);
