@@ -97,6 +97,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.constructor</groupId>
+            <artifactId>orm</artifactId>
+            <version>${coi.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>${eclipselink.version}</version>
@@ -154,6 +159,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.2.0</click.version>
+        <coi.version>1.0-SNAPSHOT</coi.version>
         <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
         <shiro.version>1.0.0-incubating</shiro.version>
