@@ -1,13 +1,16 @@
-package com.google.constructor.extras.security.shiro.cayenne;
+package com.google.constructor.cip.shiro.jpa;
 
+import com.google.constructor.cip.shiro.jpa.UserJPAService;
+import com.google.constructor.cip.shiro.jpa.RoleJPAService;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
-import org.apache.cayenne.access.DataDomain;
-import org.apache.cayenne.access.DataNode;
-import org.apache.cayenne.conf.Configuration;
-import com.google.constructor.extras.security.cayenne.domain.Role;
-import com.google.constructor.extras.security.cayenne.domain.User;
+import javax.persistence.EntityManager;
+import javax.persistence.RollbackException;
+import com.google.constructor.extras.orm.jpa.EntityManagerContext;
+import com.google.constructor.cip.security.jpa.model.Role;
+import com.google.constructor.cip.security.jpa.model.User;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -21,41 +24,48 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class UserCayenneTest {
-
-    private static UserCayenneService userService;
-    private static RoleCayenneService roleService;
+public class UserJpaTest{
+    private static UserJPAService userService;
+    private static RoleJPAService roleService;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
+    private static EntityManager em;
 
     @BeforeClass
-    public static void initDataContext() throws Exception {
-        userService = new UserCayenneService();
-        roleService = new RoleCayenneService();
+    public static void initEntityManager() throws Exception {
+        em = EntityManagerContext.getEntityManager();
+        userService = new UserJPAService();
+        roleService = new RoleJPAService();
 
         // Initializes DBUnit
+        // For now, getting connection from one JPA provider is impossible
+        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
+        // So, let's take a work around ...
+
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
-        DataDomain domain = Configuration.getSharedConfiguration().getDomain();
-        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
-        connection = new DatabaseConnection(node.getDataSource().getConnection());
+        //Let's create a new connection to work with DBUnit
+        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
+        connection = new DatabaseConnection(DriverManager.getConnection(
+                configurationProperties.getProperty("jdbc.url"),
+                configurationProperties.getProperty("jdbc.username"),
+                configurationProperties.getProperty("jdbc.password")));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("shiro-user-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
     @AfterClass
-    public static void closeDataContext() throws SQLException, DatabaseUnitException {
-        //userService.getDataContext().clear?
+    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
+        EntityManagerContext.close();
         //before we close the connection
-
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
@@ -65,6 +75,7 @@ public class UserCayenneTest {
         System.out.println("===========testGetUserInvalid======");
         // should throw DataAccessException
         User user = userService.find(1000L);
+
         assertNull(user);
     }
 
@@ -77,7 +88,6 @@ public class UserCayenneTest {
         assertEquals(2, user.getRoles().size());
         //assertTrue(user.isEnabled());
     }
-
     @Test
     public void testGetUserByName() throws Exception {
         System.out.println("===========testGetUserByName======");
@@ -98,7 +108,7 @@ public class UserCayenneTest {
     }
 
     @Test
-    public void testUpdateUser() throws Exception {
+    public void testUpdateUser() throws Exception, RollbackException {
         System.out.println("===========testUpdateUser======");
         User user = userService.find(-1L);
 
@@ -110,6 +120,42 @@ public class UserCayenneTest {
     }
 
     @Test
+    public void testAddUserRole() throws Exception {
+        System.out.println("===========testAddUserRole======");
+        User user = userService.find(-1L);
+        //User has USER_ROLE and ADMIN_ROLE
+
+        assertEquals(2, user.getRoles().size());
+
+        Role role = roleService.getRoleByName("USER_ROLE");
+        System.out.println("***** what happen if we add the same Role? "+user+"****");
+        //Should threw a exception since we already have such record?
+        //I don't think so, since we use HashSet it will return false and won't add nothing!
+        //Changing the Role collection type, for example to List, will threw an database exception
+        user.getRoles().add(role);
+        userService.update(user);
+
+        user = userService.find(-1L);
+        assertEquals(2, user.getRoles().size());
+
+        System.out.println("***** add the same role twice - should result in no additional role *****");
+        user.getRoles().add(role);
+        userService.update(user);
+        System.out.println("***** what happen again? "+user+"****");
+        //Should threw a exception since we already have such record?
+        //I don't think so, since we use HashSet
+
+        user = userService.find(-1L);
+        assertEquals("more than 2 roles", 2, user.getRoles().size());
+
+        user.getRoles().remove(role);
+        userService.update(user);
+
+        user = userService.find(-1L);
+        assertEquals(1, user.getRoles().size());
+    }
+
+    @Test
     public void testAddAndRemoveUser() throws Exception {
         System.out.println("===========testAddAndRemoveUser======");
         User user = new User();
@@ -118,12 +164,11 @@ public class UserCayenneTest {
         user.setEmail("testuser@appfuse.org");
 
         Role role = roleService.getRoleByName("USER_ROLE");
-        System.out.println("***** getting role " + role + " for a new user. *****");
+        System.out.println("***** getting role "+role+" for a new user. *****");
         assertNotNull(role);
-        user.addToRoles(role);
+        user.addRole(role);
 
         userService.insert(user);
-
         List<User> lU = (List<User>) userService.getAll();
         assertEquals(4, lU.size());
 
@@ -131,7 +176,7 @@ public class UserCayenneTest {
         assertNotNull(user.getId());
 
         user = userService.find(user.getId());
-        System.out.println("***** should use cache? " + user + "*****");
+        System.out.println("***** should it use cache? " + user + "*****");
         assertEquals("testpass", user.getPassword());
 
         userService.delete(user.getId());
@@ -140,54 +185,5 @@ public class UserCayenneTest {
         user = userService.find(user.getId());
         assertNull(user);
     }
-    @Test
-    public void testAddUserRole() throws Exception {
-        System.out.println("===========testAddUserRole======");
-        System.out.println("***** Checking # users *****");
-        assertEquals(3, userService.getAll().size());
 
-        System.out.println("***** Checking # roles *****");
-        assertEquals(2, roleService.getAll().size());
-
-        User user = userService.find(-2L);
-        System.out.println("***** Checking # user -2L *****");
-        assertNotNull(user);
-
-        System.out.println("***** Checking # user -2L and roles *****");
-        assertEquals(1, user.getRoles().size());
-
-        Role roleADMIN = roleService.getRoleByName("ADMIN_ROLE");
-        System.out.println("***** Checking # user -2L and roles, adding one more *****");
-        user.addToRoles(roleADMIN);
-        userService.update(user);
-        System.out.println("*****Now user has USER_ROLE and ADMIN_ROLE**********"+user.getRoles());
-        User userUpdated = userService.find(-2L);
-        assertEquals(2, userUpdated.getRoles().size());
-
-        System.out.println("***** Checking # user -2L and roles, removing the ADMIN_ROLE *****");
-        //userUpdated.getRoles().remove(roleADMIN);
-        userUpdated.removeFromRoles(roleADMIN);
-        userService.update(user);
-        System.out.println("***** Checking # user -2L and roles *****");
-        assertEquals(1, user.getRoles().size());
-
-    }
-
-/*
-    @Test(expected=CayenneRuntimeException.class)
-    public void testAddUserRoleInvalid() throws Exception {
-        System.out.println("===========testAddUserRoleInvalid======");
-        User user = userService.find(-1L);
-        
-        System.out.println("*****User has USER_ROLE and ADMIN_ROLE**********"+user.getRoles().get(0));
-
-        assertEquals(2, user.getRoles().size());
-
-        Role role = roleService.getRoleByName("USER_ROLE");
-        user.addToRoles(role);
-        System.out.println("***** what happen if we add the same Role? " + user + "****");
-        //Should threw a exception since we already have such record?
-        //Yes, since cayenne uses List as default to all relationship
-        userService.update(user);
-    }*/
 }

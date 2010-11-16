@@ -3,16 +3,17 @@
  * and open the template in the editor.
  */
 
-package com.google.constructor.extras.security.shiro.jpa;
+package com.google.constructor.cip.shiro.jpa;
 
-import com.google.constructor.extras.security.shiro.jpa.UserJPAService;
-import com.google.constructor.extras.security.shiro.jpa.IUserService;
-import com.google.constructor.extras.security.shiro.jpa.ShiroJPARealm;
+import com.google.constructor.cip.shiro.jpa.UserJPAService;
+import com.google.constructor.cip.shiro.jpa.IUserService;
+import com.google.constructor.cip.shiro.jpa.ShiroJPARealm;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import com.google.constructor.extras.orm.jpa.EntityManagerContext;
+import com.google.constructor.extras.security.shiro.jpa.IUserService;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;

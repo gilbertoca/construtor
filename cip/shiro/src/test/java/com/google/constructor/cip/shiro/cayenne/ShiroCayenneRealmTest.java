@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.google.constructor.extras.security.shiro.cayenne;
+package com.google.constructor.cip.shiro.cayenne;
 
-import com.google.constructor.extras.security.shiro.cayenne.ShiroCayenneRealm;
-import com.google.constructor.extras.security.shiro.cayenne.UserCayenneService;
+import com.google.constructor.cip.shiro.cayenne.ShiroCayenneRealm;
+import com.google.constructor.cip.shiro.cayenne.UserCayenneService;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.conf.Configuration;
 import org.apache.cayenne.access.DataDomain;
