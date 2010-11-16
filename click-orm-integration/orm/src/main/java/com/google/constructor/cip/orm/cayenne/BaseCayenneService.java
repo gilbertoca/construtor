@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.google.constructor.extras.orm.cayenne;
+package com.google.constructor.cip.orm.cayenne;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -13,7 +13,7 @@ import org.apache.cayenne.Persistent;
 import org.apache.cayenne.access.DataContext;
 import org.apache.cayenne.query.NamedQuery;
 import org.apache.cayenne.query.SelectQuery;
-import com.google.constructor.extras.orm.IService;
+import com.google.constructor.cip.orm.IService;
 import org.apache.commons.lang.Validate;
 
 /**

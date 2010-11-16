@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.orm;
+package com.google.constructor.cip.orm;
 
 import java.io.Serializable;
 import java.util.Collection;

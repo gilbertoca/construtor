@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.orm.jpa;
+package com.google.constructor.cip.orm.jpa;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -27,7 +27,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.google.constructor.extras.orm.IService;
+import com.google.constructor.cip.orm.IService;
 import org.apache.commons.lang.Validate;
 
 public class BaseJPAService<T, PK extends Serializable> implements IService<T, PK> {
