@@ -17,14 +17,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.security.examples.secure;
+package com.google.constructor.cip.shiro.examples;
 
+import com.google.constructor.cip.security.jpa.model.Role;
+import com.google.constructor.cip.security.jpa.model.User;
+import com.google.constructor.cip.shiro.jpa.RoleJPAService;
+import com.google.constructor.cip.shiro.jpa.UserJPAService;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.constructor.extras.security.shiro.jpa.RoleJPAService;
-import com.google.constructor.extras.security.shiro.jpa.UserJPAService;
-import com.google.constructor.extras.security.jpa.model.Role;
-import com.google.constructor.extras.security.jpa.model.User;
 
 public class DataPopulator {
     public UserJPAService userService = new UserJPAService();

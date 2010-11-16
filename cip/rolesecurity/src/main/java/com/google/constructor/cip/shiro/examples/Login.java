@@ -1,4 +1,4 @@
-package com.google.constructor.extras.security.examples.secure;
+package com.google.constructor.cip.shiro.examples;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -18,13 +18,13 @@ package com.google.constructor.extras.security.examples.secure;
  * specific language governing permissions and limitations
  * under the License.
  */
+import com.google.constructor.cip.security.jpa.model.User;
 import org.apache.click.Page;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.control.PasswordField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
-import com.google.constructor.extras.security.jpa.model.User;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

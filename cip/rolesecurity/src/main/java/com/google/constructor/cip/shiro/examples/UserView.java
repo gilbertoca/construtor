@@ -16,14 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package com.google.constructor.extras.security.examples.secure;
+package com.google.constructor.cip.shiro.examples;
 
 import java.util.List;
 import org.apache.click.Page;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
-import com.google.constructor.extras.security.shiro.jpa.UserJPAService;
+import com.google.constructor.cip.shiro.jpa.UserJPAService;
 
 public class UserView extends Page {
 
