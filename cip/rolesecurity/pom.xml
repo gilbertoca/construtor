@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.google.constructor</groupId>
-        <artifactId>coi</artifactId>
+        <artifactId>cip</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>rolesecurity</artifactId>
@@ -112,7 +112,7 @@
         </dependency>
         <dependency>
             <groupId>com.google.constructor</groupId>
-            <artifactId>extras-orm</artifactId>
+            <artifactId>shiro</artifactId>
             <version>${coi.version}</version>
         </dependency>
         <dependency>

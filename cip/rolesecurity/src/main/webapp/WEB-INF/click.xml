@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <click-app> 
-  <pages package="com.google.constructor.extras.security.examples.secure">
+  <pages package="com.google.constructor.cip.shiro.examples">
     <!--page path="index.htm" classname="Home"/-->
     <page path="login.htm" classname="Login"/>
     <page path="logout.htm" classname="Logout"/>
