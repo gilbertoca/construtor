@@ -21,12 +21,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.google.constructor</groupId>
-        <artifactId>coi</artifactId>
+        <artifactId>cip</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>extras-orm</artifactId>
+    <artifactId>orm</artifactId>
     <packaging>jar</packaging>
-    <name>Extras-orm Integration</name>
+    <name>Click ORM Integration</name>
     <build>
         <resources>
             <resource>
