@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
   project-version="3.0.0.1">
-	<property name="defaultPackage" value="com.google.constructor.extras.security.cayenne.domain"/>
+	<property name="defaultPackage" value="com.google.constructor.cip.security.cayenne.domain"/>
 	<db-entity name="SHIRO_ROLE" catalog="SHIRODB">
 		<db-attribute name="DESCRIPTION" type="VARCHAR" length="255"/>
 		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
@@ -28,16 +28,16 @@
 		<db-attribute name="ROLE_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="USER_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
-	<obj-entity name="Role" className="com.google.constructor.extras.security.cayenne.domain.Role" dbEntityName="SHIRO_ROLE">
+	<obj-entity name="Role" className="com.google.constructor.cip.security.cayenne.domain.Role" dbEntityName="SHIRO_ROLE">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="DESCRIPTION"/>
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 	</obj-entity>
-	<obj-entity name="RolePermission" className="com.google.constructor.extras.security.cayenne.domain.RolePermission" dbEntityName="SHIRO_ROLE_PERMISSION">
+	<obj-entity name="RolePermission" className="com.google.constructor.cip.security.cayenne.domain.RolePermission" dbEntityName="SHIRO_ROLE_PERMISSION">
 		<obj-attribute name="permission" type="java.lang.String" db-attribute-path="PERMISSION"/>
 		<obj-attribute name="roleId" type="java.lang.Long" db-attribute-path="ROLE_ID"/>
 	</obj-entity>
-	<obj-entity name="User" className="com.google.constructor.extras.security.cayenne.domain.User" dbEntityName="SHIRO_USER">
+	<obj-entity name="User" className="com.google.constructor.cip.security.cayenne.domain.User" dbEntityName="SHIRO_USER">
 		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="password" type="java.lang.String" db-attribute-path="PASSWORD"/>
