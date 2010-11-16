@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-sql:execute</actionName>
+            <displayName>sql:execute</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>clean</goal>
+                <goal>sql:execute</goal>
+            </goals>
+        </action>
+    </actions>
