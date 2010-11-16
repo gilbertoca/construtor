@@ -1,14 +1,12 @@
 package com.google.constructor.cip.shiro.jpa;
 
-import com.google.constructor.cip.shiro.jpa.UserJPAService;
-import com.google.constructor.cip.shiro.jpa.RoleJPAService;
+import com.google.constructor.cip.orm.jpa.EntityManagerContext;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import javax.persistence.EntityManager;
 import javax.persistence.RollbackException;
-import com.google.constructor.extras.orm.jpa.EntityManagerContext;
 import com.google.constructor.cip.security.jpa.model.Role;
 import com.google.constructor.cip.security.jpa.model.User;
 import org.dbunit.DatabaseUnitException;
