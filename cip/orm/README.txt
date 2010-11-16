@@ -1,5 +1,5 @@
 First:
-cd coi/orm
+cd cip/orm
 
 Database
 
@@ -19,11 +19,11 @@ which will create database objects necessary to both JPA and Cayenne ORM.
 JPA
 
 I've setup it to work with EclipseLink.
-Now you can test (into coi/orm):
+Now you can test (into cip/orm):
 
 mvn test
 
-To change the way the jpa engine drop/create the database object you need to edit the following coi/orm/pom.xml properties(the actual value is mine):
+To change the way the jpa engine drop/create the database object you need to edit the following cip/orm/pom.xml properties(the actual value is mine):
 
 eclipselink:
     <jpa.ddl_value>NONE</jpa.ddl_value>
