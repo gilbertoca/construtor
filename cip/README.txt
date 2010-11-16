@@ -1,13 +1,21 @@
 First:
-svn checkout http://construtor.googlecode.com/svn/trunk/click-orm-integration coi
+svn checkout http://construtor.googlecode.com/svn/trunk/cip cip
 
-Project structure(click-orm-intergration):
+Project structure(click-integration-project):
 
-coi (you are here)
+cip (you are here)
 |
-------orm (persistence and service layer)
+------orm (click orm integration)
 |
-------web's (examples using front-end with apache Click)
+------shiro (click shiro integration - using orm integration)
+|
+------park (park click application example - using orm[JPA])
+|
+------park-cayenne (park click application example - using orm[CAYENNE])
+|
+------rolesecurity (role security example - using shiro integration[JPA])
+|
+------docs (park modeling)
 
 Note:
 - to work with the examples you need to install orm;
