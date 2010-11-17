@@ -140,7 +140,7 @@
         <dependency>
             <groupId>com.google.constructor.cip</groupId>
             <artifactId>shiro</artifactId>
-            <version>${coi.version}</version>
+            <version>${cip.shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -197,7 +197,7 @@
         <!-- versions -->
         <shiro.version>1.0.0-incubating</shiro.version>
         <click.version>2.2.0</click.version>
-        <coi.version>1.0-SNAPSHOT</coi.version>
+        <cip.shiro.version>1.0-SNAPSHOT</cip.shiro.version>
         <eclipselink.version>2.0.2</eclipselink.version>
         <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>
