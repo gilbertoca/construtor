@@ -24,6 +24,7 @@
         <artifactId>cip</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <groupId>com.google.constructor.cip</groupId>
     <artifactId>orm</artifactId>
     <packaging>jar</packaging>
     <name>Click ORM Integration</name>
