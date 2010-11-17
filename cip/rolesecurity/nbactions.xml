@@ -8,4 +8,12 @@
                 <goal>jetty:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-sql:execute</actionName>
+            <displayName>sql:execute</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>sql:execute</goal>
+            </goals>
+        </action>
     </actions>

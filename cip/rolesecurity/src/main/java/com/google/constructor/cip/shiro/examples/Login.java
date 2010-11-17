@@ -38,7 +38,7 @@ import org.apache.shiro.subject.Subject;
 public class Login extends Page {
 
     private static final long serialVersionUID = 1L;
-    private Form form = new Form("form");
+    public Form form = new Form("form");
     private HiddenField redirectField = new HiddenField("redirect", String.class);
     private TextField usernameField = new TextField("username", true);
     private PasswordField passwordField = new PasswordField("password", true);

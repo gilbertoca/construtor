@@ -4,6 +4,7 @@
  */
 
 package com.google.constructor.cip.shiro.examples;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.subject.Subject;
@@ -13,8 +14,7 @@ import org.slf4j.LoggerFactory;
 import junit.framework.TestCase;
 
 public class ShiroTest extends TestCase {
-
-    private static Logger logger = LoggerFactory.getLogger(ShiroTest.class);
+    private static Logger logger = LoggerFactory.getLogger(ShiroTest.class); 
 
     public void testShiro() {
         // Using the IniSecurityManagerFactory, which will use the an INI file

@@ -31,6 +31,10 @@ public class DataPopulator {
     public RoleJPAService roleService = new RoleJPAService();
 
     public DataPopulator() {
+        //Clean any data existent
+        userService.delete(userService.getAll());
+        roleService.delete(roleService.getAll());
+
         //User's roles
         Role role1, role2;
         List<Role> roleEntities = new ArrayList<Role>(2);

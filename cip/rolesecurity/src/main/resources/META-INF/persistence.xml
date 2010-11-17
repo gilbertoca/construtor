@@ -25,7 +25,7 @@
         <exclude-unlisted-classes/>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem;create=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:data/shiroDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"/>
             <property name="javax.persistence.jdbc.user" value="park"/>
             <property name="javax.persistence.jdbc.password" value="park"/>
             <property name="eclipselink.ddl-generation" value="create-tables" />
