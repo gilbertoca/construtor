@@ -15,6 +15,15 @@
         -->
     </persistence-unit-metadata>
     <package>park.model</package>
+    <table-generator
+        name="person_table_generator"
+        table="table_generator"
+        pk-column-name="table_name"
+        value-column-name="table_value"
+        pk-column-value="PERSON"
+        initial-value="1"
+        allocation-size="1"/>
+
     <entity class="Person">
         <!-- CREATE TABLE PERSON (
             ID INTEGER NOT NULL,
@@ -28,14 +37,6 @@
         <table name="person"/>
         <inheritance strategy="JOINED"/>
         <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
-        <table-generator
-            name="person_table_generator"
-            table="table_generator"
-            pk-column-name="table_name"
-            value-column-name="table_value"
-            pk-column-value="person"
-            initial-value="1"
-            allocation-size="1"/>
         <attributes>
             <id name="id">
                 <column name="id"/>
@@ -189,7 +190,7 @@
             table="table_generator"
             pk-column-name="table_name"
             value-column-name="table_value"
-            pk-column-value="parking"
+            pk-column-value="PARKING"
             initial-value="1"
             allocation-size="1"/>
         <named-query name="Parking.findAll">
@@ -231,7 +232,7 @@
             table="table_generator"
             pk-column-name="table_name"
             value-column-name="table_value"
-            pk-column-value="price_table"
+            pk-column-value="PRICE_TABLE"
             initial-value="1"
             allocation-size="1"/>
 
@@ -348,7 +349,7 @@
             table="table_generator"
             pk-column-name="table_name"
             value-column-name="table_value"
-            pk-column-value="stay"
+            pk-column-value="STAY"
             initial-value="1"
             allocation-size="1"/>
 

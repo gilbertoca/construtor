@@ -52,7 +52,7 @@
         </testResources>
 
         <plugins>
-            <plugin>
+            <!--plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
@@ -64,6 +64,33 @@
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>
+                </configuration>
+            </plugin-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.3</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                    </dependency>
+                </dependencies>
+                <!-- common configurations -->
+                <configuration>
+                    <driver>${jdbc.driverClassName}</driver>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
+                    <url>${jdbc.url}</url>
+                    <autocommit>true</autocommit>
+                    <onError>continue</onError>
+                    <skip>${maven.test.skip}</skip>
+                    <srcFiles>
+                        <srcFile>
+                           src/test/resources/sql/park.tab.sql
+                        </srcFile>
+                    </srcFiles>
                 </configuration>
             </plugin>
             <plugin>
@@ -96,9 +123,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.constructor</groupId>
+            <groupId>com.google.constructor.cip</groupId>
             <artifactId>orm</artifactId>
-            <version>${coi.version}</version>
+            <version>${cip.orm.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -155,7 +182,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.2.0</click.version>
-        <coi.version>1.0-SNAPSHOT</coi.version>
+        <cip.orm.version>1.0-SNAPSHOT</cip.orm.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
@@ -192,8 +219,8 @@
                 <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <!--jpa.ddl_value>NONE</jpa.ddl_value-->
-                <jpa.ddl_value>create-tables</jpa.ddl_value>
+                <jpa.ddl_value>NONE</jpa.ddl_value>
+                <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
 		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
                 <jpa.logging>eclipselink.logging.level</jpa.logging>

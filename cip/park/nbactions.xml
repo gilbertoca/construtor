@@ -8,4 +8,22 @@
                 <goal>jetty:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-jetty:run openjpa</actionName>
+            <displayName>jetty:run openjpa</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>jetty:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>openjpa</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-sql:execute</actionName>
+            <displayName>sql:execute</displayName>
+            <goals>
+                <goal>sql:execute</goal>
+            </goals>
+        </action>
     </actions>
