@@ -123,4 +123,8 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void delete(Collection<T> entities) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

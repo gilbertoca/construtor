@@ -147,6 +147,34 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
             getEntityManager().remove(find(pk));
         }
     }
+    
+    public void delete(T entity) {
+        Validate.notNull(entity, "Null Entity parameter");
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            getEntityManager().remove(entity);
+            tx.commit();
+        }else{
+            getEntityManager().remove(entity);
+        }
+    }
+
+    public void delete(Collection<T> entities) {
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            for (T entity : entities) {
+                getEntityManager().remove(entity);
+            }
+            tx.commit();
+        }else{
+            for (T entity : entities) {
+                getEntityManager().remove(entity);
+            }
+        }
+    }
+
 
     public Collection<T> getAll() {
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
@@ -183,5 +211,4 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     public void autoCommit(boolean autoCommit) {
         this.autoCommit = autoCommit;
     }
-
 }

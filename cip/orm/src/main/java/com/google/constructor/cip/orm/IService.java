@@ -39,6 +39,8 @@ public interface IService<T, PK extends Serializable> {
     void update(T entity);
     void update(Collection<T> entities);
     void delete(PK pk);
+    void delete(T entity);
+    void delete(Collection<T> entities);
     /**
      * Generic method used to retrieve entities of a particular class.
      * This particular class is defined in the constructor of the implementation of this interface.
