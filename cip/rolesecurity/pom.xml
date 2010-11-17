@@ -138,7 +138,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.constructor</groupId>
+            <groupId>com.google.constructor.cip</groupId>
             <artifactId>shiro</artifactId>
             <version>${coi.version}</version>
         </dependency>
