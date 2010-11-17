@@ -98,7 +98,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.constructor</groupId>
+            <groupId>com.google.constructor.cip</groupId>
             <artifactId>orm</artifactId>
             <version>${coi.version}</version>
         </dependency>
