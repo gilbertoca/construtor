@@ -18,8 +18,7 @@
  */
 package com.google.constructor.cip.orm.jpa;
 
-import com.google.constructor.cip.orm.jpa.EntityManagerContext;
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
+import javax.persistence.EntityTransaction;
 import com.google.constructor.cip.security.jpa.model.User;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -96,5 +95,26 @@ public class BaseJPAServiceTest {
         userService.delete(pT.getId());
         // Gets all the objects from the database
         assertEquals("Should have 4 User", 3, userService.getAll().size());
+    }
+    @Test
+    public void insertFindUpdateDeleteAutoCommitOff() throws Exception {
+        userService.autoCommit(false);
+        EntityTransaction tx = userService.getEntityManager().getTransaction();
+        tx.begin();
+
+        User pT = new User("TRUCK", "TRUCK", "Mercedes");
+        userService.insert(pT);
+
+        // Gets all the objects from the database
+        assertEquals("Should have 5 User", 4, userService.getAll().size());
+
+        // Removes the object from the database
+        userService.delete(pT.getId());
+
+        tx.commit();
+        userService.autoCommit(true);
+
+        // Gets all the objects from the database
+        assertEquals("Should have 4 User", 3, userService.getAll().size());        
     }
 }

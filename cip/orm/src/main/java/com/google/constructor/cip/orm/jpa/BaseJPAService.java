@@ -111,27 +111,41 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void update(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        EntityTransaction tx = getEntityManager().getTransaction();
-        tx.begin();
-        getEntityManager().merge(entity);
-        tx.commit();
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            getEntityManager().merge(entity);
+            tx.commit();
+        }else{
+            getEntityManager().merge(entity);
+        }
     }
 
     public void update(Collection<T> entities) {
-        EntityTransaction tx = getEntityManager().getTransaction();
-        tx.begin();
-        for (T entity : entities) {
-            getEntityManager().merge(entity);
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            for (T entity : entities) {
+                getEntityManager().merge(entity);
+            }
+            tx.commit();
+        }else{
+            for (T entity : entities) {
+                getEntityManager().merge(entity);
+            }
         }
-        tx.commit();
     }
 
     public void delete(PK pk) {
         Validate.notNull(pk, "Null pk parameter");
-        EntityTransaction tx = getEntityManager().getTransaction();
-        tx.begin();
-        getEntityManager().remove(find(pk));
-        tx.commit();
+        if (this.autoCommit){
+            EntityTransaction tx = getEntityManager().getTransaction();
+            tx.begin();
+            getEntityManager().remove(find(pk));
+            tx.commit();
+        }else{
+            getEntityManager().remove(find(pk));
+        }
     }
 
     public Collection<T> getAll() {
@@ -167,7 +181,7 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     }
 
     public void autoCommit(boolean autoCommit) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.autoCommit = autoCommit;
     }
 
 }
