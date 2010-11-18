@@ -69,10 +69,10 @@ public class ViewLegalEntity extends BorderPage {
         column.setFormat("{0,date,dd/MM/yyyy}");
         table.addColumn(column);
 
-        editLink.setImageSrc("/assets/images/table-edit.png");
+        //editLink.setImageSrc("/assets/images/table-edit.png");
         editLink.setParameter("referrer", "/view-legal-entity.htm");
 
-        deleteLink.setImageSrc("/assets/images/table-delete.png");
+        //deleteLink.setImageSrc("/assets/images/table-delete.png");
         //deleteLink.setAttribute("onclick");
 
         column = new Column("action");
