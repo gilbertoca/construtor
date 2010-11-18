@@ -30,20 +30,15 @@ import javax.persistence.*;
  *   /META-INF/persistence.xml
  * </pre>
  * 
- * Default persistence unit is "click". So persistence unit should be defined in persistence.xml:
+ * Default persistence unit is "PU". So persistence unit should be defined in persistence.xml:
  *
  * <pre class="codeConfig">
- *     &lt;persistence-unit name="click" ... gt;
+ *     &lt;persistence-unit name="PU" ... gt;
  * </pre>
  * 
  * Alternatively, you may define persistence-unit name with
- * "click.jpa.persistenceUnit" System propertiy.
+ * "cip.orm.jpa.persistenceUnit" System propertiy.
  * 
- * To support the EntityManagerContext class configure a
- * {@link EntityManagerFilter} in your web application.
- * 
- * @see EntityManagerFilter
- * @see JpaForm
  */
 public class EntityManagerContext {
 
@@ -52,11 +47,11 @@ public class EntityManagerContext {
     /** The ThreadLocal EntityManager holder. */
     private static final ThreadLocal ENTITY_MANAGER_HOLDER = new ThreadLocal();
     /** Default Persistence Unit */
-    private static final String DEFAULT_PERSISTENCE_UNIT = "click";
+    private static final String DEFAULT_PERSISTENCE_UNIT = "PU";
 
     static {
         try {
-            String persistenceUnit = System.getProperty("click.jpa.persistenceUnit");
+            String persistenceUnit = System.getProperty("cip.orm.jpa.persistenceUnit");
             if (persistenceUnit == null) {
                 persistenceUnit = DEFAULT_PERSISTENCE_UNIT;
             }
