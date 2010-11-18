@@ -40,7 +40,11 @@
         <attributes>
             <id name="id">
                 <column name="id"/>
-                <generated-value strategy="TABLE" generator="person_table_generator "/>
+                <generated-value strategy="TABLE" generator="person_table_generator"/>
+                <!--generated-value strategy="TABLE" generator="AuthorGen"/>
+                <table-generator name="AuthorGen" table="TABLE_GENERATOR"
+                pk-column-name="PK" value-column-name="AID"/-->
+
             </id>
             <basic name="name">
                 <column length="100"/>

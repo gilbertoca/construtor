@@ -216,9 +216,9 @@
                 <jpa.url>javax.persistence.jdbc.url</jpa.url>
                 <jpa.username>javax.persistence.jdbc.user</jpa.username>
                 <jpa.password>javax.persistence.jdbc.password</jpa.password>
-                <!--jpa.dialect>eclipselink.target-database</jpa.dialect>
-                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value-->
-                <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
+                <jpa.dialect>eclipselink.target-database</jpa.dialect>
+                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value>
+                <!--jpa.ddl>eclipselink.ddl-generation</jpa.ddl-->
                 <jpa.ddl_value>NONE</jpa.ddl_value>
                 <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <property name="eclipselink.application-location" value="src/test/resources/sql/"/>
@@ -235,21 +235,21 @@
             <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
-                <jpa.version>2.0.0</jpa.version>
+                <jpa.version>2.0.1</jpa.version>
                 <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
                 <jpa.driver>openjpa.ConnectionDriverName</jpa.driver>
                 <jpa.url>openjpa.ConnectionURL</jpa.url>
                 <jpa.username>openjpa.ConnectionUserName</jpa.username>
                 <jpa.password>openjpa.ConnectionPassword</jpa.password>
-                <!--jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
-                <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value-->
+                <jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
+                <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value>
                 <!-- This one is necessary (versrion 1.3)-->
                 <!--jpa.ddl>openjpa.jdbc.SchemaFactory</jpa.ddl>
                 <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value-->
                 <!-- This one is for generate database schema -->
                 <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
                 <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
-                <jpa.ddl_value>buildSchema</jpa.ddl_value>
+                <jpa.ddl_value></jpa.ddl_value>
                 <jpa.logging>openjpa.Log</jpa.logging>
                 <jpa.logging_value>SQL=TRACE</jpa.logging_value>
                 <!--jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value-->
