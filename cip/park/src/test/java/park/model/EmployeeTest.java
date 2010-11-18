@@ -34,7 +34,7 @@ public class EmployeeTest {
 
     @BeforeClass
     public static void initEntityManager() throws Exception {
-        emf = Persistence.createEntityManagerFactory("parkPU");
+        emf = Persistence.createEntityManagerFactory("PU");
         em = emf.createEntityManager();
 
         // Initializes DBUnit
