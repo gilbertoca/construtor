@@ -123,9 +123,9 @@
             <version>${cayenne.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.constructor</groupId>
-            <artifactId>orm</artifactId>
-            <version>${coi.version}</version>
+            <groupId>com.google.constructor.cip</groupId>
+            <artifactId>shiro</artifactId>
+            <version>${cip.shiro.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -172,7 +172,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.2.0</click.version>
-        <coi.version>1.0-SNAPSHOT</coi.version>
+        <cip.shiro.version>1.0-SNAPSHOT</cip.shiro.version>
         <cayenne.version>3.0.1</cayenne.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
