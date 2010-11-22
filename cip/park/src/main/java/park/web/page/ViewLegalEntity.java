@@ -44,6 +44,8 @@ public class ViewLegalEntity extends BorderPage {
 
         addControl(form);
         addControl(table);
+        addControl(deleteLink);
+        addControl(editLink);
         //setStateful(true);
 
         // Setup the search form
