@@ -75,7 +75,8 @@ public class ViewLegalEntity extends BorderPage {
         editLink.setParameter("referrer", "/view-legal-entity.htm");
 
         //deleteLink.setImageSrc("/assets/images/table-delete.png");
-        //deleteLink.setAttribute("onclick");
+        //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
+        deleteLink.setAttribute("onclick", getMessage("deleteLink.attribute.onclick"));
 
         column = new Column("action");
         column.setTextAlign("center");
