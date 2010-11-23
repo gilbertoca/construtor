@@ -19,26 +19,26 @@
 -->
 
 <menu>
-  <menu label=" Main" path="main-menu.htm" imageSrc="/assets/images/home.png">
+  <menu label=" Main" path="main-menu.htm">
     <menu label="Natural Person" path="view-natural-person.htm"/>
     <menu label="Legal Entities" path="view-legal-entity.htm"/>
   </menu>
 
-  <menu label=" Parking" path="#" imageSrc="/assets/images/controls.png">
+  <menu label=" Parking" path="#">
     <menu label="Parkings" path="view-parking.htm"/>
     <menu label="Employees" path="view-employee.htm"/>
     <menu separator="true"/>
     <menu label="Prices" path="view-price.htm"/>
   </menu>
   
-  <menu label=" Customer" path="#" imageSrc="/assets/images/form.png">
+  <menu label=" Customer" path="#" >
     <menu label="Customers" path="view-customer.htm"/>
     <menu label="Vehicles" path="view-vehicle.htm"/>
     <menu separator="true"/>
     <menu label="Vehicles Type" path="view-vehicle-type.htm"/>
   </menu>
 
-  <menu label=" Stay" path="#" imageSrc="/assets/images/table.png">
+  <menu label=" Stay" path="#" >
     <menu label="Stays" path="view-stay.htm"/>
     <menu label="Entrances" path="view-entrance.htm"/>
     <menu label="Outgoing" path="view-outgoing.htm"/>

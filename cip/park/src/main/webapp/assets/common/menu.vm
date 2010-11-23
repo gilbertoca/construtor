@@ -13,4 +13,5 @@
     </ul>
 </menu:useMenuDisplayer>
 *#
-$rootMenu 
+##$rootMenu
+#writeMenu($rootMenu)

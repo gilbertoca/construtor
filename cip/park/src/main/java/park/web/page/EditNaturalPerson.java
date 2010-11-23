@@ -7,13 +7,9 @@ import org.apache.click.control.HiddenField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.extras.control.DateField;
-import park.model.LegalEntity;
+import park.model.NaturalPerson;
 
-/**
- *
- * @author gilberto
- */
-public class EditLegalEntity extends BorderPage {
+public class EditNaturalPerson extends BorderPage {
 
     private static final long serialVersionUID = 1L;
     private Form form = new Form("form");
@@ -22,14 +18,13 @@ public class EditLegalEntity extends BorderPage {
     // Bindable variables can automatically have their value set by request parameters
     public Long id;
     public String referrer;
-    private BaseJPAService<LegalEntity, Long> legalEntityService;
+    private final BaseJPAService<NaturalPerson, Long> naturalPersonService;
 
-    // Constructor -----------------------------------------------------------
-    public EditLegalEntity() {
-        legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
+    public EditNaturalPerson() {
+        naturalPersonService = new BaseJPAService<NaturalPerson, Long>(NaturalPerson.class);
 
-        getModel().put("title", getMessage("editLegalEntity.title"));
-        getModel().put("heading", getMessage("editLegalEntity.heading"));
+        getModel().put("title", getMessage("editNaturalPerson.title"));
+        getModel().put("heading", getMessage("editNaturalPerson.heading"));
         getModel().put("menu", "userMenu");
 
         addControl(form);
@@ -49,14 +44,14 @@ public class EditLegalEntity extends BorderPage {
         addressField.setFocus(true);
         fieldSet.add(addressField);
 
-        DateField dtFoundationField = new DateField("dtFoundation", true);
-        dtFoundationField.setFormatPattern(getMessage("date.format"));
-        fieldSet.add(dtFoundationField);
+        DateField dtBirthField = new DateField("dtBirth", true);
+        dtBirthField.setFormatPattern(getMessage("date.format"));
+        fieldSet.add(dtBirthField);
 
-        TextField taxpayersField = new TextField("taxpayersId", true);
-        taxpayersField.setMinLength(5);
-        taxpayersField.setFocus(true);
-        fieldSet.add(taxpayersField);
+        TextField legalDocumentField = new TextField("legalDocument", true);
+        legalDocumentField.setMinLength(5);
+        legalDocumentField.setFocus(true);
+        fieldSet.add(legalDocumentField);
 
         form.add(new Submit("okBt", this, "onOkClick"));
         form.add(new Submit("cancelBt", this, "onCancelClick"));
@@ -71,12 +66,12 @@ public class EditLegalEntity extends BorderPage {
     @Override
     public void onGet() {
         if (id != null) {
-            LegalEntity legalEntity = legalEntityService.find(id);
+            NaturalPerson naturalPerson = naturalPersonService.find(id);
 
-            if (legalEntity != null) {
-                // Copy legalEntity data to form. The idField value will be set by
+            if (naturalPerson != null) {
+                // Copy naturalPerson data to form. The idField value will be set by
                 // this call
-                form.copyFrom(legalEntity);
+                form.copyFrom(naturalPerson);
             }
         }
 
@@ -90,29 +85,28 @@ public class EditLegalEntity extends BorderPage {
         //isNew(false)=update, othewise insert
         boolean isNew = false;
         if (form.isValid()) {
-            LegalEntity legalEntity = null;
+            NaturalPerson naturalPerson = null;
             //local variable, don't confuse it with the public id parameter of the page
             Long _id = (Long) idField.getValueObject();
             if (_id != null) {
-                legalEntity = legalEntityService.find(_id);
+                naturalPerson = naturalPersonService.find(_id);
             } else {
                 isNew = true;
-                legalEntity = new LegalEntity();
+                naturalPerson = new NaturalPerson();
             }
 
-            form.copyTo(legalEntity);
+            form.copyTo(naturalPerson);
             if (isNew) {
-                legalEntityService.insert(legalEntity);
+                naturalPersonService.insert(naturalPerson);
             } else {
-                legalEntityService.update(legalEntity);
+                naturalPersonService.update(naturalPerson);
             }
-
             //The referrerField HiddenField was set on GET request
             String _referrer = referrerField.getValue();
             if (_referrer != null) {
                 setRedirect(_referrer);
             } else {
-                setRedirect(ViewLegalEntity.class);
+                setRedirect(ViewNaturalPerson.class);
             }
 
             return true;
@@ -128,7 +122,7 @@ public class EditLegalEntity extends BorderPage {
         if (_referrer != null) {
             setRedirect(_referrer);
         } else {
-            setRedirect(ViewLegalEntity.class);
+            setRedirect(ViewNaturalPerson.class);
         }
         return true;
     }
