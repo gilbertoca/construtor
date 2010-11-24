@@ -26,7 +26,7 @@
 
         <link rel="stylesheet" type="text/css" media="all" href="/assets/css/simplicity/theme.css" />
         <link rel="stylesheet" type="text/css" media="print" href="/assets/css/simplicity/print.css" />
-        ${headElements}
+        $headElements
     </head>
 <body>
     <div id="page">
@@ -37,19 +37,13 @@
         <div id="content" class="clearfix">
             <div id="main">
                 <h1>$heading</h1>
-                #parse(${path})
-            </div>
+                #parse($path)
+            </div><!-- end main -->
 
-            #*
-            <c:set var="currentMenu" scope="request"><decorator:getProperty property="meta.menu"/></c:set>
-            <c:if test="${currentMenu == 'AdminMenu'}">
-            <div id="sub">
-                <menu:useMenuDisplayer name="Velocity" config="cssVerticalMenu.vm" permissions="rolesAdapter">
-                    <menu:displayMenu name="AdminMenu"/>
-                </menu:useMenuDisplayer>
-            </div>
-            </c:if>
-            *#
+            <!--
+            TODO: show AdminMenu when the "menu" property is
+                      equal to AdminMeu
+            -->
             <div id="nav">
                 <div class="wrapper">
                     <h2 class="accessibility">Navigation</h2>
@@ -57,12 +51,12 @@
                 </div>
                 <hr/>
             </div><!-- end nav -->
-        </div>
+        </div><!-- end content -->
 
         <div id="footer" class="clearfix">
             #parse ("/assets/common/footer.vm")
-        </div>
-    </div>
-    ${jsElements}
+        </div><!-- end footer -->
+    </div><!-- end page -->
+    $jsElements
 </body>
 </html>
