@@ -51,6 +51,7 @@ public class EditLegalEntity extends BorderPage {
 
         DateField dtFoundationField = new DateField("dtFoundation", true);
         dtFoundationField.setFormatPattern(getMessage("date.format"));
+        dtFoundationField.setShowCalendar(false);
         fieldSet.add(dtFoundationField);
 
         TextField taxpayersField = new TextField("taxpayersId", true);

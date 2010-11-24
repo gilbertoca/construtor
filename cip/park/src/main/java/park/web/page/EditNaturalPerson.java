@@ -46,6 +46,7 @@ public class EditNaturalPerson extends BorderPage {
 
         DateField dtBirthField = new DateField("dtBirth", true);
         dtBirthField.setFormatPattern(getMessage("date.format"));
+        dtBirthField.setShowCalendar(false);
         fieldSet.add(dtBirthField);
 
         TextField legalDocumentField = new TextField("legalDocument", true);
