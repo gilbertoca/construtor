@@ -14,6 +14,7 @@
     <class>park.model.Parking</class>
     <class>park.model.Stay</class>
     <exclude-unlisted-classes/>
+    <shared-cache-mode>${jpa.shared-cache-mode}</shared-cache-mode>
     <properties>
       <property name="${jpa.driver}" value="${jdbc.driverClassName}"/>
       <property name="${jpa.url}" value="${jdbc.url}"/>

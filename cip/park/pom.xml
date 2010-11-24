@@ -181,7 +181,7 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.2.0</click.version>
+        <click.version>2.3.0-M1</click.version>
         <cip.orm.version>1.0-SNAPSHOT</cip.orm.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
@@ -216,6 +216,7 @@
                 <jpa.url>javax.persistence.jdbc.url</jpa.url>
                 <jpa.username>javax.persistence.jdbc.user</jpa.username>
                 <jpa.password>javax.persistence.jdbc.password</jpa.password>
+                <jpa.shared-cache-mode>ENABLE_SELECTIVE</jpa.shared-cache-mode>
                 <jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value>
                 <!--jpa.ddl>eclipselink.ddl-generation</jpa.ddl-->
@@ -225,7 +226,7 @@
 		<property name="eclipselink.create-ddl-jdbc-file-name" value="park.tab.postgres.sql"/>
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-                <jpa.logging_value>INFO</jpa.logging_value>
+                <jpa.logging_value>FINE</jpa.logging_value>
                 <jpa.minConnections>eclipselink.jdbc.read-connections.min</jpa.minConnections>
                 <jpa.maxConnections>eclipselink.jdbc.read-connections.max</jpa.maxConnections>
             </properties>
@@ -241,6 +242,7 @@
                 <jpa.url>openjpa.ConnectionURL</jpa.url>
                 <jpa.username>openjpa.ConnectionUserName</jpa.username>
                 <jpa.password>openjpa.ConnectionPassword</jpa.password>
+                <jpa.shared-cache-mode>ENABLE_SELECTIVE</jpa.shared-cache-mode>
                 <jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
                 <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value>
                 <!-- This one is necessary (versrion 1.3)-->
