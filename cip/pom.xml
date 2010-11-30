@@ -24,7 +24,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Apache Click Integration Project</name>
-    <url>http://click.apache.org</url>
+    <url>http://code.google.com/p/construtor</url>
     <!--prerequisites>
         <maven>2.0.6</maven>
     </prerequisites-->
