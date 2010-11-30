@@ -92,9 +92,9 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apache.click</groupId>
-            <artifactId>click-extras</artifactId>
-            <version>${click.version}</version>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -148,10 +148,9 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.2.0</click.version>
+        <commons-lang.version>2.5</commons-lang.version>
         <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
-        <servlet-api-version>2.5</servlet-api-version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
