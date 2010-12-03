@@ -113,7 +113,7 @@ public class VehicleTest {
         //set relationships
         v.setCustomer(c);
         v.setPriceTable(pT);
-        v.setVtype(vT);
+        v.setVehicleType(vT);
         
         tx.begin();
         em.persist(v);

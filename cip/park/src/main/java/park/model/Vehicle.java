@@ -9,7 +9,7 @@ public class Vehicle implements Serializable {
     private String color;
     private Customer customer;
     private PriceTable priceTable;
-    private VehicleType vType;
+    private VehicleType vehicleType;
     private Collection<Stay> stays;
 
     public Vehicle() {
@@ -51,13 +51,14 @@ public class Vehicle implements Serializable {
         this.priceTable = priceTable;
     }
 
-    public VehicleType getVtype() {
-        return vType;
+    public VehicleType getVehicleType() {
+        return vehicleType;
     }
 
-    public void setVtype(VehicleType vType) {
-        this.vType = vType;
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
+
 
     public Collection<Stay> getStays() {
         return stays;

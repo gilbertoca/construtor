@@ -4,30 +4,21 @@ import java.io.Serializable;
 
 public class VehicleType implements Serializable {
     private static final long serialVersionUID = 1L;
-    private String vType;
+    private String vehicleType;
     private String manufacturer;
     private String model;
 
     public VehicleType() {
     }
 
-    public VehicleType(String vType) {
-        this.vType = vType;
+    public VehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
-    public VehicleType(String vType, String manufacturer, String model) {
-        this.vType = vType;
+    public VehicleType(String vehicleType, String manufacturer, String model) {
+        this.vehicleType = vehicleType;
         this.manufacturer = manufacturer;
         this.model = model;
-    }
-
-
-    public String getVtype() {
-        return vType;
-    }
-
-    public void setVtype(String vType) {
-        this.vType = vType;
     }
 
     public String getManufacturer() {
@@ -37,6 +28,15 @@ public class VehicleType implements Serializable {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
 
     public String getModel() {
         return model;
@@ -49,7 +49,7 @@ public class VehicleType implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (vType != null ? vType.hashCode() : 0);
+        hash += (vehicleType != null ? vehicleType.hashCode() : 0);
         return hash;
     }
 
@@ -60,7 +60,7 @@ public class VehicleType implements Serializable {
             return false;
         }
         VehicleType other = (VehicleType) object;
-        if ((this.vType == null && other.vType != null) || (this.vType != null && !this.vType.equals(other.vType))) {
+        if ((this.vehicleType == null && other.vehicleType != null) || (this.vehicleType != null && !this.vehicleType.equals(other.vehicleType))) {
             return false;
         }
         return true;
@@ -68,7 +68,7 @@ public class VehicleType implements Serializable {
 
     @Override
     public String toString() {
-        return "park.model.VehicleType[V_TYPE=" + vType + "]";
+        return "park.model.VehicleType[V_TYPE=" + vehicleType + "]";
     }
 
 }

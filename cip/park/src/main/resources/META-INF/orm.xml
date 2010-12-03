@@ -275,11 +275,11 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="VehicleType.deleteById">
-            <query>DELETE FROM VehicleType l WHERE l.vType = :vType</query>
+            <query>DELETE FROM VehicleType l WHERE l.vehicleType = :type</query>
         </named-query>
 
         <attributes>
-            <id name="vType">
+            <id name="vehicleType">
                 <column name="v_type" nullable="false" length="20"/>
             </id>
             <basic name="manufacturer">
@@ -323,7 +323,7 @@
             <many-to-one name="priceTable">
                 <join-column name="price_table_id" referenced-column-name="id"/>
             </many-to-one>
-            <many-to-one name="vType">
+            <many-to-one name="vehicleType">
                 <join-column name="v_type" referenced-column-name="v_type"/>
             </many-to-one>
             <one-to-many name="stays" target-entity="Stay" mapped-by="vehicle"/>
