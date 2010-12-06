@@ -92,12 +92,6 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.apache.click</groupId>
-            <artifactId>click-extras</artifactId>
-            <version>${click.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.constructor.cip</groupId>
             <artifactId>orm</artifactId>
             <version>${cip.orm.version}</version>
@@ -159,7 +153,6 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.2.0</click.version>
         <cip.orm.version>1.0-SNAPSHOT</cip.orm.version>
         <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
