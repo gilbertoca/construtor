@@ -85,6 +85,7 @@ CREATE TABLE STAY (
                 EMPLOYEE_ID_ENTRANCE BIGINT,
                 EMPLOYEE_ID_OUTGOING BIGINT,
                 PARKING_ID BIGINT,
+                VERSION INTEGER,
                 CONSTRAINT stay_pk PRIMARY KEY (ID)
 );
 
