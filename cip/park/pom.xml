@@ -320,6 +320,18 @@
         </profile>
         <profile>
             <id>datanucleus</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.datanucleus</groupId>
+                    <artifactId>datanucleus-core</artifactId>
+                    <version>${jpa.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.jdo</groupId>
+                    <artifactId>jdo-api</artifactId>
+                    <version>[3.0, )</version>
+                </dependency>
+            </dependencies>
             <properties>
                 <jpa.groupId>org.datanucleus</jpa.groupId>
                 <jpa.artifactId>datanucleus-jpa</jpa.artifactId>
@@ -345,16 +357,13 @@
             </properties>
             <build>
                 <plugins>
-                    <plugin>
+                    <!--plugin>
                         <groupId>org.datanucleus</groupId>
-                        <artifactId>datanucleus-enhancer</artifactId>
-                        <version>2.1.2</version>
+                        <artifactId>maven-datanucleus-plugin</artifactId>
+                        <version>2.2.0-release</version>
                         <configuration>
-                            <mappingIncludes>**/*.jdo, **/*.class</mappingIncludes>
-                            <log4jConfiguration>${basedir}/log4j.properties</log4jConfiguration>
+                            <api>JPA</api>
                             <verbose>true</verbose>
-                            <enhancerName>ASM</enhancerName>
-                            <props>${basedir}/datanucleus.properties</props>
                         </configuration>
                         <executions>
                             <execution>
@@ -364,7 +373,8 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin-->
+
                 </plugins>
             </build>
         </profile>
