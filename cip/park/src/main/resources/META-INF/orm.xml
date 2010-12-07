@@ -39,7 +39,7 @@
         <discriminator-column name="p_type" column-definition="CHAR(2)" length="2" discriminator-type="STRING"/>
         <attributes>
             <id name="id">
-                <column name="id"/>
+                <column name="id" />
                 <generated-value strategy="TABLE" generator="person_table_generator"/>
             </id>
             <basic name="name">
@@ -256,7 +256,7 @@
                 <column name="item" nullable="false" length="50"/>
             </basic>
             <basic name="price">
-                <column name="price" column-definition="NUMERIC(12,2)"/>
+                <column name="price" precision="12" scale="2"/>
             </basic>
         </attributes>
     </entity>
@@ -390,7 +390,7 @@
                 <enumerated>STRING</enumerated>
             </basic>
             <basic name="totalPrice">
-                <column name="total_price" column-definition="NUMERIC(12,2)"/>
+                <column name="total_price" precision="12" scale="2"/>
             </basic>
             <many-to-one name="employeeEntrance">
                 <join-column name="employee_id_entrance" referenced-column-name="person_id"/>
