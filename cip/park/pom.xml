@@ -271,20 +271,18 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>openjpa-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <configuration>
+                            <includes>park/model/**/*.class</includes>
+                        </configuration>
                         <executions>
                             <execution>
+                                <id>enhancer</id>
                                 <phase>process-classes</phase>
-                                <configuration>
-                                    <tasks>
-                                        <taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask" classpathref="maven.compile.classpath"/>
-                                        <openjpac>
-                                            <classpath refid="maven.compile.classpath"/>
-                                        </openjpac>
-                                    </tasks>
-                                </configuration>
                                 <goals>
-                                    <goal>run</goal>
+                                    <goal>enhance</goal>
                                 </goals>
                             </execution>
                         </executions>
