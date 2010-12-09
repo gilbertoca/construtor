@@ -138,7 +138,7 @@
                 <column name="payment_day"/>
             </basic>
             <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
-            <one-to-one name="person" target-entity="Person" maps-id="true">
+            <one-to-one name="person" target-entity="Person" maps-id="id">
                 <join-column name="person_id" referenced-column-name="id" />
             </one-to-one>
         </attributes>
@@ -173,7 +173,7 @@
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
-            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="true">
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="id">
                 <join-column name="person_id" referenced-column-name="person_id" />
             </one-to-one>
         </attributes>
