@@ -1,4 +1,4 @@
-package park.model;
+package park.model.annotation;
 
 import java.io.Serializable;
 import java.util.Date;

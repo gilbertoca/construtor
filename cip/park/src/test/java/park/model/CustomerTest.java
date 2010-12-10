@@ -1,5 +1,7 @@
 package park.model;
 
+import park.model.orm.Customer;
+import park.model.orm.LegalEntity;
 import java.sql.DriverManager;
 
 import java.sql.SQLException;

@@ -142,7 +142,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.14</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -204,9 +204,10 @@
     <profiles>
         <profile>
             <id>eclipselink</id>
-            <activation>
+                        <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
                 <jpa.artifactId>eclipselink</jpa.artifactId>
@@ -234,7 +235,7 @@
         </profile>
         <profile>
             <id>openjpa</id>
-            <properties>
+                <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
                 <jpa.version>2.0.1</jpa.version>

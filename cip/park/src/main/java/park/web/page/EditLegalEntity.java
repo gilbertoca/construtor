@@ -7,7 +7,7 @@ import org.apache.click.control.HiddenField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.extras.control.DateField;
-import park.model.LegalEntity;
+import park.model.orm.LegalEntity;
 
 /**
  *

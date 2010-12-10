@@ -1,4 +1,4 @@
-package park.model;
+package park.model.orm;
 
 import java.io.Serializable;
 

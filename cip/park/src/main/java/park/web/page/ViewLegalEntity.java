@@ -16,7 +16,7 @@ import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
-import park.model.LegalEntity;
+import park.model.orm.LegalEntity;
 
 /**
  *

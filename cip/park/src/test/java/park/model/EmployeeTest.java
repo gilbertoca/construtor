@@ -1,5 +1,8 @@
 package park.model;
 
+import park.model.orm.Parking;
+import park.model.orm.Employee;
+import park.model.orm.NaturalPerson;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

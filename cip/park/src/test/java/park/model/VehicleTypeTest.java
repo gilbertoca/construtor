@@ -1,5 +1,6 @@
 package park.model;
 
+import park.model.orm.VehicleType;
 import java.sql.DriverManager;
 
 import java.sql.SQLException;

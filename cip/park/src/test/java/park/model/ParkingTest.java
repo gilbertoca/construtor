@@ -1,5 +1,6 @@
 package park.model;
 
+import park.model.orm.Parking;
 import java.sql.DriverManager;
 import org.dbunit.DatabaseUnitException;
 import static org.junit.Assert.assertEquals;
