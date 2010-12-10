@@ -2,10 +2,31 @@ package park.model.annotation;
 
 import java.io.Serializable;
 import java.util.Date;
-
-public class NaturalPerson extends Person implements Serializable {
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+@Entity
+@Table(name="natural_person")
+@DiscriminatorValue("NP")
+@PrimaryKeyJoinColumn(name="person_id",referencedColumnName="id")
+@NamedQueries({
+    @NamedQuery(name="NaturalPerson.findAll",query="SELECT n FROM NaturalPerson n"),
+    @NamedQuery(name="NaturalPerson.findByName",query="SELECT n FROM NaturalPerson n WHERE n.name LIKE :name"),@NamedQuery(name="NaturalPerson.deleteById",query="DELETE FROM NaturalPerson n WHERE n.id = :id")
+})
+public class NaturalPerson extends Person{
     private static final long serialVersionUID = 1L;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name="dt_birth")
     private Date dtBirth;
+    @Basic
+    @Column(name="legal_document", length=20)
     private String legalDocument;
     
     public NaturalPerson() {

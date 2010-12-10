@@ -1,11 +1,31 @@
 package park.model.annotation;
 
-import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
-public class LegalEntity extends Person implements Serializable {
+@Entity
+@Table(name="legal_entity")
+@DiscriminatorValue("LE")
+@PrimaryKeyJoinColumn(name="person_id",referencedColumnName="id")
+@NamedQueries({
+    @NamedQuery(name="LegalEntity.findAll",query="SELECT l FROM LegalEntity l"),
+    @NamedQuery(name="LegalEntity.findByName",query="SELECT l FROM LegalEntity l WHERE l.name LIKE :name"),@NamedQuery(name="LegalEntity.deleteById",query="DELETE FROM LegalEntity l WHERE l.id = :id")
+})
+public class LegalEntity extends Person{
     private static final long serialVersionUID = 1L;
+    @Basic
+    @Column(name="taxpayers_id", length=20)
     private String taxpayersId;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name="dt_foundation")
     private Date dtFoundation;
 
     public LegalEntity() {
