@@ -1,4 +1,4 @@
-package park.model;
+package park.model.orm;
 
 import park.model.orm.Customer;
 import park.model.orm.PriceTable;

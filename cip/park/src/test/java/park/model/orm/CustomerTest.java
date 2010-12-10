@@ -1,6 +1,7 @@
-package park.model;
+package park.model.orm;
 
-import park.model.orm.VehicleType;
+import park.model.orm.Customer;
+import park.model.orm.LegalEntity;
 import java.sql.DriverManager;
 
 import java.sql.SQLException;
@@ -27,7 +28,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class VehicleTypeTest {
+public class CustomerTest {
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
@@ -61,7 +62,7 @@ public class VehicleTypeTest {
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
         IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
-        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("vehicle-type-dataset.xml"));
+        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("customer-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
@@ -81,7 +82,7 @@ public class VehicleTypeTest {
 
     @Before
     public void cleanDB() throws Exception {
-        // Cleans the database with DbUnit
+        // REFRESH the database with DbUnit
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
@@ -89,36 +90,41 @@ public class VehicleTypeTest {
      * Test of setVehicletype method, of class Vehicle.
      */
     @Test
-    public void GetVehicleTypeById() {
-        System.out.println("\nGetting an VehicleType by ID.\n");
-        VehicleType pT = em.find(VehicleType.class, "CAR");
-        System.out.println("Object loaded: \n" + pT);
-        assertNotNull(pT.getManufacturer());
+    public void GetCustomerById() {
+        System.out.println("\nGetting an Natural Person by ID.\n");
+        Customer c = em.find(Customer.class, 1000L);
+        System.out.println("Object loaded: \n" + c);
+        assertNotNull(c.getPerson());
     }
 
     @Test
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("VehicleType.findAll");
-        assertEquals("Should have 5 VehicleType", query.getResultList().size(), 5);
+        Query query = em.createNamedQuery("Customer.findAll");
+        assertEquals("Should have 2 customers", query.getResultList().size(), 2);
 
         // Creates a new object and persists it
-        VehicleType pT = new VehicleType("NEW Truck", "Mercedes", null);
-        
+        //Customer c = new Customer(1002, 3);
+        Customer c = new Customer();
+        LegalEntity lP = em.find(LegalEntity.class, 1003L);
+        System.out.println("Foreign Ket Object loaded: \n" + lP);
+        c.setPerson(lP); //Setting the class attribute will need manual set of customer.id?
+        //c.setId(lP.getId());
+        c.setPaymentDay(3);
         tx.begin();
-        em.persist(pT);
+        em.persist(c);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 6 VehicleType", query.getResultList().size(), 6);
+        assertEquals("Should have 3 customers", query.getResultList().size(), 3);
 
         // Removes the object from the database
         tx.begin();
-        em.remove(pT);
+        em.remove(c);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 5 VehicleType", query.getResultList().size(), 5);
+        assertEquals("Should have 2 customers", query.getResultList().size(), 2);
     }
 }
