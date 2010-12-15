@@ -10,6 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="legal_entity")
@@ -24,7 +25,7 @@ public class LegalEntity extends Person{
     @Basic
     @Column(name="taxpayers_id", length=20)
     private String taxpayersId;
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     @Column(name="dt_foundation")
     private Date dtFoundation;
 

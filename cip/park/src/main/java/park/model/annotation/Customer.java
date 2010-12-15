@@ -2,12 +2,35 @@ package park.model.annotation;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="customer")
+@NamedQueries({
+    @NamedQuery(name="Customer.findAll",query="SELECT l FROM Customer l"),
+    @NamedQuery(name="Customer.deleteById",query="DELETE FROM Customer l WHERE l.id = :id")
+})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @Column(name="person_id")
     private Long id; //references PERSON.ID
+    @Basic
+    @Column(name="payment_day")
     private Integer paymentDay;
+    @OneToMany(targetEntity=Vehicle.class, mappedBy="customer")
     private Collection<Vehicle> vehicles;
+    @OneToOne(optional=false,targetEntity=Person.class)
+    @JoinColumn(name="person_id", referencedColumnName="id")
     private Person person; //references PERSON.ID
 
     public Customer() { }
