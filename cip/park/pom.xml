@@ -204,7 +204,7 @@
     <profiles>
         <profile>
             <id>eclipselink</id>
-                        <activation>
+            <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
 
@@ -235,7 +235,7 @@
         </profile>
         <profile>
             <id>openjpa</id>
-                <properties>
+            <properties>
                 <jpa.groupId>org.apache.openjpa</jpa.groupId>
                 <jpa.artifactId>openjpa</jpa.artifactId>
                 <jpa.version>2.0.1</jpa.version>
