@@ -23,8 +23,8 @@
       <property name="${jpa.dialect}" value="${jpa.dialect_value}"/>
       <property name="${jpa.ddl}" value="${jpa.ddl_value}"/>
       <property name="${jpa.logging}" value="${jpa.logging_value}"/>
-      <property name="${jpa.cache.second_level}" value="${jpa.cache.second_level_value}">
-      <property name="${jpa.cache.second_level_provider}" value="${jpa.cache.second_level_provider_value}">
+      <property name="${jpa.cache.second_level}" value="${jpa.cache.second_level_value}"/>
+      <property name="${jpa.cache.second_level_provider}" value="${jpa.cache.second_level_provider_value}"/>
       <property name="${jpa.minConnections}" value="1"/>
       <property name="${jpa.maxConnections}" value="2"/>
     </properties>
