@@ -178,6 +178,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
     <properties>
         <!-- versions -->
@@ -251,7 +256,7 @@
                 <jpa.password>openjpa.ConnectionPassword</jpa.password>
                 -->
                 <!-- CACHE-->
-                <jpa.shared-cache-mode>ENABLE_SELECTIVE</jpa.shared-cache-mode>
+                <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
                 <jpa.cache.shared.default>openjpa.DataCache</jpa.cache.shared.default>
                 <jpa.cache.shared.default_value>false</jpa.cache.shared.default_value>
                 <jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
