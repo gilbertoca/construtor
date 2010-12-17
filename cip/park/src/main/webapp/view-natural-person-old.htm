@@ -1,1 +1,16 @@
 $table
+
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>legalDocument</td>
+        <td>dtBirth</td>
+    </tr>
+    #foreach($naturalPerson in $naturalPersonList)
+    <tr>
+        <td>$naturalPerson.name</td>
+        <td>$naturalPerson.legalDocument</td>
+        <td>$naturalPerson.dtBirth</td>
+    </tr>
+    #end
+</table>

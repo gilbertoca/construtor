@@ -1,6 +1,7 @@
 package park.web.page;
 
 import com.google.constructor.cip.orm.jpa.BaseJPAService;
+import java.util.Collection;
 import java.util.List;
 import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
@@ -60,15 +61,22 @@ public class ViewNaturalPersonOld extends park.web.page.BorderPage {
         column.setSortable(false);
         table.addColumn(column);
 
-        table.setDataProvider(new DataProvider<NaturalPerson>() {
+        /*table.setDataProvider(new DataProvider<NaturalPerson>() {
 
             public List<NaturalPerson> getData() {
                 return (List<NaturalPerson>) naturalPersonService.getAll();
             }
-        });
+        });*/
     }
 
     // Event Handlers ---------------------------------------------------------
+    @Override
+    public void onRender() {
+        List nPl = (List<NaturalPerson>) naturalPersonService.getAll();
+        addModel("naturalPersonList", nPl);
+        table.setRowList(nPl);
+
+    }
 
     /**
      * Handle the delete link click event.
