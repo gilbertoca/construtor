@@ -73,8 +73,8 @@ public class ViewNaturalPersonOld extends park.web.page.BorderPage {
     @Override
     public void onRender() {
         System.out.println("\n onRender() method \n");
-        //List nPl = (List<NaturalPerson>) naturalPersonService.getAll();
-        List nPl = (List) naturalPersonService.findByNamedQuery("NaturalPerson.findAllStrings");
+        //List nPl = (List<NaturalPerson>) naturalPersonService.getAll();//getting a list of entity managed object
+        List nPl = (List) naturalPersonService.findByNamedQuery("NaturalPerson.findAllStrings");//gettin a list of strings
         addModel("naturalPersonList", nPl);
         table.setRowList(nPl);
 
