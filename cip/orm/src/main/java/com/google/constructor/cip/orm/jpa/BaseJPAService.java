@@ -20,6 +20,7 @@ package com.google.constructor.cip.orm.jpa;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityTransaction;
 import javax.persistence.EntityManager;
@@ -37,12 +38,12 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     /** By default we use auto-commit(true), otherwise (false) you get the control.*/
     protected boolean autoCommit;
     private Class<T> classEntity;
-    
+
     public BaseJPAService(Class<T> classEntity) {
         super();
         Validate.notNull(classEntity, "Null ClassEntity parameter");
         this.classEntity = classEntity;
-        autoCommit=true;
+        autoCommit = true;
     }
 
     public BaseJPAService(Class<T> classEntity, boolean autoCommit) {
@@ -84,25 +85,25 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void insert(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             getEntityManager().persist(entity);
             tx.commit();
-        }else{
+        } else {
             getEntityManager().persist(entity);
         }
     }
 
     public void insert(Collection<T> entities) {
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             for (T entity : entities) {
                 getEntityManager().persist(entity);
             }
             tx.commit();
-        }else{
+        } else {
             for (T entity : entities) {
                 getEntityManager().persist(entity);
             }
@@ -111,25 +112,25 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void update(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             getEntityManager().merge(entity);
             tx.commit();
-        }else{
+        } else {
             getEntityManager().merge(entity);
         }
     }
 
     public void update(Collection<T> entities) {
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             for (T entity : entities) {
                 getEntityManager().merge(entity);
             }
             tx.commit();
-        }else{
+        } else {
             for (T entity : entities) {
                 getEntityManager().merge(entity);
             }
@@ -138,43 +139,42 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void delete(PK pk) {
         Validate.notNull(pk, "Null pk parameter");
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             getEntityManager().remove(find(pk));
             tx.commit();
-        }else{
+        } else {
             getEntityManager().remove(find(pk));
         }
     }
-    
+
     public void delete(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             getEntityManager().remove(entity);
             tx.commit();
-        }else{
+        } else {
             getEntityManager().remove(entity);
         }
     }
 
     public void delete(Collection<T> entities) {
-        if (this.autoCommit){
+        if (this.autoCommit) {
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
             for (T entity : entities) {
                 getEntityManager().remove(entity);
             }
             tx.commit();
-        }else{
+        } else {
             for (T entity : entities) {
                 getEntityManager().remove(entity);
             }
         }
     }
-
 
     public Collection<T> getAll() {
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
@@ -188,7 +188,7 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     public T find(PK pk) {
         Validate.notNull(pk, "Null PK parameter");
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
-        T entity = (T)getEntityManager().find(getClassEntity(), pk);
+        T entity = (T) getEntityManager().find(getClassEntity(), pk);
         if (entity == null) {
             //log.warn("Uh oh, '" + this.classEntity + "' object with id '" + pk + "' not found...");
             //throw new EntityNotFoundException("entity: "+getClassEntity()+"primary key: "+pk);
@@ -196,9 +196,27 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
         return entity;
     }
 
-    public Collection<T> findByNamedQuery(String namedQuery, Map<String, ?> params) {
+    public List findByQuery(String queryString) {
+        return findByQuery(queryString, (Object[]) null);
+    }
+
+    public List findByQuery(String queryString, Object... values) {
+        Validate.notNull(queryString, "Null queryString parameter");
+        Query queryObject = getEntityManager().createNamedQuery(queryString);
+        if (values != null) {
+            for (int i = 0; i < values.length; i++) {
+                queryObject.setParameter(i + 1, values[i]);
+            }
+        }
+        return queryObject.getResultList();
+    }
+
+    public List findByNamedQuery(String namedQuery) {
+        return findByNamedQuery(namedQuery,(Map) null);
+    }
+
+    public List findByNamedQuery(String namedQuery, Map<String, ?> params) {
         Validate.notNull(namedQuery, "Null namedQuery parameter");
-        Validate.notNull(params, "Null params parameter");
         Query queryObject = getEntityManager().createNamedQuery(namedQuery);
         if (params != null) {
             for (Map.Entry<String, ?> entry : params.entrySet()) {

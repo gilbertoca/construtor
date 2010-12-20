@@ -14,6 +14,7 @@ import org.apache.cayenne.access.DataContext;
 import org.apache.cayenne.query.NamedQuery;
 import org.apache.cayenne.query.SelectQuery;
 import com.google.constructor.cip.orm.IService;
+import java.util.List;
 import org.apache.commons.lang.Validate;
 
 /**
@@ -104,6 +105,11 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         getDataContext().deleteObject(entity);
         getDataContext().commitChanges();
     }
+    public void delete(Collection<T> entities) {
+        getDataContext().deleteObjects(entities);
+        getDataContext().commitChanges();
+    }
+
 
     public T find(PK pk) {
         Validate.notNull(pk, "Null PK parameter");
@@ -111,19 +117,26 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
 
         return (T) DataObjectUtils.objectForPK(getDataContext(), getClassEntity(), pk);
     }
-
-    public Collection<T> findByNamedQuery(String namedQuery, Map<String, ?> params) {
-        Validate.notNull(namedQuery, "Null namedQuery parameter");
-        Validate.notNull(params, "Null params parameter");
-        NamedQuery query = new NamedQuery(namedQuery, params);
-        return (Collection<T>) getDataContext().performQuery(query);
-    }
-
-    public void autoCommit(boolean autoCommit) {
+    public List findByQuery(String queryString) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void delete(Collection<T> entities) {
+    public List findByQuery(String queryString, Object... values) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public List findByNamedQuery(String namedQuery) {
+        return findByNamedQuery(namedQuery,(Map) null);
+    }
+
+    public List findByNamedQuery(String namedQuery, Map<String, ?> params) {
+        Validate.notNull(namedQuery, "Null namedQuery parameter");
+        Validate.notNull(params, "Null params parameter");
+        NamedQuery query = new NamedQuery(namedQuery, params);
+        return getDataContext().performQuery(query);
+    }
+
+    public void autoCommit(boolean autoCommit) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

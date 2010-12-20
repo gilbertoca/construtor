@@ -20,6 +20,7 @@ package com.google.constructor.cip.orm;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,6 +57,26 @@ public interface IService<T, PK extends Serializable> {
      * @return the found entity instance or null if the entity does not exist.
      */
     T find(PK pk);
+    /**
+     * Execute a query for persistent instances.
+     * @param queryString a query expressed in JPA's query language
+     * @return List the List of persistent instances
+     */
+    List findByQuery(final String queryString);
+    /**
+     * Execute a query for persistent instances.
+     * @param queryString a query expressed in JPA's query language
+     * @param values  the values of the positional parameters
+     * @return List the List of persistent instances
+     */
+    List findByQuery(final String queryString, final Object... values);
+    /**
+     * Find by named query.
+     * @param namedQuery Named query: annotated or in xml file
+     * @param params Map with key and value matching named parameters and theirs values.
+     * @return List
+     */
+    List findByNamedQuery(final String namedQuery);
 
     /**
      * Find by query using named parameters.
@@ -64,5 +85,5 @@ public interface IService<T, PK extends Serializable> {
      * @param params Map with key and value matching named parameters and theirs values.
      * @return Collection<T>
      */
-    Collection<T> findByNamedQuery(final String namedQuery, final Map<String, ?> params);
+    List findByNamedQuery(final String namedQuery, final Map<String, ?> params);
 }
