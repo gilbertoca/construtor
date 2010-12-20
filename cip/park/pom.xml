@@ -212,7 +212,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
                 <jpa.artifactId>eclipselink</jpa.artifactId>
@@ -223,7 +222,7 @@
                 <jpa.username>javax.persistence.jdbc.user</jpa.username>
                 <jpa.password>javax.persistence.jdbc.password</jpa.password>
                 <!-- CACHE-->
-                <jpa.shared-cache-mode>ENABLE_SELECTIVE</jpa.shared-cache-mode>
+                <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
                 <jpa.cache.second_level>eclipselink.cache.shared.default</jpa.cache.second_level>
                 <jpa.cache.second_level_value>false</jpa.cache.second_level_value>
                 <jpa.cache.second_level_provider>eclipselink.cache.shared.default</jpa.cache.second_level_provider>

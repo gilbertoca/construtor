@@ -72,7 +72,9 @@ public class ViewNaturalPersonOld extends park.web.page.BorderPage {
     // Event Handlers ---------------------------------------------------------
     @Override
     public void onRender() {
-        List nPl = (List<NaturalPerson>) naturalPersonService.getAll();
+        System.out.println("\n onRender() method \n");
+        //List nPl = (List<NaturalPerson>) naturalPersonService.getAll();
+        List nPl = (List) naturalPersonService.findByNamedQuery("NaturalPerson.findAllStrings");
         addModel("naturalPersonList", nPl);
         table.setRowList(nPl);
 

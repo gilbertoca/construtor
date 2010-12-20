@@ -66,7 +66,7 @@ public class EditNaturalPerson extends BorderPage {
      */
     @Override
     public void onGet() {
-        System.out.println("\n onGet method \n");
+        System.out.println("\n onGet() method \n");
         if (id != null) {
             NaturalPerson naturalPerson = naturalPersonService.find(id);
             System.out.println("\n naturalPersonService.find(id) was triggered \n");

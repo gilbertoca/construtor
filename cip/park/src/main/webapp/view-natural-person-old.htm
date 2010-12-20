@@ -1,4 +1,4 @@
-$table
+#*$table
 
 <table border="1">
     <tr>
@@ -11,6 +11,23 @@ $table
         <td>$naturalPerson.name</td>
         <td>$naturalPerson.legalDocument</td>
         <td>$naturalPerson.dtBirth</td>
+    </tr>
+    #end
+</table>
+*#
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>DtBirth</td>
+        <td>legalDocument</td>
+    </tr>
+    #foreach($naturalPerson in $naturalPersonList)
+    <tr>
+        #foreach($nP in $naturalPerson)
+        <td>$nP</td>
+        #end
     </tr>
     #end
 </table>
