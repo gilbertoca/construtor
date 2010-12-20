@@ -1,6 +1,7 @@
 package park.model.orm;
 
-import park.model.orm.NaturalPerson;
+import java.util.List;
+import javax.persistence.TypedQuery;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -18,13 +19,11 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.datatype.IDataTypeFactory;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class NaturalPersonTest {
 
@@ -58,7 +57,7 @@ public class NaturalPersonTest {
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("natural-person-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
@@ -93,6 +92,14 @@ public class NaturalPersonTest {
         NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
         System.out.println("Object loaded: \n" + nP);
         assertNotNull(nP.getName());
+    }
+
+    @Test
+    public void findByQuery() {
+        TypedQuery<String> query = em.createQuery("SELECT n.name, n.address FROM NaturalPerson AS n", String.class);
+        //query.setHint(QueryHints.RESULT_TYPE,ResultType.Map);
+        List<String> results = query.getResultList();
+        System.out.println("Object loaded: \n" + results);
     }
 
     @Test
