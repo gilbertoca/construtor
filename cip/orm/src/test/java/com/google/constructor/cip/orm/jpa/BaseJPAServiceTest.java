@@ -98,10 +98,6 @@ public class BaseJPAServiceTest {
     }
     @Test
     public void insertFindUpdateDeleteAutoCommitOff() throws Exception {
-        userService.autoCommit(false);
-        EntityTransaction tx = userService.getEntityManager().getTransaction();
-        tx.begin();
-
         User pT = new User("TRUCK", "TRUCK", "Mercedes");
         userService.insert(pT);
 
@@ -110,9 +106,6 @@ public class BaseJPAServiceTest {
 
         // Removes the object from the database
         userService.delete(pT.getId());
-
-        tx.commit();
-        userService.autoCommit(true);
 
         // Gets all the objects from the database
         assertEquals("Should have 4 User", 3, userService.getAll().size());        

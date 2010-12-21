@@ -142,7 +142,7 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
         tx.commit();
     }
 
-    public Collection<T> getAll() {
+    public List<T> getAll() {
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
         CriteriaBuilder cB = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<T> cQ = cB.createQuery(getClassEntity());

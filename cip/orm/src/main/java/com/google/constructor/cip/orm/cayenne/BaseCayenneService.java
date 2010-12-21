@@ -53,7 +53,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         }
     }
 
-    public Collection<T> getAll() {
+    public List<T> getAll() {
         Validate.notNull(getClassEntity(), "Null ClassEntity parameter");
         SelectQuery query = new SelectQuery(getClassEntity());
         return getDataContext().performQuery(query);
@@ -82,6 +82,9 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
             getDataContext().registerNewObject(entity);
         }
         getDataContext().commitChanges();
+    }
+    public void update(T entity, boolean refresh) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void update(Collection<T> entities) {
@@ -135,9 +138,4 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         NamedQuery query = new NamedQuery(namedQuery, params);
         return getDataContext().performQuery(query);
     }
-
-    public void update(T entity, boolean refresh) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

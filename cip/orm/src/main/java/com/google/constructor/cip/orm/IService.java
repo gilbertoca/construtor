@@ -44,7 +44,7 @@ public interface IService<T, PK extends Serializable> {
      *
      * @return Collection The
      */
-    Collection<T> getAll();
+    List<T> getAll();
 
     /**
      * Find by primary key. Search for an entity of the specified class and primary key.
