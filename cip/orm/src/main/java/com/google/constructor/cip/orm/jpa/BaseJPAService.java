@@ -35,22 +35,18 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     /** The EntityManager. */
     protected EntityManager entityManager;
-    /** By default we use auto-commit(true), otherwise (false) you get the control.*/
-    protected boolean autoCommit;
     private Class<T> classEntity;
 
     public BaseJPAService(Class<T> classEntity) {
         super();
         Validate.notNull(classEntity, "Null ClassEntity parameter");
         this.classEntity = classEntity;
-        autoCommit = true;
     }
 
     public BaseJPAService(Class<T> classEntity, boolean autoCommit) {
         super();
         Validate.notNull(classEntity, "Null ClassEntity parameter");
         this.classEntity = classEntity;
-        this.autoCommit = autoCommit;
     }
 
     public Class<T> getClassEntity() {
@@ -85,95 +81,65 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
 
     public void insert(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            getEntityManager().persist(entity);
-            tx.commit();
-        } else {
-            getEntityManager().persist(entity);
-        }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        getEntityManager().persist(entity);
+        tx.commit();
     }
 
     public void insert(Collection<T> entities) {
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            for (T entity : entities) {
-                getEntityManager().persist(entity);
-            }
-            tx.commit();
-        } else {
-            for (T entity : entities) {
-                getEntityManager().persist(entity);
-            }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        for (T entity : entities) {
+            getEntityManager().persist(entity);
         }
+        tx.commit();
     }
 
     public void update(T entity) {
+        update(entity, false);
+    }
+
+    public void update(T entity, boolean refresh) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            getEntityManager().merge(entity);
-            tx.commit();
-        } else {
-            getEntityManager().merge(entity);
-        }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        getEntityManager().merge(entity);
+        tx.commit();
     }
 
     public void update(Collection<T> entities) {
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            for (T entity : entities) {
-                getEntityManager().merge(entity);
-            }
-            tx.commit();
-        } else {
-            for (T entity : entities) {
-                getEntityManager().merge(entity);
-            }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        for (T entity : entities) {
+            getEntityManager().merge(entity);
         }
+        tx.commit();
     }
 
     public void delete(PK pk) {
         Validate.notNull(pk, "Null pk parameter");
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            getEntityManager().remove(find(pk));
-            tx.commit();
-        } else {
-            getEntityManager().remove(find(pk));
-        }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        getEntityManager().remove(find(pk));
+        tx.commit();
     }
 
     public void delete(T entity) {
         Validate.notNull(entity, "Null Entity parameter");
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            getEntityManager().remove(entity);
-            tx.commit();
-        } else {
-            getEntityManager().remove(entity);
-        }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        getEntityManager().remove(entity);
+        tx.commit();
     }
 
     public void delete(Collection<T> entities) {
-        if (this.autoCommit) {
-            EntityTransaction tx = getEntityManager().getTransaction();
-            tx.begin();
-            for (T entity : entities) {
-                getEntityManager().remove(entity);
-            }
-            tx.commit();
-        } else {
-            for (T entity : entities) {
-                getEntityManager().remove(entity);
-            }
+        EntityTransaction tx = getEntityManager().getTransaction();
+        tx.begin();
+        for (T entity : entities) {
+            getEntityManager().remove(entity);
         }
+        tx.commit();
     }
 
     public Collection<T> getAll() {
@@ -212,7 +178,7 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
     }
 
     public List findByNamedQuery(String namedQuery) {
-        return findByNamedQuery(namedQuery,(Map) null);
+        return findByNamedQuery(namedQuery, (Map) null);
     }
 
     public List findByNamedQuery(String namedQuery, Map<String, ?> params) {
@@ -224,9 +190,5 @@ public class BaseJPAService<T, PK extends Serializable> implements IService<T, P
             }
         }
         return queryObject.getResultList();
-    }
-
-    public void autoCommit(boolean autoCommit) {
-        this.autoCommit = autoCommit;
     }
 }

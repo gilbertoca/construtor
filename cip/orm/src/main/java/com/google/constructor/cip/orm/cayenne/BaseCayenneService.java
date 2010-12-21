@@ -136,7 +136,7 @@ public class BaseCayenneService<T, PK extends Serializable> implements IService<
         return getDataContext().performQuery(query);
     }
 
-    public void autoCommit(boolean autoCommit) {
+    public void update(T entity, boolean refresh) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -29,15 +29,11 @@ import java.util.Map;
  *
  */
 public interface IService<T, PK extends Serializable> {
-    /**
-     * Stablish how will transaction work.
-     * This particular property is defined in the constructor of the implementation of this interface.
-     * @param autoCommit By default we use auto-commit, otherwise (false) you get the control.
-     */
-    void autoCommit(boolean autoCommit);
+
     void insert(T entity);
     void insert(Collection<T> entities);
     void update(T entity);
+    void update(T entity, boolean refresh);
     void update(Collection<T> entities);
     void delete(PK pk);
     void delete(T entity);
