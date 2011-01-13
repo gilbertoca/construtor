@@ -129,4 +129,11 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
         }
         return true;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        naturalPersonService.getEntityManager().close();
+    }
+
 }

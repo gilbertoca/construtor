@@ -21,6 +21,7 @@ public class EditNaturalPerson extends BorderPage {
     private final BaseJPAService<NaturalPerson, Long> naturalPersonService;
 
     public EditNaturalPerson() {
+        System.out.println("\n EditNaturalPerson() method \n");
         naturalPersonService = new BaseJPAService<NaturalPerson, Long>(NaturalPerson.class);
 
         getModel().put("title", getMessage("editNaturalPerson.title"));
@@ -84,6 +85,7 @@ public class EditNaturalPerson extends BorderPage {
     }
 
     public boolean onOkClick() throws Exception {
+        System.out.println("\n onOkClick() method \n");
         //isNew(false)=update, othewise insert
         boolean isNew = false;
         if (form.isValid()) {
@@ -119,6 +121,7 @@ public class EditNaturalPerson extends BorderPage {
     }
 
     public boolean onCancelClick() {
+        System.out.println("\n onCancelClick() method \n");
         //The referrerField HiddenField was set on GET request
         String _referrer = referrerField.getValue();
         if (_referrer != null) {
@@ -128,4 +131,11 @@ public class EditNaturalPerson extends BorderPage {
         }
         return true;
     }
+    @Override
+    public void onDestroy() {
+        System.out.println("\n onDestroy() method \n");
+        super.onDestroy();
+        naturalPersonService.getEntityManager().close();
+    }
+
 }

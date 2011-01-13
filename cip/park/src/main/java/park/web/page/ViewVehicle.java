@@ -4,8 +4,6 @@ import com.google.constructor.cip.orm.jpa.BaseJPAService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
@@ -18,35 +16,36 @@ import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
-import park.model.orm.LegalEntity;
-import park.orm.util.EntityManagerContext;
+import park.model.orm.Vehicle;
 
 /**
  *
  * @author gilberto
  */
-public class ViewLegalEntity extends BorderPage {
+public class ViewVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
 
-    protected Form form = new Form("form");
-    protected Table table = new Table("table");
-    protected PageLink editLink = new PageLink("editLink", EditLegalEntity.class);
-    protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
+    private Form form = new Form("form");
+    private Table table = new Table("table");
+    //private PageLink editLink = new PageLink("editLink", EditVehicle.class);
+    private ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
     private TextField nameField = new TextField("nameField");
 
-    private EntityManager em = EntityManagerContext.getEntityManager();
+    private BaseJPAService<Vehicle, String> vehicleService;
 
     // Constructor ------------------------------------------------------------
-    public ViewLegalEntity() {
-        getModel().put("title", getMessage("viewLegalEntity.title"));
-        getModel().put("heading", getMessage("viewLegalEntity.heading"));
+    public ViewVehicle() {
+        vehicleService = new BaseJPAService<Vehicle, String>(Vehicle.class);
+
+        getModel().put("title", getMessage("viewVehicle.title"));
+        getModel().put("heading", getMessage("viewVehicle.heading"));
         getModel().put("menu", "userMenu");
 
         addControl(form);
         addControl(table);
         addControl(deleteLink);
-        addControl(editLink);
+        //addControl(editLink);
         //setStateful(true);
 
         // Setup the search form
@@ -56,7 +55,7 @@ public class ViewLegalEntity extends BorderPage {
         form.add(new Submit("clearBt", this, "onClearClick"));
         form.add(new Submit("newBt", this, "onNewClick"));
 
-        // Setup LegalEntitys table
+        // Setup Vehicles table
         table.setClass(Table.CLASS_ITS);
         table.setPageSize(10);
         table.setShowBanner(true);
@@ -64,16 +63,19 @@ public class ViewLegalEntity extends BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        Column column =  new Column("name");
+        Column column =  new Column("licensePlate");
         table.addColumn(column);
-        column = new Column("taxpayersId");
+        column = new Column("color");
         table.addColumn(column);
-        column = new Column("dtFoundation");
-        column.setFormat("{0,date,dd/MM/yyyy}");
+        column = new Column("customer.name");
+        table.addColumn(column);
+        column = new Column("priceTable.price");
+        table.addColumn(column);
+        column = new Column("vehicleType.type");
         table.addColumn(column);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
-        editLink.setParameter("referrer", "/view-legal-entity.htm");
+        //editLink.setParameter("referrer", "/view-legal-entity.htm");
 
         //deleteLink.setImageSrc("/assets/images/table-delete.png");
         //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
@@ -81,24 +83,21 @@ public class ViewLegalEntity extends BorderPage {
 
         column = new Column("action");
         column.setTextAlign("center");
-        AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
-        column.setDecorator(new LinkDecorator(table, links, "id"));
+        AbstractLink[] links = new AbstractLink[]{null, deleteLink};
+        column.setDecorator(new LinkDecorator(table, links, "licensePlate"));
         column.setSortable(false);
         table.addColumn(column);
 
-        table.setDataProvider(new DataProvider<LegalEntity>() {
+        table.setDataProvider(new DataProvider<Vehicle>() {
 
-            public List<LegalEntity> getData() {
-                return (List<LegalEntity>) findByName();
+            public List<Vehicle> getData() {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("name", "%" + nameField.getValue() + "%");
+                return (List<Vehicle>) vehicleService.findByNamedQuery("Vehicle.findByName", map);
             }
         });
     }
 
-   private List findByName(){
-        Query queryObject = em.createNamedQuery("LegalEntity.findByName");
-        queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
-        return queryObject.getResultList();
-   }
     // Event Handlers ---------------------------------------------------------
     /**
      * Handle the clear button click event.
@@ -117,7 +116,7 @@ public class ViewLegalEntity extends BorderPage {
      * @return false
      */
     public boolean onNewClick() {
-        String path = getContext().getPagePath(EditLegalEntity.class);
+        //String path = getContext().getPagePath(EditVehicle.class);
         path += "?referrer=/view-legal-entity.htm";
         setRedirect(path);
         return false;
@@ -129,28 +128,12 @@ public class ViewLegalEntity extends BorderPage {
      * @return true
      */
     public boolean onDeleteClick() {
-        Long id = deleteLink.getValueLong();
+        String id = deleteLink.getValue();
         if (id != null) {
-            //We need transation
-            try {
-                em.getTransaction().begin();
-                    em.remove(em.find(LegalEntity.class, id));
-                em.getTransaction().commit();
-            } finally {
-                em.close();
-                //return false;
-            }
+            vehicleService.delete(id);
         } else {
-            throw new NotImplementedException(); 
+            throw new NotImplementedException();
         }
         return true;
     }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(em.isOpen()){
-            em.close();
-        }
-    }
-
 }

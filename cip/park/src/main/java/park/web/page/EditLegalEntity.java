@@ -1,6 +1,6 @@
 package park.web.page;
 
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
+import javax.persistence.EntityManager;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -8,6 +8,7 @@ import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.extras.control.DateField;
 import park.model.orm.LegalEntity;
+import park.orm.util.EntityManagerContext;
 
 /**
  *
@@ -22,11 +23,12 @@ public class EditLegalEntity extends BorderPage {
     // Bindable variables can automatically have their value set by request parameters
     public Long id;
     public String referrer;
-    private BaseJPAService<LegalEntity, Long> legalEntityService;
+    private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor -----------------------------------------------------------
     public EditLegalEntity() {
-        legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
+        System.out.println("\n EditLegalEntity() method \n");
+        //legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
 
         getModel().put("title", getMessage("editLegalEntity.title"));
         getModel().put("heading", getMessage("editLegalEntity.heading"));
@@ -71,9 +73,9 @@ public class EditLegalEntity extends BorderPage {
      */
     @Override
     public void onGet() {
+        System.out.println("\n onGet() method \n");
         if (id != null) {
-            LegalEntity legalEntity = legalEntityService.find(id);
-
+            LegalEntity legalEntity = em.find(LegalEntity.class, id);
             if (legalEntity != null) {
                 // Copy legalEntity data to form. The idField value will be set by
                 // this call
@@ -88,6 +90,7 @@ public class EditLegalEntity extends BorderPage {
     }
 
     public boolean onOkClick() throws Exception {
+        System.out.println("\n onOkClick() method \n");
         //isNew(false)=update, othewise insert
         boolean isNew = false;
         if (form.isValid()) {
@@ -95,19 +98,26 @@ public class EditLegalEntity extends BorderPage {
             //local variable, don't confuse it with the public id parameter of the page
             Long _id = (Long) idField.getValueObject();
             if (_id != null) {
-                legalEntity = legalEntityService.find(_id);
+                legalEntity = em.find(LegalEntity.class, id);
             } else {
                 isNew = true;
                 legalEntity = new LegalEntity();
             }
 
             form.copyTo(legalEntity);
-            if (isNew) {
-                legalEntityService.insert(legalEntity);
-            } else {
-                legalEntityService.update(legalEntity);
+            //We need transation
+            try {
+                em.getTransaction().begin();
+                if (isNew) {
+                    em.persist(legalEntity);
+                } else {
+                    em.merge(legalEntity);
+                }
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+                //return false;
             }
-
             //The referrerField HiddenField was set on GET request
             String _referrer = referrerField.getValue();
             if (_referrer != null) {
@@ -124,6 +134,7 @@ public class EditLegalEntity extends BorderPage {
     }
 
     public boolean onCancelClick() {
+        System.out.println("\n onCancelClick() method \n");
         //The referrerField HiddenField was set on GET request
         String _referrer = referrerField.getValue();
         if (_referrer != null) {
@@ -132,5 +143,14 @@ public class EditLegalEntity extends BorderPage {
             setRedirect(ViewLegalEntity.class);
         }
         return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        System.out.println("\n onDestroy() method \n");
+        super.onDestroy();
+        if(em.isOpen()){
+            em.close();
+        }
     }
 }
