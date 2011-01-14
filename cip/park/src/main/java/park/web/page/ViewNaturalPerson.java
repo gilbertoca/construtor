@@ -20,14 +20,12 @@ import park.orm.util.EntityManagerContext;
 
 public class ViewNaturalPerson extends park.web.page.BorderPage {
 
-     private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1L;
     protected Form form = new Form("form");
     protected Table table = new Table("table");
     protected PageLink editLink = new PageLink("editLink", EditNaturalPerson.class);
     protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
     private TextField nameField = new TextField("nameField");
-
     private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor ------------------------------------------------------------
@@ -59,7 +57,7 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        Column column =  new Column("name");
+        Column column = new Column("name");
         table.addColumn(column);
         column = new Column("legalDocument");
         table.addColumn(column);
@@ -89,13 +87,14 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
         });
     }
 
-   private List findByName(){
+    private List findByName() {
         System.out.println("\n findByName() method \n");
         Query queryObject = em.createNamedQuery("NaturalPerson.findByName");
-        queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
+        queryObject.setParameter("name", "%" + nameField.getValue() + "%");
         return queryObject.getResultList();
-   }
+    }
     // Event Handlers ---------------------------------------------------------
+
     /**
      * Handle the clear button click event.
      *
@@ -126,19 +125,11 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      *
      * @return true
      */
-    public boolean onDeleteClick() {
+    public boolean onDeleteClick() throws Exception {
         System.out.println("\n onDeleteClick() method \n");
         Long _id = deleteLink.getValueLong();
         if (_id != null) {
-            //We need transation
-            try {
-                em.getTransaction().begin();
-                em.remove(em.find(NaturalPerson.class, _id));
-                em.getTransaction().commit();
-            } finally {
-                em.close();
-                //return false;
-            }
+            delete(_id);
         } else {
             throw new NotImplementedException();
         }
@@ -149,9 +140,27 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
     public void onDestroy() {
         System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        if(em.isOpen()){
+        if (em.isOpen()) {
             em.close();
         }
     }
 
+    private void delete(Long id)  throws Exception {
+        //We need transation
+        try {
+            em.getTransaction().begin();
+            em.remove(em.find(NaturalPerson.class, id));
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            try {
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
+            throw ex;
+        }
+    }
 }

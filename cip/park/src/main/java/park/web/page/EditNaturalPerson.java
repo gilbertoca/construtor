@@ -70,7 +70,7 @@ public class EditNaturalPerson extends BorderPage {
     public void onGet() {
         System.out.println("\n onGet() method \n");
         if (id != null) {
-            NaturalPerson naturalPerson = em.find(NaturalPerson.class,id);
+            NaturalPerson naturalPerson = em.find(NaturalPerson.class, id);
             System.out.println("\n em.find(id) was triggered \n");
             if (naturalPerson != null) {
                 // Copy naturalPerson data to form. The idField value will be set by
@@ -94,7 +94,7 @@ public class EditNaturalPerson extends BorderPage {
             //local variable, don't confuse it with the public id parameter of the page
             Long _id = (Long) idField.getValueObject();
             if (_id != null) {
-                naturalPerson = em.find(NaturalPerson.class,_id);
+                naturalPerson = em.find(NaturalPerson.class, _id);
             } else {
                 isNew = true;
                 naturalPerson = new NaturalPerson();
@@ -110,10 +110,18 @@ public class EditNaturalPerson extends BorderPage {
                     em.merge(naturalPerson);
                 }
                 em.getTransaction().commit();
-            } finally {
-                em.close();
-                //return false;
+            } catch (Exception ex) {
+                try {
+                    if (em.getTransaction().isActive()) {
+                        em.getTransaction().rollback();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+                throw ex;
             }
+
             //The referrerField HiddenField was set on GET request
             String _referrer = referrerField.getValue();
             if (_referrer != null) {
@@ -140,13 +148,13 @@ public class EditNaturalPerson extends BorderPage {
         }
         return true;
     }
+
     @Override
     public void onDestroy() {
         System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        if(em.isOpen()){
+        if (em.isOpen()) {
             em.close();
         }
     }
-
 }

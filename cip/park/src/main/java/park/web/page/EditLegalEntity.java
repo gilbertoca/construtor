@@ -113,10 +113,18 @@ public class EditLegalEntity extends BorderPage {
                     em.merge(legalEntity);
                 }
                 em.getTransaction().commit();
-            } finally {
-                em.close();
-                //return false;
+            } catch (Exception ex) {
+                try {
+                    if (em.getTransaction().isActive()) {
+                        em.getTransaction().rollback();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+                throw ex;
             }
+
             //The referrerField HiddenField was set on GET request
             String _referrer = referrerField.getValue();
             if (_referrer != null) {
@@ -148,7 +156,7 @@ public class EditLegalEntity extends BorderPage {
     public void onDestroy() {
         System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        if(em.isOpen()){
+        if (em.isOpen()) {
             em.close();
         }
     }
