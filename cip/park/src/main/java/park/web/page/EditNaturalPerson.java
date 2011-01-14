@@ -1,6 +1,7 @@
 package park.web.page;
 
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
+import javax.persistence.EntityManager;
+import org.apache.click.Page;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -8,6 +9,7 @@ import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.extras.control.DateField;
 import park.model.orm.NaturalPerson;
+import park.orm.util.EntityManagerContext;
 
 public class EditNaturalPerson extends BorderPage {
 
@@ -18,11 +20,10 @@ public class EditNaturalPerson extends BorderPage {
     // Bindable variables can automatically have their value set by request parameters
     public Long id;
     public String referrer;
-    private final BaseJPAService<NaturalPerson, Long> naturalPersonService;
+    private EntityManager em = EntityManagerContext.getEntityManager();
 
     public EditNaturalPerson() {
         System.out.println("\n EditNaturalPerson() method \n");
-        naturalPersonService = new BaseJPAService<NaturalPerson, Long>(NaturalPerson.class);
 
         getModel().put("title", getMessage("editNaturalPerson.title"));
         getModel().put("heading", getMessage("editNaturalPerson.heading"));
@@ -69,8 +70,8 @@ public class EditNaturalPerson extends BorderPage {
     public void onGet() {
         System.out.println("\n onGet() method \n");
         if (id != null) {
-            NaturalPerson naturalPerson = naturalPersonService.find(id);
-            System.out.println("\n naturalPersonService.find(id) was triggered \n");
+            NaturalPerson naturalPerson = em.find(NaturalPerson.class,id);
+            System.out.println("\n em.find(id) was triggered \n");
             if (naturalPerson != null) {
                 // Copy naturalPerson data to form. The idField value will be set by
                 // this call
@@ -93,17 +94,25 @@ public class EditNaturalPerson extends BorderPage {
             //local variable, don't confuse it with the public id parameter of the page
             Long _id = (Long) idField.getValueObject();
             if (_id != null) {
-                naturalPerson = naturalPersonService.find(_id);
+                naturalPerson = em.find(NaturalPerson.class,_id);
             } else {
                 isNew = true;
                 naturalPerson = new NaturalPerson();
             }
 
             form.copyTo(naturalPerson);
-            if (isNew) {
-                naturalPersonService.insert(naturalPerson);
-            } else {
-                naturalPersonService.update(naturalPerson);
+            //We need transation
+            try {
+                em.getTransaction().begin();
+                if (isNew) {
+                    em.persist(naturalPerson);
+                } else {
+                    em.merge(naturalPerson);
+                }
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+                //return false;
             }
             //The referrerField HiddenField was set on GET request
             String _referrer = referrerField.getValue();
@@ -135,7 +144,9 @@ public class EditNaturalPerson extends BorderPage {
     public void onDestroy() {
         System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        naturalPersonService.getEntityManager().close();
+        if(em.isOpen()){
+            em.close();
+        }
     }
 
 }

@@ -1,9 +1,6 @@
 package park.web.page;
 
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.apache.click.control.AbstractLink;
@@ -39,6 +36,8 @@ public class ViewLegalEntity extends BorderPage {
 
     // Constructor ------------------------------------------------------------
     public ViewLegalEntity() {
+        System.out.println("\n ViewLegalEntity() method \n");
+
         getModel().put("title", getMessage("viewLegalEntity.title"));
         getModel().put("heading", getMessage("viewLegalEntity.heading"));
         getModel().put("menu", "userMenu");
@@ -95,6 +94,7 @@ public class ViewLegalEntity extends BorderPage {
     }
 
    private List findByName(){
+        System.out.println("\n findByName() method \n");
         Query queryObject = em.createNamedQuery("LegalEntity.findByName");
         queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
         return queryObject.getResultList();
@@ -106,6 +106,7 @@ public class ViewLegalEntity extends BorderPage {
      * @return true
      */
     public boolean onClearClick() {
+        System.out.println("\n onClearClick() method \n");
         form.clearErrors();
         form.clearValues();
         return true;
@@ -117,6 +118,7 @@ public class ViewLegalEntity extends BorderPage {
      * @return false
      */
     public boolean onNewClick() {
+        System.out.println("\n onNewClick() method \n");
         String path = getContext().getPagePath(EditLegalEntity.class);
         path += "?referrer=/view-legal-entity.htm";
         setRedirect(path);
@@ -129,12 +131,13 @@ public class ViewLegalEntity extends BorderPage {
      * @return true
      */
     public boolean onDeleteClick() {
-        Long id = deleteLink.getValueLong();
-        if (id != null) {
+        System.out.println("\n onDeleteClick() method \n");
+        Long _id = deleteLink.getValueLong();
+        if (_id != null) {
             //We need transation
             try {
                 em.getTransaction().begin();
-                    em.remove(em.find(LegalEntity.class, id));
+                    em.remove(em.find(LegalEntity.class, _id));
                 em.getTransaction().commit();
             } finally {
                 em.close();
@@ -147,6 +150,7 @@ public class ViewLegalEntity extends BorderPage {
     }
     @Override
     public void onDestroy() {
+        System.out.println("\n onDestroy() method \n");
         super.onDestroy();
         if(em.isOpen()){
             em.close();

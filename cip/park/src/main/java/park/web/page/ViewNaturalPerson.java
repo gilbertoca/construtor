@@ -1,9 +1,8 @@
 package park.web.page;
 
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
@@ -17,6 +16,7 @@ import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
 import park.model.orm.NaturalPerson;
+import park.orm.util.EntityManagerContext;
 
 public class ViewNaturalPerson extends park.web.page.BorderPage {
 
@@ -28,11 +28,11 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
     protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
     private TextField nameField = new TextField("nameField");
 
-    private BaseJPAService<NaturalPerson, Long> naturalPersonService;
+    private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor ------------------------------------------------------------
     public ViewNaturalPerson() {
-        naturalPersonService = new BaseJPAService<NaturalPerson, Long>(NaturalPerson.class);
+        System.out.println("\n ViewNaturalPerson() method \n");
 
         getModel().put("title", getMessage("viewNaturalPerson.title"));
         getModel().put("heading", getMessage("viewNaturalPerson.heading"));
@@ -84,13 +84,17 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
         table.setDataProvider(new DataProvider<NaturalPerson>() {
 
             public List<NaturalPerson> getData() {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("name", "%" + nameField.getValue() + "%");
-                return (List<NaturalPerson>) naturalPersonService.findByNamedQuery("NaturalPerson.findByName", map);
+                return (List<NaturalPerson>) findByName();
             }
         });
     }
 
+   private List findByName(){
+        System.out.println("\n findByName() method \n");
+        Query queryObject = em.createNamedQuery("NaturalPerson.findByName");
+        queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
+        return queryObject.getResultList();
+   }
     // Event Handlers ---------------------------------------------------------
     /**
      * Handle the clear button click event.
@@ -98,6 +102,7 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      * @return true
      */
     public boolean onClearClick() {
+        System.out.println("\n onClearClick() method \n");
         form.clearErrors();
         form.clearValues();
         return true;
@@ -109,6 +114,7 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      * @return false
      */
     public boolean onNewClick() {
+        System.out.println("\n onNewClick() method \n");
         String path = getContext().getPagePath(EditNaturalPerson.class);
         path += "?referrer=/view-natural-person.htm";
         setRedirect(path);
@@ -121,9 +127,18 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      * @return true
      */
     public boolean onDeleteClick() {
-        Long id = deleteLink.getValueLong();
-        if (id != null) {
-            naturalPersonService.delete(id);
+        System.out.println("\n onDeleteClick() method \n");
+        Long _id = deleteLink.getValueLong();
+        if (_id != null) {
+            //We need transation
+            try {
+                em.getTransaction().begin();
+                em.remove(em.find(NaturalPerson.class, _id));
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+                //return false;
+            }
         } else {
             throw new NotImplementedException();
         }
@@ -132,8 +147,11 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
 
     @Override
     public void onDestroy() {
+        System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        naturalPersonService.getEntityManager().close();
+        if(em.isOpen()){
+            em.close();
+        }
     }
 
 }

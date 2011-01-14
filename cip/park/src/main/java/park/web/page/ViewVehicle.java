@@ -1,14 +1,12 @@
 package park.web.page;
 
-import com.google.constructor.cip.orm.jpa.BaseJPAService;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
 import org.apache.click.control.Form;
-import org.apache.click.control.PageLink;
 import org.apache.click.control.Submit;
 import org.apache.click.control.Table;
 import org.apache.click.control.TextField;
@@ -17,6 +15,7 @@ import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
 import park.model.orm.Vehicle;
+import park.orm.util.EntityManagerContext;
 
 /**
  *
@@ -32,11 +31,11 @@ public class ViewVehicle extends BorderPage {
     private ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
     private TextField nameField = new TextField("nameField");
 
-    private BaseJPAService<Vehicle, String> vehicleService;
+    private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor ------------------------------------------------------------
     public ViewVehicle() {
-        vehicleService = new BaseJPAService<Vehicle, String>(Vehicle.class);
+        System.out.println("\n ViewVehicle() method \n");
 
         getModel().put("title", getMessage("viewVehicle.title"));
         getModel().put("heading", getMessage("viewVehicle.heading"));
@@ -89,14 +88,18 @@ public class ViewVehicle extends BorderPage {
         table.addColumn(column);
 
         table.setDataProvider(new DataProvider<Vehicle>() {
-
             public List<Vehicle> getData() {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("name", "%" + nameField.getValue() + "%");
-                return (List<Vehicle>) vehicleService.findByNamedQuery("Vehicle.findByName", map);
+                return (List<Vehicle>) findByName();
             }
         });
     }
+    
+   private List findByName(){
+        System.out.println("\n findByName() method \n");
+        Query queryObject = em.createNamedQuery("Vehicle.findByName");
+        queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
+        return queryObject.getResultList();
+   }
 
     // Event Handlers ---------------------------------------------------------
     /**
@@ -105,6 +108,7 @@ public class ViewVehicle extends BorderPage {
      * @return true
      */
     public boolean onClearClick() {
+        System.out.println("\n onClearClick() method \n");
         form.clearErrors();
         form.clearValues();
         return true;
@@ -116,6 +120,7 @@ public class ViewVehicle extends BorderPage {
      * @return false
      */
     public boolean onNewClick() {
+        System.out.println("\n onNewClick() method \n");
         //String path = getContext().getPagePath(EditVehicle.class);
         path += "?referrer=/view-legal-entity.htm";
         setRedirect(path);
@@ -128,12 +133,31 @@ public class ViewVehicle extends BorderPage {
      * @return true
      */
     public boolean onDeleteClick() {
-        String id = deleteLink.getValue();
-        if (id != null) {
-            vehicleService.delete(id);
+        System.out.println("\n onDeleteClick() method \n");
+        String _id = deleteLink.getValue();
+        if (_id != null) {
+            //We need transation
+            try {
+                em.getTransaction().begin();
+                em.remove(em.find(Vehicle.class, _id));
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+                //return false;
+            }
         } else {
             throw new NotImplementedException();
         }
         return true;
     }
+    
+    @Override
+    public void onDestroy() {
+        System.out.println("\n onDestroy() method \n");
+        super.onDestroy();
+        if(em.isOpen()){
+            em.close();
+        }
+    }
+
 }

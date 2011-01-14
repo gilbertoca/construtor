@@ -123,11 +123,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.constructor.cip</groupId>
-            <artifactId>orm</artifactId>
-            <version>${cip.orm.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.6</version>
@@ -187,7 +182,6 @@
     <properties>
         <!-- versions -->
         <click.version>2.3.0-M1</click.version>
-        <cip.orm.version>1.0-SNAPSHOT</cip.orm.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->

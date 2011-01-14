@@ -28,7 +28,6 @@ public class EditLegalEntity extends BorderPage {
     // Constructor -----------------------------------------------------------
     public EditLegalEntity() {
         System.out.println("\n EditLegalEntity() method \n");
-        //legalEntityService = new BaseJPAService<LegalEntity, Long>(LegalEntity.class);
 
         getModel().put("title", getMessage("editLegalEntity.title"));
         getModel().put("heading", getMessage("editLegalEntity.heading"));
