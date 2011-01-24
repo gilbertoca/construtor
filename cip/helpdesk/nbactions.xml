@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-cayenne-modeler:run</actionName>
+            <displayName>cayenne-modeler:run</displayName>
+            <goals>
+                <goal>cayenne-modeler:run</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-sql:execute</actionName>
+            <displayName>sql:execute</displayName>
+            <goals>
+                <goal>sql:execute</goal>
+            </goals>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </action>
+    </actions>
