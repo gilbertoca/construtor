@@ -4,17 +4,16 @@
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
 	 project-version="6">
 	<property name="defaultPackage" value="helpdesk.model"/>
-	<property name="defaultSchema" value="helpdesk"/>
-	<db-entity name="equipment_types" schema="helpdesk">
+	<db-entity name="equipment_types">
 		<db-attribute name="description" type="VARCHAR" length="50"/>
 		<db-attribute name="equipment_type_id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
-	<db-entity name="equipments" schema="helpdesk">
+	<db-entity name="equipments">
 		<db-attribute name="dt_acquired" type="DATE"/>
 		<db-attribute name="dt_disposed" type="DATE"/>
 		<db-attribute name="equipment_code" type="VARCHAR" length="20"/>
 		<db-attribute name="equipment_id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
-		<db-attribute name="equipment_name" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="60"/>
+		<db-attribute name="equipment_name" type="VARCHAR" isMandatory="true" length="60"/>
 		<db-attribute name="equipment_type_id" type="INTEGER" isMandatory="true"/>
 		<db-attribute name="manufacturer_name" type="VARCHAR" length="60"/>
 		<db-attribute name="other_details" type="VARCHAR" length="255"/>
@@ -23,11 +22,14 @@
 		<obj-attribute name="dtAcquired" type="java.util.Date" db-attribute-path="dt_acquired"/>
 		<obj-attribute name="dtDisposed" type="java.util.Date" db-attribute-path="dt_disposed"/>
 		<obj-attribute name="equipmentCode" type="java.lang.String" db-attribute-path="equipment_code"/>
+		<obj-attribute name="equipmentName" type="java.lang.String" db-attribute-path="equipment_name"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="equipment_id"/>
 		<obj-attribute name="manufacturerName" type="java.lang.String" db-attribute-path="manufacturer_name"/>
 		<obj-attribute name="otherDetails" type="java.lang.String" db-attribute-path="other_details"/>
 	</obj-entity>
 	<obj-entity name="EquipmentType" className="helpdesk.model.EquipmentType" dbEntityName="equipment_types">
 		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="equipment_type_id"/>
 	</obj-entity>
 	<db-relationship name="equipmentTypes" source="equipment_types" target="equipments" toMany="true">
 		<db-attribute-pair source="equipment_type_id" target="equipment_type_id"/>

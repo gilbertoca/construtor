@@ -17,12 +17,13 @@ public abstract class _Equipment extends CayenneDataObject {
     public static final String DT_ACQUIRED_PROPERTY = "dtAcquired";
     public static final String DT_DISPOSED_PROPERTY = "dtDisposed";
     public static final String EQUIPMENT_CODE_PROPERTY = "equipmentCode";
+    public static final String EQUIPMENT_NAME_PROPERTY = "equipmentName";
+    public static final String ID_PROPERTY = "id";
     public static final String MANUFACTURER_NAME_PROPERTY = "manufacturerName";
     public static final String OTHER_DETAILS_PROPERTY = "otherDetails";
     public static final String EQUIPMENT_PROPERTY = "equipment";
 
     public static final String EQUIPMENT_ID_PK_COLUMN = "equipment_id";
-    public static final String EQUIPMENT_NAME_PK_COLUMN = "equipment_name";
 
     public void setDtAcquired(Date dtAcquired) {
         writeProperty("dtAcquired", dtAcquired);
@@ -43,6 +44,20 @@ public abstract class _Equipment extends CayenneDataObject {
     }
     public String getEquipmentCode() {
         return (String)readProperty("equipmentCode");
+    }
+
+    public void setEquipmentName(String equipmentName) {
+        writeProperty("equipmentName", equipmentName);
+    }
+    public String getEquipmentName() {
+        return (String)readProperty("equipmentName");
+    }
+
+    public void setId(Integer id) {
+        writeProperty("id", id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty("id");
     }
 
     public void setManufacturerName(String manufacturerName) {

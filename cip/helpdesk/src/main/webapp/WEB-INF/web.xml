@@ -18,6 +18,20 @@
         <servlet-name>click-servlet</servlet-name>
     </filter-mapping>
     -->
+    <filter>
+        <filter-name>DataContextFilter</filter-name>
+        <filter-class>org.apache.cayenne.configuration.web.CayenneFilter</filter-class>
+       <init-param>
+            <param-name>configuration-location</param-name>
+            <param-value>cayenne-HelpDeskDomain.xml</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>DataContextFilter</filter-name>
+        <servlet-name>click-servlet</servlet-name>
+    </filter-mapping>
+   
     <servlet>
         <servlet-name>click-servlet</servlet-name>
         <servlet-class>org.apache.click.ClickServlet</servlet-class>
@@ -36,5 +50,5 @@
     <error-page>
         <error-code>403</error-code>
         <location>/not-authorized.htm</location>
-    </error-page>	
+    </error-page>
 </web-app>

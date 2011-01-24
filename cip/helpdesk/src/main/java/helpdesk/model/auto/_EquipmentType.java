@@ -15,6 +15,7 @@ import helpdesk.model.Equipment;
 public abstract class _EquipmentType extends CayenneDataObject {
 
     public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String ID_PROPERTY = "id";
     public static final String EQUIPMENT_TYPES_PROPERTY = "equipmentTypes";
 
     public static final String EQUIPMENT_TYPE_ID_PK_COLUMN = "equipment_type_id";
@@ -24,6 +25,13 @@ public abstract class _EquipmentType extends CayenneDataObject {
     }
     public String getDescription() {
         return (String)readProperty("description");
+    }
+
+    public void setId(Integer id) {
+        writeProperty("id", id);
+    }
+    public Integer getId() {
+        return (Integer)readProperty("id");
     }
 
     public void addToEquipmentTypes(Equipment obj) {
