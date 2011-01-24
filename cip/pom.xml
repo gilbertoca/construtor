@@ -98,7 +98,7 @@
         <module>shiro</module>
         <module>rolesecurity</module>
         <module>park</module>
-        <module>park-cayenne</module>
+        <module>helpdesk</module>
     </modules>
 
     <reporting>
