@@ -179,8 +179,8 @@
         <!--jdbc.url>jdbc:h2:mem;create=true</jdbc.url-->
         <jdbc.url>jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <jdbc.username>click</jdbc.username>
-        <jdbc.password>click</jdbc.password>
+        <jdbc.username>help</jdbc.username>
+        <jdbc.password>help</jdbc.password>
 
         <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>
