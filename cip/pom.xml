@@ -76,7 +76,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <!-- version>2.0.2</version-->
+                <version>2.3.2</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -85,7 +85,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <!--version>RELEASE</version-->
+                <version>2.4.3</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -105,23 +105,28 @@
         <plugins>
             <plugin>
                 <artifactId>maven-changes-plugin</artifactId>
+                <version>2.3</version>
             </plugin>
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.6</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.4</version>
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
             </plugin>
             <plugin>
                 <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.2</version>
             </plugin>
             <plugin>
                 <artifactId>maven-pmd-plugin</artifactId>
+                <version>2.5</version>
                 <configuration>
                     <linkXref>true</linkXref>
                     <targetJdk>1.5</targetJdk>
@@ -129,6 +134,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.7.1</version>
             </plugin>
         </plugins>
     </reporting>
