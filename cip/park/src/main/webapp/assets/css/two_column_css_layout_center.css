@@ -1,108 +1,112 @@
-/* 
-    Document   : style
-    Created on : 11/02/2011, 16:19:42
-    Author     : gilberto
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-
-
-html, body {
-    margin: 0px;
-    padding: 0px;
-}
 body {
-    font-family: Verdana, Arial, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 11px;
-    color: #3F4554;
+    color: #333;
     text-align: center;
-    line-height: 1.8em;
+    margin: 0px;
+    padding: 20px 0px 20px 0px;
 }
 #wrapper {
-    width: 800px;
-    margin: 15px auto 15px auto;
-    padding: 0px;
+    width: 956px;
+    padding: 10px;
+    margin: 0px auto 0px auto;
+    height: auto;
     text-align: left;
-    border: solid 1px #dadada;
+    border: 1px solid #ddd;
 }
 #header {
-    width: 100%;
-    height: 70px;
+    margin: 0px;
+    padding: 0px;
+    height: 100px;
+    width: auto;
     background-color: #f1f1f1;
-    border-bottom: solid 1px #dadada;
 }
 #container {
-    width: 100%;
-    height: auto;
-    margin: 0px;
-    padding:2px 0px;
-    background-position: 200px 0px;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
+    background-attachment: scroll;
+    background-image: url(/assets/images/back.gif);
+    background-repeat: repeat-y;
+    background-position: 0px 0px;
+    height: 1%;
+    width: auto;
 }
 #left {
+    margin: 0px;
     width: 160px;
-    height: auto;
+    padding: 10px 20px 10px 20px;
     float: left;
-    padding: 20px;
-    margin: 0px;
-}
-#right {
-    width: 530px;
-    height: auto;
-    float: left;
-    padding: 20px 50px 20px 20px;
-    margin: 0px;
-}
-#right p {
-    margin: 0px;
-}
-.clearer {
-    font-size: 0px;
-    height: 0px;
-    width: 100%;
-    display: block;
-    clear: both;
 }
 #nav {
     margin: 0px;
     padding: 0px;
-    list-style: none;
     list-style-image: none;
+    list-style-type: none;
 }
 #nav li {
     margin: 0px;
     padding: 0px;
-    display: inline;
+    display: block;
+    background-attachment: scroll;
+    background-image: url(bullet.gif);
+    background-repeat: no-repeat;
+    background-position: 0px 50%;
 }
 #nav li a:link, #nav li a:visited, #nav li a:active {
-    color:#3F4554;
+    color: #666;
     text-decoration: none;
     display: block;
     margin: 0px;
-    padding: 0px;
-    width: 160px;
+    padding: 3px 15px 3px 15px;
+    width: 130px;
 }
 #nav li a:hover {
-    color: #ccc;
+    color: #999;
     text-decoration: none;
 }
-#footer {
-    padding: 0px;
+#center {
+    height: auto;
+    width: 504px;
+    padding: 10px 20px 10px 20px;
+    float: left;
+    margin: 0px 0px 0px 6px;
+    line-height: 1.8em;
+}
+h1 {
+    font-size: 14px;
     margin: 0px;
-    border-top: solid 1px #dadada;
+    padding: 0px;
+}
+#right {
+    padding: 10px 20px 10px 20px;
+    height: auto;
+    width: 160px;
+    float: left;
+    margin: 0px 0px 0px 6px;
+}
+.clearer {
+    font-size: 0px;
+    line-height: 0px;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    clear: both;
+    height: 0px;
+    width: auto;
+}
+#footer {
+    margin: 10px 0px 0px 0px;
     text-align: center;
+    padding: 15px 0px 15px 0px;
+    background-color: #f1f1f1;
 }
 #footer p {
+    color: #999;
     margin: 0px auto 0px auto;
-    padding: 10px 0px 10px 0px;
-    color: #aaa;
+    padding: 0px;
 }
 #footer a:link, #footer a:visited, #footer a:active {
-    color: #aaa;
+    color: #999;
     text-decoration: none;
 }
 #footer a:hover {
