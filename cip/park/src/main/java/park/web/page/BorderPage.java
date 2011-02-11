@@ -69,7 +69,7 @@ public class BorderPage extends Page {
      */
     @Override
     public String getTemplate() {
-        return "/assets/common/template.htm";
+        return "/assets/common/template_1_1.htm";
     }
 
 }

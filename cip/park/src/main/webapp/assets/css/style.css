@@ -1,0 +1,299 @@
+/* 
+    Document   : style
+    Created on : 11/02/2011, 16:19:42
+    Author     : gilberto
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+html, #ph, #fd, #vbsk, #vbsk a, #nv, .cl, #cntgb, #cntgb a, label#sbm_contact, #btn_contact, .dev {
+	margin:0px;
+	padding:0px;
+}
+body {
+	background:#f1f1f1;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#686868;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	background:url(/images/back.gif) repeat-y center 0 #111;
+}
+a:link, a:visited, a:active {
+	text-decoration:none;
+	color:#aa0000;
+	outline:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+.br_td {
+	border-top: dashed 1px #aaa;
+}
+.br_ts {
+	border-top: solid 1px #aaa;
+}
+.bld {
+	font-weight:bold;
+}
+.red {
+	color:#900;
+}
+.dev {
+	width:100%;
+	height:14px;
+	line-height:0px;
+	font-size:0px;
+	clear:both;
+}
+.bor {
+	border-top:solid 1px #aaa;
+}
+#wr {
+	width:890px;
+	padding:0px;
+	margin:0px auto;
+	text-align:left;
+}
+#ph {
+	width:100%;
+	height:60px;
+	position:relative;
+	background:url(../images/logo.png) 25px 8px no-repeat;
+}
+#logo {
+	position: absolute;
+	top:8px;
+	left: 23px;
+}
+#logo,#logo a {
+	display: block;
+	text-indent: -999999em;
+	overflow: hidden;
+	width: 326px;
+	height: 45px;
+}
+#fd {
+	display:block;
+	width:87px;
+	height:30px;
+	position:absolute;
+	top:6px;
+	right:233px;
+	background:url(../images/feed.png) no-repeat 0px -30px;
+}
+#fd a {
+	display:block;
+	width:87px;
+	height:30px;
+	background:url(../images/feed.png) no-repeat 0px 0px;
+	text-indent:-999999em;
+	overflow:hidden;
+}
+#fd a:hover,#itunes a:hover,#vbsk a:hover,#rq_tut a:hover {
+	background-image:none;
+}
+#nv {
+	width:884px;
+	height:33px;
+	border:solid 3px #fff;
+	background-color:#313131;
+}
+
+#hd {
+	width:884px;
+	height:229px;
+	border-left:solid 3px #fff;
+	border-right:solid 3px #fff;
+	background-color:#313131;
+	background:url(../images/hd.png) no-repeat 0px 0px;
+	padding:0px;
+	margin:0;
+}
+.cl {
+	display:block;
+	width:100%;
+	height:0px;
+	line-height:0px;
+	font-size:0px;
+	clear:both;
+}
+#cnt {
+	margin:0px;
+	padding:20px 0px 0px 0px;
+	line-height:22px;
+}
+#cnt p {
+	margin:0px;
+	padding:0px 0px 12px 0px;
+}
+#cnt p.pt, .pt {
+	font-size:16px;
+	color:#ad0b0b;
+	padding:0px 0px 3px 0px;
+	margin:0px 0px 12px 0px;
+	border-bottom:solid 1px #aaa;
+	font-weight:bold;
+}
+p.spt {
+	font-size:14px;
+	font-weight:bold;
+}
+#cntgb, #cntgb a {
+	width:91px;
+	height:19px;
+	display:block;
+	text-indent:-999999em;
+	overflow:hidden;
+}
+#cntgb {
+	background:url(../images/go_back.png) no-repeat 0px 0px;
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+#cent {
+	margin:0px;
+	padding:0px 30px 8px 30px;
+	position:relative;
+}
+#lft, #rgt {
+	float:left;
+}
+#lft {
+	width:520px;
+	padding:0px 0px 8px 30px;
+	position:relative;
+}
+#rgt {
+	width:270px;
+	padding:0px 30px 8px 40px;
+}
+#ft {
+	/* padding:15px 30px; */
+	margin:0;
+	text-align:center;
+	color:#5b5959;
+	font-size:11px;
+	line-height:20px;
+	background:#111;
+	width:884px;
+	padding:15px 0;
+	border-right:solid 3px #fff;
+	border-bottom:solid 3px #fff;
+	border-left:solid 3px #fff;
+}
+#ft p {
+	padding:0px;
+	margin:0px auto;
+}
+#ft a {
+	color:#5b5959;
+}
+#ft a:hover {
+	text-decoration:none;
+	color:#777;
+}
+ul.resul {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+ul.resul li {
+	margin:0px;
+	padding:0px 0px 15px 0px;
+}
+span.artclpt {
+	font-weight:bold;
+}
+span.artcldte {
+	color:#999;
+}
+label#sbm_contact {
+	height:18px;
+	border:solid 1px #aaa;
+	padding:0px;
+	margin:0px;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	width:150px;
+	display:block;
+}
+label#sbm_contact {
+	background-image:url(../images/btn_cont_3.png);
+}
+label#sbm_contact:hover {
+	border:solid 1px #ccc;
+}
+#btn_contact {
+	width:150px;
+	height:18px;
+	line-height:0px;
+	text-align:center;
+	border:none;
+	background:transparent;
+	display:block;
+	cursor:pointer;
+	font-size:0px;
+	text-indent:-999999em;
+	overflow:hidden;
+}
+ul.cntul {
+	margin:0px;
+	padding:0px 0px 12px 0px;
+	list-style:none;
+}
+ul.cntul li {
+	background:url(../images/lnvblt.gif) no-repeat 15px 10px;
+	padding:0px 0px 0px 15px;
+	margin:0px;
+	display:block;
+	height:1%;
+	width:505px;
+}
+ul.cntul li a {
+	width:auto;
+	height:auto;
+	margin:0px;
+	padding:2px 0px 2px 18px;
+}
+.recip {
+	background-color:#f9f9f9;
+	border:solid 1px #ccc;
+	padding:10px 15px;
+	margin:0px 0px 12px 0px;
+	display:block;
+}
+.ul_soc_2 {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+	float:left;
+	width:269px;
+}
+.ul_soc_2 li,.ul_soc_2 li a {
+	display:block;
+	width:122px;
+	height:42px;
+	margin:0px;
+	padding:0px;
+	float:left;
+}
+.ul_soc_2 li.twitter_btn {
+	float:left;
+}
+.ul_soc_2 li.facebook_btn {
+	background:none;
+	float:right;
+}
+.outdated {
+	border:solid 3px #fff;
+	margin-top:10px;
+}

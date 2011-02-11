@@ -7,7 +7,12 @@
 
     <body>
 
-        #parse ("/assets/common/menu_dropdowns.vm")
+        <div id="header">
+            #parse ("/assets/common/header.vm")
+        </div>
+
+        <!-- Horizontal menu, top to bottom "navbar" Div-->
+        #parse ("/assets/common/menu.vm")
 
         <div id="container">
             <div id="content">#parse($path)</div>
