@@ -69,7 +69,7 @@ public class BorderPage extends Page {
      */
     @Override
     public String getTemplate() {
-        return "/assets/common/template_two_column_rnav.htm";
+        return "/assets/common/template_two_column_center_nav.htm";
     }
 
 }
