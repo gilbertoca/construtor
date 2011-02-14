@@ -11,18 +11,15 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-
-html, body {
-    margin: 0px;
-    padding: 0px;
-}
+/* page styling, unimportant for the menu. only makes the page looks nicer */
 body {
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 11px;
-    color: #3F4554;
-    text-align: center;
-    line-height: 1.8em;
+	font-family: Calibri, "Trebuchet MS", sans-serif;
+	font-size: 100%;
 }
+
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+
 #wrapper {
     width: 800px;
     margin: 15px auto 15px auto;
@@ -43,23 +40,23 @@ body {
     padding:2px 0px;
     background-image: url(/assets/images/divider.gif);
     background-repeat: repeat-y;
-    background-position: 200px 0px;
+    background-position: 600px 0px;
 }
-#left {
+#right {
     width: 160px;
     height: auto;
     float: left;
     padding: 20px;
     margin: 0px;
 }
-#right {
+#left {
     width: 530px;
     height: auto;
     float: left;
     padding: 20px 50px 20px 20px;
     margin: 0px;
 }
-#right p {
+#left p {
     margin: 0px;
 }
 .clearer {
