@@ -7,6 +7,7 @@ import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
 import org.apache.click.control.Form;
+import org.apache.click.control.PageLink;
 import org.apache.click.control.Submit;
 import org.apache.click.control.Table;
 import org.apache.click.control.TextField;
@@ -27,9 +28,9 @@ public class ViewVehicle extends BorderPage {
 
     private Form form = new Form("form");
     private Table table = new Table("table");
-    //private PageLink editLink = new PageLink("editLink", EditVehicle.class);
+    private PageLink editLink = new PageLink("editLink", EditVehicle.class);
     private ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
-    private TextField nameField = new TextField("nameField");
+    private TextField licensePlateField = new TextField("nameField");
 
     private EntityManager em = EntityManagerContext.getEntityManager();
 
@@ -49,7 +50,7 @@ public class ViewVehicle extends BorderPage {
 
         // Setup the search form
         form.setColumns(2);
-        form.add(nameField);
+        form.add(licensePlateField);
         form.add(new Submit("searchBt"));
         form.add(new Submit("clearBt", this, "onClearClick"));
         form.add(new Submit("newBt", this, "onNewClick"));
@@ -74,7 +75,7 @@ public class ViewVehicle extends BorderPage {
         table.addColumn(column);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
-        //editLink.setParameter("referrer", "/view-legal-entity.htm");
+        editLink.setParameter("referrer", "/view-vehicle.htm");
 
         //deleteLink.setImageSrc("/assets/images/table-delete.png");
         //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
@@ -89,15 +90,15 @@ public class ViewVehicle extends BorderPage {
 
         table.setDataProvider(new DataProvider<Vehicle>() {
             public List<Vehicle> getData() {
-                return (List<Vehicle>) findByName();
+                return (List<Vehicle>) findByLicensePlate();
             }
         });
     }
     
-   private List findByName(){
-        System.out.println("\n findByName() method \n");
-        Query queryObject = em.createNamedQuery("Vehicle.findByName");
-        queryObject.setParameter("name",  "%" + nameField.getValue() + "%");
+   private List findByLicensePlate(){
+        System.out.println("\n findByLicensePlate() method \n");
+        Query queryObject = em.createNamedQuery("Vehicle.findByLicensePlate");
+        queryObject.setParameter("licensePlate",  "%" + licensePlateField.getValue() + "%");
         return queryObject.getResultList();
    }
 
@@ -121,8 +122,8 @@ public class ViewVehicle extends BorderPage {
      */
     public boolean onNewClick() {
         System.out.println("\n onNewClick() method \n");
-        //String path = getContext().getPagePath(EditVehicle.class);
-        path += "?referrer=/view-legal-entity.htm";
+        String path = getContext().getPagePath(EditVehicle.class);
+        path += "?referrer=/view-vehicle.htm";
         setRedirect(path);
         return false;
     }

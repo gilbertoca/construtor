@@ -309,6 +309,12 @@
             <query>SELECT l FROM Vehicle l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="Vehicle.findByLicensePlate">
+            <query>SELECT v FROM Vehicle v WHERE v.licensePlate LIKE :licensePlate</query>
+        </named-query>
+        <named-query name="Vehicle.findByCustomerName">
+            <query>SELECT v FROM Vehicle v JOIN v.customer.person cp WHERE cp.name LIKE :name</query>
+        </named-query>
         <named-query name="Vehicle.deleteById">
             <query>DELETE FROM Vehicle l WHERE l.licensePlate = :licensePlate</query>
         </named-query>

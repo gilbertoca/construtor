@@ -19,7 +19,9 @@
 -->
 
 <menu>
-  <menu label=" Main" path="main-menu.htm">
+  <menu label=" Main" path="main-menu.htm"/>
+
+  <menu label=" People/Entities" path="main-menu.htm">
     <menu label="Natural Person" path="view-natural-person.htm"/>
     <menu label="Legal Entities" path="view-legal-entity.htm"/>
   </menu>
