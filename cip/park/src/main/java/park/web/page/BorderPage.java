@@ -19,10 +19,13 @@
 package park.web.page;
 
 import org.apache.click.Page;
+import org.apache.click.extras.control.Menu;
+import org.apache.click.extras.control.MenuFactory;
 
 public class BorderPage extends Page {
 
     private static final long serialVersionUID = 1L;
+    private Menu rootMenu;
 
     // Event Handlers ---------------------------------------------------------
 
@@ -32,7 +35,7 @@ public class BorderPage extends Page {
     @Override
     public void onInit() {
         super.onInit();
-        /*
+
         MenuFactory menuFactory = new MenuFactory();
         rootMenu = menuFactory.getRootMenu();
 
@@ -40,7 +43,6 @@ public class BorderPage extends Page {
         // onDestroy() to ensure rootMenu is not serialized
         addControl(rootMenu);
 
-        */
     }
 
     /**
@@ -48,12 +50,12 @@ public class BorderPage extends Page {
      */
     @Override
     public void onDestroy() {
-        /*
+       
         // Remove menu for when BorderPage is serialized
         if (rootMenu != null) {
             removeControl(rootMenu);
         }
-         */
+       
     }
 
     // Public Methods ---------------------------------------------------------
@@ -69,7 +71,7 @@ public class BorderPage extends Page {
      */
     @Override
     public String getTemplate() {
-        return "/assets/common/template_two_column_center_nav.htm";
+        return "/assets/common/template.htm";
     }
 
 }

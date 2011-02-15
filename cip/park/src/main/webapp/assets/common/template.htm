@@ -1,34 +1,32 @@
 <html>
     <head>
-        <title>$format.html($title)</title>
-        <link rel="stylesheet" type="text/css" href="/assets/css/ADxMenu_htb.css" media="screen, tv, projection" title="Style"/>
-        <link rel="stylesheet" type="text/css" href="/assets/css/three_column_css_layout.css" />
+        <title>$title</title>
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
         $headElements
     </head>
-
     <body>
+        <div id="wrapper">
+            <div id="header">
+                <span id="title">$title</span>
+            </div>
+            <!-- Horizontal menu, top to bottom "navbar" Div-->
+             $rootMenu 
 
-        <div id="header">
-            #parse ("/assets/common/header.vm")
+            <div id="container">
+                #parse($path)
+                <div class="clearer"></div>
+            </div>
+            <div id="footer">
+                <p>
+                    <span class="left">
+                        $messages.get("webapp.version")
+                    </span>
+                    |
+                    <span class="right">
+                        &copy; $messages.get("copyright.year") <a href="$messages.get("company.url")>$messages.get("company.name")</a>
+                    </span>
+                </p>
+            </div>
         </div>
-
-        <!-- Horizontal menu, top to bottom "navbar" Div-->
-        #parse ("/assets/common/menu.vm")
-
-        <div id="container">
-            <div id="content">#parse($path)</div>
-        </div>
-
-        <div class="footer">
-            <span class="left">
-                $messages.get("webapp.version")
-            </span>
-            |
-            <span class="right">
-                &copy; $messages.get("copyright.year") <a href="$messages.get("company.url")>$messages.get("company.name")</a>
-            </span>
-        </div>
-        $jsElements
-
     </body>
 </html>
