@@ -1,13 +1,18 @@
 package park.web.page;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
-import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
+import org.apache.click.control.Option;
+import org.apache.click.control.Select;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
-import org.apache.click.extras.control.DateField;
+import org.apache.click.dataprovider.DataProvider;
+import park.model.orm.PriceTable;
 import park.model.orm.Vehicle;
+import park.model.orm.VehicleType;
 import park.orm.util.EntityManagerContext;
 
 /**
@@ -17,11 +22,30 @@ import park.orm.util.EntityManagerContext;
 public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+
+    private class CustomerLookUp {
+
+        private Long id;
+        private String customerName;
+
+        public CustomerLookUp(Long id, String customerName) {
+            this.id = id;
+            this.customerName = customerName;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getCustomerName() {
+            return customerName;
+        }
+    }
     private Form form = new Form("form");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
-    private HiddenField idField = new HiddenField("id", Long.class);
+    private HiddenField idField = new HiddenField("id", String.class);
     // Bindable variables can automatically have their value set by request parameters
-    public Long id;
+    public String id;
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
@@ -37,26 +61,61 @@ public class EditVehicle extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-        TextField nameField = new TextField("name", true);
-        nameField.setMinLength(5);
-        nameField.setFocus(true);
-        fieldSet.add(nameField);
+        TextField licensePlateField = new TextField("licensePlate", true);
+        licensePlateField.setMinLength(5);
+        licensePlateField.setFocus(true);
+        form.add(licensePlateField);
 
-        TextField addressField = new TextField("address", true);
-        addressField.setMinLength(5);
-        addressField.setFocus(true);
-        fieldSet.add(addressField);
+        TextField colorField = new TextField("color", true);
+        colorField.setMinLength(5);
+        colorField.setFocus(true);
+        form.add(colorField);
 
-        DateField dtFoundationField = new DateField("dtFoundation", true);
-        dtFoundationField.setFormatPattern(getMessage("date.format"));
-        dtFoundationField.setShowCalendar(false);
-        fieldSet.add(dtFoundationField);
+        Select vehicleTypeSelect = new Select("vehicleType");
+        vehicleTypeSelect.setRequired(true);
+        vehicleTypeSelect.add(Option.EMPTY_OPTION);
+        vehicleTypeSelect.setDataProvider(new DataProvider() {
+            public List getData() {
+                List options = new ArrayList();
+                List<VehicleType> vehicleTypes = (List<VehicleType>) em.createNamedQuery("VehicleType.findAll").getResultList();
+                for (VehicleType vehicleType : vehicleTypes) {
+                    options.add(new Option(vehicleType.getVehicleType(), vehicleType.getVehicleType()));
+                }
+                return options;
+            }
+        });
+        form.add(vehicleTypeSelect);
 
-        TextField taxpayersField = new TextField("taxpayersId", true);
-        taxpayersField.setMinLength(5);
-        taxpayersField.setFocus(true);
-        fieldSet.add(taxpayersField);
+        Select priceTableSelect = new Select("priceTable");
+        priceTableSelect.setRequired(true);
+        priceTableSelect.add(Option.EMPTY_OPTION);
+        priceTableSelect.setDataProvider(new DataProvider() {
+            public List getData() {
+                List options = new ArrayList();
+                List<PriceTable> priceTables = (List<PriceTable>) em.createNamedQuery("PriceTable.findAll").getResultList();
+                for (PriceTable priceTable : priceTables) {
+                    options.add(new Option(priceTable.getId(), priceTable.getItem() + "->" + priceTable.getPrice()));
+                }
+                return options;
+            }
+        });
+        form.add(priceTableSelect);
 
+        Select customerSelect = new Select("customer");
+        customerSelect.setRequired(true);
+        customerSelect.add(Option.EMPTY_OPTION);
+        customerSelect.setDataProvider(new DataProvider() {
+            public List getData() {
+                List options = new ArrayList();
+                List<CustomerLookUp> result =
+                        em.createQuery("SELECT new park.web.page.EditVehicle.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+                for (CustomerLookUp customer : result) {
+                    options.add(new Option(customer.getId(), customer.getCustomerName()));
+                }
+                return options;
+            }
+        });
+        form.add(customerSelect);
         form.add(new Submit("okBt", this, "onOkClick"));
         form.add(new Submit("cancelBt", this, "onCancelClick"));
     }

@@ -127,11 +127,14 @@
         -->
         <table name="customer"/>
         <named-query name="Customer.findAll">
-            <query>SELECT l FROM Customer l</query>
+            <query>SELECT c FROM Customer c</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="Customer.lookUpName">
+            <query>SELECT DISTINCT c.id, p.name FROM Customer c JOIN c.person p</query>
+        </named-query>
         <named-query name="Customer.deleteById">
-            <query>DELETE FROM Customer l WHERE l.id = :id</query>
+            <query>DELETE FROM Customer c WHERE c.id = :id</query>
         </named-query>
         <attributes>
             <id name="id">
