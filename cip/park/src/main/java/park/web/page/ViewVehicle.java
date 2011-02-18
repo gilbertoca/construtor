@@ -67,11 +67,11 @@ public class ViewVehicle extends BorderPage {
         table.addColumn(column);
         column = new Column("color");
         table.addColumn(column);
-        column = new Column("customer.name");
+        column = new Column("customer.person.name");
         table.addColumn(column);
         column = new Column("priceTable.price");
         table.addColumn(column);
-        column = new Column("vehicleType.type");
+        column = new Column("vehicleType.vehicleType");
         table.addColumn(column);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
@@ -83,7 +83,7 @@ public class ViewVehicle extends BorderPage {
 
         column = new Column("action");
         column.setTextAlign("center");
-        AbstractLink[] links = new AbstractLink[]{null, deleteLink};
+        AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
         column.setDecorator(new LinkDecorator(table, links, "licensePlate"));
         column.setSortable(false);
         table.addColumn(column);

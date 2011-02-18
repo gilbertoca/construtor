@@ -13,6 +13,7 @@ import org.apache.click.dataprovider.DataProvider;
 import park.model.orm.PriceTable;
 import park.model.orm.Vehicle;
 import park.model.orm.VehicleType;
+import park.model.orm.dto.CustomerLookUp;
 import park.orm.util.EntityManagerContext;
 
 /**
@@ -23,29 +24,11 @@ public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
 
-    private class CustomerLookUp {
-
-        private Long id;
-        private String customerName;
-
-        public CustomerLookUp(Long id, String customerName) {
-            this.id = id;
-            this.customerName = customerName;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public String getCustomerName() {
-            return customerName;
-        }
-    }
     private Form form = new Form("form");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
-    private HiddenField idField = new HiddenField("id", String.class);
+    private HiddenField idField = new HiddenField("licensePlate", String.class);
     // Bindable variables can automatically have their value set by request parameters
-    public String id;
+    public String licensePlate;
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
@@ -73,7 +56,7 @@ public class EditVehicle extends BorderPage {
 
         Select vehicleTypeSelect = new Select("vehicleType");
         vehicleTypeSelect.setRequired(true);
-        vehicleTypeSelect.add(Option.EMPTY_OPTION);
+        vehicleTypeSelect.setDefaultOption(Option.EMPTY_OPTION);
         vehicleTypeSelect.setDataProvider(new DataProvider() {
             public List getData() {
                 List options = new ArrayList();
@@ -88,7 +71,7 @@ public class EditVehicle extends BorderPage {
 
         Select priceTableSelect = new Select("priceTable");
         priceTableSelect.setRequired(true);
-        priceTableSelect.add(Option.EMPTY_OPTION);
+        priceTableSelect.setDefaultOption(Option.EMPTY_OPTION);
         priceTableSelect.setDataProvider(new DataProvider() {
             public List getData() {
                 List options = new ArrayList();
@@ -103,12 +86,12 @@ public class EditVehicle extends BorderPage {
 
         Select customerSelect = new Select("customer");
         customerSelect.setRequired(true);
-        customerSelect.add(Option.EMPTY_OPTION);
+        customerSelect.setDefaultOption(Option.EMPTY_OPTION);
         customerSelect.setDataProvider(new DataProvider() {
             public List getData() {
                 List options = new ArrayList();
                 List<CustomerLookUp> result =
-                        em.createQuery("SELECT new park.web.page.EditVehicle.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+                        em.createQuery("SELECT new park.model.orm.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
                 for (CustomerLookUp customer : result) {
                     options.add(new Option(customer.getId(), customer.getCustomerName()));
                 }
@@ -129,8 +112,8 @@ public class EditVehicle extends BorderPage {
     @Override
     public void onGet() {
         System.out.println("\n onGet() method \n");
-        if (id != null) {
-            Vehicle vehicle = em.find(Vehicle.class, id);
+        if (licensePlate != null) {
+            Vehicle vehicle = em.find(Vehicle.class, licensePlate);
             if (vehicle != null) {
                 // Copy vehicle data to form. The idField value will be set by
                 // this call
@@ -150,10 +133,10 @@ public class EditVehicle extends BorderPage {
         boolean isNew = false;
         if (form.isValid()) {
             Vehicle vehicle = null;
-            //local variable, don't confuse it with the public id parameter of the page
-            Long _id = (Long) idField.getValueObject();
-            if (_id != null) {
-                vehicle = em.find(Vehicle.class, id);
+            //local variable, don't confuse it with the public licensePlate parameter of the page
+            String _licensePlate = idField.getValue();
+            if (_licensePlate != null) {
+                vehicle = em.find(Vehicle.class, licensePlate);
             } else {
                 isNew = true;
                 vehicle = new Vehicle();

@@ -1,7 +1,7 @@
 package park.model.orm;
 
-import park.model.orm.Customer;
-import park.model.orm.LegalEntity;
+import park.model.orm.dto.CustomerLookUp;
+import java.util.List;
 import java.sql.DriverManager;
 
 import java.sql.SQLException;
@@ -26,7 +26,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class CustomerTest {
 
@@ -60,7 +59,7 @@ public class CustomerTest {
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("customer-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
@@ -95,6 +94,18 @@ public class CustomerTest {
         Customer c = em.find(Customer.class, 1000L);
         System.out.println("Object loaded: \n" + c);
         assertNotNull(c.getPerson());
+    }
+
+    /**
+     * Test of setVehicletype method, of class Vehicle.
+     */
+    @Test
+    public void GetCustomerLookUp() {
+        System.out.println("\nGetting all Customer using a lookup class .\n");
+        List<CustomerLookUp> result =
+                em.createQuery("SELECT new park.model.orm.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+        System.out.println("Object loaded: \n" + result);
+        assertEquals("Should have 2 customers", result.size(), 2);
     }
 
     @Test
