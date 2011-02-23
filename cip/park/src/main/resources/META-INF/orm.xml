@@ -339,13 +339,13 @@
                 <column name="v_type" length="20"/>
             </basic>
             <many-to-one name="customer">
-                <join-column name="customer_id" referenced-column-name="person_id"/>
+                <join-column name="customer_id" referenced-column-name="person_id" insertable="false" updatable="false"/>
             </many-to-one>
             <many-to-one name="priceTable">
-                <join-column name="price_table_id" referenced-column-name="id"/>
+                <join-column name="price_table_id" referenced-column-name="id" insertable="false" updatable="false"/>
             </many-to-one>
             <many-to-one name="vehicleType">
-                <join-column name="v_type" referenced-column-name="v_type"/>
+                <join-column name="v_type" referenced-column-name="v_type" insertable="false" updatable="false"/>
             </many-to-one>
             <one-to-many name="stays" target-entity="Stay" mapped-by="vehicle"/>
         </attributes>
