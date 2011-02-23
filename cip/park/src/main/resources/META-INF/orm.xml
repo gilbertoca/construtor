@@ -329,6 +329,15 @@
             <basic name="color">
                 <column name="color" length="20"/>
             </basic>
+            <basic name="customerId">
+                <column name="customer_id"/>
+            </basic>
+            <basic name="priceTableId">
+                <column name="price_table_id"/>
+            </basic>
+            <basic name="vType">
+                <column name="v_type" length="20"/>
+            </basic>
             <many-to-one name="customer">
                 <join-column name="customer_id" referenced-column-name="person_id"/>
             </many-to-one>

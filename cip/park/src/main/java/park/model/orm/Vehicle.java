@@ -7,9 +7,12 @@ public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
     private String licensePlate;
     private String color;
-    private Customer customer;
-    private PriceTable priceTable;
-    private VehicleType vehicleType;
+    private Long customerId;
+    private Customer customer;//readonly
+    private Integer priceTableId;
+    private PriceTable priceTable;//readonly
+    private String vType;
+    private VehicleType vehicleType;//readonly
     private Collection<Stay> stays;
 
     public Vehicle() {
@@ -34,6 +37,31 @@ public class Vehicle implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getPriceTableId() {
+        return priceTableId;
+    }
+
+    public void setPriceTableId(Integer priceTableId) {
+        this.priceTableId = priceTableId;
+    }
+
+    public String getVehicleTypeId() {
+        return vType;
+    }
+
+    public void setVehicleTypeId(String vType) {
+        this.vType = vType;
+    }
+
 
     public Customer getCustomer() {
         return customer;
