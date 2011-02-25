@@ -26,11 +26,11 @@ public class ViewVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
 
-    private Form form = new Form("form");
+    protected Form form = new Form("form");
     protected Table table = new Table("table");
-    private PageLink editLink = new PageLink("editLink", EditVehicle.class);
-    private ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
-    private TextField licensePlateField = new TextField("nameField");
+    protected PageLink editLink = new PageLink("editLink", EditVehicle.class);
+    protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
+    protected TextField licensePlateField = new TextField("nameField");
 
     private EntityManager em = EntityManagerContext.getEntityManager();
 

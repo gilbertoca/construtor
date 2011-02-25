@@ -23,9 +23,9 @@ import park.orm.util.EntityManagerContext;
 public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
-    private Form form = new Form("form");
-    private HiddenField referrerField = new HiddenField("referrer", String.class);
-    private HiddenField idField = new HiddenField("licensePlate", String.class);
+    protected Form form = new Form("form");
+    protected HiddenField referrerField = new HiddenField("referrer", String.class);
+    protected HiddenField idField = new HiddenField("licensePlate", String.class);
     // Bindable variables can automatically have their value set by request parameters
     public String licensePlate;
     //isNew(false)=update, othewise insert
