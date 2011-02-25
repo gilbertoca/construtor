@@ -30,7 +30,7 @@ public class ViewVehicle extends BorderPage {
     protected Table table = new Table("table");
     protected PageLink editLink = new PageLink("editLink", EditVehicle.class);
     protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
-    protected TextField licensePlateField = new TextField("nameField");
+    protected TextField licensePlateField = new TextField("licensePlateField");
 
     private EntityManager em = EntityManagerContext.getEntityManager();
 
@@ -45,7 +45,7 @@ public class ViewVehicle extends BorderPage {
         addControl(form);
         addControl(table);
         addControl(deleteLink);
-        //addControl(editLink);
+        addControl(editLink);
         //setStateful(true);
 
         // Setup the search form
