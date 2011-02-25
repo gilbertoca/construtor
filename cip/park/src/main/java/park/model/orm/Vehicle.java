@@ -1,7 +1,8 @@
 package park.model.orm;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Vehicle implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -13,7 +14,7 @@ public class Vehicle implements Serializable {
     private PriceTable priceTable;//readonly
     private String vType;
     private VehicleType vehicleType;//readonly
-    private Collection<Stay> stays;
+    private Set<Stay> stays = new HashSet<Stay>();
 
     public Vehicle() {
     }
@@ -54,14 +55,13 @@ public class Vehicle implements Serializable {
         this.priceTableId = priceTableId;
     }
 
-    public String getVehicleTypeId() {
+    public String getVType() {
         return vType;
     }
 
-    public void setVehicleTypeId(String vType) {
+    public void setVType(String vType) {
         this.vType = vType;
     }
-
 
     public Customer getCustomer() {
         return customer;
@@ -88,11 +88,11 @@ public class Vehicle implements Serializable {
     }
 
 
-    public Collection<Stay> getStays() {
+    public Set<Stay> getStays() {
         return stays;
     }
 
-    public void setStays(Collection<Stay> stays) {
+    public void setStays(Set<Stay> stays) {
         this.stays = stays;
     }
 
