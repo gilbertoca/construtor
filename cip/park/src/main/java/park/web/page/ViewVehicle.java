@@ -67,13 +67,11 @@ public class ViewVehicle extends BorderPage {
         table.addColumn(column);
         column = new Column("color");
         table.addColumn(column);
-        column = new Column();
-        column.setHeaderTitle("customer");
-        column.setName("customer.person.name");
+        column = new Column("customer.person.name",getMessage("customer.headerTitle"));
         table.addColumn(column);
-        column = new Column("priceTable.price","price");
+        column = new Column("priceTable.price",getMessage("price.headerTitle"));
         table.addColumn(column);
-        column = new Column("vehicleType.vehicleType","vehicleType");
+        column = new Column("vehicleType.vehicleType",getMessage("vehicleType.headerTitle"));
         table.addColumn(column);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
