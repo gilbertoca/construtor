@@ -23,12 +23,13 @@ import park.orm.util.EntityManagerContext;
 public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
-
     private Form form = new Form("form");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
     private HiddenField idField = new HiddenField("licensePlate", String.class);
     // Bindable variables can automatically have their value set by request parameters
     public String licensePlate;
+    //isNew(false)=update, othewise insert
+    protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
@@ -43,6 +44,7 @@ public class EditVehicle extends BorderPage {
         addControl(form);
         form.add(referrerField);
         form.add(idField);
+        form.add(isNewField);
 
         TextField licensePlateField = new TextField("licensePlate", true);
         licensePlateField.setMinLength(5);
@@ -50,14 +52,14 @@ public class EditVehicle extends BorderPage {
         form.add(licensePlateField);
 
         TextField colorField = new TextField("color", true);
-        colorField.setMinLength(5);
         colorField.setFocus(true);
         form.add(colorField);
 
-        Select vehicleTypeSelect = new Select("vehicleType");
+        Select vehicleTypeSelect = new Select("vType");
         vehicleTypeSelect.setRequired(true);
         vehicleTypeSelect.setDefaultOption(Option.EMPTY_OPTION);
         vehicleTypeSelect.setDataProvider(new DataProvider() {
+
             public List getData() {
                 List options = new ArrayList();
                 List<VehicleType> vehicleTypes = (List<VehicleType>) em.createNamedQuery("VehicleType.findAll").getResultList();
@@ -69,10 +71,11 @@ public class EditVehicle extends BorderPage {
         });
         form.add(vehicleTypeSelect);
 
-        Select priceTableSelect = new Select("priceTable");
+        Select priceTableSelect = new Select("priceTableId");
         priceTableSelect.setRequired(true);
         priceTableSelect.setDefaultOption(Option.EMPTY_OPTION);
         priceTableSelect.setDataProvider(new DataProvider() {
+
             public List getData() {
                 List options = new ArrayList();
                 List<PriceTable> priceTables = (List<PriceTable>) em.createNamedQuery("PriceTable.findAll").getResultList();
@@ -84,10 +87,11 @@ public class EditVehicle extends BorderPage {
         });
         form.add(priceTableSelect);
 
-        Select customerSelect = new Select("customer");
+        Select customerSelect = new Select("customerId");
         customerSelect.setRequired(true);
         customerSelect.setDefaultOption(Option.EMPTY_OPTION);
         customerSelect.setDataProvider(new DataProvider() {
+
             public List getData() {
                 List options = new ArrayList();
                 List<CustomerLookUp> result =
@@ -118,7 +122,12 @@ public class EditVehicle extends BorderPage {
                 // Copy vehicle data to form. The idField value will be set by
                 // this call
                 form.copyFrom(vehicle);
+                //licensePlate parameter of the page is NOT null, then isNew=false
+                isNewField.setValueObject(false);
             }
+        } else {
+            //licensePlate parameter of the page is null, then isNew=true
+            isNewField.setValueObject(true);
         }
 
         if (referrer != null) {
@@ -129,24 +138,25 @@ public class EditVehicle extends BorderPage {
 
     public boolean onOkClick() throws Exception {
         System.out.println("\n onOkClick() method \n");
-        //isNew(false)=update, othewise insert
-        boolean isNew = false;
+        
         if (form.isValid()) {
             Vehicle vehicle = null;
             //local variable, don't confuse it with the public licensePlate parameter of the page
             String _licensePlate = idField.getValue();
-            if (_licensePlate != null) {
-                vehicle = em.find(Vehicle.class, licensePlate);
-            } else {
-                isNew = true;
+            //isNew(false)=update, othewise insert
+            Boolean _isNew = (Boolean) isNewField.getValueObject();
+
+            if (_isNew) {
                 vehicle = new Vehicle();
+            } else {
+                vehicle = em.find(Vehicle.class, _licensePlate);
             }
 
             form.copyTo(vehicle);
             //We need transation
             try {
                 em.getTransaction().begin();
-                if (isNew) {
+                if (_isNew) {
                     em.persist(vehicle);
                 } else {
                     em.merge(vehicle);

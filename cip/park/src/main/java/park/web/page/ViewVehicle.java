@@ -27,7 +27,7 @@ public class ViewVehicle extends BorderPage {
     private static final long serialVersionUID = 1L;
 
     private Form form = new Form("form");
-    private Table table = new Table("table");
+    protected Table table = new Table("table");
     private PageLink editLink = new PageLink("editLink", EditVehicle.class);
     private ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
     private TextField licensePlateField = new TextField("nameField");

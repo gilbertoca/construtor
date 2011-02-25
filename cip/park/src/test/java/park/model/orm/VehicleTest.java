@@ -1,9 +1,5 @@
 package park.model.orm;
 
-import park.model.orm.Customer;
-import park.model.orm.PriceTable;
-import park.model.orm.Vehicle;
-import park.model.orm.VehicleType;
 import java.sql.DriverManager;
 import org.dbunit.DatabaseUnitException;
 import static org.junit.Assert.assertEquals;
