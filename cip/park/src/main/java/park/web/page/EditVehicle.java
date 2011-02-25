@@ -174,7 +174,7 @@ public class EditVehicle extends BorderPage {
                 throw ex;
             }
 
-            //The referrerField HiddenField was set on GET request
+            //The referrerField HiddenField was set on GET request (onGet() method)
             String _referrer = referrerField.getValue();
             if (_referrer != null) {
                 setRedirect(_referrer);
@@ -191,7 +191,7 @@ public class EditVehicle extends BorderPage {
 
     public boolean onCancelClick() {
         System.out.println("\n onCancelClick() method \n");
-        //The referrerField HiddenField was set on GET request
+        //The referrerField HiddenField was set on GET request (onGet() method)
         String _referrer = referrerField.getValue();
         if (_referrer != null) {
             setRedirect(_referrer);
