@@ -24,12 +24,18 @@ public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
     protected Form form = new Form("form");
+    /**
+     * Used to manage the data model state. On Get method we set it to false(update)
+     * and when posting - OnClick method - we set i to true(insert)
+     * isNew(false)=update, othewise insert
+     */
+    protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
+    /** The source track */
     protected HiddenField referrerField = new HiddenField("referrer", String.class);
+    /** The data model ID, used to get data from and to database */
     protected HiddenField idField = new HiddenField("licensePlate", String.class);
     // Bindable variables can automatically have their value set by request parameters
     public String licensePlate;
-    //isNew(false)=update, othewise insert
-    protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
