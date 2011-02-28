@@ -40,7 +40,6 @@ public class ViewVehicle extends BorderPage {
 
         getModel().put("title", getMessage("viewVehicle.title"));
         getModel().put("heading", getMessage("viewVehicle.heading"));
-        getModel().put("menu", "userMenu");
 
         addControl(form);
         addControl(table);

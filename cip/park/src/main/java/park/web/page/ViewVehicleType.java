@@ -15,25 +15,31 @@ import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
-import park.model.orm.NaturalPerson;
+import park.model.orm.VehicleType;
 import park.orm.util.EntityManagerContext;
 
-public class ViewNaturalPerson extends park.web.page.BorderPage {
+/**
+ *
+ * @author gilberto
+ */
+public class ViewVehicleType extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+
     protected Form form = new Form("form");
     protected Table table = new Table("table");
-    protected PageLink editLink = new PageLink("editLink", EditNaturalPerson.class);
+    protected PageLink editLink = new PageLink("editLink", EditVehicleType.class);
     protected ActionLink deleteLink = new ActionLink("deleteLink", this, "onDeleteClick");
-    private TextField nameField = new TextField("nameField");
+    protected TextField vehicleTypeField = new TextField("vehicleType");
+
     private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor ------------------------------------------------------------
-    public ViewNaturalPerson() {
-        System.out.println("\n ViewNaturalPerson() method \n");
+    public ViewVehicleType() {
+        System.out.println("\n ViewVehicleType() method \n");
 
-        getModel().put("title", getMessage("viewNaturalPerson.title"));
-        getModel().put("heading", getMessage("viewNaturalPerson.heading"));
+        getModel().put("title", getMessage("viewVehicleType.title"));
+        getModel().put("heading", getMessage("viewVehicleType.heading"));
 
         addControl(form);
         addControl(table);
@@ -43,12 +49,12 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
 
         // Setup the search form
         form.setColumns(2);
-        form.add(nameField);
+        form.add(vehicleTypeField);
         form.add(new Submit("searchBt"));
         form.add(new Submit("clearBt", this, "onClearClick"));
         form.add(new Submit("newBt", this, "onNewClick"));
 
-        // Setup NaturalPersons table
+        // Setup VehicleTypes table
         table.setClass(Table.CLASS_ITS);
         table.setPageSize(10);
         table.setShowBanner(true);
@@ -56,44 +62,41 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        Column column = new Column("name");
-        table.addColumn(column);
-        column = new Column("legalDocument");
-        table.addColumn(column);
-        column = new Column("dtBirth");
-        column.setFormat("{0,date,dd/MM/yyyy}");
-        table.addColumn(column);
+        Column columnVehicleType =  new Column("vehicleType");
+        table.addColumn(columnVehicleType);
+        Column columnManufacturer = new Column("manufacturer");
+        table.addColumn(columnManufacturer);
+        Column columnModel = new Column("model");
+        table.addColumn(columnModel);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
-        editLink.setParameter("referrer", "/view-natural-person.htm");
+        editLink.setParameter("referrer", "/view-vehicle-type.htm");
 
         //deleteLink.setImageSrc("/assets/images/table-delete.png");
-        //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
         deleteLink.setAttribute("onclick", getMessage("deleteLink.attribute.onclick"));
 
-        column = new Column("action");
-        column.setTextAlign("center");
+        Column columnAction = new Column("action");
+        columnAction.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
-        column.setDecorator(new LinkDecorator(table, links, "id"));
-        column.setSortable(false);
-        table.addColumn(column);
+        columnAction.setDecorator(new LinkDecorator(table, links, "vehicleType"));
+        columnAction.setSortable(false);
+        table.addColumn(columnAction);
 
-        table.setDataProvider(new DataProvider<NaturalPerson>() {
-
-            public List<NaturalPerson> getData() {
-                return (List<NaturalPerson>) findByName();
+        table.setDataProvider(new DataProvider<VehicleType>() {
+            public List<VehicleType> getData() {
+                return (List<VehicleType>) findByVehicleType();
             }
         });
     }
-
-    private List findByName() {
-        System.out.println("\n findByName() method \n");
-        Query queryObject = em.createNamedQuery("NaturalPerson.findByName");
-        queryObject.setParameter("name", "%" + nameField.getValue() + "%");
+    
+   private List findByVehicleType(){
+        System.out.println("\n findByLicensePlate() method \n");
+        Query queryObject = em.createNamedQuery("VehicleType.findByVehicleType");
+        queryObject.setParameter("vehicleType",  "%" + vehicleTypeField.getValue() + "%");
         return queryObject.getResultList();
-    }
-    // Event Handlers ---------------------------------------------------------
+   }
 
+    // Event Handlers ---------------------------------------------------------
     /**
      * Handle the clear button click event.
      *
@@ -113,8 +116,8 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      */
     public boolean onNewClick() {
         System.out.println("\n onNewClick() method \n");
-        String path = getContext().getPagePath(EditNaturalPerson.class);
-        path += "?referrer=/view-natural-person.htm";
+        String path = getContext().getPagePath(EditVehicleType.class);
+        path += "?referrer=/view-vehicle-type.htm";
         setRedirect(path);
         return false;
     }
@@ -124,42 +127,32 @@ public class ViewNaturalPerson extends park.web.page.BorderPage {
      *
      * @return true
      */
-    public boolean onDeleteClick() throws Exception {
+    public boolean onDeleteClick() {
         System.out.println("\n onDeleteClick() method \n");
-        Long _id = deleteLink.getValueLong();
+        String _id = deleteLink.getValue();
         if (_id != null) {
-            delete(_id);
+            //We need transation
+            try {
+                em.getTransaction().begin();
+                em.remove(em.find(VehicleType.class, _id));
+                em.getTransaction().commit();
+            } finally {
+                em.close();
+                //return false;
+            }
         } else {
             throw new NotImplementedException();
         }
         return true;
     }
-
+    
     @Override
     public void onDestroy() {
         System.out.println("\n onDestroy() method \n");
         super.onDestroy();
-        if (em.isOpen()) {
+        if(em.isOpen()){
             em.close();
         }
     }
 
-    private void delete(Long id)  throws Exception {
-        //We need transation
-        try {
-            em.getTransaction().begin();
-            em.remove(em.find(NaturalPerson.class, id));
-            em.getTransaction().commit();
-        } catch (Exception ex) {
-            try {
-                if (em.getTransaction().isActive()) {
-                    em.getTransaction().rollback();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw e;
-            }
-            throw ex;
-        }
-    }
 }

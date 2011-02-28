@@ -280,6 +280,9 @@
             <query>SELECT l FROM VehicleType l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="VehicleType.findByVehicleType">
+            <query>SELECT v FROM VehicleType v WHERE v.vehicleType LIKE :vehicleType</query>
+        </named-query>
         <named-query name="VehicleType.deleteById">
             <query>DELETE FROM VehicleType l WHERE l.vehicleType = :type</query>
         </named-query>

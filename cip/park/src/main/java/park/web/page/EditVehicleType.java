@@ -1,26 +1,19 @@
 package park.web.page;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
+import org.apache.click.Page;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
-import org.apache.click.control.Option;
-import org.apache.click.control.Select;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
-import org.apache.click.dataprovider.DataProvider;
-import park.model.orm.PriceTable;
-import park.model.orm.Vehicle;
 import park.model.orm.VehicleType;
-import park.model.orm.dto.CustomerLookUp;
 import park.orm.util.EntityManagerContext;
 
 /**
  *
  * @author gilberto
  */
-public class EditVehicle extends BorderPage {
+public class EditVehicleType extends BorderPage {
 
     private static final long serialVersionUID = 1L;
     protected Form form = new Form("form");
@@ -33,20 +26,20 @@ public class EditVehicle extends BorderPage {
     /** The source track */
     protected HiddenField referrerField = new HiddenField("referrer", String.class);
     /** The data model ID, used to get data from and to database */
-    protected HiddenField idField = new HiddenField("licensePlate", String.class);
+    protected HiddenField idField = new HiddenField("vehicleType", String.class);
     /** Necessary here to access it on OnGet method. */
-    protected TextField licensePlateField = new TextField("licensePlate", true);    
+    protected TextField vehicleTypeField = new TextField("vehicleType", true);
     // Bindable variables can automatically have their value set by request parameters
-    public String licensePlate;
+    public String vehicleType;
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor -----------------------------------------------------------
-    public EditVehicle() {
-        System.out.println("\n EditVehicle() method \n");
+    public EditVehicleType() {
+        System.out.println("\n EditVehicleType() method \n");
 
-        getModel().put("title", getMessage("editVehicle.title"));
-        getModel().put("heading", getMessage("editVehicle.heading"));
+        getModel().put("title", getMessage("editVehicleType.title"));
+        getModel().put("heading", getMessage("editVehicleType.heading"));
         getModel().put("menu", "userMenu");
 
         addControl(form);
@@ -55,62 +48,15 @@ public class EditVehicle extends BorderPage {
         form.add(isNewField);
 
         
-        licensePlateField.setMinLength(5);
-        licensePlateField.setFocus(true);
-        form.add(licensePlateField);
+        vehicleTypeField.setFocus(true);
+        form.add(vehicleTypeField);
 
-        TextField colorField = new TextField("color", true);
-        colorField.setFocus(true);
-        form.add(colorField);
+        TextField modelField = new TextField("model", true);
+        form.add(modelField);
 
-        Select vehicleTypeSelect = new Select("vType");
-        vehicleTypeSelect.setRequired(true);
-        vehicleTypeSelect.setDefaultOption(Option.EMPTY_OPTION);
-        vehicleTypeSelect.setDataProvider(new DataProvider() {
+        TextField manufacturerField = new TextField("manufacturer", true);
+        form.add(manufacturerField);
 
-            public List getData() {
-                List options = new ArrayList();
-                List<VehicleType> vehicleTypes = (List<VehicleType>) em.createNamedQuery("VehicleType.findAll").getResultList();
-                for (VehicleType vehicleType : vehicleTypes) {
-                    options.add(new Option(vehicleType.getVehicleType(), vehicleType.getVehicleType()));
-                }
-                return options;
-            }
-        });
-        form.add(vehicleTypeSelect);
-
-        Select priceTableSelect = new Select("priceTableId");
-        priceTableSelect.setRequired(true);
-        priceTableSelect.setDefaultOption(Option.EMPTY_OPTION);
-        priceTableSelect.setDataProvider(new DataProvider() {
-
-            public List getData() {
-                List options = new ArrayList();
-                List<PriceTable> priceTables = (List<PriceTable>) em.createNamedQuery("PriceTable.findAll").getResultList();
-                for (PriceTable priceTable : priceTables) {
-                    options.add(new Option(priceTable.getId(), priceTable.getItem() + "->" + priceTable.getPrice()));
-                }
-                return options;
-            }
-        });
-        form.add(priceTableSelect);
-
-        Select customerSelect = new Select("customerId");
-        customerSelect.setRequired(true);
-        customerSelect.setDefaultOption(Option.EMPTY_OPTION);
-        customerSelect.setDataProvider(new DataProvider() {
-
-            public List getData() {
-                List options = new ArrayList();
-                List<CustomerLookUp> result =
-                        em.createQuery("SELECT new park.model.orm.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
-                for (CustomerLookUp customer : result) {
-                    options.add(new Option(customer.getId(), customer.getCustomerName()));
-                }
-                return options;
-            }
-        });
-        form.add(customerSelect);
         form.add(new Submit("okBt", this, "onOkClick"));
         form.add(new Submit("cancelBt", this, "onCancelClick"));
     }
@@ -124,19 +70,19 @@ public class EditVehicle extends BorderPage {
     @Override
     public void onGet() {
         System.out.println("\n onGet() method \n");
-        if (licensePlate != null) {
-            Vehicle vehicle = em.find(Vehicle.class, licensePlate);
-            if (vehicle != null) {
+        if (vehicleType != null) {
+            VehicleType vehicleT = em.find(VehicleType.class, vehicleType);
+            if (vehicleT != null) {
                 // Copy vehicle data to form. The idField value will be set by
                 // this call
-                form.copyFrom(vehicle);
-                //licensePlate parameter of the page is NOT null, then isNew=false
+                form.copyFrom(vehicleT);
+                //vehicleType parameter of the page is NOT null, then isNew=false
                 isNewField.setValueObject(false);
                 //it is the PK, here we can't change it.
-                licensePlateField.setReadonly(true);
+                vehicleTypeField.setReadonly(true);
             }
         } else {
-            //licensePlate parameter of the page is null, then isNew=true
+            //vehicleType parameter of the page is null, then isNew=true
             isNewField.setValueObject(true);
         }
 
@@ -150,26 +96,26 @@ public class EditVehicle extends BorderPage {
         System.out.println("\n onOkClick() method \n");
         
         if (form.isValid()) {
-            Vehicle vehicle = null;
-            //local variable, don't confuse it with the public licensePlate parameter of the page
-            String _licensePlate = idField.getValue();
+            VehicleType vehicleT = null;
+            //local variable, don't confuse it with the public vehicleType parameter of the page
+            String _vehicleType = idField.getValue();
             //isNew(false)=update, othewise insert
             Boolean _isNew = (Boolean) isNewField.getValueObject();
 
             if (_isNew) {
-                vehicle = new Vehicle();
+                vehicleT = new VehicleType();
             } else {
-                vehicle = em.find(Vehicle.class, _licensePlate);
+                vehicleT = em.find(VehicleType.class, _vehicleType);
             }
 
-            form.copyTo(vehicle);
+            form.copyTo(vehicleT);
             //We need transation
             try {
                 em.getTransaction().begin();
                 if (_isNew) {
-                    em.persist(vehicle);
+                    em.persist(vehicleT);
                 } else {
-                    em.merge(vehicle);
+                    em.merge(vehicleT);
                 }
                 em.getTransaction().commit();
             } catch (Exception ex) {

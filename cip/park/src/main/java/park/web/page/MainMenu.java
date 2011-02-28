@@ -27,7 +27,6 @@ public class MainMenu extends BorderPage {
     public MainMenu(){
         getModel().put("title", getMessage("mainMenu.title"));
         getModel().put("heading", getMessage("mainMenu.heading"));
-        getModel().put("menu", "MainMenu");
     }
 
 }

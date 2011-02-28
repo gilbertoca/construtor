@@ -38,7 +38,6 @@ public class ViewLegalEntity extends BorderPage {
 
         getModel().put("title", getMessage("viewLegalEntity.title"));
         getModel().put("heading", getMessage("viewLegalEntity.heading"));
-        getModel().put("menu", "userMenu");
 
         addControl(form);
         addControl(table);
