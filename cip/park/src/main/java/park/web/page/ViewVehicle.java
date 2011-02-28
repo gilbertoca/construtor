@@ -63,16 +63,16 @@ public class ViewVehicle extends BorderPage {
         table.setPaginator(new TableInlinePaginator(table));
         table.setPaginatorAttachment(Table.PAGINATOR_INLINE);
 
-        Column column =  new Column("licensePlate");
-        table.addColumn(column);
-        column = new Column("color");
-        table.addColumn(column);
-        column = new Column("customer.person.name",getMessage("customer.headerTitle"));
-        table.addColumn(column);
-        column = new Column("priceTable.price",getMessage("price.headerTitle"));
-        table.addColumn(column);
-        column = new Column("vehicleType.vehicleType",getMessage("vehicleType.headerTitle"));
-        table.addColumn(column);
+        Column columnLicensePlate =  new Column("licensePlate");
+        table.addColumn(columnLicensePlate);
+        Column columnColor = new Column("color");
+        table.addColumn(columnColor);
+        Column columnCustomerName = new Column("customer.person.name");
+        table.addColumn(columnCustomerName);
+        Column columnPrice = new Column("priceTable.price");
+        table.addColumn(columnPrice);
+        Column columnVType = new Column("vehicleType.vehicleType");
+        table.addColumn(columnVType);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
         editLink.setParameter("referrer", "/view-vehicle.htm");
@@ -81,12 +81,12 @@ public class ViewVehicle extends BorderPage {
         //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
         deleteLink.setAttribute("onclick", getMessage("deleteLink.attribute.onclick"));
 
-        column = new Column("action");
-        column.setTextAlign("center");
+        Column columnAction = new Column("action");
+        columnAction.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
-        column.setDecorator(new LinkDecorator(table, links, "licensePlate"));
-        column.setSortable(false);
-        table.addColumn(column);
+        columnAction.setDecorator(new LinkDecorator(table, links, "licensePlate"));
+        columnAction.setSortable(false);
+        table.addColumn(columnAction);
 
         table.setDataProvider(new DataProvider<Vehicle>() {
             public List<Vehicle> getData() {
