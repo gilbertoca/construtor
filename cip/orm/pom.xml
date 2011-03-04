@@ -46,6 +46,7 @@
             <plugin>
                 <groupId>org.apache.cayenne.plugins</groupId>
                 <artifactId>maven-cayenne-modeler-plugin</artifactId>
+                <version>${cayenne.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
