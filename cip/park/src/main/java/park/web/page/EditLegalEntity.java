@@ -1,14 +1,23 @@
 package park.web.page;
 
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.apache.click.Page;
+import org.apache.click.control.Column;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.control.Submit;
+import org.apache.click.control.Table;
 import org.apache.click.control.TextField;
+import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.DateField;
+import org.apache.click.extras.control.IntegerField;
 import park.model.orm.LegalEntity;
+import park.model.orm.Vehicle;
 import park.orm.util.EntityManagerContext;
+
 
 /**
  *
@@ -18,6 +27,7 @@ public class EditLegalEntity extends BorderPage {
 
     private static final long serialVersionUID = 1L;
     private Form form = new Form("form");
+    protected Table table = new Table("table");
     private HiddenField referrerField = new HiddenField("referrer", String.class);
     private HiddenField idField = new HiddenField("id", Long.class);
     // Bindable variables can automatically have their value set by request parameters
@@ -37,34 +47,71 @@ public class EditLegalEntity extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-        FieldSet fieldSet = new FieldSet("addressFieldSet");
-        form.add(fieldSet);
+        FieldSet personFieldSet = new FieldSet("personFieldSet");
+        personFieldSet.setStyle("background", "RED");
+
+        FieldSet legalEntityFieldSet = new FieldSet("legalEntityFieldSet");
+        legalEntityFieldSet.setStyle("background", "GREEN");
+
+        FieldSet customerFieldSet = new FieldSet("customerFieldSet");
+        customerFieldSet.setStyle("background", "BLUE");
+
+        form.add(personFieldSet);
+        form.add(legalEntityFieldSet);
+        form.add(customerFieldSet);
+
 
         TextField nameField = new TextField("name", true);
-        nameField.setMinLength(5);
-        nameField.setFocus(true);
-        fieldSet.add(nameField);
+        personFieldSet.add(nameField);
 
         TextField addressField = new TextField("address", true);
-        addressField.setMinLength(5);
-        addressField.setFocus(true);
-        fieldSet.add(addressField);
+        personFieldSet.add(addressField);
 
         DateField dtFoundationField = new DateField("dtFoundation", true);
         dtFoundationField.setFormatPattern(getMessage("date.format"));
         dtFoundationField.setShowCalendar(false);
-        fieldSet.add(dtFoundationField);
+        legalEntityFieldSet.add(dtFoundationField);
 
         TextField taxpayersField = new TextField("taxpayersId", true);
-        taxpayersField.setMinLength(5);
-        taxpayersField.setFocus(true);
-        fieldSet.add(taxpayersField);
+        legalEntityFieldSet.add(taxpayersField);
+
+        IntegerField paymentDayField = new IntegerField("paymentDay", true);
+        customerFieldSet.add(paymentDayField);
+
+        table.setClass(Table.CLASS_SIMPLE);
+        table.addColumn(new Column("licensePlate"));
+        table.addColumn(new Column("color"));
+        customerFieldSet.add(table);
 
         form.add(new Submit("okBt", this, "onOkClick"));
         form.add(new Submit("cancelBt", this, "onCancelClick"));
     }
 
+    private List getVehiclesByCusotmerId(Long id) {
+        System.out.println("\n findByLicensePlate() method \n");
+        Query queryObject = em.createNamedQuery("Vehicle.findByCustomerId");
+        queryObject.setParameter("customerId", id);
+        return queryObject.getResultList();
+    }
+
     // Event Handlers ---------------------------------------------------------
+    @Override
+    public void onInit() {
+        super.onInit();
+        // Set the id on the table's controlLink. If you view the
+        // output rendered by Table note that the id parameter
+        // is rendered for each Paging and Sorting link.
+        table.getControlLink().setParameter("id", id);
+
+        // Set data provider to populate the table row list from
+        table.setDataProvider(new DataProvider<Vehicle>() {
+
+            public List<Vehicle> getData() {
+                return (List<Vehicle>) getVehiclesByCusotmerId(id);
+            }
+        });
+    }
+
     /**
      * When page is first displayed on the GET request.
      *
