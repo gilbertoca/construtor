@@ -23,6 +23,7 @@ import park.orm.util.EntityManagerContext;
 public class EditVehicle extends BorderPage {
 
     private static final long serialVersionUID = 1L;
+
     protected Form form = new Form("form");
     /**
      * Used to manage the data model state. On Get method we set it to false(update)
@@ -32,12 +33,17 @@ public class EditVehicle extends BorderPage {
     protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
     /** The source track */
     protected HiddenField referrerField = new HiddenField("referrer", String.class);
-    /** The data model ID, used to get data from and to database */
-    protected HiddenField idField = new HiddenField("licensePlate", String.class);
-    /** Necessary here to access it on OnGet method. */
-    protected TextField licensePlateField = new TextField("licensePlate", true);    
-    /** Bindable variables(ID, used to get data) can automatically have their value set by request parameters */
-    public String licensePlate;
+    /**
+     * The data model ID, used to get data from and to database.
+     * The default option is declare it as HiddenField, but sometimes - when the user
+     * enter the ID data - we use a normal TextField. For example:
+     *  default --> protected HiddenField idField = new HiddenField("id", Long.class);
+     *  sometimes-> protected TextField idField = new TextField("licensePlate", true);
+     * Don't forget to set i read only when on Update operation.
+     */
+    protected TextField idField = new TextField("licensePlate", true);
+    /** Bindable variables(ID, used on the Get method) can automatically have their value set by request parameters */
+    public String id;
     /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
@@ -48,17 +54,15 @@ public class EditVehicle extends BorderPage {
 
         getModel().put("title", getMessage("editVehicle.title"));
         getModel().put("heading", getMessage("editVehicle.heading"));
-        getModel().put("menu", "userMenu");
 
         addControl(form);
         form.add(referrerField);
-        form.add(idField);
-        form.add(isNewField);
 
+        idField.setMinLength(5);
+        idField.setFocus(true);
+        form.add(idField);
         
-        licensePlateField.setMinLength(5);
-        licensePlateField.setFocus(true);
-        form.add(licensePlateField);
+        form.add(isNewField);
 
         TextField colorField = new TextField("color", true);
         colorField.setFocus(true);
@@ -125,19 +129,20 @@ public class EditVehicle extends BorderPage {
     @Override
     public void onGet() {
         System.out.println("\n onGet() method \n");
-        if (licensePlate != null) {
-            Vehicle vehicle = em.find(Vehicle.class, licensePlate);
+        if (id != null) {
+            Vehicle vehicle = em.find(Vehicle.class, id);
             if (vehicle != null) {
                 // Copy vehicle data to form. The idField value will be set by
                 // this call
                 form.copyFrom(vehicle);
-                //licensePlate parameter of the page is NOT null, then isNew=false
+                //id parameter of the page is NOT null, then isNew=false
                 isNewField.setValueObject(false);
-                //it is the PK, here we can't change it.
-                licensePlateField.setReadonly(true);
+                //it is the PK, here we can't change it, whick in this case idField
+                //is not a HiddenField
+                idField.setReadonly(true);
             }
         } else {
-            //licensePlate parameter of the page is null, then isNew=true
+            //id parameter of the page is null, then isNew=true
             isNewField.setValueObject(true);
         }
 
@@ -152,15 +157,15 @@ public class EditVehicle extends BorderPage {
         
         if (form.isValid()) {
             Vehicle vehicle = null;
-            //local variable, don't confuse it with the public licensePlate parameter of the page
-            String _licensePlate = idField.getValue();
+            //local variable, don't confuse it with the public id parameter of the page
+            String _id = idField.getValue();
             //isNew(false)=update, othewise insert
             Boolean _isNew = (Boolean) isNewField.getValueObject();
 
             if (_isNew) {
                 vehicle = new Vehicle();
             } else {
-                vehicle = em.find(Vehicle.class, _licensePlate);
+                vehicle = em.find(Vehicle.class, _id);
             }
 
             form.copyTo(vehicle);

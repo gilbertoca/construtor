@@ -28,11 +28,21 @@ public class EditLegalEntity extends BorderPage {
     private static final long serialVersionUID = 1L;
     private Form form = new Form("form");
     protected Table table = new Table("table");
-    private HiddenField referrerField = new HiddenField("referrer", String.class);
-    private HiddenField idField = new HiddenField("id", Long.class);
-    // Bindable variables can automatically have their value set by request parameters
+    /**
+     * Used to manage the data model state. On Get method we set it to false(update)
+     * and when posting - OnClick method - we set i to true(insert)
+     * isNew(false)=update, otherwise insert
+     */
+    protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
+    /** The source track */
+    protected HiddenField referrerField = new HiddenField("referrer", String.class);
+    /** The data model ID, used to get data from and to database */
+    protected HiddenField idField = new HiddenField("id", Long.class);
+    /** Bindable variables(ID, used on the Get method) can automatically have their value set by request parameters */
     public Long id;
+    /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
+    
     private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor -----------------------------------------------------------
@@ -41,7 +51,6 @@ public class EditLegalEntity extends BorderPage {
 
         getModel().put("title", getMessage("editLegalEntity.title"));
         getModel().put("heading", getMessage("editLegalEntity.heading"));
-        getModel().put("menu", "userMenu");
 
         addControl(form);
         form.add(referrerField);
@@ -79,7 +88,7 @@ public class EditLegalEntity extends BorderPage {
         customerFieldSet.add(paymentDayField);
 
         table.setClass(Table.CLASS_SIMPLE);
-        table.addColumn(new Column("licensePlate"));
+        table.addColumn(new Column("id"));
         table.addColumn(new Column("color"));
         customerFieldSet.add(table);
 
@@ -123,10 +132,17 @@ public class EditLegalEntity extends BorderPage {
         if (id != null) {
             LegalEntity legalEntity = em.find(LegalEntity.class, id);
             if (legalEntity != null) {
-                // Copy legalEntity data to form. The idField value will be set by
+                // Copy vehicle data to form. The idField value will be set by
                 // this call
                 form.copyFrom(legalEntity);
+                //id parameter of the page is NOT null, then isNew=false
+                isNewField.setValueObject(false);
+                //it is the PK, here we can't change it.
+                idField.setReadonly(true);
             }
+        } else {
+            //id parameter of the page is null, then isNew=true
+            isNewField.setValueObject(true);
         }
 
         if (referrer != null) {

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package park.web.page;
 
 import java.util.HashMap;
@@ -13,36 +8,36 @@ import org.junit.Test;
  *
  * @author gilberto
  */
-public class EditVehicleTest extends BaseClickTestCase {
+public class EditLegalEntityTest extends BaseClickTestCase {
 
     @Test
-    public void testOnGetWithLicencePlateNotNull() {
+    public void testOnGetWithIdNotNull() {
         // Bootstrap the container
         container.start();
 
         Map params = new HashMap();
         params.put("id", "LC100");
-        // Simulate a user requesting the page, EditVehicle.
+        // Simulate a user requesting the page, EditLegalEntity.
         container.getRequest().setMethod("GET");
-        EditVehicle page = (EditVehicle) container.testPage(EditVehicle.class,params);
+        EditLegalEntity page = (EditLegalEntity) container.testPage(EditLegalEntity.class,params);
 
-        // Assert that EditVehicle presents the isNewField iqual to false.
+        // Assert that EditLegalEntity presents the isNewField iqual to false.
         assertEquals(false, page.isNewField.getValueObject());
 
         container.stop();
     }
     @Test
-    public void testOnGetWithLicencePlateNull() {
+    public void testOnGetIdNull() {
         // Bootstrap the container
         container.start();
 
         Map params = new HashMap();
         //params.put("licencePlate", "");
-        // Simulate a user requesting the page, EditVehicle.
+        // Simulate a user requesting the page, EditLegalEntity.
         container.getRequest().setMethod("GET");
-        EditVehicle page = (EditVehicle) container.testPage(EditVehicle.class,params);
+        EditLegalEntity page = (EditLegalEntity) container.testPage(EditLegalEntity.class,params);
 
-        // Assert that EditVehicle presents the isNewField iqual to true.
+        // Assert that EditLegalEntity presents the isNewField iqual to true.
         assertEquals(true,page.isNewField.getValueObject());
 
         container.stop();

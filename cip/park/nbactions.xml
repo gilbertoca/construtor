@@ -26,4 +26,15 @@
                 <goal>sql:execute</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-dbunit:operation</actionName>
+            <displayName>dbunit:operation</displayName>
+            <goals>
+                <goal>dbunit:operation</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>dbunit</activatedProfile>
+                
+            </activatedProfiles>
+        </action>
     </actions>

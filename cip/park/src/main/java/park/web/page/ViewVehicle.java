@@ -83,7 +83,7 @@ public class ViewVehicle extends BorderPage {
         Column columnAction = new Column("action");
         columnAction.setTextAlign("center");
         AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
-        columnAction.setDecorator(new LinkDecorator(table, links, "licensePlate"));
+        columnAction.setDecorator(new LinkDecorator(table, links, "id"));
         columnAction.setSortable(false);
         table.addColumn(columnAction);
 
