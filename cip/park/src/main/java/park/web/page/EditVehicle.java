@@ -36,8 +36,9 @@ public class EditVehicle extends BorderPage {
     protected HiddenField idField = new HiddenField("licensePlate", String.class);
     /** Necessary here to access it on OnGet method. */
     protected TextField licensePlateField = new TextField("licensePlate", true);    
-    // Bindable variables can automatically have their value set by request parameters
+    /** Bindable variables(ID, used to get data) can automatically have their value set by request parameters */
     public String licensePlate;
+    /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
 
