@@ -26,7 +26,7 @@ public class ViewVehicleTest extends BaseClickTestCase {
         // Assert that ViewVehicle presents the title field.
         assertEquals(page.getMessage("viewVehicle.title"), page.getModel().get("title"));
 
-        //assertNotNull(page.table.getRowList());
+        assertNotNull(page.table.getRowList());
 
         container.stop();
     }
