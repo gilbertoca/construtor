@@ -86,13 +86,14 @@ public class ViewVehicle extends BorderPage {
         columnAction.setDecorator(new LinkDecorator(table, links, "licensePlate"));
         columnAction.setSortable(false);
         table.addColumn(columnAction);
-        table.setRowList(findByLicensePlate());
-        /*
+        //table.setRowList(findByLicensePlate());
+        
         table.setDataProvider(new DataProvider<Vehicle>() {
             public List<Vehicle> getData() {
+                System.out.println("\n getData() method which will call findByLicensePlate() \n");
                 return (List<Vehicle>) findByLicensePlate();
             }
-        });*/
+        });
     }
     
    private List findByLicensePlate(){
