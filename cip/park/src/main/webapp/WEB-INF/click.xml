@@ -2,6 +2,6 @@
 <click-app> 
 
   <pages package="park.web.page"/>
-  <mode value="trace"/>
+  <mode value="development"/>
 
 </click-app>
