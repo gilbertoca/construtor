@@ -13,8 +13,6 @@ public class ViewLegalEntityTest extends BaseClickTestCase {
         // Assert that ViewLegalEntity presents the title field.
         assertEquals(page.getMessage("viewLegalEntity.title"), page.getModel().get("title"));
 
-        //assertNotNull(page.table.getRowList());
-        
         container.stop();
     }
 }
