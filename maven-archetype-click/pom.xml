@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.google.constructor.archetypes</groupId>
     <artifactId>maven-archetype-click</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
     <name>Maven Archetype Click</name>
     <description>An archetype which generates a simplifed sample of the Apache Click Framework. </description>
@@ -32,9 +32,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:svn:http://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</connection>
-        <developerConnection>scm:svn:https://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</developerConnection>
-        <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click/tags/maven-archetype-click-1.0</url>
+        <connection>scm:svn:http://construtor.googlecode.com/svn/trunk/maven-archetype-click</connection>
+        <developerConnection>scm:svn:https://construtor.googlecode.com/svn/trunk/maven-archetype-click</developerConnection>
+        <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click</url>
     </scm>
     <distributionManagement>
                 <!-- use the following if you're not using a snapshot version. -->
