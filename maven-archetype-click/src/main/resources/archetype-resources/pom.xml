@@ -55,9 +55,9 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>[2..,)</click.version>
+        <click.version>[2.,)</click.version>
         <servlet-api-version>[2.,)</servlet-api-version>
-        <jetty.version>7.0.1.v20091125</jetty.version>
-        <junit.version>4.5</junit.version>
+        <jetty.version>[7.,)</jetty.version>
+        <junit.version>[4.,)</junit.version>
     </properties>
 </project>
