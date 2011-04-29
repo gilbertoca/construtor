@@ -36,7 +36,21 @@
         <developerConnection>scm:svn:https://construtor.googlecode.com/svn/trunk/maven-archetype-click</developerConnection>
         <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click</url>
     </scm>
-
+    <distributionManagement>
+                <!-- use the following if you're not using a snapshot version. -->
+        <repository>
+            <id>construtor.googlecode.releases</id>
+            <name>construtor.googlecode.releases</name>
+            <url>dav:https://construtor.googlecode.com/svn/maven2/</url>
+        </repository>
+                <!-- use the following if you ARE using a snapshot version. -->
+        <snapshotRepository>
+            <id>construtor.googlecode.snapshots</id>
+            <name>construtor.googlecode.snapshots</name>
+            <url>dav:https://construtor.googlecode.com/svn/maven2-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+     
     <issueManagement>
         <system>Google</system>
         <url>http://code.google.com/p/construtor/issues/list</url>
