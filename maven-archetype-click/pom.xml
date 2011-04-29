@@ -32,10 +32,10 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:svn:http://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</connection>
-        <developerConnection>scm:svn:https://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</developerConnection>
+        <connection>scm:svn:http://construtor.googlecode.com/svn/tags/maven-archetype-click</connection>
+        <developerConnection>scm:svn:https://construtor.googlecode.com/svn/tags/maven-archetype-click</developerConnection>
         <tag>HEAD</tag>
-        <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click/tags/maven-archetype-click-1.0</url>
+        <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click</url>
     </scm>
 
     <issueManagement>
