@@ -34,6 +34,7 @@
     <scm>
         <connection>scm:svn:http://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</connection>
         <developerConnection>scm:svn:https://construtor.googlecode.com/svn/tags/maven-archetype-click-1.0</developerConnection>
+        <tag>HEAD</tag>
         <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click/tags/maven-archetype-click-1.0</url>
     </scm>
 
