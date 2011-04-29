@@ -22,7 +22,7 @@
     <version>1.0</version>
     <packaging>maven-archetype</packaging>
     <name>Maven Archetype Click</name>
-    <description>An archetype which generates a simplifed sample of the Apache Click Framework. </description>
+    <description>An archetype which generates a simplified sample of the Apache Click Framework. </description>
     <url>http://code.google.com/p/construtor</url>
     <licenses>
         <license>
