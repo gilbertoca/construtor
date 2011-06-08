@@ -1,6 +1,6 @@
-package helpdesk.web.page;
+package park.web.page;
 
-import helpdesk.model.EquipmentType;
+import park.model.EquipmentType;
 import java.util.List;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;

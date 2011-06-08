@@ -74,7 +74,7 @@
                     </srcFiles>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
@@ -87,7 +87,7 @@
                         </fileset>
                     </filesets>
                 </configuration>
-            </plugin>
+            </plugin-->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -166,7 +166,7 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.2.0</click.version>
+        <click.version>2.3.0</click.version>
         <cayenne.version>3.1M2</cayenne.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
@@ -179,8 +179,8 @@
         <!--jdbc.url>jdbc:h2:mem;create=true</jdbc.url-->
         <jdbc.url>jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <jdbc.username>help</jdbc.username>
-        <jdbc.password>help</jdbc.password>
+        <jdbc.username>click</jdbc.username>
+        <jdbc.password>click</jdbc.password>
 
         <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>

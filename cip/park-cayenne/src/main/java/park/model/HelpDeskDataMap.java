@@ -1,6 +1,6 @@
-package helpdesk.model;
+package park.model;
 
-import helpdesk.model.auto._HelpDeskDataMap;
+import park.model.auto._HelpDeskDataMap;
 
 public class HelpDeskDataMap extends _HelpDeskDataMap {
 
