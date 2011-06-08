@@ -97,7 +97,7 @@ public class EditLegalEntity extends BorderPage {
     }
 
     private List getVehiclesByCusotmerId(Long id) {
-        System.out.println("\n findByLicensePlate() method \n");
+        System.out.println("\n getVehiclesByCusotmerId(Long id) method \n");
         Query queryObject = em.createNamedQuery("Vehicle.findByCustomerId");
         queryObject.setParameter("customerId", id);
         return queryObject.getResultList();
@@ -107,6 +107,7 @@ public class EditLegalEntity extends BorderPage {
     @Override
     public void onInit() {
         super.onInit();
+        System.out.println("\n onInit() method \n");
         // Set the id on the table's controlLink. If you view the
         // output rendered by Table note that the id parameter
         // is rendered for each Paging and Sorting link.

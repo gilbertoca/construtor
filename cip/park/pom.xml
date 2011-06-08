@@ -155,7 +155,7 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <click.version>2.3.0-RC1</click.version>
+        <click.version>2.3.0</click.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
