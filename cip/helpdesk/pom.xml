@@ -24,9 +24,9 @@
         <artifactId>cip</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>helpdesk-cayenne</artifactId>
+    <artifactId>park-cayenne</artifactId>
     <packaging>war</packaging>
-    <name>Help Desk[CAYENNE]</name>
+    <name>Parking Control[CAYENNE]</name>
     <build>
         <resources>
             <resource>
@@ -91,7 +91,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.0.1.v20091125</version>
+                <version>8</version>
                 <configuration>
                     <reload>manual</reload>
                 </configuration>
@@ -184,7 +184,6 @@
 
         <servlet-api-version>2.5</servlet-api-version>
         <junit.version>4.5</junit.version>
-        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     </properties>
 </project>
 
