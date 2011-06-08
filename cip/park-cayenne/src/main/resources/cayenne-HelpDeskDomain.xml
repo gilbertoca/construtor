@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<domain project-version="6">
+	<map name="HelpDeskDataMap"/>
+
+	<node name="HelpDeskDataNode"
+		 factory="org.apache.cayenne.configuration.server.XMLPoolingDataSourceFactory"
+		 schema-update-strategy="org.apache.cayenne.access.dbsync.CreateIfNoSchemaStrategy"
+		>
+		<map-ref name="HelpDeskDataMap"/>
+		<data-source>
+			<driver value="org.h2.Driver"/>
+			<url value="jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"/>
+			<connectionPool min="1" max="1"/>
+			<login userName="help" password="help"/>
+		</data-source>
+	</node>
+</domain>
