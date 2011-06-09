@@ -73,26 +73,26 @@
 	</obj-entity>
 	<obj-entity name="Employee" className="park.model.Employee" dbEntityName="EMPLOYEE">
 		<obj-attribute name="dtAdmission" type="java.util.Date" db-attribute-path="DT_ADMISSION"/>
-		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 	</obj-entity>
-	<obj-entity name="LegalEntity" className="park.model.LegalEntity" dbEntityName="LEGAL_ENTITY">
+	<obj-entity name="LegalEntity" superEntityName="Parking" className="park.model.LegalEntity" dbEntityName="LEGAL_ENTITY">
+		<qualifier><![CDATA[pType = "LE"]]></qualifier>
 		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="DT_FOUNDATION"/>
-		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="TAXPAYERS_ID"/>
 	</obj-entity>
-	<obj-entity name="NaturalPerson" className="park.model.NaturalPerson" dbEntityName="NATURAL_PERSON">
+	<obj-entity name="NaturalPerson" superEntityName="Person" className="park.model.NaturalPerson" dbEntityName="NATURAL_PERSON">
+		<qualifier><![CDATA[pType = "NP"]]></qualifier>
 		<obj-attribute name="dtBirth" type="java.util.Date" db-attribute-path="DT_BIRTH"/>
-		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="legalDocument" type="java.lang.String" db-attribute-path="LEGAL_DOCUMENT"/>
+		<attribute-override name="pType" db-attribute-path="null"/>
+		<attribute-override name="version" db-attribute-path="null"/>
 	</obj-entity>
 	<obj-entity name="Parking" className="park.model.Parking" dbEntityName="PARKING">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
 		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="parkingSpace" type="java.lang.Integer" db-attribute-path="PARKING_SPACE"/>
 	</obj-entity>
-	<obj-entity name="Person" className="park.model.Person" dbEntityName="PERSON">
+	<obj-entity name="Person" abstract="true" className="park.model.Person" dbEntityName="PERSON">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
-		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="pType" type="java.lang.String" db-attribute-path="P_TYPE"/>
 		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
@@ -127,22 +127,22 @@
 	<db-relationship name="vehicles" source="CUSTOMER" target="VEHICLE" toMany="true">
 		<db-attribute-pair source="ID" target="CUSTOMER_ID"/>
 	</db-relationship>
-	<db-relationship name="parking" source="EMPLOYEE" target="PARKING" toMany="false">
-		<db-attribute-pair source="PARKING_ID" target="ID"/>
-	</db-relationship>
-	<db-relationship name="stays" source="EMPLOYEE" target="STAY" toMany="true">
+	<db-relationship name="entranceStays" source="EMPLOYEE" target="STAY" toMany="true">
 		<db-attribute-pair source="ID" target="EMPLOYEE_ID_ENTRANCE"/>
 	</db-relationship>
-	<db-relationship name="stays1" source="EMPLOYEE" target="STAY" toMany="true">
+	<db-relationship name="outgoingStays" source="EMPLOYEE" target="STAY" toMany="true">
 		<db-attribute-pair source="ID" target="EMPLOYEE_ID_OUTGOING"/>
 	</db-relationship>
 	<db-relationship name="toNaturalPerson" source="EMPLOYEE" target="NATURAL_PERSON" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
+	<db-relationship name="toParking" source="EMPLOYEE" target="PARKING" toMany="false">
+		<db-attribute-pair source="PARKING_ID" target="ID"/>
+	</db-relationship>
 	<db-relationship name="toPerson" source="LEGAL_ENTITY" target="PERSON" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="toNaturalPerson" source="NATURAL_PERSON" target="EMPLOYEE" toDependentPK="true" toMany="false">
+	<db-relationship name="toEmployee" source="NATURAL_PERSON" target="EMPLOYEE" toDependentPK="true" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="toPerson" source="NATURAL_PERSON" target="PERSON" toMany="false">
@@ -154,13 +154,13 @@
 	<db-relationship name="stays" source="PARKING" target="STAY" toMany="true">
 		<db-attribute-pair source="ID" target="PARKING_ID"/>
 	</db-relationship>
-	<db-relationship name="toPerson" source="PERSON" target="CUSTOMER" toDependentPK="true" toMany="false">
+	<db-relationship name="toCustomer" source="PERSON" target="CUSTOMER" toDependentPK="true" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="toPerson1" source="PERSON" target="LEGAL_ENTITY" toDependentPK="true" toMany="false">
+	<db-relationship name="toLegalEntity" source="PERSON" target="LEGAL_ENTITY" toDependentPK="true" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="toPerson2" source="PERSON" target="NATURAL_PERSON" toDependentPK="true" toMany="false">
+	<db-relationship name="toNaturalPerson" source="PERSON" target="NATURAL_PERSON" toDependentPK="true" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="vehicles" source="PRICE_TABLE" target="VEHICLE" toMany="true">
@@ -169,10 +169,10 @@
 	<db-relationship name="parking" source="STAY" target="PARKING" toMany="false">
 		<db-attribute-pair source="PARKING_ID" target="ID"/>
 	</db-relationship>
-	<db-relationship name="toEmployee" source="STAY" target="EMPLOYEE" toMany="false">
+	<db-relationship name="toEmployeeEntrance" source="STAY" target="EMPLOYEE" toMany="false">
 		<db-attribute-pair source="EMPLOYEE_ID_ENTRANCE" target="ID"/>
 	</db-relationship>
-	<db-relationship name="toEmployee1" source="STAY" target="EMPLOYEE" toMany="false">
+	<db-relationship name="toEmployeeOutgoing" source="STAY" target="EMPLOYEE" toMany="false">
 		<db-attribute-pair source="EMPLOYEE_ID_OUTGOING" target="ID"/>
 	</db-relationship>
 	<db-relationship name="toVehicle" source="STAY" target="VEHICLE" toMany="false">
@@ -195,22 +195,23 @@
 	</db-relationship>
 	<obj-relationship name="toPerson" source="Customer" target="Person" deleteRule="Nullify" db-relationship-path="toPerson"/>
 	<obj-relationship name="vehicles" source="Customer" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
-	<obj-relationship name="parking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
-	<obj-relationship name="stays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
-	<obj-relationship name="stays1" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="stays1"/>
+	<obj-relationship name="entranceStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="entranceStays"/>
+	<obj-relationship name="outgoingStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="outgoingStays"/>
 	<obj-relationship name="toNaturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson"/>
+	<obj-relationship name="toParking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="toParking"/>
 	<obj-relationship name="toPerson" source="LegalEntity" target="Person" deleteRule="Nullify" db-relationship-path="toPerson"/>
-	<obj-relationship name="toNaturalPerson" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toNaturalPerson"/>
+	<obj-relationship name="toEmployee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee"/>
+	<obj-relationship name="toNaturalPerson" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee"/>
 	<obj-relationship name="toPerson" source="NaturalPerson" target="Person" deleteRule="Nullify" db-relationship-path="toPerson"/>
 	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
 	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
-	<obj-relationship name="toPerson" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="toPerson"/>
-	<obj-relationship name="toPerson1" source="Person" target="LegalEntity" deleteRule="Nullify" db-relationship-path="toPerson1"/>
-	<obj-relationship name="toPerson2" source="Person" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toPerson2"/>
+	<obj-relationship name="toCustomer" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
+	<obj-relationship name="toLegalEntity" source="Person" target="LegalEntity" deleteRule="Nullify" db-relationship-path="toLegalEntity"/>
+	<obj-relationship name="toNaturalPerson" source="Person" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson"/>
 	<obj-relationship name="vehicles" source="PriceTable" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
 	<obj-relationship name="parking" source="Stay" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
-	<obj-relationship name="toEmployee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee"/>
-	<obj-relationship name="toEmployee1" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployee1"/>
+	<obj-relationship name="toEmployee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeEntrance"/>
+	<obj-relationship name="toEmployee1" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeOutgoing"/>
 	<obj-relationship name="toVehicle" source="Stay" target="Vehicle" deleteRule="Nullify" db-relationship-path="toVehicle"/>
 	<obj-relationship name="customer" source="Vehicle" target="Customer" deleteRule="Nullify" db-relationship-path="customer"/>
 	<obj-relationship name="priceTable" source="Vehicle" target="PriceTable" deleteRule="Nullify" db-relationship-path="priceTable"/>
