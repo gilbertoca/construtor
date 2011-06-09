@@ -77,7 +77,10 @@
 	<obj-entity name="LegalEntity" superEntityName="Parking" className="park.model.LegalEntity" dbEntityName="PERSON">
 		<qualifier><![CDATA[pType = "LE"]]></qualifier>
 		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="toLegalEntity.DT_FOUNDATION"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+		<obj-attribute name="pType" type="java.lang.String" db-attribute-path="P_TYPE"/>
 		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="toLegalEntity.TAXPAYERS_ID"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="NaturalPerson" superEntityName="Person" className="park.model.NaturalPerson" dbEntityName="PERSON">
 		<qualifier><![CDATA[pType = "NP"]]></qualifier>
@@ -119,7 +122,7 @@
 	<obj-entity name="VehicleType" className="park.model.VehicleType" dbEntityName="VEHICLE_TYPE">
 		<obj-attribute name="manufacturer" type="java.lang.String" db-attribute-path="MANUFACTURER"/>
 		<obj-attribute name="model" type="java.lang.String" db-attribute-path="MODEL"/>
-		<obj-attribute name="vType" type="java.lang.String" db-attribute-path="V_TYPE"/>
+		<obj-attribute name="vehicleType" type="java.lang.String" db-attribute-path="V_TYPE"/>
 	</obj-entity>
 	<db-relationship name="toPerson" source="CUSTOMER" target="PERSON" toMany="false">
 		<db-attribute-pair source="ID" target="ID"/>
@@ -197,17 +200,13 @@
 	<obj-relationship name="vehicles" source="Customer" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
 	<obj-relationship name="entranceStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="entranceStays"/>
 	<obj-relationship name="outgoingStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="outgoingStays"/>
-	<obj-relationship name="toNaturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson"/>
+	<obj-relationship name="toNaturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toPerson"/>
 	<obj-relationship name="toParking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="toParking"/>
-	<obj-relationship name="toPerson" source="LegalEntity" target="Person" deleteRule="Nullify" db-relationship-path=""/>
-	<obj-relationship name="toEmployee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path=""/>
-	<obj-relationship name="toNaturalPerson" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path=""/>
-	<obj-relationship name="toPerson" source="NaturalPerson" target="Person" deleteRule="Nullify" db-relationship-path=""/>
+	<obj-relationship name="toCustomer" source="LegalEntity" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
+	<obj-relationship name="toEmployee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toEmployee"/>
 	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
 	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
 	<obj-relationship name="toCustomer" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
-	<obj-relationship name="toLegalEntity" source="Person" target="LegalEntity" deleteRule="Nullify" db-relationship-path="toLegalEntity"/>
-	<obj-relationship name="toNaturalPerson" source="Person" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson"/>
 	<obj-relationship name="vehicles" source="PriceTable" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
 	<obj-relationship name="parking" source="Stay" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
 	<obj-relationship name="toEmployee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeEntrance"/>
