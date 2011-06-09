@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>$title</title>
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+        $headElements
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <span id="title">$title</span>
+            </div>
+            <!-- Horizontal menu, top to bottom "navbar" Div-->
+             $rootMenu 
+
+            <div id="container">
+                #parse($path)
+                <div class="clearer"></div>
+            </div>
+            <div id="footer">
+                <p>
+                    <span class="left">
+                        $messages.get("webapp.version")
+                    </span>
+                    |
+                    <span class="right">
+                        &copy; $messages.get("copyright.year") <a href="$messages.get("company.url")>$messages.get("company.name")</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<click-app> 
+
+  <pages package="park.web.page"/>
+    <pages>
+        <page classname="park.web.page.ViewEquipmentType" path="view-equipment-type.htm"/>
+        <page classname="park.web.page.EditEquipmentType" path="edit-equipment-type.htm"/>
+    </pages>
+    <mode value="debug"/>
+
+</click-app>

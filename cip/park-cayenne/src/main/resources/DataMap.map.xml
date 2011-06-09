@@ -74,20 +74,17 @@
 	<obj-entity name="Employee" className="park.model.Employee" dbEntityName="EMPLOYEE">
 		<obj-attribute name="dtAdmission" type="java.util.Date" db-attribute-path="DT_ADMISSION"/>
 	</obj-entity>
-	<obj-entity name="LegalEntity" superEntityName="Parking" className="park.model.LegalEntity" dbEntityName="PERSON">
+	<obj-entity name="LegalEntity" superEntityName="Person" className="park.model.LegalEntity" dbEntityName="PERSON">
 		<qualifier><![CDATA[pType = "LE"]]></qualifier>
 		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="toLegalEntity.DT_FOUNDATION"/>
-		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
-		<obj-attribute name="pType" type="java.lang.String" db-attribute-path="P_TYPE"/>
 		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="toLegalEntity.TAXPAYERS_ID"/>
-		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="NaturalPerson" superEntityName="Person" className="park.model.NaturalPerson" dbEntityName="PERSON">
 		<qualifier><![CDATA[pType = "NP"]]></qualifier>
 		<obj-attribute name="dtBirth" type="java.util.Date" db-attribute-path="toNaturalPerson.DT_BIRTH"/>
 		<obj-attribute name="legalDocument" type="java.lang.String" db-attribute-path="toNaturalPerson.LEGAL_DOCUMENT"/>
-		<attribute-override name="pType" db-attribute-path="null"/>
-		<attribute-override name="version" db-attribute-path="null"/>
+		<attribute-override name="pType" db-attribute-path="P_TYPE"/>
+		<attribute-override name="version" db-attribute-path="VERSION"/>
 	</obj-entity>
 	<obj-entity name="Parking" className="park.model.Parking" dbEntityName="PARKING">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
@@ -217,4 +214,10 @@
 	<obj-relationship name="stays" source="Vehicle" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
 	<obj-relationship name="toVehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
 	<obj-relationship name="vehicles" source="VehicleType" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+	<query name="VehicleType.findByVehicleType" factory="org.apache.cayenne.map.EjbqlBuilder">
+		<ejbql><![CDATA[select v from VehicleType v where v.vehicleType like :vehicleType]]></ejbql>
+	</query>
+	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.EjbqlBuilder">
+		<ejbql><![CDATA[select v from Vehicle v where v.licensePlate like :licensePlate]]></ejbql>
+	</query>        
 </data-map>

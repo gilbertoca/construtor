@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one
+   or more contributor license agreements.  See the NOTICE file
+   distributed with this work for additional information
+   regarding copyright ownership.  The ASF licenses this file
+   to you under the Apache License, Version 2.0 (the
+   "License"); you may not use this file except in compliance
+   with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+-->
+
+<menu>
+  <menu label=" Main" path="main-menu.htm"/>
+
+  <menu label=" People/Entities" path="main-menu.htm">
+    <menu label="Natural Person" path="view-natural-person.htm"/>
+    <menu label="Legal Entities" path="view-legal-entity.htm"/>
+  </menu>
+
+  <menu label=" Parking" path="#">
+    <menu label="Parkings" path="view-parking.htm"/>
+    <menu label="Employees" path="view-employee.htm"/>
+    <menu separator="true"/>
+    <menu label="Prices" path="view-price.htm"/>
+  </menu>
+  
+  <menu label=" Customer" path="#" >
+    <menu label="Customers" path="view-customer.htm"/>
+    <menu label="Vehicles" path="view-vehicle.htm"/>
+    <menu separator="true"/>
+    <menu label="Vehicles Type" path="view-vehicle-type.htm"/>
+  </menu>
+
+  <menu label=" Stay" path="#" >
+    <menu label="Stays" path="view-stay.htm"/>
+    <menu label="Entrances" path="view-entrance.htm"/>
+    <menu label="Outgoing" path="view-outgoing.htm"/>
+  </menu>
+</menu>
