@@ -1,17 +1,15 @@
 package park.model;
 
-import park.model.orm.Parking;
-import park.model.orm.Employee;
-import park.model.orm.NaturalPerson;
-import java.sql.DriverManager;
+import java.util.List;
+import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.query.SelectQuery;
+import org.apache.cayenne.Cayenne;
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.configuration.server.ServerRuntime;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -28,55 +26,37 @@ import static org.junit.Assert.*;
 
 
 public class EmployeeTest {
-
-    private static EntityManagerFactory emf;
-    private static EntityManager em;
-    private static EntityTransaction tx;
+    private static ServerRuntime runtime;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
-        emf = Persistence.createEntityManagerFactory("PU");
-        em = emf.createEntityManager();
-
-        // Initializes DBUnit
-        // For now, getting connection from one JPA provider is impossible
-        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-        // So, let's take a work around ...
-
+    public static void init() throws Exception {
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
-
-        //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        
+        //Create Cayenne ServerRuntime, uses it to get a connection and initializes DBUnit
+        runtime = new ServerRuntime("cayenne-ParkDomain.xml");
+        
+        DataDomain domain = runtime.getDataDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("employee-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+        
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
-        em.close();
-        emf.close();
-        //before we close the connection
+    public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
-    }
-
-    @Before
-    public void initTransaction() {
-        tx = em.getTransaction();
     }
 
     @Before
@@ -91,22 +71,27 @@ public class EmployeeTest {
     @Test
     public void GetEmployeeById() {
         System.out.println("\nGetting an Employee by ID.\n");
-        Employee c = em.find(Employee.class, 1004L);
+        //Employee c = em.find(Employee.class, 1004L);
+'        Employee c = Cayenne.objectForPK(runtime.getContext(),Employee.class, 1004L);
         System.out.println("Object loaded: \n" + c);
-        assertNotNull(c.getNaturalPerson());
+        assertNotNull(c.getToNaturalPerson());
     }
 
     @Test
     public void findAll() throws Exception {
-
+        ObjectContext context = runtime.getContext();
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("Employee.findAll");
-        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
+        //Query query = em.createNamedQuery("Employee.findAll");
+        SelectQuery query = new SelectQuery(Customer.class);
+        List classEntities = context.performQuery(query);
+        
+        assertEquals("Should have 1 employees", classEntities.size(), 1);
 
         // Creates a new object and persists it
         //Employee c = new Employee(1002, 3);
         Employee c = new Employee();
-        NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
+        //NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
+        NaturalPerson nP = Cayenne.objectForPK(context,NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
         c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
         //c.setId(lP.getId());

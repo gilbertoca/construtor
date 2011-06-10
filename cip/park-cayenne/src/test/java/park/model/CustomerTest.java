@@ -28,7 +28,7 @@ public class CustomerTest {
     private static IDataSet dataset;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
+    public static void init() throws Exception {
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
@@ -51,7 +51,7 @@ public class CustomerTest {
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
+    public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
@@ -62,7 +62,6 @@ public class CustomerTest {
     @Test
     public void GetCustomerById() {
         System.out.println("\nGetting an Natural Person by ID.\n");
-        
         //Customer c = em.find(Customer.class, 1000L);
         Customer c = Cayenne.objectForPK(runtime.getContext(),Customer.class, 1000L);
         System.out.println("Object loaded: \n" + c);

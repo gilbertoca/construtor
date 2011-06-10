@@ -31,33 +31,22 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class StayTest {
-
-    private static EntityManagerFactory emf;
-    private static EntityManager em;
-    private static EntityTransaction tx;
+    private static ServerRuntime runtime;
     private static IDatabaseConnection connection;
     private static IDataSet dataset;
 
     @BeforeClass
-    public static void initEntityManager() throws Exception {
-        emf = Persistence.createEntityManagerFactory("PU");
-        em = emf.createEntityManager();
-
-        // Initializes DBUnit
-        // For now, getting connection from one JPA provider is impossible
-        // connection = new DatabaseConnection(em.unwrap(java.sql.Connection.class));
-        // So, let's take a work around ...
-
+    public static void init() throws Exception {
         // I presume you've set the src/test/resources/jdbc.properties
         Properties configurationProperties = new Properties();
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
-
-        //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        
+        //Create Cayenne ServerRuntime, uses it to get a connection and initializes DBUnit
+        runtime = new ServerRuntime("cayenne-ParkDomain.xml");
+        
+        DataDomain domain = runtime.getDataDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
@@ -66,16 +55,15 @@ public class StayTest {
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("stay-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
+        
     }
 
     @AfterClass
-    public static void closeEntityManager() throws SQLException, DatabaseUnitException {
-        em.close();
-        emf.close();
-        //before we close the connection
+    public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
+
 
     @Before
     public void initTransaction() {
