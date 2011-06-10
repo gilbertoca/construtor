@@ -9,4 +9,8 @@ package park.model.auto;
  * If you need to make any customizations, please use subclass.
  */
 public class _DataMap {
+
+    public static final String VEHICLE_FIND_BY_LICENSE_PLATE_QUERYNAME = "Vehicle.findByLicensePlate";
+
+    public static final String VEHICLE_TYPE_FIND_BY_VEHICLE_TYPE_QUERYNAME = "VehicleType.findByVehicleType";
 }

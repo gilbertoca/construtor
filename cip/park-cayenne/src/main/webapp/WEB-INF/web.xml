@@ -23,7 +23,7 @@
         <filter-class>org.apache.cayenne.configuration.web.CayenneFilter</filter-class>
        <init-param>
             <param-name>configuration-location</param-name>
-            <param-value>cayenne-HelpDeskDomain.xml</param-value>
+            <param-value>cayenne-ParkDomain.xml</param-value>
         </init-param>
     </filter>
 

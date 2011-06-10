@@ -214,10 +214,10 @@
 	<obj-relationship name="stays" source="Vehicle" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
 	<obj-relationship name="toVehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
 	<obj-relationship name="vehicles" source="VehicleType" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.EjbqlBuilder">
+		<ejbql><![CDATA[select v from Vehicle v where v.licensePlate like :licensePlate]]></ejbql>
+	</query>
 	<query name="VehicleType.findByVehicleType" factory="org.apache.cayenne.map.EjbqlBuilder">
 		<ejbql><![CDATA[select v from VehicleType v where v.vehicleType like :vehicleType]]></ejbql>
 	</query>
-	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.EjbqlBuilder">
-		<ejbql><![CDATA[select v from Vehicle v where v.licensePlate like :licensePlate]]></ejbql>
-	</query>        
 </data-map>
