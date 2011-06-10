@@ -152,7 +152,7 @@
     <entity class="Employee">
         <!--
             CREATE TABLE EMPLOYEE (
-                PERSON_ID INTEGER NOT NULL,
+                NATURAL_PERSON_ID INTEGER NOT NULL,
                 DT_ADMISSION DATE NOT NULL,
                 PARKING_ID INTEGER NOT NULL,
                 CONSTRAINT EMPLOYEE_PK PRIMARY KEY (PERSON_ID)
@@ -168,7 +168,7 @@
         </named-query>
         <attributes>
             <id name="id">
-                <column name="person_id"/>
+                <column name="natural_person_id"/>
             </id>
             <basic name="dtAdmission">
                 <column name="dt_admission"/>
@@ -180,7 +180,7 @@
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
             <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
-                <join-column name="person_id" referenced-column-name="person_id" />
+                <join-column name="natural_person_id" referenced-column-name="person_id" />
             </one-to-one>
         </attributes>
     </entity>
@@ -420,10 +420,10 @@
                 <column name="total_price" precision="12" scale="2"/>
             </basic>
             <many-to-one name="employeeEntrance">
-                <join-column name="employee_id_entrance" referenced-column-name="person_id"/>
+                <join-column name="employee_id_entrance" referenced-column-name="natural_person_id"/>
             </many-to-one>
             <many-to-one name="employeeOutgoing">
-                <join-column name="employee_id_outgoing" referenced-column-name="person_id"/>
+                <join-column name="employee_id_outgoing" referenced-column-name="natural_person_id"/>
             </many-to-one>
 
             <many-to-one name="vehicle">
