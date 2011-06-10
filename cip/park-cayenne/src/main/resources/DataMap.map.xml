@@ -6,23 +6,23 @@
 	<property name="defaultPackage" value="park.model"/>
 	<property name="defaultSchema" value="PUBLIC"/>
 	<db-entity name="CUSTOMER" schema="PUBLIC" catalog="PARKDB">
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="PAYMENT_DAY" type="INTEGER" length="10"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
 	<db-entity name="EMPLOYEE" schema="PUBLIC" catalog="PARKDB">
 		<db-attribute name="DT_ADMISSION" type="DATE" length="8"/>
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="NATURAL_PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="PARKING_ID" type="BIGINT" length="19"/>
 	</db-entity>
 	<db-entity name="LEGAL_ENTITY" schema="PUBLIC" catalog="PARKDB">
 		<db-attribute name="DT_FOUNDATION" type="DATE" length="8"/>
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="TAXPAYERS_ID" type="VARCHAR" length="20"/>
 	</db-entity>
 	<db-entity name="NATURAL_PERSON" schema="PUBLIC" catalog="PARKDB">
 		<db-attribute name="DT_BIRTH" type="DATE" length="8"/>
-		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="LEGAL_DOCUMENT" type="VARCHAR" length="20"/>
+		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
 	<db-entity name="PARKING" schema="PUBLIC" catalog="PARKDB">
 		<db-attribute name="ADDRESS" type="VARCHAR" length="100"/>
@@ -68,7 +68,6 @@
 		<db-attribute name="V_TYPE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
 	</db-entity>
 	<obj-entity name="Customer" className="park.model.Customer" dbEntityName="CUSTOMER">
-		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="paymentDay" type="java.lang.Integer" db-attribute-path="PAYMENT_DAY"/>
 	</obj-entity>
 	<obj-entity name="Employee" className="park.model.Employee" dbEntityName="EMPLOYEE">
@@ -122,31 +121,31 @@
 		<obj-attribute name="vehicleType" type="java.lang.String" db-attribute-path="V_TYPE"/>
 	</obj-entity>
 	<db-relationship name="toPerson" source="CUSTOMER" target="PERSON" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="vehicles" source="CUSTOMER" target="VEHICLE" toMany="true">
-		<db-attribute-pair source="ID" target="CUSTOMER_ID"/>
+		<db-attribute-pair source="PERSON_ID" target="CUSTOMER_ID"/>
 	</db-relationship>
 	<db-relationship name="entranceStays" source="EMPLOYEE" target="STAY" toMany="true">
-		<db-attribute-pair source="ID" target="EMPLOYEE_ID_ENTRANCE"/>
+		<db-attribute-pair source="NATURAL_PERSON_ID" target="EMPLOYEE_ID_ENTRANCE"/>
 	</db-relationship>
 	<db-relationship name="outgoingStays" source="EMPLOYEE" target="STAY" toMany="true">
-		<db-attribute-pair source="ID" target="EMPLOYEE_ID_OUTGOING"/>
+		<db-attribute-pair source="NATURAL_PERSON_ID" target="EMPLOYEE_ID_OUTGOING"/>
 	</db-relationship>
 	<db-relationship name="toNaturalPerson" source="EMPLOYEE" target="NATURAL_PERSON" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="NATURAL_PERSON_ID" target="PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toParking" source="EMPLOYEE" target="PARKING" toMany="false">
 		<db-attribute-pair source="PARKING_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="toPerson" source="LEGAL_ENTITY" target="PERSON" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="toEmployee" source="NATURAL_PERSON" target="EMPLOYEE" toDependentPK="true" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="PERSON_ID" target="NATURAL_PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toPerson" source="NATURAL_PERSON" target="PERSON" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="PERSON_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="employees" source="PARKING" target="EMPLOYEE" toMany="true">
 		<db-attribute-pair source="ID" target="PARKING_ID"/>
@@ -155,13 +154,13 @@
 		<db-attribute-pair source="ID" target="PARKING_ID"/>
 	</db-relationship>
 	<db-relationship name="toCustomer" source="PERSON" target="CUSTOMER" toDependentPK="true" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toLegalEntity" source="PERSON" target="LEGAL_ENTITY" toDependentPK="true" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toNaturalPerson" source="PERSON" target="NATURAL_PERSON" toDependentPK="true" toMany="false">
-		<db-attribute-pair source="ID" target="ID"/>
+		<db-attribute-pair source="ID" target="PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="vehicles" source="PRICE_TABLE" target="VEHICLE" toMany="true">
 		<db-attribute-pair source="ID" target="PRICE_TABLE_ID"/>
@@ -170,16 +169,16 @@
 		<db-attribute-pair source="PARKING_ID" target="ID"/>
 	</db-relationship>
 	<db-relationship name="toEmployeeEntrance" source="STAY" target="EMPLOYEE" toMany="false">
-		<db-attribute-pair source="EMPLOYEE_ID_ENTRANCE" target="ID"/>
+		<db-attribute-pair source="EMPLOYEE_ID_ENTRANCE" target="NATURAL_PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toEmployeeOutgoing" source="STAY" target="EMPLOYEE" toMany="false">
-		<db-attribute-pair source="EMPLOYEE_ID_OUTGOING" target="ID"/>
+		<db-attribute-pair source="EMPLOYEE_ID_OUTGOING" target="NATURAL_PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="toVehicle" source="STAY" target="VEHICLE" toMany="false">
 		<db-attribute-pair source="LICENSE_PLATE" target="LICENSE_PLATE"/>
 	</db-relationship>
 	<db-relationship name="customer" source="VEHICLE" target="CUSTOMER" toMany="false">
-		<db-attribute-pair source="CUSTOMER_ID" target="ID"/>
+		<db-attribute-pair source="CUSTOMER_ID" target="PERSON_ID"/>
 	</db-relationship>
 	<db-relationship name="priceTable" source="VEHICLE" target="PRICE_TABLE" toMany="false">
 		<db-attribute-pair source="PRICE_TABLE_ID" target="ID"/>
