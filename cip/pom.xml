@@ -104,7 +104,7 @@
         <module>orm</module>
         <module>shiro</module>
         <module>rolesecurity</module>
-        <module>park</module>
+        <module>park-jpa</module>
         <module>park-cayenne</module>
     </modules>
 
@@ -155,6 +155,6 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <junit.version>4.5</junit.version>
+        <junit.version>4.8</junit.version>
     </properties>
 </project>
