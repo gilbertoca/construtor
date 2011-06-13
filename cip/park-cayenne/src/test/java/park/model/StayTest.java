@@ -1,22 +1,18 @@
 package park.model;
 
-import park.model.orm.Stay;
-import park.model.orm.Employee;
-import park.model.orm.Vehicle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.query.Query;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -58,16 +54,11 @@ public class StayTest {
         
     }
 
+
     @AfterClass
     public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
-    }
-
-
-    @Before
-    public void initTransaction() {
-        tx = em.getTransaction();
     }
 
     @Before
@@ -75,6 +66,7 @@ public class StayTest {
         // Cleans the database with DbUnit
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
+
 
     /**
      * Test of getStay method, of class Stay.

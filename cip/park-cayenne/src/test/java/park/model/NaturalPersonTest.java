@@ -1,15 +1,14 @@
 package park.model;
 
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.query.Query;
 import java.util.List;
 import javax.persistence.TypedQuery;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
@@ -59,15 +58,9 @@ public class NaturalPersonTest {
         connection.close();
     }
 
-
     @Before
-    public void initTransaction() {
-        tx = em.getTransaction();
-    }
-
-    @Before
-    public void cleanBeforeDB() throws Exception {
-        // REFRESH the database with DbUnit
+    public void cleanDB() throws Exception {
+        // Cleans the database with DbUnit
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 

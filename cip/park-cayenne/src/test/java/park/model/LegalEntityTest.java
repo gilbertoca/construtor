@@ -1,15 +1,13 @@
 package park.model;
 
-import park.model.orm.LegalEntity;
-import java.sql.DriverManager;
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.query.Query;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
@@ -53,28 +51,24 @@ public class LegalEntityTest {
         
     }
 
+
     @AfterClass
     public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
     }
 
-
-    @Before
-    public void initTransaction() {
-        tx = em.getTransaction();
-    }
-
     @Before
     public void cleanDB() throws Exception {
-        // REFRESH the database with DbUnit
+        // Cleans the database with DbUnit
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
     @Test
     public void GetLegalEntityById() {
         System.out.println("\nGetting an Legal Person by ID.\n");
-        LegalEntity lP = em.find(LegalEntity.class, 1002L);
+        //LegalEntity lP = em.find(LegalEntity.class, 1002L);
+        LegalEntity lP = Cayenne.objectForPK(runtime.getContext(),LegalEntity.class, 1002L);
         System.out.println("Object loaded: \n" + lP);
         assertNotNull(lP.getName());
     }

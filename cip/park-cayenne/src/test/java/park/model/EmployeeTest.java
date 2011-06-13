@@ -72,7 +72,7 @@ public class EmployeeTest {
     public void GetEmployeeById() {
         System.out.println("\nGetting an Employee by ID.\n");
         //Employee c = em.find(Employee.class, 1004L);
-'        Employee c = Cayenne.objectForPK(runtime.getContext(),Employee.class, 1004L);
+        Employee c = Cayenne.objectForPK(runtime.getContext(),Employee.class, 1004L);
         System.out.println("Object loaded: \n" + c);
         assertNotNull(c.getToNaturalPerson());
     }
@@ -93,26 +93,36 @@ public class EmployeeTest {
         //NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         NaturalPerson nP = Cayenne.objectForPK(context,NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
-        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
+        //Setting the class attribute will need manual set of customer.id?
+        //c.setToNaturalPerson(nP); 
         //c.setId(lP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
-        Parking p = em.find(Parking.class, 1001L);
+        //Parking p = em.find(Parking.class, 1001L);
+        Parking p = Cayenne.objectForPK(context, Parking.class, 100L);
         System.out.println("Foreign Key Object loaded: \n" + p);
-
-        c.setParking(p);
+        c.setToParking(p);
+        
+        /* JPA code
         tx.begin();
         em.persist(c);
         tx.commit();
+        */
+        context.registerNewObject(c);
+        context.commitChanges();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 2 employees", context.performQuery(query).size(), 2);
 
         // Removes the object from the database
+        /* JPA code
         tx.begin();
         em.remove(c);
         tx.commit();
+        */
+        context.deleteObject(c);
+        context.commitChanges();
 
         // Gets all the objects from the database
-        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
+        assertEquals("Should have 1 employees", context.performQuery(query).size(), 1);
     }
 }

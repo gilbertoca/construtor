@@ -1,15 +1,14 @@
 package park.model;
 
-import park.model.orm.PriceTable;
-import java.sql.DriverManager;
 
+import org.apache.cayenne.access.DataDomain;
+
+import org.apache.cayenne.access.DataNode;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.query.Query;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.dbunit.DatabaseUnitException;
@@ -59,12 +58,6 @@ public class PriceTableTest {
     public static void close() throws SQLException, DatabaseUnitException {
         DatabaseOperation.DELETE.execute(connection, dataset);
         connection.close();
-    }
-
-
-    @Before
-    public void initTransaction() {
-        tx = em.getTransaction();
     }
 
     @Before
