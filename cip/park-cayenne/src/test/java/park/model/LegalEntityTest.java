@@ -1,5 +1,7 @@
 package park.model;
 
+import org.apache.cayenne.query.NamedQuery;
+import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.configuration.server.ServerRuntime;
@@ -8,7 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Properties;
-import javax.persistence.Query;
+import org.apache.cayenne.query.EJBQLQuery;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -75,12 +77,17 @@ public class LegalEntityTest {
     @Test
     public void DeleteById() {
         System.out.println("\nDeleting Legal Entity by ID.\n");
-        Query query = em.createNamedQuery("LegalEntity.deleteById");
-        query.setParameter("id", 1010L);
+        //Query query = em.createNamedQuery("LegalEntity.deleteById");
+        //query.setParameter("id", 1010L);
+        EJBQLQuery queryObject = new EJBQLQuery("LegalEntity.deleteById");
+        queryObject.setParameter(null, queryObject);
+        //JPA code
+        /*
         tx.begin();
         int del = 0;
         del = query.executeUpdate();
         tx.commit();
+        */
         assertEquals(del, 1);
     }
     @Test
