@@ -76,7 +76,7 @@
             <id>objectstyle</id>
             <name>Objectstyle Repository</name>
             <url>http://objectstyle.org/maven2</url>
-        </pluginRepository>
+         </pluginRepository>
     </pluginRepositories>
     <build>
         <defaultGoal>install</defaultGoal>
