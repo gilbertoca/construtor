@@ -75,7 +75,7 @@ public class CustomerTest {
     @Test
     public void GetCustomerLookUp() {
         System.out.println("\nGetting all Customer using a lookup class .\n");
-        List<CustomerLookUp> result = em.createQuery("SELECT new park.model.orm.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+        List<CustomerLookUp> result = em.createQuery("SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
         System.out.println("Object loaded: \n" + result);
         assertEquals("Should have 2 customers", result.size(), 2);
     }

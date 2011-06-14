@@ -82,7 +82,7 @@ public class EmployeeTest {
         ObjectContext context = runtime.getContext();
         // Gets all the objects from the database
         //Query query = em.createNamedQuery("Employee.findAll");
-        SelectQuery query = new SelectQuery(Customer.class);
+        SelectQuery query = new SelectQuery(Employee.class);
         List classEntities = context.performQuery(query);
         
         assertEquals("Should have 1 employees", classEntities.size(), 1);
@@ -93,8 +93,8 @@ public class EmployeeTest {
         //NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         NaturalPerson nP = Cayenne.objectForPK(context,NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
-        //Setting the class attribute will need manual set of customer.id?
-        //c.setToNaturalPerson(nP); 
+        //Setting the class attribute will need manual set of employee.id?
+        c.setToNaturalPerson(nP); 
         //c.setId(lP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         //Parking p = em.find(Parking.class, 1001L);

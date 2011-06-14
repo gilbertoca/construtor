@@ -3,13 +3,8 @@ package park.model;
 import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.configuration.server.ServerRuntime;
-import org.apache.cayenne.query.Query;
-import java.util.List;
-import javax.persistence.TypedQuery;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.Properties;
-import javax.persistence.Query;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
@@ -21,8 +16,6 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class NaturalPersonTest {
     private static ServerRuntime runtime;
@@ -67,7 +60,7 @@ public class NaturalPersonTest {
     /**
      * Test of getNaturalPerson method, of class NaturalPerson.
      */
-    @Test
+/*    @Test
     public void getNaturalPersonById() {
         System.out.println("\nGetting an Natural Person by ID.\n");
         NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
@@ -107,4 +100,5 @@ public class NaturalPersonTest {
         // Gets all the objects from the database
         assertEquals("Should have 3 natural persons", query.getResultList().size(), 3);
     }
+    */
 }
