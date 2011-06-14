@@ -15,8 +15,8 @@ import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
-import park.model.orm.NaturalPerson;
-import park.orm.util.EntityManagerContext;
+import park.model.NaturalPerson;
+import park.service.util.EntityManagerContext;
 
 public class ViewNaturalPerson extends park.web.page.BorderPage {
 

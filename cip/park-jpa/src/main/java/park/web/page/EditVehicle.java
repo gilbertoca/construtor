@@ -10,11 +10,11 @@ import org.apache.click.control.Select;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.dataprovider.DataProvider;
-import park.model.orm.PriceTable;
-import park.model.orm.Vehicle;
-import park.model.orm.VehicleType;
-import park.model.orm.dto.CustomerLookUp;
-import park.orm.util.EntityManagerContext;
+import park.model.PriceTable;
+import park.model.Vehicle;
+import park.model.VehicleType;
+import park.model.dto.CustomerLookUp;
+import park.service.util.EntityManagerContext;
 
 /**
  *
@@ -108,7 +108,7 @@ public class EditVehicle extends BorderPage {
             public List getData() {
                 List options = new ArrayList();
                 List<CustomerLookUp> result =
-                        em.createQuery("SELECT new park.model.orm.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+                        em.createQuery("SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
                 for (CustomerLookUp customer : result) {
                     options.add(new Option(customer.getId(), customer.getCustomerName()));
                 }

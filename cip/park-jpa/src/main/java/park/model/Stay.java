@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package park.model.orm;
+package park.model;
 
 import java.io.Serializable;
 import java.util.Date;

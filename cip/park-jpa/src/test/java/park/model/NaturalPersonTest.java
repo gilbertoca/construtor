@@ -1,8 +1,8 @@
-package park.model.orm;
+package park.model;
 
-import park.model.orm.Parking;
-import park.model.orm.Employee;
-import park.model.orm.NaturalPerson;
+import park.model.NaturalPerson;
+import java.util.List;
+import javax.persistence.TypedQuery;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -26,8 +26,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-
-public class EmployeeTest {
+public class NaturalPersonTest {
 
     private static EntityManagerFactory emf;
     private static EntityManager em;
@@ -59,9 +58,9 @@ public class EmployeeTest {
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
         //How to get new instance of H2DataTypeFactory|OracleDataTypeFactory|PostgresqlDataTypeFactory
-        IDataTypeFactory dataTypeFactory = (IDataTypeFactory)Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
+        IDataTypeFactory dataTypeFactory = (IDataTypeFactory) Class.forName(configurationProperties.getProperty("dbunit.dataTypeFactoryName")).newInstance();
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
-        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("employee-dataset.xml"));
+        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("natural-person-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
     }
 
@@ -80,54 +79,52 @@ public class EmployeeTest {
     }
 
     @Before
-    public void cleanDB() throws Exception {
-        // Cleans the database with DbUnit
+    public void cleanBeforeDB() throws Exception {
+        // REFRESH the database with DbUnit
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
     /**
-     * Test of setVehicletype method, of class Vehicle.
+     * Test of getNaturalPerson method, of class NaturalPerson.
      */
     @Test
-    public void GetEmployeeById() {
-        System.out.println("\nGetting an Employee by ID.\n");
-        Employee c = em.find(Employee.class, 1004L);
-        System.out.println("Object loaded: \n" + c);
-        assertNotNull(c.getNaturalPerson());
+    public void getNaturalPersonById() {
+        System.out.println("\nGetting an Natural Person by ID.\n");
+        NaturalPerson nP = em.find(NaturalPerson.class, 1000L);
+        System.out.println("Object loaded: \n" + nP);
+        assertNotNull(nP.getName());
+    }
+
+    @Test
+    public void findByQuery() {
+        TypedQuery<String> query = em.createQuery("SELECT n.name, n.address FROM NaturalPerson AS n", String.class);
+        //query.setHint(QueryHints.RESULT_TYPE,ResultType.Map);
+        List<String> results = query.getResultList();
+        System.out.println("Object loaded: \n" + results);
     }
 
     @Test
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
-        Query query = em.createNamedQuery("Employee.findAll");
-        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
+        Query query = em.createNamedQuery("NaturalPerson.findAll");
+        assertEquals("Should have 3 natural persons", query.getResultList().size(), 3);
 
         // Creates a new object and persists it
-        //Employee c = new Employee(1002, 3);
-        Employee c = new Employee();
-        NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
-        System.out.println("Foreign Key Object loaded: \n" + nP);
-        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
-        //c.setId(lP.getId());
-        c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
-        Parking p = em.find(Parking.class, 1001L);
-        System.out.println("Foreign Key Object loaded: \n" + p);
-
-        c.setParking(p);
+        NaturalPerson nP = new NaturalPerson("NATURAL_PERSON1005", "ADDRESS1005", new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"), "LEGAL_DOCUMENT1005");
         tx.begin();
-        em.persist(c);
+        em.persist(nP);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 4 natural persons", query.getResultList().size(), 4);
 
         // Removes the object from the database
         tx.begin();
-        em.remove(c);
+        em.remove(nP);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
+        assertEquals("Should have 3 natural persons", query.getResultList().size(), 3);
     }
 }

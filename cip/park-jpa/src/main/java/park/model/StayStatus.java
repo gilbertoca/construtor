@@ -1,3 +1,3 @@
-package park.model.orm;
+package park.model;
 
 public enum StayStatus { ENTRANCE, OUTGOING, CANCELLED};

@@ -14,7 +14,7 @@
         </persistence-unit-defaults>
         -->
     </persistence-unit-metadata>
-    <package>park.model.orm</package>
+    <package>park.model</package>
     <table-generator
         name="person_table_generator"
         table="table_generator"

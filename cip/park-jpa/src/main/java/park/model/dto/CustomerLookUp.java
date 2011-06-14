@@ -1,4 +1,4 @@
-package park.model.orm.dto;
+package park.model.dto;
 
     public class CustomerLookUp {
 

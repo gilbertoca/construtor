@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author gilberto
  */
 public class EditLegalEntityTest extends BaseClickTestCase {
-/*
+
     @Test
     public void testPageCreation() {
         // Bootstrap the container
@@ -25,7 +25,7 @@ public class EditLegalEntityTest extends BaseClickTestCase {
         assertNotNull(page);
         container.stop();
     }
-*/
+
     @Test
     public void testOnGetWithIdNotNull() {
         // Bootstrap the container

@@ -1,8 +1,8 @@
-package park.model.orm;
+package park.model;
 
-import park.model.orm.Stay;
-import park.model.orm.Employee;
-import park.model.orm.Vehicle;
+import park.model.Stay;
+import park.model.Employee;
+import park.model.Vehicle;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

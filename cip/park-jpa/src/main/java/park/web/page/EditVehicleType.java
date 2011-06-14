@@ -6,8 +6,8 @@ import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
-import park.model.orm.VehicleType;
-import park.orm.util.EntityManagerContext;
+import park.model.VehicleType;
+import park.service.util.EntityManagerContext;
 
 /**
  *

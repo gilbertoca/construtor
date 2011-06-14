@@ -14,9 +14,9 @@ import org.apache.click.control.TextField;
 import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.DateField;
 import org.apache.click.extras.control.IntegerField;
-import park.model.orm.LegalEntity;
-import park.model.orm.Vehicle;
-import park.orm.util.EntityManagerContext;
+import park.model.LegalEntity;
+import park.model.Vehicle;
+import park.service.util.EntityManagerContext;
 
 
 /**
