@@ -92,6 +92,12 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+            <scope>provided</scope>
+        </dependency>        
+        <dependency>
             <groupId>com.google.constructor.cip</groupId>
             <artifactId>orm</artifactId>
             <version>${cip.orm.version}</version>
@@ -113,6 +119,12 @@
             <artifactId>cayenne-server</artifactId>
             <version>${cayenne.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                </exclusion>
+            </exclusions>            
         </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -121,21 +133,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.5.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.14</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -155,10 +155,11 @@
         <!-- versions -->
         <cip.orm.version>1.0-SNAPSHOT</cip.orm.version>
         <cayenne.version>3.0.1</cayenne.version>
+        <commons-lang.version>2.6</commons-lang.version>
         <eclipselink.version>2.1.1</eclipselink.version>
-        <shiro.version>1.0.0-incubating</shiro.version>
+        <shiro.version>1.1.0</shiro.version>
         <servlet-api-version>2.5</servlet-api-version>
-        <dbunit.version>2.4.7</dbunit.version>
+        <dbunit.version>2.4.8</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
 
