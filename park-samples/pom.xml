@@ -31,30 +31,45 @@
 
     <licenses>
         <license>
-            <name></name>
-            <url></url>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>jar</distribution>
         </license>
     </licenses>
-
     <scm>
-        <connection></connection>
-        <developerConnection></developerConnection>
-        <url></url>
+        <connection>scm:svn:http://construtor.googlecode.com/svn/trunk/maven-archetype-click</connection>
+        <developerConnection>scm:svn:https://construtor.googlecode.com/svn/trunk/maven-archetype-click</developerConnection>
+        <url>http://code.google.com/p/construtor/source/browse/#svn%2Ftrunk%2Fmaven-archetype-click</url>
     </scm>
-
+    <distributionManagement>
+                <!-- use the following if you're not using a snapshot version. -->
+        <repository>
+            <id>construtor.googlecode.releases</id>
+            <name>construtor.googlecode.releases</name>
+            <url>dav:https://construtor.googlecode.com/svn/maven2/</url>
+        </repository>
+                <!-- use the following if you ARE using a snapshot version. -->
+        <snapshotRepository>
+            <id>construtor.googlecode.snapshots</id>
+            <name>construtor.googlecode.snapshots</name>
+            <url>dav:https://construtor.googlecode.com/svn/maven2-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+     
     <issueManagement>
-        <system></system>
-        <url></url>
+        <system>Google</system>
+        <url>http://code.google.com/p/construtor/issues/list</url>
     </issueManagement>
 
     <developers>
         <developer>
-            <id></id>
-            <name></name>
-            <email></email>
-            <timezone></timezone>
+            <id />
+            <name>Gilberto Caetano de Andrade</name>
+            <email>gilbertoca@gmail.com</email>
+            <timezone />
         </developer>
     </developers>
+    
     <repositories>
         <repository>
             <id>eclipse repository</id>
@@ -76,7 +91,7 @@
             <id>objectstyle</id>
             <name>Objectstyle Repository</name>
             <url>http://objectstyle.org/maven2</url>
-         </pluginRepository>
+        </pluginRepository>
     </pluginRepositories>
     <build>
         <defaultGoal>install</defaultGoal>
