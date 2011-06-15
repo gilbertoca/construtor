@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.google.constructor</groupId>
     <artifactId>park-samples</artifactId>
-    <packaging>pom</packaging>
+    <!--maven inheritance: packing will be the default-->
     <version>1.0-SNAPSHOT</version>
     <name>Apache Click Park Samples Project</name>
     <url>http://code.google.com/p/construtor</url>
