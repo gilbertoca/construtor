@@ -25,6 +25,10 @@
             <goals>
                 <goal>sql:execute</goal>
             </goals>
+            <activatedProfiles>
+                <activatedProfile>eclipselink</activatedProfile>
+                <activatedProfile>sqlmaven</activatedProfile>
+            </activatedProfiles>
         </action>
         <action>
             <actionName>CUSTOM-dbunit:operation</actionName>

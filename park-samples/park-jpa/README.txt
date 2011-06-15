@@ -1,6 +1,5 @@
 First:
-
-svn checkout http://construtor.googlecode.com/svn/trunk/cip/park-jpa park-jpa
+svn checkout http://construtor.googlecode.com/svn/trunk/park-samples park-samples
 
 and
 
@@ -44,8 +43,8 @@ To know more take a look at the park-jpa/pom.xml profiles.
 
 More information:
 --Original UML diagram
-cid/docs/03000001.png
+park-samples/docs/03000001.png
 --My DER diagram
-cid/docs/power.architect/park-der.pdf
+park-samples/docs/power.architect/park-der.pdf
 --Power Architect project file
-docs/park.architect
+park-samples/docs/park.architect
