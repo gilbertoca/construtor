@@ -112,19 +112,14 @@
             <version>${shiro.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.5.6</version>
-        </dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>        
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.14</version>
         </dependency>
         <dependency>
             <groupId>org.apache.click</groupId>
@@ -195,13 +190,13 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <shiro.version>1.0.0-incubating</shiro.version>
-        <click.version>2.2.0</click.version>
+        <shiro.version>1.1.0</shiro.version>
+        <click.version>2.3.0</click.version>
         <cip.shiro.version>1.0-SNAPSHOT</cip.shiro.version>
         <eclipselink.version>2.0.2</eclipselink.version>
         <servlet-api-version>2.5</servlet-api-version>
-        <junit.version>4.5</junit.version>
-        <dbunit.version>2.4.7</dbunit.version>
+        <junit.version>4.8</junit.version>
+        <dbunit.version>2.4.8</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
 
@@ -215,7 +210,6 @@
         <ddl-generation>NONE</ddl-generation>
         <jdbc.username>park</jdbc.username>
         <jdbc.password>park</jdbc.password>
-        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     </properties>
 </project>
 
