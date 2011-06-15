@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.gilbertoca.park</groupId>
-        <artifactId>park</artifactId>
+        <artifactId>park-multi-module</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>park-core</artifactId>
+    <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <name>Parking Control - Core</name>
     <build>

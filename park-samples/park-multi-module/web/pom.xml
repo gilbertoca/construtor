@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.gilbertoca.park</groupId>
-        <artifactId>park</artifactId>
+        <artifactId>park-multi-module</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>park-webapp</artifactId>
+    <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <name>Parking Control - Web (Click)</name>
+    <name>Parking Control - Web</name>
 
     <build>
         <finalName>${project.artifactId}</finalName>
