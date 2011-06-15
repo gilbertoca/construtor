@@ -2,15 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gilbertoca.park</groupId>
+        <groupId>com.google.constructor</groupId>
         <artifactId>park-multi-module</artifactId>
         <version>1.0-SNAPSHOT</version>
-    </parent>
-
+    </parent>    
     <artifactId>web</artifactId>
     <packaging>war</packaging>
     <name>Parking Control - Web</name>
-
     <build>
         <finalName>${project.artifactId}</finalName>
 <!--resources>
@@ -89,15 +87,15 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>com.gilbertoca.park</groupId>
-            <artifactId>park-core</artifactId>
+            <groupId>park-samples</groupId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>
     <properties>
     <!-- versions -->
-        <click.version>2.2.0</click.version>
+        <click.version>2.3.0</click.version>
         <servlet-api-version>2.5</servlet-api-version>
     </properties>
 </project>

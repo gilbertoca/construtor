@@ -25,9 +25,9 @@
     <version>1.0-SNAPSHOT</version>
     <name>Apache Click Park Samples Project</name>
     <url>http://code.google.com/p/construtor</url>
-    <!--prerequisites>
-        <maven>2.0.6</maven>
-    </prerequisites-->
+    <description>
+        A parent POM used for all the projects
+    </description>
 
     <licenses>
         <license>
@@ -114,13 +114,6 @@
             </plugin>
         </plugins>
     </build>
-    
-    <modules>
-        <module>park-multi-module</module>
-        <module>park-jpa</module>
-        <module>park-cayenne</module>
-    </modules>
-
     <reporting>
         <plugins>
             <plugin>
