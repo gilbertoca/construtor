@@ -5,8 +5,6 @@
 
 package park.web.page;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.Test;
 
 /**
@@ -14,7 +12,20 @@ import org.junit.Test;
  * @author gilberto
  */
 public class EditVehicleTypeTest extends BaseClickTestCase {
+    @Test
+    public void testConstructor() {
+        // Bootstrap the container
+        container.start();
 
+        // Simulate a user requesting the page, EditVehicleType.
+        EditVehicleType page = (EditVehicleType) container.testPage(EditVehicleType.class);
+
+        // Assert that EditVehicleType presents the title field.
+        assertEquals(page.getMessage("editVehicleType.title"), page.getModel().get("title"));
+
+        container.stop();
+    }
+/*
     @Test
     public void testOnGetWithVehicleTypeNotNull() {
         // Bootstrap the container
@@ -47,5 +58,5 @@ public class EditVehicleTypeTest extends BaseClickTestCase {
 
         container.stop();
     }
-
+*/
 }
