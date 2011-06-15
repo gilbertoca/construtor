@@ -115,6 +115,12 @@
             <artifactId>cayenne-server</artifactId>
             <version>${cayenne.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -131,7 +137,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.14</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -149,10 +155,10 @@
     </dependencies>
     <properties>
         <!-- versions -->
-        <commons-lang.version>2.5</commons-lang.version>
+        <commons-lang.version>2.6</commons-lang.version>
         <cayenne.version>3.0.1</cayenne.version>
         <eclipselink.version>2.1.1</eclipselink.version>
-        <dbunit.version>2.4.7</dbunit.version>
+        <dbunit.version>2.4.8</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
 
