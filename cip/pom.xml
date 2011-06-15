@@ -104,8 +104,6 @@
         <module>orm</module>
         <module>shiro</module>
         <module>rolesecurity</module>
-        <module>park-jpa</module>
-        <module>park-cayenne</module>
     </modules>
 
     <reporting>
