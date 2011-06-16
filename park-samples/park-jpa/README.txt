@@ -48,3 +48,14 @@ park-samples/docs/03000001.png
 park-samples/docs/power.architect/park-der.pdf
 --Power Architect project file
 park-samples/docs/park.architect
+
+
+RUNNING IT(no database, no data)
+
+cd park-jpa
+
+mvn sql:execute -Peclipselink,sqlmaven
+mvn dbunit:operation -Pdbunit,eclipselink
+mvn jetty:run
+
+look at the url: http://localhost:8080/
