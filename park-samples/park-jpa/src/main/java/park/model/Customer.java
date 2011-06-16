@@ -8,7 +8,7 @@ public class Customer implements Serializable {
     private Long id; //references PERSON.ID
     private Integer paymentDay;
     private Collection<Vehicle> vehicles;
-    private Person person; //references PERSON.ID
+    private Person person; //readonly, references PERSON.ID
 
     public Customer() { }
     public Customer(Long id) {this.id = id;}

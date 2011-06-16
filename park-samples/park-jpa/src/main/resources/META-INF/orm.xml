@@ -49,6 +49,7 @@
                 <column length="100"/>
             </basic>
             <version name="version"/>
+            <one-to-one name="customer" target-entity="Customer" mapped-by="person"/>
         </attributes>
     </entity>
     <entity class="NaturalPerson">
@@ -130,9 +131,18 @@
             <query>SELECT c FROM Customer c</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="Customer.findByName">
+            <query>SELECT c FROM Customer c JOIN c.person p WHERE p.name LIKE :name</query>
+        </named-query>        
         <named-query name="Customer.lookUpName">
-            <query>SELECT DISTINCT c.id, p.name FROM Customer c JOIN c.person p</query>
+            <query>SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p</query>
         </named-query>
+        <named-query name="Customer.lookUpNameNotExists">
+            <query>
+            SELECT new park.model.dto.CustomerLookUp(p.id, p.name) FROM Person p
+            WHERE p.id NOT IN(SELECT c.id FROM Customer c)
+            </query>
+        </named-query>        
         <named-query name="Customer.deleteById">
             <query>DELETE FROM Customer c WHERE c.id = :id</query>
         </named-query>
@@ -144,9 +154,15 @@
                 <column name="payment_day"/>
             </basic>
             <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
+            <!-- This form we have a full OO relationship and if so we should remove 
+                Customer.id letting only the Customer.person
             <one-to-one name="person" target-entity="Person" maps-id=" ">
                 <join-column name="person_id" referenced-column-name="id"/>
             </one-to-one>
+            -->
+            <one-to-one name="person" target-entity="Person">
+                <join-column name="person_id" referenced-column-name="id" insertable="false" updatable="false"/>
+            </one-to-one>            
         </attributes>
     </entity>
     <entity class="Employee">

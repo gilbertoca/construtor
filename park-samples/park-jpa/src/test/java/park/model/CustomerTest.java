@@ -98,16 +98,19 @@ public class CustomerTest {
         assertNotNull(c.getPerson());
     }
 
-    /**
-     * Test of setVehicletype method, of class Vehicle.
-     */
     @Test
     public void GetCustomerLookUp() {
         System.out.println("\nGetting all Customer using a lookup class .\n");
-        List<CustomerLookUp> result =
-                em.createQuery("SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+        List<CustomerLookUp> result = em.createNamedQuery("Customer.lookUpName").getResultList();
         System.out.println("Object loaded: \n" + result);
-        assertEquals("Should have 2 customers", result.size(), 2);
+        assertEquals("Should have 2 customers", 2, result.size());
+    }
+    @Test
+    public void GetCustomerLookUpNotExists() {
+        System.out.println("\nGetting all Customer using a lookup class .\n");
+        List<CustomerLookUp> result = em.createNamedQuery("Customer.lookUpNameNotExists").getResultList();
+        System.out.println("Object loaded: \n" + result);
+        assertEquals("Should have 2 customers", 2, result.size());
     }
 
     @Test
@@ -115,7 +118,7 @@ public class CustomerTest {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Customer.findAll");
-        assertEquals("Should have 2 customers", query.getResultList().size(), 2);
+        assertEquals("Should have 2 customers", 2, query.getResultList().size());
 
         // Creates a new object and persists it
         //Customer c = new Customer(1002, 3);
@@ -123,14 +126,14 @@ public class CustomerTest {
         LegalEntity lP = em.find(LegalEntity.class, 1003L);
         System.out.println("Foreign Ket Object loaded: \n" + lP);
         c.setPerson(lP); //Setting the class attribute will need manual set of customer.id?
-        //c.setId(lP.getId());
+        c.setId(lP.getId());
         c.setPaymentDay(3);
         tx.begin();
         em.persist(c);
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 3 customers", query.getResultList().size(), 3);
+        assertEquals("Should have 3 customers", 3, query.getResultList().size());
 
         // Removes the object from the database
         tx.begin();
@@ -138,6 +141,6 @@ public class CustomerTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 customers", query.getResultList().size(), 2);
+        assertEquals("Should have 2 customers", 2, query.getResultList().size());
     }
 }

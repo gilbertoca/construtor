@@ -7,6 +7,7 @@ public abstract class Person implements Serializable {
     private Long id;
     private String address;
     private String name;
+    private Customer customer;
     private int version;
     
     public Person() {
@@ -47,6 +48,14 @@ public abstract class Person implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 
