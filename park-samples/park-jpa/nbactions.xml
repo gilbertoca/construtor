@@ -38,6 +38,7 @@
             </goals>
             <activatedProfiles>
                 <activatedProfile>dbunit</activatedProfile>
+                <activatedProfile>eclipselink</activatedProfile>
                 
             </activatedProfiles>
         </action>
