@@ -15,13 +15,24 @@ public class EditNaturalPerson extends BorderPage {
 
     private static final long serialVersionUID = 1L;
     private Form form = new Form("form");
-    private HiddenField referrerField = new HiddenField("referrer", String.class);
-    private HiddenField idField = new HiddenField("id", Long.class);
-    // Bindable variables can automatically have their value set by request parameters
+    /**
+     * Used to manage the data model state. On Get method we set it to false(update)
+     * and when posting - OnClick method - we set i to true(insert)
+     * isNew(false)=update, otherwise insert
+     */
+    protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
+    /** The source track */
+    protected HiddenField referrerField = new HiddenField("referrer", String.class);
+    /** The data model ID, used to get data from and to database */
+    protected HiddenField idField = new HiddenField("id", Long.class);
+    /** Bindable variables(ID, used on the Get method) can automatically have their value set by request parameters */
     public Long id;
+    /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
+    
     private EntityManager em = EntityManagerContext.getEntityManager();
 
+    // Constructor -----------------------------------------------------------
     public EditNaturalPerson() {
         System.out.println("\n EditNaturalPerson() method \n");
 
@@ -60,7 +71,8 @@ public class EditNaturalPerson extends BorderPage {
         form.add(new Submit("cancelBt", this, "onCancelClick"));
     }
 
-    // Event Handlers ---------------------------------------------------------
+  // Event Handlers ---------------------------------------------------------
+
     /**
      * When page is first displayed on the GET request.
      *
@@ -71,12 +83,18 @@ public class EditNaturalPerson extends BorderPage {
         System.out.println("\n onGet() method \n");
         if (id != null) {
             NaturalPerson naturalPerson = em.find(NaturalPerson.class, id);
-            System.out.println("\n em.find(id) was triggered \n");
             if (naturalPerson != null) {
                 // Copy naturalPerson data to form. The idField value will be set by
                 // this call
                 form.copyFrom(naturalPerson);
+                //id parameter of the page is NOT null, then isNew=false
+                isNewField.setValueObject(false);
+                //it is the PK, here we can't change it.
+                idField.setReadonly(true);
             }
+        } else {
+            //id parameter of the page is null, then isNew=true
+            isNewField.setValueObject(true);
         }
 
         if (referrer != null) {
@@ -94,7 +112,7 @@ public class EditNaturalPerson extends BorderPage {
             //local variable, don't confuse it with the public id parameter of the page
             Long _id = (Long) idField.getValueObject();
             if (_id != null) {
-                naturalPerson = em.find(NaturalPerson.class, _id);
+                naturalPerson = em.find(NaturalPerson.class, id);
             } else {
                 isNew = true;
                 naturalPerson = new NaturalPerson();

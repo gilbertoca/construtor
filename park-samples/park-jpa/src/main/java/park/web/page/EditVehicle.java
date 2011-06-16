@@ -61,7 +61,6 @@ public class EditVehicle extends BorderPage {
         idField.setMinLength(5);
         idField.setFocus(true);
         form.add(idField);
-        
         form.add(isNewField);
 
         TextField colorField = new TextField("color", true);
