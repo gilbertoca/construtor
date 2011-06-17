@@ -115,7 +115,7 @@ public class CustomerTest {
 
     @Test
     public void findAll() throws Exception {
-
+        System.out.println("\nGetting all Customer using Customer.findAll .\n");
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Customer.findAll");
         assertEquals("Should have 2 customers", 2, query.getResultList().size());
