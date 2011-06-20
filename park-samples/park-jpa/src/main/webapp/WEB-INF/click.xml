@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<click-app> 
+<click-app charset="UTF-8">
 
-  <pages package="park.web.page"/>
-  <mode value="development"/>
+  <!-- To aid Click's automapping, specify the Java package where Page classes can be found 
+    <pages package="com.mycorp.banking.page">
+   We have to manually define the mapping between the Home page class and index.htm template 
+  because this page doesn't follow the automatic mapping convention of naming the page class and
+  template the same
+        <page path="index.htm" classname="com.mycorp.banking.page.Home"/>
+    </pages>
+   -->
+  <!-- Specify a second Java package where Page classes can be found -->
+    <pages package="park.web.page"/>
+    <mode value="development"/>
+    <!--log-service classname="org.apache.click.extras.service.Log4JLogService"/-->
 
 </click-app>
