@@ -69,7 +69,7 @@ public class ViewEmployee extends BorderPage {
         table.addColumn(column);
 
         //editLink.setImageSrc("/assets/images/table-edit.png");
-        editLink.setParameter("referrer", "/view-legal-entity.htm");
+        editLink.setParameter("referrer", "/view-employee.htm");
 
         //deleteLink.setImageSrc("/assets/images/table-delete.png");
         //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
@@ -118,7 +118,7 @@ public class ViewEmployee extends BorderPage {
     public boolean onNewClick() {
         System.out.println("\n onNewClick() method \n");
         String path = getContext().getPagePath(EditEmployee.class);
-        path += "?referrer=/view-legal-entity.htm";
+        path += "?referrer=/view-employee.htm";
         setRedirect(path);
         return false;
     }

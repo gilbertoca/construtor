@@ -12,11 +12,11 @@ public class EditEmployeeTest extends BaseClickTestCase {
         // Bootstrap the container
         container.start();
 
-        // Simulate a user requesting the page, EditCustomer.
-        EditCustomer page = (EditCustomer) container.testPage(EditCustomer.class);
+        // Simulate a user requesting the page, EditEmployee.
+        EditEmployee page = (EditEmployee) container.testPage(EditEmployee.class);
 
-        // Assert that EditLegalEntity presents the title field.
-        assertEquals(page.getMessage("editCustomer.title"), page.getModel().get("title"));
+        // Assert that EditEmployee presents the title field.
+        assertEquals(page.getMessage("editEmployee.title"), page.getModel().get("title"));
 
         container.stop();
     }

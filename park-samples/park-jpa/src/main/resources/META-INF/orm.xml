@@ -84,6 +84,7 @@
             <basic name="legalDocument">
                 <column name="legal_document" length="20"/>
             </basic>
+            <one-to-one name="employee" target-entity="Employee" mapped-by="naturalPerson"/>
         </attributes>
     </entity>
     <entity class="LegalEntity">
@@ -207,9 +208,15 @@
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
+            <!-- This form we have a full OO relationship and if so we should remove 
+                Employee.id letting only the Employee.naturalPerson            
             <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
                 <join-column name="natural_person_id" referenced-column-name="person_id" />
             </one-to-one>
+            -->
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson">
+                <join-column name="natural_person_id" referenced-column-name="id" insertable="false" updatable="false"/>
+            </one-to-one>                        
         </attributes>
     </entity>
     <entity class="Parking">
@@ -418,7 +425,12 @@
         <named-query name="Stay.deleteById">
             <query>DELETE FROM Stay l WHERE l.id = :id</query>
         </named-query>
-
+        <named-query name="Stay.findByEmployeeEntranceId">
+            <query>SELECT s FROM Stay s WHERE s.employeeEntrance.id = :employeeId</query>
+        </named-query>
+        <named-query name="Stay.findByEmployeeOutgoingId">
+            <query>SELECT s FROM Stay s WHERE s.employeeOutgoing.id = :employeeId</query>
+        </named-query>        
         <attributes>
             <id name="id">
                 <column name="id"/>

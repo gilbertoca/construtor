@@ -125,8 +125,8 @@ public class EmployeeTest {
         Employee c = new Employee();
         NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
-        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of employee.id?
-        //c.setId(lP.getId());
+        //c.setNaturalPerson(nP); //Setting the class attribute will need manual set of employee.id?
+        c.setId(nP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         Parking p = em.find(Parking.class, 1001L);
         System.out.println("Foreign Key Object loaded: \n" + p);

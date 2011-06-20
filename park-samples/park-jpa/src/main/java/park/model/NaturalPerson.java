@@ -7,6 +7,7 @@ public class NaturalPerson extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     private Date dtBirth;
     private String legalDocument;
+    private Employee employee;
     
     public NaturalPerson() {
     }
@@ -33,6 +34,15 @@ public class NaturalPerson extends Person implements Serializable {
     public void setLegalDocument(String legalDocument) {
         this.legalDocument = legalDocument;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

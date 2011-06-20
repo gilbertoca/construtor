@@ -1,7 +1,5 @@
 package park.model;
 
-import park.model.Customer;
-import park.model.LegalEntity;
 import park.model.dto.CustomerLookUp;
 import java.util.List;
 import java.sql.DriverManager;
