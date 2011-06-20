@@ -44,19 +44,20 @@ public class EditNaturalPerson extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-        FieldSet fieldSet = new FieldSet("addressFieldSet");
-        form.add(fieldSet);
-
         TextField nameField = new TextField("name", true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
-        fieldSet.add(nameField);
-
+        form.add(nameField);
+        
         TextField addressField = new TextField("address", true);
         addressField.setMinLength(5);
         addressField.setFocus(true);
-        fieldSet.add(addressField);
-
+        form.add(addressField);
+        
+        //Grouping specific settings
+        FieldSet fieldSet = new FieldSet("naturalPersonFieldSet");
+        form.add(fieldSet);
+        
         DateField dtBirthField = new DateField("dtBirth", true);
         dtBirthField.setFormatPattern(getMessage("date.format"));
         dtBirthField.setShowCalendar(false);

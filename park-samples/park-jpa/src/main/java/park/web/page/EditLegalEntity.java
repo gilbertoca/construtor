@@ -51,19 +51,22 @@ public class EditLegalEntity extends BorderPage {
         form.add(referrerField);
         form.add(idField);
 
-FieldSet fieldSet = new FieldSet("addressFieldSet");
-        form.add(fieldSet);
 
         TextField nameField = new TextField("name", true);
         nameField.setMinLength(5);
         nameField.setFocus(true);
-        fieldSet.add(nameField);
+        form.add(nameField);
 
         TextField addressField = new TextField("address", true);
         addressField.setMinLength(5);
         addressField.setFocus(true);
-        fieldSet.add(addressField);
-
+        form.add(addressField);
+        
+        //Grouping specific settings
+        FieldSet fieldSet = new FieldSet("legalEntityFieldSet");
+        fieldSet.setLabel(path);
+        form.add(fieldSet);
+        
         DateField dtFoundationField = new DateField("dtFoundation", true);
         dtFoundationField.setFormatPattern(getMessage("date.format"));
         dtFoundationField.setShowCalendar(false);
