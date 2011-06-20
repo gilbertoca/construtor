@@ -86,7 +86,6 @@ public class ViewVehicle extends BorderPage {
         columnAction.setDecorator(new LinkDecorator(table, links, "licensePlate"));
         columnAction.setSortable(false);
         table.addColumn(columnAction);
-        //table.setRowList(findByLicensePlate());
         
         table.setDataProvider(new DataProvider<Vehicle>() {
             public List<Vehicle> getData() {

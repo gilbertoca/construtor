@@ -43,7 +43,7 @@ public class EditVehicle extends BorderPage {
      */
     protected TextField idField = new TextField("licensePlate", true);
     /** Bindable variables(ID, used on the Get method) can automatically have their value set by request parameters */
-    public String id;
+    public String licensePlate;
     /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
     private EntityManager em = EntityManagerContext.getEntityManager();
@@ -128,8 +128,8 @@ public class EditVehicle extends BorderPage {
     @Override
     public void onGet() {
         System.out.println("\n onGet() method \n");
-        if (id != null) {
-            Vehicle vehicle = em.find(Vehicle.class, id);
+        if (licensePlate != null) {
+            Vehicle vehicle = em.find(Vehicle.class, licensePlate);
             if (vehicle != null) {
                 // Copy vehicle data to form. The idField value will be set by
                 // this call
@@ -157,14 +157,14 @@ public class EditVehicle extends BorderPage {
         if (form.isValid()) {
             Vehicle vehicle = null;
             //local variable, don't confuse it with the public id parameter of the page
-            String _id = idField.getValue();
+            String _licensePlate = idField.getValue();
             //isNew(false)=update, othewise insert
             Boolean _isNew = (Boolean) isNewField.getValueObject();
 
             if (_isNew) {
                 vehicle = new Vehicle();
             } else {
-                vehicle = em.find(Vehicle.class, _id);
+                vehicle = em.find(Vehicle.class, _licensePlate);
             }
 
             form.copyTo(vehicle);
