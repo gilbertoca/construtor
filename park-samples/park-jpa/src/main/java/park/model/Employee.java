@@ -10,7 +10,7 @@ public class Employee implements Serializable {
     private Date dtAdmission;
     private Collection<Stay> staysOutgoing;
     private Collection<Stay> staysEntrance;
-    private NaturalPerson naturalPerson;  //references NATURAL_PERSON.PERSON_ID
+    private NaturalPerson naturalPerson; //readonly, references NATURAL_PERSON.PERSON_ID
     private Parking parking;
 
     public Employee() {

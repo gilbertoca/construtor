@@ -179,6 +179,18 @@
             <query>SELECT l FROM Employee l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="Employee.findByName">
+            <query>SELECT c FROM Employee c JOIN c.naturalPerson p WHERE p.name LIKE :name</query>
+        </named-query>                
+        <named-query name="Employee.lookUpName">
+            <query>SELECT new park.model.dto.EmployeeLookUp(c.id, p.name) FROM Employee c JOIN c.naturalPerson p</query>
+        </named-query>
+        <named-query name="Employee.lookUpNameNotExists">
+            <query>
+            SELECT new park.model.dto.EmployeeLookUp(p.id, p.name) FROM NaturalPerson p
+            WHERE p.id NOT IN(SELECT c.id FROM Employee c)
+            </query>
+        </named-query>                
         <named-query name="Employee.deleteById">
             <query>DELETE FROM Employee l WHERE l.id = :id</query>
         </named-query>

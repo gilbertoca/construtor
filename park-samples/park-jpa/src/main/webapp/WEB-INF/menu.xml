@@ -29,8 +29,6 @@
   <menu label=" Parking" path="#">
     <menu label="Parkings" path="view-parking.htm"/>
     <menu label="Employees" path="view-employee.htm"/>
-    <menu separator="true"/>
-    <menu label="Prices" path="view-price.htm"/>
   </menu>
   
   <menu label=" Customer" path="#" >
@@ -38,6 +36,7 @@
     <menu label="Vehicles" path="view-vehicle.htm"/>
     <menu separator="true"/>
     <menu label="Vehicles Type" path="view-vehicle-type.htm"/>
+    <menu label="Prices" path="view-price.htm"/>
   </menu>
 
   <menu label=" Stay" path="#" >

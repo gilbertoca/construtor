@@ -1,5 +1,7 @@
 package park.model;
 
+import park.model.dto.EmployeeLookUp;
+import java.util.List;
 import park.model.Parking;
 import park.model.Employee;
 import park.model.NaturalPerson;
@@ -95,20 +97,35 @@ public class EmployeeTest {
         System.out.println("Object loaded: \n" + c);
         assertNotNull(c.getNaturalPerson());
     }
+    
+    @Test
+    public void GetEmployeeLookUp() {
+        System.out.println("\nGetting all Employee using a lookup class .\n");
+        List<EmployeeLookUp> result = em.createNamedQuery("Employee.lookUpName").getResultList();
+        System.out.println("Object loaded: \n" + result);
+        assertEquals("Should have 1 employees", 1, result.size());
+    }
+    @Test
+    public void GetEmployeeLookUpNotExists() {
+        System.out.println("\nGetting all Employee using a lookup class .\n");
+        List<EmployeeLookUp> result = em.createNamedQuery("Employee.lookUpNameNotExists").getResultList();
+        System.out.println("Object loaded: \n" + result);
+        assertEquals("Should have 1 employees", 1, result.size());
+    }
 
     @Test
     public void findAll() throws Exception {
 
         // Gets all the objects from the database
         Query query = em.createNamedQuery("Employee.findAll");
-        assertEquals("Should have 1 employees", query.getResultList().size(), 1);
+        assertEquals("Should have 1 employees", 1, query.getResultList().size());
 
         // Creates a new object and persists it
         //Employee c = new Employee(1002, 3);
         Employee c = new Employee();
         NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
-        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of customer.id?
+        c.setNaturalPerson(nP); //Setting the class attribute will need manual set of employee.id?
         //c.setId(lP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         Parking p = em.find(Parking.class, 1001L);
@@ -120,7 +137,7 @@ public class EmployeeTest {
         tx.commit();
 
         // Gets all the objects from the database
-        assertEquals("Should have 2 employees", query.getResultList().size(), 2);
+        assertEquals("Should have 2 employees", 2, query.getResultList().size());
 
         // Removes the object from the database
         tx.begin();
