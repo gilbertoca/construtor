@@ -19,29 +19,29 @@
 -->
 
 <menu>
-  <menu label=" Main" path="main-menu.htm"/>
+  <menu name="main" path="main-menu.htm"/>
 
-  <menu label=" People/Entities" path="main-menu.htm">
-    <menu label="Natural Person" path="view-natural-person.htm"/>
-    <menu label="Legal Entities" path="view-legal-entity.htm"/>
+  <menu name="peopleEntities" path="main-menu.htm">
+    <menu name="naturalPerson" path="view-natural-person.htm"/>
+    <menu name="legalEntities" path="view-legal-entity.htm"/>
   </menu>
 
-  <menu label=" Parking" path="#">
-    <menu label="Parkings" path="view-parking.htm"/>
-    <menu label="Employees" path="view-employee.htm"/>
+  <menu name="parking" path="#">
+    <menu name="parkings" path="view-parking.htm"/>
+    <menu name="employees" path="view-employee.htm"/>
   </menu>
   
-  <menu label=" Customer" path="#" >
-    <menu label="Customers" path="view-customer.htm"/>
-    <menu label="Vehicles" path="view-vehicle.htm"/>
+  <menu name="customer" path="#" >
+    <menu name="customers" path="view-customer.htm"/>
+    <menu name="vehicles" path="view-vehicle.htm"/>
     <menu separator="true"/>
-    <menu label="Vehicles Type" path="view-vehicle-type.htm"/>
-    <menu label="Prices" path="view-price.htm"/>
+    <menu name="vehicles Type" path="view-vehicle-type.htm"/>
+    <menu name="prices" path="view-price.htm"/>
   </menu>
 
-  <menu label=" Stay" path="#" >
-    <menu label="Stays" path="view-stay.htm"/>
-    <menu label="Entrances" path="view-entrance.htm"/>
-    <menu label="Outgoing" path="view-outgoing.htm"/>
+  <menu name="stay" path="#" >
+    <menu name="stays" path="view-stay.htm"/>
+    <menu name="entrances" path="view-entrance.htm"/>
+    <menu name="outgoing" path="view-outgoing.htm"/>
   </menu>
 </menu>
