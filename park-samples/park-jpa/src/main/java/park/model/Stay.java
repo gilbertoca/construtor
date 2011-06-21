@@ -8,6 +8,10 @@ package park.model;
 import java.io.Serializable;
 import java.util.Date;
 
+/*
+ * One stay represents a time interval that a vehicle stands in the parking space. 
+ * It registers the entrance and outgoing of a vehicle and finally it calculate the stay price.
+ */
 public class Stay implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
