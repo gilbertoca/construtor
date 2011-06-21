@@ -2,7 +2,11 @@ package park.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-
+/*
+ * One Parking represents a space in a specific place (address) with good area 
+ * where several vehicle can be aligned and arranged. 
+ * This area is used as stay for vehicles of different types.
+ */
 public class Parking implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
