@@ -21,7 +21,7 @@
 <menu>
   <menu name="main" path="main-menu.htm"/>
 
-  <menu name="peopleEntities" path="main-menu.htm">
+  <menu name="peopleEntities" path="#">
     <menu name="naturalPerson" path="view-natural-person.htm"/>
     <menu name="legalEntities" path="view-legal-entity.htm"/>
   </menu>

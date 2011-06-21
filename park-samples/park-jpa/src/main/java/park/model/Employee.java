@@ -11,7 +11,8 @@ public class Employee implements Serializable {
     private Collection<Stay> staysOutgoing;
     private Collection<Stay> staysEntrance;
     private NaturalPerson naturalPerson; //readonly, references NATURAL_PERSON.PERSON_ID
-    private Parking parking;
+    private Long parkingId;
+    private Parking parking;//readonly
 
     public Employee() {
     }
@@ -65,6 +66,15 @@ public class Employee implements Serializable {
         this.naturalPerson = naturalPerson;
     }
 
+    public Long getParkingId() {
+        return parkingId;
+    }
+
+    public void setParkingId(Long parkingId) {
+        this.parkingId = parkingId;
+    }
+
+    
     public Parking getParking() {
         return parking;
     }

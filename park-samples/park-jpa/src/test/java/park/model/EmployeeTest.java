@@ -128,10 +128,10 @@ public class EmployeeTest {
         //c.setNaturalPerson(nP); //Setting the class attribute will need manual set of employee.id?
         c.setId(nP.getId());
         c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
-        Parking p = em.find(Parking.class, 1001L);
+        Parking p = em.find(Parking.class, 1000L);
         System.out.println("Foreign Key Object loaded: \n" + p);
-
-        c.setParking(p);
+        c.setParkingId(p.getId());
+        //c.setParking(p);
         tx.begin();
         em.persist(c);
         tx.commit();

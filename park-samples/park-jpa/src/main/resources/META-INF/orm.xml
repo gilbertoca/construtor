@@ -203,8 +203,11 @@
                 <column name="dt_admission"/>
                 <temporal>DATE</temporal>
             </basic>
+            <basic name="parkingId">
+                <column name="parking_id"/>
+            </basic>            
             <many-to-one name="parking">
-                <join-column name="parking_id" referenced-column-name="id"/>
+                <join-column name="parking_id" referenced-column-name="id" insertable="false" updatable="false"/>
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>

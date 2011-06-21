@@ -30,7 +30,6 @@ import org.apache.click.control.Submit;
 import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.DateField;
-import org.apache.click.extras.control.IntegerField;
 import park.model.Employee;
 import park.model.Parking;
 import park.model.Stay;
@@ -100,7 +99,7 @@ public class EditEmployee extends BorderPage {
         dtAdmissionField.setShowCalendar(false);
         employeeFieldSet.add(dtAdmissionField);
         
-        Select parkingSelect = new Select("parking.id");
+        Select parkingSelect = new Select("parkingId");
         parkingSelect.setRequired(true);
         parkingSelect.setDefaultOption(Option.EMPTY_OPTION);
         parkingSelect.setDataProvider(new DataProvider() {
