@@ -244,6 +244,9 @@
             <query>SELECT l FROM Parking l</query>
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
+        <named-query name="Parking.findByAddress">
+            <query>SELECT l FROM Parking l WHERE l.address LIKE :address</query>
+        </named-query>        
         <named-query name="Parking.deleteById">
             <query>DELETE FROM Parking l WHERE l.id = :id</query>
         </named-query>
