@@ -69,7 +69,7 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>7.0.1.v20091125</version>
+                <version>7.4.2.v20110526</version>
                 <configuration>
                     <reload>manual</reload>
                 </configuration>
@@ -163,7 +163,7 @@
                 <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>1.2.131</jdbc.version>
+        <jdbc.version>1.3.156</jdbc.version>
         <!--jdbc.url>jdbc:h2:mem;create=true</jdbc.url-->
         <jdbc.url>jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1</jdbc.url>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
