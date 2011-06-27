@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.3</version>
         </dependency>
         <dependency>
             <groupId>${jdbc.groupId}</groupId>
@@ -182,7 +182,7 @@
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
                 <jpa.artifactId>eclipselink</jpa.artifactId>
-                <jpa.version>2.2.0</jpa.version>
+                <jpa.version>2.3.0</jpa.version>
                 <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
                 <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
                 <jpa.url>javax.persistence.jdbc.url</jpa.url>
