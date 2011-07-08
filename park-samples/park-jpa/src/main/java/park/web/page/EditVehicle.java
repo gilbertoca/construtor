@@ -67,7 +67,7 @@ public class EditVehicle extends BorderPage {
         colorField.setFocus(true);
         form.add(colorField);
 
-        Select vehicleTypeSelect = new Select("vType");
+        Select vehicleTypeSelect = new Select("vehicleType.vehicleType");
         vehicleTypeSelect.setRequired(true);
         vehicleTypeSelect.setDefaultOption(Option.EMPTY_OPTION);
         vehicleTypeSelect.setDataProvider(new DataProvider() {
@@ -83,7 +83,7 @@ public class EditVehicle extends BorderPage {
         });
         form.add(vehicleTypeSelect);
 
-        Select priceTableSelect = new Select("priceTableId");
+        Select priceTableSelect = new Select("priceTable.id");
         priceTableSelect.setRequired(true);
         priceTableSelect.setDefaultOption(Option.EMPTY_OPTION);
         priceTableSelect.setDataProvider(new DataProvider() {
@@ -99,7 +99,7 @@ public class EditVehicle extends BorderPage {
         });
         form.add(priceTableSelect);
 
-        Select customerSelect = new Select("customerId");
+        Select customerSelect = new Select("customer.id");
         customerSelect.setRequired(true);
         customerSelect.setDefaultOption(Option.EMPTY_OPTION);
         customerSelect.setDataProvider(new DataProvider() {
