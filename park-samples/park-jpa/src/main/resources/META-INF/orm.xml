@@ -136,34 +136,25 @@
             <query>SELECT c FROM Customer c JOIN c.person p WHERE p.name LIKE :name</query>
         </named-query>        
         <named-query name="Customer.lookUpName">
-            <query>SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p</query>
+            <query>SELECT new park.model.dto.CustomerLookUp(c.person.id, p.name) FROM Customer c JOIN c.person p</query>
         </named-query>
         <named-query name="Customer.lookUpNameNotExists">
             <query>
             SELECT new park.model.dto.CustomerLookUp(p.id, p.name) FROM Person p
-            WHERE p.id NOT IN(SELECT c.id FROM Customer c)
+            WHERE p.id NOT IN(SELECT c.person.id FROM Customer c)
             </query>
         </named-query>        
         <named-query name="Customer.deleteById">
-            <query>DELETE FROM Customer c WHERE c.id = :id</query>
+            <query>DELETE FROM Customer c WHERE c.person.id = :id</query>
         </named-query>
         <attributes>
-            <id name="id">
-                <column name="person_id"/>
-            </id>
             <basic name="paymentDay">
                 <column name="payment_day"/>
             </basic>
             <one-to-many name="vehicles" target-entity="Vehicle" mapped-by="customer"/>
-            <!-- This form we have a full OO relationship and if so we should remove 
-                Customer.id letting only the Customer.person
-            <one-to-one name="person" target-entity="Person" maps-id=" ">
+            <one-to-one name="person" target-entity="Person" maps-id="" id="true">
                 <join-column name="person_id" referenced-column-name="id"/>
             </one-to-one>
-            -->
-            <one-to-one name="person" target-entity="Person">
-                <join-column name="person_id" referenced-column-name="id" insertable="false" updatable="false"/>
-            </one-to-one>            
         </attributes>
     </entity>
     <entity class="Employee">
@@ -181,45 +172,33 @@
             <!--hint name="javax.persistence.cacheRetrieveMode"  value="CacheRetrieveMode.BYPASS"/-->
         </named-query>
         <named-query name="Employee.findByName">
-            <query>SELECT c FROM Employee c JOIN c.naturalPerson p WHERE p.name LIKE :name</query>
+            <query>SELECT e FROM Employee e JOIN e.naturalPerson p WHERE p.name LIKE :name</query>
         </named-query>                
         <named-query name="Employee.lookUpName">
-            <query>SELECT new park.model.dto.EmployeeLookUp(c.id, p.name) FROM Employee c JOIN c.naturalPerson p</query>
+            <query>SELECT new park.model.dto.EmployeeLookUp(e.naturalPerson.id, p.name) FROM Employee e JOIN e.naturalPerson p</query>
         </named-query>
         <named-query name="Employee.lookUpNameNotExists">
             <query>
             SELECT new park.model.dto.EmployeeLookUp(p.id, p.name) FROM NaturalPerson p
-            WHERE p.id NOT IN(SELECT c.id FROM Employee c)
+            WHERE p.id NOT IN(SELECT e.naturalPerson.id FROM Employee e)
             </query>
         </named-query>                
         <named-query name="Employee.deleteById">
-            <query>DELETE FROM Employee l WHERE l.id = :id</query>
+            <query>DELETE FROM Employee e WHERE e.naturalPerson.id = :id</query>
         </named-query>
         <attributes>
-            <id name="id">
-                <column name="natural_person_id"/>
-            </id>
             <basic name="dtAdmission">
                 <column name="dt_admission"/>
                 <temporal>DATE</temporal>
             </basic>
-            <basic name="parkingId">
-                <column name="parking_id"/>
-            </basic>            
             <many-to-one name="parking">
-                <join-column name="parking_id" referenced-column-name="id" insertable="false" updatable="false"/>
+                <join-column name="parking_id" referenced-column-name="id"/>
             </many-to-one>
             <one-to-many name="staysOutgoing" target-entity="Stay" mapped-by="employeeOutgoing"/>
             <one-to-many name="staysEntrance" target-entity="Stay" mapped-by="employeeEntrance"/>
-            <!-- This form we have a full OO relationship and if so we should remove 
-                Employee.id letting only the Employee.naturalPerson            
-            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id=" ">
+            <one-to-one name="naturalPerson" target-entity="NaturalPerson" maps-id="" id="true">
                 <join-column name="natural_person_id" referenced-column-name="person_id" />
             </one-to-one>
-            -->
-            <one-to-one name="naturalPerson" target-entity="NaturalPerson">
-                <join-column name="natural_person_id" referenced-column-name="id" insertable="false" updatable="false"/>
-            </one-to-one>                        
         </attributes>
     </entity>
     <entity class="Parking">
@@ -360,7 +339,7 @@
             <query>SELECT v FROM Vehicle v WHERE v.licensePlate LIKE :licensePlate</query>
         </named-query>
         <named-query name="Vehicle.findByCustomerId">
-            <query>SELECT v FROM Vehicle v WHERE v.customerId = :customerId</query>
+            <query>SELECT v FROM Vehicle v WHERE v.customer.person.id = :customerId</query>
         </named-query>
         <named-query name="Vehicle.findByCustomerName">
             <query>SELECT v FROM Vehicle v JOIN v.customer.person cp WHERE cp.name LIKE :name</query>
@@ -376,23 +355,14 @@
             <basic name="color">
                 <column name="color" length="20"/>
             </basic>
-            <basic name="customerId">
-                <column name="customer_id"/>
-            </basic>
-            <basic name="priceTableId">
-                <column name="price_table_id"/>
-            </basic>
-            <basic name="vType">
-                <column name="v_type" length="20"/>
-            </basic>
             <many-to-one name="customer">
-                <join-column name="customer_id" referenced-column-name="person_id" insertable="false" updatable="false"/>
+                <join-column name="customer_id" referenced-column-name="person_id"/>
             </many-to-one>
             <many-to-one name="priceTable">
-                <join-column name="price_table_id" referenced-column-name="id" insertable="false" updatable="false"/>
+                <join-column name="price_table_id" referenced-column-name="id"/>
             </many-to-one>
             <many-to-one name="vehicleType">
-                <join-column name="v_type" referenced-column-name="v_type" insertable="false" updatable="false"/>
+                <join-column name="v_type" referenced-column-name="v_type"/>
             </many-to-one>
             <one-to-many name="stays" target-entity="Stay" mapped-by="vehicle"/>
         </attributes>
@@ -432,10 +402,10 @@
             <query>DELETE FROM Stay l WHERE l.id = :id</query>
         </named-query>
         <named-query name="Stay.findByEmployeeEntranceId">
-            <query>SELECT s FROM Stay s WHERE s.employeeEntrance.id = :employeeId</query>
+            <query>SELECT s FROM Stay s WHERE s.employeeEntrance.naturalPerson.id = :employeeId</query>
         </named-query>
         <named-query name="Stay.findByEmployeeOutgoingId">
-            <query>SELECT s FROM Stay s WHERE s.employeeOutgoing.id = :employeeId</query>
+            <query>SELECT s FROM Stay s WHERE s.employeeOutgoing.naturalPerson.id = :employeeId</query>
         </named-query>        
         <attributes>
             <id name="id">

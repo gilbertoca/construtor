@@ -16,10 +16,10 @@ import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.IntegerField;
 import park.model.Customer;
+import park.model.Person;
 import park.model.Vehicle;
 import park.model.dto.CustomerLookUp;
 import park.service.util.EntityManagerContext;
-
 
 /**
  *
@@ -47,12 +47,11 @@ public class EditCustomer extends BorderPage {
      *  sometimes-> protected Select idField = new Select("id",true);
      * Don't forget to set i read only when on Update operation.
      */
-    public Select idField = new Select("id",true);
+    public Select idField = new Select("person.id", true);
     /** Bindable variables(ID, used on the Get method) can automatically have their value set by request parameters */
     public Long id;
     /** Bindable variables(used to track where the page was requested) can automatically have their value set by request parameters */
     public String referrer;
-    
     private EntityManager em = EntityManagerContext.getEntityManager();
 
     // Constructor -----------------------------------------------------------
@@ -75,7 +74,7 @@ public class EditCustomer extends BorderPage {
         form.add(personFieldSet);
         form.add(customerFieldSet);
         form.add(isNewField);
-        
+
         idField.setRequired(true);
         idField.setDefaultOption(Option.EMPTY_OPTION);
 
@@ -110,12 +109,15 @@ public class EditCustomer extends BorderPage {
         table.getControlLink().setParameter("id", id);
         // Set data provider to populate the table row list from
         table.setDataProvider(new DataProvider<Vehicle>() {
+
             public List<Vehicle> getData() {
                 return (List<Vehicle>) getVehiclesByCusotmerId(id);
             }
         });
         idField.setDataProvider(new DataProvider() {
-            String query = id == null? "Customer.lookUpNameNotExists":"Customer.lookUpName";
+
+            String query = id == null ? "Customer.lookUpNameNotExists" : "Customer.lookUpName";
+
             public List getData() {
                 List options = new ArrayList();
                 List<CustomerLookUp> result =
@@ -126,7 +128,7 @@ public class EditCustomer extends BorderPage {
                 return options;
             }
         });
-        
+
     }
 
     /**
@@ -162,7 +164,7 @@ public class EditCustomer extends BorderPage {
 
     public boolean onOkClick() throws Exception {
         System.out.println("\n onOkClick() method \n");
-        
+
         if (form.isValid()) {
             Customer customer = null;
             //local variable, don't confuse it with the public id parameter of the page
@@ -177,6 +179,11 @@ public class EditCustomer extends BorderPage {
             }
 
             form.copyTo(customer);
+            //We need to bind Person(NP or LE) explicitly to Customer
+            LegalEntity lP
+            NaturaPerson nP
+            //customer.setPerson(em.getReference(Person.class, Long.parseLong(idField.getValue())));
+
             //We need transation
             try {
                 em.getTransaction().begin();

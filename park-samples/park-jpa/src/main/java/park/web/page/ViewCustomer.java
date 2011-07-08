@@ -3,16 +3,16 @@ package park.web.page;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.apache.click.control.AbstractLink;
+import org.apache.click.Context;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
+import org.apache.click.control.Decorator;
 import org.apache.click.control.Form;
 import org.apache.click.control.PageLink;
 import org.apache.click.control.Submit;
 import org.apache.click.control.Table;
 import org.apache.click.control.TextField;
 import org.apache.click.dataprovider.DataProvider;
-import org.apache.click.extras.control.LinkDecorator;
 import org.apache.click.extras.control.TableInlinePaginator;
 import org.apache.commons.lang.NotImplementedException;
 import park.model.Customer;
@@ -74,11 +74,21 @@ public class ViewCustomer extends BorderPage {
 
         column = new Column("action");
         column.setTextAlign("center");
-        AbstractLink[] links = new AbstractLink[]{editLink, deleteLink};
-        column.setDecorator(new LinkDecorator(table, links, "id"));
         column.setSortable(false);
-        table.addColumn(column);
+        column.setDecorator(new Decorator() {
 
+            public String render(Object row, Context context) {
+                Customer customer = (Customer) row;
+                String id = String.valueOf(customer.getPerson().getId());
+
+                editLink.setParameter("id", id);
+                deleteLink.setValue(id);
+
+                return editLink.toString() + " | "
+                        + deleteLink.toString();
+            }
+        });
+        table.addColumn(column);
         table.setDataProvider(new DataProvider<Customer>() {
 
             public List<Customer> getData() {

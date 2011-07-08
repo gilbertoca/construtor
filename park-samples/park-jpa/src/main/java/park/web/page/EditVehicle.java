@@ -107,7 +107,7 @@ public class EditVehicle extends BorderPage {
             public List getData() {
                 List options = new ArrayList();
                 List<CustomerLookUp> result =
-                        em.createQuery("SELECT new park.model.dto.CustomerLookUp(c.id, p.name) FROM Customer c JOIN c.person p", CustomerLookUp.class).getResultList();
+                        em.createNamedQuery("Customer.lookUpName").getResultList();
                 for (CustomerLookUp customer : result) {
                     options.add(new Option(customer.getId(), customer.getCustomerName()));
                 }
