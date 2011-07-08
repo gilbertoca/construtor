@@ -8,6 +8,8 @@ public abstract class Person implements Serializable {
     private String address;
     private String name;
     private Customer customer;
+    /** represents the Discriminator column */
+    private String pType;
     private int version;
     
     public Person() {
@@ -40,6 +42,14 @@ public abstract class Person implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPType() {
+        return pType;
+    }
+
+    public void setPTytpe(String pType) {
+        this.pType = pType;
     }
 
     public int getVersion() {
