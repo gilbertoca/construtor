@@ -49,6 +49,10 @@
                 <column length="100"/>
             </basic>
             <version name="version"/>
+            <!-- The discriminator column -->
+            <basic name="pType">
+                <column length="2" insertable="false" updatable="false"/>
+            </basic>
             <one-to-one name="customer" target-entity="Customer" mapped-by="person"/>
         </attributes>
     </entity>

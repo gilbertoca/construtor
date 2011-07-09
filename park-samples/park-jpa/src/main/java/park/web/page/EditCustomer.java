@@ -36,8 +36,16 @@ public class EditCustomer extends BorderPage {
      * isNew(false)=update, otherwise insert
      */
     protected HiddenField isNewField = new HiddenField("isNew", Boolean.class);
-    /** The source track */
+    /** The flow source track */
     protected HiddenField referrerField = new HiddenField("referrer", String.class);
+    /**
+     * How do we know whick Person Type when creating a Customer? Is it a NaturaPerson or
+     * LegalEntity?
+     * So, we need a hidden field to make our live easier. The pTypeField can be: NP or LE
+     * We load it in the select idField.
+     */
+    protected HiddenField pTypeField = new HiddenField("pType", String.class);
+
     /**
      * The data model ID, used to get data from and to database.
      * The default option is declare it as HiddenField, but sometimes - when the user
@@ -63,6 +71,7 @@ public class EditCustomer extends BorderPage {
 
         addControl(form);
         form.add(referrerField);
+        form.add(pTypeField);
 
         FieldSet personFieldSet = new FieldSet("personFieldSet");
         //personFieldSet.setStyle("background", "RED");

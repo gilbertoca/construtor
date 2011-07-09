@@ -5,7 +5,7 @@ public class CustomerLookUp {
     private Long id;
     private String customerName;
     /** represents the Person type: NP or LE*/
-    private String pTYPE;
+    private String pType;
 
     public CustomerLookUp(Long id, String customerName) {
         this.id = id;
@@ -20,11 +20,11 @@ public class CustomerLookUp {
         return customerName;
     }
 
-    public String getpTYPE() {
-        return pTYPE;
+    public String getPType() {
+        return pType;
     }
 
-    public void setpTYPE(String pTYPE) {
-        this.pTYPE = pTYPE;
+    public void setPType(String pType) {
+        this.pType = pType;
     }
 }
