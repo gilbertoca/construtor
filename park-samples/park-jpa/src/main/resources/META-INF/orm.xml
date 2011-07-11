@@ -51,7 +51,7 @@
             <version name="version"/>
             <!-- The discriminator column -->
             <basic name="pType">
-                <column length="2" insertable="false" updatable="false"/>
+                <column name="p_type" length="2" insertable="false" updatable="false"/>
             </basic>
             <one-to-one name="customer" target-entity="Customer" mapped-by="person"/>
         </attributes>
@@ -147,7 +147,10 @@
             SELECT new park.model.dto.CustomerLookUp(p.id, p.name) FROM Person p
             WHERE p.id NOT IN(SELECT c.person.id FROM Customer c)
             </query>
-        </named-query>        
+        </named-query>   
+        <named-query name="Customer.findPersonById">
+            <query>SELECT p FROM Person p WHERE p.id = :id</query>
+        </named-query>
         <named-query name="Customer.deleteById">
             <query>DELETE FROM Customer c WHERE c.person.id = :id</query>
         </named-query>

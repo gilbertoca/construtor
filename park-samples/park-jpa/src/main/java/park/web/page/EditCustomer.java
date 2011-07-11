@@ -189,9 +189,10 @@ public class EditCustomer extends BorderPage {
 
             form.copyTo(customer);
             //We need to bind Person(NP or LE) explicitly to Customer
-            LegalEntity lP
-            NaturaPerson nP
+            //LegalEntity lP
+            //NaturaPerson nP
             //customer.setPerson(em.getReference(Person.class, Long.parseLong(idField.getValue())));
+            em.createNamedQuery("Customer.findPersonById").setParameter("id", Long.parseLong(idField.getValue())).getSingleResult();
 
             //We need transation
             try {
