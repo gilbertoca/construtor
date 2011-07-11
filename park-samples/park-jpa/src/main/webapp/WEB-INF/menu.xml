@@ -36,7 +36,7 @@
     <menu name="vehicles" path="view-vehicle.htm"/>
     <menu separator="true"/>
     <menu name="vehicles Type" path="view-vehicle-type.htm"/>
-    <menu name="prices" path="view-price.htm"/>
+    <menu name="prices" path="view-price-table.htm"/>
   </menu>
 
   <menu name="stay" path="#" >

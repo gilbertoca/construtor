@@ -1,9 +1,7 @@
 package park.web.page;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -18,7 +16,6 @@ import park.model.Vehicle;
 import park.model.VehicleType;
 import park.model.dto.CustomerLookUp;
 import park.service.util.EntityManagerContext;
-import sun.java2d.loops.CustomComponent;
 
 /**
  *

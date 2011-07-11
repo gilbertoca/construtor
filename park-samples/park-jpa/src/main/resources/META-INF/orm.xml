@@ -279,7 +279,9 @@
         <named-query name="PriceTable.deleteById">
             <query>DELETE FROM PriceTable l WHERE l.id = :id</query>
         </named-query>
-
+        <named-query name="PriceTable.findByItem">
+            <query>SELECT p FROM PriceTable p WHERE p.item LIKE :item</query>
+        </named-query>
         <attributes>
             <id name="id">
                 <column name="id"/>
