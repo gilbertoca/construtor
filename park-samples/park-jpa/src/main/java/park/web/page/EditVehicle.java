@@ -1,7 +1,9 @@
 package park.web.page;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
@@ -10,11 +12,13 @@ import org.apache.click.control.Select;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 import org.apache.click.dataprovider.DataProvider;
+import park.model.Customer;
 import park.model.PriceTable;
 import park.model.Vehicle;
 import park.model.VehicleType;
 import park.model.dto.CustomerLookUp;
 import park.service.util.EntityManagerContext;
+import sun.java2d.loops.CustomComponent;
 
 /**
  *
@@ -168,6 +172,11 @@ public class EditVehicle extends BorderPage {
             }
 
             form.copyTo(vehicle);
+            //We need to bind Customer, PriceTable and VehicleType explicitly to Vehicle
+            vehicle.setCustomer(em.getReference(Customer.class,Long.parseLong(form.getFieldValue("customer.id"))));
+            vehicle.setPriceTable(em.getReference(PriceTable.class, Integer.parseInt(form.getFieldValue("priceTable.id"))));
+            vehicle.setVehicleType(em.getReference(VehicleType.class,form.getFieldValue("vehicleType.vehicleType")));            
+            
             //We need transation
             try {
                 em.getTransaction().begin();
