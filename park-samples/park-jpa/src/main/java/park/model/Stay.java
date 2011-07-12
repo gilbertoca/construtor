@@ -14,10 +14,10 @@ import java.util.Date;
  */
 public class Stay implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer id;
-    private Date dtEntrance;
+    private Long id;
+    private Date dtEntrance = new Date();
     private Date dtOutgoing;
-    private Date hrEntrance;
+    private Date hrEntrance = new Date();
     private Date hrOutgoing;
     /**
      * Can be:
@@ -35,11 +35,11 @@ public class Stay implements Serializable {
     public Stay() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

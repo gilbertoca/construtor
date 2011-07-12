@@ -415,7 +415,10 @@
         </named-query>
         <named-query name="Stay.findByEmployeeOutgoingId">
             <query>SELECT s FROM Stay s WHERE s.employeeOutgoing.naturalPerson.id = :employeeId</query>
-        </named-query>        
+        </named-query>   
+        <named-query name="Stay.findByLicensePlate">
+            <query>SELECT s FROM Stay s WHERE s.vehicle.licensePlate LIKE :licensePlate</query>
+        </named-query>
         <attributes>
             <id name="id">
                 <column name="id"/>
