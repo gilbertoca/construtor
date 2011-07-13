@@ -318,7 +318,7 @@
 
         <attributes>
             <id name="vehicleType">
-                <column name="v_type" nullable="false" length="20"/>
+                <column name="v_type" nullable="false" length="30"/>
             </id>
             <basic name="manufacturer">
                 <column name="manufacturer" length="50"/>

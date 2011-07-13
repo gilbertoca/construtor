@@ -382,6 +382,7 @@
                             <skip>${maven.test.skip}</skip>
                             <srcFiles>
                                 <srcFile>src/test/resources/sql/park.tab.sql</srcFile>
+                                <srcFile>src/test/resources/sql/park.init.sql</srcFile>
                             </srcFiles>
                         </configuration>
                     </plugin>

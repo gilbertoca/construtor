@@ -12,7 +12,7 @@ CREATE TABLE PARKING (
 );
 
 CREATE TABLE VEHICLE_TYPE (
-                V_TYPE VARCHAR(20) NOT NULL,
+                V_TYPE VARCHAR(30) NOT NULL,
                 MANUFACTURER VARCHAR(50),
                 MODEL VARCHAR(20),
                 CONSTRAINT VEHICLE_TYPE_PK PRIMARY KEY (V_TYPE)
@@ -47,7 +47,7 @@ CREATE TABLE VEHICLE (
                 COLOR VARCHAR(20),
                 CUSTOMER_ID BIGINT,
                 PRICE_TABLE_ID INTEGER,
-                V_TYPE VARCHAR(20),
+                V_TYPE VARCHAR(30),
                 CONSTRAINT VEHICLE_PK PRIMARY KEY (LICENSE_PLATE)
 );
 
