@@ -1,8 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2011 gilberto.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package park.model;
 
 import java.io.Serializable;
@@ -11,6 +21,10 @@ import java.util.Date;
 /*
  * One stay represents a time interval that a vehicle stands in the parking space. 
  * It registers the entrance and outgoing of a vehicle and finally it calculate the stay price.
+ * Sometimes can appear clients that are not in or can't wait to be registered in our database, for 
+ * these cases we will create and use a "UNKNOWN CLIENT", but internally we will register the
+ * license plate and the model of the client's vehicle. So, the "UNKNOWN CLIENT" can
+ * have several vehicles linked to him.
  */
 public class Stay implements Serializable {
     private static final long serialVersionUID = 1L;
