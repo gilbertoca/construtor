@@ -68,12 +68,10 @@ public class EditStay extends BorderPage {
         FieldSet fieldSet = new FieldSet("stayFieldSet");
         form.add(fieldSet);
 
-        TextField addressField = new TextField("address", true);
-        addressField.setMinLength(5);
-        addressField.setFocus(true);
-        fieldSet.add(addressField);
-        IntegerField staySpaceField = new IntegerField("staySpace", true);
-        fieldSet.add(staySpaceField);
+        DateField dtEntranceField = new DateField("dtEntrance", true);
+        dtEntranceField.setFormatPattern(getMessage("date.format"));
+        dtEntranceField.setShowCalendar(true);
+        fieldSet.add(dtEntranceField);
 
         form.add(new Submit("okBt", this, "onOkClick"));
         form.add(new Submit("cancelBt", this, "onCancelClick"));
