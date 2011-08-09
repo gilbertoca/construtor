@@ -2,7 +2,7 @@
     <head>
         <title>$title</title>
         <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-        {$headElements}
+        ${headElements}
     </head>
     <body>
         <div id="wrapper">
@@ -10,7 +10,7 @@
                 <span id="title">$title</span>
             </div>
             <!-- Horizontal menu, top to bottom "navbar" Div-->
-             $rootMenu 
+             ${rootMenu}
 
             <div id="container">
                 #parse($path)
@@ -23,7 +23,7 @@
                     </span>
                     |
                     <span class="right">
-                        &copy; $messages.get("copyright.year") <a href="$messages.get("company.url")>$messages.get("company.name")</a>
+                        &copy; $messages.get("copyright.year") <a href="$messages.get("company.url")">$messages.get("company.name")</a>
                     </span>
                 </p>
             </div>
