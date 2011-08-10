@@ -77,14 +77,34 @@ public class ViewStay extends BorderPage {
 
         Column column = new Column("vehicle.licensePlate");
         table.addColumn(column);
-        column = new Column("dtEntrance");
+        column = new Column("status");
+        table.addColumn(column);        
+        column = new Column("parking.address");
         table.addColumn(column);
-
-        //editLink.setImageSrc("/assets/images/table-edit.png");
+        column = new Column("employeeEntrance.naturalPerson.name");
+        table.addColumn(column);        
+        column = new Column("dtEntrance");
+        column.setFormat("{0,date,dd/MM/yyyy}");
+        table.addColumn(column);
+        column = new Column("hrEntrance");
+        column.setFormat("{0,time,MM:ss}");
+        table.addColumn(column);
+        column = new Column("employeeOutgoing.naturalPerson.name");
+        table.addColumn(column);        
+        column = new Column("dtOutgoing");
+        column.setFormat("{0,date,dd/MM/yyyy}");
+        table.addColumn(column);
+        column = new Column("hrOutgoing");
+        column.setFormat("{0,time,MM:ss}");
+        table.addColumn(column);        
+        column = new Column("totalPrice");
+        column.setFormat("{0,number,##.00}");
+        table.addColumn(column);
+        
+        editLink.setImageSrc("/assets/images/table-edit.png");
         editLink.setParameter("referrer", "/view-stay.htm");
 
-        //deleteLink.setImageSrc("/assets/images/table-delete.png");
-        //deleteLink.setAttribute("onclick", "return window.confirm('Are you sure you want to delete this record?');");
+        deleteLink.setImageSrc("/assets/images/table-delete.png");
         deleteLink.setAttribute("onclick", getMessage("deleteLink.attribute.onclick"));
 
         column = new Column("action");
