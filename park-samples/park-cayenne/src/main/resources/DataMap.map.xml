@@ -4,44 +4,43 @@
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
 	 project-version="6">
 	<property name="defaultPackage" value="park.model"/>
-	<property name="defaultSchema" value="PUBLIC"/>
-	<db-entity name="CUSTOMER" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="CUSTOMER" catalog="PARKDB">
 		<db-attribute name="PAYMENT_DAY" type="INTEGER" length="10"/>
 		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
-	<db-entity name="EMPLOYEE" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="EMPLOYEE" catalog="PARKDB">
 		<db-attribute name="DT_ADMISSION" type="DATE" length="8"/>
 		<db-attribute name="NATURAL_PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="PARKING_ID" type="BIGINT" length="19"/>
 	</db-entity>
-	<db-entity name="LEGAL_ENTITY" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="LEGAL_ENTITY" catalog="PARKDB">
 		<db-attribute name="DT_FOUNDATION" type="DATE" length="8"/>
 		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="TAXPAYERS_ID" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="NATURAL_PERSON" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="NATURAL_PERSON" catalog="PARKDB">
 		<db-attribute name="DT_BIRTH" type="DATE" length="8"/>
 		<db-attribute name="LEGAL_DOCUMENT" type="VARCHAR" length="20"/>
 		<db-attribute name="PERSON_ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 	</db-entity>
-	<db-entity name="PARKING" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="PARKING" catalog="PARKDB">
 		<db-attribute name="ADDRESS" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="PARKING_SPACE" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PERSON" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="PERSON" catalog="PARKDB">
 		<db-attribute name="ADDRESS" type="VARCHAR" length="100"/>
 		<db-attribute name="ID" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
 		<db-attribute name="NAME" type="VARCHAR" length="100"/>
 		<db-attribute name="P_TYPE" type="CHAR" length="2"/>
 		<db-attribute name="VERSION" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="PRICE_TABLE" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="PRICE_TABLE" catalog="PARKDB">
 		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
 		<db-attribute name="ITEM" type="VARCHAR" isMandatory="true" length="50"/>
 		<db-attribute name="PRICE" type="DECIMAL" length="12" scale="2"/>
 	</db-entity>
-	<db-entity name="STAY" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="STAY" catalog="PARKDB">
 		<db-attribute name="DT_ENTRANCE" type="DATE" length="8"/>
 		<db-attribute name="DT_OUTGOING" type="DATE" length="8"/>
 		<db-attribute name="EMPLOYEE_ID_ENTRANCE" type="BIGINT" length="19"/>
@@ -55,14 +54,14 @@
 		<db-attribute name="TOTAL_PRICE" type="DECIMAL" length="12" scale="2"/>
 		<db-attribute name="VERSION" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="VEHICLE" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="VEHICLE" catalog="PARKDB">
 		<db-attribute name="COLOR" type="VARCHAR" length="20"/>
 		<db-attribute name="CUSTOMER_ID" type="BIGINT" length="19"/>
 		<db-attribute name="LICENSE_PLATE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>
 		<db-attribute name="PRICE_TABLE_ID" type="INTEGER" length="10"/>
 		<db-attribute name="V_TYPE" type="VARCHAR" length="20"/>
 	</db-entity>
-	<db-entity name="VEHICLE_TYPE" schema="PUBLIC" catalog="PARKDB">
+	<db-entity name="VEHICLE_TYPE" catalog="PARKDB">
 		<db-attribute name="MANUFACTURER" type="VARCHAR" length="50"/>
 		<db-attribute name="MODEL" type="VARCHAR" length="20"/>
 		<db-attribute name="V_TYPE" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="20"/>

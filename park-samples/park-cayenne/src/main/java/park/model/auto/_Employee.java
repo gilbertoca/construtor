@@ -56,6 +56,9 @@ public abstract class _Employee extends CayenneDataObject {
     }
 
 
+    public void setToNaturalPerson(NaturalPerson toNaturalPerson) {
+        setToOneTarget("toNaturalPerson", toNaturalPerson, true);
+    }
 
     public NaturalPerson getToNaturalPerson() {
         return (NaturalPerson)readProperty("toNaturalPerson");

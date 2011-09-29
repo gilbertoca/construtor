@@ -9,7 +9,7 @@
 		<map-ref name="DataMap"/>
 		<data-source>
 			<driver value="org.h2.Driver"/>
-			<url value="jdbc:h2:/home/gilberto/dev/netbeans-config/cip/park-cayenne/data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"/>
+			<url value="jdbc:h2:file:data/parkDB;create=true;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"/>
 			<connectionPool min="1" max="2"/>
 			<login userName="click" password="click"/>
 		</data-source>

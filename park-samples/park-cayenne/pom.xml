@@ -50,7 +50,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
-                <version>1.3</version>
+                <version>1.4</version>
                 <dependencies>
                     <dependency>
                         <groupId>${jdbc.groupId}</groupId>
@@ -58,7 +58,7 @@
                         <version>${jdbc.version}</version>
                     </dependency>
                 </dependencies>
-                <!-- common configurations -->
+                            <!-- common configurations -->
                 <configuration>
                     <driver>${jdbc.driverClassName}</driver>
                     <username>${jdbc.username}</username>
@@ -68,9 +68,8 @@
                     <onError>continue</onError>
                     <skip>${maven.test.skip}</skip>
                     <srcFiles>
-                        <srcFile>
-                           src/test/resources/sql/park.tab.sql
-                        </srcFile>
+                        <srcFile>src/test/resources/sql/park.tab.sql</srcFile>
+                        <srcFile>src/test/resources/sql/park.init.sql</srcFile>
                     </srcFiles>
                 </configuration>
             </plugin>
@@ -167,7 +166,7 @@
     <properties>
         <!-- versions -->
         <click.version>2.3.0</click.version>
-        <cayenne.version>3.1M2</cayenne.version>
+        <cayenne.version>3.1M3</cayenne.version>
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->

@@ -1,5 +1,6 @@
 package park.model;
 
+import java.sql.DriverManager;
 import java.util.List;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.SelectQuery;
@@ -32,16 +33,22 @@ public class EmployeeTest {
 
     @BeforeClass
     public static void init() throws Exception {
-        // I presume you've set the src/test/resources/jdbc.properties
-        Properties configurationProperties = new Properties();
-        configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
+        //emf = Persistence.createEntityManagerFactory("PU");
+        //em = emf.createEntityManager();
         
         //Create Cayenne ServerRuntime, uses it to get a connection and initializes DBUnit
         runtime = new ServerRuntime("cayenne-ParkDomain.xml");
-        
-        DataDomain domain = runtime.getDataDomain();
-        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
-        connection = new DatabaseConnection(node.getDataSource().getConnection());
+
+        // I presume you've set the src/test/resources/jdbc.properties
+        Properties configurationProperties = new Properties();
+        configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
+
+        //Let's create a new connection to work with DBUnit
+        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
+        connection = new DatabaseConnection(DriverManager.getConnection(
+                configurationProperties.getProperty("jdbc.url"),
+                configurationProperties.getProperty("jdbc.username"),
+                configurationProperties.getProperty("jdbc.password")));
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();
@@ -50,7 +57,6 @@ public class EmployeeTest {
         config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, dataTypeFactory);
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread().getContextClassLoader().getResourceAsStream("employee-dataset.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(connection, dataset);
-        
     }
 
     @AfterClass
