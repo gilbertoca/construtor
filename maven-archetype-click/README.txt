@@ -1,8 +1,30 @@
 This archetype allows you to generate a template for a web application that uses Apache Click, based on the sample web application.
 
-------------------------------------------
+Create a project NOW using the remote repository
+
+ mvn archetype:create -DarchetypeGroupId=com.google.constructor.archetypes \
+    -DarchetypeArtifactId=maven-archetype-click \
+    -DarchetypeVersion=1.0 \
+    -DremoteRepositories=https://construtor.googlecode.com/svn/maven2/ \
+    -DgroupId=myGroupId \
+    -DartifactId=myArtifactId    
+
+Installing the Archetype locally
+
+Download the maven-archetype-click-1.0.jar file.
+
+Then install it into your local repository:
+
+ mvn install:install-file \
+   -DarchetypeGroupId=com.google.constructor.archetypes \
+   -DarchetypeArtifactId=maven-archetype-click \
+   -DarchetypeVersion=1.0 \
+   -Dpackaging=jar 
+   -Dfile=PATH_TO_JAR_YOU_DOWNLOADED/maven-archetype-click-1.0.jar
+
+
 Getting and building the archetype locally
-------------------------------------------
+
 Download the Maven Archetype Click source:
 svn checkout http://construtor.googlecode.com/svn/trunk/maven-archetype-click mac
 
@@ -10,47 +32,24 @@ Navigate to the root folder and install the archetype locally with the following
 mvn install
 cd mac
 mvn install
-	
-(This supposes that maven 2.x is already installed in your system)
-
-------------------------------------------
-Creating a template for a web application
-------------------------------------------
-Use eclipse or netbeans and create a project(ie. starweb) using that archetype or execute the
-following command to create a template that uses Apache Click:
-
-cd tmp
-mvn archetype:generate
-(Now you need to choose the maven archetype click installed locally)
-.
-.
-.
-384: local -> maven-archetype-click (An archetype which generates a simplifed sample of the Apache Click Framework.)
-Choose a number: 104: 384
-Define value for property 'groupId': : company.com
-Define value for property 'artifactId': : starweb
-Define value for property 'version':  1.0-SNAPSHOT: :
-Define value for property 'package':  company.com: :
-Confirm properties configuration:
-groupId: company.com
-artifactId: starweb
-version: 1.0-SNAPSHOT
-package: company.com
- Y: :
-[INFO] ----------------------------------------------------------------------------
-[INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-click:1.0
-[INFO] ----------------------------------------------------------------------------
-[INFO] Parameter: groupId, Value: company.com
-[INFO] Parameter: packageName, Value: company.com
-[INFO] Parameter: package, Value: company.com
-[INFO] Parameter: artifactId, Value: starweb
-[INFO] Parameter: basedir, Value: /home/gilberto/dev/netbeans-config
-[INFO] Parameter: version, Value: 1.0-SNAPSHOT
 
 
-------------------------------------------
+Using the Archetype (if it's already installed locally)
+
+Once you have access to the archetype, you use it as you would any other Maven archetype to create a template/stub project.
+ 
+mvn archetype:generate \
+   -DarchetypeGroupId=com.google.constructor.archetypes \
+   -DarchetypeArtifactId=maven-archetype-click \
+   -DarchetypeVersion=1.0 \
+   -DgroupId=com.mycompany \
+   -DartifactId=myArtifactId \
+   -DarchetypeCatalog=local
+
+
+
 Running the sample webapp
-------------------------------------------
+
 
 After that you can move to the new project(starweb), test or run it:
 cd starweb/
