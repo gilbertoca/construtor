@@ -71,7 +71,7 @@ public class CustomerTest {
         //Customer c = em.find(Customer.class, 1000L);
         Customer c = Cayenne.objectForPK(runtime.getContext(),Customer.class, 1000L);
         System.out.println("Object loaded: \n" + c);
-        assertNotNull(c.getToPerson());
+        assertNotNull(c.getPerson());
     }
 
     /**
@@ -103,7 +103,7 @@ public class CustomerTest {
         LegalEntity lP = Cayenne.objectForPK(context,LegalEntity.class, 1003L);
         
         System.out.println("Foreign Ket Object loaded: \n" + lP);
-        c.setToPerson(lP); //Setting the class attribute will need manual set of customer.id?
+        c.setPerson(lP); //Setting the class attribute will need manual set of customer.id?
         //c.setId(lP.getId());
         c.setPaymentDay(3);
         /* JPA code

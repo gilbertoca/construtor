@@ -19,11 +19,11 @@ public abstract class _Employee extends CayenneDataObject {
 
     public static final String DT_ADMISSION_PROPERTY = "dtAdmission";
     public static final String ENTRANCE_STAYS_PROPERTY = "entranceStays";
+    public static final String NATURAL_PERSON_PROPERTY = "naturalPerson";
     public static final String OUTGOING_STAYS_PROPERTY = "outgoingStays";
-    public static final String TO_NATURAL_PERSON_PROPERTY = "toNaturalPerson";
-    public static final String TO_PARKING_PROPERTY = "toParking";
+    public static final String PARKING_PROPERTY = "parking";
 
-    public static final String ID_PK_COLUMN = "ID";
+    public static final String NATURAL_PERSON_ID_PK_COLUMN = "NATURAL_PERSON_ID";
 
     public void setDtAdmission(Date dtAdmission) {
         writeProperty("dtAdmission", dtAdmission);
@@ -44,6 +44,12 @@ public abstract class _Employee extends CayenneDataObject {
     }
 
 
+
+    public NaturalPerson getNaturalPerson() {
+        return (NaturalPerson)readProperty("naturalPerson");
+    }
+
+
     public void addToOutgoingStays(Stay obj) {
         addToManyTarget("outgoingStays", obj, true);
     }
@@ -56,21 +62,12 @@ public abstract class _Employee extends CayenneDataObject {
     }
 
 
-    public void setToNaturalPerson(NaturalPerson toNaturalPerson) {
-        setToOneTarget("toNaturalPerson", toNaturalPerson, true);
+    public void setParking(Parking parking) {
+        setToOneTarget("parking", parking, true);
     }
 
-    public NaturalPerson getToNaturalPerson() {
-        return (NaturalPerson)readProperty("toNaturalPerson");
-    }
-
-
-    public void setToParking(Parking toParking) {
-        setToOneTarget("toParking", toParking, true);
-    }
-
-    public Parking getToParking() {
-        return (Parking)readProperty("toParking");
+    public Parking getParking() {
+        return (Parking)readProperty("parking");
     }
 
 

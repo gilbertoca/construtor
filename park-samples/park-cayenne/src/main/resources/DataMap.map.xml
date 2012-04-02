@@ -191,28 +191,34 @@
 	<db-relationship name="vehicles" source="VEHICLE_TYPE" target="VEHICLE" toMany="true">
 		<db-attribute-pair source="V_TYPE" target="V_TYPE"/>
 	</db-relationship>
-	<obj-relationship name="toPerson" source="Customer" target="Person" deleteRule="Nullify" db-relationship-path="toPerson"/>
+	<obj-relationship name="person" source="Customer" target="Person" deleteRule="Nullify" db-relationship-path="toPerson"/>
 	<obj-relationship name="vehicles" source="Customer" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
 	<obj-relationship name="entranceStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="entranceStays"/>
+	<obj-relationship name="naturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toPerson"/>
 	<obj-relationship name="outgoingStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="outgoingStays"/>
-	<obj-relationship name="toNaturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toPerson"/>
-	<obj-relationship name="toParking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="toParking"/>
-	<obj-relationship name="toCustomer" source="LegalEntity" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
-	<obj-relationship name="toEmployee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toEmployee"/>
+	<obj-relationship name="parking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="toParking"/>
+	<obj-relationship name="customer" source="LegalEntity" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
+	<obj-relationship name="employee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="toNaturalPerson.toEmployee"/>
 	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
 	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
-	<obj-relationship name="toCustomer" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
+	<obj-relationship name="customer" source="Person" target="Customer" deleteRule="Nullify" db-relationship-path="toCustomer"/>
 	<obj-relationship name="vehicles" source="PriceTable" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
+	<obj-relationship name="employee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeEntrance"/>
+	<obj-relationship name="employee1" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeOutgoing"/>
 	<obj-relationship name="parking" source="Stay" target="Parking" deleteRule="Nullify" db-relationship-path="parking"/>
-	<obj-relationship name="toEmployee" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeEntrance"/>
-	<obj-relationship name="toEmployee1" source="Stay" target="Employee" deleteRule="Nullify" db-relationship-path="toEmployeeOutgoing"/>
-	<obj-relationship name="toVehicle" source="Stay" target="Vehicle" deleteRule="Nullify" db-relationship-path="toVehicle"/>
+	<obj-relationship name="vehicle" source="Stay" target="Vehicle" deleteRule="Nullify" db-relationship-path="toVehicle"/>
 	<obj-relationship name="customer" source="Vehicle" target="Customer" deleteRule="Nullify" db-relationship-path="customer"/>
 	<obj-relationship name="priceTable" source="Vehicle" target="PriceTable" deleteRule="Nullify" db-relationship-path="priceTable"/>
 	<obj-relationship name="stays" source="Vehicle" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
-	<obj-relationship name="toVehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
+	<obj-relationship name="vehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
 	<obj-relationship name="vehicles" source="VehicleType" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
-	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.EjbqlBuilder">
+	<query name="Vehicle.findInLicensePlate" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Vehicle">
+		<qualifier><![CDATA[licensePlate in $licensePlate]]></qualifier>
+	</query>        
+	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Vehicle">
+		<qualifier><![CDATA[licensePlate like $licensePlate]]></qualifier>
+	</query>
+	<query name="Vehicle.findByLicensePlateEJBQL" factory="org.apache.cayenne.map.EjbqlBuilder">
 		<ejbql><![CDATA[select v from Vehicle v where v.licensePlate like :licensePlate]]></ejbql>
 	</query>
 	<query name="VehicleType.findByVehicleType" factory="org.apache.cayenne.map.EjbqlBuilder">

@@ -78,9 +78,9 @@ public class EmployeeTest {
     public void GetEmployeeById() {
         System.out.println("\nGetting an Employee by ID.\n");
         //Employee c = em.find(Employee.class, 1004L);
-        Employee c = Cayenne.objectForPK(runtime.getContext(),Employee.class, 1004L);
-        System.out.println("Object loaded: \n" + c);
-        assertNotNull(c.getToNaturalPerson());
+        Employee e = Cayenne.objectForPK(runtime.getContext(),Employee.class, 1004L);
+        System.out.println("Object loaded: \n" + e);
+        assertNotNull(e.getNaturalPerson());
     }
 
     @Test
@@ -95,25 +95,25 @@ public class EmployeeTest {
 
         // Creates a new object and persists it
         //Employee c = new Employee(1002, 3);
-        Employee c = new Employee();
+        Employee e = new Employee();
         //NaturalPerson nP = em.find(NaturalPerson.class, 1005L);
         NaturalPerson nP = Cayenne.objectForPK(context,NaturalPerson.class, 1005L);
         System.out.println("Foreign Key Object loaded: \n" + nP);
         //Setting the class attribute will need manual set of employee.id?
-        c.setToNaturalPerson(nP); 
+        //e.setNaturalPerson(nP); 
         //c.setId(lP.getId());
-        c.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
+        e.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         //Parking p = em.find(Parking.class, 1001L);
         Parking p = Cayenne.objectForPK(context, Parking.class, 100L);
         System.out.println("Foreign Key Object loaded: \n" + p);
-        c.setToParking(p);
+        e.setParking(p);
         
         /* JPA code
         tx.begin();
         em.persist(c);
         tx.commit();
         */
-        context.registerNewObject(c);
+        context.registerNewObject(e);
         context.commitChanges();
 
         // Gets all the objects from the database
@@ -125,7 +125,7 @@ public class EmployeeTest {
         em.remove(c);
         tx.commit();
         */
-        context.deleteObject(c);
+        context.deleteObject(e);
         context.commitChanges();
 
         // Gets all the objects from the database

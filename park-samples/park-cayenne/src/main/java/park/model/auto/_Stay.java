@@ -25,10 +25,10 @@ public abstract class _Stay extends CayenneDataObject {
     public static final String STATUS_PROPERTY = "status";
     public static final String TOTAL_PRICE_PROPERTY = "totalPrice";
     public static final String VERSION_PROPERTY = "version";
+    public static final String EMPLOYEE_PROPERTY = "employee";
+    public static final String EMPLOYEE1_PROPERTY = "employee1";
     public static final String PARKING_PROPERTY = "parking";
-    public static final String TO_EMPLOYEE_PROPERTY = "toEmployee";
-    public static final String TO_EMPLOYEE1_PROPERTY = "toEmployee1";
-    public static final String TO_VEHICLE_PROPERTY = "toVehicle";
+    public static final String VEHICLE_PROPERTY = "vehicle";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -88,6 +88,24 @@ public abstract class _Stay extends CayenneDataObject {
         return (Integer)readProperty("version");
     }
 
+    public void setEmployee(Employee employee) {
+        setToOneTarget("employee", employee, true);
+    }
+
+    public Employee getEmployee() {
+        return (Employee)readProperty("employee");
+    }
+
+
+    public void setEmployee1(Employee employee1) {
+        setToOneTarget("employee1", employee1, true);
+    }
+
+    public Employee getEmployee1() {
+        return (Employee)readProperty("employee1");
+    }
+
+
     public void setParking(Parking parking) {
         setToOneTarget("parking", parking, true);
     }
@@ -97,30 +115,12 @@ public abstract class _Stay extends CayenneDataObject {
     }
 
 
-    public void setToEmployee(Employee toEmployee) {
-        setToOneTarget("toEmployee", toEmployee, true);
+    public void setVehicle(Vehicle vehicle) {
+        setToOneTarget("vehicle", vehicle, true);
     }
 
-    public Employee getToEmployee() {
-        return (Employee)readProperty("toEmployee");
-    }
-
-
-    public void setToEmployee1(Employee toEmployee1) {
-        setToOneTarget("toEmployee1", toEmployee1, true);
-    }
-
-    public Employee getToEmployee1() {
-        return (Employee)readProperty("toEmployee1");
-    }
-
-
-    public void setToVehicle(Vehicle toVehicle) {
-        setToOneTarget("toVehicle", toVehicle, true);
-    }
-
-    public Vehicle getToVehicle() {
-        return (Vehicle)readProperty("toVehicle");
+    public Vehicle getVehicle() {
+        return (Vehicle)readProperty("vehicle");
     }
 
 

@@ -15,7 +15,7 @@ public abstract class _NaturalPerson extends Person {
 
     public static final String DT_BIRTH_PROPERTY = "dtBirth";
     public static final String LEGAL_DOCUMENT_PROPERTY = "legalDocument";
-    public static final String TO_EMPLOYEE_PROPERTY = "toEmployee";
+    public static final String EMPLOYEE_PROPERTY = "employee";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -34,8 +34,8 @@ public abstract class _NaturalPerson extends Person {
     }
 
 
-    public Employee getToEmployee() {
-        return (Employee)readProperty("toEmployee");
+    public Employee getEmployee() {
+        return (Employee)readProperty("employee");
     }
 
 

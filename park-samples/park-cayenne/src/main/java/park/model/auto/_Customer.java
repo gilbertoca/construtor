@@ -15,19 +15,11 @@ import park.model.Vehicle;
  */
 public abstract class _Customer extends CayenneDataObject {
 
-    public static final String ID_PROPERTY = "id";
     public static final String PAYMENT_DAY_PROPERTY = "paymentDay";
-    public static final String TO_PERSON_PROPERTY = "toPerson";
+    public static final String PERSON_PROPERTY = "person";
     public static final String VEHICLES_PROPERTY = "vehicles";
 
-    public static final String ID_PK_COLUMN = "ID";
-
-    public void setId(Long id) {
-        writeProperty("id", id);
-    }
-    public Long getId() {
-        return (Long)readProperty("id");
-    }
+    public static final String PERSON_ID_PK_COLUMN = "PERSON_ID";
 
     public void setPaymentDay(Integer paymentDay) {
         writeProperty("paymentDay", paymentDay);
@@ -36,12 +28,12 @@ public abstract class _Customer extends CayenneDataObject {
         return (Integer)readProperty("paymentDay");
     }
 
-    public void setToPerson(Person toPerson) {
-        setToOneTarget("toPerson", toPerson, true);
+    public void setPerson(Person person) {
+        setToOneTarget("person", person, true);
     }
 
-    public Person getToPerson() {
-        return (Person)readProperty("toPerson");
+    public Person getPerson() {
+        return (Person)readProperty("person");
     }
 
 

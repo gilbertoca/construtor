@@ -7,6 +7,10 @@
       <param name="ConversionPattern" value="%d [%t] %-5p %c - %m%n"/>
     </layout>
   </appender>
+  <logger name="org.apache.cayenne">
+    <!-- Print only messages of level warn or above in the package com.foo -->
+    <level value="debug"/>
+  </logger>  
   <logger name="park.model">
     <!-- Print only messages of level warn or above in the package com.foo -->
     <level value="debug"/>

@@ -22,7 +22,7 @@ public abstract class _Vehicle extends CayenneDataObject {
     public static final String CUSTOMER_PROPERTY = "customer";
     public static final String PRICE_TABLE_PROPERTY = "priceTable";
     public static final String STAYS_PROPERTY = "stays";
-    public static final String TO_VEHICLE_TYPE_PROPERTY = "toVehicleType";
+    public static final String VEHICLE_TYPE_PROPERTY = "vehicleType";
 
     public static final String LICENSE_PLATE_PK_COLUMN = "LICENSE_PLATE";
 
@@ -70,12 +70,12 @@ public abstract class _Vehicle extends CayenneDataObject {
     }
 
 
-    public void setToVehicleType(VehicleType toVehicleType) {
-        setToOneTarget("toVehicleType", toVehicleType, true);
+    public void setVehicleType(VehicleType vehicleType) {
+        setToOneTarget("vehicleType", vehicleType, true);
     }
 
-    public VehicleType getToVehicleType() {
-        return (VehicleType)readProperty("toVehicleType");
+    public VehicleType getVehicleType() {
+        return (VehicleType)readProperty("vehicleType");
     }
 
 

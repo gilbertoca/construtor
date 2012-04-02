@@ -15,7 +15,7 @@ public abstract class _LegalEntity extends Person {
 
     public static final String DT_FOUNDATION_PROPERTY = "dtFoundation";
     public static final String TAXPAYERS_ID_PROPERTY = "taxpayersId";
-    public static final String TO_CUSTOMER_PROPERTY = "toCustomer";
+    public static final String CUSTOMER_PROPERTY = "customer";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -33,12 +33,12 @@ public abstract class _LegalEntity extends Person {
         return (String)readProperty("taxpayersId");
     }
 
-    public void setToCustomer(Customer toCustomer) {
-        setToOneTarget("toCustomer", toCustomer, true);
+    public void setCustomer(Customer customer) {
+        setToOneTarget("customer", customer, true);
     }
 
-    public Customer getToCustomer() {
-        return (Customer)readProperty("toCustomer");
+    public Customer getCustomer() {
+        return (Customer)readProperty("customer");
     }
 
 

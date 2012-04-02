@@ -16,7 +16,7 @@ public abstract class _Person extends CayenneDataObject {
     public static final String NAME_PROPERTY = "name";
     public static final String P_TYPE_PROPERTY = "pType";
     public static final String VERSION_PROPERTY = "version";
-    public static final String TO_CUSTOMER_PROPERTY = "toCustomer";
+    public static final String CUSTOMER_PROPERTY = "customer";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -48,12 +48,12 @@ public abstract class _Person extends CayenneDataObject {
         return (Integer)readProperty("version");
     }
 
-    public void setToCustomer(Customer toCustomer) {
-        setToOneTarget("toCustomer", toCustomer, true);
+    public void setCustomer(Customer customer) {
+        setToOneTarget("customer", customer, true);
     }
 
-    public Customer getToCustomer() {
-        return (Customer)readProperty("toCustomer");
+    public Customer getCustomer() {
+        return (Customer)readProperty("customer");
     }
 
 
