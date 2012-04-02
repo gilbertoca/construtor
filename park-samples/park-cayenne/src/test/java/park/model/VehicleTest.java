@@ -151,7 +151,7 @@ public class VehicleTest {
         String[] keys = new String[]{"licensePlate"};
         Object[] values = new String[]{"%LC1%"};
         NamedQuery query = new NamedQuery("Vehicle.findByLicensePlate", keys, values);
-        List entities = context.performQuery(query);
+        List<Vehicle> entities = context.performQuery(query);
         assertEquals("Should have 3 Vehicle", 3, entities.size());
     }
     
@@ -169,7 +169,7 @@ public class VehicleTest {
         Object[] values = new String[]{"%LC1%"};
 
         NamedQuery query = new NamedQuery("Vehicle.findByLicensePlateEJBQL", keys, values);
-        List entities = context.performQuery(query);
+        List<Vehicle> entities = context.performQuery(query);
         assertEquals("Should have 3 Vehicle", 3, entities.size());
     }   
     /**
@@ -183,7 +183,7 @@ public class VehicleTest {
         //JPA-->int size = query.getResultList().size();
         ObjectContext context = runtime.getContext();
         NamedQuery query = new NamedQuery("Vehicle.findInLicensePlate", Collections.singletonMap("licensePlate", new String[]{"LC101","LC102"}));
-        List entities = context.performQuery(query);
+        List<Vehicle> entities = context.performQuery(query);
         assertEquals("Should have 2 Vehicle", 2, entities.size());
     }
     
