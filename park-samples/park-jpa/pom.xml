@@ -141,12 +141,7 @@
             <version>${dbunit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- Junit was defined in the Parent pom -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -171,7 +166,6 @@
         <jdbc.password>click</jdbc.password>
 
         <servlet-api-version>2.5</servlet-api-version>
-        <junit.version>4.5</junit.version>
     </properties>
     <profiles>
         <profile>
