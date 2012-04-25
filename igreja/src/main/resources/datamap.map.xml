@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+	 project-version="6">
+	<db-entity name="IGREJA">
+		<db-attribute name="CNPJ" type="VARCHAR" length="13"/>
+		<db-attribute name="DT_CADASTRO" type="DATE"/>
+		<db-attribute name="DT_FUNDACAO" type="DATE"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="NOME" type="VARCHAR" length="100"/>
+	</db-entity>
+	<db-entity name="MEMBRO">
+		<db-attribute name="DT_CADASTRO" type="DATE"/>
+		<db-attribute name="DT_FIM" type="DATE"/>
+		<db-attribute name="DT_INICIO" type="DATE" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="IGREJA_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="MEMBRO_STATUS_ID" type="SMALLINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="MEMBRO_TIPO_ID" type="SMALLINT" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="PESSOA_ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="PESSOA">
+		<db-attribute name="DT_NASCIMENTO" type="DATE"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="NOME" type="VARCHAR" length="100"/>
+		<db-attribute name="SEXO" type="BOOLEAN"/>
+	</db-entity>
+</data-map>

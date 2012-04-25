@@ -1,0 +1,15 @@
+format 76
+
+classcanvas 128002 class_ref 128258 // Membro
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 143 117 2000
+end
+classcanvas 128130 class_ref 128386 // Tesoureiro
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 134 212 2000
+end
+classcanvas 128258 class_ref 128514 // Presidente
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 141 29 2000
+end
+end
