@@ -147,12 +147,12 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="base.view.seguridad.RolesView" id="nuevo" methodName="nuevo"/>
+              <action class="com.gilbertoca.igreja.view.seguridad.RolesView" id="nuevo" methodName="nuevo"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
             <Property name="enabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_CREAR)" type="code"/>
+              <Connection code="Application.getApplication().getUsuario().tieneAccion(Rol.COD_CREAR)" type="code"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
           </Properties>
@@ -160,12 +160,12 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="base.view.seguridad.RolesView" id="modificar" methodName="modificar"/>
+              <action class="com.gilbertoca.igreja.view.seguridad.RolesView" id="modificar" methodName="modificar"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton2.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
             <Property name="enabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_MODIFICAR)" type="code"/>
+              <Connection code="Application.getApplication().getUsuario().tieneAccion(Rol.COD_MODIFICAR)" type="code"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
           </Properties>
@@ -173,12 +173,12 @@
         <Component class="javax.swing.JButton" name="jButton3">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="base.view.seguridad.RolesView" id="eliminar" methodName="eliminar"/>
+              <action class="com.gilbertoca.igreja.view.seguridad.RolesView" id="eliminar" methodName="eliminar"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton3.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
             <Property name="enabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_ELIMINAR)" type="code"/>
+              <Connection code="Application.getApplication().getUsuario().tieneAccion(Rol.COD_ELIMINAR)" type="code"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
           </Properties>
@@ -186,7 +186,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="base.view.seguridad.RolesView" id="cerrar" methodName="cerrar"/>
+              <action class="com.gilbertoca.igreja.view.seguridad.RolesView" id="cerrar" methodName="cerrar"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton5.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton5.text"/>
@@ -201,12 +201,12 @@
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="base.view.seguridad.RolesView" id="configurar" methodName="configurar"/>
+              <action class="com.gilbertoca.igreja.view.seguridad.RolesView" id="configurar" methodName="configurar"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton4.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton4.text"/>
             <Property name="enabled" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_CONFIGURAR)" type="code"/>
+              <Connection code="Application.getApplication().getUsuario().tieneAccion(Rol.COD_CONFIGURAR)" type="code"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
           </Properties>

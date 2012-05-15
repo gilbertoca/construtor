@@ -1,16 +1,16 @@
 package com.gilbertoca.igreja.view.security;
 
-import base.model.seguridad.Rol;
-import base.services.seguridad.SeguridadService;
-import base.view.BaseApp;
-import base.view.abstracts.Refreshable;
-import base.view.dialogos.ErrorDialog;
-import base.view.dialogos.WarningDialog;
-import base.view.seguridad.models.RolesTableModel;
+import com.gilbertoca.igreja.model.security.Rol;
+import com.gilbertoca.igreja.service.security.SeguridadService;
+import com.gilbertoca.igreja.view.Application;
+import com.gilbertoca.igreja.view.component.Refreshable;
+import com.gilbertoca.igreja.view.dialog.ErrorDialog;
+import com.gilbertoca.igreja.view.dialog.WarningDialog;
+import com.gilbertoca.igreja.view.security.models.RolesTableModel;
 import java.awt.event.KeyEvent;
-import sforinci.view.acciones.ConfigurarAccionesDialog;
+import com.gilbertoca.igreja.view.action.ConfigurarAccionesDialog;
 import org.jdesktop.application.Action;
-import sforinci.interfaces.Listador;
+import com.gilbertoca.igreja.view.component.Listador;
 
 public class RolesView extends Listador<Rol> implements Refreshable {
 
@@ -26,9 +26,9 @@ public class RolesView extends Listador<Rol> implements Refreshable {
 
     @Action
     public void nuevo() {
-        EditarRolView editarRolView = new EditarRolView(BaseApp.getApplication().getMainFrame(), this);
-        editarRolView.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(editarRolView);
+        EditarRolView editarRolView = new EditarRolView(Application.getApplication().getMainFrame(), this);
+        editarRolView.setLocationRelativeTo(Application.getApplication().getMainFrame());
+        Application.getApplication().show(editarRolView);
     }
     
     @Action
@@ -42,9 +42,9 @@ public class RolesView extends Listador<Rol> implements Refreshable {
        
         if (row >= 0) {
             Rol rol = ((RolesTableModel)tablaRoles.getModel()).getElements().get(row);
-            EditarRolView editarRolView = new EditarRolView(BaseApp.getApplication().getMainFrame(), this,rol);
-            editarRolView.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-            BaseApp.getApplication().show(editarRolView);
+            EditarRolView editarRolView = new EditarRolView(Application.getApplication().getMainFrame(), this,rol);
+            editarRolView.setLocationRelativeTo(Application.getApplication().getMainFrame());
+            Application.getApplication().show(editarRolView);
        } else {
             WarningDialog.show("Debe seleccionar un rol.");
        }        
@@ -56,9 +56,9 @@ public class RolesView extends Listador<Rol> implements Refreshable {
 
         if (row >= 0) {
             Rol rol = ((RolesTableModel)tablaRoles.getModel()).getElements().get(row);
-            ConfigurarAccionesDialog configurarView = new ConfigurarAccionesDialog(BaseApp.getApplication().getMainFrame(), true, rol);
-            configurarView.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-            BaseApp.getApplication().show(configurarView);
+            ConfigurarAccionesDialog configurarView = new ConfigurarAccionesDialog(Application.getApplication().getMainFrame(), true, rol);
+            configurarView.setLocationRelativeTo(Application.getApplication().getMainFrame());
+            Application.getApplication().show(configurarView);
        } else {
             WarningDialog.show("Debe seleccionar un rol.");
        }
@@ -104,7 +104,7 @@ public class RolesView extends Listador<Rol> implements Refreshable {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(RolesView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getResourceMap(RolesView.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         setResizable(false);
@@ -154,23 +154,23 @@ public class RolesView extends Listador<Rol> implements Refreshable {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(resourceMap.getColor("jPanel1.border.highlightColor"), resourceMap.getColor("jPanel1.border.shadowColor"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(RolesView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getActionMap(RolesView.class, this);
         jButton1.setAction(actionMap.get("nuevo")); // NOI18N
         jButton1.setIcon(resourceMap.getIcon("jButton1.icon")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setEnabled(BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_CREAR));
+        jButton1.setEnabled(Application.getApplication().getUsuario().tieneAccion(Rol.COD_CREAR));
         jButton1.setName("jButton1"); // NOI18N
 
         jButton2.setAction(actionMap.get("modificar")); // NOI18N
         jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
-        jButton2.setEnabled(BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_MODIFICAR));
+        jButton2.setEnabled(Application.getApplication().getUsuario().tieneAccion(Rol.COD_MODIFICAR));
         jButton2.setName("jButton2"); // NOI18N
 
         jButton3.setAction(actionMap.get("eliminar")); // NOI18N
         jButton3.setIcon(resourceMap.getIcon("jButton3.icon")); // NOI18N
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setEnabled(BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_ELIMINAR));
+        jButton3.setEnabled(Application.getApplication().getUsuario().tieneAccion(Rol.COD_ELIMINAR));
         jButton3.setName("jButton3"); // NOI18N
 
         jButton5.setAction(actionMap.get("cerrar")); // NOI18N
@@ -183,7 +183,7 @@ public class RolesView extends Listador<Rol> implements Refreshable {
         jButton4.setAction(actionMap.get("configurar")); // NOI18N
         jButton4.setIcon(resourceMap.getIcon("jButton4.icon")); // NOI18N
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setEnabled(BaseApp.getApplication().getUsuario().tieneAccion(Rol.COD_CONFIGURAR));
+        jButton4.setEnabled(Application.getApplication().getUsuario().tieneAccion(Rol.COD_CONFIGURAR));
         jButton4.setName("jButton4"); // NOI18N
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);

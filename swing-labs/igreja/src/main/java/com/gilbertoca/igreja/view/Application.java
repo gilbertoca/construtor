@@ -1,22 +1,21 @@
 /*
- * BaseApp.java
+ * Application.java
  */
 
 package com.gilbertoca.igreja.view;
 
-import com.gilbertoca.model.security.Usuario;
-import com.gilbertoca.service.BaseService;
-import com.gilbertoca.service.ServiceFactory;
-import com.gilbertoca.service.Updater;
-import com.gilbertoca.view.seguridad.LoginDialog;
+import com.gilbertoca.igreja.model.security.Usuario;
+import com.gilbertoca.igreja.service.base.BaseService;
+import com.gilbertoca.igreja.service.base.ServiceFactory;
+import com.gilbertoca.igreja.service.base.Updater;
+import com.gilbertoca.igreja.view.security.LoginDialog;
 import javax.swing.JFrame;
-import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
 /**
  * The main class of the application.
  */
-public class BaseApp extends SingleFrameApplication {
+public class Application extends SingleFrameApplication {
 
     private Usuario usuario;
 
@@ -24,18 +23,18 @@ public class BaseApp extends SingleFrameApplication {
     protected void ready() {
         super.ready();
         
-       ((BaseView)this.getMainView()).getMenuBar().setVisible(false);
-       ((BaseView)this.getMainView()).panel_accesoRapido.setVisible(false);
+       ((MainView)this.getMainView()).getMenuBar().setVisible(false);
+       ((MainView)this.getMainView()).panel_accesoRapido.setVisible(false);
         ServiceFactory.initJPA();
 
         Updater.exe();
         login();
         
-        ((BaseView)this.getMainView()).getMenuBar().setVisible(true);
-        ((BaseView)this.getMainView()).panel_accesoRapido.setVisible(true);
+        ((MainView)this.getMainView()).getMenuBar().setVisible(true);
+        ((MainView)this.getMainView()).panel_accesoRapido.setVisible(true);
 
          String version = BaseService.get().getVersion();
-         ((BaseView)this.getMainView()).versionLabel.setText("Versión: "+version);
+         ((MainView)this.getMainView()).versionLabel.setText("Versión: "+version);
     }
 
 
@@ -46,8 +45,8 @@ public class BaseApp extends SingleFrameApplication {
     @Override protected void startup() {
      //   ResourceMap resourceMap = this.getContext().getResourceMap();
         
-        show(new BaseView(this));
-//        BaseApp.getApplication().getMainFrame().setIconImage(resourceMap.getImageIcon("icon").getImage());
+        show(new MainView(this));
+//        Application.getApplication().getMainFrame().setIconImage(resourceMap.getImageIcon("icon").getImage());
        // PropertyConfigurator.configure("log4j.properties");
     }
 
@@ -61,25 +60,25 @@ public class BaseApp extends SingleFrameApplication {
 
     /**
      * A convenient static getter for the application instance.
-     * @return the instance of BaseApp
+     * @return the instance of Application
      */
-    public static BaseApp getApplication() {
-        return Application.getInstance(BaseApp.class);
+    public static Application getApplication() {
+        return Application.getInstance(Application.class);
     }
 
     /**
      * Main method launching the application.
      */
     public static void main(String[] args) {
-        launch(BaseApp.class, args);
+        launch(Application.class, args);
     }
     
     public void login() {
 
-        JFrame mainFrame = BaseApp.getApplication().getMainFrame();
+        JFrame mainFrame = Application.getApplication().getMainFrame();
         LoginDialog loginDialog = new LoginDialog(mainFrame, true);
         loginDialog.setLocationRelativeTo(mainFrame);
-        BaseApp.getApplication().show(loginDialog);
+        Application.getApplication().show(loginDialog);
     }
 
 

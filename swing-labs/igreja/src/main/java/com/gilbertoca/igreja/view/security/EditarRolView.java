@@ -6,14 +6,10 @@
 
 package com.gilbertoca.igreja.view.security;
 
-import base.model.seguridad.Accion;
-import base.model.seguridad.Rol;
-import base.services.seguridad.SeguridadService;
-import base.view.abstracts.Refreshable;
-import base.view.dialogos.ErrorDialog;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultListModel;
+import com.gilbertoca.igreja.model.security.Rol;
+import com.gilbertoca.igreja.service.security.SeguridadService;
+import com.gilbertoca.igreja.view.component.Refreshable;
+import com.gilbertoca.igreja.view.dialog.ErrorDialog;
 import org.jdesktop.application.Action;
 
 /**
@@ -97,7 +93,7 @@ public class EditarRolView extends javax.swing.JDialog {
         setName("Form"); // NOI18N
         setResizable(false);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(EditarRolView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getResourceMap(EditarRolView.class);
         jPanel1.setBackground(resourceMap.getColor("jPanel1.background")); // NOI18N
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(resourceMap.getColor("jPanel1.border.highlightColor"), resourceMap.getColor("jPanel1.border.shadowColor"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
@@ -164,7 +160,7 @@ public class EditarRolView extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(resourceMap.getColor("jPanel2.border.highlightColor"), resourceMap.getColor("jPanel2.border.shadowColor"))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(EditarRolView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getActionMap(EditarRolView.class, this);
         jButton2.setAction(actionMap.get("guardar")); // NOI18N
         jButton2.setIcon(resourceMap.getIcon("jButton2.icon")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N

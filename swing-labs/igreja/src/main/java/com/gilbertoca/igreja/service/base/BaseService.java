@@ -1,6 +1,6 @@
-package com.gilbertoca.igreja.service;
+package com.gilbertoca.igreja.service.base;
 
-import base.model.generales.Version;
+import com.gilbertoca.igreja.model.util.Version;
 import java.util.List;
 import javax.persistence.EntityManager;
 import org.apache.log4j.Logger;

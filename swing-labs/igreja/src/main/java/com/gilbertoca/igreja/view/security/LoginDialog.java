@@ -6,10 +6,10 @@
 
 package com.gilbertoca.igreja.view.security;
 
-import base.model.seguridad.Usuario;
-import base.services.seguridad.SeguridadService;
-import base.view.BaseApp;
-import base.view.dialogos.ErrorDialog;
+import com.gilbertoca.igreja.model.security.Usuario;
+import com.gilbertoca.igreja.service.security.SeguridadService;
+import com.gilbertoca.igreja.view.Application;
+import com.gilbertoca.igreja.view.dialog.ErrorDialog;
 import org.jdesktop.application.Action;
 
 /**
@@ -32,7 +32,7 @@ public class LoginDialog extends javax.swing.JDialog {
         } else if (usuario.getBorrado()){
             ErrorDialog.show("El usuario fue deshabilitado para ingresar al sistema");
         }else {
-            BaseApp.getApplication().setUsuario(usuario);
+            Application.getApplication().setUsuario(usuario);
             dispose();
         }
     }
@@ -58,7 +58,7 @@ public class LoginDialog extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(LoginDialog.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getResourceMap(LoginDialog.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
         setResizable(false);
@@ -91,7 +91,7 @@ public class LoginDialog extends javax.swing.JDialog {
         });
         getContentPane().add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 170, 25));
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(LoginDialog.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getActionMap(LoginDialog.class, this);
         jButton2.setAction(actionMap.get("quit")); // NOI18N
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N

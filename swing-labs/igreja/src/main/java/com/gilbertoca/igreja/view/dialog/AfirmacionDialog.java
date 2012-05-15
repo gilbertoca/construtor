@@ -6,7 +6,7 @@
 
 package com.gilbertoca.igreja.view.dialog;
 
-import base.view.BaseApp;
+import com.gilbertoca.igreja.view.Application;
 import org.jdesktop.application.Action;
 
 /**
@@ -20,7 +20,7 @@ public class AfirmacionDialog extends javax.swing.JDialog {
         super(parent, Boolean.TRUE);
         initComponents();
         this.mensaje.setText("<html>"+mensaje+"</html>");
-        this.setTitle(BaseApp.getApplication().getContext().getResourceMap(BaseApp.class).getString("Application.name"));
+        this.setTitle(Application.getApplication().getContext().getResourceMap(Application.class).getString("Application.name"));
     }
     
     @Action
@@ -29,8 +29,8 @@ public class AfirmacionDialog extends javax.swing.JDialog {
     }
     
     public static void show(String mensaje) {
-        AfirmacionDialog dialog = new AfirmacionDialog(BaseApp.getApplication().getMainFrame(), mensaje);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
+        AfirmacionDialog dialog = new AfirmacionDialog(Application.getApplication().getMainFrame(), mensaje);
+        dialog.setLocationRelativeTo(Application.getApplication().getMainFrame());
         dialog.setVisible(true);
     }
 
@@ -51,7 +51,7 @@ public class AfirmacionDialog extends javax.swing.JDialog {
         setName("Form"); // NOI18N
         setResizable(false);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(AfirmacionDialog.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getResourceMap(AfirmacionDialog.class);
         jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -60,7 +60,7 @@ public class AfirmacionDialog extends javax.swing.JDialog {
         mensaje.setText(resourceMap.getString("mensaje.text")); // NOI18N
         mensaje.setName("mensaje"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(AfirmacionDialog.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getActionMap(AfirmacionDialog.class, this);
         jButton1.setAction(actionMap.get("cerrar")); // NOI18N
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N

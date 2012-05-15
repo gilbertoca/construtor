@@ -1,6 +1,5 @@
-package com.gilbertoca.igreja.service;
+package com.gilbertoca.igreja.service.base;
 
-import base.services.BaseService;
 import java.util.Vector;
 
 public class Updater extends BaseService {

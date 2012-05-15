@@ -6,7 +6,7 @@
 
 package com.gilbertoca.igreja.view.dialog;
 
-import base.view.BaseApp;
+import com.gilbertoca.igreja.view.Application;
 import org.jdesktop.application.Action;
 
 /**
@@ -22,7 +22,7 @@ public class ConfirmationDialog extends javax.swing.JDialog {
         super(parent, Boolean.TRUE);
         initComponents();
         this.mensaje.setText("<html>"+mensaje+"</html>");
-        this.setTitle(BaseApp.getApplication().getContext().getResourceMap(BaseApp.class).getString("Application.name"));
+        this.setTitle(Application.getApplication().getContext().getResourceMap(Application.class).getString("Application.name"));
     }
     
     @Action
@@ -31,8 +31,8 @@ public class ConfirmationDialog extends javax.swing.JDialog {
     }
     
     public static Boolean show(String mensaje) {
-        ConfirmationDialog dialog = new ConfirmationDialog(BaseApp.getApplication().getMainFrame(), mensaje);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
+        ConfirmationDialog dialog = new ConfirmationDialog(Application.getApplication().getMainFrame(), mensaje);
+        dialog.setLocationRelativeTo(Application.getApplication().getMainFrame());
         dialog.setVisible(true);
         return value;
     }
@@ -65,7 +65,7 @@ public class ConfirmationDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(ConfirmationDialog.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getResourceMap(ConfirmationDialog.class);
         jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -74,7 +74,7 @@ public class ConfirmationDialog extends javax.swing.JDialog {
         mensaje.setText(resourceMap.getString("mensaje.text")); // NOI18N
         mensaje.setName("mensaje"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(ConfirmationDialog.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.gilbertoca.igreja.view.Application.class).getContext().getActionMap(ConfirmationDialog.class, this);
         aceptar.setAction(actionMap.get("aceptar")); // NOI18N
         aceptar.setText(resourceMap.getString("aceptar.text")); // NOI18N
         aceptar.setName("aceptar"); // NOI18N

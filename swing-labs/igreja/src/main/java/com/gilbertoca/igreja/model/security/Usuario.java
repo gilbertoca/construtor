@@ -1,7 +1,7 @@
 package com.gilbertoca.igreja.model.security;
 
+import com.gilbertoca.igreja.model.user.InformacionPersonal;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
-import sforinci.model.orden.Observacion;
-import sforinci.model.usuarios.InformacionPersonal;
 
 /**
  * Reresenta el usuario del sistema.
@@ -29,9 +26,6 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy=GenerationType.TABLE,generator="usuario_gen")
     @SequenceGenerator(name="usuario_seq",sequenceName="usuario_seq", allocationSize=1)
     private Long id;
-
-    @OneToMany(mappedBy = "usuario")
-    private List<Observacion> observaciones;
 
     /*Acciones*/
     public static final String  COD_CREAR = "CRMO_USR" ;
@@ -154,13 +148,5 @@ public class Usuario implements Serializable {
 
     public void setInformacionPersonal(InformacionPersonal informacionPersonal) {
         this.informacionPersonal = informacionPersonal;
-    }
-
-    public List<Observacion> getObservaciones() {
-        return observaciones;
-    }
-
-    public void setObservaciones(List<Observacion> observaciones) {
-        this.observaciones = observaciones;
     }
 }

@@ -1,16 +1,11 @@
 package com.gilbertoca.igreja.view;
 
-import base.services.reportes.VisorDeReportesJasper;
-import base.view.backup.BackupDialog;
-import base.view.seguridad.RolesView;
-import java.awt.Dialog.ModalExclusionType;
+import com.gilbertoca.igreja.view.security.RolesView;
 
 
-import sforinci.view.reportes.ReportesDialog;
-import sforinci.view.seguridad.UsuariosDialog;
+import com.gilbertoca.igreja.view.security.UsuariosDialog;
 import java.awt.Dimension;
 
-import java.awt.Toolkit;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -26,34 +21,13 @@ import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JRViewer;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.jdesktop.swingworker.SwingWorker;
-import sforinci.model.orden.OrdenProvision;
-import sforinci.model.orden.Presupuesto;
-import sforinci.view.model.LocalidadesDialog;
-import sforinci.view.model.RegionesDialog;
-import sforinci.view.model.orden.OrdenDialog;
-import sforinci.view.model.orden.OrdenesDialog;
-import sforinci.view.model.orden.PresupuestoDialog;
-import sforinci.view.model.orden.PresupuestosDialog;
-import sforinci.view.model.producto.MarcasDialog;
-import sforinci.view.model.producto.MaterialesDialog;
-import sforinci.view.model.producto.ProductosDialog;
-import sforinci.view.model.producto.stock.DepositosDialog;
-import sforinci.view.usuarios.CambiarContraseniaDialog;
-import sforinci.view.usuarios.ClientesDialog;
-import sforinci.view.usuarios.MedicosDialog;
-import sforinci.view.usuarios.OrtopedistasDialog;
-import sforinci.view.usuarios.VendedoresDialog;
+import javax.swing.SwingWorker;
 
 
 
-public class BaseView extends FrameView {
+public class MainView extends FrameView {
 
-    public BaseView(SingleFrameApplication app) {
+    public MainView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
@@ -132,127 +106,29 @@ public class BaseView extends FrameView {
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
-            JFrame mainFrame = BaseApp.getApplication().getMainFrame();
-            aboutBox = new BaseAboutBox(mainFrame);
+            JFrame mainFrame = Application.getApplication().getMainFrame();
+            aboutBox = new AboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
-        BaseApp.getApplication().show(aboutBox);
+        Application.getApplication().show(aboutBox);
     }
 
 
     @Action
     public void roles() {
-       RolesView dialog = new RolesView(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
+       RolesView dialog = new RolesView(Application.getApplication().getMainFrame(), true);
+        dialog.setLocationRelativeTo(Application.getApplication().getMainFrame());
+        Application.getApplication().show(dialog);
     }
 
-    @Action
-    public void backup() {
-        BackupDialog backupDialog = new BackupDialog(BaseApp.getApplication().getMainFrame(), true);
-        backupDialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(backupDialog);
-    }
-
-  
-    @Action
-    public void reportesDialog() {
-        ReportesDialog dialog = new ReportesDialog(BaseApp.getApplication().getMainFrame(), false);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
 
     @Action
     public void usuarios() {
-        UsuariosDialog dialog = new UsuariosDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
+        UsuariosDialog dialog = new UsuariosDialog(Application.getApplication().getMainFrame(), true);
+        dialog.setLocationRelativeTo(Application.getApplication().getMainFrame());
+        Application.getApplication().show(dialog);
     }
 
-    @Action
-    public void medicos() {
-        MedicosDialog dialog = new MedicosDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void clientes() {
-        ClientesDialog dialog = new ClientesDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void ortopedistas() {
-        OrtopedistasDialog dialog = new OrtopedistasDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void verReporte(JasperPrint reporte, String titulo) {
-        VisorDeReportesJasper visorDeReportes = new VisorDeReportesJasper(titulo);
-        JRViewer viewer;
-        try {
-            viewer = new JRViewer(reporte);
-            visorDeReportes.getContentPane().add(viewer);
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            visorDeReportes.setSize(screenSize.width, screenSize.height);
-            visorDeReportes.setLocation(0, 0);
-//            visorDeReportes.show();
-            visorDeReportes.setFocusable(true);
-            visorDeReportes.setFocusableWindowState(true);
-            visorDeReportes.setResizable(true);
-            visorDeReportes.setEnabled(true);
-            visorDeReportes.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
-            visorDeReportes.setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(VisorDeReportesJasper.class.getName()).log(Level.ERROR, null, ex);
-        }
-    }
-
-    @Action
-    public void regiones(){
-        RegionesDialog dialog = new RegionesDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void localidades(){
-        LocalidadesDialog dialog = new LocalidadesDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void ordenes(){
-        OrdenesDialog dialog = new OrdenesDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void nuevaOrden() {
-        OrdenDialog dialog = new OrdenDialog(BaseApp.getApplication().getMainFrame(), true, new OrdenProvision(BaseApp.getApplication().getUsuario()));
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void vendedores() {
-       VendedoresDialog dialog = new VendedoresDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-     @Action
-    public void presupuesto() {
-        PresupuestosDialog dialog = new PresupuestosDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
 
     public void centrar(JDesktopPane desktop, JComponent component) {
         Dimension pantalla = desktop.getSize();
@@ -316,8 +192,6 @@ public class BaseView extends FrameView {
         versionLabel = new javax.swing.JLabel();
         clockLabel = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getResourceMap(BaseView.class);
-        mainPanel.setBackground(resourceMap.getColor("mainPanel.background")); // NOI18N
         mainPanel.setMinimumSize(new java.awt.Dimension(880, 540));
         mainPanel.setName("mainPanel"); // NOI18N
         mainPanel.setPreferredSize(new java.awt.Dimension(880, 540));
@@ -332,24 +206,16 @@ public class BaseView extends FrameView {
         jSeparator2.setName("jSeparator2"); // NOI18N
         mainPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 20, 531));
 
-        panel_accesoRapido.setBackground(resourceMap.getColor("panel_accesoRapido.background")); // NOI18N
         panel_accesoRapido.setName("panel_accesoRapido"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(base.view.BaseApp.class).getContext().getActionMap(BaseView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance().getContext().getActionMap(MainView.class, this);
         btn_buscarOrden.setAction(actionMap.get("ordenes")); // NOI18N
-        btn_buscarOrden.setFont(resourceMap.getFont("btn_buscarOrden.font")); // NOI18N
-        btn_buscarOrden.setText(resourceMap.getString("btn_buscarOrden.text")); // NOI18N
-        btn_buscarOrden.setToolTipText(resourceMap.getString("btn_buscarOrden.toolTipText")); // NOI18N
         btn_buscarOrden.setName("btn_buscarOrden"); // NOI18N
 
         btn_nuevaOrden.setAction(actionMap.get("nuevaOrden")); // NOI18N
-        btn_nuevaOrden.setText(resourceMap.getString("btn_nuevaOrden.text")); // NOI18N
-        btn_nuevaOrden.setToolTipText(resourceMap.getString("btn_nuevaOrden.toolTipText")); // NOI18N
         btn_nuevaOrden.setName("btn_nuevaOrden"); // NOI18N
 
         jButton2.setAction(actionMap.get("nuevoPresupuesto")); // NOI18N
-        jButton2.setFont(resourceMap.getFont("jButton2.font")); // NOI18N
-        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
 
         org.jdesktop.layout.GroupLayout panel_accesoRapidoLayout = new org.jdesktop.layout.GroupLayout(panel_accesoRapido);
@@ -379,7 +245,6 @@ public class BaseView extends FrameView {
 
         mainPanel.add(panel_accesoRapido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 530));
 
-        jDesktopPane1.setBackground(resourceMap.getColor("jDesktopPane1.background")); // NOI18N
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jDesktopPane1.setName("jDesktopPane1"); // NOI18N
 
@@ -396,7 +261,7 @@ public class BaseView extends FrameView {
             .add(0, 40, Short.MAX_VALUE)
         );
 
-        jPanel1.setBounds(0, 0, -1, 40);
+        jPanel1.setBounds(0, 0, 0, 40);
         jDesktopPane1.add(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jInternalFrame1.setName("jInternalFrame1"); // NOI18N
@@ -449,44 +314,31 @@ public class BaseView extends FrameView {
         mainPanel.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(resourceMap.getIcon("jLabel3.icon")); // NOI18N
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
         mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 690, 530));
 
-        menuBar.setBackground(resourceMap.getColor("menuBar.background")); // NOI18N
         menuBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         menuBar.setName("menuBar"); // NOI18N
 
-        jMenu3.setBackground(resourceMap.getColor("jMenu3.background")); // NOI18N
-        jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
         jMenu3.setName("jMenu3"); // NOI18N
 
         jMenuItem6.setAction(actionMap.get("cambiarContrasenia")); // NOI18N
-        jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
         jMenuItem6.setName("jMenuItem6"); // NOI18N
         jMenu3.add(jMenuItem6);
 
         itemMenu_salir.setAction(actionMap.get("quit")); // NOI18N
-        itemMenu_salir.setIcon(resourceMap.getIcon("itemMenu_salir.icon")); // NOI18N
         itemMenu_salir.setName("itemMenu_salir"); // NOI18N
         jMenu3.add(itemMenu_salir);
 
         menuBar.add(jMenu3);
 
-        jMenu2.setBackground(resourceMap.getColor("jMenu2.background")); // NOI18N
-        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
         jMenu2.setName("jMenu2"); // NOI18N
 
         itemMenu_usuarios.setAction(actionMap.get("usuarios")); // NOI18N
-        itemMenu_usuarios.setIcon(resourceMap.getIcon("itemMenu_usuarios.icon")); // NOI18N
-        itemMenu_usuarios.setText(resourceMap.getString("itemMenu_usuarios.text")); // NOI18N
         itemMenu_usuarios.setName("itemMenu_usuarios"); // NOI18N
         jMenu2.add(itemMenu_usuarios);
 
         jMenuItem3.setAction(actionMap.get("roles")); // NOI18N
-        jMenuItem3.setIcon(resourceMap.getIcon("jMenuItem3.icon")); // NOI18N
-        jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
         jMenuItem3.setName("jMenuItem3"); // NOI18N
         jMenu2.add(jMenuItem3);
 
@@ -494,24 +346,19 @@ public class BaseView extends FrameView {
         jMenu2.add(jSeparator1);
 
         Resguardo.setAction(actionMap.get("backup")); // NOI18N
-        Resguardo.setText(resourceMap.getString("Resguardo.text")); // NOI18N
         Resguardo.setName("Resguardo"); // NOI18N
         jMenu2.add(Resguardo);
 
         menuBar.add(jMenu2);
 
         menu_config.setAction(actionMap.get("diasNoHabiles")); // NOI18N
-        menu_config.setBackground(resourceMap.getColor("menu_config.background")); // NOI18N
-        menu_config.setText(resourceMap.getString("menu_config.text")); // NOI18N
         menu_config.setName("menu_config"); // NOI18N
 
         jMenuItem2.setAction(actionMap.get("localidades")); // NOI18N
-        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
         jMenuItem2.setName("jMenuItem2"); // NOI18N
         menu_config.add(jMenuItem2);
 
         jMenuItem1.setAction(actionMap.get("regiones")); // NOI18N
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         menu_config.add(jMenuItem1);
 
@@ -519,65 +366,50 @@ public class BaseView extends FrameView {
         menu_config.add(jSeparator3);
 
         item_clientes.setAction(actionMap.get("clientes")); // NOI18N
-        item_clientes.setText(resourceMap.getString("item_clientes.text")); // NOI18N
         item_clientes.setName("item_clientes"); // NOI18N
         menu_config.add(item_clientes);
 
         itemMenu_medico.setAction(actionMap.get("medicos")); // NOI18N
-        itemMenu_medico.setText(resourceMap.getString("itemMenu_medico.text")); // NOI18N
         itemMenu_medico.setName("itemMenu_medico"); // NOI18N
         menu_config.add(itemMenu_medico);
 
         item_ortopedistas.setAction(actionMap.get("ortopedistas")); // NOI18N
-        item_ortopedistas.setText(resourceMap.getString("item_ortopedistas.text")); // NOI18N
         item_ortopedistas.setName("item_ortopedistas"); // NOI18N
         menu_config.add(item_ortopedistas);
 
         jMenuItem4.setAction(actionMap.get("vendedores")); // NOI18N
-        jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
         jMenuItem4.setName("jMenuItem4"); // NOI18N
         menu_config.add(jMenuItem4);
 
         menuBar.add(menu_config);
 
-        jMenu1.setBackground(resourceMap.getColor("jMenu1.background")); // NOI18N
-        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
         itemMenu_ordenes.setAction(actionMap.get("ordenes")); // NOI18N
-        itemMenu_ordenes.setText(resourceMap.getString("itemMenu_ordenes.text")); // NOI18N
         itemMenu_ordenes.setName("itemMenu_ordenes"); // NOI18N
         jMenu1.add(itemMenu_ordenes);
 
         jMenuItem5.setAction(actionMap.get("presupuesto")); // NOI18N
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
         jMenuItem5.setName("jMenuItem5"); // NOI18N
         jMenu1.add(jMenuItem5);
 
         menuBar.add(jMenu1);
 
-        menu_stock.setBackground(resourceMap.getColor("menu_stock.background")); // NOI18N
-        menu_stock.setText(resourceMap.getString("menu_stock.text")); // NOI18N
         menu_stock.setName("menu_stock"); // NOI18N
 
         menuItem_productos.setAction(actionMap.get("productos")); // NOI18N
-        menuItem_productos.setText(resourceMap.getString("menuItem_productos.text")); // NOI18N
         menuItem_productos.setName("menuItem_productos"); // NOI18N
         menu_stock.add(menuItem_productos);
 
         menuItem_marcas.setAction(actionMap.get("marcas")); // NOI18N
-        menuItem_marcas.setText(resourceMap.getString("menuItem_marcas.text")); // NOI18N
         menuItem_marcas.setName("menuItem_marcas"); // NOI18N
         menu_stock.add(menuItem_marcas);
 
         menuItem_materiales.setAction(actionMap.get("materiales")); // NOI18N
-        menuItem_materiales.setText(resourceMap.getString("menuItem_materiales.text")); // NOI18N
         menuItem_materiales.setName("menuItem_materiales"); // NOI18N
         menu_stock.add(menuItem_materiales);
 
         menuItem_depositos.setAction(actionMap.get("depositos")); // NOI18N
-        menuItem_depositos.setText(resourceMap.getString("menuItem_depositos.text")); // NOI18N
         menuItem_depositos.setName("menuItem_depositos"); // NOI18N
         menu_stock.add(menuItem_depositos);
 
@@ -592,12 +424,10 @@ public class BaseView extends FrameView {
         statusPanel.add(statusPanelSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 0, 40));
 
         versionLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        versionLabel.setText(resourceMap.getString("versionLabel.text")); // NOI18N
         versionLabel.setName("versionLabel"); // NOI18N
         statusPanel.add(versionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 20));
 
         clockLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        clockLabel.setText(resourceMap.getString("clockLabel.text")); // NOI18N
         clockLabel.setName("clockLabel"); // NOI18N
         statusPanel.add(clockLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 460, 10));
 
@@ -616,7 +446,7 @@ public class BaseView extends FrameView {
     }//GEN-LAST:event_formPropertyChange
 
     private void mainPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainPanelFocusGained
-        // this.label1.setText("Bienvenido "+ BaseApp.getApplication().getUsuario().getNombreUsuario());
+        // this.label1.setText("Bienvenido "+ Application.getApplication().getUsuario().getNombreUsuario());
 }//GEN-LAST:event_mainPanelFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -682,45 +512,4 @@ public class BaseView extends FrameView {
 
     /* Menu de Productos */
 
-    @Action
-    public void marcas() {
-        MarcasDialog dialog = new MarcasDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void materiales() {
-        MaterialesDialog dialog = new MaterialesDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void productos() {
-        ProductosDialog dialog = new ProductosDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void depositos() {
-        DepositosDialog dialog = new DepositosDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-     @Action
-    public void nuevoPresupuesto() {
-        PresupuestoDialog dialog = new PresupuestoDialog(BaseApp.getApplication().getMainFrame(), true, new Presupuesto());
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
-
-    @Action
-    public void cambiarContrasenia() {
-        CambiarContraseniaDialog dialog = new CambiarContraseniaDialog(BaseApp.getApplication().getMainFrame(), true);
-        dialog.setLocationRelativeTo(BaseApp.getApplication().getMainFrame());
-        BaseApp.getApplication().show(dialog);
-    }
 }

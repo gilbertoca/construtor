@@ -28,7 +28,7 @@
     <packaging>jar</packaging>
     <name>Igreja Java Desktop - IJD</name>
     <build>
-        <resources>
+        <!--resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
@@ -49,7 +49,7 @@
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </testResource>
-        </testResources>
+        </testResources-->
 
         <plugins>
             <!--plugin>
@@ -100,6 +100,23 @@
             <version>${dbunit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx</artifactId>
+            <version>0.9.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE712</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <!-- versions -->
@@ -109,7 +126,7 @@
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
 
-                <!-- Default Database Connection-->
+        <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
         <jdbc.version>1.3.156</jdbc.version>
@@ -127,8 +144,8 @@
             </activation>
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
-                <jpa.artifactId>eclipselink</jpa.artifactId>
-                <jpa.version>2.3.0</jpa.version>
+                <jpa.artifactId>org.eclipse.persistence.jpa</jpa.artifactId>
+                <jpa.version>2.3.2</jpa.version>
                 <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
                 <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
                 <jpa.url>javax.persistence.jdbc.url</jpa.url>

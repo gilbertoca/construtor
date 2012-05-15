@@ -1,8 +1,8 @@
-package com.gilbertoca.igreja.service;
+package com.gilbertoca.igreja.service.base;
 
-import base.services.seguridad.PermisosService;
-import base.view.BaseApp;
-import base.view.dialogos.ErrorDialog;
+import com.gilbertoca.igreja.service.security.PermisosService;
+import com.gilbertoca.igreja.view.Application;
+import com.gilbertoca.igreja.view.dialog.ErrorDialog;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -23,7 +23,7 @@ public abstract class ServiceFactory {
         } catch (Exception e) {
             LOG.error(e.getMessage(),e);
             ErrorDialog.show("Ocurrio un error al intentar conectar con <br> la base de datos.<br>Asegurese que no existe otra instancia<br>de la aplicación ejecutandose.");
-            BaseApp.getApplication().exit();
+            Application.getApplication().exit();
 
         }
 
