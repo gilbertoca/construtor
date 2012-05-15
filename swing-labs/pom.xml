@@ -90,6 +90,13 @@
             <name>DataNucleus Repository</name>
             <url>http://www.datanucleus.org/downloads/maven2</url>
         </repository>
+      <!--These are needed for Swing/Netbeans -->
+        <repository>
+            <id>maven2-repository.netbeans.maven2</id>
+            <name>Netbeans Maven Repository</name>
+            <url>http://bits.netbeans.org/maven2/</url>
+            <layout>default</layout>
+        </repository> 
     </repositories>
     <pluginRepositories>
         <pluginRepository>
