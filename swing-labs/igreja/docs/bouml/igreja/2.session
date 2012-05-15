@@ -1,0 +1,18 @@
+window_sizes 1280 977 300 974 783 120
+diagrams
+  active  classdiagram_ref 128002 // diagram
+    974 783 100 4 0 0
+  usecasediagram_ref 128130 // diagram
+    779 626 100 4 0 0
+end
+show_stereotypes
+selected attribute_ref 131842 // dt_fim
+open
+  class_ref 128002 // Igreja
+  class_ref 128130 // IgrejaTelefone
+  class_ref 128642 // Pessoa
+  class_ref 129026 // PessoaEndereco
+  class_ref 129154 // Presidencia
+  usecaseview_ref 128002 // use case view
+end
+end
