@@ -4,7 +4,6 @@
   <NonVisualComponents>
     <Container class="javax.swing.JPanel" name="mainPanel">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="mainPanel.background"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[880, 540]"/>
         </Property>
@@ -34,7 +33,6 @@
         </Component>
         <Container class="javax.swing.JPanel" name="panel_accesoRapido">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="panel_accesoRapido.background"/>
             <Property name="name" type="java.lang.String" value="panel_accesoRapido" noResource="true"/>
           </Properties>
           <Constraints>
@@ -79,9 +77,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="ordenes" methodName="ordenes"/>
                 </Property>
-                <Property name="font" type="java.awt.Font" resourceKey="btn_buscarOrden.font"/>
-                <Property name="text" type="java.lang.String" resourceKey="btn_buscarOrden.text"/>
-                <Property name="toolTipText" type="java.lang.String" resourceKey="btn_buscarOrden.toolTipText"/>
                 <Property name="name" type="java.lang.String" value="btn_buscarOrden" noResource="true"/>
               </Properties>
             </Component>
@@ -90,8 +85,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="nuevaOrden" methodName="nuevaOrden"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="btn_nuevaOrden.text"/>
-                <Property name="toolTipText" type="java.lang.String" resourceKey="btn_nuevaOrden.toolTipText"/>
                 <Property name="name" type="java.lang.String" value="btn_nuevaOrden" noResource="true"/>
               </Properties>
             </Component>
@@ -100,8 +93,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="nuevoPresupuesto" methodName="nuevoPresupuesto"/>
                 </Property>
-                <Property name="font" type="java.awt.Font" resourceKey="jButton2.font"/>
-                <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
                 <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
               </Properties>
             </Component>
@@ -109,7 +100,6 @@
         </Container>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="jDesktopPane1.background"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                 <EtchetBorder/>
@@ -230,8 +220,6 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jLabel3.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
             <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
           </Properties>
           <Constraints>
@@ -244,7 +232,6 @@
     </Container>
     <Container class="javax.swing.JMenuBar" name="menuBar">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="menuBar.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>
@@ -259,8 +246,6 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="jMenu3.background"/>
-            <Property name="text" type="java.lang.String" resourceKey="jMenu3.text"/>
             <Property name="name" type="java.lang.String" value="jMenu3" noResource="true"/>
           </Properties>
           <SubComponents>
@@ -269,7 +254,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="cambiarContrasenia" methodName="cambiarContrasenia"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem6.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem6" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -278,7 +262,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="itemMenu_salir.icon"/>
                 <Property name="name" type="java.lang.String" value="itemMenu_salir" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -286,8 +269,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="jMenu2.background"/>
-            <Property name="text" type="java.lang.String" resourceKey="jMenu2.text"/>
             <Property name="name" type="java.lang.String" value="jMenu2" noResource="true"/>
           </Properties>
           <SubComponents>
@@ -296,8 +277,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="usuarios" methodName="usuarios"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="itemMenu_usuarios.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="itemMenu_usuarios.text"/>
                 <Property name="name" type="java.lang.String" value="itemMenu_usuarios" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -306,8 +285,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="roles" methodName="roles"/>
                 </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem3.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem3.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem3" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -321,7 +298,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="backup" methodName="backup"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="Resguardo.text"/>
                 <Property name="name" type="java.lang.String" value="Resguardo" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -332,8 +308,6 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="base.view.BaseView" id="diasNoHabiles" methodName="diasNoHabiles"/>
             </Property>
-            <Property name="background" type="java.awt.Color" resourceKey="menu_config.background"/>
-            <Property name="text" type="java.lang.String" resourceKey="menu_config.text"/>
             <Property name="name" type="java.lang.String" value="menu_config" noResource="true"/>
           </Properties>
           <SubComponents>
@@ -342,7 +316,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="localidades" methodName="localidades"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -351,7 +324,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="regiones" methodName="regiones"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem1.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -365,7 +337,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="clientes" methodName="clientes"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="item_clientes.text"/>
                 <Property name="name" type="java.lang.String" value="item_clientes" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -374,7 +345,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="medicos" methodName="medicos"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="itemMenu_medico.text"/>
                 <Property name="name" type="java.lang.String" value="itemMenu_medico" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -383,7 +353,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="ortopedistas" methodName="ortopedistas"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="item_ortopedistas.text"/>
                 <Property name="name" type="java.lang.String" value="item_ortopedistas" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -392,7 +361,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="vendedores" methodName="vendedores"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem4.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem4" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -400,8 +368,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="jMenu1.background"/>
-            <Property name="text" type="java.lang.String" resourceKey="jMenu1.text"/>
             <Property name="name" type="java.lang.String" value="jMenu1" noResource="true"/>
           </Properties>
           <SubComponents>
@@ -410,7 +376,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="ordenes" methodName="ordenes"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="itemMenu_ordenes.text"/>
                 <Property name="name" type="java.lang.String" value="itemMenu_ordenes" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -419,10 +384,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="presupuesto" methodName="presupuesto"/>
                 </Property>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+P"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem5.text"/>
                 <Property name="name" type="java.lang.String" value="jMenuItem5" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -430,8 +391,6 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_stock">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="menu_stock.background"/>
-            <Property name="text" type="java.lang.String" resourceKey="menu_stock.text"/>
             <Property name="name" type="java.lang.String" value="menu_stock" noResource="true"/>
           </Properties>
           <SubComponents>
@@ -440,7 +399,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="productos" methodName="productos"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="menuItem_productos.text"/>
                 <Property name="name" type="java.lang.String" value="menuItem_productos" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -449,7 +407,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="marcas" methodName="marcas"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="menuItem_marcas.text"/>
                 <Property name="name" type="java.lang.String" value="menuItem_marcas" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -458,7 +415,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="materiales" methodName="materiales"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="menuItem_materiales.text"/>
                 <Property name="name" type="java.lang.String" value="menuItem_materiales" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -467,7 +423,6 @@
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="base.view.BaseView" id="depositos" methodName="depositos"/>
                 </Property>
-                <Property name="text" type="java.lang.String" resourceKey="menuItem_depositos.text"/>
                 <Property name="name" type="java.lang.String" value="menuItem_depositos" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -509,7 +464,6 @@
         <Component class="javax.swing.JLabel" name="versionLabel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" resourceKey="versionLabel.text"/>
             <Property name="name" type="java.lang.String" value="versionLabel" noResource="true"/>
           </Properties>
           <Constraints>
@@ -521,7 +475,6 @@
         <Component class="javax.swing.JLabel" name="clockLabel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" resourceKey="clockLabel.text"/>
             <Property name="name" type="java.lang.String" value="clockLabel" noResource="true"/>
           </Properties>
           <Constraints>
