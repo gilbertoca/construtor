@@ -78,7 +78,7 @@
 		</repository>
         <repository>
             <id>eclipse repository</id>
-            <url>http://eclipse.c3sl.ufpr.br/rt/eclipselink/maven.repo/</url>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
         </repository>
         <repository>
             <id>repository.jboss.org-public</id>
