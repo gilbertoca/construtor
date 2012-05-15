@@ -78,5 +78,16 @@
             <artifactId>cayenne-server</artifactId>
             <version>${cayenne.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jdesktop.bsaf</groupId>
+            <artifactId>bsaf</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+                    
     </dependencies>
 </project>
