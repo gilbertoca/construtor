@@ -75,7 +75,7 @@
             <Component class="javax.swing.JButton" name="btn_buscarOrden">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="ordenes" methodName="ordenes"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="ordenes" methodName="ordenes"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="btn_buscarOrden" noResource="true"/>
               </Properties>
@@ -83,7 +83,7 @@
             <Component class="javax.swing.JButton" name="btn_nuevaOrden">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="nuevaOrden" methodName="nuevaOrden"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="nuevaOrden" methodName="nuevaOrden"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="btn_nuevaOrden" noResource="true"/>
               </Properties>
@@ -91,7 +91,7 @@
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="nuevoPresupuesto" methodName="nuevoPresupuesto"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="nuevoPresupuesto" methodName="nuevoPresupuesto"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
               </Properties>
@@ -252,7 +252,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="cambiarContrasenia" methodName="cambiarContrasenia"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="cambiarContrasenia" methodName="cambiarContrasenia"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem6" noResource="true"/>
               </Properties>
@@ -275,7 +275,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="itemMenu_usuarios">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="usuarios" methodName="usuarios"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="usuarios" methodName="usuarios"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="itemMenu_usuarios" noResource="true"/>
               </Properties>
@@ -283,7 +283,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="roles" methodName="roles"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="roles" methodName="roles"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem3" noResource="true"/>
               </Properties>
@@ -296,7 +296,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="Resguardo">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="backup" methodName="backup"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="backup" methodName="backup"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="Resguardo" noResource="true"/>
               </Properties>
@@ -306,7 +306,7 @@
         <Menu class="javax.swing.JMenu" name="menu_config">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="com.gilbertoca.igreja.view.BaseView" id="diasNoHabiles" methodName="diasNoHabiles"/>
+              <action class="com.gilbertoca.igreja.view.MainView" id="diasNoHabiles" methodName="diasNoHabiles"/>
             </Property>
             <Property name="name" type="java.lang.String" value="menu_config" noResource="true"/>
           </Properties>
@@ -314,7 +314,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="localidades" methodName="localidades"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="localidades" methodName="localidades"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
               </Properties>
@@ -322,7 +322,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="regiones" methodName="regiones"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="regiones" methodName="regiones"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
               </Properties>
@@ -335,7 +335,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="item_clientes">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="clientes" methodName="clientes"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="clientes" methodName="clientes"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="item_clientes" noResource="true"/>
               </Properties>
@@ -343,7 +343,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="itemMenu_medico">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="medicos" methodName="medicos"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="medicos" methodName="medicos"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="itemMenu_medico" noResource="true"/>
               </Properties>
@@ -351,7 +351,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="item_ortopedistas">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="ortopedistas" methodName="ortopedistas"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="ortopedistas" methodName="ortopedistas"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="item_ortopedistas" noResource="true"/>
               </Properties>
@@ -359,7 +359,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="vendedores" methodName="vendedores"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="vendedores" methodName="vendedores"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem4" noResource="true"/>
               </Properties>
@@ -374,7 +374,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="itemMenu_ordenes">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="ordenes" methodName="ordenes"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="ordenes" methodName="ordenes"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="itemMenu_ordenes" noResource="true"/>
               </Properties>
@@ -382,7 +382,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="presupuesto" methodName="presupuesto"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="presupuesto" methodName="presupuesto"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jMenuItem5" noResource="true"/>
               </Properties>
@@ -397,7 +397,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_productos">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="productos" methodName="productos"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="productos" methodName="productos"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="menuItem_productos" noResource="true"/>
               </Properties>
@@ -405,7 +405,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_marcas">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="marcas" methodName="marcas"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="marcas" methodName="marcas"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="menuItem_marcas" noResource="true"/>
               </Properties>
@@ -413,7 +413,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_materiales">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="materiales" methodName="materiales"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="materiales" methodName="materiales"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="menuItem_materiales" noResource="true"/>
               </Properties>
@@ -421,7 +421,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuItem_depositos">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="com.gilbertoca.igreja.view.BaseView" id="depositos" methodName="depositos"/>
+                  <action class="com.gilbertoca.igreja.view.MainView" id="depositos" methodName="depositos"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="menuItem_depositos" noResource="true"/>
               </Properties>

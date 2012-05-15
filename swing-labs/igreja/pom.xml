@@ -28,7 +28,7 @@
     <packaging>jar</packaging>
     <name>Igreja Java Desktop - IJD</name>
     <build>
-        <!--resources>
+        <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
@@ -49,7 +49,7 @@
                 <directory>src/test/resources</directory>
                 <filtering>true</filtering>
             </testResource>
-        </testResources-->
+        </testResources>
 
         <plugins>
             <!--plugin>
