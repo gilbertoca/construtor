@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" resourceKey="Form.title"/>
     <Property name="name" type="java.lang.String" value="Form" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -69,7 +70,9 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Informaci&#xf3;n del usuario">
-              <Color PropertyName="color" type="null"/>
+              <Property name="titleX" resourceKey="panel_info_usuario.border.title"/>
+              <Property name="font" resourceKey="panel_info_usuario.border.titleFont"/>
+              <Property name="color" resourceKey="panel_info_usuario.border.titleColor"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -92,7 +95,7 @@
                       <Component id="combo_roles" alignment="0" max="32767" attributes="1"/>
                       <Component id="username" alignment="0" pref="350" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,6 +125,8 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="jLabel1.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
             <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
           </Properties>
         </Component>
@@ -132,11 +137,15 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="jLabel4.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
             <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="jLabel7.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
             <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
           </Properties>
         </Component>
@@ -158,6 +167,7 @@
             <Property name="editable" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="!this.modificando" type="code"/>
             </Property>
+            <Property name="text" type="java.lang.String" resourceKey="contrasena.text"/>
             <Property name="name" type="java.lang.String" value="contrasena" noResource="true"/>
           </Properties>
         </Component>
@@ -165,9 +175,13 @@
     </Container>
     <Container class="javax.swing.JPanel" name="panel_botones">
       <Properties>
+        <Property name="background" type="java.awt.Color" resourceKey="panel_botones.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+            <EtchetBorder>
+              <Property name="highlight" resourceKey="panel_botones.border.highlightColor"/>
+              <Property name="shadow" resourceKey="panel_botones.border.shadowColor"/>
+            </EtchetBorder>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="panel_botones" noResource="true"/>
@@ -179,7 +193,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="363" max="32767" attributes="0"/>
+                  <EmptySpace pref="211" max="32767" attributes="0"/>
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
@@ -204,14 +218,18 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="gym.view.seguridad.UsuarioDialog" id="cerrar" methodName="cerrar"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton2.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
             <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="sforinci.view.seguridad.UsuarioDialog" id="guardar" methodName="guardar"/>
+              <action class="com.gilbertoca.igreja.view.security.UsuarioDialog" id="guardar" methodName="guardar"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton1.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
             <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
           </Properties>
           <Events>
@@ -225,10 +243,13 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Informaci&#xf3;n personal">
-              <Color PropertyName="color" type="null"/>
+              <Property name="titleX" resourceKey="panel_info_personal.border.title"/>
+              <Property name="font" resourceKey="panel_info_personal.border.titleFont"/>
+              <Property name="color" resourceKey="panel_info_personal.border.titleColor"/>
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="foreground" type="java.awt.Color" resourceKey="panel_info_personal.foreground"/>
         <Property name="name" type="java.lang.String" value="panel_info_personal" noResource="true"/>
       </Properties>
 
@@ -363,6 +384,8 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="jLabel3.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
             <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
           </Properties>
         </Component>
@@ -373,6 +396,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="jLabel2.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
             <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
           </Properties>
         </Component>
@@ -383,6 +408,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
             <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
           </Properties>
         </Component>
@@ -393,6 +419,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
             <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
           </Properties>
         </Component>
@@ -403,6 +430,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel11.text"/>
             <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
           </Properties>
         </Component>
@@ -413,11 +441,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel13.text"/>
             <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
             <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
           </Properties>
         </Component>
@@ -433,31 +463,38 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
             <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
             <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="localidad">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" resourceKey="localidad.text"/>
             <Property name="name" type="java.lang.String" value="localidad" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="region">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" resourceKey="region.text"/>
             <Property name="name" type="java.lang.String" value="region" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_localidad">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="sforinci.view.seguridad.UsuarioDialog" id="buscarRegion" methodName="buscarRegion"/>
+              <action class="com.gilbertoca.igreja.view.security.UsuarioDialog" id="buscarRegion" methodName="buscarRegion"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btn_localidad.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="btn_localidad.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="btn_localidad.toolTipText"/>
             <Property name="name" type="java.lang.String" value="btn_localidad" noResource="true"/>
           </Properties>
         </Component>
@@ -466,22 +503,31 @@
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
               <action class="sforinci.view.usuarios.OrtopedistaDialog" id="buscarLocalidad" methodName="buscarLocalidad"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btn_localidad1.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="btn_localidad1.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="btn_localidad1.toolTipText"/>
             <Property name="name" type="java.lang.String" value="btn_localidad1" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_limpiar_region">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="sforinci.view.seguridad.UsuarioDialog" id="limpiarRegion" methodName="limpiarRegion"/>
+              <action class="com.gilbertoca.igreja.view.security.UsuarioDialog" id="limpiarRegion" methodName="limpiarRegion"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btn_limpiar_region.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="btn_limpiar_region.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="btn_limpiar_region.toolTipText"/>
             <Property name="name" type="java.lang.String" value="btn_limpiar_region" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_limpiar_localidad">
           <Properties>
             <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-              <action class="sforinci.view.seguridad.UsuarioDialog" id="limpiarLocalidad" methodName="limpiarLocalidad"/>
+              <action class="com.gilbertoca.igreja.view.security.UsuarioDialog" id="limpiarLocalidad" methodName="limpiarLocalidad"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="btn_limpiar_localidad.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="btn_limpiar_localidad.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="btn_limpiar_localidad.toolTipText"/>
             <Property name="name" type="java.lang.String" value="btn_limpiar_localidad" noResource="true"/>
           </Properties>
         </Component>
@@ -489,6 +535,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
+        <Property name="font" type="java.awt.Font" resourceKey="jLabel8.font"/>
+        <Property name="foreground" type="java.awt.Color" resourceKey="jLabel8.foreground"/>
+        <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
         <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
       </Properties>
     </Component>
