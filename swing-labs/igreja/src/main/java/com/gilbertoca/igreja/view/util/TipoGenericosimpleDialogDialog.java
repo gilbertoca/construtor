@@ -2,7 +2,7 @@ package com.gilbertoca.igreja.view.util;
 
 import com.gilbertoca.igreja.model.util.TipoGenericoSimple;
 import com.gilbertoca.igreja.service.base.BaseService;
-import com.gilbertoca.igreja.view.dialog.ErrorDialog;
+import com.gilbertoca.igreja.view.dialogs.ErrorDialog;
 import org.jdesktop.application.Action;
 
 public class TipoGenericosimpleDialogDialog extends javax.swing.JDialog implements IGenericPutLoadData {

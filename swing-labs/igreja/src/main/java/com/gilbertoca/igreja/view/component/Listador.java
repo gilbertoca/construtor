@@ -1,8 +1,8 @@
 package com.gilbertoca.igreja.view.component;
 
 import com.gilbertoca.igreja.service.base.BaseService;
-import com.gilbertoca.igreja.view.dialog.ConfirmationDialog;
-import com.gilbertoca.igreja.view.dialog.ErrorDialog;
+import com.gilbertoca.igreja.view.dialogs.ConfirmationDialog;
+import com.gilbertoca.igreja.view.dialogs.ErrorDialog;
 
 
 /**

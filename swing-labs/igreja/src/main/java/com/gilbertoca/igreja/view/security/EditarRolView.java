@@ -9,7 +9,7 @@ package com.gilbertoca.igreja.view.security;
 import com.gilbertoca.igreja.model.security.Rol;
 import com.gilbertoca.igreja.service.security.SeguridadService;
 import com.gilbertoca.igreja.view.component.Refreshable;
-import com.gilbertoca.igreja.view.dialog.ErrorDialog;
+import com.gilbertoca.igreja.view.dialogs.ErrorDialog;
 import org.jdesktop.application.Action;
 
 /**

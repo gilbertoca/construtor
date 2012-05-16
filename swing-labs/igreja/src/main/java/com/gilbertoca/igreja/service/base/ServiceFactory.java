@@ -2,7 +2,7 @@ package com.gilbertoca.igreja.service.base;
 
 import com.gilbertoca.igreja.service.security.PermisosService;
 import com.gilbertoca.igreja.view.Application;
-import com.gilbertoca.igreja.view.dialog.ErrorDialog;
+import com.gilbertoca.igreja.view.dialogs.ErrorDialog;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
