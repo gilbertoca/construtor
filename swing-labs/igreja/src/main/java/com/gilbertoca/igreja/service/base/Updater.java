@@ -14,7 +14,7 @@ public class Updater extends BaseService {
         String hql = "SELECT numero FROM version;";
         Integer version = 0;
         try {
-            version = (Integer) ((Vector) getEntityManager().createNativeQuery(hql).getSingleResult()).get(0);
+            version = (Integer)getEntityManager().createNativeQuery(hql).getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
