@@ -66,7 +66,7 @@
         <!-- versions -->
         <click.version>2.3.0</click.version>
         <servlet-api.version>[2.,)</servlet-api.version>
-        <jetty.version>[7.,)</jetty.version>
+        <jetty.version>7.6.3.v20120416</jetty.version>
         <junit.version>[4.,)</junit.version>
     </properties>
 </project>
