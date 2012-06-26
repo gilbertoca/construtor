@@ -1,6 +1,6 @@
 format 76
 "igreja"
-  revision 2
+  revision 3
   modified_by 2 "gilberto.andrade"
 
 
@@ -60,7 +60,7 @@ format 76
     end
 
     class 128002 "Igreja"
-      visibility package stereotype "place"
+      visibility package stereotype "party-place-thing"
       cpp_decl ""
       java_decl ""
       php_decl ""
@@ -221,7 +221,7 @@ format 76
     end
 
     class 128642 "Pessoa"
-      visibility package stereotype "party"
+      visibility package stereotype "party-place-thing"
       cpp_decl ""
       java_decl ""
       php_decl ""
