@@ -1,12 +1,13 @@
 package park.model;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import org.apache.cayenne.Cayenne;
 import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.access.DataDomain;
+import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.configuration.server.ServerRuntime;
 import org.apache.cayenne.query.NamedQuery;
 import org.apache.cayenne.query.SelectQuery;
@@ -43,11 +44,9 @@ public class VehicleTest {
         configurationProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 
         //Let's create a new connection to work with DBUnit
-        Class.forName(configurationProperties.getProperty("jdbc.driverClassName"));
-        connection = new DatabaseConnection(DriverManager.getConnection(
-                configurationProperties.getProperty("jdbc.url"),
-                configurationProperties.getProperty("jdbc.username"),
-                configurationProperties.getProperty("jdbc.password")));
+        DataDomain domain = runtime.getDataDomain();
+        DataNode node = domain.getNode(configurationProperties.getProperty("cayenne.nodeName"));
+        connection = new DatabaseConnection(node.getDataSource().getConnection());
 
         // http://dbunit.sourceforge.net/faq.html#typefactory
         DatabaseConfig config = connection.getConfig();

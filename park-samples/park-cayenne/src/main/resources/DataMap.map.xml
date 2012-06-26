@@ -91,6 +91,7 @@
 	</obj-entity>
 	<obj-entity name="Person" abstract="true" className="park.model.Person" dbEntityName="PERSON">
 		<obj-attribute name="address" type="java.lang.String" db-attribute-path="ADDRESS"/>
+		<obj-attribute name="id" type="java.lang.Long" db-attribute-path="ID"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
 		<obj-attribute name="pType" type="java.lang.String" db-attribute-path="P_TYPE"/>
 		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="VERSION"/>
@@ -221,6 +222,9 @@
 	<query name="Vehicle.findByLicensePlateEJBQL" factory="org.apache.cayenne.map.EjbqlBuilder">
 		<ejbql><![CDATA[select v from Vehicle v where v.licensePlate like :licensePlate]]></ejbql>
 	</query>
+	<query name="LegalEntity.deleteById" factory="org.apache.cayenne.map.EjbqlBuilder">
+		<ejbql><![CDATA[delete from LegalEntity l where l.id = :id]]></ejbql>
+	</query>	
 	<query name="VehicleType.findByVehicleType" factory="org.apache.cayenne.map.EjbqlBuilder">
 		<ejbql><![CDATA[select v from VehicleType v where v.vehicleType like :vehicleType]]></ejbql>
 	</query>

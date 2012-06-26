@@ -104,7 +104,7 @@ public class EmployeeTest {
         //c.setId(lP.getId());
         e.setDtAdmission(new SimpleDateFormat("dd/MM/yyyy").parse("03/02/1974"));
         //Parking p = em.find(Parking.class, 1001L);
-        Parking p = Cayenne.objectForPK(context, Parking.class, 100L);
+        Parking p = Cayenne.objectForPK(context, Parking.class, 1000L);
         System.out.println("Foreign Key Object loaded: \n" + p);
         e.setParking(p);
         

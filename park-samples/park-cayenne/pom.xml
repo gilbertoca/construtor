@@ -123,9 +123,9 @@
             <version>${cayenne.version}</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
             <!--scope>test</scope-->
         </dependency>
         <dependency>
@@ -150,7 +150,8 @@
     <properties>
         <!-- versions -->
         <click.version>2.3.0</click.version>
-        <cayenne.version>3.1M3</cayenne.version>
+        <cayenne.version>3.1B1</cayenne.version>
+		<slf4j.version>1.6.5</slf4j.version>        
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
