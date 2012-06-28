@@ -73,13 +73,13 @@
 		<obj-attribute name="dtAdmission" type="java.util.Date" db-attribute-path="DT_ADMISSION"/>
 	</obj-entity>
 	<obj-entity name="LegalEntity" superEntityName="Person" className="park.model.LegalEntity">
-		<qualifier><![CDATA[pType = "LE"]]></qualifier>
+		<qualifier><![CDATA[discriminator = "LE"]]></qualifier>
 		<obj-attribute name="dtFoundation" type="java.util.Date" db-attribute-path="legalEntity.DT_FOUNDATION"/>
 		<obj-attribute name="taxpayersId" type="java.lang.String" db-attribute-path="legalEntity.TAXPAYERS_ID"/>
 		<attribute-override name="pType" db-attribute-path="DISCRIMINATOR"/>
 	</obj-entity>
 	<obj-entity name="NaturalPerson" superEntityName="Person" className="park.model.NaturalPerson">
-		<qualifier><![CDATA[pType = "NP"]]></qualifier>
+		<qualifier><![CDATA[discriminator = "NP"]]></qualifier>
 		<obj-attribute name="dtBirth" type="java.util.Date" db-attribute-path="naturalPerson.DT_BIRTH"/>
 		<obj-attribute name="legalDocument" type="java.lang.String" db-attribute-path="naturalPerson.LEGAL_DOCUMENT"/>
 		<attribute-override name="pType" db-attribute-path="DISCRIMINATOR"/>
@@ -199,7 +199,6 @@
 	<obj-relationship name="naturalPerson" source="Employee" target="NaturalPerson" deleteRule="Nullify" db-relationship-path="toNaturalPerson.person"/>
 	<obj-relationship name="outgoingStays" source="Employee" target="Stay" deleteRule="Deny" db-relationship-path="outgoingStays"/>
 	<obj-relationship name="parking" source="Employee" target="Parking" deleteRule="Nullify" db-relationship-path="toParking"/>
-	<obj-relationship name="customer" source="LegalEntity" target="Customer" deleteRule="Nullify"/>
 	<obj-relationship name="employee" source="NaturalPerson" target="Employee" deleteRule="Nullify" db-relationship-path="naturalPerson.employee"/>
 	<obj-relationship name="employees" source="Parking" target="Employee" deleteRule="Deny" db-relationship-path="employees"/>
 	<obj-relationship name="stays" source="Parking" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
@@ -214,9 +213,12 @@
 	<obj-relationship name="stays" source="Vehicle" target="Stay" deleteRule="Deny" db-relationship-path="stays"/>
 	<obj-relationship name="vehicleType" source="Vehicle" target="VehicleType" deleteRule="Nullify" db-relationship-path="toVehicleType"/>
 	<obj-relationship name="vehicles" source="VehicleType" target="Vehicle" deleteRule="Deny" db-relationship-path="vehicles"/>
-	<query name="LegalEntity.deleteById" factory="org.apache.cayenne.map.EjbqlBuilder">
+	<query name="LegalEntity.deleteByIdEJBQL" factory="org.apache.cayenne.map.EjbqlBuilder">
 		<ejbql><![CDATA[delete from LegalEntity l where l.id = :id]]></ejbql>
 	</query>
+	<query name="LegalEntity.deleteById" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="LegalEntity">
+		<qualifier><![CDATA[id = $id]]></qualifier>
+	</query>        
 	<query name="Vehicle.findByLicensePlate" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Vehicle">
 		<qualifier><![CDATA[licensePlate like $licensePlate]]></qualifier>
 	</query>

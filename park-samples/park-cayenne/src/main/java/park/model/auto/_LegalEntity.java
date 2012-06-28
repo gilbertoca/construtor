@@ -2,7 +2,6 @@ package park.model.auto;
 
 import java.util.Date;
 
-import park.model.Customer;
 import park.model.Person;
 
 /**
@@ -15,7 +14,6 @@ public abstract class _LegalEntity extends Person {
 
     public static final String DT_FOUNDATION_PROPERTY = "dtFoundation";
     public static final String TAXPAYERS_ID_PROPERTY = "taxpayersId";
-    public static final String CUSTOMER_PROPERTY = "customer";
 
     public static final String ID_PK_COLUMN = "ID";
 
@@ -32,14 +30,5 @@ public abstract class _LegalEntity extends Person {
     public String getTaxpayersId() {
         return (String)readProperty(TAXPAYERS_ID_PROPERTY);
     }
-
-    public void setCustomer(Customer customer) {
-        setToOneTarget(CUSTOMER_PROPERTY, customer, true);
-    }
-
-    public Customer getCustomer() {
-        return (Customer)readProperty(CUSTOMER_PROPERTY);
-    }
-
 
 }

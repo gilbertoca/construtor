@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.cayenne.ObjectContext;
 import org.apache.cayenne.query.NamedQuery;
 
+import park.model.LegalEntity;
 import park.model.Vehicle;
 
 /**
@@ -17,6 +18,8 @@ public class _DataMap {
 
     public static final String LEGAL_ENTITY_DELETE_BY_ID_QUERYNAME = "LegalEntity.deleteById";
 
+    public static final String LEGAL_ENTITY_DELETE_BY_ID_EJBQL_QUERYNAME = "LegalEntity.deleteByIdEJBQL";
+
     public static final String VEHICLE_FIND_BY_LICENSE_PLATE_QUERYNAME = "Vehicle.findByLicensePlate";
 
     public static final String VEHICLE_FIND_BY_LICENSE_PLATE_EJBQL_QUERYNAME = "Vehicle.findByLicensePlateEJBQL";
@@ -24,6 +27,18 @@ public class _DataMap {
     public static final String VEHICLE_FIND_IN_LICENSE_PLATE_QUERYNAME = "Vehicle.findInLicensePlate";
 
     public static final String VEHICLE_TYPE_FIND_BY_VEHICLE_TYPE_QUERYNAME = "VehicleType.findByVehicleType";
+
+    public List<LegalEntity> performLegalEntity_deleteById(ObjectContext context , Long id) {
+        String[] parameters = {
+            "id",
+        };
+
+        Object[] values = {
+            id,
+        };
+
+        return context.performQuery(new NamedQuery("LegalEntity.deleteById", parameters, values));
+    }
 
     public List<Vehicle> performVehicle_findByLicensePlate(ObjectContext context , String licensePlate) {
         String[] parameters = {

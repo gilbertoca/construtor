@@ -100,7 +100,7 @@ public class VehicleTest {
         //JPA-->VehicleType vT = em.find(VehicleType.class, "CAR");
         VehicleType vT = Cayenne.objectForPK(context, VehicleType.class, "CAR");
         //JPA-->Customer c = em.find(Customer.class, 1000L);
-        Customer c = Cayenne.objectForPK(runtime.getContext(), Customer.class, 1000L);
+        Customer c = Cayenne.objectForPK(context, Customer.class, 1000L);
         
         System.out.println("Customer Object loaded: \n" + c);
         System.out.println("Customer's Person Object loaded: \n" + c.getPerson());
@@ -157,7 +157,7 @@ public class VehicleTest {
     /**
      * Test of Vehicle.findByLicensePlateEJBQL named query.
      */
-    @Test
+    //@Test
     public void findByLicensePlateEJBQL() {
         System.out.println("\nGetting an Vehicle by Vehicle.findByLicensePlateEJBQL.\n");
         //JPA-->Query query = em.createNamedQuery("Vehicle.findByLicensePlate");

@@ -69,7 +69,7 @@ public class LegalEntityTest {
         DatabaseOperation.REFRESH.execute(connection, dataset);
     }
 
-    //@Test
+    @Test
     public void GetLegalEntityById() {
         System.out.println("\nGetting an Legal Person by ID.\n");
         //LegalEntity lP = em.find(LegalEntity.class, 1002L);
@@ -79,15 +79,29 @@ public class LegalEntityTest {
     }
 
     @Test
-    public void NamedDeleteById() {
-        System.out.println("\nDeleting Legal Entity by ID.\n");
+    public void DeleteById() {
+        System.out.println("\n///// deleteObjects ////Getting an Legal Person by ID.\n");
+        //LegalEntity lP = em.find(LegalEntity.class, 1010L);
+        ObjectContext context = runtime.getContext();
+        LegalEntity lP = Cayenne.objectForPK(context, LegalEntity.class, 1010L);
+        System.out.println("Object loaded: \n" + lP);
+        assertNotNull(lP.getName());
+        context.deleteObjects(lP);
+        context.commitChanges();
+        lP = Cayenne.objectForPK(context, LegalEntity.class, 1010L);
+        assertNull(lP);
+    }
+    
+    @Test
+    public void NamedDeleteByIdEJBQLQuery() {
+        System.out.println("\n///// EJBQLQuery ////Deleting Legal Entity by ID.\n");
         //JPA-->Query query = em.createNamedQuery("LegalEntity.deleteById");
         //JPA-->query.setParameter("id", 1010L);
         //JPA-->int del = 0;
         //JPA-->del = query.executeUpdate();
         
         ObjectContext context = runtime.getContext();
-        //NamedQuery query = new NamedQuery("LegalEntity.deleteById", Collections.singletonMap("id", new Long[]{1010L}));        
+        //NamedQuery query = new NamedQuery("LegalEntity.deleteByIdEJBQL", Collections.singletonMap("id", new Long[]{1010L}));        
         EJBQLQuery query = new EJBQLQuery("delete from LegalEntity l where l.id = :id");
         query.setParameter("id", 1010L);
         QueryResponse result = context.performGenericQuery(query);
@@ -97,4 +111,24 @@ public class LegalEntityTest {
         
         assertTrue(count.length > 0);
     }
+    @Test
+    public void NamedDeleteByIdNamedQuery() {
+        System.out.println("\n///// NamedQuery //// Deleting Legal Entity by ID.\n");
+        //JPA-->Query query = em.createNamedQuery("LegalEntity.deleteById");
+        //JPA-->query.setParameter("id", 1010L);
+        //JPA-->int del = 0;
+        //JPA-->del = query.executeUpdate();
+        
+        ObjectContext context = runtime.getContext();
+        String[] keys = new String[]{"id"};
+        Object[] values = new Long[]{1010L};
+        NamedQuery query = new NamedQuery("LegalEntity.deleteById", keys, values);
+        
+        QueryResponse result = context.performGenericQuery(query);
+        context.commitChanges();
+        
+        int[] count = result.firstUpdateCount();
+        
+        assertTrue(count.length > 0);
+    }    
 }
