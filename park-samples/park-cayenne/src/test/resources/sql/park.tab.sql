@@ -35,7 +35,7 @@ CREATE TABLE PERSON (
                 ID BIGINT NOT NULL,
                 ADDRESS VARCHAR(100),
                 NAME VARCHAR(100),
-                P_TYPE CHAR(2),
+                DISCRIMINATOR CHAR(2),
                 VERSION INTEGER,
                 CONSTRAINT PERSON_PK PRIMARY KEY (ID)
 );

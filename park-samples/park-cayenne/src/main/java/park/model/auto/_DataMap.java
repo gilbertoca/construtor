@@ -15,9 +15,13 @@ import park.model.Vehicle;
  */
 public class _DataMap {
 
+    public static final String LEGAL_ENTITY_DELETE_BY_ID_QUERYNAME = "LegalEntity.deleteById";
+
     public static final String VEHICLE_FIND_BY_LICENSE_PLATE_QUERYNAME = "Vehicle.findByLicensePlate";
 
     public static final String VEHICLE_FIND_BY_LICENSE_PLATE_EJBQL_QUERYNAME = "Vehicle.findByLicensePlateEJBQL";
+
+    public static final String VEHICLE_FIND_IN_LICENSE_PLATE_QUERYNAME = "Vehicle.findInLicensePlate";
 
     public static final String VEHICLE_TYPE_FIND_BY_VEHICLE_TYPE_QUERYNAME = "VehicleType.findByVehicleType";
 
@@ -31,5 +35,17 @@ public class _DataMap {
         };
 
         return context.performQuery(new NamedQuery("Vehicle.findByLicensePlate", parameters, values));
+    }
+
+    public List<Vehicle> performVehicle_findInLicensePlate(ObjectContext context , String licensePlate) {
+        String[] parameters = {
+            "licensePlate",
+        };
+
+        Object[] values = {
+            licensePlate,
+        };
+
+        return context.performQuery(new NamedQuery("Vehicle.findInLicensePlate", parameters, values));
     }
 }

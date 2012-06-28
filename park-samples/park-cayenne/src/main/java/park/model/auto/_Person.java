@@ -13,47 +13,55 @@ import park.model.Customer;
 public abstract class _Person extends CayenneDataObject {
 
     public static final String ADDRESS_PROPERTY = "address";
+    public static final String DISCRIMINATOR_PROPERTY = "discriminator";
+    public static final String ID_PROPERTY = "id";
     public static final String NAME_PROPERTY = "name";
-    public static final String P_TYPE_PROPERTY = "pType";
     public static final String VERSION_PROPERTY = "version";
     public static final String CUSTOMER_PROPERTY = "customer";
 
     public static final String ID_PK_COLUMN = "ID";
 
     public void setAddress(String address) {
-        writeProperty("address", address);
+        writeProperty(ADDRESS_PROPERTY, address);
     }
     public String getAddress() {
-        return (String)readProperty("address");
+        return (String)readProperty(ADDRESS_PROPERTY);
+    }
+
+    public void setDiscriminator(String discriminator) {
+        writeProperty(DISCRIMINATOR_PROPERTY, discriminator);
+    }
+    public String getDiscriminator() {
+        return (String)readProperty(DISCRIMINATOR_PROPERTY);
+    }
+
+    public void setId(Long id) {
+        writeProperty(ID_PROPERTY, id);
+    }
+    public Long getId() {
+        return (Long)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
-        writeProperty("name", name);
+        writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
-        return (String)readProperty("name");
-    }
-
-    public void setPType(String pType) {
-        writeProperty("pType", pType);
-    }
-    public String getPType() {
-        return (String)readProperty("pType");
+        return (String)readProperty(NAME_PROPERTY);
     }
 
     public void setVersion(Integer version) {
-        writeProperty("version", version);
+        writeProperty(VERSION_PROPERTY, version);
     }
     public Integer getVersion() {
-        return (Integer)readProperty("version");
+        return (Integer)readProperty(VERSION_PROPERTY);
     }
 
     public void setCustomer(Customer customer) {
-        setToOneTarget("customer", customer, true);
+        setToOneTarget(CUSTOMER_PROPERTY, customer, true);
     }
 
     public Customer getCustomer() {
-        return (Customer)readProperty("customer");
+        return (Customer)readProperty(CUSTOMER_PROPERTY);
     }
 
 

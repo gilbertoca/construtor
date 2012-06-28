@@ -20,22 +20,22 @@ public abstract class _NaturalPerson extends Person {
     public static final String ID_PK_COLUMN = "ID";
 
     public void setDtBirth(Date dtBirth) {
-        writeProperty("dtBirth", dtBirth);
+        writeProperty(DT_BIRTH_PROPERTY, dtBirth);
     }
     public Date getDtBirth() {
-        return (Date)readProperty("dtBirth");
+        return (Date)readProperty(DT_BIRTH_PROPERTY);
     }
 
     public void setLegalDocument(String legalDocument) {
-        writeProperty("legalDocument", legalDocument);
+        writeProperty(LEGAL_DOCUMENT_PROPERTY, legalDocument);
     }
     public String getLegalDocument() {
-        return (String)readProperty("legalDocument");
+        return (String)readProperty(LEGAL_DOCUMENT_PROPERTY);
     }
 
 
     public Employee getEmployee() {
-        return (Employee)readProperty("employee");
+        return (Employee)readProperty(EMPLOYEE_PROPERTY);
     }
 
 

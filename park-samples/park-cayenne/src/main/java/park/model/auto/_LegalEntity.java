@@ -20,25 +20,25 @@ public abstract class _LegalEntity extends Person {
     public static final String ID_PK_COLUMN = "ID";
 
     public void setDtFoundation(Date dtFoundation) {
-        writeProperty("dtFoundation", dtFoundation);
+        writeProperty(DT_FOUNDATION_PROPERTY, dtFoundation);
     }
     public Date getDtFoundation() {
-        return (Date)readProperty("dtFoundation");
+        return (Date)readProperty(DT_FOUNDATION_PROPERTY);
     }
 
     public void setTaxpayersId(String taxpayersId) {
-        writeProperty("taxpayersId", taxpayersId);
+        writeProperty(TAXPAYERS_ID_PROPERTY, taxpayersId);
     }
     public String getTaxpayersId() {
-        return (String)readProperty("taxpayersId");
+        return (String)readProperty(TAXPAYERS_ID_PROPERTY);
     }
 
     public void setCustomer(Customer customer) {
-        setToOneTarget("customer", customer, true);
+        setToOneTarget(CUSTOMER_PROPERTY, customer, true);
     }
 
     public Customer getCustomer() {
-        return (Customer)readProperty("customer");
+        return (Customer)readProperty(CUSTOMER_PROPERTY);
     }
 
 

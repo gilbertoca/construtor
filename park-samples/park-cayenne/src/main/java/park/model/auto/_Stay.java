@@ -33,94 +33,94 @@ public abstract class _Stay extends CayenneDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public void setDtEntrance(Date dtEntrance) {
-        writeProperty("dtEntrance", dtEntrance);
+        writeProperty(DT_ENTRANCE_PROPERTY, dtEntrance);
     }
     public Date getDtEntrance() {
-        return (Date)readProperty("dtEntrance");
+        return (Date)readProperty(DT_ENTRANCE_PROPERTY);
     }
 
     public void setDtOutgoing(Date dtOutgoing) {
-        writeProperty("dtOutgoing", dtOutgoing);
+        writeProperty(DT_OUTGOING_PROPERTY, dtOutgoing);
     }
     public Date getDtOutgoing() {
-        return (Date)readProperty("dtOutgoing");
+        return (Date)readProperty(DT_OUTGOING_PROPERTY);
     }
 
     public void setHrEntrance(Date hrEntrance) {
-        writeProperty("hrEntrance", hrEntrance);
+        writeProperty(HR_ENTRANCE_PROPERTY, hrEntrance);
     }
     public Date getHrEntrance() {
-        return (Date)readProperty("hrEntrance");
+        return (Date)readProperty(HR_ENTRANCE_PROPERTY);
     }
 
     public void setHrOutgoing(Date hrOutgoing) {
-        writeProperty("hrOutgoing", hrOutgoing);
+        writeProperty(HR_OUTGOING_PROPERTY, hrOutgoing);
     }
     public Date getHrOutgoing() {
-        return (Date)readProperty("hrOutgoing");
+        return (Date)readProperty(HR_OUTGOING_PROPERTY);
     }
 
     public void setId(Integer id) {
-        writeProperty("id", id);
+        writeProperty(ID_PROPERTY, id);
     }
     public Integer getId() {
-        return (Integer)readProperty("id");
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setStatus(String status) {
-        writeProperty("status", status);
+        writeProperty(STATUS_PROPERTY, status);
     }
     public String getStatus() {
-        return (String)readProperty("status");
+        return (String)readProperty(STATUS_PROPERTY);
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {
-        writeProperty("totalPrice", totalPrice);
+        writeProperty(TOTAL_PRICE_PROPERTY, totalPrice);
     }
     public BigDecimal getTotalPrice() {
-        return (BigDecimal)readProperty("totalPrice");
+        return (BigDecimal)readProperty(TOTAL_PRICE_PROPERTY);
     }
 
     public void setVersion(Integer version) {
-        writeProperty("version", version);
+        writeProperty(VERSION_PROPERTY, version);
     }
     public Integer getVersion() {
-        return (Integer)readProperty("version");
+        return (Integer)readProperty(VERSION_PROPERTY);
     }
 
     public void setEmployee(Employee employee) {
-        setToOneTarget("employee", employee, true);
+        setToOneTarget(EMPLOYEE_PROPERTY, employee, true);
     }
 
     public Employee getEmployee() {
-        return (Employee)readProperty("employee");
+        return (Employee)readProperty(EMPLOYEE_PROPERTY);
     }
 
 
     public void setEmployee1(Employee employee1) {
-        setToOneTarget("employee1", employee1, true);
+        setToOneTarget(EMPLOYEE1_PROPERTY, employee1, true);
     }
 
     public Employee getEmployee1() {
-        return (Employee)readProperty("employee1");
+        return (Employee)readProperty(EMPLOYEE1_PROPERTY);
     }
 
 
     public void setParking(Parking parking) {
-        setToOneTarget("parking", parking, true);
+        setToOneTarget(PARKING_PROPERTY, parking, true);
     }
 
     public Parking getParking() {
-        return (Parking)readProperty("parking");
+        return (Parking)readProperty(PARKING_PROPERTY);
     }
 
 
     public void setVehicle(Vehicle vehicle) {
-        setToOneTarget("vehicle", vehicle, true);
+        setToOneTarget(VEHICLE_PROPERTY, vehicle, true);
     }
 
     public Vehicle getVehicle() {
-        return (Vehicle)readProperty("vehicle");
+        return (Vehicle)readProperty(VEHICLE_PROPERTY);
     }
 
 

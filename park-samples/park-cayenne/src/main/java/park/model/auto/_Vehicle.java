@@ -27,55 +27,55 @@ public abstract class _Vehicle extends CayenneDataObject {
     public static final String LICENSE_PLATE_PK_COLUMN = "LICENSE_PLATE";
 
     public void setColor(String color) {
-        writeProperty("color", color);
+        writeProperty(COLOR_PROPERTY, color);
     }
     public String getColor() {
-        return (String)readProperty("color");
+        return (String)readProperty(COLOR_PROPERTY);
     }
 
     public void setLicensePlate(String licensePlate) {
-        writeProperty("licensePlate", licensePlate);
+        writeProperty(LICENSE_PLATE_PROPERTY, licensePlate);
     }
     public String getLicensePlate() {
-        return (String)readProperty("licensePlate");
+        return (String)readProperty(LICENSE_PLATE_PROPERTY);
     }
 
     public void setCustomer(Customer customer) {
-        setToOneTarget("customer", customer, true);
+        setToOneTarget(CUSTOMER_PROPERTY, customer, true);
     }
 
     public Customer getCustomer() {
-        return (Customer)readProperty("customer");
+        return (Customer)readProperty(CUSTOMER_PROPERTY);
     }
 
 
     public void setPriceTable(PriceTable priceTable) {
-        setToOneTarget("priceTable", priceTable, true);
+        setToOneTarget(PRICE_TABLE_PROPERTY, priceTable, true);
     }
 
     public PriceTable getPriceTable() {
-        return (PriceTable)readProperty("priceTable");
+        return (PriceTable)readProperty(PRICE_TABLE_PROPERTY);
     }
 
 
     public void addToStays(Stay obj) {
-        addToManyTarget("stays", obj, true);
+        addToManyTarget(STAYS_PROPERTY, obj, true);
     }
     public void removeFromStays(Stay obj) {
-        removeToManyTarget("stays", obj, true);
+        removeToManyTarget(STAYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Stay> getStays() {
-        return (List<Stay>)readProperty("stays");
+        return (List<Stay>)readProperty(STAYS_PROPERTY);
     }
 
 
     public void setVehicleType(VehicleType vehicleType) {
-        setToOneTarget("vehicleType", vehicleType, true);
+        setToOneTarget(VEHICLE_TYPE_PROPERTY, vehicleType, true);
     }
 
     public VehicleType getVehicleType() {
-        return (VehicleType)readProperty("vehicleType");
+        return (VehicleType)readProperty(VEHICLE_TYPE_PROPERTY);
     }
 
 

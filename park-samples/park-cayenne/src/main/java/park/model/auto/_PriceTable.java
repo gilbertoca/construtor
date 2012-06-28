@@ -23,35 +23,35 @@ public abstract class _PriceTable extends CayenneDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public void setId(Integer id) {
-        writeProperty("id", id);
+        writeProperty(ID_PROPERTY, id);
     }
     public Integer getId() {
-        return (Integer)readProperty("id");
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setItem(String item) {
-        writeProperty("item", item);
+        writeProperty(ITEM_PROPERTY, item);
     }
     public String getItem() {
-        return (String)readProperty("item");
+        return (String)readProperty(ITEM_PROPERTY);
     }
 
     public void setPrice(BigDecimal price) {
-        writeProperty("price", price);
+        writeProperty(PRICE_PROPERTY, price);
     }
     public BigDecimal getPrice() {
-        return (BigDecimal)readProperty("price");
+        return (BigDecimal)readProperty(PRICE_PROPERTY);
     }
 
     public void addToVehicles(Vehicle obj) {
-        addToManyTarget("vehicles", obj, true);
+        addToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     public void removeFromVehicles(Vehicle obj) {
-        removeToManyTarget("vehicles", obj, true);
+        removeToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Vehicle> getVehicles() {
-        return (List<Vehicle>)readProperty("vehicles");
+        return (List<Vehicle>)readProperty(VEHICLES_PROPERTY);
     }
 
 

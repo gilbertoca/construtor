@@ -22,35 +22,35 @@ public abstract class _VehicleType extends CayenneDataObject {
     public static final String V_TYPE_PK_COLUMN = "V_TYPE";
 
     public void setManufacturer(String manufacturer) {
-        writeProperty("manufacturer", manufacturer);
+        writeProperty(MANUFACTURER_PROPERTY, manufacturer);
     }
     public String getManufacturer() {
-        return (String)readProperty("manufacturer");
+        return (String)readProperty(MANUFACTURER_PROPERTY);
     }
 
     public void setModel(String model) {
-        writeProperty("model", model);
+        writeProperty(MODEL_PROPERTY, model);
     }
     public String getModel() {
-        return (String)readProperty("model");
+        return (String)readProperty(MODEL_PROPERTY);
     }
 
     public void setVehicleType(String vehicleType) {
-        writeProperty("vehicleType", vehicleType);
+        writeProperty(VEHICLE_TYPE_PROPERTY, vehicleType);
     }
     public String getVehicleType() {
-        return (String)readProperty("vehicleType");
+        return (String)readProperty(VEHICLE_TYPE_PROPERTY);
     }
 
     public void addToVehicles(Vehicle obj) {
-        addToManyTarget("vehicles", obj, true);
+        addToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     public void removeFromVehicles(Vehicle obj) {
-        removeToManyTarget("vehicles", obj, true);
+        removeToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Vehicle> getVehicles() {
-        return (List<Vehicle>)readProperty("vehicles");
+        return (List<Vehicle>)readProperty(VEHICLES_PROPERTY);
     }
 
 

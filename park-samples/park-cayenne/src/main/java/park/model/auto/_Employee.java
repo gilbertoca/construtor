@@ -26,48 +26,48 @@ public abstract class _Employee extends CayenneDataObject {
     public static final String NATURAL_PERSON_ID_PK_COLUMN = "NATURAL_PERSON_ID";
 
     public void setDtAdmission(Date dtAdmission) {
-        writeProperty("dtAdmission", dtAdmission);
+        writeProperty(DT_ADMISSION_PROPERTY, dtAdmission);
     }
     public Date getDtAdmission() {
-        return (Date)readProperty("dtAdmission");
+        return (Date)readProperty(DT_ADMISSION_PROPERTY);
     }
 
     public void addToEntranceStays(Stay obj) {
-        addToManyTarget("entranceStays", obj, true);
+        addToManyTarget(ENTRANCE_STAYS_PROPERTY, obj, true);
     }
     public void removeFromEntranceStays(Stay obj) {
-        removeToManyTarget("entranceStays", obj, true);
+        removeToManyTarget(ENTRANCE_STAYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Stay> getEntranceStays() {
-        return (List<Stay>)readProperty("entranceStays");
+        return (List<Stay>)readProperty(ENTRANCE_STAYS_PROPERTY);
     }
 
 
 
     public NaturalPerson getNaturalPerson() {
-        return (NaturalPerson)readProperty("naturalPerson");
+        return (NaturalPerson)readProperty(NATURAL_PERSON_PROPERTY);
     }
 
 
     public void addToOutgoingStays(Stay obj) {
-        addToManyTarget("outgoingStays", obj, true);
+        addToManyTarget(OUTGOING_STAYS_PROPERTY, obj, true);
     }
     public void removeFromOutgoingStays(Stay obj) {
-        removeToManyTarget("outgoingStays", obj, true);
+        removeToManyTarget(OUTGOING_STAYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Stay> getOutgoingStays() {
-        return (List<Stay>)readProperty("outgoingStays");
+        return (List<Stay>)readProperty(OUTGOING_STAYS_PROPERTY);
     }
 
 
     public void setParking(Parking parking) {
-        setToOneTarget("parking", parking, true);
+        setToOneTarget(PARKING_PROPERTY, parking, true);
     }
 
     public Parking getParking() {
-        return (Parking)readProperty("parking");
+        return (Parking)readProperty(PARKING_PROPERTY);
     }
 
 

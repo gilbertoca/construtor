@@ -22,30 +22,30 @@ public abstract class _Customer extends CayenneDataObject {
     public static final String PERSON_ID_PK_COLUMN = "PERSON_ID";
 
     public void setPaymentDay(Integer paymentDay) {
-        writeProperty("paymentDay", paymentDay);
+        writeProperty(PAYMENT_DAY_PROPERTY, paymentDay);
     }
     public Integer getPaymentDay() {
-        return (Integer)readProperty("paymentDay");
+        return (Integer)readProperty(PAYMENT_DAY_PROPERTY);
     }
 
     public void setPerson(Person person) {
-        setToOneTarget("person", person, true);
+        setToOneTarget(PERSON_PROPERTY, person, true);
     }
 
     public Person getPerson() {
-        return (Person)readProperty("person");
+        return (Person)readProperty(PERSON_PROPERTY);
     }
 
 
     public void addToVehicles(Vehicle obj) {
-        addToManyTarget("vehicles", obj, true);
+        addToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     public void removeFromVehicles(Vehicle obj) {
-        removeToManyTarget("vehicles", obj, true);
+        removeToManyTarget(VEHICLES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Vehicle> getVehicles() {
-        return (List<Vehicle>)readProperty("vehicles");
+        return (List<Vehicle>)readProperty(VEHICLES_PROPERTY);
     }
 
 

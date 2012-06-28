@@ -24,47 +24,47 @@ public abstract class _Parking extends CayenneDataObject {
     public static final String ID_PK_COLUMN = "ID";
 
     public void setAddress(String address) {
-        writeProperty("address", address);
+        writeProperty(ADDRESS_PROPERTY, address);
     }
     public String getAddress() {
-        return (String)readProperty("address");
+        return (String)readProperty(ADDRESS_PROPERTY);
     }
 
     public void setId(Long id) {
-        writeProperty("id", id);
+        writeProperty(ID_PROPERTY, id);
     }
     public Long getId() {
-        return (Long)readProperty("id");
+        return (Long)readProperty(ID_PROPERTY);
     }
 
     public void setParkingSpace(Integer parkingSpace) {
-        writeProperty("parkingSpace", parkingSpace);
+        writeProperty(PARKING_SPACE_PROPERTY, parkingSpace);
     }
     public Integer getParkingSpace() {
-        return (Integer)readProperty("parkingSpace");
+        return (Integer)readProperty(PARKING_SPACE_PROPERTY);
     }
 
     public void addToEmployees(Employee obj) {
-        addToManyTarget("employees", obj, true);
+        addToManyTarget(EMPLOYEES_PROPERTY, obj, true);
     }
     public void removeFromEmployees(Employee obj) {
-        removeToManyTarget("employees", obj, true);
+        removeToManyTarget(EMPLOYEES_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Employee> getEmployees() {
-        return (List<Employee>)readProperty("employees");
+        return (List<Employee>)readProperty(EMPLOYEES_PROPERTY);
     }
 
 
     public void addToStays(Stay obj) {
-        addToManyTarget("stays", obj, true);
+        addToManyTarget(STAYS_PROPERTY, obj, true);
     }
     public void removeFromStays(Stay obj) {
-        removeToManyTarget("stays", obj, true);
+        removeToManyTarget(STAYS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<Stay> getStays() {
-        return (List<Stay>)readProperty("stays");
+        return (List<Stay>)readProperty(STAYS_PROPERTY);
     }
 
 
