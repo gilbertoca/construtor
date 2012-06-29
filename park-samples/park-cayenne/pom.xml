@@ -65,7 +65,7 @@
                     <password>${jdbc.password}</password>
                     <url>${jdbc.url}</url>
                     <autocommit>true</autocommit>
-                    <onError>continue</onError>
+                    <!--onError>continue</onError-->
                     <skip>${maven.test.skip}</skip>
                     <srcFiles>
                         <srcFile>src/test/resources/sql/park.tab.sql</srcFile>
@@ -126,7 +126,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
-            <!--scope>test</scope-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -146,17 +146,22 @@
             <scope>test</scope>
         </dependency>
         <!-- Junit was defined in the Parent pom -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
     </dependencies>
     <properties>
         <!-- versions -->
         <click.version>2.3.0</click.version>
         <cayenne.version>3.1B1</cayenne.version>
-		<slf4j.version>1.6.5</slf4j.version>        
+        <slf4j.version>1.6.5</slf4j.version>        
         <dbunit.version>2.4.7</dbunit.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <!--dbunit.schema>PARK</dbunit.schema--> <!-- Make sure to capitalize the schema name -->
 
-                <!-- Default Database Connection-->
+        <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
         <jdbc.version>1.2.131</jdbc.version>
