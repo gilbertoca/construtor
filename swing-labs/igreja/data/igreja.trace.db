@@ -1130,3 +1130,371 @@ CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT DECIMAL(38), PRI
 05-17 18:26:28 jdbc[28]: exception
 org.h2.jdbc.JdbcSQLException: Table "GENERADOR_ACCION" already exists; SQL statement:
 CREATE TABLE generador_accion (key_accion VARCHAR(50) NOT NULL, id_accion DECIMAL(38), PRIMARY KEY (key_accion)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "VERSION" already exists; SQL statement:
+CREATE TABLE VERSION (NUMERO INTEGER NOT NULL, PRIMARY KEY (NUMERO)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ACCION" already exists; SQL statement:
+CREATE TABLE ACCION (ID BIGINT NOT NULL, CLAVE VARCHAR(255), NOMBRE VARCHAR(255), VERSION INTEGER, PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL" already exists; SQL statement:
+CREATE TABLE ROL (ID BIGINT NOT NULL, DESCRIPCION VARCHAR(255), NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "USUARIO" already exists; SQL statement:
+CREATE TABLE USUARIO (ID BIGINT NOT NULL, BORRADO BOOLEAN, PASSWORD VARCHAR(15), USERNAME VARCHAR(20), VERSION INTEGER, id_rol BIGINT, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMACION_PERSONAL" already exists; SQL statement:
+CREATE TABLE informacion_personal (ID BIGINT NOT NULL, ALTURA VARCHAR(20), APELLIDOS VARCHAR(40), DIRECCION VARCHAR(255), e_mail VARCHAR(60), EDAD VARCHAR(20), NOMBRES VARCHAR(40), PARENTEZCO VARCHAR(255), PATOLOGIA VARCHAR(255), PESO VARCHAR(20), TELEFONOFIJO VARCHAR(40), TELEFONOLABORAL VARCHAR(50), TELEFONOMOVIL VARCHAR(50), id_localidad BIGINT, id_region BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "VENDEDOR" already exists; SQL statement:
+CREATE TABLE vendedor (ID BIGINT NOT NULL, nro_vendedor INTEGER, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PARAMETRO" already exists; SQL statement:
+CREATE TABLE parametro (ID BIGINT NOT NULL, BORRADO BOOLEAN, PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "REGION" already exists; SQL statement:
+CREATE TABLE region (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOCALIDAD" already exists; SQL statement:
+CREATE TABLE localidad (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL_ACCION" already exists; SQL statement:
+CREATE TABLE ROL_ACCION (Rol_ID BIGINT NOT NULL, acciones_ID BIGINT NOT NULL, PRIMARY KEY (Rol_ID, acciones_ID)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_USUARIO_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE USUARIO ADD CONSTRAINT FK_USUARIO_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_INFORMACION_PERSONAL_ID_REGION" already exists; SQL statement:
+ALTER TABLE informacion_personal ADD CONSTRAINT FK_informacion_personal_id_region FOREIGN KEY (id_region) REFERENCES region (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_VENDEDOR_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE vendedor ADD CONSTRAINT FK_vendedor_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_ROL_ACCION_ACCIONES_ID" already exists; SQL statement:
+ALTER TABLE ROL_ACCION ADD CONSTRAINT FK_ROL_ACCION_acciones_ID FOREIGN KEY (acciones_ID) REFERENCES ACCION (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEQUENCE" already exists; SQL statement:
+CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT DECIMAL(38), PRIMARY KEY (SEQ_NAME)) [42101-166]
+07-12 22:00:09 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "GENERADOR_ACCION" already exists; SQL statement:
+CREATE TABLE generador_accion (key_accion VARCHAR(50) NOT NULL, id_accion DECIMAL(38), PRIMARY KEY (key_accion)) [42101-166]
+07-12 22:01:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "VERSION" already exists; SQL statement:
+CREATE TABLE VERSION (NUMERO INTEGER NOT NULL, PRIMARY KEY (NUMERO)) [42101-166]
+07-12 22:01:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ACCION" already exists; SQL statement:
+CREATE TABLE ACCION (ID BIGINT NOT NULL, CLAVE VARCHAR(255), NOMBRE VARCHAR(255), VERSION INTEGER, PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL" already exists; SQL statement:
+CREATE TABLE ROL (ID BIGINT NOT NULL, DESCRIPCION VARCHAR(255), NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "USUARIO" already exists; SQL statement:
+CREATE TABLE USUARIO (ID BIGINT NOT NULL, BORRADO BOOLEAN, PASSWORD VARCHAR(15), USERNAME VARCHAR(20), VERSION INTEGER, id_rol BIGINT, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMACION_PERSONAL" already exists; SQL statement:
+CREATE TABLE informacion_personal (ID BIGINT NOT NULL, ALTURA VARCHAR(20), APELLIDOS VARCHAR(40), DIRECCION VARCHAR(255), e_mail VARCHAR(60), EDAD VARCHAR(20), NOMBRES VARCHAR(40), PARENTEZCO VARCHAR(255), PATOLOGIA VARCHAR(255), PESO VARCHAR(20), TELEFONOFIJO VARCHAR(40), TELEFONOLABORAL VARCHAR(50), TELEFONOMOVIL VARCHAR(50), id_localidad BIGINT, id_region BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "VENDEDOR" already exists; SQL statement:
+CREATE TABLE vendedor (ID BIGINT NOT NULL, nro_vendedor INTEGER, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PARAMETRO" already exists; SQL statement:
+CREATE TABLE parametro (ID BIGINT NOT NULL, BORRADO BOOLEAN, PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "REGION" already exists; SQL statement:
+CREATE TABLE region (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOCALIDAD" already exists; SQL statement:
+CREATE TABLE localidad (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL_ACCION" already exists; SQL statement:
+CREATE TABLE ROL_ACCION (Rol_ID BIGINT NOT NULL, acciones_ID BIGINT NOT NULL, PRIMARY KEY (Rol_ID, acciones_ID)) [42101-166]
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_USUARIO_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE USUARIO ADD CONSTRAINT FK_USUARIO_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_INFORMACION_PERSONAL_ID_REGION" already exists; SQL statement:
+ALTER TABLE informacion_personal ADD CONSTRAINT FK_informacion_personal_id_region FOREIGN KEY (id_region) REFERENCES region (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_VENDEDOR_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE vendedor ADD CONSTRAINT FK_vendedor_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:01:20 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_ROL_ACCION_ACCIONES_ID" already exists; SQL statement:
+ALTER TABLE ROL_ACCION ADD CONSTRAINT FK_ROL_ACCION_acciones_ID FOREIGN KEY (acciones_ID) REFERENCES ACCION (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:01:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEQUENCE" already exists; SQL statement:
+CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT DECIMAL(38), PRIMARY KEY (SEQ_NAME)) [42101-166]
+07-12 22:01:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "GENERADOR_ACCION" already exists; SQL statement:
+CREATE TABLE generador_accion (key_accion VARCHAR(50) NOT NULL, id_accion DECIMAL(38), PRIMARY KEY (key_accion)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "VERSION" already exists; SQL statement:
+CREATE TABLE VERSION (NUMERO INTEGER NOT NULL, PRIMARY KEY (NUMERO)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "ACCION" already exists; SQL statement:
+CREATE TABLE ACCION (ID BIGINT NOT NULL, CLAVE VARCHAR(255), NOMBRE VARCHAR(255), VERSION INTEGER, PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL" already exists; SQL statement:
+CREATE TABLE ROL (ID BIGINT NOT NULL, DESCRIPCION VARCHAR(255), NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "USUARIO" already exists; SQL statement:
+CREATE TABLE USUARIO (ID BIGINT NOT NULL, BORRADO BOOLEAN, PASSWORD VARCHAR(15), USERNAME VARCHAR(20), VERSION INTEGER, id_rol BIGINT, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMACION_PERSONAL" already exists; SQL statement:
+CREATE TABLE informacion_personal (ID BIGINT NOT NULL, ALTURA VARCHAR(20), APELLIDOS VARCHAR(40), DIRECCION VARCHAR(255), e_mail VARCHAR(60), EDAD VARCHAR(20), NOMBRES VARCHAR(40), PARENTEZCO VARCHAR(255), PATOLOGIA VARCHAR(255), PESO VARCHAR(20), TELEFONOFIJO VARCHAR(40), TELEFONOLABORAL VARCHAR(50), TELEFONOMOVIL VARCHAR(50), id_localidad BIGINT, id_region BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "VENDEDOR" already exists; SQL statement:
+CREATE TABLE vendedor (ID BIGINT NOT NULL, nro_vendedor INTEGER, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "PARAMETRO" already exists; SQL statement:
+CREATE TABLE parametro (ID BIGINT NOT NULL, BORRADO BOOLEAN, PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "REGION" already exists; SQL statement:
+CREATE TABLE region (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOCALIDAD" already exists; SQL statement:
+CREATE TABLE localidad (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL_ACCION" already exists; SQL statement:
+CREATE TABLE ROL_ACCION (Rol_ID BIGINT NOT NULL, acciones_ID BIGINT NOT NULL, PRIMARY KEY (Rol_ID, acciones_ID)) [42101-166]
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_USUARIO_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE USUARIO ADD CONSTRAINT FK_USUARIO_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_INFORMACION_PERSONAL_ID_REGION" already exists; SQL statement:
+ALTER TABLE informacion_personal ADD CONSTRAINT FK_informacion_personal_id_region FOREIGN KEY (id_region) REFERENCES region (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_VENDEDOR_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE vendedor ADD CONSTRAINT FK_vendedor_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_ROL_ACCION_ACCIONES_ID" already exists; SQL statement:
+ALTER TABLE ROL_ACCION ADD CONSTRAINT FK_ROL_ACCION_acciones_ID FOREIGN KEY (acciones_ID) REFERENCES ACCION (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEQUENCE" already exists; SQL statement:
+CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT DECIMAL(38), PRIMARY KEY (SEQ_NAME)) [42101-166]
+07-12 22:06:01 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "GENERADOR_ACCION" already exists; SQL statement:
+CREATE TABLE generador_accion (key_accion VARCHAR(50) NOT NULL, id_accion DECIMAL(38), PRIMARY KEY (key_accion)) [42101-166]
+07-12 22:18:29 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "VERSION" already exists; SQL statement:
+CREATE TABLE VERSION (NUMERO INTEGER NOT NULL, PRIMARY KEY (NUMERO)) [42101-166]
+07-12 22:18:29 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "ACCION" already exists; SQL statement:
+CREATE TABLE ACCION (ID BIGINT NOT NULL, CLAVE VARCHAR(255), NOMBRE VARCHAR(255), VERSION INTEGER, PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL" already exists; SQL statement:
+CREATE TABLE ROL (ID BIGINT NOT NULL, DESCRIPCION VARCHAR(255), NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "USUARIO" already exists; SQL statement:
+CREATE TABLE USUARIO (ID BIGINT NOT NULL, BORRADO BOOLEAN, PASSWORD VARCHAR(15), USERNAME VARCHAR(20), VERSION INTEGER, id_rol BIGINT, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "INFORMACION_PERSONAL" already exists; SQL statement:
+CREATE TABLE informacion_personal (ID BIGINT NOT NULL, ALTURA VARCHAR(20), APELLIDOS VARCHAR(40), DIRECCION VARCHAR(255), e_mail VARCHAR(60), EDAD VARCHAR(20), NOMBRES VARCHAR(40), PARENTEZCO VARCHAR(255), PATOLOGIA VARCHAR(255), PESO VARCHAR(20), TELEFONOFIJO VARCHAR(40), TELEFONOLABORAL VARCHAR(50), TELEFONOMOVIL VARCHAR(50), id_localidad BIGINT, id_region BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "VENDEDOR" already exists; SQL statement:
+CREATE TABLE vendedor (ID BIGINT NOT NULL, nro_vendedor INTEGER, id_informacion_personal BIGINT, PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "PARAMETRO" already exists; SQL statement:
+CREATE TABLE parametro (ID BIGINT NOT NULL, BORRADO BOOLEAN, PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "REGION" already exists; SQL statement:
+CREATE TABLE region (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "LOCALIDAD" already exists; SQL statement:
+CREATE TABLE localidad (ID BIGINT NOT NULL, NOMBRE VARCHAR(255), PRIMARY KEY (ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROL_ACCION" already exists; SQL statement:
+CREATE TABLE ROL_ACCION (Rol_ID BIGINT NOT NULL, acciones_ID BIGINT NOT NULL, PRIMARY KEY (Rol_ID, acciones_ID)) [42101-166]
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_USUARIO_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE USUARIO ADD CONSTRAINT FK_USUARIO_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_INFORMACION_PERSONAL_ID_REGION" already exists; SQL statement:
+ALTER TABLE informacion_personal ADD CONSTRAINT FK_informacion_personal_id_region FOREIGN KEY (id_region) REFERENCES region (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_VENDEDOR_ID_INFORMACION_PERSONAL" already exists; SQL statement:
+ALTER TABLE vendedor ADD CONSTRAINT FK_vendedor_id_informacion_personal FOREIGN KEY (id_informacion_personal) REFERENCES informacion_personal (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Constraint "FK_ROL_ACCION_ACCIONES_ID" already exists; SQL statement:
+ALTER TABLE ROL_ACCION ADD CONSTRAINT FK_ROL_ACCION_acciones_ID FOREIGN KEY (acciones_ID) REFERENCES ACCION (ID) [90045-166]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:89)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:68)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:73)
+	at org.h2.command.Command.executeUpdate(Command.java:226)
+	at org.h2.jdbc.JdbcPreparedStatement.execute(JdbcPreparedStatement.java:181)
+	at org.h2.server.pg.PgServerThread.process(PgServerThread.java:329)
+	at org.h2.server.pg.PgServerThread.run(PgServerThread.java:81)
+	at java.lang.Thread.run(Thread.java:722)
+07-12 22:18:30 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "SEQUENCE" already exists; SQL statement:
+CREATE TABLE SEQUENCE (SEQ_NAME VARCHAR(50) NOT NULL, SEQ_COUNT DECIMAL(38), PRIMARY KEY (SEQ_NAME)) [42101-166]
+07-12 22:18:31 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLException: Table "GENERADOR_ACCION" already exists; SQL statement:
+CREATE TABLE generador_accion (key_accion VARCHAR(50) NOT NULL, id_accion DECIMAL(38), PRIMARY KEY (key_accion)) [42101-166]
