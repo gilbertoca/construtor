@@ -70,6 +70,11 @@
     </build>
     <dependencies>
 		<!-- common dependences are defined in the parent pom -->
+        <dependency>
+            <groupId>org.jdesktop.bsaf</groupId>
+            <artifactId>bsaf</artifactId>
+            <version>1.9.2</version>
+        </dependency>
     </dependencies>
     <properties>
         <!-- versions -->
