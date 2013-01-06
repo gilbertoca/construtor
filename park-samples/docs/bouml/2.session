@@ -1,0 +1,12 @@
+window_sizes 1362 698 320 1039 508 112
+diagrams
+  active  classdiagram_ref 128002 // class diagram
+    1043 515 100 4 43 0
+end
+show_stereotypes
+selected classdiagram_ref 128002 // class diagram
+open
+  class_ref 128514 // Employee
+  class_ref 129026 // LegalEntity
+end
+end

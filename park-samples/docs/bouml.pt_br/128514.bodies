@@ -1,0 +1,21 @@
+class Employee
+!!!129026.java!!!	getDtAdmission() : Date
+        return dtAdmission;
+!!!129154.java!!!	setDtAdmission(inout dtAdmission : Date) : void
+        this.dtAdmission = dtAdmission;
+!!!129282.java!!!	getStaysOutgoing() : Stay
+        return staysOutgoing;
+!!!129410.java!!!	setStaysOutgoing(inout staysOutgoing : Collection<Stay>) : void
+        this.staysOutgoing = staysOutgoing;
+!!!129538.java!!!	getStaysEntrance() : Stay
+        return staysEntrance;
+!!!129666.java!!!	setStaysEntrance(inout staysEntrance : Collection<Stay>) : void
+        this.staysEntrance = staysEntrance;
+!!!129794.java!!!	getNaturalPerson() : NaturalPerson
+        return naturalPerson;
+!!!129922.java!!!	setNaturalPerson(inout naturalPerson : NaturalPerson) : void
+        this.naturalPerson = naturalPerson;
+!!!130050.java!!!	getParking() : Parking
+        return parking;
+!!!130178.java!!!	setParking(inout parking : Parking) : void
+        this.parking = parking;

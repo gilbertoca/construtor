@@ -1,0 +1,13 @@
+class Customer
+!!!128130.java!!!	getPaymentDay() : Integer
+return paymentDay;
+!!!128258.java!!!	setPaymentDay(inout paymentDay : Integer) : void
+this.paymentDay = paymentDay;
+!!!128386.java!!!	getVehicles() : Vehicle
+return vehicles;
+!!!128514.java!!!	setVehicles(inout vehicles : Collection<Vehicle>) : void
+this.vehicles = vehicles;
+!!!128642.java!!!	getPerson() : Person
+ return person;
+!!!128770.java!!!	setPerson(inout person : Person) : void
+this.person = person;

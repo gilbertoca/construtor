@@ -1,0 +1,54 @@
+class Person
+!!!130434.java!!!	Person(in address : String, in name : String)
+        this.address = address;
+        this.name = name;
+!!!130562.java!!!	getId() : Long
+        return id;
+!!!130690.java!!!	setId(inout id : Long) : void
+        this.id = id;
+!!!130818.java!!!	getAddress() : String
+        return address;
+!!!130946.java!!!	setAddress(in address : String) : void
+        this.address = address;
+!!!131074.java!!!	getName() : String
+        return name;
+!!!131202.java!!!	setName(in name : String) : void
+        this.name = name;
+!!!131330.java!!!	getPType() : String
+        return pType;
+!!!131458.java!!!	setPTytpe(in pType : String) : void
+        this.pType = pType;
+!!!131586.java!!!	getVersion() : int
+        return version;
+!!!131714.java!!!	setVersion(in version : int) : void
+        this.version = version;
+!!!131842.java!!!	getCustomer() : Customer
+        return customer;
+!!!131970.java!!!	setCustomer(inout customer : Customer) : void
+        this.customer = customer;
+!!!132098.java!!!	hashCode() : int
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+!!!132226.java!!!	equals(inout obj : Object) : boolean
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (id != other.id)
+			return false;
+		return true;
+!!!132354.java!!!	toString() : String
+		StringBuilder builder = new StringBuilder();
+		builder.append("Person [address=");
+		builder.append(address);
+		builder.append(", id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append("]");
+		return builder.toString();

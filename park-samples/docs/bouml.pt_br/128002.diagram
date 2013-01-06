@@ -1,0 +1,105 @@
+format 75
+
+classcanvas 128002 class_ref 128002 // Cliente
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 246 46 2000
+end
+classcanvas 128130 class_ref 128258 // Veiculo
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumgreen
+  xyz 520 51 2006
+end
+classcanvas 128386 class_ref 128386 // Pessoa
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumgreen
+  xyzwh 79 175 3005 99 103
+end
+classcanvas 128770 class_ref 128514 // Funcionario
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyzwh 301 384 2000 121 55
+end
+classcanvas 128898 class_ref 128642 // Estada
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightred
+  xyzwh 456 231 3005 199 61
+end
+classcanvas 129282 class_ref 128770 // PessoaFisica
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumgreen
+  xyz 209 329 2006
+end
+classcanvas 129538 class_ref 128898 // Estacionamento
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumgreen
+  xyzwh 544 373 2006 107 49
+end
+classcanvas 129794 class_ref 129026 // PessoaJuridica
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumgreen
+  xyzwh 57 396 3011 99 49
+end
+classcanvas 133122 class_ref 135554 // TipoVeiculo
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumblue
+  xyz 699 125 2000
+end
+classcanvas 133250 class_ref 135682 // TabelaPreco
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  color lightmediumblue
+  xyz 690 31 2000
+end
+relationcanvas 129922 relation_ref 129282 // <generalisation>
+  geometry HV
+  from ref 129794 z 3012 to point 126 393
+  line 132994 z 3012 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132354 relation_ref 135938 // <generalisation>
+  geometry VHr
+  from ref 129282 z 3006 to point 126 350
+  line 135938 z 3006 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133378 relation_ref 142466 // <association>
+  from ref 133122 z 2007 to ref 128130
+  no_role_a no_role_b
+  multiplicity_a_pos 582 92 3000 multiplicity_b_pos 683 141 3000
+end
+relationcanvas 135682 relation_ref 143106 // <association>
+  from ref 133250 z 2007 to ref 128130
+  no_role_a no_role_b
+  multiplicity_a_pos 582 74 3000 multiplicity_b_pos 674 62 3000
+end
+relationcanvas 136450 relation_ref 143362 // <association>
+  from ref 128386 z 3006 to ref 128002
+  no_role_a no_role_b
+  multiplicity_a_pos 234 95 3000 multiplicity_b_pos 185 169 3000
+end
+relationcanvas 136578 relation_ref 143490 // <association>
+  from ref 129282 z 2007 to ref 128770
+  no_role_a no_role_b
+  multiplicity_a_pos 293 392 3000 multiplicity_b_pos 289 378 3000
+end
+relationcanvas 137218 relation_ref 143618 // <association>
+  from ref 128002 z 2007 to ref 128130
+  no_role_a no_role_b
+  multiplicity_a_pos 494 79 3000 multiplicity_b_pos 322 78 3000
+end
+relationcanvas 137346 relation_ref 143746 // <association>
+  from ref 128130 z 3006 to ref 128898
+  no_role_a no_role_b
+  multiplicity_a_pos 528 217 3000 multiplicity_b_pos 532 104 3000
+end
+relationcanvas 137474 relation_ref 143874 // <association>
+  from ref 129538 z 2007 to ref 128770
+  no_role_a no_role_b
+  multiplicity_a_pos 431 411 3000 multiplicity_b_pos 528 404 3000
+end
+relationcanvas 137602 relation_ref 144002 // <association>
+  from ref 129538 z 3006 to ref 128898
+  no_role_a no_role_b
+  multiplicity_a_pos 540 296 3000 multiplicity_b_pos 572 359 3000
+end
+end
