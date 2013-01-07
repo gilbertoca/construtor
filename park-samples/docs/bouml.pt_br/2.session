@@ -1,20 +1,13 @@
-window_sizes 1366 705 498 865 515 112
+window_sizes 1362 698 338 1021 558 62
 diagrams
   active  classdiagram_ref 128002 // class diagram
-    1043 515 100 4 0 0
+    1043 532 100 4 0 0
 end
 show_stereotypes
 selected 
   package_ref 128002 // park
 open
-  classdiagram_ref 128002 // class diagram
-  class_ref 129026 // LegalEntity
-  class_ref 128898 // Parking
-  class_ref 128770 // NaturalPerson
-  class_ref 128642 // Stay
-  class_ref 128514 // Employee
-  class_ref 128386 // Person
-  class_ref 128258 // Vehicle
-  class_ref 128002 // Cliente
+  
+  package_ref 128002 // park
 end
 end

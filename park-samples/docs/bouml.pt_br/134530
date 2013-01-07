@@ -65,6 +65,26 @@ ${members}}
 	    classrelation_ref 129282 // <generalisation>
 	  b parent class_ref 128386 // Pessoa
       end
+
+      attribute 136194 "dataFundacao"
+	private explicit_type "date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136322 "CNPJ"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 128898 "Estacionamento"
@@ -101,6 +121,50 @@ ${members}}
 "
 	    classrelation_ref 145666 // <association>
       end
+
+      attribute 138370 "endereco"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138498 "qtdeVagas"
+	private explicit_type "integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129666 "calcTotalPeriodo"
+	preserve_cpp_body_indent public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 129794 "calcVagasOcupadas"
+	preserve_cpp_body_indent public explicit_return_type "integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
     end
 
     class 128770 "PessoaFisica"
@@ -133,6 +197,26 @@ ${members}}
 "
 	    classrelation_ref 144642 // <association>
       end
+
+      attribute 136450 "dataNasc"
+	private explicit_type "date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136578 "RG"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 128642 "Estada"
@@ -153,6 +237,126 @@ ${members}}
       classrelation 145666 // <association>
 	relation_ref 144002 // <association>
       end
+
+      attribute 137602 "horaSaida"
+	private explicit_type "Time"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137730 "valor"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137858 "status"
+	private explicit_type "integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137986 "dataSaida"
+	private explicit_type "date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138114 "horaEntrada"
+	private explicit_type "Time"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138242 "dataEntrada"
+	private explicit_type "date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129026 "calcValor"
+	preserve_cpp_body_indent public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 129154 "cancelar"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 129282 "sair"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 129410 "calcTempo"
+	preserve_cpp_body_indent public explicit_return_type "integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 129538 "entrar"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
     end
 
     class 128514 "Funcionario"
@@ -166,7 +370,7 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      attribute 128386 "dtAdmission"
+      attribute 128386 "dataAdmissao"
 	private explicit_type "Date"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -183,6 +387,58 @@ ${members}}
       classrelation 145410 // <association>
 	relation_ref 143874 // <association>
       end
+
+      attribute 135682 "matricula"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135810 "turno"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135938 "usuario"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136066 "senha"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129922 "calcQtdeRegistros"
+	preserve_cpp_body_indent public explicit_return_type "integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
     end
 
     class 128386 "Pessoa"
@@ -196,17 +452,7 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      attribute 128642 "id"
-	private explicit_type "Long"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128770 "address"
+      attribute 128770 "endereco"
 	private explicit_type "String"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -216,7 +462,7 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 128898 "name"
+      attribute 128898 "nome"
 	private explicit_type "String"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -226,7 +472,7 @@ ${members}}
 	idl_decl ""
       end
 
-      attribute 129026 "pType"
+      attribute 129026 "tipo"
 	private explicit_type "String"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -234,18 +480,8 @@ ${members}}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	comment " represents the Discriminator column 
+	comment "
 "
-      end
-
-      attribute 129154 "version"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
       end
 
       classrelation 144258 // <association>
@@ -295,6 +531,50 @@ ${members}}
 "
 	    classrelation_ref 145154 // <association>
       end
+
+      attribute 136706 "placa"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136834 "cor"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128258 "calcQtdeEstadas"
+	preserve_cpp_body_indent public explicit_return_type "integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 128386 "calcTotalPago"
+	preserve_cpp_body_indent public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
     end
 
     class 128002 "Cliente"
@@ -308,7 +588,7 @@ ${members}}
       idl_decl ""
       explicit_switch_type ""
       
-      attribute 128130 "paymentDay"
+      attribute 128130 "diaPgto"
 	private explicit_type "Integer"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -332,6 +612,30 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 144898 // <association>
+      end
+
+      operation 128002 "calcTotalPago"
+	preserve_cpp_body_indent public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 128130 "calcScore"
+	preserve_cpp_body_indent public explicit_return_type "integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
       end
     end
 
@@ -357,6 +661,36 @@ ${members}}
 "
 	    classrelation_ref 142594 // <association>
       end
+
+      attribute 136962 "tipo"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137090 "modelo"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137218 "fabricante"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 135682 "TabelaPreco"
@@ -380,6 +714,50 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 143874 // <association>
+      end
+
+      attribute 137346 "item"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137474 "valor"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128642 "calcTotal"
+	preserve_cpp_body_indent public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
+      end
+
+      operation 128770 "planoAvulso"
+	preserve_cpp_body_indent public return_type class_ref 135682 // TabelaPreco
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	preserve_php_body_indent 
+	preserve_python_body_indent 
+	
       end
     end
   end
