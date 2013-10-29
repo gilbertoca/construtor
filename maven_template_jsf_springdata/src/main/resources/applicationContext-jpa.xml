@@ -18,21 +18,19 @@
     <!-- import the dataSource definition -->
     <import resource="applicationContext-dataSource.xml"/>
 
-
     <!-- Spring Data JPA-->
     <jpa:repositories base-package="br.gov.to.secad.seg.repository" />
     <jpa:repositories base-package="br.gov.to.secad.modulo.repository" />
 
-    
     <!-- Spring Service-->
     <!-- THIS ONE IS ACTIVATE BY component-scan
-    <context:annotation-config/>
-    -->
+    <context:annotation-config/>    -->
+    <!--context:component-scan base-package="br.gov.to.secad.modulo.service" /-->
 
     <bean id="groupOneSEGService" class="br.gov.to.secad.seg.service.GroupOneSEGService"/>
     <bean id="groupOneRECAService" class="br.gov.to.secad.modulo.service.GroupOneRECAService"/>
     <!--bean id="auditoriaService" class="br.gov.to.secad.seg.service.SEGJSFAuditoriaService"/-->
     
     <!-- Spring JSF application -->
-    <context:component-scan base-package="br.gov.to.secad.modulo.domain" />
+    <context:component-scan base-package="br.gov.to.secad.modulo.view" />
 </beans>
