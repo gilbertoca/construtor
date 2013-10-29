@@ -1,0 +1,135 @@
+@CHARSET "UTF-8";
+
+body {
+	font-size: 62.5%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background: #666666;
+}
+
+.container {
+	width: 900px;
+	background: #FFFFFF;
+	margin: 0px auto;
+	border: 1px solid #000000;
+	margin: 10px auto;
+	border: solid 1px #969696;
+	font-size: 1.0em;
+}
+
+.header {
+	background: #D6E2F5;
+	width: 900px;
+	font-family: "trebuchet ms", arial, sans-serif;
+}
+
+.header-top {
+	width: 900px;
+	height: 60px;
+	background: #F0F0F0 url("../img/topo.jpg");
+	overflow: visible !important;
+	overflow: hidden;
+}
+
+.header h1 {
+	margin: 0;
+}
+
+.systemlogo {
+	width: 45px;
+	height: 49px;
+	position: absolute;
+	z-index: 1;
+	margin: 8px 0 2px 20px;
+	background: url("../img/logo.png");
+	background-repeat:no-repeat;
+}
+
+.systemname {
+	width: 300px;
+	height: 45px;
+	position: absolute;
+	z-index: 1;
+	margin: 10px 0 0 90px;
+	overflow: visible !important;
+	overflow: hidden;
+}
+
+.systemname h1 {
+	font-size: 240%;
+}
+
+.systemname h2 {
+	margin: -4px 0 0 0;
+	color: #7D7D7D;
+	font-size: 120%;
+}
+
+.systemname a {
+	text-decoration: none;
+	color: #7D7D7D;
+}
+
+.systemname a:hover {
+	text-decoration: none;
+	color: #323232;
+}
+
+.main {
+	clear: both;
+	width: 900px;
+	padding-bottom: 30px;
+}
+
+.main-content h1.titulopagina {
+	margin: 0 0 0.4em 0;
+	padding: 0 0 2px 0;
+	border-bottom: solid 7px #E1E1E1;
+	font-family: "trebuchet ms", arial, sans-serif;
+	color: #646464;
+	font-weight: bold;
+	font-size: 220%;
+}
+
+.main-content {
+	display: inline;
+	width: 840px;
+	overflow: visible !important;
+	overflow: hidden;
+	padding: 0 30px;
+}
+
+.footer {
+	clear: both;
+	width: 900px;
+	padding: 1.0em 0 1.0em 0;
+	background: #E1E1E1 url("../img/rodape.jpg") no-repeat;
+	font-size: 1.0em;
+	overflow: visible !important;
+	overflow: hidden;
+}
+
+.footer p {
+	line-height: 1.3em;
+	text-align: center;
+	color: #7D7D7D;
+	font-weight: bold;
+	font-size: 110%;
+}
+
+.footer p.credito {
+	font-weight: normal;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #7D7D7D;
+}
+
+.footer a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+
+.footer a:visited {
+	color: #000000;
+}

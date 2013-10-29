@@ -1,0 +1,64 @@
+Primeiro definimos a extensão dos arquivos que conterão as sentenças de criação dos objetos do banco de dados:
+<modulo>.tbs		==>Tablespace (Tablespace)- Script de criação do(s) espaço(s) de armazenamento
+<modulo>.vw		==>View (visão)-Script de criação da visões
+<modulo>.usr		==>Schema (esquema)- Criação do Proprietário do Módulo (Schema), juntamente com a role(papel) de aplicação e usário(s) correspondente(s)
+<modulo>.grt		==>Grant (Permissão)- Script que estabelece as permissões a outros usuário e a role de aplicação
+<modulo>.syn		==>Synonym (Sinônimo)- Script que estabelece os sinônimos dos objetos a outros usuários
+<modulo>.tab		==>Table (Tabela)- Script de criação das tabelas
+<modulo>.con		==>Constraint (Restrição)- Script de criação das restrições de integridade
+<modulo>.ind		==>Index (Índice)- Script de criação dos índeces
+<modulo>.trg		==>Trigger (Gatilho)- Script de criação dos gatilhos
+<modulo>.seq		==>Sequence (Sequência)- Script de criação das sequências
+<modulo>.prc		==>Stored Procedure (Procedimento Armazenado)- Script de criação de procedimentos armazenados
+<modulo>.fnc		==>Stored Function (Função Armazenada)- Script de criação de funções armazenadas
+<modulo>.pks		==>Package Specification (Especificação de Pacote) - Script de criação das especificações dos pacotes
+<modulo>.pkb		==>Package Body (Corpo de Pacote) - Script de criação do corpo dos pacotes
+
+<modulo>.sql		==>Reponsável por chamar/executar os outros arquivos em uma sequencia apropriada:
+
+Normas para nomear objetos no banco de dados:
+Para tabela: 
+<prefixo>_<nometabela>, onde <prefixo> deverá ser letras representando o módulo em que esta tabela pertença.
+Exemplo - ger_pessoa
+Para colunas:
+<cd>_<nometabela>, para coluna representando a chave primaria da tabela. Exemplo cd_pessoa;
+<cd>_<nometabelaestrangeira>, para coluna(s) representando a presença de chave estrangeira. Exemplo cd_municipio;
+ou
+<cd>_<nometabelaestrangeira><significadodorelacionamento>, para coluna(s) representando a presença de chave estrangeira. Exemplo cd_municipionaturalidade;
+<eh>_<nomecampo>, para coluna representando campo lógico(verdadeiro ou falso). Exemplo eh_dependente;
+<dt>_<nomecampo>, para coluna representando campo data. Exemplo dt_nascimento;
+<hr>_<nomecampo>, para coluna representando campo tempo. Exemplo hr_saida;
+<nu>_<nomecampo>, para coluna representando campo numerico. Exemplo nu_leicriacao;
+Para CONSTRAINT:
+Para nomear constraints, devemos usar um padrao porque nao pode haver repeticao de nomes dos mesmos (limitado a 30 caracteres - limitacao do oracle).
+	- para chave primaria: <nome da tabela com prefixo>_<pk>
+	exemplo: constraint sys_usuario_pk primary key (cd_usuario) enable	
+	- para indice unico: <nome da tabela com prefixo>_<uk>
+	exemplo: 	constraint sys_usuario_uk unique (login, email) enable
+	- para chave estrangeira: <nome da tabela origem sem prefixo>_<to>_<nome da tabela atual(destino sem prefixo>_<fk>
+	exemplo: constraint entidade_to_subentidade_fk foreign key (id_entidade) references kira.sys_entidade (id_entidade) enable
+	- para check: <nome da tabela sem prefixo>_<nome da coluna>_<ck>_<um digito - caso ocorra repeticao>
+	exemplo: 
+  create table ergon.ergon_regras_compara_ff 
+   (	
+    regra number(6,0) constraint regras_compara_ff_regra_ck_0 not null enable, 
+	eh_ativa_1 char(1 byte) default 'n' constraint rg_cp_ff_eh_ativa_1_ck_0 not null enable, 
+	eh_ativa_2 char(1 byte) default 'n' constraint rg_cp_ff_eh_ativa_2_ck_0 not null enable, 
+	eh_ativa_3 char(1 byte) default 'n' constraint rg_cp_ff_eh_ativa_3_ck_0 not null enable, 
+	limite_diferenca number(11,2), 
+	 constraint ergon_regras_compara_ff_pk primary key (regra) enable, 
+	 constraint rg_cp_ff_eh_ativa_1_ck_1 check (eh_ativa_1 in ('s', 'n')) enable novalidate, 
+	 constraint rg_cp_ff_eh_ativa_2_ck_2 check (eh_ativa_2 in ('s', 'n')) enable novalidate, 
+	 constraint rg_cp_ff_eh_ativa_3_ck_3 check (eh_ativa_3 in ('s', 'n')) enable novalidate
+   ) ;	
+   
+   nota: em todos os casos acima, caso o nome do objeto seja grande, devemos abreviar o nome do mesmo.
+   ex.:
+	aplicacoes = apli (4)
+	aplicacao_funcoes = apfu (2:2)
+	aplicacao_funcao_papeis = apfp (2:1:1)
+	aplicacao_funcao_papel_bananas = afpb (1:1:1:1)
+	aplicacao_funcao_papel_banana_macas = (Seja criativo!)
+   
+   REFERENCIA: http://www.oracle-base.com/articles/misc/NamingConventions.php
+

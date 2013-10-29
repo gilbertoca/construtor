@@ -1,0 +1,181 @@
+@CHARSET "UTF-8";
+
+.menu-bottom {
+	width: 900px;
+	height: 40px;
+	background: #fff;
+}
+
+.nav {
+	float: left;
+	width: 900px;
+	border: none;
+	color: #4B4B4B;
+	font-size: 130%;
+	background: #DCDCDC url("../img/menu.jpg") no-repeat;
+}
+
+.nav ul {
+	list-style-type: none;
+	display: inline;
+}
+
+.nav ul li {
+	float: left;
+	position: relative;
+	z-index: auto !important;
+	z-index: 1000;
+	border-right: solid 1px #AFAFAF;
+}
+
+.nav ul li a {
+	float: none !important;
+	float: left;
+	display: block;
+	height: 3.1em;
+	line-height: 3.1em;
+	padding: 0 16px 0 16px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #646464;
+}
+
+.nav ul li ul {
+	display: none;
+	border: none;
+}
+
+.nav ul li:hover a {
+	background: #D2D2D2;
+	text-decoration: none;
+}
+
+.nav ul li:hover ul {
+	display: block;
+	width: 10.0em;
+	position: absolute;
+	z-index: 999;
+	top: 3.0em;
+	margin-top: 0.1em;
+	left: 0;
+}
+
+.nav ul li:hover ul li a {
+	display: block;
+	width: 10.0em;
+	height: auto;
+	line-height: 1.3em;
+	margin-left: -1px;
+	padding: 4px 16px 4px 16px;
+	border-left: solid 1px #AFAFAF;
+	border-bottom: solid 1px #AFAFAF;
+	background: #EDEDED;
+	font-weight: normal;
+	color: #323232;
+}
+
+.nav ul li:hover ul li a:hover {
+	background: #E8E8E8;
+	text-decoration: none;
+}
+
+.nav table {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-collapse: collapse;
+}
+
+.nav ul li a:hover {
+	background: #D2D2D2;
+	text-decoration: none;
+}
+
+.nav ul li a:hover ul {
+	display: block;
+	width: 10.0em;
+	position: absolute;
+	z-index: 999;
+	top: 3.1em;
+	t\op: 3.0em;
+	left: 0;
+	marg\in-top: 0.1em;
+}
+
+.nav ul li a:hover ul li a {
+	display: block;
+	w\idth: 10.0em;
+	height: 1px;
+	line-height: 1.3em;
+	padding: 4px 16px 4px 16px;
+	border-left: solid 1px #AFAFAF;
+	border-bottom: solid 1px #AFAFAF;
+	background: #EDEDED;
+	font-weight: normal;
+	color: #323232;
+}
+
+.nav ul li a:hover ul li a:hover {
+	background: #D2D2D2;
+	text-decoration: none;
+}
+
+/*caminho*/
+.menu-breadcrumbs {
+	clear: both;
+	width: 900px;
+	padding: 1.0em 0 1.5em 0;
+	background: #fff;
+}
+
+.menu-breadcrumbs ul {
+	float: left;
+	width: 900px;
+	list-style: none;
+	padding: 0 0 0 15px;
+	font-family: verdana, arial, sans-serif;
+}
+
+.menu-breadcrumbs ul li {
+	display: inline;
+	padding: 0 0 0 10px;
+	background: transparent url("../img/seta.gif") no-repeat 0 50%;
+	font-weight: bold;
+	color: #7D7D7D;
+	font-size: 100%;
+}
+
+.menu-breadcrumbs ul a {
+	color: #467AA7;
+	text-decoration: none;
+}
+
+.menu-breadcrumbs ul a:hover {
+	color: #2A5A8A;
+	text-decoration: underline;
+}
+
+.wicketExtensionsBreadCrumbBarCrumb {
+	float: left;
+	padding: 0 0 0 15px;
+	font-family: verdana, arial, sans-serif;
+}
+
+.wicketExtensionsBreadCrumbBarCrumb {
+	display: inline;
+	padding: 0 2px 0 10px;
+	background: transparent url("../img/seta.gif") no-repeat 0 50%;
+	font-weight: bold;
+	color: #7D7D7D;
+	font-size: 100%;
+}
+
+.wicketExtensionsBreadCrumbBarCrumb a {
+	color: #467AA7;
+	text-decoration: none;
+}
+
+.wicketExtensionsBreadCrumbBarCrumb a:hover {
+	color: #2A5A8A;
+	text-decoration: underline;
+}

@@ -1,0 +1,180 @@
+@CHARSET "UTF-8";
+
+.form table {
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.form table input {
+	background: #F9F9F9;
+	line-height: 20px;
+	padding-left: 3px;
+}
+
+.form tr:hover {
+	background: #F8F8F8;
+}
+
+.form tr {
+	line-height: 25px;
+}
+
+.tab-row {
+	width: 900px;
+	height: 32px;
+}
+
+.tab-row a {
+	line-height: 20px;
+	width: 120px;
+	float: left;
+	list-style: none;
+	line-height: 30px;
+	display: block;
+	border: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	text-align: center;
+	font-size: 120%;
+	text-decoration: none;
+	background: #E4E4E4;
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	color: #000;
+	font-weight: bold;
+}
+
+.tab-row .selected a {
+	background: #FFF;
+	color: #CCC;
+	border-bottom: 1px solid #FFF;
+}
+
+.tab-row a:hover {
+	background: #F8F8F8;
+}
+
+.reca-alterado {
+	border: solid 1px red;
+}
+
+.reca-lblOriginal {
+	font-size: 80%;
+	color: black;
+}
+
+.reca-lblAlterado {
+	font-size: 80%;
+	color: red;
+}
+
+.feedbackPanel {
+	
+}
+
+.feedbackPanelINFO .feedbackPanelINFO, .feedbackPanelWARN .feedbackPanelWARN, .feedbackPanelERROR .feedbackPanelERROR {
+	background: none;
+	border: none;
+	padding: 0 0 0 10px;
+}
+
+.feedbackPanelINFO {
+	color: #000;
+	background: url(../img/info.png) no-repeat left #8CC6FF;
+	background-position: 5px;
+	border: solid 1px #003399;
+	padding: 5px 5px 5px 40px;
+	font-weight: bold;
+}
+
+.feedbackPanelWARN {
+	color: #000;
+	background: url(../img/aviso.png) no-repeat left #FFF6BF;
+	background-position: 5px;
+	border: solid 1px #FFD324;
+	padding: 5px 5px 5px 40px;
+	font-weight: bold;
+}
+
+.feedbackPanelERROR {
+	color: #fff;
+	background: url(../img/erro.png) no-repeat left #CE0000;
+	background-position: 5px;
+	border: solid 1px #FF0000;
+	padding: 5px 5px 5px 40px;
+	font-weight: bold;
+}
+
+.reca-chave {
+	color: #000;
+	background: url(../img/chave.png) no-repeat left #8CC6FF;
+	background-position: 5px;
+	border: solid 1px #003399;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-alerta {
+	color: #000;
+	background: url(../img/erro.png) no-repeat left #FFF6BF;
+	background-position: 5px;
+	border: solid 1px #FFD324;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-informe {
+	color: #000;
+	background: url(../img/aviso.png) no-repeat left #FFF6BF;
+	background-position: 5px;
+	border: solid 1px #FFD324;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-documento {
+	color: #000;
+	background: url(../img/info.png) no-repeat left #8CC6FF;
+	background-position: 5px;
+	border: solid 1px #003399;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-salvar {
+	color: #000;
+	background: url(../img/aviso.png) no-repeat left #FFF6BF;
+	background-position: 5px;
+	border: solid 1px #FFD324;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-gerarChave {
+	color: #000;
+	background: url(../img/chave_20.png) no-repeat left #FFF;
+	background-position: 5px;
+	border: solid 1px #CCC;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-validar {
+	color: #000;
+	background: url(../img/salvo.png) no-repeat left #80FF80;
+	background-position: 5px;
+	border: solid 1px #009933;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
+.reca-termo {
+	color: #000;
+	background: url(../img/pdf.png) no-repeat left #80FF80;
+	background-position: 5px;
+	border: solid 1px #009933;
+	padding: 5px 5px 5px 40px;
+	font-size: 13px;
+}
+
