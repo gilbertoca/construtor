@@ -8,44 +8,6 @@ CREATE SEQUENCE seg.usuario_id_seq;
 
 --VIEWS
 
--- View: seg.vw_cargo
--- DROP VIEW seg.vw_cargo;
-CREATE OR REPLACE VIEW seg.vw_cargo AS
- SELECT sgp_cargo.cdcargo AS id, sgp_cargo.cdquadroprofissional AS quadro_id, sgp_cargo.dccargo AS descricao, sgp_cargo.flativo, sgp_cargo.escolaridade, sgp_cargo.remuneracao, sgp_cargo.requisito
-   FROM sgp.sgp_cargo
-  ORDER BY sgp_cargo.dccargo;
-
--- View: seg.vw_municipio
--- DROP VIEW seg.vw_municipio;
-CREATE OR REPLACE VIEW seg.vw_municipio AS
- SELECT log_localidade.loc_nu_sequencial AS id, log_localidade.loc_no AS descricao, log_localidade.cep, log_localidade.ufe_sg AS uf
-   FROM log.log_localidade
-  WHERE log_localidade.ufe_sg::text = 'TO'::text AND log_localidade.loc_in_tipo_localid::text = 'M'::text OR log_localidade.loc_no::text = 'Brasília'::text
-  ORDER BY log_localidade.loc_nu_sequencial;
-
--- View: seg.vw_orgao
--- DROP VIEW seg.vw_orgao;
-CREATE OR REPLACE VIEW seg.vw_orgao AS
- SELECT und_entidade.cdentidade AS id, und_entidade.cnpj, und_entidade.dcentidade AS descricao, und_entidade.loc_nu_sequencial AS municipio_id
-   FROM und.und_entidade
-  WHERE und_entidade.cdentidademembrode = 0 AND und_entidade.flativo = true
-  ORDER BY und_entidade.dcentidade;
-
--- View: seg.vw_quadro
--- DROP VIEW seg.vw_quadro;
-CREATE OR REPLACE VIEW seg.vw_quadro AS
- SELECT sgp_quadroprofissional.cdquadroprofissional AS id, sgp_quadroprofissional.dcquadroprofissional AS descricao
-   FROM sgp.sgp_quadroprofissional
-  ORDER BY sgp_quadroprofissional.dcquadroprofissional;
-
--- View: seg.vw_servidor
--- DROP VIEW seg.vw_servidor;
-CREATE OR REPLACE VIEW seg.vw_servidor AS
- SELECT s.matricula, s.cdentidade AS lotacao, s.cdentidadeorgao AS orgao_id, g.cdpessoa AS pessoa_id, g.nome, g.cpf, s.cdcargo AS cargo_id, s.cdcargocomissao AS cargocomissao_id
-   FROM sgp.sgp_servidor s
-   JOIN ger.ger_pessoa g ON s.cdpessoa = g.cdpessoa
-   WHERE s.dtexclusao is null
-  ORDER BY g.nome;
 
 --TABLES
 

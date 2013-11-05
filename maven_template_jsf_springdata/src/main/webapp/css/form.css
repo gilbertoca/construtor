@@ -55,16 +55,16 @@
 	background: #F8F8F8;
 }
 
-.reca-alterado {
+.modulo-alterado {
 	border: solid 1px red;
 }
 
-.reca-lblOriginal {
+.modulo-lblOriginal {
 	font-size: 80%;
 	color: black;
 }
 
-.reca-lblAlterado {
+.modulo-lblAlterado {
 	font-size: 80%;
 	color: red;
 }
@@ -106,7 +106,7 @@
 	font-weight: bold;
 }
 
-.reca-chave {
+.modulo-chave {
 	color: #000;
 	background: url(../img/chave.png) no-repeat left #8CC6FF;
 	background-position: 5px;
@@ -115,7 +115,7 @@
 	font-size: 13px;
 }
 
-.reca-alerta {
+.modulo-alerta {
 	color: #000;
 	background: url(../img/erro.png) no-repeat left #FFF6BF;
 	background-position: 5px;
@@ -124,7 +124,7 @@
 	font-size: 13px;
 }
 
-.reca-informe {
+.modulo-informe {
 	color: #000;
 	background: url(../img/aviso.png) no-repeat left #FFF6BF;
 	background-position: 5px;
@@ -133,7 +133,7 @@
 	font-size: 13px;
 }
 
-.reca-documento {
+.modulo-documento {
 	color: #000;
 	background: url(../img/info.png) no-repeat left #8CC6FF;
 	background-position: 5px;
@@ -142,7 +142,7 @@
 	font-size: 13px;
 }
 
-.reca-salvar {
+.modulo-salvar {
 	color: #000;
 	background: url(../img/aviso.png) no-repeat left #FFF6BF;
 	background-position: 5px;
@@ -151,7 +151,7 @@
 	font-size: 13px;
 }
 
-.reca-gerarChave {
+.modulo-gerarChave {
 	color: #000;
 	background: url(../img/chave_20.png) no-repeat left #FFF;
 	background-position: 5px;
@@ -160,7 +160,7 @@
 	font-size: 13px;
 }
 
-.reca-validar {
+.modulo-validar {
 	color: #000;
 	background: url(../img/salvo.png) no-repeat left #80FF80;
 	background-position: 5px;
@@ -169,7 +169,7 @@
 	font-size: 13px;
 }
 
-.reca-termo {
+.modulo-termo {
 	color: #000;
 	background: url(../img/pdf.png) no-repeat left #80FF80;
 	background-position: 5px;

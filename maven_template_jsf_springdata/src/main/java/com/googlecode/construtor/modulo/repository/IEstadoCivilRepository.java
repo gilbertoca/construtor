@@ -4,7 +4,7 @@ import com.googlecode.construtor.modulo.domain.EstadoCivil;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 /**
- * Interface representando um repositório do tipo { @link JpaRepository} que expoe CRUDs para a entidade { @link EstadoCivil}.
+ * Interface representando um repositório do tipo { @link JpaRepository} que expõe CRUDs para a entidade { @link EstadoCivil}.
  * <p/>
  * @author Gilberto
  */
