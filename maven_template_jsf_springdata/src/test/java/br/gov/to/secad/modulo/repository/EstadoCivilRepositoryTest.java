@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import br.gov.to.secad.modulo.domain.EstadoCivil;
+import java.util.Arrays;
 
 /**
  * Teste de integração mostrando o uso da classe { @link IEstadoCivilRepository}.
@@ -27,19 +28,20 @@ public class EstadoCivilRepositoryTest {
 
     @Before
     public void setUp() {
-        //Atenção: NÃO HÁ NECESSIDADE DE CRIAR UM OBJETO POIS O MESMO JÁ
-        //EXISTE E NÃO PODE SER MODIFICADO
-        //estadoCivil = new EstadoCivil();
+        estadoCivil = new EstadoCivil(1, "CASADO");
     }
 
     @Test
     public void saveFinOne() {
+        repository.save(estadoCivil);
         assertNotNull("Não deve retornar um objeto NULO ", repository.findOne(1));
     }
 
     @Test
     public void saveFindAll() throws Exception {
+        List<EstadoCivil> scList = Arrays.asList(new EstadoCivil(1, "CASADO"),new EstadoCivil(2, "SOLTEIRO"),new EstadoCivil(3, "DIVORCIADO"));
+        repository.save(scList);
         List<EstadoCivil> estadoCivils = repository.findAll();
-        assertTrue("É verdadeiro quando for 7 itens", estadoCivils.size() == 7);
+        assertEquals("É verdadeiro quando for 3 itens", 3, estadoCivils.size());
     }
 }

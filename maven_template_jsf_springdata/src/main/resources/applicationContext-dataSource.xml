@@ -22,12 +22,12 @@
         <property name="password" value="${jdbc.password}" />
 
 		<!-- Connection Pooling DBCP -->
-        <property name="initialSize" value="5"/>
+        <!--property name="initialSize" value="5"/>
         <property name="maxActive" value="100" />
         <property name="maxIdle" value="30" />
         <property name="maxWait" value="1000" />
         <property name="poolPreparedStatements" value="true" />
-        <property name="defaultAutoCommit" value="false" />
+        <property name="defaultAutoCommit" value="false" /-->
     </bean>
 	
 	<!-- JNDI DataSource for JEE environments -->

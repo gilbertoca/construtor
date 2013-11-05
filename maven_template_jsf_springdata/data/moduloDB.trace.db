@@ -1,0 +1,3 @@
+11-05 13:56:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]

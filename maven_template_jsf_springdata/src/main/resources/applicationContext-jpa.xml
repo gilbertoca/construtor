@@ -19,7 +19,6 @@
     <import resource="applicationContext-dataSource.xml"/>
 
     <!-- Spring Data JPA-->
-    <jpa:repositories base-package="br.gov.to.secad.seg.repository" />
     <jpa:repositories base-package="br.gov.to.secad.modulo.repository" />
 
     <!-- Spring Service-->
@@ -27,9 +26,7 @@
     <context:annotation-config/>    -->
     <!--context:component-scan base-package="br.gov.to.secad.modulo.service" /-->
 
-    <bean id="groupOneSEGService" class="br.gov.to.secad.seg.service.GroupOneSEGService"/>
-    <bean id="groupOneRECAService" class="br.gov.to.secad.modulo.service.GroupOneRECAService"/>
-    <!--bean id="auditoriaService" class="br.gov.to.secad.seg.service.SEGJSFAuditoriaService"/-->
+    <!--bean id="groupOneRECAService" class="br.gov.to.secad.modulo.service.GroupOneRECAService"/-->
     
     <!-- Spring JSF application -->
     <context:component-scan base-package="br.gov.to.secad.modulo.view" />

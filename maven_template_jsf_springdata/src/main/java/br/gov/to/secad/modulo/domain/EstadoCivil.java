@@ -8,7 +8,7 @@ import javax.persistence.*;
  * @author gilberto
  */
 @Entity
-@Table(name = "estado_civil", schema = "reca")
+@Table(name = "estado_civil", schema = "modulo")
 @NamedQueries({
     @NamedQuery(name = "EstadoCivil.findByDescricao", query = "SELECT e FROM EstadoCivil e WHERE e.descricao = :descricao")})
 public class EstadoCivil implements Serializable {
