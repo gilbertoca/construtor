@@ -20,4 +20,12 @@
                 <netbeans.deploy.debugmode>tru</netbeans.deploy.debugmode>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-clean jetty:run</actionName>
+            <displayName>clean jetty:run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>jetty:run</goal>
+            </goals>
+        </action>
     </actions>

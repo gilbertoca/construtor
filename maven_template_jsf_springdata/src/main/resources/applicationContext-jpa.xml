@@ -24,9 +24,8 @@
     <!-- Spring Service-->
     <!-- THIS ONE IS ACTIVATE BY component-scan
     <context:annotation-config/>    -->
-    <!--context:component-scan base-package="com.googlecode.construtor.modulo.service" /-->
-
-    <!--bean id="groupOneRECAService" class="com.googlecode.construtor.modulo.service.GroupOneRECAService"/-->
+    
+    <context:component-scan base-package="com.googlecode.construtor.modulo.service" />
     
     <!-- Spring JSF application -->
     <context:component-scan base-package="com.googlecode.construtor.modulo.view" />
