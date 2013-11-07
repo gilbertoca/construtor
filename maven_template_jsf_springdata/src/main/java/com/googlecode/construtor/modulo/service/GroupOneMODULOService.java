@@ -22,11 +22,8 @@ public class GroupOneMODULOService {
 
     @Autowired
     private IEstadoCivilRepository estadoCivilRepository;
-    static {
-        List<EstadoCivil> scList = Arrays.asList(new EstadoCivil(1, "CASADO"), new EstadoCivil(2, "SOLTEIRO"), new EstadoCivil(3, "DIVORCIADO"));
-        estadoCivilRepository.save(scList);
-    }
-    
+    private List<EstadoCivil> scList = Arrays.asList(new EstadoCivil(1, "CASADO"), new EstadoCivil(2, "SOLTEIRO"), new EstadoCivil(3, "DIVORCIADO"));
+   
     public GroupOneMODULOService() {
     }
 
@@ -36,6 +33,8 @@ public class GroupOneMODULOService {
 
     //EstadoCivil
     public List<EstadoCivil> findAllEstadoCivil() {
+        if(!scList.isEmpty())
+            estadoCivilRepository.save(scList);
         return estadoCivilRepository.findAll();
     }
 

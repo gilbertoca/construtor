@@ -28,4 +28,12 @@
                 <goal>jetty:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-clean tomcat7:run</actionName>
+            <displayName>clean tomcat7:run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>tomcat7:run</goal>
+            </goals>
+        </action>
     </actions>
