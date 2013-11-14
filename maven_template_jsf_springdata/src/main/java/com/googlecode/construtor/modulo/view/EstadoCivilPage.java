@@ -3,6 +3,7 @@ package com.googlecode.construtor.modulo.view;
 import com.googlecode.construtor.modulo.domain.EstadoCivil;
 import com.googlecode.construtor.modulo.service.GroupOneMODULOService;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,6 +24,14 @@ public class EstadoCivilPage {
     private int selectedId;
     private EstadoCivil selectedEstadoCivil;
 
+    /**
+     * Executado quando estadoCivilPage.xhtml és acessado
+     */
+    @PostConstruct
+    public void initialize() {
+        System.out.println("---- initialize ----");
+    }
+    
     public List<EstadoCivil> getEstadoCivis() {
         return groupOneMODULOService.findAllEstadoCivil();
     }
