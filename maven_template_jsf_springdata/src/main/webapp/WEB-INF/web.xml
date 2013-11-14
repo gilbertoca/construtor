@@ -47,7 +47,7 @@
       This ServletContextListener initializes the runtime environment
       of the JavaServer Faces Reference Implementation when a web
       application including it is initialized by the container.
-    -->
+    -->    
      <listener>
         <listener-class>
             com.sun.faces.config.ConfigureListener

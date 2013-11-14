@@ -130,7 +130,6 @@
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
         <jdbc.username>sa</jdbc.username>
         <jdbc.password></jdbc.password>
-
     </properties>
     
     <repositories>
@@ -148,55 +147,14 @@
             <artifactId>jsf-impl</artifactId>
             <version>${jsf.version}</version>
         </dependency>         
-        
-        <!--  SPRING FRAMEWORK DEPENDENCIES  
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${spring.version}</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-api-version}</version>
             <scope>provided</scope>
-        </dependency-->        
+        </dependency>
+        
+        <!--  SPRING FRAMEWORK DEPENDENCIES  -->        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -209,12 +167,15 @@
             <scope>test</scope>
         </dependency>
         
-        <!-- SPRING-DATA FRAMEWORK DEPENDENCIES -->
+        <!-- SPRING-DATA DEPENDENCIES -->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data.version}</version>
-            <!--exclusions>
+            <!-- 
+            Exclusão necessária caso se deseje utilizar versão mais nova do spring.
+            
+            <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-beans</artifactId>
@@ -241,8 +202,6 @@
                 </exclusion>
             </exclusions-->
         </dependency>
-
-        
         
         <!--  JASPERREPORTS DEPENDENCY -->
         <dependency>
@@ -277,25 +236,12 @@
             </exclusions>
         </dependency> 
         
-        <!--  JUNIT DEPENDENCY FOR TESTING -->
-        <!--  JETTY DEPENDENCIES FOR TESTING  -->
-        <dependency>
-            <groupId>org.eclipse.jetty.aggregate</groupId>
-            <artifactId>jetty-all-server</artifactId>
-            <version>${jetty.version}</version>
-            <scope>provided</scope>
-        </dependency>            
+        <!--  JUNIT DEPENDENCIES -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>${servlet-api-version}</version>
-            <scope>provided</scope>
         </dependency>
         
         <!-- JPA DEPENDENCIES -->
