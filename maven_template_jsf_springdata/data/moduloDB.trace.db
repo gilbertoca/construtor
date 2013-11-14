@@ -136,3 +136,39 @@ CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT
 11-07 17:43:42 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
 CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:01:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:01:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:04:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:37:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:37:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-07 18:38:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 13:31:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 13:53:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 13:58:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 13:59:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 14:00:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]
+11-14 14:10:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ESTADO_CIVIL" already exists; SQL statement:
+CREATE TABLE modulo.estado_civil (id INTEGER NOT NULL, descricao VARCHAR(60) NOT NULL, PRIMARY KEY (id)) [42101-156]

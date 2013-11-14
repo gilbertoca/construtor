@@ -16,6 +16,7 @@ import javax.faces.view.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class EstadoCivilPage {
+    
     @ManagedProperty("#{groupOneMODULOService}")
     private GroupOneMODULOService groupOneMODULOService;
 
