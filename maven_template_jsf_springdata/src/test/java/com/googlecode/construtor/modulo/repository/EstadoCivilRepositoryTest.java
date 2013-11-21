@@ -18,7 +18,7 @@ import java.util.Arrays;
  * @author Gilberto
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext-jpa.xml")
+@ContextConfiguration(locations = "classpath:spring-resources.xml")
 @Transactional
 public class EstadoCivilRepositoryTest {
 
