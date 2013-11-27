@@ -73,7 +73,7 @@
                 <jpa.dialect>eclipselink.target-database</jpa.dialect>
                 <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value>
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <jpa.ddl_value>NONE</jpa.ddl_value>
+                <jpa.ddl_value>drop-and-create-tables</jpa.ddl_value>
                 <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
@@ -166,7 +166,7 @@
                 <jpa.dialect>hibernate.dialect</jpa.dialect>
                 <jpa.dialect_value>org.hibernate.dialect.H2Dialect</jpa.dialect_value>
                 <jpa.ddl>hibernate.hbm2ddl.auto</jpa.ddl>
-                <jpa.ddl_value>update</jpa.ddl_value>
+                <jpa.ddl_value>create</jpa.ddl_value>
                 <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <jpa.logging>hibernate.show_sql</jpa.logging>
                 <jpa.logging_value>true</jpa.logging_value>
