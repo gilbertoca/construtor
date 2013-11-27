@@ -22,14 +22,29 @@
     
     <profiles>
         <profile>
-            <id>db-pro</id>
+            <id>db-postgres</id>
             <properties>
-                <JSF.MODE>Production</JSF.MODE>
-                <jdbc.url>jdbc:postgresql://10.121.0.9:5433/bcoproducao</jdbc.url>
-                <jdbc.username>seg_user</jdbc.username>
-                <jdbc.password>seg_user</jdbc.password>
-            </properties>        
-        </profile>        
+                <jdbc.groupId>postgresql</jdbc.groupId>
+                <jdbc.artifactId>postgresql</jdbc.artifactId>
+                <jdbc.version>8.4-702.jdbc3</jdbc.version>
+                <jdbc.url>jdbc:postgresql://localhost:5432/modulo</jdbc.url>
+                <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+                <jdbc.username>modulo_user</jdbc.username>
+                <jdbc.password>modulo_user</jdbc.password>                
+            </properties>
+        </profile>
+        <profile>
+            <id>db-mysql</id>
+            <properties>
+                <jdbc.groupId>mysql</jdbc.groupId>
+                <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+                <jdbc.version>5.1.6</jdbc.version>
+                <jdbc.url>jdbc:mysql://localhost/modulo</jdbc.url>
+                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password></jdbc.password>                
+            </properties>
+        </profile>
         <profile>
             <id>eclipselink</id>
             <activation>
@@ -37,48 +52,92 @@
             </activation>
             <properties>
                 <jpa.groupId>org.eclipse.persistence</jpa.groupId>
-                <jpa.artifactId>org.eclipse.persistence.jpa</jpa.artifactId>
-                <jpa.version>2.4.0</jpa.version>
+                <jpa.artifactId>eclipselink</jpa.artifactId>
+                <jpa.version>2.3.0</jpa.version>
+                <jpa-persistence-api.groupId>org.eclipse.persistence</jpa-persistence-api.groupId>
+                <jpa-persistence-api.artifactId>javax.persistence</jpa-persistence-api.artifactId>
+                <jpa-persistence-api.version>2.0.4.v201112161009</jpa-persistence-api.version>                
                 <jpa.provider>org.eclipse.persistence.jpa.PersistenceProvider</jpa.provider>
+                <!-- Apache Commons DBCP will take care of this through spring-resources.xml file 
+                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
+                <jpa.url>javax.persistence.jdbc.url</jpa.url>
+                <jpa.username>javax.persistence.jdbc.user</jpa.username>
+                <jpa.password>javax.persistence.jdbc.password</jpa.password-->
+                
+                <!-- CACHE-->
                 <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
                 <jpa.cache.second_level>eclipselink.cache.shared.default</jpa.cache.second_level>
                 <jpa.cache.second_level_value>false</jpa.cache.second_level_value>
                 <jpa.cache.second_level_provider>eclipselink.cache.shared.default</jpa.cache.second_level_provider>
                 <jpa.cache.second_level_provider_value>false</jpa.cache.second_level_provider_value>
                 <jpa.dialect>eclipselink.target-database</jpa.dialect>
-                <jpa.dialect_value>org.eclipse.persistence.platform.database.PostgreSQLPlatform</jpa.dialect_value>
+                <jpa.dialect_value>org.eclipse.persistence.platform.database.H2Platform</jpa.dialect_value>
                 <jpa.ddl>eclipselink.ddl-generation</jpa.ddl>
-                <jpa.ddl_value>create-or-extend-tables</jpa.ddl_value>
+                <jpa.ddl_value>NONE</jpa.ddl_value>
                 <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <jpa.logging>eclipselink.logging.level</jpa.logging>
                 <!--OFF,SEVERE,WARNING,INFO,CONFIG,FINE,FINER,FINEST -->
-                <jpa.logging_value>CONFIG</jpa.logging_value>
-                <!-- disable load time weave-->
+                <jpa.logging_value>FINE</jpa.logging_value>
                 <jpa.weaving>eclipselink.weaving</jpa.weaving>
-                <jpa.weaving_value>static</jpa.weaving_value>
+                <jpa.weaving_value>false</jpa.weaving_value>
+            </properties>
+        </profile>
+        <profile>
+            <id>openjpa</id>
+            <properties>
+                <jpa.groupId>org.apache.openjpa</jpa.groupId>
+                <jpa.artifactId>openjpa</jpa.artifactId>
+                <jpa.version>2.2.0</jpa.version>
+                <jpa-persistence-api.groupId>org.apache.geronimo.specs</jpa-persistence-api.groupId>
+                <jpa-persistence-api.artifactId>geronimo-jpa_2.0_spec</jpa-persistence-api.artifactId>
+                <jpa-persistence-api.version>1.1</jpa-persistence-api.version>                                
+                <jpa.provider>org.apache.openjpa.persistence.PersistenceProviderImpl</jpa.provider>
+                <!-- Apache Commons DBCP will take care of this through spring-resources.xml file 
+                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
+                <jpa.url>javax.persistence.jdbc.url</jpa.url>
+                <jpa.username>javax.persistence.jdbc.user</jpa.username>
+                <jpa.password>javax.persistence.jdbc.password</jpa.password-->
+                
+                <!-- CACHE -->
+                <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
+                <jpa.cache.second_level>openjpa.DataCache</jpa.cache.second_level>
+                <jpa.cache.second_level_value>false</jpa.cache.second_level_value>
+                <jpa.cache.second_level_provider>openjpa.RemoteCommitProvider</jpa.cache.second_level_provider>
+                <jpa.cache.second_level_provider_value>sjvm</jpa.cache.second_level_provider_value>
+                <jpa.dialect>openjpa.jdbc.DBDictionary</jpa.dialect>
+                <jpa.dialect_value>org.apache.openjpa.jdbc.sql.H2Dictionary</jpa.dialect_value>
+                <!-- This one is necessary (versrion 1.3)-->
+                <!--jpa.ddl>openjpa.jdbc.SchemaFactory</jpa.ddl>
+                <jpa.ddl_value>native(ForeignKeys=true)</jpa.ddl_value-->
+                <!-- This one is for generate database schema -->
+                <jpa.ddl>openjpa.jdbc.SynchronizeMappings</jpa.ddl>
+                <!--jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value-->
+                <jpa.ddl_value>buildSchema(SchemaAction='drop,add',primaryKeys=true,foreignKeys=true,indexes=true)</jpa.ddl_value>
+                <jpa.logging>openjpa.Log</jpa.logging>
+                <jpa.logging_value>SQL=TRACE</jpa.logging_value>
+                <!--jpa.logging_value>DefaultLevel=ERROR, Runtime=INFO, Tool=INFO, SQL=TRACE</jpa.logging_value-->
+                <jpa.weaving>eclipselink.weaving</jpa.weaving>
+                <jpa.weaving_value>false</jpa.weaving_value>                
             </properties>
             <build>
                 <plugins>
-                    <!--plugin>
-                        <artifactId>eclipselink-staticweave-maven-plugin</artifactId>
-                        <groupId>au.com.alderaan</groupId>
-                        <version>1.0.1</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.eclipse.persistence</groupId>
-                                <artifactId>org.eclipse.persistence.jpa</artifactId>
-                                <version>${jpa.version}</version>
-                            </dependency>
-                        </dependencies>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>openjpa-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <configuration>
+                            <includes>com/googlecode/construtor/modulo/domain/**/*.class</includes>
+                        </configuration>
                         <executions>
                             <execution>
-                                <goals>
-                                    <goal>weave</goal>
-                                </goals>
+                                <id>enhancer</id>
                                 <phase>process-classes</phase>
+                                <goals>
+                                    <goal>enhance</goal>
+                                </goals>
                             </execution>
                         </executions>
-                    </plugin-->
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -87,24 +146,104 @@
             <properties>
                 <jpa.groupId>org.hibernate</jpa.groupId>
                 <jpa.artifactId>hibernate-entitymanager</jpa.artifactId>
-                <jpa.version>3.6.3.Final</jpa.version>
+                <jpa.version>4.2.7.Final</jpa.version>
+                <jpa-persistence-api.groupId>org.hibernate.javax.persistence</jpa-persistence-api.groupId>
+                <jpa-persistence-api.artifactId>hibernate-jpa-2.0-api</jpa-persistence-api.artifactId>
+                <jpa-persistence-api.version>1.0.1.Final</jpa-persistence-api.version>                                
                 <jpa.provider>org.hibernate.ejb.HibernatePersistence</jpa.provider>
+                <!-- Apache Commons DBCP will take care of this through spring-resources.xml file 
+                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
+                <jpa.url>javax.persistence.jdbc.url</jpa.url>
+                <jpa.username>javax.persistence.jdbc.user</jpa.username>
+                <jpa.password>javax.persistence.jdbc.password</jpa.password-->
+                
+                <!-- CACHE-->
                 <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
                 <jpa.cache.second_level>hibernate.cache.use_second_level_cache</jpa.cache.second_level>
                 <jpa.cache.second_level_value>false</jpa.cache.second_level_value>
                 <jpa.cache.second_level_provider>hibernate.cache.provider_class</jpa.cache.second_level_provider>
                 <jpa.cache.second_level_provider_value>org.hibernate.cache.HashtableCacheProvider</jpa.cache.second_level_provider_value>
                 <jpa.dialect>hibernate.dialect</jpa.dialect>
-                <jpa.dialect_value>org.hibernate.dialect.PostgreSQLDialect</jpa.dialect_value>
+                <jpa.dialect_value>org.hibernate.dialect.H2Dialect</jpa.dialect_value>
                 <jpa.ddl>hibernate.hbm2ddl.auto</jpa.ddl>
-                <jpa.ddl_value>validate</jpa.ddl_value>
+                <jpa.ddl_value>update</jpa.ddl_value>
                 <!--jpa.ddl_value>create-tables</jpa.ddl_value-->
                 <jpa.logging>hibernate.show_sql</jpa.logging>
-                <jpa.logging_value>true</jpa.logging_value>                
-                <!-- disable load time weave-->
-                <jpa.weaving>hibernate.weaving</jpa.weaving>
+                <jpa.logging_value>true</jpa.logging_value>
+                <jpa.weaving>eclipselink.weaving</jpa.weaving>
                 <jpa.weaving_value>false</jpa.weaving_value>                
             </properties>
+        </profile>
+        <profile>
+            <id>datanucleus</id>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.jdo</groupId>
+                    <artifactId>jdo-api</artifactId>
+                    <version>[3.0, )</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.datanucleus</groupId>
+                    <artifactId>datanucleus-core</artifactId>
+                    <version>3.2.9</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.datanucleus</groupId>
+                    <artifactId>datanucleus-rdbms</artifactId>
+                    <version>3.2.8</version>
+                </dependency>                
+            </dependencies>
+            <properties>
+                <jpa.groupId>org.datanucleus</jpa.groupId>
+                <jpa.artifactId>datanucleus-api-jpa</jpa.artifactId>
+                <jpa.version>3.3.4</jpa.version>
+                <jpa-persistence-api.groupId>org.eclipse.persistence</jpa-persistence-api.groupId>
+                <jpa-persistence-api.artifactId>javax.persistence</jpa-persistence-api.artifactId>
+                <jpa-persistence-api.version>2.1.0</jpa-persistence-api.version>                
+                <jpa.provider>org.datanucleus.api.jpa.PersistenceProviderImpl</jpa.provider>
+                <!-- Apache Commons DBCP will take care of this through spring-resources.xml file 
+                <jpa.driver>javax.persistence.jdbc.driver</jpa.driver>
+                <jpa.url>javax.persistence.jdbc.url</jpa.url>
+                <jpa.username>javax.persistence.jdbc.user</jpa.username>
+                <jpa.password>javax.persistence.jdbc.password</jpa.password-->
+
+                <!-- CACHE-->
+                <jpa.shared-cache-mode>NONE</jpa.shared-cache-mode>
+                <jpa.cache.second_level>eclipselink.cache.shared.default</jpa.cache.second_level>
+                <jpa.cache.second_level_value>false</jpa.cache.second_level_value>
+                <jpa.cache.second_level_provider>eclipselink.cache.shared.default</jpa.cache.second_level_provider>
+                <jpa.cache.second_level_provider_value>false</jpa.cache.second_level_provider_value>
+                <jpa.dialect></jpa.dialect>
+                <jpa.dialect_value></jpa.dialect_value>
+                <jpa.ddl>datanucleus.autoCreateSchema</jpa.ddl>
+                <jpa.ddl_value>true</jpa.ddl_value>
+                <jpa.logging></jpa.logging>
+                <jpa.logging_value></jpa.logging_value>
+                <jpa.weaving>eclipselink.weaving</jpa.weaving>
+                <jpa.weaving_value>false</jpa.weaving_value>                
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.datanucleus</groupId>
+                        <artifactId>datanucleus-maven-plugin</artifactId>
+                        <version>3.3.0-release</version>
+                        <configuration>
+                            <api>JPA</api>
+                            <verbose>true</verbose>
+                            <includes>com/googlecode/construtor/modulo/domain/**/*.class</includes>
+                        </configuration>                        
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>enhance</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
     
@@ -121,6 +260,7 @@
         <jasypt.version>1.7.1</jasypt.version>
         <jasperreports.version>4.1.1</jasperreports.version>
         <JSF.MODE>Development</JSF.MODE>
+        <!--JSF.MODE>Production</JSF.MODE-->
         <!-- Default Database Connection-->
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
@@ -256,9 +396,9 @@
             <version>${jpa.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>javax.persistence</artifactId>
-            <version>2.0.4.v201112161009</version>
+            <groupId>${jpa-persistence-api.groupId}</groupId>
+            <artifactId>${jpa-persistence-api.artifactId}</artifactId>
+            <version>${jpa-persistence-api.version}</version>
         </dependency>        
         <dependency>
             <groupId>javax.annotation</groupId>

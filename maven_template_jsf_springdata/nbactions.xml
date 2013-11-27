@@ -36,4 +36,26 @@
                 <goal>tomcat7:run</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-hibernate clean jetty:run</actionName>
+            <displayName>hibernate clean jetty:run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>jetty:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>hibernate</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-openjpa clean jetty:run</actionName>
+            <displayName>openjpa clean jetty:run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>jetty:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>openjpa</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>
