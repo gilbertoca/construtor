@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-clean tomcat7:run</actionName>
+            <displayName>clean tomcat7:run</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>tomcat7:run</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-clean tomcat7:run-war</actionName>
+            <displayName>clean tomcat7:run-war</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>tomcat7:run-war</goal>
+            </goals>
+        </action>
+    </actions>
