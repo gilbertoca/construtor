@@ -5,6 +5,6 @@ Pequenos projetos usando technologia java para web, tendo como apoio os projetos
   * [http://openjpa.apache.org | OpenJpa];
   * [http://cayenne.apache.org | Cayenne];
   * [http://click.apache.org | Click];
-  * [http://incubator.apache.org/shiro/ | Shiro].
+  * [http://shiro.apache.org | Shiro].
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gilbertoca/construtor/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
